@@ -35,6 +35,11 @@ def parse_args():
 def main():
     configure_utf8_stdout()
     args = parse_args()
+    requested_output = Path(args.output)
+    if not requested_output.is_absolute():
+        requested_output = PROJECT_ROOT / requested_output
+    if requested_output.resolve() == OUTPUT_PATH.resolve() and OUTPUT_PATH.exists():
+        raise FileExistsError("The reviewed Day 32 output is frozen. Use --output with a new filename, then review the new run separately.")
     if args.offline:
         os.environ["HF_HUB_OFFLINE"] = "1"
         os.environ["TRANSFORMERS_OFFLINE"] = "1"
@@ -65,7 +70,10 @@ def main():
     }
 
     started = time.perf_counter()
-    pipeline = GroundedQAPipeline(local_files_only=args.offline)
+    # This script reproduces the original Day 31 policy; current experiments use
+    # evaluate_answer_improvement.py and evaluate_abstention_improvement.py.
+    pipeline = GroundedQAPipeline(local_files_only=args.offline,
+                                 abstention_config_path=PROJECT_ROOT / "config/abstention.json")
     results = []
     for index, question in enumerate(selected, start=1):
         output = pipeline.ask(

@@ -469,10 +469,10 @@ gate, but they also show that the 0.5B generator and abstention calibration are
 not yet ready for public answer-quality claims.
 
 ```bash
-# Regenerate the blind model outputs (uses the local cached model).
-python -B scripts/run_day32_review.py --offline
+# Save a separate new run; reviewed historical outputs are protected.
+python -B scripts/run_day32_review.py --offline --output data/evaluation/day32_rerun.json
 
-# Rebuild the review artifacts from the saved outputs and manual labels.
+# Rebuild the original review only when its output/label hashes match.
 python -B scripts/build_day32_review.py
 python -B scripts/validate_day32.py
 ```
@@ -515,6 +515,19 @@ See [API usage and behavior](docs/day33_api.md) and
 [Day 33 review](data/evaluation/day33_report.md).
 
 ## Batch ingestion
+
+Post-Day-33 reliability changes and model experiments are documented in
+[the improvement review](docs/improvements_review.md). The user-facing Q&A path
+uses the verified runtime abstention profile in `config/runtime_qna.json`:
+38/40 calibration answerable questions retained and 10/10 original holdout
+unsupported questions refused. Canned non-answers trigger retries and safe refusal.
+The compact prompt and 1.5B replacement were tested but not adopted. These results
+do not establish deployment-level answer accuracy. API jobs are capped at 16;
+new jobs above the cap receive HTTP 503 with `Retry-After`.
+
+Reviewed Day 32 outputs are protected against accidental overwriting and labels
+are bound to their output hashes. Review judgments were assistant-led; independent
+human quality review remains pending.
 
 Run the full PDF-to-search-data pipeline with one command:
 

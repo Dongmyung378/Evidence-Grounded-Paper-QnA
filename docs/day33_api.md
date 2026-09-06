@@ -1,4 +1,4 @@
-# Day 33 — upload and analysis API
+# Day 33 - upload and analysis API
 
 Original roadmap: **POST upload와 analyze endpoint 구현**.
 Completion criterion: **API로 PDF를 등록하고 분석 job을 시작한다.**
@@ -59,6 +59,9 @@ to `POST /analyze` is an acceptance snapshot; it need not reflect the latest wor
 state. Repeated requests for a queued, running, or completed paper return the same
 job. Requesting analysis after failure queues the same job ID for retry. A server
 restart recovers queued/interrupted jobs; completed jobs retain their status.
+
+At most 16 jobs can be running or queued. Further new analysis requests receive
+HTTP 503 with `Retry-After: 5`; repeated requests for an existing job still work.
 
 ## Input and output behavior
 

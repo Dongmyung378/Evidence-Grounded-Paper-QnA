@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "roadmap_day": 31,
+  "status": "calibrated",
+  "policy": {
+    "reject_empty_candidates": true,
+    "reject_empty_evidence": true,
+    "minimum_top_reranker_score": -3.35,
+    "comparison": "accept_if_greater_than_or_equal",
+    "normalize_model_abstention": true,
+    "skip_llm_on_pre_generation_rejection": true
+  },
+  "calibration": {
+    "answerable_set": "verified-40",
+    "unsupported_set": "abstention_questions.jsonl:calibration",
+    "answerable_cases": 40,
+    "unsupported_cases": 10,
+    "threshold_priority": "prevent_unsupported_answers",
+    "minimum_answerable_retention": 0.9,
+    "minimum_unsupported_refusal_recall": 1.0
+  }
+}

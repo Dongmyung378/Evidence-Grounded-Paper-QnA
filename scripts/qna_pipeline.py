@@ -1,10 +1,12 @@
 """Day 30 Q&A pipeline with the calibrated Day 31 abstention policy."""
 
 import time
+import json
 from pathlib import Path
 
 from abstention_policy import CONFIG_PATH as ABSTENTION_CONFIG_PATH
 from abstention_policy import AbstentionPolicy
+from answer_quality import validate_informative_answer
 from grounded_answer_contract import (
     ABSTENTION_ANSWERS,
     AnswerValidationError,
@@ -34,7 +36,7 @@ class GroundedQAPipeline:
         retrieval=None,
         llm=None,
         generation_config_path=CONFIG_PATH,
-        abstention_config_path=ABSTENTION_CONFIG_PATH,
+        abstention_config_path=None,
         enable_abstention=True,
         local_files_only=False,
     ):
@@ -44,6 +46,13 @@ class GroundedQAPipeline:
         self.llm = llm
         self.local_files_only = local_files_only
         self.enable_abstention = bool(enable_abstention)
+        if abstention_config_path is None:
+            runtime_path = PROJECT_ROOT / "config/runtime_qna.json"
+            if runtime_path.exists():
+                profile = json.loads(runtime_path.read_text(encoding="utf-8"))
+                abstention_config_path = PROJECT_ROOT / profile["abstention_config"]
+            else:
+                abstention_config_path = ABSTENTION_CONFIG_PATH
         self.abstention_policy = (
             AbstentionPolicy(abstention_config_path)
             if self.enable_abstention
@@ -82,7 +91,10 @@ class GroundedQAPipeline:
 
     def ask(self, query, paper_id, question_language=None, include_debug=False):
         started = time.perf_counter()
-        language = question_language or detect_question_language(query)
+        detected_language = detect_question_language(query)
+        language = question_language or detected_language
+        if language not in {"en", "ko"} or language != detected_language:
+            raise ValueError("question_language must match the question text (en or ko)")
         retrieval_result = self.retrieval.run(query, paper_id)
         evidence = retrieval_result["evidence"]
 
@@ -132,6 +144,8 @@ class GroundedQAPipeline:
                         evidence,
                         language,
                     )
+                    if self.enable_abstention:
+                        validate_informative_answer(response, query)
                     attempts.append(
                         {
                             "attempt": attempt_number,
@@ -141,6 +155,7 @@ class GroundedQAPipeline:
                     )
                     break
                 except (AnswerValidationError, ValueError, RuntimeError) as exc:
+                    response = None
                     attempts.append(
                         {
                             "attempt": attempt_number,

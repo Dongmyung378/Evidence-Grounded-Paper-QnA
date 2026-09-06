@@ -8,7 +8,7 @@ roadmap requirement of at least five recorded failures.
 - False abstentions: **7/20**
 - Source: `data/evaluation/day32_manual_review.json`
 
-## 1. q-001-en — limitation
+## 1. q-001-en - limitation
 
 - Paper / language: `paper-001` / `en`
 - Question: What is the main problem addressed in this paper?
@@ -18,7 +18,7 @@ roadmap requirement of at least five recorded failures.
 - Failure types: `false_abstention, threshold_false_negative`
 - Review: Gold evidence directly answers the question, but the calibrated pre-generation threshold refused it and returned no citation.
 
-## 2. q-001-ko — limitation
+## 2. q-001-ko - limitation
 
 - Paper / language: `paper-001` / `ko`
 - Question: 이 논문에서 다루는 주요 문제는 무엇인가?
@@ -28,7 +28,7 @@ roadmap requirement of at least five recorded failures.
 - Failure types: `false_abstention, threshold_false_negative`
 - Review: Gold 근거가 직접 존재하지만 사전 임계값이 답변 가능 질문을 거부했고 인용도 반환하지 않았다.
 
-## 3. q-045-ko — comparison
+## 3. q-045-ko - comparison
 
 - Paper / language: `paper-002` / `ko`
 - Question: 모델 폭이 달라질 때 학습률 전이와 관련된 주요 결과는 무엇인가?
@@ -38,7 +38,7 @@ roadmap requirement of at least five recorded failures.
 - Failure types: `vague_non_answer, missing_comparison_result`
 - Review: 근거는 관련되지만 답변이 순환적이고 모호하며, muP 적용 시 폭이 다른 모델 사이에서 최적 학습률이 일관되게 전이된다는 결과를 말하지 않는다.
 
-## 4. q-007-ko — factual
+## 4. q-007-ko - factual
 
 - Paper / language: `paper-003` / `ko`
 - Question: 이 논문이 텍스트 요약을 검토하면서 중점적으로 다루는 내용은 무엇인가?
@@ -48,7 +48,7 @@ roadmap requirement of at least five recorded failures.
 - Failure types: `nonresponsive_answer, missing_factual_content`
 - Review: '근거에서 확인할 수 있다'는 말만 하고 리뷰의 초점이나 세 모델을 답하지 않아 실질적인 답변과 이를 뒷받침하는 인용 연결이 없다.
 
-## 5. q-031-en — comparison
+## 5. q-031-en - comparison
 
 - Paper / language: `paper-004` / `en`
 - Question: What trade-offs between inference speed, memory usage, and accuracy are discussed?
@@ -58,7 +58,7 @@ roadmap requirement of at least five recorded failures.
 - Failure types: `false_abstention, threshold_false_negative, comparison_omission`
 - Review: The paper evidence supports the speed-memory-accuracy trade-off, but the pre-generation policy refused the answer.
 
-## 6. q-048-ko — numeric
+## 6. q-048-ko - numeric
 
 - Paper / language: `paper-004` / `ko`
 - Question: 서버 환경의 INT8 추론에 PyTorch 네이티브 스택을 사용하는 것에 대한 주요 결론은 무엇인가?
@@ -68,7 +68,7 @@ roadmap requirement of at least five recorded failures.
 - Failure types: `false_abstention, structured_output_validation_failure, numeric_omission`
 - Review: 모델 출력 검증이 모두 실패해 안전 거부로 전환되었고, 핵심 수치인 최대 5.8배 향상을 답하지 못했다.
 
-## 7. q-015-en — numeric
+## 7. q-015-en - numeric
 
 - Paper / language: `paper-005` / `en`
 - Question: What evidence shows that the proposed approach improves continual anomaly detection?
@@ -78,7 +78,7 @@ roadmap requirement of at least five recorded failures.
 - Failure types: `wrong_question_focus, numeric_omission, evidence_result_omission`
 - Review: The response describes a method property instead of the requested performance evidence and omits 11 schedules, MVTecAD, VisA, and the online setting.
 
-## 8. q-049-ko — limitation
+## 8. q-049-ko - limitation
 
 - Paper / language: `paper-005` / `ko`
 - Question: 지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 무엇인가?
@@ -88,7 +88,7 @@ roadmap requirement of at least five recorded failures.
 - Failure types: `false_abstention, model_false_refusal, limitation_omission`
 - Review: 답변 가능한 메모리 효율 결론이 검색되었지만 모델이 insufficient로 잘못 판단해 고정 메모리, 근사 보장, 점진적 저하를 모두 누락했다.
 
-## 9. q-017-ko — factual
+## 9. q-017-ko - factual
 
 - Paper / language: `paper-006` / `ko`
 - Question: 이 논문은 표현 학습과 과정 추론을 어떻게 연결하는가?
@@ -98,7 +98,7 @@ roadmap requirement of at least five recorded failures.
 - Failure types: `malformed_non_answer, question_repetition`
 - Review: 답변 대신 새로운 의문문을 생성했으며 observation-to-inference hierarchy와 핵심 정렬 요소를 설명하지 않는다.
 
-## 10. q-034-ko — limitation
+## 10. q-034-ko - limitation
 
 - Paper / language: `paper-007` / `ko`
 - Question: 로그 Voronoi cell에 대한 주요 결과를 위해 어떤 가정이 필요한가?
@@ -108,7 +108,7 @@ roadmap requirement of at least five recorded failures.
 - Failure types: `placeholder_non_answer, missing_assumptions`
 - Review: 프롬프트 지시처럼 보이는 문장만 출력하고 1차원 algebraic model, probability simplex, 명시적 구성이라는 가정을 전혀 답하지 않는다.
 
-## 11. q-041-en — numeric
+## 11. q-041-en - numeric
 
 - Paper / language: `paper-008` / `en`
 - Question: How is the performance of GOAG evaluated?
@@ -118,7 +118,7 @@ roadmap requirement of at least five recorded failures.
 - Failure types: `wrong_question_focus, numeric_omission, protocol_omission`
 - Review: The response gives a broad performance conclusion rather than how GOAG was evaluated, omitting three grippers, repeated runs, and the success/efficiency/diversity criteria.
 
-## 12. q-041-ko — comparison
+## 12. q-041-ko - comparison
 
 - Paper / language: `paper-008` / `ko`
 - Question: GOAG의 성능은 어떻게 평가되는가?
@@ -128,7 +128,7 @@ roadmap requirement of at least five recorded failures.
 - Failure types: `false_abstention, model_false_refusal, comparison_omission`
 - Review: 검색 근거가 있는 평가 절차 질문을 모델이 insufficient로 잘못 거부했다.
 
-## 13. q-042-en — numeric
+## 13. q-042-en - numeric
 
 - Paper / language: `paper-009` / `en`
 - Question: How is the Microlensify classifier evaluated on TESS light curves?
@@ -138,7 +138,7 @@ roadmap requirement of at least five recorded failures.
 - Failure types: `wrong_question_focus, incomplete_evaluation, unsupported_inference`
 - Review: The answer substitutes training-set counts for the requested evaluation protocol, omits the Eleanor/SPOC/QLP coverage and post-cleaning candidate counts, and adds an overly broad validation inference.
 
-## 14. q-042-ko — numeric
+## 14. q-042-ko - numeric
 
 - Paper / language: `paper-009` / `ko`
 - Question: Microlensify 분류기는 TESS 광도 곡선에서 어떻게 평가되는가?
@@ -148,7 +148,7 @@ roadmap requirement of at least five recorded failures.
 - Failure types: `wrong_question_focus, mistranslation, numeric_omission`
 - Review: 평가 방법을 답하지 않고 microlensing을 '미세먼지'로 잘못 표현했으며 Sector 12, 세 파이프라인, 정제 후 후보 수를 누락했다.
 
-## 15. q-043-ko — comparison
+## 15. q-043-ko - comparison
 
 - Paper / language: `paper-010` / `ko`
 - Question: 다중 소스 distributionally robust graph learning을 평가하기 위해 어떤 실험이 사용되는가?

@@ -1,0 +1,2494 @@
+{
+  "seed": 378,
+  "policy": {
+    "status": "calibrated",
+    "config_path": "config/abstention_candidate.json",
+    "config_fingerprint": "bab2c3924cf8db57f471478ab7b5c3e598d247067f8ef86a8ed32f3b2aaddc09",
+    "policy": {
+      "reject_empty_candidates": true,
+      "reject_empty_evidence": true,
+      "minimum_top_reranker_score": -3.35,
+      "comparison": "accept_if_greater_than_or_equal",
+      "normalize_model_abstention": true,
+      "skip_llm_on_pre_generation_rejection": true
+    }
+  },
+  "calibration_answerable_retained": 38,
+  "calibration_unsupported_refused": 10,
+  "holdout_refused": 10,
+  "holdout_no_fallback_gate": true,
+  "holdout_results": [
+    {
+      "schema_version": 1,
+      "roadmap_day": 31,
+      "roadmap_days": [
+        30,
+        31
+      ],
+      "paper_id": "paper-011",
+      "query": "What is the boiling point of mercury on Venus according to this paper?",
+      "question_language": "en",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "cited_evidence": [],
+      "retrieved_evidence": [
+        {
+          "evidence_id": "ev-01-paper-011-p013-c003",
+          "rank": 1,
+          "paper_id": "paper-011",
+          "page": 13,
+          "section": "References",
+          "chunk_id": "paper-011-p013-c003",
+          "source_page_id": "paper-011-p013",
+          "text": "l set andk≤n . Thensr(Ai)<∞ a.s. for eachi≤n by the first part of the lemma. Therefore, maxi≤nsr(Ai)<∞ a.s., and since Tk(v)≤max ivi for k≤n , we have ˆλr =T k \u0000 sr(A1),...,s r(An) \u0001 ≤ maxi≤nsr(Ai)<∞µ ⊗n-almost surely. To apply the probabilistic arguments below, we must verify that the score, the calibrated scaling factor, and their comparison event are measurable. We formulate this for a general Borel scoreσ so that the result also applies to the dominating-score calibration in Corollary A.9. Lemma A.6(Event measurability).The score sr and the calibration map ˆλr are Borel measurable. More generally, for any Borel score σ:A→[0,∞] , let ˆλσ be the calibration map obtained by replacingsr withσin Definition A.4. Then ˆλσ is measurable, and Eσ = \b (a1,...,a n+1)∈A n+1 :s r(an+1)≤ ˆλσ(a1,...,a n) ∈B(A)⊗(n+1). Proof.By combining Lemmas A.2 and A.3, we find that the sublevel sets ofs r are Borel:{a∈A: sr(a)≤λ}={a∈A:w r λ(a)≥1−γ} is Borel for every finiteλ and equal toA ifλ=∞ , hence sr is Borel. Moreover, ifk≤n, then {v∈[0,∞] n :T k(v)≤t}= [ I⊆{1,...,n} |I|=k \\ i∈I {v∈[0,∞] n :v i≤t}. Each set {v∈[0,∞] n :v i ≤t} is Borel because the coordinate projection v7→v i is continuous. Thus the r",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 13",
+            "section": "References",
+            "chunk_id": "paper-011-p013-c003"
+          },
+          "scores": {
+            "reranker": -4.804526329040527,
+            "hybrid": 0.015873015873015872,
+            "pre_rerank_rank": 10,
+            "source_ranks": {
+              "dense": 3
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-011-p015-c002",
+          "rank": 2,
+          "paper_id": "paper-011",
+          "page": 15,
+          "section": "References",
+          "chunk_id": "paper-011-p015-c002",
+          "source_page_id": "paper-011-p015",
+          "text": "1−k). Theorem A.8 quantifies the calibration-set to calibration-set variability that the marginal guarantee averages over, and is the starting point for calibration-conditional guarantees (V ovk, 2012). In certain applications, the idealized residual field may induce a nonconformity score that cannot be computed directly. However, if this score admits a computable upper bound, the following corollary shows that calibrating on the upper bound preserves the desired coverage guarantee, although the resulting prediction band may be conservative. Corollary A.9(Calibration with a dominating score).Let r:A×X→[0,∞] be a residual field over (X,X,π) andσ:A→[0,∞] be Borel withsr(a)≤σ(a) forµ-a.e.a∈A . Calibrate on σ, i.e., set ˆλσ as thekth smallest value among σ(A1),...,σ(A n) ifk≤n and ˆλσ :=∞ otherwise. Then ifA 1,...,A n+1 are exchangeable, P \u0000 wr ˆλσ(An+1)≥1−γ \u0001 ≥1−α. Proof. The variablesσ(A1),...,σ(A n+1) are exchangeable, being the coordinatewise image of an exchangeable vector under the fixed Borel map σ, so exactly as in Theorem A.8, P \u0000 σ(An+1)≤ ˆλσ\u0001 ≥k/(n+ 1)≥1−α . Up to a µ⊗(n+1)-null set, on this event sr(An+1)≤σ(A n+1)≤ ˆλσ, and Lemma A.3 implies that wr ˆλσ(An+1)≥1−γ . Measura",
+          "char_count": 1199,
+          "locator": {
+            "page_label": "p. 15",
+            "section": "References",
+            "chunk_id": "paper-011-p015-c002"
+          },
+          "scores": {
+            "reranker": -6.375246524810791,
+            "hybrid": 0.028629032258064516,
+            "pre_rerank_rank": 3,
+            "source_ranks": {
+              "bm25": 2,
+              "dense": 20
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-011-p003-c004",
+          "rank": 3,
+          "paper_id": "paper-011",
+          "page": 3,
+          "section": "2.1 Calibration set and scaling factor",
+          "chunk_id": "paper-011-p003-c004",
+          "source_page_id": "paper-011-p003",
+          "text": "..,An+1 \u0000 ν \u0000 {x∈D:G †(An+1)(x)∈C ˆλ(An+1)(x)} \u0001 ≥1−γ \u0001 ≥1−α,(1) i.e., the true output for the test input is contained on at least a fraction 1−γ ofD with probability at least 1−α . This is a marginal guarantee over the joint draw of the calibration set and test input, and exchangeability alone is sufficient. Under the assumption that A1,...,A n+1 are independent and identically distributed (i.i.d.), the calibration set is independent of the test input and the marginal probability in Eq. (1) decomposes as EDcal h PAn+1 \u0000 ν({x:G †(An+1)(x)∈C ˆλ(An+1)(x)})≥1−γ Dcal \u0001i ,(2) an average over calibration sets of the conditional probability of sufficient containment. The marginal guarantee controls this average, not the conditional probability for every realized calibration set. Coverage for arbitrary residual fields.Before specializing to neural operators, Section A.2 establishes the conformal argument in a general setting: given a measurable residual field r: A×X→[0,∞] on a probability space (X,X,π) , we define a scalar score as the smallest threshold that contains at least a 1−γ fraction of the evaluation spaceX and calibrate an order statistic of these scores to obtain marginal covera",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 3",
+            "section": "2.1 Calibration set and scaling factor",
+            "chunk_id": "paper-011-p003-c004"
+          },
+          "scores": {
+            "reranker": -6.439917087554932,
+            "hybrid": 0.014925373134328358,
+            "pre_rerank_rank": 14,
+            "source_ranks": {
+              "bm25": 7
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-011-p015-c001",
+          "rank": 4,
+          "paper_id": "paper-011",
+          "page": 15,
+          "section": "References",
+          "chunk_id": "paper-011-p015-c001",
+          "source_page_id": "paper-011-p015",
+          "text": "Proof. Following Lemma A.6 with σ=s r, the set Esr defined in the lemma’s statement is an event inB(A)⊗(n+1) which coincides with {wr ˆλr(An+1)≥1−γ} by Lemma A.3. We define Si :=s r(Ai) so that Esr ={S n+1≤ ˆλr}. If k > nthen ˆλr =∞ and P(Esr) = 1 trivially. Otherwise, ˆλr =T k(S1,...,S n), the kth smallest value of the calibration scores. The variables S1,...,S n+1 are exchangeable, being the image of an exchangeable vector under the fixed Borel mapsr applied coordinatewise. The split conformal coverage theorem (Angelopoulos et al., 2024, Fact 2.15(i) & Prop. 3.12) implies that P \u0000 {wr ˆλr(An+1)≥1−γ} \u0001 =P \u0000 Sn+1≤T k(S1,...,S n) \u0001 ≥ k n+ 1 ≥1−α. For the second claim, if theAi are i.i.d. thenS1,...,S n+1 are i.i.d., and since their law is atomless they are pairwise distinct almost surely and the probability distribution function, defined in Proposition A.7,F( ˆλr) =P \u0000 wr ˆλr(An+1)≥1−γ A1,...,A n \u0001 is continuous. Then, (Angelopoulos et al., 2024, Sec. 4.1) implies thatF( ˆλr)∼Beta(k, n+ 1−k). Theorem A.8 quantifies the calibration-set to calibration-set variability that the marginal guarantee averages over, and is the starting point for calibration-conditional guarantees (V ovk, 201",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 15",
+            "section": "References",
+            "chunk_id": "paper-011-p015-c001"
+          },
+          "scores": {
+            "reranker": -6.603732585906982,
+            "hybrid": 0.030536130536130537,
+            "pre_rerank_rank": 1,
+            "source_ranks": {
+              "bm25": 5,
+              "dense": 6
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-05-paper-011-p014-c001",
+          "rank": 5,
+          "paper_id": "paper-011",
+          "page": 14,
+          "section": "References",
+          "chunk_id": "paper-011-p014-c001",
+          "source_page_id": "paper-011-p014",
+          "text": "projection. Therefore, the composition ˆλσ =T k◦(σ×···×σ) is measurable. Finally, this implies that the map (a1,...,a n+1)7→ \u0000 sr(an+1), ˆλσ(a1,...,a n) \u0001 ∈[0,∞] 2 isB(A)⊗(n+1)-measurable, and{(u,v)∈[0,∞] 2 :u≤v} is closed, hence Borel, in [0,∞] 2. Then its preimage Eσ lies in B(A)⊗(n+1). The following lemma formalizes the decomposition of the marginal coverage probability in (1) into an average of conditional coverage probabilities. Conditioning on the calibration set freezes ˆλ at a fixed number, so the only randomness left is the draw of the test input. The conditional probability of coverage is then simply the proportion of inputs whose score falls below that number, that is, the score distribution function evaluated at ˆλ. ThusF( ˆλr) varies across random draws of the calibration set, but is fixed once a particular calibration set is realized. The marginal guarantee controls the mean of this quantity over calibration sets; it does not require the conditional coverage for every realized calibration set to be at least1−α. Proposition A.7(Conditional coverage identity).Suppose (A1,...,A n) is independent ofAn+1∼µ , and forλ∈[0,∞] , denote by F(λ) =µ({a:s r(a)≤λ}) , the distributi",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 14",
+            "section": "References",
+            "chunk_id": "paper-011-p014-c001"
+          },
+          "scores": {
+            "reranker": -7.148367881774902,
+            "hybrid": 0.027272727272727275,
+            "pre_rerank_rank": 4,
+            "source_ranks": {
+              "bm25": 10,
+              "dense": 17
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 1
+          }
+        }
+      ],
+      "pipeline": {
+        "stages": [
+          "query",
+          "production_retrieval",
+          "reranker",
+          "evidence_selection",
+          "abstention_policy",
+          "abstention_enforcement"
+        ],
+        "retrieval_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+        "llm": {
+          "provider": "local_transformers",
+          "model": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "config_path": "config/generation.json",
+          "config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730",
+          "loaded": false
+        },
+        "llm_skipped": true,
+        "generation_attempts": 0,
+        "fallback_used": false,
+        "abstention_source": "pre_generation_policy",
+        "abstention": {
+          "enabled": true,
+          "decision": {
+            "abstain": true,
+            "reason_code": "low_relevance",
+            "signals": {
+              "candidate_count": 20,
+              "evidence_count": 5,
+              "top_reranker_score": -4.804526329040527,
+              "minimum_top_reranker_score": -3.35
+            }
+          },
+          "policy": {
+            "status": "calibrated",
+            "config_path": "config/abstention_candidate.json",
+            "config_fingerprint": "bab2c3924cf8db57f471478ab7b5c3e598d247067f8ef86a8ed32f3b2aaddc09",
+            "policy": {
+              "reject_empty_candidates": true,
+              "reject_empty_evidence": true,
+              "minimum_top_reranker_score": -3.35,
+              "comparison": "accept_if_greater_than_or_equal",
+              "normalize_model_abstention": true,
+              "skip_llm_on_pre_generation_rejection": true
+            }
+          }
+        },
+        "runtime_seconds": 0.361
+      },
+      "debug": {
+        "attempts": []
+      },
+      "case_id": "abs-test-001-en"
+    },
+    {
+      "schema_version": 1,
+      "roadmap_day": 31,
+      "roadmap_days": [
+        30,
+        31
+      ],
+      "paper_id": "paper-012",
+      "query": "이 논문은 임진왜란이 시작된 연도를 언제라고 설명하는가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "검색된 텍스트의 관련도가 낮아 답변을 뒷받침할 수 없습니다."
+      },
+      "cited_evidence": [],
+      "retrieved_evidence": [
+        {
+          "evidence_id": "ev-01-paper-012-p004-c002",
+          "rank": 1,
+          "paper_id": "paper-012",
+          "page": 4,
+          "section": "1 Introduction",
+          "chunk_id": "paper-012-p004-c002",
+          "source_page_id": "paper-012-p004",
+          "text": "s follows, respectively: – LetW n×m sum :={w∈W n×m|w v∈∆ m for allv}and Distsum(F) := supE,w∈W n×m sum DistE,w \u0000 F(E) \u0001 – LetW n×m top :={w∈W n×m|w v1 = 1for allv}and Disttop(F) := supE,w∈W n×m top DistE,w \u0000 F(E) \u0001 . Lastly,we reviewconceptsfrom thesingle-winnersetting that will be useful also in our rank aggregation setting. Single-Winner Review.Given an electionE= (V,C, # —≻), thedomination graphof a candidateais the bipartite graph Ga = (V,C,E a)inwhich(v,c)∈E a ifandonlyifa≽ v c. Given normalized weight vectorsp∈∆ V andq∈∆ C, a non-negative matrixM∈R V×C ≥0 is a(p,q)-matchingifP c∈CMvc =p v for all votersv∈Vand P v∈V Mvc =q c for all candidatesc∈CWe say that candidateaadmits the(p,q)-matchingMifM vc >0only if(v,c)∈E a. Lemma 3(Kizilkaya and Kempe 2022, Theorem 2).Given anelectionE= (V,C, # —≻)alongwithp∈∆ V andq∈∆ C, FractionalVetoof Kizilkaya and Kempe (2022) returns a candidate admitting a(p,q)-matching. FractionalVetoinitializestheresidualvoteofeachvoter vtop v andtheresidualscoreofeachcandidatectoq c.While some voter has positive residual vote, it chooses any such voter,findsthatvoter’sleast-preferredcandidateamongthose with positive residual score, and decreases both resid",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 4",
+            "section": "1 Introduction",
+            "chunk_id": "paper-012-p004-c002"
+          },
+          "scores": {
+            "reranker": -6.700106143951416,
+            "hybrid": 0.02548701298701299,
+            "pre_rerank_rank": 8,
+            "source_ranks": {
+              "bm25": 20,
+              "dense": 17
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-012-p003-c003",
+          "rank": 2,
+          "paper_id": "paper-012",
+          "page": 3,
+          "section": "1 Introduction",
+          "chunk_id": "paper-012-p003-c003",
+          "source_page_id": "paper-012-p003",
+          "text": "ttopj(v)denote the candidate ranked highest inAj by voterv. The rule applies ftotheelectionrestrictedtoA j,placestheresultingwinner cj inpositionj,andcontinues.Weusethisnotationforevery recursive construction below. Metric Distortion.Ametricover a setXis a function d:X×X→R ≥0 withthefollowingthreepropertiesforall x,y,z∈X: (1)Identity:d(x,y) = 0if and only ifx=y, 1 (2)Symmetry:d(x,y) =d(y,x), (3)Triangle Inequality: d(x,y) +d(y,z)≥d(x,z). The key assumption in the notion of metric distortion is thatpreferencesareinducedbysomemetricdoverV∪C,not availabletothesocialchoice(orwelfare)function.Givenan electionE= (V,C, # —≻), we say that a metricdisconsistent with # —≻, and writed∼ # —≻, ifd(v,c)≤d(v,c ′)for allv∈V andc,c ′∈Csuch thatc≽ v c′. 1We allow voters and candidates to be co-located, so that their distance may be zero, i.e., we technically consider a pseudometric. Thesocialcostofcandidatec∈Cundermetricd∼ # —≻is SC(c|d) := P v∈V d(v,c). Letc∗ d∈arg minc∈C SC(c|d) denote an optimal candidate underd. Definition 1.Thedistortion of candidatec∈Cin election E= (V,C, # —≻), denoted byDistE(c), is the largest possible ratio between the cost ofcand that of an optimal candidate over all metr",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 3",
+            "section": "1 Introduction",
+            "chunk_id": "paper-012-p003-c003"
+          },
+          "scores": {
+            "reranker": -7.017954349517822,
+            "hybrid": 0.02684684684684685,
+            "pre_rerank_rank": 7,
+            "source_ranks": {
+              "bm25": 15,
+              "dense": 14
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-012-p002-c006",
+          "rank": 3,
+          "paper_id": "paper-012",
+          "page": 2,
+          "section": "1 Introduction",
+          "chunk_id": "paper-012-p002-c006",
+          "source_page_id": "paper-012-p002",
+          "text": "b) or more limited preference information(Borodinetal.2022;Ebadian,Halpern,andMicha2024; Anagnostides, Fotakis, and Patsilinakos 2026), and in other settings such as matching (Anari, Charikar, and Ramakrishnan 2023; Amanatidis et al. 2022). A work particularly relevant to ours is that of Kizilkaya and Kempe (2022), who introducedFractionalVeto, a fractional generalization ofPluralityVeto. Since this rule plays a central role in our algorithms and analysis, we reviewitindetailinthePreliminaries.Ourworkisalsoclosely related to the metric committee-selection setting of Goel, Hulett, and Krishnaswamy (2018). Their objective corresponds to the special case of our identical-weights model in which every voter assigns equal value to the firstkpositions and zero value thereafter. They show that recursively applying any single-winner rule with distortionβpreserves distortionβin this setting. Our result strictly generalizes theirs to arbitrary monotone shared weight vectors. 2",
+          "char_count": 980,
+          "locator": {
+            "page_label": "p. 2",
+            "section": "1 Introduction",
+            "chunk_id": "paper-012-p002-c006"
+          },
+          "scores": {
+            "reranker": -7.236137390136719,
+            "hybrid": 0.02817460317460317,
+            "pre_rerank_rank": 5,
+            "source_ranks": {
+              "bm25": 12,
+              "dense": 10
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 6
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-012-p008-c004",
+          "rank": 4,
+          "paper_id": "paper-012",
+          "page": 8,
+          "section": "4 Identical Weights",
+          "chunk_id": "paper-012-p008-c004",
+          "source_page_id": "paper-012-p008",
+          "text": "Fand everyr∈[0,1], there exists an electionEand an identical weightprofilew∈W n×m id withrange(w) =r,underwhich thedistortionisatleastDist E,w(F(E))≥ 4−r 4−3r = 1+ 2r 4−3r. Proof.Considertwovotersu,vandtwocandidatesa,b,with a≻ u bandb≻ v a,andtakethesharedvectorw= (1,1−r). Suppose thatFreturns(a,b); the other case is symmetric. Placeaat0,voteruat1,and votervandcandidatebat2on therealline.ThismetricisconsistentandgivesSC(a|d) = 3 andSC(b|d) = 1. Hence, the returned ranking costs4−r, whereas the optimal ranking(b,a)costs4−3r. Their ratio is(4−r)/(4−3r), as claimed. 8",
+          "char_count": 571,
+          "locator": {
+            "page_label": "p. 8",
+            "section": "4 Identical Weights",
+            "chunk_id": "paper-012-p008-c004"
+          },
+          "scores": {
+            "reranker": -7.75270414352417,
+            "hybrid": 0.014925373134328358,
+            "pre_rerank_rank": 17,
+            "source_ranks": {
+              "dense": 7
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 4
+          }
+        },
+        {
+          "evidence_id": "ev-05-paper-012-p001-c003",
+          "rank": 5,
+          "paper_id": "paper-012",
+          "page": 1,
+          "section": "Abstract",
+          "chunk_id": "paper-012-p001-c003",
+          "source_page_id": "paper-012-p001",
+          "text": "we exhibit instances where making a locallyβ-approximate choice at every position drives the overall distortion up to2β, showing that no analysis based solely on per-round guarantees can certify a bound better than2β. By exploiting structural properties specific toFractionalVetoof Kizilkaya and Kempe (2022), we show that its recursive extension achieves the optimal distortion of3. Second, when all voters share the same (unknown) weight vector, recursively applying any social choice function with distortionβachievesdistortionatmost1+(β−1) range(w), whererange(w) = (w 1 −w m)/w1 denotes the normalized range of the common weight vectorw. Thus, the guarantee interpolates between distortion1for uniform weights andβ forsingle-winnerweights.Finally,westudyunknownheterogeneousweights.Withoutfurtherassumptions,everyrulehas unbounded distortion. We therefore consider two natural normalizations: unit-sum, where each voter distributes one unit of value across the ranking, and unit-top, where every voter assigns unit value to the first position. Under both models, we show that the optimal distortion isΘ(m).",
+          "char_count": 1111,
+          "locator": {
+            "page_label": "p. 1",
+            "section": "Abstract",
+            "chunk_id": "paper-012-p001-c003"
+          },
+          "scores": {
+            "reranker": -7.982833385467529,
+            "hybrid": 0.015873015873015872,
+            "pre_rerank_rank": 12,
+            "source_ranks": {
+              "bm25": 3
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 2
+          }
+        }
+      ],
+      "pipeline": {
+        "stages": [
+          "query",
+          "production_retrieval",
+          "reranker",
+          "evidence_selection",
+          "abstention_policy",
+          "abstention_enforcement"
+        ],
+        "retrieval_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+        "llm": {
+          "provider": "local_transformers",
+          "model": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "config_path": "config/generation.json",
+          "config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730",
+          "loaded": false
+        },
+        "llm_skipped": true,
+        "generation_attempts": 0,
+        "fallback_used": false,
+        "abstention_source": "pre_generation_policy",
+        "abstention": {
+          "enabled": true,
+          "decision": {
+            "abstain": true,
+            "reason_code": "low_relevance",
+            "signals": {
+              "candidate_count": 20,
+              "evidence_count": 5,
+              "top_reranker_score": -6.700106143951416,
+              "minimum_top_reranker_score": -3.35
+            }
+          },
+          "policy": {
+            "status": "calibrated",
+            "config_path": "config/abstention_candidate.json",
+            "config_fingerprint": "bab2c3924cf8db57f471478ab7b5c3e598d247067f8ef86a8ed32f3b2aaddc09",
+            "policy": {
+              "reject_empty_candidates": true,
+              "reject_empty_evidence": true,
+              "minimum_top_reranker_score": -3.35,
+              "comparison": "accept_if_greater_than_or_equal",
+              "normalize_model_abstention": true,
+              "skip_llm_on_pre_generation_rejection": true
+            }
+          }
+        },
+        "runtime_seconds": 0.139
+      },
+      "debug": {
+        "attempts": []
+      },
+      "case_id": "abs-test-002-ko"
+    },
+    {
+      "schema_version": 1,
+      "roadmap_day": 31,
+      "roadmap_days": [
+        30,
+        31
+      ],
+      "paper_id": "paper-013",
+      "query": "What medication dosage does the paper prescribe for type 1 diabetes?",
+      "question_language": "en",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "cited_evidence": [],
+      "retrieved_evidence": [
+        {
+          "evidence_id": "ev-01-paper-013-p011-c002",
+          "rank": 1,
+          "paper_id": "paper-013",
+          "page": 11,
+          "section": "Acknowledgments",
+          "chunk_id": "paper-013-p011-c002",
+          "source_page_id": "paper-013-p011",
+          "text": "Acknowledgments This work was funded by the European Union under Horizon Europe (Grant Agreement No. 101226927). Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Research Executive Agency (REA). Neither the European Union nor the granting authority can be held responsible for them. www.genaide.eu",
+          "char_count": 392,
+          "locator": {
+            "page_label": "p. 11",
+            "section": "Acknowledgments",
+            "chunk_id": "paper-013-p011-c002"
+          },
+          "scores": {
+            "reranker": -5.9373321533203125,
+            "hybrid": 0.015151515151515152,
+            "pre_rerank_rank": 13,
+            "source_ranks": {
+              "dense": 6
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-013-p005-c002",
+          "rank": 2,
+          "paper_id": "paper-013",
+          "page": 5,
+          "section": "3.6 Cross-Model Convergence",
+          "chunk_id": "paper-013-p005-c002",
+          "source_page_id": "paper-013-p005",
+          "text": "bjective [46] Qwen3-VL-Emb. (2026)Qwen/Qwen3-VL-Embedding-2B2048 LLM backbone Retrieval/distillation [29] their object scores and average over all \u00006 2 \u0001 =15unique pairs: ¯𝜌𝑝 = \u0012𝐸 2 \u0013−1 ∑︁ 𝑒<𝑒′ 𝜌𝑆 \u0010 s(𝑒) 𝑝 ,s(𝑒′) 𝑝 \u0011 (4) where𝐸=6and𝜌 𝑆 is Spearman’s rank correlation. This formulation aligns with classical convergent validity [6]: a construct is considered validly measured when independent assessment methods produce consistent results. Statistical Evaluation.To compare two tiers, we use a one-sided Wilcoxon rank-sum (Mann–Whitney𝑈 ) test, which accommodates unequal sample sizes, non-normal distributions, and our directional hypotheses (e.g., Kansei axes should show higher convergence than irrelevant axes). We report the common-language (CL) effect size: CL= 𝑈 𝑛1𝑛2 (5) which represents the probability that a randomly selected axis from the target tier has higher convergence than one from the comparison tier, and we report the two-sample Kolmogorov–Smirnov (KS) statistic to characterize general distributional differences. We run many tier comparisons across axes and categories, and the axes are not fully independent, since categories share the null set and the core pairs, and axes wit",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 5",
+            "section": "3.6 Cross-Model Convergence",
+            "chunk_id": "paper-013-p005-c002"
+          },
+          "scores": {
+            "reranker": -7.826144695281982,
+            "hybrid": 0.014492753623188406,
+            "pre_rerank_rank": 17,
+            "source_ranks": {
+              "dense": 9
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-013-p012-c002",
+          "rank": 3,
+          "paper_id": "paper-013",
+          "page": 12,
+          "section": "References",
+          "chunk_id": "paper-013-p012-c002",
+          "source_page_id": "paper-013-p012",
+          "text": "es, Lucy Vanderwende, Hal Daumé III, and Katrin Kirchhoff (Eds.). Association for Computational Linguistics, Atlanta, Georgia, 746–751. https://aclanthology.org/N13-1090/ [37] Mitsuo Nagamachi. 1995. Kansei Engineering: A new ergonomic consumeroriented technology for product development.International Journal of Industrial Ergonomics15, 1 (1995), 3–11. doi:10.1016/0169-8141(94)00052-5 [38] Devi Parikh and Kristen Grauman. 2011. Relative Attributes. In2011 International Conference on Computer Vision. 503–510. doi:10.1109/ICCV.2011.6126281 [39] Or Patashnik, Zongze Wu, Eli Shechtman, Daniel Cohen-Or, and Dani Lischinski. 2021. StyleCLIP: Text-Driven Manipulation of StyleGAN Imagery. In 2021 IEEE/CVF International Conference on Computer Vision (ICCV). 2065–2074. doi:10.1109/ICCV48922.2021.00209 [40] Ben Poole, Ajay Jain, Jonathan T. Barron, and Ben Mildenhall. 2023. DreamFusion: Text-to-3D using 2D Diffusion. InThe Eleventh International Conference on Learning Representations (ICLR). https://openreview.net/forum?id=FjNys5c7VyY [41] Snehal Prabhudesai, Leyao Yang, Sumit Asthana, Xun Huan, Q. Vera Liao, and Nikola Banovic. 2023. Understanding Uncertainty: How Lay Decisionmakers Perceive",
+          "char_count": 1199,
+          "locator": {
+            "page_label": "p. 12",
+            "section": "References",
+            "chunk_id": "paper-013-p012-c002"
+          },
+          "scores": {
+            "reranker": -8.356279373168945,
+            "hybrid": 0.014705882352941176,
+            "pre_rerank_rank": 15,
+            "source_ranks": {
+              "dense": 8
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-013-p006-c006",
+          "rank": 4,
+          "paper_id": "paper-013",
+          "page": 6,
+          "section": "4.1 Convergence across tiers",
+          "chunk_id": "paper-013-p006-c006",
+          "source_page_id": "paper-013-p006",
+          "text": "ategory, axis) instances; boxes span the interquartile range with whiskers at the 5th and 95th percentiles show that the encoders agree on affective orderings almost as consistently as on geometric ones, even though the stimuli carry no colour, material, or texture. Agreement is not driven by encoder redundancy. OpenCLIP reproduces the CLIP objective and architecture, so this pair could inflate the result. It does not: among affective axes CLIP–OpenCLIP agree at 𝜌= 0.34, below the mean pairwise value, while the strongest agreement is shared by SigLIP2–Qwen3-VL-Embedding and SigLIP2–ALIGN (𝜌= 0.47), pairs that share neither architecture nor training goal. Dropping OpenCLIP raises the affective mean only from0.365to0.379(full matrix in Appendix A).",
+          "char_count": 756,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "4.1 Convergence across tiers",
+            "chunk_id": "paper-013-p006-c006"
+          },
+          "scores": {
+            "reranker": -8.500218391418457,
+            "hybrid": 0.014084507042253521,
+            "pre_rerank_rank": 20,
+            "source_ranks": {
+              "bm25": 11
+            }
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-05-paper-013-p011-c004",
+          "rank": 5,
+          "paper_id": "paper-013",
+          "page": 11,
+          "section": "References",
+          "chunk_id": "paper-013-p011-c004",
+          "source_page_id": "paper-013-p011",
+          "text": "n, Beomhee Park, Haecheon Kim, Sungjun Lee, Woonhyuk Baek, and Saehoon Kim. 2022. COYO-700M: Image-Text Pair Dataset. https://github. com/kakaobrain/coyo-dataset. [5] Weilin Cai, Zhengyu Wang, Yi Wang, and Meiyu Zhou. 2025. Research on Wheelchair Form Design Based on Kansei Engineering and GWO-BP Neural Network.Scientific Reports15 (2025), 10258. doi:10.1038/s41598-025-94862-w [6] Donald T. Campbell and Donald W. Fiske. 1959. Convergent and Discriminant Validation by the Multitrait-Multimethod Matrix.Psychological Bulletin56, 2 (1959), 81–105. doi:10.1037/h0046016 [7] Angel X. Chang, Thomas A. Funkhouser, Leonidas J. Guibas, Pat Hanrahan, Qi-Xing Huang, Zimo Li, Silvio Savarese, Manolis Savva, Shuran Song, Hao Su, Jianxiong Xiao, Li Yi, and Fisher Yu. 2015. ShapeNet: An Information-Rich 3D Model Repository.CoRRabs/1512.03012 (2015). arXiv:1512.03012 http: //arxiv.org/abs/1512.03012 [8] Siddhartha Chaudhuri, Evangelos Kalogerakis, Stephen Giguere, and Thomas Funkhouser. 2013. AttribIt: Content Creation with Semantic Attributes. InProceedings of the 26th Annual ACM Symposium on User Interface Software and Technology. Association for Computing Machinery, 193–202. doi:10.1145/2501988.",
+          "char_count": 1199,
+          "locator": {
+            "page_label": "p. 11",
+            "section": "References",
+            "chunk_id": "paper-013-p011-c004"
+          },
+          "scores": {
+            "reranker": -8.776256561279297,
+            "hybrid": 0.01639344262295082,
+            "pre_rerank_rank": 4,
+            "source_ranks": {
+              "dense": 1
+            }
+          },
+          "source": {
+            "section_index": 3,
+            "chunk_index": 2
+          }
+        }
+      ],
+      "pipeline": {
+        "stages": [
+          "query",
+          "production_retrieval",
+          "reranker",
+          "evidence_selection",
+          "abstention_policy",
+          "abstention_enforcement"
+        ],
+        "retrieval_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+        "llm": {
+          "provider": "local_transformers",
+          "model": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "config_path": "config/generation.json",
+          "config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730",
+          "loaded": false
+        },
+        "llm_skipped": true,
+        "generation_attempts": 0,
+        "fallback_used": false,
+        "abstention_source": "pre_generation_policy",
+        "abstention": {
+          "enabled": true,
+          "decision": {
+            "abstain": true,
+            "reason_code": "low_relevance",
+            "signals": {
+              "candidate_count": 20,
+              "evidence_count": 5,
+              "top_reranker_score": -5.9373321533203125,
+              "minimum_top_reranker_score": -3.35
+            }
+          },
+          "policy": {
+            "status": "calibrated",
+            "config_path": "config/abstention_candidate.json",
+            "config_fingerprint": "bab2c3924cf8db57f471478ab7b5c3e598d247067f8ef86a8ed32f3b2aaddc09",
+            "policy": {
+              "reject_empty_candidates": true,
+              "reject_empty_evidence": true,
+              "minimum_top_reranker_score": -3.35,
+              "comparison": "accept_if_greater_than_or_equal",
+              "normalize_model_abstention": true,
+              "skip_llm_on_pre_generation_rejection": true
+            }
+          }
+        },
+        "runtime_seconds": 0.114
+      },
+      "debug": {
+        "attempts": []
+      },
+      "case_id": "abs-test-003-en"
+    },
+    {
+      "schema_version": 1,
+      "roadmap_day": 31,
+      "roadmap_days": [
+        30,
+        31
+      ],
+      "paper_id": "paper-014",
+      "query": "이 논문은 고대 로마 제국의 멸망 원인을 무엇이라고 설명하는가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "검색된 텍스트의 관련도가 낮아 답변을 뒷받침할 수 없습니다."
+      },
+      "cited_evidence": [],
+      "retrieved_evidence": [
+        {
+          "evidence_id": "ev-01-paper-014-p002-c001",
+          "rank": 1,
+          "paper_id": "paper-014",
+          "page": 2,
+          "section": "1 Introduction",
+          "chunk_id": "paper-014-p002-c001",
+          "source_page_id": "paper-014-p002",
+          "text": "CrabOS Existing agent systems provide separate work environments for human and AI executors. These environments commonly maintain separate, unshared work states. Consequently, when an executor changes, the task cannot continue seamlessly without an additional bridge. This problem has two causes. First, humans primarily carry work forward through graphical interfaces, whereas AI relies on the conversational context and memory in its own work environment. Their work states are therefore retained in different forms, and the state created in one phase cannot ordinarily become the basis for work in the next. Second, the work state available to AI is often limited by the interface provided by its current work environment. Even when AI is embedded in an application used by a human, it receives only a narrow interface exposed by that application, not the work environment occupied by the human. Such bridging generally takes one of two forms: developers build specialized interfaces that expose selected parts of the state from another work environment to an agent, or users manually migrate context when switching. The former cannot cover new scenarios as they arise; the latter repeatedly impos",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 2",
+            "section": "1 Introduction",
+            "chunk_id": "paper-014-p002-c001"
+          },
+          "scores": {
+            "reranker": -6.398677349090576,
+            "hybrid": 0.027809742999616416,
+            "pre_rerank_rank": 4,
+            "source_ranks": {
+              "bm25": 6,
+              "dense": 19
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-014-p002-c002",
+          "rank": 2,
+          "paper_id": "paper-014",
+          "page": 2,
+          "section": "1 Introduction",
+          "chunk_id": "paper-014-p002-c002",
+          "source_page_id": "paper-014-p002",
+          "text": "elected parts of the state from another work environment to an agent, or users manually migrate context when switching. The former cannot cover new scenarios as they arise; the latter repeatedly imposes alignment costs on users. As a task acquires more stages, the bridging burden grows and scalability declines. To address this problem, we proposeHuman-AI Co-inhabitation, a type of work environment that enables humans and AI to seamlessly take turns continuing work on the same task. This type of work environment requires humans and AI to share representations of the data and objects that constitute the work state, together with a unified, auditable interface. These conditions allow work to continue seamlessly when the executor changes, without scenario-specific bridges. To realize this goal, we derive three design principles. Work data should be represented as natural-language-readable text objects with stable structure that humans and AI can read and write directly, without customized access methods for each scenario. The work objects that a human is currently manipulating should have a unified, referable representation, so that AI can continue work without reidentifying them from",
+          "char_count": 1199,
+          "locator": {
+            "page_label": "p. 2",
+            "section": "1 Introduction",
+            "chunk_id": "paper-014-p002-c002"
+          },
+          "scores": {
+            "reranker": -7.361361980438232,
+            "hybrid": 0.029418126757516764,
+            "pre_rerank_rank": 2,
+            "source_ranks": {
+              "bm25": 7,
+              "dense": 9
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-014-p009-c007",
+          "rank": 3,
+          "paper_id": "paper-014",
+          "page": 9,
+          "section": "8 Conclusion",
+          "chunk_id": "paper-014-p009-c007",
+          "source_page_id": "paper-014-p009",
+          "text": "increases. This paper presents CrabOS, an operating system designed to realize Human-AI Co-inhabitation. CrabOS follows three principles: it persists work data as natural-language-readable text objects with stable structure; it lets humans and AI directly manipulate the same set of referable work objects; and it eliminates private tool layers built specifically for 9",
+          "char_count": 369,
+          "locator": {
+            "page_label": "p. 9",
+            "section": "8 Conclusion",
+            "chunk_id": "paper-014-p009-c007"
+          },
+          "scores": {
+            "reranker": -7.9526872634887695,
+            "hybrid": 0.014084507042253521,
+            "pre_rerank_rank": 19,
+            "source_ranks": {
+              "dense": 11
+            }
+          },
+          "source": {
+            "section_index": 3,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-014-p001-c004",
+          "rank": 4,
+          "paper_id": "paper-014",
+          "page": 1,
+          "section": "1 Introduction",
+          "chunk_id": "paper-014-p001-c004",
+          "source_page_id": "paper-014-p001",
+          "text": "1 Introduction As large language models advance, AI agents are evolving from conversational tools that respond passively into computational entities that can autonomously invoke tools, maintain memory, and work continuously on complex tasks. AI thus becomes, like a human, an executor able to independently move a task forward. Complex tasks, however, are rarely completed by the same executor from start to finish. Instead, humans and AI take turns moving the task forward through successive stages. After each stage, responsibility for the task passes to the next executor. Consider a user conducting research with an AI agent. After running an experiment, the agent leaves substantial temporary data and intermediate results that the user wants to visualize next. Even if the agent can directly operate visualization software, the state needed for visualization remains primarily in its current work environment. If the user, another agent, or a specialized visualization tool takes over, that state must first be organized, exported, or restated. This handoff requires the work state produced during one stage to be directly usable in the next stage. By default, however, human and AI executors d",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 1",
+            "section": "1 Introduction",
+            "chunk_id": "paper-014-p001-c004"
+          },
+          "scores": {
+            "reranker": -7.963401794433594,
+            "hybrid": 0.015625,
+            "pre_rerank_rank": 9,
+            "source_ranks": {
+              "bm25": 4
+            }
+          },
+          "source": {
+            "section_index": 3,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-05-paper-014-p010-c003",
+          "rank": 5,
+          "paper_id": "paper-014",
+          "page": 10,
+          "section": "References",
+          "chunk_id": "paper-014-p010-c003",
+          "source_page_id": "paper-014-p010",
+          "text": "ial product page. Accessed: 2026-06-30. [10] Manus. Manus documentation. https://manus.im/docs/introduction/welcome, 2026. Official documentation. Accessed: 2026-06-30. [11] Kai Mei, Xi Zhu, Wujiang Xu, Wenyue Hua, Mingyu Jin, Zelong Li, Shuyuan Xu, Ruosong Ye, Yingqiang Ge, and Yongfeng Zhang. Aios: Llm agent operating system.Proceedings of the 2nd Conference on Language Modeling, 2025. URLhttps://arxiv.org/abs/2403.16971. [12] Chaoyun Zhang, He Huang, Chiming Ni, Jian Mu, Si Qin, Shilin He, Lu Wang, Fangkai Yang, Pu Zhao, Chao Du, Liqun Li, Yu Kang, Zhao Jiang, Suzhen Zheng, Rujia Wang, Jiaxu Qian, Minghua Ma, Jian-Guang Lou, Qingwei Lin, Saravan Rajmohan, and Dongmei Zhang. Ufo2: The desktop agentos.arXiv preprint arXiv:2504.14603, 2025. URLhttps://arxiv.org/abs/2504.14603. [13] Shanhui Zhao, Jiacheng Liu, Guohong Liu, Jichao Yan, Jialei Ye, Yuhao Yang, Hao Wen, Shizuo Tian, Yizhen Yuan, Yuxuan Chen, Yunxin Liu, Ju Ren, Ya-Qin Zhang, Chao Huang, Yao Guo, and Yuanchun Li. Aohp: An open-source os-level agent harness for personalized, efficient and secure interaction, 2026. URL https: //arxiv.org/abs/2606.23449. [14] AgentOS. Agentos.https://agentos.to/, 2026. Official documentatio",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 10",
+            "section": "References",
+            "chunk_id": "paper-014-p010-c003"
+          },
+          "scores": {
+            "reranker": -8.196213722229004,
+            "hybrid": 0.016129032258064516,
+            "pre_rerank_rank": 6,
+            "source_ranks": {
+              "dense": 2
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 2
+          }
+        }
+      ],
+      "pipeline": {
+        "stages": [
+          "query",
+          "production_retrieval",
+          "reranker",
+          "evidence_selection",
+          "abstention_policy",
+          "abstention_enforcement"
+        ],
+        "retrieval_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+        "llm": {
+          "provider": "local_transformers",
+          "model": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "config_path": "config/generation.json",
+          "config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730",
+          "loaded": false
+        },
+        "llm_skipped": true,
+        "generation_attempts": 0,
+        "fallback_used": false,
+        "abstention_source": "pre_generation_policy",
+        "abstention": {
+          "enabled": true,
+          "decision": {
+            "abstain": true,
+            "reason_code": "low_relevance",
+            "signals": {
+              "candidate_count": 20,
+              "evidence_count": 5,
+              "top_reranker_score": -6.398677349090576,
+              "minimum_top_reranker_score": -3.35
+            }
+          },
+          "policy": {
+            "status": "calibrated",
+            "config_path": "config/abstention_candidate.json",
+            "config_fingerprint": "bab2c3924cf8db57f471478ab7b5c3e598d247067f8ef86a8ed32f3b2aaddc09",
+            "policy": {
+              "reject_empty_candidates": true,
+              "reject_empty_evidence": true,
+              "minimum_top_reranker_score": -3.35,
+              "comparison": "accept_if_greater_than_or_equal",
+              "normalize_model_abstention": true,
+              "skip_llm_on_pre_generation_rejection": true
+            }
+          }
+        },
+        "runtime_seconds": 0.11
+      },
+      "debug": {
+        "attempts": []
+      },
+      "case_id": "abs-test-004-ko"
+    },
+    {
+      "schema_version": 1,
+      "roadmap_day": 31,
+      "roadmap_days": [
+        30,
+        31
+      ],
+      "paper_id": "paper-015",
+      "query": "Which ingredients does the paper require for baking a chocolate cake?",
+      "question_language": "en",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "cited_evidence": [],
+      "retrieved_evidence": [
+        {
+          "evidence_id": "ev-01-paper-015-p005-c002",
+          "rank": 1,
+          "paper_id": "paper-015",
+          "page": 5,
+          "section": "Introduction",
+          "chunk_id": "paper-015-p005-c002",
+          "source_page_id": "paper-015-p005",
+          "text": "f tasks that at least one of the sampled proposals already solves (Table 3, appendix): supportisstrongonSLIA(20–31%)andonARGAwithGPT-4o (11%), andweakon BV (1%), DC (7%), ARC (0–7%), and ARGA with DeepSeek (4%). For BV, ARGA, and ARC we fuseNarcissuswith EUSolver (Si et al. 2019), a divideand-conquer decomposition, as HySynth does on ARGA; Narcissus’heuristicdropsintothisstandardsynthesizerarchitecture unchanged. Baselines.We compare against five baselines: unguided breadth-first enumeration (BFS); anaugmentedBFS over the extended grammarG + (proposal-mined fragments, no heuristic), isolating the value of the fragments; direct LLM sampling (the raw proposals);re-prompting, exactly the sample-and-check loop from the introduction: every failing proposal goes back to the LLM with its parse error or wrong outputs; and static LLM-guided synthesis in the style of HySynth (Barke et al. 2024). To separate heuristic from backend, we run both beam and genetic search under each heuristic: a static rule-frequency prior (static) and ourcontext-awareone(Narcissus);thestaticvariantsisolate the value of context. All static baselines are fit on the same repaired proposals asNarcissus(cf. theNarciss",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 5",
+            "section": "Introduction",
+            "chunk_id": "paper-015-p005-c002"
+          },
+          "scores": {
+            "reranker": -7.868565082550049,
+            "hybrid": 0.030886196246139225,
+            "pre_rerank_rank": 2,
+            "source_ranks": {
+              "bm25": 9,
+              "dense": 1
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-015-p005-c006",
+          "rank": 2,
+          "paper_id": "paper-015",
+          "page": 5,
+          "section": "Results",
+          "chunk_id": "paper-015-p005-c006",
+          "source_page_id": "paper-015-p005",
+          "text": "Results RQ1: Context-awareness beats static guidance at every level of proposal support.We move through the domains fromstrongesttoweakestproposalsupport.Strongproposals (SLIA).Figure2(a)usesthe70SLIAtasksforwhichHySynth released its GPT-4o proposals, reused unchanged, so we test againstHySynth’sownguidancesignal;ourstatic-priorruns roughlyreproducethenumberstheoriginalpaperreports.At every enumeration budget, under either backend and either proposalmodel,thecontext-awareheuristicoutperformsthe static prior, enumerating about a tenth of programs and in roughly a tenth of the time (wall-clock plots in Figure 6, appendix). This holds even when we “starve” the proposals: our DeepSeek runs use only25per task against HySynth’s ∼100, each a third the size (14vs.44rules), yet where the static prior suffers visibly,Narcissusbarely does. Reprompting is no substitute for search either: three rounds of feeding each failing proposal back to the LLM lift the raw DeepSeek proposals by only three tasks. The full100-task set (Figure 5, appendix) attributes the gain to context, not the fragments: fragments alone (augmented BFS,28) and a staticprior(28.4)solveaboutequallymany,whileNarcissus reaches4",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 5",
+            "section": "Results",
+            "chunk_id": "paper-015-p005-c006"
+          },
+          "scores": {
+            "reranker": -8.118354797363281,
+            "hybrid": 0.029211087420042643,
+            "pre_rerank_rank": 5,
+            "source_ranks": {
+              "bm25": 7,
+              "dense": 10
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-015-p016-c001",
+          "rank": 3,
+          "paper_id": "paper-015",
+          "page": 16,
+          "section": "1) A domain-specific language (DSL) as a",
+          "chunk_id": "paper-015-p016-c001",
+          "source_page_id": "paper-015-p016",
+          "text": "100 101 102 103 104 105 106 0 20 40 60 80 100 Programs enumerated Cumulative problems solved (out of 100) BFS (unguided enumeration) HySynth (static + BUS) (DeepSeek-Reasoner) Narcissus + BUS (DeepSeek-Reasoner) Static + Genetic (DeepSeek-Reasoner) Narcissus + Genetic (DeepSeek-Reasoner) DeepSeek proposal (solves + grammar-valid) (13/100) 10−3 10−2 10−1 100 101 102 103 0 20 40 60 80 100 Enumeration time (s) Cumulative problems solved (out of 100) BFS (unguided enumeration) HySynth (static + BUS) (DeepSeek-Reasoner) Narcissus + BUS (DeepSeek-Reasoner) Static + Genetic (DeepSeek-Reasoner) Narcissus + Genetic (DeepSeek-Reasoner) DeepSeek proposal (solves + grammar-valid) (13/100) Figure 12:RQ1, full ARC with the universal Hodel grammar (DeepSeek-Reasoner proposals): programs enumerated (left) and wall-clock time (right).This is the weakest-support setting in the paper.Narcissusrises well above the dotted line marking the proposals that are both correct and grammar-valid, i.e. guided search solves ARC tasks for which not a single grammar-valid proposal is correct: the proposals contribute fragments and partial structure, and the search assembles and corrects them. Table 5: RQ1, SLIA (D",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 16",
+            "section": "1) A domain-specific language (DSL) as a",
+            "chunk_id": "paper-015-p016-c001"
+          },
+          "scores": {
+            "reranker": -8.130230903625488,
+            "hybrid": 0.029273504273504274,
+            "pre_rerank_rank": 4,
+            "source_ranks": {
+              "bm25": 5,
+              "dense": 12
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-015-p016-c003",
+          "rank": 4,
+          "paper_id": "paper-015",
+          "page": 16,
+          "section": "1) A domain-specific language (DSL) as a",
+          "chunk_id": "paper-015-p016-c003",
+          "source_page_id": "paper-015-p016",
+          "text": "28.0 16.3% Static + Genetic (DeepSeek) 13.8 11.5% BFS (enhanced grammar) 9.0 8.4% Table7:RQ1,PBE_BV_Track_2018(bitvector),divide-andconquer : Enumeration axis AUC (programs enumerated, 1 to10 6), out of 587 problems. Method Final solved AUC (% of universe) Narcissus + BUS 350.0 33.2% Narcissus + Genetic 349.4 28.8% BFS (unguided enumeration) 300.0 27.5% HySynth (static + BUS) 102.0 8.8% Static + Genetic 56.6 4.8% Table8:RQ1,PBE_BV_Track_2018(bitvector),divide-andconquer:TimeaxisAUC(solvingtime,0.03sto300s(timeout)), out of 587 problems. Method Final solved AUC (% of universe) Narcissus + BUS 350.0 60.7% BFS (unguided enumeration) 300.0 51.6% Narcissus + Genetic 349.4 42.8% HySynth (static + BUS) 102.0 16.0% Static + Genetic 56.6 7.6% Table 9: RQ1, PBE_BV_Track_2018 (bitvector), regular : Enumeration axis AUC (programs enumerated, 1 to106), out of 587 problems. Method Final solved AUC (% of universe) Narcissus + Genetic 32.8 2.8% Narcissus + BUS 26.0 2.6% BFS (unguided enumeration) 27.0 2.5% Static + Genetic 24.0 1.9% HySynth (static + BUS) 18.0 1.8% Table 10: RQ1, PBE_BV_Track_2018 (bitvector), regular : Time axis AUC (solving time, 0.03s to 300s (timeout)), out of 587 problems. Me",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 16",
+            "section": "1) A domain-specific language (DSL) as a",
+            "chunk_id": "paper-015-p016-c003"
+          },
+          "scores": {
+            "reranker": -8.405451774597168,
+            "hybrid": 0.015151515151515152,
+            "pre_rerank_rank": 13,
+            "source_ranks": {
+              "dense": 6
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-05-paper-015-p002-c002",
+          "rank": 5,
+          "paper_id": "paper-015",
+          "page": 2,
+          "section": "Introduction",
+          "chunk_id": "paper-015-p002-c002",
+          "source_page_id": "paper-015-p002",
+          "text": "ipeline(on the SLIA task of abbreviating names to initials). (1) The LLM is prompted once with the grammarGand specificationEfor a handful of proposalsΠ, which are neither guaranteed solutions nor grammatical (e.g.concat(true,\".\")). (2) Proposals are parsed into abstract syntax trees (ASTs) and repaired against the grammar (syntactically wrong sub-terms become typed holes); (3) recurring fragments are mined into macro-rules, extending the grammar toG+; (4) the proposal ASTs yield acontext-awareheuristic (prefix alignment along the root-to-hole path, where _marks a position the context ignores; sub-program reuse; regularization); and (5) heuristic-based search (e.g., bottom-up or genetic) enumerates programs inG+, scoring each expansion in its context, and returns the first candidate satisfyingE. them. The compiled guidance is thus blind to where constructs belong and blocked from what the proposals missed. Ideally,aheuristicbuiltfromproposalsmustbeawareofthe context, cheap, and still functional when the proposals are poor. WepresentNarcissus,asynthesizerusingcontext-aware LLMapproximationsasguidance. 1 Duringsearch,Narcissusranks every rule by how often the proposals use itin the s",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 2",
+            "section": "Introduction",
+            "chunk_id": "paper-015-p002-c002"
+          },
+          "scores": {
+            "reranker": -8.475743293762207,
+            "hybrid": 0.02564102564102564,
+            "pre_rerank_rank": 6,
+            "source_ranks": {
+              "bm25": 18,
+              "dense": 18
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 2
+          }
+        }
+      ],
+      "pipeline": {
+        "stages": [
+          "query",
+          "production_retrieval",
+          "reranker",
+          "evidence_selection",
+          "abstention_policy",
+          "abstention_enforcement"
+        ],
+        "retrieval_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+        "llm": {
+          "provider": "local_transformers",
+          "model": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "config_path": "config/generation.json",
+          "config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730",
+          "loaded": false
+        },
+        "llm_skipped": true,
+        "generation_attempts": 0,
+        "fallback_used": false,
+        "abstention_source": "pre_generation_policy",
+        "abstention": {
+          "enabled": true,
+          "decision": {
+            "abstain": true,
+            "reason_code": "low_relevance",
+            "signals": {
+              "candidate_count": 20,
+              "evidence_count": 5,
+              "top_reranker_score": -7.868565082550049,
+              "minimum_top_reranker_score": -3.35
+            }
+          },
+          "policy": {
+            "status": "calibrated",
+            "config_path": "config/abstention_candidate.json",
+            "config_fingerprint": "bab2c3924cf8db57f471478ab7b5c3e598d247067f8ef86a8ed32f3b2aaddc09",
+            "policy": {
+              "reject_empty_candidates": true,
+              "reject_empty_evidence": true,
+              "minimum_top_reranker_score": -3.35,
+              "comparison": "accept_if_greater_than_or_equal",
+              "normalize_model_abstention": true,
+              "skip_llm_on_pre_generation_rejection": true
+            }
+          }
+        },
+        "runtime_seconds": 0.15
+      },
+      "debug": {
+        "attempts": []
+      },
+      "case_id": "abs-test-005-en"
+    },
+    {
+      "schema_version": 1,
+      "roadmap_day": 31,
+      "roadmap_days": [
+        30,
+        31
+      ],
+      "paper_id": "paper-016",
+      "query": "이 논문에서 목성의 위성 수는 몇 개라고 제시하는가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "질문을 뒷받침하는 텍스트 근거가 없습니다."
+      },
+      "cited_evidence": [],
+      "retrieved_evidence": [
+        {
+          "evidence_id": "ev-01-paper-016-p009-c001",
+          "rank": 1,
+          "paper_id": "paper-016",
+          "page": 9,
+          "section": "V. EXACTCHECKING OFEXECUTIONEDITS",
+          "chunk_id": "paper-016-p009-c001",
+          "source_page_id": "paper-016-p009",
+          "text": "TABLE I THE SIX FORMS OFFORK, RESTORE,ANDMERGE.E • σ IS DERIVED FROM THE REGISTERED EDIT RULE INΣ ζ . OperationuRequired current shape Derived target shape Checked preservation ForkChoice(b,σ)E[b:C]E[b L:Lσ⊕open g bR:Rσ]{Copy L(C),CopyR(C)} ForkParallel(b,σ)E[b:C]E[b L:Lσ∥g bR:Rσ]{Copy L(C),CopyR(C)} RestoreReplace(b,k,σ)E[b:C], k∈domKE[b k:clonek(Ck)]{Copy k(Ck)}; current branch removed RestoreLive(b,k,σ)E[b:C], k∈domKE[b:carry(C)∥ g bk:clonek(Ck)]{Keep(C),Copy k(Ck)} MergeSelect(g,w,σ)E[T L⊕s gTR], s∈{open,w} E[carry(T w);bJ:EJ σ ]{Keep(T w)}; other arm removed MergeJoin(g,σ)E[T L∥g TR]E[join(carry(T L),carry(TR));bJ:EJ σ ]{Keep(T L),Keep(TR)} annotates it as creating a new authorization or reusing an earlier one. Starting with D0 =D ∆, it maps a call sequence w= x1···x n to annotated sequencez 1···z n. Ford i =q ρu act(xi), zi = ( new(xi,di), d i /∈Di−1, D i =D i−1∪{di}; reuse(xi,di), d i∈D i−1, D i =D i−1. (6) auth keeps the authorization label of each new authorization and contributes nothing for reuse. auth(new(x,d)) =ℓ(d),auth(reuse(x,d)) =ϵ. For annotated z, raw(z) drops the new/reuse annotation and action while preserving the ordered workflow-call IDs. A Retry repeats the",
+          "char_count": 1199,
+          "locator": {
+            "page_label": "p. 9",
+            "section": "V. EXACTCHECKING OFEXECUTIONEDITS",
+            "chunk_id": "paper-016-p009-c001"
+          },
+          "scores": {
+            "reranker": -2.0195086002349854,
+            "hybrid": 0.014492753623188406,
+            "pre_rerank_rank": 18,
+            "source_ranks": {
+              "dense": 9
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-016-p022-c004",
+          "rank": 2,
+          "paper_id": "paper-016",
+          "page": 22,
+          "section": "3) Rechecking after a partial execution",
+          "chunk_id": "paper-016-p022-c004",
+          "source_page_id": "paper-016-p022",
+          "text": "(κ,H,∆,out,A,...) , define Core(S) = (κ,H,∆,out,A) and Current(H) = X[ [H.T] ]. For c= (record c,H + c ,u,W, bB,Z) , define icut(c) = (H+ c ,u,W, bB). For I= (K I,cI,rI) with KI = (κI,HI,∆I,outI,AI), let αI(I) = (KI,cI,rI,HI.η,HI.β), αS(S;c,r) = (Core(S),icut(c),r,H.η,entry| Current(H)). Define IBS iff some c,r satisfy AgentSec(S;c,r) and αI(I) =α S(S;c,r) . Write ℓ =⇒=τ∗ℓτ∗ and τ =⇒=τ∗. FixIBS with witness (c,r) . Equality of αI(I) and αS(S;c,r) gives both machines the same κ, current policy, execution record, authorization log, request queue, stored return records, checked safe execution set, current partial execution, rule version, and current rule entries. a) Edit transitions:The equality makes both machines form the same current ΘI(u) and record digest γ(ΘI(u)). If derivation is undefined, both sides return the same canonical Invalid answer and leave their states unchanged. If derivation exists but no safe execution set exists, lemma 8 and deterministic fixed-point checking make both sides return the same canonical Reject answer and leave their states unchanged. Otherwise the ideal machine enables its edit transition and, by lemma 8, the runtime checker accepts the same edit",
+          "char_count": 1198,
+          "locator": {
+            "page_label": "p. 22",
+            "section": "3) Rechecking after a partial execution",
+            "chunk_id": "paper-016-p022-c004"
+          },
+          "scores": {
+            "reranker": -3.693230152130127,
+            "hybrid": 0.014285714285714285,
+            "pre_rerank_rank": 20,
+            "source_ranks": {
+              "dense": 10
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 4
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-016-p010-c003",
+          "rank": 3,
+          "paper_id": "paper-016",
+          "page": 10,
+          "section": "V. EXACTCHECKING OFEXECUTIONEDITS",
+          "chunk_id": "paper-016-p010-c003",
+          "source_page_id": "paper-016-p010",
+          "text": "x), ¯y= new(yo,dy), and ¯z=new(z o,dz). The candidate family initially contains ¯y¯xand ¯x¯z. The first fixed-point iteration removes ¯x¯z. The second iteration removes ¯y¯x, because after the first removal z=ϵ no longer has a completion for the X⊗Z result. The empty fixed point is the formal reason the exact checker rejects. Proposition 1(Exact correspondence with generalized nonblocking).For nonempty bB⊆ bB0, let T bB be the trie for L bB =↓(π 2bB). Mark state z by possibleo exactly when o∈Compat(z) , and mark state y by doneo exactly when (o,y)∈ bB. Then bB⊆ bΦ(bB) ⇐⇒ ∀o∈OH,u.T bB is(possible o,doneo)-nonblocking. Consequently, if bB† is nonempty, it is the largest nonempty completion subfamily of bB0 satisfying the nonblocking condition for every result. If it is empty, no nonempty subfamily satisfies the conditions. Ordinary marker nonblocking of the unaugmented projected language is strictly weaker. Proof. From reachable partial execution z, a doneo-marked state is reachable exactly when some (o,y)∈ bB extends z. Quantifying over exactly the states marked possibleo is therefore the post-fixed-point condition. Greatestness follows from the greatest-fixed-point construction. Fo",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 10",
+            "section": "V. EXACTCHECKING OFEXECUTIONEDITS",
+            "chunk_id": "paper-016-p010-c003"
+          },
+          "scores": {
+            "reranker": -4.5974202156066895,
+            "hybrid": 0.014705882352941176,
+            "pre_rerank_rank": 16,
+            "source_ranks": {
+              "dense": 8
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-016-p013-c004",
+          "rank": 4,
+          "paper_id": "paper-016",
+          "page": 13,
+          "section": "VIII. MECHANIZATION ANDEXECUTABLEVALIDATION",
+          "chunk_id": "paper-016-p013-c004",
+          "source_page_id": "paper-016-p013",
+          "text": "Across accepted instances with 2–128 results, the checker takes 0.11–53.47 ms. Rejected instances take 0.11–5.51 ms, while enumerating 6–720 unordered completions takes 0.33–50.35 ms. Section A-M reports the complete measurement protocol and executable coverage.",
+          "char_count": 262,
+          "locator": {
+            "page_label": "p. 13",
+            "section": "VIII. MECHANIZATION ANDEXECUTABLEVALIDATION",
+            "chunk_id": "paper-016-p013-c004"
+          },
+          "scores": {
+            "reranker": -4.772216320037842,
+            "hybrid": 0.015151515151515152,
+            "pre_rerank_rank": 12,
+            "source_ranks": {
+              "dense": 6
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-05-paper-016-p019-c003",
+          "rank": 5,
+          "paper_id": "paper-016",
+          "page": 19,
+          "section": "3) Rechecking after a partial execution",
+          "chunk_id": "paper-016-p019-c003",
+          "source_page_id": "paper-016-p019",
+          "text": "er the same public call model R with supplies n0,n 1 that agree on every type except the rule-version type. The checked root updates create distinct active versions η0̸=η 1. The resulting V 0 C,V 1 C have identical P,I,E , while their active rule versions and dependent digests differ. Check the same registered edit u0 at V 0 C to obtain Y0 =Accepted(δ 0,W 0,bB0,Z 0), then submit qC = TryUpdate(u0,Y 0) to both records. At V 0 C, the final check reproduces cutZ0, so the rules take effect. At V 1 C, the active version is η1 rather than the η0 recorded in Z0, so the update returns NoCommit. Omitting C also removes dependent rule entries, authorization data, and digests, leaving the recordrequest pairs indistinguishable. Proposition 3(Four answer-relevant record parts).Every pair above consists of finite runtime states reached from the common empty initial state and satisfying AgentSec. After the corresponding information is omitted, each pair becomes indistinguishable even though the correct answers are opposite. Therefore every KeepJ with J⊊{P,I,E,C} , as well as Dropca and Dropra, is inexact. Every exact checker input must distinguish all five pairs. Proof. Lemma 14 gives the common",
+          "char_count": 1199,
+          "locator": {
+            "page_label": "p. 19",
+            "section": "3) Rechecking after a partial execution",
+            "chunk_id": "paper-016-p019-c003"
+          },
+          "scores": {
+            "reranker": -4.896961688995361,
+            "hybrid": 0.015873015873015872,
+            "pre_rerank_rank": 6,
+            "source_ranks": {
+              "dense": 3
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 3
+          }
+        }
+      ],
+      "pipeline": {
+        "stages": [
+          "query",
+          "production_retrieval",
+          "reranker",
+          "evidence_selection",
+          "abstention_policy",
+          "local_llm",
+          "answer_validation",
+          "abstention_enforcement"
+        ],
+        "retrieval_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+        "llm": {
+          "provider": "local_transformers",
+          "model": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "device": "cuda",
+          "dtype": "float16",
+          "device_fallback_reason": null,
+          "config_path": "config/generation.json",
+          "config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730",
+          "loaded": true
+        },
+        "llm_skipped": false,
+        "generation_attempts": 1,
+        "fallback_used": false,
+        "abstention_source": "model",
+        "abstention": {
+          "enabled": true,
+          "decision": {
+            "abstain": false,
+            "reason_code": null,
+            "signals": {
+              "candidate_count": 20,
+              "evidence_count": 5,
+              "top_reranker_score": -2.0195086002349854,
+              "minimum_top_reranker_score": -3.35
+            }
+          },
+          "policy": {
+            "status": "calibrated",
+            "config_path": "config/abstention_candidate.json",
+            "config_fingerprint": "bab2c3924cf8db57f471478ab7b5c3e598d247067f8ef86a8ed32f3b2aaddc09",
+            "policy": {
+              "reject_empty_candidates": true,
+              "reject_empty_evidence": true,
+              "minimum_top_reranker_score": -3.35,
+              "comparison": "accept_if_greater_than_or_equal",
+              "normalize_model_abstention": true,
+              "skip_llm_on_pre_generation_rejection": true
+            }
+          }
+        },
+        "runtime_seconds": 3.514
+      },
+      "debug": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "valid",
+            "raw_response": "{\"answer\": \"제공된 논문 근거에서 답을 확인할 수 없습니다.\", \"evidence_ids\": [], \"sufficiency\": \"insufficient\", \"abstention_reason\": \"질문을 뒷받침하는 텍스트 근거가 없습니다.\"}"
+          }
+        ]
+      },
+      "case_id": "abs-test-006-ko"
+    },
+    {
+      "schema_version": 1,
+      "roadmap_day": 31,
+      "roadmap_days": [
+        30,
+        31
+      ],
+      "paper_id": "paper-017",
+      "query": "What EUR to USD exchange rate does the paper forecast for 2030?",
+      "question_language": "en",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "cited_evidence": [],
+      "retrieved_evidence": [
+        {
+          "evidence_id": "ev-01-paper-017-p016-c003",
+          "rank": 1,
+          "paper_id": "paper-017",
+          "page": 16,
+          "section": "References",
+          "chunk_id": "paper-017-p016-c003",
+          "source_page_id": "paper-017-p016",
+          "text": ", 2026. [62] UK Government. data.gov.uk: Find open data. https: //www.data.gov.uk, 2025. [63] Government of Canada. Open Government Portal. ht tps://open.canada.ca/data, 2025. [64] Australian Government. data.gov.au: Australian Government open data.https://data.gov.au, 2025. [65] Harvard Dataverse. Harvard Dataverse Repository. ht tps://dataverse.harvard.edu/, 2026. [66] CERN. Zenodo Research Repository. https://zeno do.org/, 2026. [67] Digital Science. Figshare Research Repository. https: //figshare.com/, 2026. Ethical Considerations Stakeholders and ImpactsThe stakeholders are users and organizations that rely on OOXML-to-LLM workflows; LLM providers and extractor maintainers; other users of the measured services; the research team; and the broader security community. The principal benefit is to expose an ingestion risk that is otherwise invisible to document reviewers and to support defensive testing. Potential harms include the provider cost of live measurements, the risk of over-attributing behavior to a particular service, and dual-use knowledge that could help create misleading documents. We considered beneficence, respect for persons, and respect for law and the public inte",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 16",
+            "section": "References",
+            "chunk_id": "paper-017-p016-c003"
+          },
+          "scores": {
+            "reranker": -7.075167179107666,
+            "hybrid": 0.015873015873015872,
+            "pre_rerank_rank": 8,
+            "source_ranks": {
+              "dense": 3
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-017-p015-c004",
+          "rank": 2,
+          "paper_id": "paper-017",
+          "page": 15,
+          "section": "References",
+          "chunk_id": "paper-017-p015-c004",
+          "source_page_id": "paper-017-p015",
+          "text": "rXiv preprint arXiv:2508.17884, 2025. [39] Mohan Zhang, Yuqi Jia, Zhen Tan, Steven Jiang, Neil Zhenqiang Gong, Tianlong Chen, and Dawn Song. Measuring Real-World Prompt Injection Attacks in LLM-based Resume Screening. InProceedings of the 35th USENIX Security Symposium (USENIX Security ’26), 2026. [40] Microsoft. [MS-DOCX]: Word Extensions to the Office Open XML (.docx) File Format. https://learn.mi crosoft.com/en-us/openspecs/office_standar ds/ms-docx/, 2025. [41] Microsoft. [MS-XLSX]: Excel (.xlsx) Extensions to the Office Open XML SpreadsheetML File Format. https: //learn.microsoft.com/en-us/openspecs/offi ce_standards/ms-xlsx/, 2025. [42] Microsoft. [MS-PPTX]: PowerPoint (.pptx) Extensions to the Office Open XML File Format. https://learn. microsoft.com/en-us/openspecs/office_stand ards/ms-pptx/efd8bb2d-d888-4e2e-af25-cad47 6730c9f, 2025. [43] Microsoft. Open XML SDK. https://github.com /dotnet/Open-XML-SDK, 2024. [44] python-calamine. python-calamine: Python bindings for the calamine spreadsheet reader. https://github.c om/dimastbk/python-calamine, 2025. 15",
+          "char_count": 1078,
+          "locator": {
+            "page_label": "p. 15",
+            "section": "References",
+            "chunk_id": "paper-017-p015-c004"
+          },
+          "scores": {
+            "reranker": -7.3722100257873535,
+            "hybrid": 0.015384615384615385,
+            "pre_rerank_rank": 12,
+            "source_ranks": {
+              "dense": 5
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 4
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-017-p014-c001",
+          "rank": 3,
+          "paper_id": "paper-017",
+          "page": 14,
+          "section": "References",
+          "chunk_id": "paper-017-p014-c001",
+          "source_page_id": "paper-017-p014",
+          "text": "References [1] Statista. Number of Office 365 users worldwide, by country. https://www.statista.com/statistics/ 983321/worldwide-office-365-user-numbers-b y-country/, 2025. Accessed July 2026. [2] Humza Naveed, Asad Ullah Khan, Shi Qiu, Muhammad Saqib, Saeed Anwar, Muhammad Usman, Naveed Akhtar, Nick Barnes, and Ajmal Mian. A Comprehensive Overview of Large Language Models.ACM Transactions on Intelligent Systems and Technology, 16(5):1– 72, 2025. [3] LangChain. LangChain: Building applications with LLMs. https://github.com/langchain-ai/lang chain, 2025. [4] LlamaIndex. LlamaIndex: Data framework for LLM applications. https://github.com/run-llama/lla ma_index, 2025. [5] Haoyu Dong, Jianbo Zhao, Yuzhang Tian, Junyu Xiong, Mengyu Zhou, Yun Lin, José Cambronero, Yeye He, Shi Han, and Dongmei Zhang. Encoding Spreadsheets for Large Language Models. InProceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP 2024), 2024. [6] Yifei Dong, Fengyi Wu, Kunlin Zhang, Yilong Dai, Sanjian Zhang, Wanghao Ye, Sihan Chen, and Zhi-Qi Cheng. Large Language Model Agents in Finance: A Survey Bridging Research, Practice, and Real-World Deployment. InFindings of the Ass",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 14",
+            "section": "References",
+            "chunk_id": "paper-017-p014-c001"
+          },
+          "scores": {
+            "reranker": -7.449551105499268,
+            "hybrid": 0.01639344262295082,
+            "pre_rerank_rank": 5,
+            "source_ranks": {
+              "dense": 1
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-017-p015-c003",
+          "rank": 4,
+          "paper_id": "paper-017",
+          "page": 15,
+          "section": "References",
+          "chunk_id": "paper-017-p015-c003",
+          "source_page_id": "paper-017-p015",
+          "text": "nishi, Teruaki Kitasuka, and Chunhua Su. Prompt-inContent Attacks: Exploiting Uploaded Inputs to Hijack LLM Behavior. InProceedings of the International Conference on Network and System Security (NSS ’25), 2025. [35] Kai Greshake, Sahar Abdelnabi, Shailesh Mishra, Christoph Endres, Thorsten Holz, and Mario Fritz. Not What You’ve Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection. InProceedings of the 16th ACM Workshop on Artificial Intelligence and Security (AISec ’23), 2023. [36] Yang Feng and Xudong Pan. StruPhantom: Evolutionary Injection Attacks on Black-Box Tabular Agents Powered by Large Language Models. arXiv preprint arXiv:2504.09841, 2025. [37] Jonas Heß and Kalman Graffi. Detection of Malicious Office Open Documents (OOXML) Using Large Language Models: A Static Analysis Approach.Journal of Cybersecurity and Privacy, 5(2):32, 2025. [38] Toby Murray. PhantomLint: Principled Detection of Hidden LLM Prompts in Structured Documents. arXiv preprint arXiv:2508.17884, 2025. [39] Mohan Zhang, Yuqi Jia, Zhen Tan, Steven Jiang, Neil Zhenqiang Gong, Tianlong Chen, and Dawn Song. Measuring Real-World Prompt Injection Attacks in LLM-based",
+          "char_count": 1199,
+          "locator": {
+            "page_label": "p. 15",
+            "section": "References",
+            "chunk_id": "paper-017-p015-c003"
+          },
+          "scores": {
+            "reranker": -8.073298454284668,
+            "hybrid": 0.014705882352941176,
+            "pre_rerank_rank": 17,
+            "source_ranks": {
+              "dense": 8
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-05-paper-017-p014-c002",
+          "rank": 5,
+          "paper_id": "paper-017",
+          "page": 14,
+          "section": "References",
+          "chunk_id": "paper-017-p014-c002",
+          "source_page_id": "paper-017-p014",
+          "text": "ang, Yilong Dai, Sanjian Zhang, Wanghao Ye, Sihan Chen, and Zhi-Qi Cheng. Large Language Model Agents in Finance: A Survey Bridging Research, Practice, and Real-World Deployment. InFindings of the Association for Computational Linguistics: EMNLP 2025, 2025. [7] Ian Markwood, Dakun Shen, Yao Liu, and Zhuo Lu. PDF Mirage: Content Masking Attack Against Information-Based Online Services. InProceedings of the 26th USENIX Security Symposium (SENIX Security ’17), pages 833–847, 2017. [8] Side Liu and Jiang Ming. Semantic Integrity Failures in Document-to-LLM Supply Chains. arXiv preprint arXiv:2606.15020, 2026. [9] Hyundong Jin, Sicheol Sung, Shinwoo Park, SeungYeop Baik, and Yo-Sub Han. TRAPDOC: Deceiving LLM Users by Injecting Imperceptible Phantom Tokens into Documents. InFindings of the Association for Computational Linguistics: EMNLP 2025, 2025. [10] Junjie Xiong, Changjia Zhu, Shuhang Lin, Chong Zhang, Yongfeng Zhang, Yao Liu, and Lingyao Li. Invisible Prompts, Visible Threats: Malicious Font Injection in External Resources for Large Language Models. In Findings of the Association for Computational Linguistics: EMNLP 2025, 2025. [11] ECMA International. ECMA-376: Office Open XML Fi",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 14",
+            "section": "References",
+            "chunk_id": "paper-017-p014-c002"
+          },
+          "scores": {
+            "reranker": -8.712594032287598,
+            "hybrid": 0.015151515151515152,
+            "pre_rerank_rank": 14,
+            "source_ranks": {
+              "dense": 6
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 2
+          }
+        }
+      ],
+      "pipeline": {
+        "stages": [
+          "query",
+          "production_retrieval",
+          "reranker",
+          "evidence_selection",
+          "abstention_policy",
+          "abstention_enforcement"
+        ],
+        "retrieval_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+        "llm": {
+          "provider": "local_transformers",
+          "model": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "device": "cuda",
+          "dtype": "float16",
+          "device_fallback_reason": null,
+          "config_path": "config/generation.json",
+          "config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730",
+          "loaded": false
+        },
+        "llm_skipped": true,
+        "generation_attempts": 0,
+        "fallback_used": false,
+        "abstention_source": "pre_generation_policy",
+        "abstention": {
+          "enabled": true,
+          "decision": {
+            "abstain": true,
+            "reason_code": "low_relevance",
+            "signals": {
+              "candidate_count": 20,
+              "evidence_count": 5,
+              "top_reranker_score": -7.075167179107666,
+              "minimum_top_reranker_score": -3.35
+            }
+          },
+          "policy": {
+            "status": "calibrated",
+            "config_path": "config/abstention_candidate.json",
+            "config_fingerprint": "bab2c3924cf8db57f471478ab7b5c3e598d247067f8ef86a8ed32f3b2aaddc09",
+            "policy": {
+              "reject_empty_candidates": true,
+              "reject_empty_evidence": true,
+              "minimum_top_reranker_score": -3.35,
+              "comparison": "accept_if_greater_than_or_equal",
+              "normalize_model_abstention": true,
+              "skip_llm_on_pre_generation_rejection": true
+            }
+          }
+        },
+        "runtime_seconds": 0.129
+      },
+      "debug": {
+        "attempts": []
+      },
+      "case_id": "abs-test-007-en"
+    },
+    {
+      "schema_version": 1,
+      "roadmap_day": 31,
+      "roadmap_days": [
+        30,
+        31
+      ],
+      "paper_id": "paper-018",
+      "query": "이 논문은 독감 예방접종을 어느 계절에 받으라고 권장하는가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "검색된 텍스트의 관련도가 낮아 답변을 뒷받침할 수 없습니다."
+      },
+      "cited_evidence": [],
+      "retrieved_evidence": [
+        {
+          "evidence_id": "ev-01-paper-018-p010-c002",
+          "rank": 1,
+          "paper_id": "paper-018",
+          "page": 10,
+          "section": "3.5 Comparison and implications on arithmetic Kakeya bounds",
+          "chunk_id": "paper-018-p010-c002",
+          "source_page_id": "paper-018-p010",
+          "text": "e same cube-root exponent as the best known upper bound for linear hashing. Knudsen’s argument may now be viewed as an extension of this cube-root bound to both relaxations relevant to hashing. By our equivalence, his theorem can be interpreted as showing that the full-progression cube-root phenomenon survives when complete integer progressions are replaced by arbitrary subsets of short cyclic progressions. Notably, every actual arithmetic Kakeya set is trivially also a density-Kakeya one. Consequently, a significantly better linear hashing upper bound O(n1/3−ε) would therefore have independent arithmetic-Kakeya consequences in standard settings. The arithmetic Kakeya conjecture of Katz and Tao [ KT02], in the equivalent forms discussed by Green and Ruzsa [ GR19], predicts a substantially stronger, sub-polynomial, answer for complete integer progressions. Nonetheless, it makes no corresponding predictions for arbitrary vanishingdensity subsets of cyclic progressions as those we study. There is nevertheless evidence from finite vector spaces that the density relaxation can improve the parameter relevant to hashing by a polynomial factor. Consider subsets of F2 q of size q, and regar",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 10",
+            "section": "3.5 Comparison and implications on arithmetic Kakeya bounds",
+            "chunk_id": "paper-018-p010-c002"
+          },
+          "scores": {
+            "reranker": -4.501945972442627,
+            "hybrid": 0.014084507042253521,
+            "pre_rerank_rank": 19,
+            "source_ranks": {
+              "dense": 11
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-018-p006-c002",
+          "rank": 2,
+          "paper_id": "paper-018",
+          "page": 6,
+          "section": "1.2 Alternative hash families",
+          "chunk_id": "paper-018-p006-c002",
+          "source_page_id": "paper-018-p006",
+          "text": "ding the density arithmetic Kakeya parameter. This equivalence also explains the difficulty of improving the known upper bound. Complete integer progressions are a special case of our density witnesses, and the best known general bounds for them already give only the cube-root exponent. Knudsen’s upper bound may therefore be viewed as extending this cube-root bound to arbitrary subsets of bounded cyclic progressions. As discussed in Section 3.5, a polynomial improvement over this upper bound would imply new bounds even for standard arithmetic Kakeya sets. On the other hand, an improved lower bound requires only a better construction for the weaker density problem. We give some evidence that this distinction can be substantial by exhibiting a polynomial separation between the two variants over finite vector spaces. For our lower bound, we use a construction of Green and Ruzsa [GR19] as a black box. In the parameter range needed here, their construction gives an integer set S of size at most n which contains a complete progression of length nΩ(1/log logn) for every difference in a sufficiently long initial interval. Thus, the Green–Ruzsa set is an ordinary arithmetic Kakeya construct",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "1.2 Alternative hash families",
+            "chunk_id": "paper-018-p006-c002"
+          },
+          "scores": {
+            "reranker": -5.336735248565674,
+            "hybrid": 0.026709401709401708,
+            "pre_rerank_rank": 8,
+            "source_ranks": {
+              "bm25": 18,
+              "dense": 12
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-018-p004-c001",
+          "rank": 3,
+          "paper_id": "paper-018",
+          "page": 4,
+          "section": "1.1 Connection to Kakeya sets",
+          "chunk_id": "paper-018-p004-c001",
+          "source_page_id": "paper-018-p004",
+          "text": "they may even not contain any actual arithmetic progression at all. We refer to such sets asdense arithmetic Kakeya sets. This rich-subset relaxation is reminiscent of finite-field Furstenberg sets, where one works over a vector space and asks for large intersections with affine subspaces rather than requiring the entire subspaces to be present [ DDL21, DD24]. Our setting, however, differs both in its ambient algebraic structure and in the bounded arithmetic patterns with respect to which richness is measured. Our lower bound uses a construction of Green and Ruzsa [ GR19], who constructed a small set containing a complete arithmetic progression of a prescribed length for every difference in a long interval. Their construction is therefore a genuine arithmetic Kakeya construction, rather than merely a dense one, and we use their set without modification. Nevertheless, the density relaxation already plays a meaningful role in our argument. If a set contains an L-term progression of difference d, then, it also contains every r-th point of an rL-term progression of difference d/r. Thus every difference supplied by the Green–Ruzsa construction can be duplicated to many of its divisors.",
+          "char_count": 1199,
+          "locator": {
+            "page_label": "p. 4",
+            "section": "1.1 Connection to Kakeya sets",
+            "chunk_id": "paper-018-p004-c001"
+          },
+          "scores": {
+            "reranker": -5.414906978607178,
+            "hybrid": 0.02877846790890269,
+            "pre_rerank_rank": 5,
+            "source_ranks": {
+              "bm25": 9,
+              "dense": 10
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-018-p002-c001",
+          "rank": 4,
+          "paper_id": "paper-018",
+          "page": 2,
+          "section": "Abstract",
+          "chunk_id": "paper-018-p002-c001",
+          "source_page_id": "paper-018-p002",
+          "text": "Contents 1 Introduction 3 1.1 Connection to Kakeya sets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3 1.2 Alternative hash families . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4 2 Overview 5 3 From Linear Hashing to Density Arithmetic Kakeya 7 3.1 The hashing model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7 3.2 Definition of density-Kakeya . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7 3.3 Reduction from linear hashing to density-Kakeya . . . . . . . . . . . . . . . . . . . . 7 3.4 Reduction from density-Kakeya to linear hashing . . . . . . . . . . . . . . . . . . . . 9 3.5 Comparison and implications on arithmetic Kakeya bounds . . . . . . . . . . . . . . 10 4 Lower Bound for Linear Hashing 10 4.1 Digesting a construction of Green and Ruzsa . . . . . . . . . . . . . . . . . . . . . . 11 4.2 Hashing lower bound . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12 5 Lower Bound for Multiply-Shift Hashing 13 6 Discussion and Open Problems 14 A The Green–Ruzsa Construction 16 2",
+          "char_count": 1109,
+          "locator": {
+            "page_label": "p. 2",
+            "section": "Abstract",
+            "chunk_id": "paper-018-p002-c001"
+          },
+          "scores": {
+            "reranker": -5.701777935028076,
+            "hybrid": 0.030117753623188408,
+            "pre_rerank_rank": 3,
+            "source_ranks": {
+              "bm25": 4,
+              "dense": 9
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-05-paper-018-p004-c002",
+          "rank": 5,
+          "paper_id": "paper-018",
+          "page": 4,
+          "section": "1.1 Connection to Kakeya sets",
+          "chunk_id": "paper-018-p004-c002",
+          "source_page_id": "paper-018-p004",
+          "text": "rence d, then, it also contains every r-th point of an rL-term progression of difference d/r. Thus every difference supplied by the Green–Ruzsa construction can be duplicated to many of its divisors. These additional differences generally support only a fraction of the corresponding progression and would not be counted by the ordinary Kakeya formulation, but they remain valid in the density variant and are thus still usable for our hashing application. We remark that dense arithmetic Kakeya is seemingly a substantially weaker requirement than arithmetic Kakeya. The subsets associated with different differences need not themselves contain long arithmetic progressions, and their density may tend to zero. This leaves room for improving our lower bound without improving the best-known genuine arithmetic Kakeya constructions. We currently do not know a substantial separation between the two notions in the arithmetic setting. We show that polynomial such separations do occur over vector spaces. This suggests that the dense arithmetic problem may similarly admit substantially better constructions, potentially leading to a polynomial lower bound for linear hashing.",
+          "char_count": 1175,
+          "locator": {
+            "page_label": "p. 4",
+            "section": "1.1 Connection to Kakeya sets",
+            "chunk_id": "paper-018-p004-c002"
+          },
+          "scores": {
+            "reranker": -6.3998026847839355,
+            "hybrid": 0.02967032967032967,
+            "pre_rerank_rank": 4,
+            "source_ranks": {
+              "bm25": 10,
+              "dense": 5
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 2
+          }
+        }
+      ],
+      "pipeline": {
+        "stages": [
+          "query",
+          "production_retrieval",
+          "reranker",
+          "evidence_selection",
+          "abstention_policy",
+          "abstention_enforcement"
+        ],
+        "retrieval_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+        "llm": {
+          "provider": "local_transformers",
+          "model": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "device": "cuda",
+          "dtype": "float16",
+          "device_fallback_reason": null,
+          "config_path": "config/generation.json",
+          "config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730",
+          "loaded": false
+        },
+        "llm_skipped": true,
+        "generation_attempts": 0,
+        "fallback_used": false,
+        "abstention_source": "pre_generation_policy",
+        "abstention": {
+          "enabled": true,
+          "decision": {
+            "abstain": true,
+            "reason_code": "low_relevance",
+            "signals": {
+              "candidate_count": 20,
+              "evidence_count": 5,
+              "top_reranker_score": -4.501945972442627,
+              "minimum_top_reranker_score": -3.35
+            }
+          },
+          "policy": {
+            "status": "calibrated",
+            "config_path": "config/abstention_candidate.json",
+            "config_fingerprint": "bab2c3924cf8db57f471478ab7b5c3e598d247067f8ef86a8ed32f3b2aaddc09",
+            "policy": {
+              "reject_empty_candidates": true,
+              "reject_empty_evidence": true,
+              "minimum_top_reranker_score": -3.35,
+              "comparison": "accept_if_greater_than_or_equal",
+              "normalize_model_abstention": true,
+              "skip_llm_on_pre_generation_rejection": true
+            }
+          }
+        },
+        "runtime_seconds": 0.134
+      },
+      "debug": {
+        "attempts": []
+      },
+      "case_id": "abs-test-008-ko"
+    },
+    {
+      "schema_version": 1,
+      "roadmap_day": 31,
+      "roadmap_days": [
+        30,
+        31
+      ],
+      "paper_id": "paper-019",
+      "query": "Which ocean route does the paper recommend for a cruise from Sydney to Tokyo?",
+      "question_language": "en",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "cited_evidence": [],
+      "retrieved_evidence": [
+        {
+          "evidence_id": "ev-01-paper-019-p012-c003",
+          "rank": 1,
+          "paper_id": "paper-019",
+          "page": 12,
+          "section": "References",
+          "chunk_id": "paper-019-p012-c003",
+          "source_page_id": "paper-019-p012",
+          "text": "Pannella, M., Elbaz, D., et al. 2015, A&A, 575, A74 Shuntov, M., Akins, H. B., Paquereau, L., et al. 2025a, A&A, 704, A339 Shuntov, M., Ilbert, O., Lagos, C. d. P., et al. 2026, A&A, 707, A391 Shuntov, M., Ilbert, O., Toft, S., et al. 2025b, A&A, 695, A20 Speagle, J. S., Steinhardt, C. L., Capak, P. L., & Silverman, J. D. 2014, ApJS, 214, 15 Steinhardt, C. L., Yurk, D., & Capak, P. 2017, MNRAS, 468, 849 Tomczak, A. R., Quadri, R. F., Tran, K.-V . H., et al. 2016, ApJ, 817, 118 Wang, T.-M., Magnelli, B., Schinnerer, E., et al. 2022, A&A, 660, A142 Weaver, J. R., Davidzon, I., Toft, S., et al. 2023, A&A, 677, A184 Whitaker, K. E., van Dokkum, P. G., Brammer, G., & Franx, M. 2012, ApJ, 754, L29 Wijesekera, J. V ., Koprowski, M. P., Dunlop, J. S., et al. 2026, A&A, 711, A189 Article number, page 12 of 14",
+          "char_count": 811,
+          "locator": {
+            "page_label": "p. 12",
+            "section": "References",
+            "chunk_id": "paper-019-p012-c003"
+          },
+          "scores": {
+            "reranker": -6.189722061157227,
+            "hybrid": 0.016129032258064516,
+            "pre_rerank_rank": 8,
+            "source_ranks": {
+              "dense": 2
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-019-p014-c001",
+          "rank": 2,
+          "paper_id": "paper-019",
+          "page": 14,
+          "section": "References",
+          "chunk_id": "paper-019-p014-c001",
+          "source_page_id": "paper-019-p014",
+          "text": "A&A proofs:manuscript no. aa59329-26 ˙macc,∗(M∗,µ,z)=A(z) M∗ 1010 M⊙ !α(z) 1+ M∗ 2×10 11 M⊙ !δ(z) ×µ β(z)+γlog 10(M∗/1010 M⊙) µ 1+3µ , (A.9) withA(z)=A 0(1+z) η,α(z)=α 0(1+z) α1,β(z)=β 0(1+z) β1, andδ(z)=δ 0(1+z) δ1, adopting the best-fitting parameters given in their paper. We included mergers over 0.01≤µ≤1, thereby accounting for major, minor, and very minor mergers while excluding mass ratios for which the contribution to stellar-mass growth is negligible. The corresponding merger-driven stellarmass growth rate of Eq. A.2 was obtained by integrating over the adopted mass-ratio interval, ˙M∗,merg(M∗,z)=M ∗ Z 1 0.01 ˙macc,∗(M∗,µ,z) dµ.(A.10) To determine which donor mass bins supplied this accreted mass, we evaluated the contribution of the same function over the mass-ratio interval corresponding to each donor bin. For example, a donor bin spanningµlow,jMprimary <M donor <µ high,j Mprimary contributes ˙M ∆µ j ∗,merg =M primary Z µhigh,j µlow,j ˙macc,∗(Mprimary,µ,z) dµ.(A.11) The fraction of the total merger-driven growth supplied by that donor-mass range is therefore f∆µ j = R µhigh,j µlow,j ˙macc,∗(Mprimary,µ,z) dµ R 1 0.01 ˙macc,∗(Mprimary,µ,z) dµ .(A.12) The total",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 14",
+            "section": "References",
+            "chunk_id": "paper-019-p014-c001"
+          },
+          "scores": {
+            "reranker": -6.574841022491455,
+            "hybrid": 0.01639344262295082,
+            "pre_rerank_rank": 6,
+            "source_ranks": {
+              "bm25": 1
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-019-p011-c007",
+          "rank": 3,
+          "paper_id": "paper-019",
+          "page": 11,
+          "section": "References",
+          "chunk_id": "paper-019-p011-c007",
+          "source_page_id": "paper-019-p011",
+          "text": "References Akins, H. B., Casey, C. M., Lambrides, E., et al. 2025, ApJ, 991, 37 Arnouts, S., Cristiani, S., Moscardini, L., et al. 1999, MNRAS, 310, 540 Bertin, E., Schefer, M., Apostolakos, N., et al. 2020, in Astronomical Society of the Pacific Conference Series, V ol. 527, Astronomical Data Analysis Software and Systems XXIX, ed. R. Pizzo, E. R. Deul, J. D. Mol, J. de Plaa, & H. Verkouter, 461 Bruzual, G. & Charlot, S. 2003, MNRAS, 344, 1000 Casey, C. M. 2012, MNRAS, 425, 3094 Casey, C. M., Kartaltepe, J. S., Drakos, N. E., et al. 2023, ApJ, 954, 31 Chabrier, G. 2003, PASP, 115, 763 Daddi, E., Delvecchio, I., Dimauro, P., et al. 2022, A&A, 661, L7 Daddi, E., Dickinson, M., Morrison, G., et al. 2007, ApJ, 670, 156 Drew, P. M. & Casey, C. M. 2022, ApJ, 930, 142 Elbaz, D., Daddi, E., Le Borgne, D., et al. 2007, A&A, 468, 33 Elbaz, D., Leiton, R., Nagar, N., et al. 2018, A&A, 616, A110 Foreman-Mackey, D., Hogg, D. W., Lang, D., & Goodman, J. 2013, PASP, 125, 306 Gardner, J. P., Mather, J. C., Abbott, R., et al. 2023, PASP, 135, 068001 Article number, page 11 of 14",
+          "char_count": 1079,
+          "locator": {
+            "page_label": "p. 11",
+            "section": "References",
+            "chunk_id": "paper-019-p011-c007"
+          },
+          "scores": {
+            "reranker": -7.830557346343994,
+            "hybrid": 0.01639344262295082,
+            "pre_rerank_rank": 5,
+            "source_ranks": {
+              "dense": 1
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-019-p002-c006",
+          "rank": 4,
+          "paper_id": "paper-019",
+          "page": 2,
+          "section": "2.1. COSMOS-Web catalog",
+          "chunk_id": "paper-019-p002-c006",
+          "source_page_id": "paper-019-p002",
+          "text": "2.1. COSMOS-Web catalog We used version 1.1 of the COSMOS-Web master catalog presented by Shuntov et al. (2025a). The catalog is based on the 255-h COSMOS-Web survey, which provides JWST/NIRCam imaging in the F115W, F150W, F277W, and F444W filters over ∼0.54 deg2, together with MIRI/F770W imaging over∼0.2 deg2. Sources were detected from a combination of the four NIRCam images using a combined ‘hot and cold’ procedure, with cold run used for bright/extended galaxies and hot run for faint/compact sources. The JWST observations were then combined with the extensive HST and ground-based imaging available in COSMOS, with the corresponding photometry measured withSourceXtractor++(Bertin et al. 2020; Kümmel et al. 2022) across 37 bands spanning approximately 0.3–8µm. The catalog-level quantities used in this work, including photometric redshifts, stellar masses, rest-frame colors, and their associated uncertainties, were adopted directly from Shuntov et al. (2025a). Photometric redshifts were derived by fitting the multi-band total photometry withLePhare(Arnouts et al. 1999; Ilbert et al. 2006), based on the Bruzual & Charlot (2003) stellarpopulation models, where exponentially declining",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 2",
+            "section": "2.1. COSMOS-Web catalog",
+            "chunk_id": "paper-019-p002-c006"
+          },
+          "scores": {
+            "reranker": -8.154532432556152,
+            "hybrid": 0.014925373134328358,
+            "pre_rerank_rank": 13,
+            "source_ranks": {
+              "dense": 7
+            }
+          },
+          "source": {
+            "section_index": 3,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-05-paper-019-p008-c011",
+          "rank": 5,
+          "paper_id": "paper-019",
+          "page": 8,
+          "section": "7.1.2. Comparison to recent literature",
+          "chunk_id": "paper-019-p008-c011",
+          "source_page_id": "paper-019-p008",
+          "text": "(2026) are based on the JWST observations extending to low stellar masses. The inconsistencies between both MS shapes can be attributed to the methodological differences adopted in both works. Mérida et al. (2026) determine SFRs fromDense Basis Article number, page 8 of 14",
+          "char_count": 273,
+          "locator": {
+            "page_label": "p. 8",
+            "section": "7.1.2. Comparison to recent literature",
+            "chunk_id": "paper-019-p008-c011"
+          },
+          "scores": {
+            "reranker": -8.529919624328613,
+            "hybrid": 0.015384615384615385,
+            "pre_rerank_rank": 11,
+            "source_ranks": {
+              "dense": 5
+            }
+          },
+          "source": {
+            "section_index": 7,
+            "chunk_index": 2
+          }
+        }
+      ],
+      "pipeline": {
+        "stages": [
+          "query",
+          "production_retrieval",
+          "reranker",
+          "evidence_selection",
+          "abstention_policy",
+          "abstention_enforcement"
+        ],
+        "retrieval_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+        "llm": {
+          "provider": "local_transformers",
+          "model": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "device": "cuda",
+          "dtype": "float16",
+          "device_fallback_reason": null,
+          "config_path": "config/generation.json",
+          "config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730",
+          "loaded": false
+        },
+        "llm_skipped": true,
+        "generation_attempts": 0,
+        "fallback_used": false,
+        "abstention_source": "pre_generation_policy",
+        "abstention": {
+          "enabled": true,
+          "decision": {
+            "abstain": true,
+            "reason_code": "low_relevance",
+            "signals": {
+              "candidate_count": 20,
+              "evidence_count": 5,
+              "top_reranker_score": -6.189722061157227,
+              "minimum_top_reranker_score": -3.35
+            }
+          },
+          "policy": {
+            "status": "calibrated",
+            "config_path": "config/abstention_candidate.json",
+            "config_fingerprint": "bab2c3924cf8db57f471478ab7b5c3e598d247067f8ef86a8ed32f3b2aaddc09",
+            "policy": {
+              "reject_empty_candidates": true,
+              "reject_empty_evidence": true,
+              "minimum_top_reranker_score": -3.35,
+              "comparison": "accept_if_greater_than_or_equal",
+              "normalize_model_abstention": true,
+              "skip_llm_on_pre_generation_rejection": true
+            }
+          }
+        },
+        "runtime_seconds": 0.135
+      },
+      "debug": {
+        "attempts": []
+      },
+      "case_id": "abs-test-009-en"
+    },
+    {
+      "schema_version": 1,
+      "roadmap_day": 31,
+      "roadmap_days": [
+        30,
+        31
+      ],
+      "paper_id": "paper-020",
+      "query": "이 논문에서 에베레스트산의 정확한 높이는 몇 미터라고 설명하는가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "검색된 텍스트의 관련도가 낮아 답변을 뒷받침할 수 없습니다."
+      },
+      "cited_evidence": [],
+      "retrieved_evidence": [
+        {
+          "evidence_id": "ev-01-paper-020-p016-c001",
+          "rank": 1,
+          "paper_id": "paper-020",
+          "page": 16,
+          "section": "References",
+          "chunk_id": "paper-020-p016-c001",
+          "source_page_id": "paper-020-p016",
+          "text": "2 𝐼𝐼𝑏𝑏 = 𝑁𝑁𝑏𝑏 𝜆𝜆𝑏𝑏 𝜎𝜎𝑏𝑏 𝑒𝑒 −𝑑𝑑𝑠𝑠 𝜆𝜆𝑠𝑠 𝐼𝐼𝑠𝑠 = 𝑁𝑁𝑠𝑠 𝜆𝜆𝑠𝑠 𝜎𝜎𝑠𝑠 �1 − 𝑒𝑒 −𝑑𝑑𝑠𝑠 𝜆𝜆𝑠𝑠 � 𝑑𝑑𝑠𝑠 = 𝜆𝜆𝑠𝑠 ln �𝐼𝐼𝑠𝑠 𝐼𝐼𝑏𝑏 𝑁𝑁𝑏𝑏𝜆𝜆𝑏𝑏𝜎𝜎𝑏𝑏 𝑁𝑁𝑠𝑠𝜆𝜆𝑠𝑠𝜎𝜎𝑠𝑠 + 1� Here, 𝑑𝑑𝑠𝑠 is the calculated thickness of the overlayer and 𝜆𝜆 is the inelastic mean free path of the photoemitted electron, based on the TPP-2M formula. [3] The 𝐼𝐼𝑏𝑏 and 𝐼𝐼𝑠𝑠 are the intensity of the XPS signal from the bulk and the overlayer, respectively, 𝜎𝜎 is the ionization cross-section, and 𝑁𝑁 is the number of atoms per unit volume, calculated as 𝑁𝑁 = 𝐴𝐴𝑣𝑣 ∗ 𝜌𝜌/𝑀𝑀. Here 𝐴𝐴𝑣𝑣 is Avogadro's number, 𝜌𝜌 is the density, and M is the molecular weight of the material. The values used for calculation are shown in Table S3. Table S3: Values used for evaluating the Bi thickness at 80 eV photon energy based on the overlayer model GaAs (bulk) Bi (surface) 𝐸𝐸𝑔𝑔(𝑒𝑒𝑒𝑒) 1.42 0 𝜆𝜆 (Å) 4.77 5.65 𝑁𝑁�Å−3� 𝑥𝑥 103 22 28.2 𝜎𝜎 (𝑀𝑀𝑀𝑀𝑀𝑀𝑀𝑀𝑀𝑀) [4] 8.39 11.07",
+          "char_count": 885,
+          "locator": {
+            "page_label": "p. 16",
+            "section": "References",
+            "chunk_id": "paper-020-p016-c001"
+          },
+          "scores": {
+            "reranker": -4.074822902679443,
+            "hybrid": 0.016129032258064516,
+            "pre_rerank_rank": 7,
+            "source_ranks": {
+              "dense": 2
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-020-p002-c003",
+          "rank": 2,
+          "paper_id": "paper-020",
+          "page": 2,
+          "section": "Introduction",
+          "chunk_id": "paper-020-p002-c003",
+          "source_page_id": "paper-020-p002",
+          "text": "proaches. It is scalable, limited by the deposition rate of the adsorbate or by the substrate pre -treatment conditions. Some of the important examples include atomic chains of metal on semiconducting planar surfaces,6 including self-assembled atomic chains of Bi on InAs(110),7 which, however, lack spatial control of the chain formation , and approaches based on substrate strain engineering8 or cleaved-edge overgrowth9 requiring complex processing steps. A very elegant alternative is to use III -V semiconductor nanowires (NW) with axial crystal phase heterostructures as a template for site- selective overgrowth. Such nanowires, with diameters between about 50 and 500 nm and lengths of up to several microns , are unique because they allow for controllable switching between cubic zinc blende (Zb) and hexagonal wurtzite (Wz) crystal phases upon axial NW growth,10 while the Wz phase is metastable during bulk growth of most III-V compound semiconductors. The atomic structure and various surface facets of the se Zb/Wz NW heterostructures have been well studied using atomic -scale techniques like scanning tunneling microscopy/spectroscopy (STM/S).11,12 We have previously used GaAs Zb/Wz N",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 2",
+            "section": "Introduction",
+            "chunk_id": "paper-020-p002-c003"
+          },
+          "scores": {
+            "reranker": -4.875899791717529,
+            "hybrid": 0.015151515151515152,
+            "pre_rerank_rank": 14,
+            "source_ranks": {
+              "bm25": 6
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-020-p012-c001",
+          "rank": 3,
+          "paper_id": "paper-020",
+          "page": 12,
+          "section": "References",
+          "chunk_id": "paper-020-p012-c001",
+          "source_page_id": "paper-020-p012",
+          "text": "12 and Step Engineering on Shallow Patterned Substrates. J. Appl. Phys. 2005, 97 (1), 14304. https://doi.org/10.1063/1.1823578. (9) Bauer, J.; Schuh, D.; Uccelli, E.; Schulz, R.; Kress, A.; Hofbauer, F.; Finley, J. J.; Abstreiter, G. Long-Range Ordered Self-Assembled InAs Quantum Dots Epitaxially Grown on (110) GaAs. Appl. Phys. Lett. 2004, 85 (20), 4750–4752. https://doi.org/10.1063/1.1819987. (10) Jacobsson, D.; Panciera, F.; Tersoff, J.; Reuter, M. C.; Lehmann, S.; Hofmann, S.; Dick, K. A.; Ross, F. M. Interface Dynamics and Crystal Phase Switching in GaAs Nanowires. Nature 2016, 531 (7594), 317–322. https://doi.org/10.1038/nature17148. (11) Hjort, M.; Lehmann, S.; Knutsson, J.; Zakharov, A. A.; Du, Y. A.; Sakong, S.; Timm, R.; Nylund, G.; Lundgren, E.; Kratzer, P.; Dick, K. A.; Mikkelsen, A. Electronic and Structural Differences between Wurtzite and Zinc Blende Inas Nanowire Surfaces: Experi ment and Theory. ACS Nano 2014, 8 (12), 12346–12355. https://doi.org/10.1021/nn504795v. (12) Hjort, M.; Lehmann, S.; Knutsson, J.; Timm, R.; Jacobsson, D.; Lundgren, E.; Dick, K. A.; Mikkelsen, A. Direct Imaging of Atomic Scale Structure and Electronic Properties of GaAs Wurtzite and Zinc B",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 12",
+            "section": "References",
+            "chunk_id": "paper-020-p012-c001"
+          },
+          "scores": {
+            "reranker": -4.9409403800964355,
+            "hybrid": 0.015625,
+            "pre_rerank_rank": 11,
+            "source_ranks": {
+              "dense": 4
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-020-p005-c003",
+          "rank": 4,
+          "paper_id": "paper-020",
+          "page": 5,
+          "section": "Results",
+          "chunk_id": "paper-020-p005-c003",
+          "source_page_id": "paper-020-p005",
+          "text": "ts. In addition, one can see a long, straight NW segment underneath the heterostructure, which is the NW growth stem, and a shorter NW segment above the het erostructure, while the Au/Ga alloy particle seems to have been misplaced from the top of the NW during transfer. Intensity profiles are taken from the Bi and Ga XPEEM maps, across the NW heterostructure, shown in Fig. S1 of the electronic Supplementary Information (ESI) . The extension of the Wz segments, appearing bright in the Ga 3d map, and of the Zb segments in between, appearing bright in the Bi 5d map, both amounting to 40 to 60 nm, is consistent with the corresponding values obtained from the SEM image, shown in Fig. S1.26 From the XPEEM maps, the observed different contrast for the two different crystal phases of the NW indicates different overgrowth and Bi incorporation mechanisms. A higher Bi 5d intensity is observed from the Zb phase compared to the Wz, as shown in Fig. 2(a), although it is not zero in the Wz phase. The opposite trend is observed in the Ga 3d XPEEM map, where a higher intensity is found from the Wz phase compared to Zb (Fig. 2(c)). For a more quantitative analysis, a series of additional X PEEM maps",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 5",
+            "section": "Results",
+            "chunk_id": "paper-020-p005-c003"
+          },
+          "scores": {
+            "reranker": -5.607016563415527,
+            "hybrid": 0.025833333333333333,
+            "pre_rerank_rank": 3,
+            "source_ranks": {
+              "bm25": 20,
+              "dense": 15
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-05-paper-020-p005-c001",
+          "rank": 5,
+          "paper_id": "paper-020",
+          "page": 5,
+          "section": "Method",
+          "chunk_id": "paper-020-p005-c001",
+          "source_page_id": "paper-020-p005",
+          "text": "5 nm Ti/Au), with lift-off being done by the submersion of the wafer in acetone until completion. Finally, the wafer was diced into 2×2 cm device chips using a Disco DAD 3320. Sample cleaning and annealing: The samples with transferred NWs were mounted on dedicated XPEEM sample holders and exposed to a flow of clean nitrogen gas to remove dust or particles. After transferring into the UHV chamber of the XPEEM setup, the samples were annealed in the presence of atomic hydrogen for native oxide removal, following previous experience.12,14 Atomic hydrogen was provided using a commercial thermal cracker (from MBE Komponenten) with a molecular hydrogen pressure of 2 x 10 -6 mbar at a cracking temperature of 1700 °C. X-ray PEEM measurement: The XPEEM measurements were carried out at the MAXPEEM beamline of the MAX IV Laboratory (Lund, Sweden) using an Elmitec aberration-corrected Spectroscopic Photoe mission and Low Energy Electron Microscope (SPELEEM). Unless otherwise specified, a photon energy of 80 eV was used for core-level maps. Before analyzing the XPEEM results, the images were drift- corrected using the Igor Pro analysis package Athina.30",
+          "char_count": 1159,
+          "locator": {
+            "page_label": "p. 5",
+            "section": "Method",
+            "chunk_id": "paper-020-p005-c001"
+          },
+          "scores": {
+            "reranker": -5.8497090339660645,
+            "hybrid": 0.025978407557354925,
+            "pre_rerank_rank": 2,
+            "source_ranks": {
+              "bm25": 18,
+              "dense": 16
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 1
+          }
+        }
+      ],
+      "pipeline": {
+        "stages": [
+          "query",
+          "production_retrieval",
+          "reranker",
+          "evidence_selection",
+          "abstention_policy",
+          "abstention_enforcement"
+        ],
+        "retrieval_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+        "llm": {
+          "provider": "local_transformers",
+          "model": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "device": "cuda",
+          "dtype": "float16",
+          "device_fallback_reason": null,
+          "config_path": "config/generation.json",
+          "config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730",
+          "loaded": false
+        },
+        "llm_skipped": true,
+        "generation_attempts": 0,
+        "fallback_used": false,
+        "abstention_source": "pre_generation_policy",
+        "abstention": {
+          "enabled": true,
+          "decision": {
+            "abstain": true,
+            "reason_code": "low_relevance",
+            "signals": {
+              "candidate_count": 20,
+              "evidence_count": 5,
+              "top_reranker_score": -4.074822902679443,
+              "minimum_top_reranker_score": -3.35
+            }
+          },
+          "policy": {
+            "status": "calibrated",
+            "config_path": "config/abstention_candidate.json",
+            "config_fingerprint": "bab2c3924cf8db57f471478ab7b5c3e598d247067f8ef86a8ed32f3b2aaddc09",
+            "policy": {
+              "reject_empty_candidates": true,
+              "reject_empty_evidence": true,
+              "minimum_top_reranker_score": -3.35,
+              "comparison": "accept_if_greater_than_or_equal",
+              "normalize_model_abstention": true,
+              "skip_llm_on_pre_generation_rejection": true
+            }
+          }
+        },
+        "runtime_seconds": 0.138
+      },
+      "debug": {
+        "attempts": []
+      },
+      "case_id": "abs-test-010-ko"
+    }
+  ],
+  "recovered_question": {
+    "schema_version": 1,
+    "roadmap_day": 31,
+    "roadmap_days": [
+      30,
+      31
+    ],
+    "paper_id": "paper-004",
+    "query": "What trade-offs between inference speed, memory usage, and accuracy are discussed?",
+    "question_language": "en",
+    "response": {
+      "answer": "SmoothQuant is used to reduce both footprint and execution time while maintaining acceptable accuracy.",
+      "evidence_ids": [
+        "ev-02-paper-004-p001-c003",
+        "ev-05-paper-004-p006-c003"
+      ],
+      "sufficiency": "sufficient",
+      "abstention_reason": null
+    },
+    "cited_evidence": [
+      {
+        "evidence_id": "ev-02-paper-004-p001-c003",
+        "rank": 2,
+        "paper_id": "paper-004",
+        "page": 1,
+        "section": "1 Introduction",
+        "chunk_id": "paper-004-p001-c003",
+        "source_page_id": "paper-004-p001",
+        "text": "1 Introduction Although large language models (LLMs) have attracted much of the recent attention, small NLP models based on the BERT family remain widely deployed for production tasks such as classification, ranking, and retrieval [Devlin et al., 2019, Sanh et al., 2019, Conneau et al., 2020]. CPU inference continues to play a central role in such deployments because of its favorable cost profile and the ubiquity of server CPU infrastructure. Within the PyTorch ecosystem, there is strong demand for efficient inference using the native software stack. Straightforward FP32 execution on CPU is often suboptimal because transformer inference is dominated by matrix multiplications (GEMM) with substantial compute and memory cost. INT8 quantization is a widely adopted technique for reducing both footprint and execution time while maintaining acceptable accuracy [Jacob et al., 2018, Nagel et al., 2021]. At the same time, modern Intel Xeon CPUs expose instruction-set support such as VNNI and AMX that can substantially accelerate INT8 GEMM workloads [Intel Corporation, 2023]. In this work, we integrate SmoothQuant [Xiao et al., 2023], a post-training quantization method designed to mitigate a",
+        "char_count": 1200,
+        "locator": {
+          "page_label": "p. 1",
+          "section": "1 Introduction",
+          "chunk_id": "paper-004-p001-c003"
+        },
+        "scores": {
+          "reranker": -5.616875171661377,
+          "hybrid": 0.031099324975891997,
+          "pre_rerank_rank": 3,
+          "source_ranks": {
+            "bm25": 8,
+            "dense": 1
+          }
+        },
+        "source": {
+          "section_index": 3,
+          "chunk_index": 1
+        }
+      },
+      {
+        "evidence_id": "ev-05-paper-004-p006-c003",
+        "rank": 5,
+        "paper_id": "paper-004",
+        "page": 6,
+        "section": "5.2 Baseline Hotspot Breakdown",
+        "chunk_id": "paper-004-p006-c003",
+        "source_page_id": "paper-004-p006",
+        "text": "he GEMM dimensions. We have disregarded the lm_head layer for simplicity because it accounts for a negligible proportion of the time. Apparently, (1) FP32 GEMM is always compute-bound on both platforms (AI > BP); (2) BF16 GEMM is memory-bound on Granite Rapids (AI < BP); and (3) INT8 GEMM is compute-bound on Ice Lake (AI > BP) but memory-bound on Granite Rapids (AI<BP). According to the roofline model, theoretical peak throughput of GEMM is computed by PGEMM = min(Pcompute, B·AI)(6) whereP compute is the peak compute throughput,Bthe peak memory bandwidth, andAIthe arithmetic intensity. Therefore, the estimated GEMM speedup on Ice Lake is 4.0×. And on Granite Rapids, GEMM is memory-bound for both BF16 and INT8. However, it is noted that the size of quantized INT8 model (442 MB) is already less than the LLC size (504 MB) on the platform. So, ideally, the weights W of INT8 GEMM (Y=X·W ⊤) can reside in LLC completely. However, X and Y have to be read from and written to main memory, because W takes up 87.7% of LLC and X and Y data are changing at runtime. Therefore, we also measured the LLC read bandwidth to be about 1000 GB/s and we estimate the effective memory bandwidth Beff for INT",
+        "char_count": 1200,
+        "locator": {
+          "page_label": "p. 6",
+          "section": "5.2 Baseline Hotspot Breakdown",
+          "chunk_id": "paper-004-p006-c003"
+        },
+        "scores": {
+          "reranker": -7.543722629547119,
+          "hybrid": 0.029273504273504274,
+          "pre_rerank_rank": 7,
+          "source_ranks": {
+            "bm25": 12,
+            "dense": 5
+          }
+        },
+        "source": {
+          "section_index": 1,
+          "chunk_index": 3
+        }
+      }
+    ],
+    "retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-004-p001-c002",
+        "rank": 1,
+        "paper_id": "paper-004",
+        "page": 1,
+        "section": "ABSTRACT",
+        "chunk_id": "paper-004-p001-c002",
+        "source_page_id": "paper-004-p001",
+        "text": "ABSTRACT Small NLP models, especially BERT-family encoders, remain important in industrial workloads such as classification, ranking, and retrieval even in the era of large language models. On server CPUs, INT8 quantization offers an attractive latency-throughput-cost trade-off, but users increasingly expect such acceleration to be available directly in the native PyTorch stack. We integrate SmoothQuant into TorchAO and optimize the resulting inference path for Intel Xeon CPUs through graph-level fusion in TorchInductor and efficient INT8 GEMM kernel selection across oneDNN-, A VX512_VNNI-, and AMX-based implementations. Across BERT, DistilBERT, and XLM-RoBERTa benchmarks, the approach delivers up to 5.8× end-to-end throughput speedup with negligible—and in some cases no measurable—accuracy loss relative to the FP32 baseline. We also validated our work by detailed performance analysis with roofline models. The implementation has been upstreamed to PyTorch and TorchAO, enabling out-of-the-box deployment with native PyTorch tooling. KeywordsNLP·INT8 quantization·CPU inference·PyTorch·TorchInductor·Roofline Model·Intel Xeon",
+        "char_count": 1138,
+        "locator": {
+          "page_label": "p. 1",
+          "section": "ABSTRACT",
+          "chunk_id": "paper-004-p001-c002"
+        },
+        "scores": {
+          "reranker": -3.3382561206817627,
+          "hybrid": 0.03128054740957967,
+          "pre_rerank_rank": 2,
+          "source_ranks": {
+            "bm25": 2,
+            "dense": 6
+          }
+        },
+        "source": {
+          "section_index": 2,
+          "chunk_index": 1
+        }
+      },
+      {
+        "evidence_id": "ev-02-paper-004-p001-c003",
+        "rank": 2,
+        "paper_id": "paper-004",
+        "page": 1,
+        "section": "1 Introduction",
+        "chunk_id": "paper-004-p001-c003",
+        "source_page_id": "paper-004-p001",
+        "text": "1 Introduction Although large language models (LLMs) have attracted much of the recent attention, small NLP models based on the BERT family remain widely deployed for production tasks such as classification, ranking, and retrieval [Devlin et al., 2019, Sanh et al., 2019, Conneau et al., 2020]. CPU inference continues to play a central role in such deployments because of its favorable cost profile and the ubiquity of server CPU infrastructure. Within the PyTorch ecosystem, there is strong demand for efficient inference using the native software stack. Straightforward FP32 execution on CPU is often suboptimal because transformer inference is dominated by matrix multiplications (GEMM) with substantial compute and memory cost. INT8 quantization is a widely adopted technique for reducing both footprint and execution time while maintaining acceptable accuracy [Jacob et al., 2018, Nagel et al., 2021]. At the same time, modern Intel Xeon CPUs expose instruction-set support such as VNNI and AMX that can substantially accelerate INT8 GEMM workloads [Intel Corporation, 2023]. In this work, we integrate SmoothQuant [Xiao et al., 2023], a post-training quantization method designed to mitigate a",
+        "char_count": 1200,
+        "locator": {
+          "page_label": "p. 1",
+          "section": "1 Introduction",
+          "chunk_id": "paper-004-p001-c003"
+        },
+        "scores": {
+          "reranker": -5.616875171661377,
+          "hybrid": 0.031099324975891997,
+          "pre_rerank_rank": 3,
+          "source_ranks": {
+            "bm25": 8,
+            "dense": 1
+          }
+        },
+        "source": {
+          "section_index": 3,
+          "chunk_index": 1
+        }
+      },
+      {
+        "evidence_id": "ev-03-paper-004-p008-c002",
+        "rank": 3,
+        "paper_id": "paper-004",
+        "page": 8,
+        "section": "5.4 Estimated End-to-End Speedup Ceiling",
+        "chunk_id": "paper-004-p008-c002",
+        "source_page_id": "paper-004-p008",
+        "text": "r quantized models on Granite Rapids: AMP converts inputs of all operators to BF16 and the computation of GEMM is in INT8 and other parts are in BF16 or FP32, as stated in the previous item. Thus, the non-GEMM part can benefit from BF16 computation (attention) and reduced memory bandwidth usage. Therefore, to estimate the end-to-end speedup ceiling compared to FP32, we also need to consider the speedup of non-GEMM parts by AMP. We measured that the non-GEMM part has 1.20× speedup on Ice Lake and 2.06× speedup on Granite Rapids with BF16. The speedup is brought by data compression and/or native BF16 compute as mentioned above, partially offset by the overhead of data type conversion. We use the estimated GEMM speedup and measured speedup values for the non-GEMM part. Since we only have fractions for linear-block, not pure GEMM, the estimate is approximate. Then we get the estimated end-to-end speedup ceilings of INT8 as follows: • INT8 vs FP32 on Ice Lake: fGEMM = 0.885, sGEMM = 4.0, fnon-GEMM = 0.115, snon-GEMM = 1.20, S= 3.15 . • INT8 vs FP32 on Granite Rapids: fGEMM = 0.869, sGEMM = 11.13, fnon-GEMM = 0.131, snon-GEMM = 2.06, S= 7.06. • INT8 vs BF16 on Granite Rapids: for this co",
+        "char_count": 1200,
+        "locator": {
+          "page_label": "p. 8",
+          "section": "5.4 Estimated End-to-End Speedup Ceiling",
+          "chunk_id": "paper-004-p008-c002"
+        },
+        "scores": {
+          "reranker": -6.147717475891113,
+          "hybrid": 0.029437229437229435,
+          "pre_rerank_rank": 5,
+          "source_ranks": {
+            "bm25": 6,
+            "dense": 10
+          }
+        },
+        "source": {
+          "section_index": 1,
+          "chunk_index": 2
+        }
+      },
+      {
+        "evidence_id": "ev-04-paper-004-p002-c006",
+        "rank": 4,
+        "paper_id": "paper-004",
+        "page": 2,
+        "section": "3.1 SmoothQuant and Quantization Modes",
+        "chunk_id": "paper-004-p002-c006",
+        "source_page_id": "paper-004-p002",
+        "text": "ization, they are computed at runtime and may vary by input. Static quantization generally offers lower runtime overhead, whereas dynamic quantization can sometimes preserve accuracy more effectively at the cost of additional execution work.",
+        "char_count": 241,
+        "locator": {
+          "page_label": "p. 2",
+          "section": "3.1 SmoothQuant and Quantization Modes",
+          "chunk_id": "paper-004-p002-c006"
+        },
+        "scores": {
+          "reranker": -6.513411998748779,
+          "hybrid": 0.02928692699490662,
+          "pre_rerank_rank": 6,
+          "source_ranks": {
+            "bm25": 16,
+            "dense": 2
+          }
+        },
+        "source": {
+          "section_index": 4,
+          "chunk_index": 2
+        }
+      },
+      {
+        "evidence_id": "ev-05-paper-004-p006-c003",
+        "rank": 5,
+        "paper_id": "paper-004",
+        "page": 6,
+        "section": "5.2 Baseline Hotspot Breakdown",
+        "chunk_id": "paper-004-p006-c003",
+        "source_page_id": "paper-004-p006",
+        "text": "he GEMM dimensions. We have disregarded the lm_head layer for simplicity because it accounts for a negligible proportion of the time. Apparently, (1) FP32 GEMM is always compute-bound on both platforms (AI > BP); (2) BF16 GEMM is memory-bound on Granite Rapids (AI < BP); and (3) INT8 GEMM is compute-bound on Ice Lake (AI > BP) but memory-bound on Granite Rapids (AI<BP). According to the roofline model, theoretical peak throughput of GEMM is computed by PGEMM = min(Pcompute, B·AI)(6) whereP compute is the peak compute throughput,Bthe peak memory bandwidth, andAIthe arithmetic intensity. Therefore, the estimated GEMM speedup on Ice Lake is 4.0×. And on Granite Rapids, GEMM is memory-bound for both BF16 and INT8. However, it is noted that the size of quantized INT8 model (442 MB) is already less than the LLC size (504 MB) on the platform. So, ideally, the weights W of INT8 GEMM (Y=X·W ⊤) can reside in LLC completely. However, X and Y have to be read from and written to main memory, because W takes up 87.7% of LLC and X and Y data are changing at runtime. Therefore, we also measured the LLC read bandwidth to be about 1000 GB/s and we estimate the effective memory bandwidth Beff for INT",
+        "char_count": 1200,
+        "locator": {
+          "page_label": "p. 6",
+          "section": "5.2 Baseline Hotspot Breakdown",
+          "chunk_id": "paper-004-p006-c003"
+        },
+        "scores": {
+          "reranker": -7.543722629547119,
+          "hybrid": 0.029273504273504274,
+          "pre_rerank_rank": 7,
+          "source_ranks": {
+            "bm25": 12,
+            "dense": 5
+          }
+        },
+        "source": {
+          "section_index": 1,
+          "chunk_index": 3
+        }
+      }
+    ],
+    "pipeline": {
+      "stages": [
+        "query",
+        "production_retrieval",
+        "reranker",
+        "evidence_selection",
+        "abstention_policy",
+        "local_llm",
+        "answer_validation",
+        "abstention_enforcement"
+      ],
+      "retrieval_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+      "llm": {
+        "provider": "local_transformers",
+        "model": "Qwen/Qwen2.5-0.5B-Instruct",
+        "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+        "device": "cuda",
+        "dtype": "float16",
+        "device_fallback_reason": null,
+        "config_path": "config/generation.json",
+        "config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730",
+        "loaded": true
+      },
+      "llm_skipped": false,
+      "generation_attempts": 1,
+      "fallback_used": false,
+      "abstention_source": null,
+      "abstention": {
+        "enabled": true,
+        "decision": {
+          "abstain": false,
+          "reason_code": null,
+          "signals": {
+            "candidate_count": 20,
+            "evidence_count": 5,
+            "top_reranker_score": -3.3382561206817627,
+            "minimum_top_reranker_score": -3.35
+          }
+        },
+        "policy": {
+          "status": "calibrated",
+          "config_path": "config/abstention_candidate.json",
+          "config_fingerprint": "bab2c3924cf8db57f471478ab7b5c3e598d247067f8ef86a8ed32f3b2aaddc09",
+          "policy": {
+            "reject_empty_candidates": true,
+            "reject_empty_evidence": true,
+            "minimum_top_reranker_score": -3.35,
+            "comparison": "accept_if_greater_than_or_equal",
+            "normalize_model_abstention": true,
+            "skip_llm_on_pre_generation_rejection": true
+          }
+        }
+      },
+      "runtime_seconds": 3.065
+    },
+    "debug": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "{\"answer\": \"SmoothQuant is used to reduce both footprint and execution time while maintaining acceptable accuracy.\", \"evidence_ids\": [\"ev-02-paper-004-p001-c003\", \"ev-05-paper-004-p006-c003\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ]
+    }
+  }
+}

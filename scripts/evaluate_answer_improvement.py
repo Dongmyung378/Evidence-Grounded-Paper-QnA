@@ -15,6 +15,7 @@ def main():
     configure_utf8_stdout()
     parser = argparse.ArgumentParser()
     parser.add_argument('--candidate', action='store_true')
+    parser.add_argument('--runtime', action='store_true')
     args = parser.parse_args()
     os.environ["HF_HUB_OFFLINE"] = "1"
     os.environ["TRANSFORMERS_OFFLINE"] = "1"
@@ -24,10 +25,26 @@ def main():
     llm = (LocalTransformersLLM(PROJECT_ROOT / 'config/generation_candidate.json', local_files_only=True)
            if args.candidate else LocalTransformersLLM(local_files_only=True))
     rows = []
+    runtime = None
+    if args.runtime:
+        from qna_pipeline import GroundedQAPipeline
+        class SavedRetrieval:
+            def run(self, query, paper_id):
+                item = next(x for x in baseline['results'] if x['query'] == query and x['paper_id'] == paper_id)
+                signals = item['pipeline']['abstention']['decision']['signals']
+                return {'evidence': item['retrieved_evidence'],
+                        'candidates': [{'reranker_score': signals['top_reranker_score']}] * signals['candidate_count'],
+                        'production': {'config_fingerprint': item['pipeline']['retrieval_config_fingerprint']}}
+        runtime = GroundedQAPipeline(retrieval=SavedRetrieval(), llm=llm,
+                                    abstention_config_path=PROJECT_ROOT / 'config/abstention.json')
     for item in baseline["results"]:
         started = time.perf_counter()
         attempts = []
-        if item["pipeline"]["llm_skipped"]:
+        if runtime is not None:
+            run = runtime.ask(item['query'], item['paper_id'], item['question_language'], include_debug=True)
+            response = run['response']
+            attempts = run['debug']['attempts']
+        elif item["pipeline"]["llm_skipped"]:
             response = item["response"]
         else:
             request = build_quality_request(item["query"], item["retrieved_evidence"], item["question_language"])
@@ -48,10 +65,10 @@ def main():
         rows.append({"question_id": item["question_id"], "response": response,
                      "attempts": attempts, "seconds": round(time.perf_counter()-started, 3)})
         print(item["question_id"], response["answer"], flush=True)
-    output = {"seed": 378, "prompt_version": PROMPT_VERSION,
+    output = {"seed": 378, "prompt_version": 'legacy-with-nonanswer-guard' if args.runtime else PROMPT_VERSION,
               "method": "same model, saved retrieved evidence, unchanged pre-generation refusal decisions",
               "model": llm.metadata(), "results": rows}
-    name = 'answer_candidate_outputs.json' if args.candidate else 'answer_improvement_outputs.json'
+    name = 'answer_runtime_outputs.json' if args.runtime else ('answer_candidate_outputs.json' if args.candidate else 'answer_improvement_outputs.json')
     (PROJECT_ROOT / 'data/evaluation' / name).write_text(json.dumps(output, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
 
 

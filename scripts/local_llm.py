@@ -102,9 +102,23 @@ class LocalTransformersLLM:
                 self.device_fallback_reason = "insufficient_free_cuda_memory"
         if self.device == "cpu":
             torch.set_num_threads(min(4, torch.get_num_threads()))
-        self.model.to(self.device)
+        self._torch = torch
+        try:
+            self.model.to(self.device)
+        except torch.cuda.OutOfMemoryError:
+            if self.device != "cuda" or requested_device != "auto":
+                raise
+            self._move_to_cpu("cuda_out_of_memory_during_loading")
         self.model.eval()
         self._torch = torch
+
+    def _move_to_cpu(self, reason):
+        self.device = "cpu"
+        self.dtype = self._torch.float32
+        self.model.to(device="cpu", dtype=self.dtype)
+        self.device_fallback_reason = reason
+        self._torch.set_num_threads(min(4, self._torch.get_num_threads()))
+        self._torch.cuda.empty_cache()
 
     def generate(self, messages, response_schema=None):
         """Generate one raw assistant response; validation stays in the Q&A layer."""
@@ -129,8 +143,16 @@ class LocalTransformersLLM:
             "do_sample": self.config["do_sample"],
             "pad_token_id": self.tokenizer.eos_token_id,
         }
-        with self._torch.inference_mode():
-            output = self.model.generate(**encoded, **generation_args)
+        try:
+            with self._torch.inference_mode():
+                output = self.model.generate(**encoded, **generation_args)
+        except self._torch.cuda.OutOfMemoryError:
+            if self.device != "cuda" or self.config["device"] != "auto":
+                raise
+            encoded = {name: tensor.to("cpu") for name, tensor in encoded.items()}
+            self._move_to_cpu("cuda_out_of_memory_during_generation")
+            with self._torch.inference_mode():
+                output = self.model.generate(**encoded, **generation_args)
         generated = output[0, input_tokens:]
         return self.tokenizer.decode(generated, skip_special_tokens=True).strip()
 

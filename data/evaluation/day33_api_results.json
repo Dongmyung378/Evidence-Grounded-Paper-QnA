@@ -1,8 +1,8 @@
 {
   "roadmap_day": 33,
-  "evaluated_at": "2026-09-06T03:28:33.223273+00:00",
+  "evaluated_at": "2026-09-06T08:25:35.577653+00:00",
   "seed": 378,
-  "tests_run": 10,
+  "tests_run": 19,
   "test_failures": 0,
   "test_errors": 0,
   "http_smoke": {
@@ -12,20 +12,20 @@
     "upload_status_code": 201,
     "analyze_status_code": 202,
     "upload": {
-      "paper_id": "paper-0fa6e7516fda47f6a8c707a7f4b83b67",
+      "paper_id": "paper-bb7176a625b644fc973751da674f68db",
       "filename": "paper-003.pdf",
       "size_bytes": 341371,
       "page_count": 10,
       "status": "uploaded"
     },
     "job": {
-      "job_id": "job-d81a817b242a414688e2488b5a718c93",
-      "paper_id": "paper-0fa6e7516fda47f6a8c707a7f4b83b67",
+      "job_id": "job-6b4496e87bf84e85adc4626ec7eb6fe0",
+      "paper_id": "paper-bb7176a625b644fc973751da674f68db",
       "status": "completed",
       "stage": "parsing_and_chunking",
       "seed": 378,
-      "created_at": "2026-09-06T03:28:31.640808+00:00",
-      "updated_at": "2026-09-06T03:28:33.006837+00:00",
+      "created_at": "2026-09-06T08:25:33.998382+00:00",
+      "updated_at": "2026-09-06T08:25:35.365001+00:00",
       "page_count": 10,
       "text_page_count": 10,
       "chunk_count": 40,
@@ -44,7 +44,7 @@
     ],
     "traceability_passed": true,
     "duplicate_analyze_reused_job": true,
-    "runtime_seconds": 1.73
+    "runtime_seconds": 1.751
   },
   "frozen_inputs_unchanged": true,
   "frozen_input_sha256": {
@@ -58,14 +58,22 @@
   },
   "implementation_sha256": {
     "app/__init__.py": "7770712f24f99e1cf57ff916a12849fc0134a23f066ebfcc735f3322b0bc8170",
-    "app/main.py": "ba8d565f0517044d0261e2c1c4f47f3fe15dfc3d0c5cf74f455d553d90e0644c",
+    "app/main.py": "e3990c8812978694cd2ec39d57100be1b05ac0165e5f872fa3fd93d5e6abf065",
     "app/models.py": "7c6e2b995049dbf25525c853404ad39458c3d1343b59ce26edca7206d4df7726",
-    "app/service.py": "27c52a9cfd271c161bf0d5cb16c24f25fd14fe8d48c8b2df94d0bc9160a43cdf",
-    "app/storage.py": "1241b6631c2d8072c077c846e2a7ab39f3e359cd635ad022b88af989307a2798",
+    "app/service.py": "97189e164ff4840c8491003b480c77edcf42abd51efcf01a2b92dc8d6c1491b8",
+    "app/storage.py": "a82c8bbbab613615bc821351b0b8e3bdf988f14b122f3e8ba100dfa9569a1c94",
     "tests/test_day33_api.py": "b1f693b4a8358639300aa4deaf16817357d637060cbf15ab20188103289fc53c",
-    "config/reproducibility.json": "c5de04f160fd366e99c13fc205ae7b0b2dc76b6a4a428ef9ab91abc4761acdc4",
+    "tests/test_improvements.py": "953c3175bcba6e86e9e65f88ebd804bbbeeb591c9f53b7ecf514486359f8595c",
+    "config/reproducibility.json": "52785b433c1c7efffe0fa232a0050de0560eff736dfa6ed3a4f21456db03d7e4",
     "scripts/ingest_papers.py": "5179880ce3c87dd3bb0cd1dcc8aae3f79fc06ee41d14702e347929c131d0807b",
-    "scripts/evaluate_day33.py": "4e8d67d1144f8ac7c7a4930b1934139867fd25ce7423b8b2927fce3b6002be40"
+    "scripts/evaluate_day33.py": "495d4f6f256ebd7603618910619e72b2231224497aa1e57ca242303d51b5f910",
+    "scripts/answer_quality.py": "17644705684de6630411cf50d3a9b8160d4236d786336f733b12c65919f416bc",
+    "scripts/qna_pipeline.py": "bb2824f1e3932ed8024bde857db22671f8e875abd3bc67eb38f16fdc00025408",
+    "scripts/abstention_policy.py": "b14d18e7e4e5aa5db6fedf65814b3cd85439a4f12e664599675903e8e8c078fa",
+    "scripts/local_llm.py": "966a0c922c95944ec9d6afdd598f6cc9a33d5ee28f3fc3a6aa73eee9c5cc3cca",
+    "scripts/build_day32_review.py": "ac927c08a95364955ec2475db4fd89476b0b2bd3694a3c89b2f99e95d207f036",
+    "config/runtime_qna.json": "03bfe89e9ff4a8f722a19288ed60d5ea878fb598a491ed2fb2190ff5a82597b6",
+    "config/abstention_candidate.json": "c155a72ed60e221643ea9c50de9dea516394722bfe17dcb38de1f3cfb68f9c59"
   },
   "temporary_runtime_removed": true,
   "scope": "upload registration and parsing/chunking jobs; no retrieval index or Q&A API yet"

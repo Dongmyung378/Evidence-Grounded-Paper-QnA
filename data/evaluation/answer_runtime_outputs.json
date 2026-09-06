@@ -1,0 +1,449 @@
+{
+  "seed": 378,
+  "prompt_version": "legacy-with-nonanswer-guard",
+  "method": "same model, saved retrieved evidence, unchanged pre-generation refusal decisions",
+  "model": {
+    "provider": "local_transformers",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "device": "cuda",
+    "dtype": "float16",
+    "device_fallback_reason": null,
+    "config_path": "config/generation.json",
+    "config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730"
+  },
+  "results": [
+    {
+      "question_id": "q-001-en",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "attempts": [],
+      "seconds": 0.0
+    },
+    {
+      "question_id": "q-001-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "검색된 텍스트의 관련도가 낮아 답변을 뒷받침할 수 없습니다."
+      },
+      "attempts": [],
+      "seconds": 0.0
+    },
+    {
+      "question_id": "q-005-en",
+      "response": {
+        "answer": "The proposed two-step hyperparameter transfer framework efficiently estimates optimal learning rates for large-scale MoE models, reducing unnecessary computations compared to exhaustive sweeps.",
+        "evidence_ids": [
+          "ev-01-paper-002-p010-c003",
+          "ev-02-paper-002-p001-c002",
+          "ev-03-paper-002-p008-c004",
+          "ev-04-paper-002-p003-c003",
+          "ev-05-paper-002-p003-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "{\"answer\": \"The proposed two-step hyperparameter transfer framework efficiently estimates optimal learning rates for large-scale MoE models, reducing unnecessary computations compared to exhaustive sweeps.\", \"evidence_ids\": [\"ev-01-paper-002-p010-c003\", \"ev-02-paper-002-p001-c002\", \"ev-03-paper-002-p008-c004\", \"ev-04-paper-002-p003-c003\", \"ev-05-paper-002-p003-c002\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ],
+      "seconds": 5.281
+    },
+    {
+      "question_id": "q-045-ko",
+      "response": {
+        "answer": "학습률 전이와 관련된 주요 결과는 모델의 학습 성능과 학습률 조정에 대한 효과적인 학습률 전이를 제공합니다.",
+        "evidence_ids": [
+          "ev-01-paper-002-p004-c002",
+          "ev-02-paper-002-p016-c001",
+          "ev-03-paper-002-p005-c003",
+          "ev-04-paper-002-p006-c001",
+          "ev-05-paper-002-p001-c005"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "{\"answer\": \"학습률 전이와 관련된 주요 결과는 모델의 학습 성능과 학습률 조정에 대한 효과적인 학습률 전이를 제공합니다.\", \"evidence_ids\": [\"ev-01-paper-002-p004-c002\", \"ev-02-paper-002-p016-c001\", \"ev-03-paper-002-p005-c003\", \"ev-04-paper-002-p006-c001\", \"ev-05-paper-002-p001-c005\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ],
+      "seconds": 5.605
+    },
+    {
+      "question_id": "q-007-en",
+      "response": {
+        "answer": "Transformer-based models and large language models (LLMs), specifically BERT, RoBERTa, and BART, are the primary focus of this paper's review of text summarization.",
+        "evidence_ids": [
+          "ev-02-paper-003-p002-c001",
+          "ev-03-paper-003-p001-c003",
+          "ev-04-paper-003-p002-c003",
+          "ev-05-paper-003-p008-c005"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "{\"answer\": \"Transformer-based models and large language models (LLMs), specifically BERT, RoBERTa, and BART, are the primary focus of this paper's review of text summarization.\", \"evidence_ids\": [\"ev-02-paper-003-p002-c001\", \"ev-03-paper-003-p001-c003\", \"ev-04-paper-003-p002-c003\", \"ev-05-paper-003-p008-c005\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ],
+      "seconds": 4.666
+    },
+    {
+      "question_id": "q-007-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "로컬 답변 모델이 검증 가능한 JSON 응답을 생성하지 못했습니다."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "invalid",
+          "error": "non-answer: provide the requested scientific content",
+          "raw_response": "{\"answer\": \"네, 제공된 논문 근거에서 답을 확인할 수 있습니다.\", \"evidence_ids\": [\"ev-01-paper-003-p001-c002\", \"ev-02-paper-003-p002-c001\", \"ev-03-paper-003-p008-c002\", \"ev-04-paper-003-p003-c004\", \"ev-05-paper-003-p002-c003\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        },
+        {
+          "attempt": 2,
+          "status": "invalid",
+          "error": "non-answer: provide the requested scientific content",
+          "raw_response": "{\"answer\": \"네, 제공된 논문 근거에서 답을 확인할 수 있습니다.\", \"evidence_ids\": [\"ev-01-paper-003-p001-c002\", \"ev-02-paper-003-p002-c001\", \"ev-03-paper-003-p008-c002\", \"ev-04-paper-003-p003-c004\", \"ev-05-paper-003-p002-c003\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        },
+        {
+          "attempt": 3,
+          "status": "invalid",
+          "error": "non-answer: provide the requested scientific content",
+          "raw_response": "{\"answer\": \"네, 제공된 논문 근거에서 답을 확인할 수 있습니다.\", \"evidence_ids\": [\"ev-01-paper-003-p001-c002\", \"ev-02-paper-003-p002-c001\", \"ev-03-paper-003-p008-c002\", \"ev-04-paper-003-p003-c004\", \"ev-05-paper-003-p002-c003\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ],
+      "seconds": 13.606
+    },
+    {
+      "question_id": "q-031-en",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "attempts": [],
+      "seconds": 0.0
+    },
+    {
+      "question_id": "q-048-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "로컬 답변 모델이 검증 가능한 JSON 응답을 생성하지 못했습니다."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "invalid",
+          "error": "a Korean question requires a Korean answer",
+          "raw_response": "{\"answer\": \"PyTorch-native inference path for small NLP models on server CPUs enables users to deploy SmoothQuant-optimized INT8 inference with minimal effort and without leaving the PyTorch ecosystem or using third-party tools.\", \"evidence_ids\": [\"ev-01-paper-004-p002-c001\", \"ev-02-paper-004-p011-c004\", \"ev-03-paper-004-p001-c002\", \"ev-04-paper-004-p003-c001\", \"ev-05-paper-004-p001-c003\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        },
+        {
+          "attempt": 2,
+          "status": "invalid",
+          "error": "a Korean question requires a Korean answer",
+          "raw_response": "{\"answer\": \"PyTorch-native inference path for small NLP models on server CPUs enables users to deploy SmoothQuant-optimized INT8 inference with minimal effort and without leaving the PyTorch ecosystem or using third-party tools.\", \"evidence_ids\": [\"ev-01-paper-004-p002-c001\", \"ev-02-paper-004-p011-c004\", \"ev-03-paper-004-p001-c002\", \"ev-04-paper-004-p003-c001\", \"ev-05-paper-004-p001-c003\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        },
+        {
+          "attempt": 3,
+          "status": "invalid",
+          "error": "a Korean question requires a Korean answer",
+          "raw_response": "{\"answer\": \"PyTorch-native inference path for small NLP models on server CPUs enables users to deploy SmoothQuant-optimized INT8 inference with minimal effort and without leaving the PyTorch ecosystem or using third-party tools.\", \"evidence_ids\": [\"ev-01-paper-004-p002-c001\", \"ev-02-paper-004-p011-c004\", \"ev-03-paper-004-p001-c002\", \"ev-04-paper-004-p003-c001\", \"ev-05-paper-004-p001-c003\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ],
+      "seconds": 16.249
+    },
+    {
+      "question_id": "q-015-en",
+      "response": {
+        "answer": "Continued greedy sampling effectively preserves representativeness under strict memory limits.",
+        "evidence_ids": [
+          "ev-02-paper-005-p001-c004"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "{\"answer\": \"Continued greedy sampling effectively preserves representativeness under strict memory limits.\", \"evidence_ids\": [\"ev-02-paper-005-p001-c004\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ],
+      "seconds": 2.177
+    },
+    {
+      "question_id": "q-049-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "질문을 뒷받침하는 텍스트 근거가 없습니다."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "{\"answer\": \"제공된 논문 근거에서 답을 확인할 수 없습니다.\", \"evidence_ids\": [], \"sufficiency\": \"insufficient\", \"abstention_reason\": \"질문을 뒷받침하는 텍스트 근거가 없습니다.\"}"
+        }
+      ],
+      "seconds": 2.242
+    },
+    {
+      "question_id": "q-017-en",
+      "response": {
+        "answer": "EOFMs support scientifically interpretable inference by connecting EO data with process models, ensuring that the representations are consistent with the observed processes and their associated uncertainties.",
+        "evidence_ids": [
+          "ev-01-paper-006-p025-c003",
+          "ev-02-paper-006-p005-c001",
+          "ev-03-paper-006-p001-c002",
+          "ev-04-paper-006-p001-c001",
+          "ev-05-paper-006-p006-c001"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "{\"answer\": \"EOFMs support scientifically interpretable inference by connecting EO data with process models, ensuring that the representations are consistent with the observed processes and their associated uncertainties.\", \"evidence_ids\": [\"ev-01-paper-006-p025-c003\", \"ev-02-paper-006-p005-c001\", \"ev-03-paper-006-p001-c002\", \"ev-04-paper-006-p001-c001\", \"ev-05-paper-006-p006-c001\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ],
+      "seconds": 4.804
+    },
+    {
+      "question_id": "q-017-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "로컬 답변 모델이 검증 가능한 JSON 응답을 생성하지 못했습니다."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "invalid",
+          "error": "non-answer: provide the requested scientific content",
+          "raw_response": "{\"answer\": \"EO 데이터를 통해 지속적인 학습 및 추론의 연결 방법에 대한 이해는 무엇인가요?\", \"evidence_ids\": [\"ev-01-paper-006-p001-c007\", \"ev-02-paper-006-p001-c001\", \"ev-03-paper-006-p026-c009\", \"ev-04-paper-006-p002-c001\", \"ev-05-paper-006-p002-c002\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        },
+        {
+          "attempt": 2,
+          "status": "invalid",
+          "error": "non-answer: provide the requested scientific content",
+          "raw_response": "{\"answer\": \"지속적인 학습 및 추론의 연결 방법에 대해 EO 데이터를 통해 이해하는 것은 무엇인가요?\", \"evidence_ids\": [\"ev-01-paper-006-p001-c007\", \"ev-02-paper-006-p001-c001\", \"ev-03-paper-006-p026-c009\", \"ev-04-paper-006-p002-c001\", \"ev-05-paper-006-p002-c002\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        },
+        {
+          "attempt": 3,
+          "status": "invalid",
+          "error": "non-answer: provide the requested scientific content",
+          "raw_response": "{\"answer\": \"지속적인 학습 및 추론의 연결 방법에 대해 EO 데이터를 통해 이해하는 것은 무엇인가요?\", \"evidence_ids\": [\"ev-01-paper-006-p001-c007\", \"ev-02-paper-006-p001-c001\", \"ev-03-paper-006-p026-c009\", \"ev-04-paper-006-p002-c001\", \"ev-05-paper-006-p002-c002\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ],
+      "seconds": 14.845
+    },
+    {
+      "question_id": "q-034-en",
+      "response": {
+        "answer": "The main result about logarithmic Voronoi cells requires that the model and the point whose cell we study are defined over Q, so the transcendence appears in the dataspace boundary rather than being inherited from the model point itself.",
+        "evidence_ids": [
+          "ev-01-paper-007-p002-c001"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "{\n  \"answer\": \"The main result about logarithmic Voronoi cells requires that the model and the point whose cell we study are defined over Q, so the transcendence appears in the dataspace boundary rather than being inherited from the model point itself.\",\n  \"evidence_ids\": [\"ev-01-paper-007-p002-c001\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}"
+        }
+      ],
+      "seconds": 3.458
+    },
+    {
+      "question_id": "q-034-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "로컬 답변 모델이 검증 가능한 JSON 응답을 생성하지 못했습니다."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "invalid",
+          "error": "non-answer: provide the requested scientific content",
+          "raw_response": "{\"answer\": \"근거에서 직접 확인되는 내용을 한국어로 간결하게 답합니다.\", \"evidence_ids\": [\"ev-01-paper-007-p002-c001\", \"ev-02-paper-007-p004-c001\", \"ev-03-paper-007-p001-c004\", \"ev-04-paper-007-p010-c001\", \"ev-05-paper-007-p001-c002\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        },
+        {
+          "attempt": 2,
+          "status": "invalid",
+          "error": "non-answer: provide the requested scientific content",
+          "raw_response": "{\"answer\": \"근거에서 직접 확인되는 내용을 한국어로 간결하게 답합니다.\", \"evidence_ids\": [\"ev-01-paper-007-p002-c001\", \"ev-02-paper-007-p004-c001\", \"ev-03-paper-007-p001-c004\", \"ev-04-paper-007-p010-c001\", \"ev-05-paper-007-p001-c002\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        },
+        {
+          "attempt": 3,
+          "status": "invalid",
+          "error": "non-answer: provide the requested scientific content",
+          "raw_response": "{\"answer\": \"근거에서 직접 확인되는 내용을 한국어로 간결하게 답합니다.\", \"evidence_ids\": [\"ev-01-paper-007-p002-c001\", \"ev-02-paper-007-p004-c001\", \"ev-03-paper-007-p001-c004\", \"ev-04-paper-007-p010-c001\", \"ev-05-paper-007-p001-c002\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ],
+      "seconds": 17.309
+    },
+    {
+      "question_id": "q-041-en",
+      "response": {
+        "answer": "GOAG achieves superior performance on the Multidex dataset compared to other baselines.",
+        "evidence_ids": [
+          "ev-01-paper-008-p007-c002",
+          "ev-02-paper-008-p006-c005"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "{\"answer\": \"GOAG achieves superior performance on the Multidex dataset compared to other baselines.\", \"evidence_ids\": [\"ev-01-paper-008-p007-c002\", \"ev-02-paper-008-p006-c005\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ],
+      "seconds": 3.545
+    },
+    {
+      "question_id": "q-041-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "질문을 뒷받침하는 텍스트 근거가 없습니다."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "{\"answer\": \"제공된 논문 근거에서 답을 확인할 수 없습니다.\", \"evidence_ids\": [], \"sufficiency\": \"insufficient\", \"abstention_reason\": \"질문을 뒷받침하는 텍스트 근거가 없습니다.\"}"
+        }
+      ],
+      "seconds": 2.497
+    },
+    {
+      "question_id": "q-042-en",
+      "response": {
+        "answer": "The model was trained on approximately 17,000 simulated microlensing events and a similar number (∼17,500) of real non-microlensing light curves from Sector 12 extracted from Eleanor pipeline. This suggests that the model has been extensively tested and validated against real data sets.",
+        "evidence_ids": [
+          "ev-01-paper-009-p022-c004",
+          "ev-02-paper-009-p015-c003",
+          "ev-03-paper-009-p004-c002",
+          "ev-04-paper-009-p014-c003",
+          "ev-05-paper-009-p023-c003"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "{\"answer\": \"The model was trained on approximately 17,000 simulated microlensing events and a similar number (∼17,500) of real non-microlensing light curves from Sector 12 extracted from Eleanor pipeline. This suggests that the model has been extensively tested and validated against real data sets.\", \"evidence_ids\": [\"ev-01-paper-009-p022-c004\", \"ev-02-paper-009-p015-c003\", \"ev-03-paper-009-p004-c002\", \"ev-04-paper-009-p014-c003\", \"ev-05-paper-009-p023-c003\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ],
+      "seconds": 6.246
+    },
+    {
+      "question_id": "q-042-ko",
+      "response": {
+        "answer": "Microlensify는 TESS 광도 곡선에서 평가되는 방법으로, TESS 광도 곡선에서의 단일Lens 미세먼지를 파악하는 방법입니다.",
+        "evidence_ids": [
+          "ev-01-paper-009-p022-c004",
+          "ev-02-paper-009-p004-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "{\"answer\": \"Microlensify는 TESS 광도 곡선에서 평가되는 방법으로, TESS 광도 곡선에서의 단일Lens 미세먼지를 파악하는 방법입니다.\", \"evidence_ids\": [\"ev-01-paper-009-p022-c004\", \"ev-02-paper-009-p004-c002\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ],
+      "seconds": 3.862
+    },
+    {
+      "question_id": "q-043-en",
+      "response": {
+        "answer": "Distributionally robust graph learning frameworks are evaluated using various experiments including synthetic multi-source networks and real multi-site resting-state fMRI cohorts.",
+        "evidence_ids": [
+          "ev-01-paper-010-p019-c001",
+          "ev-02-paper-010-p018-c007",
+          "ev-03-paper-010-p002-c006",
+          "ev-04-paper-010-p005-c004",
+          "ev-05-paper-010-p002-c003"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "{\"answer\": \"Distributionally robust graph learning frameworks are evaluated using various experiments including synthetic multi-source networks and real multi-site resting-state fMRI cohorts.\", \"evidence_ids\": [\"ev-01-paper-010-p019-c001\", \"ev-02-paper-010-p018-c007\", \"ev-03-paper-010-p002-c006\", \"ev-04-paper-010-p005-c004\", \"ev-05-paper-010-p002-c003\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ],
+      "seconds": 4.977
+    },
+    {
+      "question_id": "q-043-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "로컬 답변 모델이 검증 가능한 JSON 응답을 생성하지 못했습니다."
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "invalid",
+          "error": "a sufficient answer requires at least one evidence_id",
+          "raw_response": "{\"answer\": \"수동적 신호 분석의 다중 소스 분류성 확률 기반 그래프 학습을 평가하기 위한 실험은 무엇인가?\", \"evidence_ids\": [], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        },
+        {
+          "attempt": 2,
+          "status": "invalid",
+          "error": "a sufficient answer requires at least one evidence_id",
+          "raw_response": "{\"answer\": \"수동적 신호 분석의 다중 소스 분류성 확률 기반 그래프 학습을 평가하기 위한 실험은 무엇인가?\", \"evidence_ids\": [], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        },
+        {
+          "attempt": 3,
+          "status": "invalid",
+          "error": "a sufficient answer requires at least one evidence_id",
+          "raw_response": "{\"answer\": \"수동적 신호 분석의 다중 소스 분류성 확률 기반 그래프 학습을 평가하기 위한 실험은 무엇인가?\", \"evidence_ids\": [], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}"
+        }
+      ],
+      "seconds": 7.494
+    }
+  ]
+}

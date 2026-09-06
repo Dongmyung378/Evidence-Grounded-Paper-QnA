@@ -34,9 +34,13 @@ def digest(path):
 
 
 def implementation_hashes():
-    paths = sorted((ROOT / "app").glob("*.py")) + [
-        ROOT / "tests" / "test_day33_api.py", ROOT / "config" / "reproducibility.json",
+    paths = sorted((ROOT / "app").glob("*.py")) + sorted((ROOT / "tests").glob("test_*.py")) + [
+        ROOT / "config" / "reproducibility.json",
         ROOT / "scripts" / "ingest_papers.py", Path(__file__).resolve(),
+        ROOT / "scripts" / "answer_quality.py", ROOT / "scripts" / "qna_pipeline.py",
+        ROOT / "scripts" / "abstention_policy.py", ROOT / "scripts" / "local_llm.py",
+        ROOT / "scripts" / "build_day32_review.py",
+        ROOT / "config" / "runtime_qna.json", ROOT / "config" / "abstention_candidate.json",
     ]
     return {path.relative_to(ROOT).as_posix(): digest(path) for path in paths}
 
@@ -107,7 +111,7 @@ def run_http_smoke(root):
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     before = {name: digest(ROOT / name) for name in FROZEN_FILES}
-    suite = unittest.defaultTestLoader.discover(str(ROOT / "tests"), pattern="test_day33_api.py")
+    suite = unittest.defaultTestLoader.discover(str(ROOT / "tests"), pattern="test_*.py")
     result = unittest.TextTestRunner(verbosity=2).run(suite)
     if not result.wasSuccessful():
         raise SystemExit(1)

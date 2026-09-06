@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "abstention_config": "config/abstention_candidate.json",
+  "generation_config": "config/generation.json",
+  "answer_guard": "reject_canned_or_question_only_responses",
+  "seed": 378,
+  "decision": "Keep the original generator; the compact prompt and 1.5B candidate did not establish reliable bilingual quality. Adopt the separately verified -3.35 refusal threshold."
+}

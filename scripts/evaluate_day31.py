@@ -65,7 +65,8 @@ def main():
     }
 
     started = time.perf_counter()
-    pipeline = GroundedQAPipeline(local_files_only=args.offline)
+    pipeline = GroundedQAPipeline(local_files_only=args.offline,
+                                 abstention_config_path=PROJECT_ROOT / "config/abstention.json")
     results = []
     for index, case in enumerate(holdout, start=1):
         output = pipeline.ask(

@@ -50,6 +50,7 @@ def validate_informative_answer(payload, question):
         "State only the conclusion directly supported by the evidence.",
         "string",
     }
-    if answer in canned or answer.casefold() == question.strip().casefold():
+    question_only = answer.endswith(("?", "？")) and not any(x in answer[:-1] for x in (". ", "\n"))
+    if answer in canned or answer.casefold() == question.strip().casefold() or question_only:
         raise AnswerValidationError("non-answer: provide the requested scientific content")
     return payload

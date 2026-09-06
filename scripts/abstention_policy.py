@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import math
 from copy import deepcopy
 from pathlib import Path
 
@@ -88,7 +89,7 @@ class AbstentionPolicy:
             reason_code = "no_candidates"
         elif policy["reject_empty_evidence"] and evidence_count == 0:
             reason_code = "no_evidence"
-        elif top_score is None:
+        elif top_score is None or not math.isfinite(float(top_score)):
             reason_code = "no_candidates"
         elif float(top_score) < policy["minimum_top_reranker_score"]:
             reason_code = "low_relevance"
@@ -100,7 +101,7 @@ class AbstentionPolicy:
                 "candidate_count": candidate_count,
                 "evidence_count": evidence_count,
                 "top_reranker_score": (
-                    float(top_score) if top_score is not None else None
+                    float(top_score) if top_score is not None and math.isfinite(float(top_score)) else None
                 ),
                 "minimum_top_reranker_score": policy[
                     "minimum_top_reranker_score"

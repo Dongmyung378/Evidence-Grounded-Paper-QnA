@@ -1,5 +1,6 @@
 {
   "default_seed": 378,
+  "writing_style": "Use ASCII hyphens instead of en/em dashes in authored documentation and comments. Preserve literal paper evidence and historical model outputs.",
   "effective_from_roadmap_day": 33,
   "policy": "Use 378 for new stochastic experiments and tests. Historical experiment artifacts retain their original seeds. Resource IDs use unseeded UUIDs for uniqueness."
 }

@@ -1,0 +1,55 @@
+{
+  "seed": 378,
+  "reviewer": "assistant review; independent human quality scoring remains pending",
+  "reviewed_output_sha256": {
+    "day32_qna_outputs.json": "59449747441dff0c7b736e3ef9a4b0401d3cf764e44c3060bf74fa23d5b96af7",
+    "answer_improvement_outputs.json": "7d2b0712b55fbd24a02139e59725ccccc25b155b129230524664cdaa9325a739",
+    "answer_candidate_outputs.json": "5764aaa58423a992e74fb6048a1132836097698500786189092f429d8c33a951",
+    "answer_runtime_outputs.json": "8cfed3a6abbb29159fa1066745865a4a2a3feb94232cf4fabb499fb75531102b",
+    "abstention_improvement_results.json": "f4a81182bf767a5eda25eda310cac007c5e0d0c6e7198c5354cf3af8599c7734"
+  },
+  "adopted": [
+    "Bounded analysis queue and HTTP 503 with Retry-After",
+    "Forward disconnect after buffered ASGI request body",
+    "Reject canned answers and question-only responses; retry then safely abstain",
+    "Reject nonfinite retrieval confidence",
+    "CPU fallback when CUDA memory is insufficient or an automatic CUDA allocation fails",
+    "Freeze reviewed outputs and bind review labels to exact output hashes",
+    "Runtime refusal threshold -3.35 with 38/40 retained and 10/10 original holdout refused"
+  ],
+  "rejected": [
+    {
+      "variant": "0.5B compact-v2",
+      "reason": "q-007-en regressed from the correct Transformer/BERT/RoBERTa/BART focus to only 'Text summarization'. Several Korean questions remained nonresponsive or were refused."
+    },
+    {
+      "variant": "1.5B compact-v2",
+      "reason": "More responses were produced but q-034-ko changed a transcendental/non-algebraic boundary into an algebraic one and q-041-ko invented laser test cells. More sufficient outputs do not establish better factual accuracy."
+    }
+  ],
+  "runtime_guard": {
+    "reviewed_questions": 20,
+    "known_nonanswer_ids": ["q-007-ko", "q-017-ko", "q-034-ko"],
+    "known_nonanswers_before": 3,
+    "known_nonanswers_after": 0,
+    "refusals_before": 7,
+    "refusals_after_guard_only": 10,
+    "interpretation": "Safety improvement, not an answer accuracy improvement; all 20 are answerable benchmark questions."
+  },
+  "threshold_review": {
+    "calibration_retained_before": 37,
+    "calibration_retained_after": 38,
+    "calibration_total": 40,
+    "original_holdout_refused": 10,
+    "original_holdout_total": 10,
+    "newly_passed_question": "q-031-en",
+    "answer_review": "The actual answer mentions lower footprint and execution time with acceptable accuracy. It is relevant but less precise than the Gold negligible-or-absent accuracy loss qualification.",
+    "limitation": "Original calibration and holdout sets were reused for regression; this is not a new independent generalization evaluation."
+  },
+  "remaining": [
+    "Generated answer correctness, especially Korean, is still below release quality",
+    "Two answerable benchmark questions remain below the new pre-generation threshold",
+    "The narrow confidence margin needs verification on new manually reviewed papers/questions",
+    "Hard per-PDF execution deadlines and production worker isolation remain deployment work"
+  ]
+}
