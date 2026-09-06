@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "roadmap_day": 32,
+  "purpose": "balanced manual Q&A quality review",
+  "selection_policy": {
+    "total_questions": 20,
+    "categories": {
+      "factual": 5,
+      "numeric": 5,
+      "comparison": 5,
+      "limitation": 5
+    },
+    "languages": {
+      "en": 10,
+      "ko": 10
+    },
+    "papers": "two questions from each verified benchmark paper (paper-001 through paper-010)",
+    "gold_isolation": "Gold answers and evidence are not loaded by the Q&A execution script."
+  },
+  "category_definitions": {
+    "factual": "Requires a grounded statement of a paper's problem, method, focus, or conceptual relation.",
+    "numeric": "Requires preserving at least one material number or named quantitative setting from the evidence.",
+    "comparison": "Requires relating alternatives, configurations, trade-offs, datasets, or baselines.",
+    "limitation": "Requires recognizing a stated problem boundary, assumption, guarantee boundary, or qualified conclusion."
+  },
+  "questions": [
+    {
+      "question_id": "q-001-en",
+      "category": "limitation",
+      "selection_basis": "Tests recognition of the missing separation guarantee in the single-epoch setting."
+    },
+    {
+      "question_id": "q-001-ko",
+      "category": "limitation",
+      "selection_basis": "Korean counterpart testing the same guarantee boundary."
+    },
+    {
+      "question_id": "q-005-en",
+      "category": "factual",
+      "selection_basis": "Tests the two-stage hyperparameter-transfer mechanism."
+    },
+    {
+      "question_id": "q-045-ko",
+      "category": "comparison",
+      "selection_basis": "Tests a conclusion about transfer across differently scaled model widths."
+    },
+    {
+      "question_id": "q-007-en",
+      "category": "factual",
+      "selection_basis": "Tests the central focus of the review."
+    },
+    {
+      "question_id": "q-007-ko",
+      "category": "factual",
+      "selection_basis": "Korean counterpart testing the central review focus."
+    },
+    {
+      "question_id": "q-031-en",
+      "category": "comparison",
+      "selection_basis": "Tests the throughput, memory, and accuracy trade-off."
+    },
+    {
+      "question_id": "q-048-ko",
+      "category": "numeric",
+      "selection_basis": "Tests preservation of the reported maximum 5.8x throughput gain."
+    },
+    {
+      "question_id": "q-015-en",
+      "category": "numeric",
+      "selection_basis": "Tests the reported 11 task schedules and evaluation datasets."
+    },
+    {
+      "question_id": "q-049-ko",
+      "category": "limitation",
+      "selection_basis": "Tests the qualified memory-efficiency conclusion under accumulating tasks."
+    },
+    {
+      "question_id": "q-017-en",
+      "category": "factual",
+      "selection_basis": "Tests the observation-to-inference hierarchy."
+    },
+    {
+      "question_id": "q-017-ko",
+      "category": "factual",
+      "selection_basis": "Korean counterpart testing the representation-to-process connection."
+    },
+    {
+      "question_id": "q-034-en",
+      "category": "limitation",
+      "selection_basis": "Tests assumptions and scope of the main result."
+    },
+    {
+      "question_id": "q-034-ko",
+      "category": "limitation",
+      "selection_basis": "Korean counterpart testing assumptions and scope."
+    },
+    {
+      "question_id": "q-041-en",
+      "category": "numeric",
+      "selection_basis": "Tests the three-gripper experimental setting."
+    },
+    {
+      "question_id": "q-041-ko",
+      "category": "comparison",
+      "selection_basis": "Tests evaluation across multiple grippers and reported criteria."
+    },
+    {
+      "question_id": "q-042-en",
+      "category": "numeric",
+      "selection_basis": "Tests the TESS Sector 12 setting and candidate-count reporting."
+    },
+    {
+      "question_id": "q-042-ko",
+      "category": "numeric",
+      "selection_basis": "Korean counterpart testing the same quantitative evaluation setting."
+    },
+    {
+      "question_id": "q-043-en",
+      "category": "comparison",
+      "selection_basis": "Tests comparison with seven baselines across two benchmark families."
+    },
+    {
+      "question_id": "q-043-ko",
+      "category": "comparison",
+      "selection_basis": "Korean counterpart testing datasets, baselines, and evaluation criteria."
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{"question_id": "q-001-en", "paper_id": "paper-001", "question": "What is the main problem addressed in this paper?", "question_language": "en", "question_type": "objective", "answerable": true}
+{"question_id": "q-001-ko", "paper_id": "paper-001", "question": "이 논문에서 다루는 주요 문제는 무엇인가?", "question_language": "ko", "question_type": "objective", "answerable": true}
+{"question_id": "q-005-en", "paper_id": "paper-002", "question": "How does the proposed two-step hyperparameter transfer framework work?", "question_language": "en", "question_type": "method", "answerable": true}
+{"question_id": "q-005-ko", "paper_id": "paper-002", "question": "제안된 2단계 하이퍼파라미터 전이 프레임워크는 어떻게 작동하는가?", "question_language": "ko", "question_type": "method", "answerable": true}
+{"question_id": "q-007-en", "paper_id": "paper-003", "question": "What is the main focus of this paper's review of text summarization?", "question_language": "en", "question_type": "objective", "answerable": true}
+{"question_id": "q-007-ko", "paper_id": "paper-003", "question": "이 논문이 텍스트 요약을 검토하면서 중점적으로 다루는 내용은 무엇인가?", "question_language": "ko", "question_type": "objective", "answerable": true}
+{"question_id": "q-010-en", "paper_id": "paper-004", "question": "What problem does this paper address in deploying small NLP models on server CPUs?", "question_language": "en", "question_type": "objective", "answerable": true}
+{"question_id": "q-010-ko", "paper_id": "paper-004", "question": "이 논문은 서버 CPU에서 소형 NLP 모델을 배포할 때 어떤 문제를 다루는가?", "question_language": "ko", "question_type": "objective", "answerable": true}
+{"question_id": "q-011-en", "paper_id": "paper-004", "question": "How is INT8 inference implemented using the PyTorch native stack?", "question_language": "en", "question_type": "method", "answerable": true}
+{"question_id": "q-011-ko", "paper_id": "paper-004", "question": "PyTorch 네이티브 스택을 사용한 INT8 추론은 어떻게 구현되는가?", "question_language": "ko", "question_type": "method", "answerable": true}
+{"question_id": "q-014-en", "paper_id": "paper-005", "question": "How does the proposed memory-bounded continuation approach work?", "question_language": "en", "question_type": "method", "answerable": true}
+{"question_id": "q-014-ko", "paper_id": "paper-005", "question": "제안된 메모리 제한형 continuation 접근법은 어떻게 작동하는가?", "question_language": "ko", "question_type": "method", "answerable": true}
+{"question_id": "q-015-en", "paper_id": "paper-005", "question": "What evidence shows that the proposed approach improves continual anomaly detection?", "question_language": "en", "question_type": "result", "answerable": true}
+{"question_id": "q-015-ko", "paper_id": "paper-005", "question": "제안된 접근법이 지속적 이상 탐지 성능을 향상시킨다는 것을 어떤 근거로 보여주는가?", "question_language": "ko", "question_type": "result", "answerable": true}
+{"question_id": "q-017-en", "paper_id": "paper-006", "question": "How does the paper connect representation learning with process inference?", "question_language": "en", "question_type": "method", "answerable": true}
+{"question_id": "q-017-ko", "paper_id": "paper-006", "question": "이 논문은 표현 학습과 과정 추론을 어떻게 연결하는가?", "question_language": "ko", "question_type": "method", "answerable": true}
+{"question_id": "q-021-en", "paper_id": "paper-007", "question": "Why can the boundaries of logarithmic Voronoi cells be transcendental?", "question_language": "en", "question_type": "result", "answerable": true}
+{"question_id": "q-021-ko", "paper_id": "paper-007", "question": "로그 Voronoi cell의 경계가 초월적일 수 있는 이유는 무엇인가?", "question_language": "ko", "question_type": "result", "answerable": true}
+{"question_id": "q-029-en", "paper_id": "paper-010", "question": "What role does the Wasserstein distance play in the proposed graph learning framework?", "question_language": "en", "question_type": "method", "answerable": true}
+{"question_id": "q-029-ko", "paper_id": "paper-010", "question": "제안된 그래프 학습 프레임워크에서 Wasserstein distance는 어떤 역할을 하는가?", "question_language": "ko", "question_type": "method", "answerable": true}
+{"question_id": "q-031-en", "paper_id": "paper-004", "question": "What trade-offs between inference speed, memory usage, and accuracy are discussed?", "question_language": "en", "question_type": "limitation", "answerable": true}
+{"question_id": "q-031-ko", "paper_id": "paper-004", "question": "추론 속도, 메모리 사용량, 정확도 사이의 어떤 trade-off가 논의되는가?", "question_language": "ko", "question_type": "limitation", "answerable": true}
+{"question_id": "q-034-en", "paper_id": "paper-007", "question": "What assumptions are required for the main result about logarithmic Voronoi cells?", "question_language": "en", "question_type": "method", "answerable": true}
+{"question_id": "q-034-ko", "paper_id": "paper-007", "question": "로그 Voronoi cell에 대한 주요 결과를 위해 어떤 가정이 필요한가?", "question_language": "ko", "question_type": "method", "answerable": true}
+{"question_id": "q-038-en", "paper_id": "paper-004", "question": "What experimental settings are used to evaluate efficient INT8 inference?", "question_language": "en", "question_type": "experiment", "answerable": true}
+{"question_id": "q-038-ko", "paper_id": "paper-004", "question": "효율적인 INT8 추론을 평가하기 위해 어떤 실험 설정이 사용되는가?", "question_language": "ko", "question_type": "experiment", "answerable": true}
+{"question_id": "q-039-en", "paper_id": "paper-005", "question": "What experimental settings are used to evaluate continual anomaly detection?", "question_language": "en", "question_type": "experiment", "answerable": true}
+{"question_id": "q-039-ko", "paper_id": "paper-005", "question": "지속적 이상 탐지를 평가하기 위해 어떤 실험 설정이 사용되는가?", "question_language": "ko", "question_type": "experiment", "answerable": true}
+{"question_id": "q-041-en", "paper_id": "paper-008", "question": "How is the performance of GOAG evaluated?", "question_language": "en", "question_type": "experiment", "answerable": true}
+{"question_id": "q-041-ko", "paper_id": "paper-008", "question": "GOAG의 성능은 어떻게 평가되는가?", "question_language": "ko", "question_type": "experiment", "answerable": true}
+{"question_id": "q-042-en", "paper_id": "paper-009", "question": "How is the Microlensify classifier evaluated on TESS light curves?", "question_language": "en", "question_type": "experiment", "answerable": true}
+{"question_id": "q-042-ko", "paper_id": "paper-009", "question": "Microlensify 분류기는 TESS 광도 곡선에서 어떻게 평가되는가?", "question_language": "ko", "question_type": "experiment", "answerable": true}
+{"question_id": "q-043-en", "paper_id": "paper-010", "question": "What experiments are used to evaluate multi-source distributionally robust graph learning?", "question_language": "en", "question_type": "experiment", "answerable": true}
+{"question_id": "q-043-ko", "paper_id": "paper-010", "question": "다중 소스 distributionally robust graph learning을 평가하기 위해 어떤 실험이 사용되는가?", "question_language": "ko", "question_type": "experiment", "answerable": true}
+{"question_id": "q-045-en", "paper_id": "paper-002", "question": "What is the main result concerning learning-rate transfer across model widths?", "question_language": "en", "question_type": "result", "answerable": true}
+{"question_id": "q-045-ko", "paper_id": "paper-002", "question": "모델 폭이 달라질 때 학습률 전이와 관련된 주요 결과는 무엇인가?", "question_language": "ko", "question_type": "result", "answerable": true}
+{"question_id": "q-048-en", "paper_id": "paper-004", "question": "What is the main conclusion about using the PyTorch native stack for server-side INT8 inference?", "question_language": "en", "question_type": "result", "answerable": true}
+{"question_id": "q-048-ko", "paper_id": "paper-004", "question": "서버 환경의 INT8 추론에 PyTorch 네이티브 스택을 사용하는 것에 대한 주요 결론은 무엇인가?", "question_language": "ko", "question_type": "result", "answerable": true}
+{"question_id": "q-049-en", "paper_id": "paper-005", "question": "What is the main conclusion about memory efficiency in continual anomaly detection?", "question_language": "en", "question_type": "result", "answerable": true}
+{"question_id": "q-049-ko", "paper_id": "paper-005", "question": "지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 무엇인가?", "question_language": "ko", "question_type": "result", "answerable": true}

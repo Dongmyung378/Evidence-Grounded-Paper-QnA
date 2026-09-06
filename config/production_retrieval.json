@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "roadmap_day": 28,
+  "status": "frozen",
+  "corpus": {
+    "papers": 30,
+    "pages": 563,
+    "chunks": 2463,
+    "processing_scope": "one_paper_at_a_time"
+  },
+  "benchmark": {
+    "name": "verified-40",
+    "papers": 10,
+    "questions": 40,
+    "languages": {
+      "en": 20,
+      "ko": 20
+    }
+  },
+  "models": {
+    "embedding": "intfloat/multilingual-e5-small",
+    "reranker": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+  },
+  "retrieval": {
+    "bm25_top_k": 20,
+    "dense_top_k": 20,
+    "fusion": "equal_weight_reciprocal_rank_fusion",
+    "fusion_weights": {
+      "bm25": 1.0,
+      "dense": 1.0
+    },
+    "rrf_k": 60,
+    "candidate_k": 20,
+    "front_matter_guard": {
+      "enabled": true,
+      "page": 1
+    }
+  },
+  "reranking": {
+    "top_k": 20,
+    "max_length": 512
+  },
+  "evidence": {
+    "top_k": 5,
+    "max_per_page": 2,
+    "near_duplicate_threshold": 0.85
+  },
+  "runtime": {
+    "embedding_batch_size": 32,
+    "reranker_batch_size": 8
+  },
+  "quality_gates": {
+    "minimum_recall_at_5": 1.0,
+    "minimum_recall_at_10": 1.0,
+    "minimum_mrr": 0.6316,
+    "maximum_lost_top5_hits": 0,
+    "expansion_smoke_passed": 20
+  },
+  "change_policy": {
+    "frozen_after_day": 28,
+    "require_verified_40_regression": true,
+    "require_no_top5_loss": true,
+    "note": "Change only through an explicit experiment with saved before/after metrics."
+  }
+}

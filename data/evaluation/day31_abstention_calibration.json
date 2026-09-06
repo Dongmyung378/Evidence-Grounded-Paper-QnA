@@ -1,0 +1,841 @@
+{
+  "schema_version": 1,
+  "roadmap_day": 31,
+  "purpose": "abstention threshold calibration without LLM labels",
+  "retrieval_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+  "dataset": {
+    "answerable": "verified-40",
+    "unsupported": "data/evaluation/abstention_questions.jsonl:calibration"
+  },
+  "summary": {
+    "answerable": {
+      "cases": 40,
+      "top_reranker_score": {
+        "minimum": -5.544944763183594,
+        "median": 3.1255033016204834,
+        "maximum": 10.322142601013184
+      },
+      "top5_median_score": {
+        "minimum": -6.147717475891113,
+        "median": 1.6845363974571228,
+        "maximum": 8.814251899719238
+      }
+    },
+    "unsupported": {
+      "cases": 10,
+      "top_reranker_score": {
+        "minimum": -8.304435729980469,
+        "median": -6.963507175445557,
+        "maximum": -3.403820276260376
+      },
+      "top5_median_score": {
+        "minimum": -9.067867279052734,
+        "median": -7.8615827560424805,
+        "maximum": -3.6274681091308594
+      }
+    }
+  },
+  "rows": [
+    {
+      "case_id": "q-001-en",
+      "group": "answerable",
+      "paper_id": "paper-001",
+      "question_language": "en",
+      "question": "What is the main problem addressed in this paper?",
+      "signals": {
+        "top_reranker_score": -5.544944763183594,
+        "second_reranker_score": -5.583011150360107,
+        "top_score_margin": 0.03806638717651367,
+        "top5_median_score": -5.930695056915283,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-001-ko",
+      "group": "answerable",
+      "paper_id": "paper-001",
+      "question_language": "ko",
+      "question": "이 논문에서 다루는 주요 문제는 무엇인가?",
+      "signals": {
+        "top_reranker_score": -4.118329048156738,
+        "second_reranker_score": -4.7134690284729,
+        "top_score_margin": 0.5951399803161621,
+        "top5_median_score": -4.755997657775879,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-005-en",
+      "group": "answerable",
+      "paper_id": "paper-002",
+      "question_language": "en",
+      "question": "How does the proposed two-step hyperparameter transfer framework work?",
+      "signals": {
+        "top_reranker_score": 8.534295082092285,
+        "second_reranker_score": 8.44200611114502,
+        "top_score_margin": 0.09228897094726562,
+        "top5_median_score": 7.961398601531982,
+        "positive_score_count": 9,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-005-ko",
+      "group": "answerable",
+      "paper_id": "paper-002",
+      "question_language": "ko",
+      "question": "제안된 2단계 하이퍼파라미터 전이 프레임워크는 어떻게 작동하는가?",
+      "signals": {
+        "top_reranker_score": 6.348665714263916,
+        "second_reranker_score": 5.296614170074463,
+        "top_score_margin": 1.0520515441894531,
+        "top5_median_score": 4.693507194519043,
+        "positive_score_count": 6,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-007-en",
+      "group": "answerable",
+      "paper_id": "paper-003",
+      "question_language": "en",
+      "question": "What is the main focus of this paper's review of text summarization?",
+      "signals": {
+        "top_reranker_score": 9.809979438781738,
+        "second_reranker_score": 8.893017768859863,
+        "top_score_margin": 0.916961669921875,
+        "top5_median_score": 2.2465245723724365,
+        "positive_score_count": 5,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-007-ko",
+      "group": "answerable",
+      "paper_id": "paper-003",
+      "question_language": "ko",
+      "question": "이 논문이 텍스트 요약을 검토하면서 중점적으로 다루는 내용은 무엇인가?",
+      "signals": {
+        "top_reranker_score": 0.6460613012313843,
+        "second_reranker_score": -0.15007860958576202,
+        "top_score_margin": 0.7961399108171463,
+        "top5_median_score": -0.6488447189331055,
+        "positive_score_count": 1,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-010-en",
+      "group": "answerable",
+      "paper_id": "paper-004",
+      "question_language": "en",
+      "question": "What problem does this paper address in deploying small NLP models on server CPUs?",
+      "signals": {
+        "top_reranker_score": 4.922236442565918,
+        "second_reranker_score": 4.303072452545166,
+        "top_score_margin": 0.619163990020752,
+        "top5_median_score": 4.002744197845459,
+        "positive_score_count": 5,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-010-ko",
+      "group": "answerable",
+      "paper_id": "paper-004",
+      "question_language": "ko",
+      "question": "이 논문은 서버 CPU에서 소형 NLP 모델을 배포할 때 어떤 문제를 다루는가?",
+      "signals": {
+        "top_reranker_score": 2.9203031063079834,
+        "second_reranker_score": 1.3196808099746704,
+        "top_score_margin": 1.600622296333313,
+        "top5_median_score": 1.2488468885421753,
+        "positive_score_count": 6,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-011-en",
+      "group": "answerable",
+      "paper_id": "paper-004",
+      "question_language": "en",
+      "question": "How is INT8 inference implemented using the PyTorch native stack?",
+      "signals": {
+        "top_reranker_score": 10.322142601013184,
+        "second_reranker_score": 8.776497840881348,
+        "top_score_margin": 1.545644760131836,
+        "top5_median_score": 6.609828472137451,
+        "positive_score_count": 11,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-011-ko",
+      "group": "answerable",
+      "paper_id": "paper-004",
+      "question_language": "ko",
+      "question": "PyTorch 네이티브 스택을 사용한 INT8 추론은 어떻게 구현되는가?",
+      "signals": {
+        "top_reranker_score": 7.477691173553467,
+        "second_reranker_score": 7.0559468269348145,
+        "top_score_margin": 0.42174434661865234,
+        "top5_median_score": 5.652946949005127,
+        "positive_score_count": 16,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-014-en",
+      "group": "answerable",
+      "paper_id": "paper-005",
+      "question_language": "en",
+      "question": "How does the proposed memory-bounded continuation approach work?",
+      "signals": {
+        "top_reranker_score": 2.391345739364624,
+        "second_reranker_score": 0.21339672803878784,
+        "top_score_margin": 2.177949011325836,
+        "top5_median_score": -0.010969126597046852,
+        "positive_score_count": 2,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-014-ko",
+      "group": "answerable",
+      "paper_id": "paper-005",
+      "question_language": "ko",
+      "question": "제안된 메모리 제한형 continuation 접근법은 어떻게 작동하는가?",
+      "signals": {
+        "top_reranker_score": 2.00457763671875,
+        "second_reranker_score": 0.22281262278556824,
+        "top_score_margin": 1.7817650139331818,
+        "top5_median_score": -0.2823193073272705,
+        "positive_score_count": 2,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-015-en",
+      "group": "answerable",
+      "paper_id": "paper-005",
+      "question_language": "en",
+      "question": "What evidence shows that the proposed approach improves continual anomaly detection?",
+      "signals": {
+        "top_reranker_score": 0.5528488159179688,
+        "second_reranker_score": -0.4147394597530365,
+        "top_score_margin": 0.9675882756710052,
+        "top5_median_score": -0.42105987668037415,
+        "positive_score_count": 1,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-015-ko",
+      "group": "answerable",
+      "paper_id": "paper-005",
+      "question_language": "ko",
+      "question": "제안된 접근법이 지속적 이상 탐지 성능을 향상시킨다는 것을 어떤 근거로 보여주는가?",
+      "signals": {
+        "top_reranker_score": -0.7859296798706055,
+        "second_reranker_score": -1.6904079914093018,
+        "top_score_margin": 0.9044783115386963,
+        "top5_median_score": -1.9466276168823242,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-017-en",
+      "group": "answerable",
+      "paper_id": "paper-006",
+      "question_language": "en",
+      "question": "How does the paper connect representation learning with process inference?",
+      "signals": {
+        "top_reranker_score": 0.6152076721191406,
+        "second_reranker_score": -2.175852060317993,
+        "top_score_margin": 2.791059732437134,
+        "top5_median_score": -2.2056186199188232,
+        "positive_score_count": 1,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-017-ko",
+      "group": "answerable",
+      "paper_id": "paper-006",
+      "question_language": "ko",
+      "question": "이 논문은 표현 학습과 과정 추론을 어떻게 연결하는가?",
+      "signals": {
+        "top_reranker_score": -1.5608360767364502,
+        "second_reranker_score": -1.771394968032837,
+        "top_score_margin": 0.21055889129638672,
+        "top5_median_score": -1.962498426437378,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-021-en",
+      "group": "answerable",
+      "paper_id": "paper-007",
+      "question_language": "en",
+      "question": "Why can the boundaries of logarithmic Voronoi cells be transcendental?",
+      "signals": {
+        "top_reranker_score": 9.880833625793457,
+        "second_reranker_score": 8.940625190734863,
+        "top_score_margin": 0.9402084350585938,
+        "top5_median_score": 8.814251899719238,
+        "positive_score_count": 8,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-021-ko",
+      "group": "answerable",
+      "paper_id": "paper-007",
+      "question_language": "ko",
+      "question": "로그 Voronoi cell의 경계가 초월적일 수 있는 이유는 무엇인가?",
+      "signals": {
+        "top_reranker_score": 3.8286993503570557,
+        "second_reranker_score": 3.545626640319824,
+        "top_score_margin": 0.28307271003723145,
+        "top5_median_score": 3.348299264907837,
+        "positive_score_count": 8,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-029-en",
+      "group": "answerable",
+      "paper_id": "paper-010",
+      "question_language": "en",
+      "question": "What role does the Wasserstein distance play in the proposed graph learning framework?",
+      "signals": {
+        "top_reranker_score": 3.047340154647827,
+        "second_reranker_score": 3.0188446044921875,
+        "top_score_margin": 0.02849555015563965,
+        "top5_median_score": 2.1202259063720703,
+        "positive_score_count": 8,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-029-ko",
+      "group": "answerable",
+      "paper_id": "paper-010",
+      "question_language": "ko",
+      "question": "제안된 그래프 학습 프레임워크에서 Wasserstein distance는 어떤 역할을 하는가?",
+      "signals": {
+        "top_reranker_score": 3.109673261642456,
+        "second_reranker_score": 2.9670937061309814,
+        "top_score_margin": 0.1425795555114746,
+        "top5_median_score": 2.321943998336792,
+        "positive_score_count": 10,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-031-en",
+      "group": "answerable",
+      "paper_id": "paper-004",
+      "question_language": "en",
+      "question": "What trade-offs between inference speed, memory usage, and accuracy are discussed?",
+      "signals": {
+        "top_reranker_score": -3.3382561206817627,
+        "second_reranker_score": -5.616875171661377,
+        "top_score_margin": 2.2786190509796143,
+        "top5_median_score": -6.147717475891113,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-031-ko",
+      "group": "answerable",
+      "paper_id": "paper-004",
+      "question_language": "ko",
+      "question": "추론 속도, 메모리 사용량, 정확도 사이의 어떤 trade-off가 논의되는가?",
+      "signals": {
+        "top_reranker_score": -2.0466654300689697,
+        "second_reranker_score": -2.6761977672576904,
+        "top_score_margin": 0.6295323371887207,
+        "top5_median_score": -3.268559694290161,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-034-en",
+      "group": "answerable",
+      "paper_id": "paper-007",
+      "question_language": "en",
+      "question": "What assumptions are required for the main result about logarithmic Voronoi cells?",
+      "signals": {
+        "top_reranker_score": 3.1413333415985107,
+        "second_reranker_score": -1.7126978635787964,
+        "top_score_margin": 4.854031205177307,
+        "top5_median_score": -1.896644949913025,
+        "positive_score_count": 1,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-034-ko",
+      "group": "answerable",
+      "paper_id": "paper-007",
+      "question_language": "ko",
+      "question": "로그 Voronoi cell에 대한 주요 결과를 위해 어떤 가정이 필요한가?",
+      "signals": {
+        "top_reranker_score": 1.395620346069336,
+        "second_reranker_score": -0.009226808324456215,
+        "top_score_margin": 1.4048471543937922,
+        "top5_median_score": -0.9642066359519958,
+        "positive_score_count": 1,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-038-en",
+      "group": "answerable",
+      "paper_id": "paper-004",
+      "question_language": "en",
+      "question": "What experimental settings are used to evaluate efficient INT8 inference?",
+      "signals": {
+        "top_reranker_score": 1.4675121307373047,
+        "second_reranker_score": 1.3962384462356567,
+        "top_score_margin": 0.07127368450164795,
+        "top5_median_score": 1.2173223495483398,
+        "positive_score_count": 9,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-038-ko",
+      "group": "answerable",
+      "paper_id": "paper-004",
+      "question_language": "ko",
+      "question": "효율적인 INT8 추론을 평가하기 위해 어떤 실험 설정이 사용되는가?",
+      "signals": {
+        "top_reranker_score": 3.2852976322174072,
+        "second_reranker_score": 3.1028332710266113,
+        "top_score_margin": 0.1824643611907959,
+        "top5_median_score": 2.3684070110321045,
+        "positive_score_count": 8,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-039-en",
+      "group": "answerable",
+      "paper_id": "paper-005",
+      "question_language": "en",
+      "question": "What experimental settings are used to evaluate continual anomaly detection?",
+      "signals": {
+        "top_reranker_score": 1.8442299365997314,
+        "second_reranker_score": 0.958682119846344,
+        "top_score_margin": 0.8855478167533875,
+        "top5_median_score": 0.914014995098114,
+        "positive_score_count": 4,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-039-ko",
+      "group": "answerable",
+      "paper_id": "paper-005",
+      "question_language": "ko",
+      "question": "지속적 이상 탐지를 평가하기 위해 어떤 실험 설정이 사용되는가?",
+      "signals": {
+        "top_reranker_score": -0.5357406735420227,
+        "second_reranker_score": -0.8377960324287415,
+        "top_score_margin": 0.30205535888671875,
+        "top5_median_score": -0.8704099059104919,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-041-en",
+      "group": "answerable",
+      "paper_id": "paper-008",
+      "question_language": "en",
+      "question": "How is the performance of GOAG evaluated?",
+      "signals": {
+        "top_reranker_score": 5.82047700881958,
+        "second_reranker_score": 4.780345439910889,
+        "top_score_margin": 1.0401315689086914,
+        "top5_median_score": 2.357677459716797,
+        "positive_score_count": 5,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-041-ko",
+      "group": "answerable",
+      "paper_id": "paper-008",
+      "question_language": "ko",
+      "question": "GOAG의 성능은 어떻게 평가되는가?",
+      "signals": {
+        "top_reranker_score": 3.9990556240081787,
+        "second_reranker_score": 2.7867543697357178,
+        "top_score_margin": 1.212301254272461,
+        "top5_median_score": 2.570709705352783,
+        "positive_score_count": 5,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-042-en",
+      "group": "answerable",
+      "paper_id": "paper-009",
+      "question_language": "en",
+      "question": "How is the Microlensify classifier evaluated on TESS light curves?",
+      "signals": {
+        "top_reranker_score": 9.70374584197998,
+        "second_reranker_score": 8.287467002868652,
+        "top_score_margin": 1.4162788391113281,
+        "top5_median_score": 8.009015083312988,
+        "positive_score_count": 18,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-042-ko",
+      "group": "answerable",
+      "paper_id": "paper-009",
+      "question_language": "ko",
+      "question": "Microlensify 분류기는 TESS 광도 곡선에서 어떻게 평가되는가?",
+      "signals": {
+        "top_reranker_score": 8.605328559875488,
+        "second_reranker_score": 7.36771297454834,
+        "top_score_margin": 1.2376155853271484,
+        "top5_median_score": 7.26444673538208,
+        "positive_score_count": 20,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-043-en",
+      "group": "answerable",
+      "paper_id": "paper-010",
+      "question_language": "en",
+      "question": "What experiments are used to evaluate multi-source distributionally robust graph learning?",
+      "signals": {
+        "top_reranker_score": 8.221091270446777,
+        "second_reranker_score": 6.233791828155518,
+        "top_score_margin": 1.9872994422912598,
+        "top5_median_score": 5.1909332275390625,
+        "positive_score_count": 18,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-043-ko",
+      "group": "answerable",
+      "paper_id": "paper-010",
+      "question_language": "ko",
+      "question": "다중 소스 distributionally robust graph learning을 평가하기 위해 어떤 실험이 사용되는가?",
+      "signals": {
+        "top_reranker_score": 4.279814720153809,
+        "second_reranker_score": 3.721726417541504,
+        "top_score_margin": 0.5580883026123047,
+        "top5_median_score": 3.67331600189209,
+        "positive_score_count": 14,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-045-en",
+      "group": "answerable",
+      "paper_id": "paper-002",
+      "question_language": "en",
+      "question": "What is the main result concerning learning-rate transfer across model widths?",
+      "signals": {
+        "top_reranker_score": 4.440746784210205,
+        "second_reranker_score": 3.9343183040618896,
+        "top_score_margin": 0.5064284801483154,
+        "top5_median_score": 3.874720573425293,
+        "positive_score_count": 11,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-045-ko",
+      "group": "answerable",
+      "paper_id": "paper-002",
+      "question_language": "ko",
+      "question": "모델 폭이 달라질 때 학습률 전이와 관련된 주요 결과는 무엇인가?",
+      "signals": {
+        "top_reranker_score": 1.9021166563034058,
+        "second_reranker_score": -0.3699149489402771,
+        "top_score_margin": 2.272031605243683,
+        "top5_median_score": -0.39941900968551636,
+        "positive_score_count": 1,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-048-en",
+      "group": "answerable",
+      "paper_id": "paper-004",
+      "question_language": "en",
+      "question": "What is the main conclusion about using the PyTorch native stack for server-side INT8 inference?",
+      "signals": {
+        "top_reranker_score": 8.726940155029297,
+        "second_reranker_score": 6.72917366027832,
+        "top_score_margin": 1.9977664947509766,
+        "top5_median_score": 6.029497146606445,
+        "positive_score_count": 8,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-048-ko",
+      "group": "answerable",
+      "paper_id": "paper-004",
+      "question_language": "ko",
+      "question": "서버 환경의 INT8 추론에 PyTorch 네이티브 스택을 사용하는 것에 대한 주요 결론은 무엇인가?",
+      "signals": {
+        "top_reranker_score": 5.569745063781738,
+        "second_reranker_score": 5.514071941375732,
+        "top_score_margin": 0.05567312240600586,
+        "top5_median_score": 5.009565830230713,
+        "positive_score_count": 11,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-049-en",
+      "group": "answerable",
+      "paper_id": "paper-005",
+      "question_language": "en",
+      "question": "What is the main conclusion about memory efficiency in continual anomaly detection?",
+      "signals": {
+        "top_reranker_score": 3.5232343673706055,
+        "second_reranker_score": 2.2779407501220703,
+        "top_score_margin": 1.2452936172485352,
+        "top5_median_score": 0.3753410577774048,
+        "positive_score_count": 4,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-049-ko",
+      "group": "answerable",
+      "paper_id": "paper-005",
+      "question_language": "ko",
+      "question": "지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 무엇인가?",
+      "signals": {
+        "top_reranker_score": 0.9497168660163879,
+        "second_reranker_score": -0.22748802602291107,
+        "top_score_margin": 1.177204892039299,
+        "top5_median_score": -1.5332651138305664,
+        "positive_score_count": 1,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "abs-cal-001-en",
+      "group": "unsupported",
+      "paper_id": "paper-001",
+      "question_language": "en",
+      "question": "What dosage of aspirin does the paper recommend for treating migraine?",
+      "signals": {
+        "top_reranker_score": -8.304435729980469,
+        "second_reranker_score": -8.639702796936035,
+        "top_score_margin": 0.3352670669555664,
+        "top5_median_score": -8.708173751831055,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "abs-cal-002-ko",
+      "group": "unsupported",
+      "paper_id": "paper-002",
+      "question_language": "ko",
+      "question": "이 논문은 세종대왕이 한글을 창제한 연도를 언제라고 설명하는가?",
+      "signals": {
+        "top_reranker_score": -7.359385013580322,
+        "second_reranker_score": -7.440794467926025,
+        "top_score_margin": 0.08140945434570312,
+        "top5_median_score": -7.460254192352295,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "abs-cal-003-en",
+      "group": "unsupported",
+      "paper_id": "paper-003",
+      "question_language": "en",
+      "question": "Which dinosaur species survived the Cretaceous Paleogene extinction according to this paper?",
+      "signals": {
+        "top_reranker_score": -7.9419684410095215,
+        "second_reranker_score": -8.373767852783203,
+        "top_score_margin": 0.43179941177368164,
+        "top5_median_score": -9.067867279052734,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "abs-cal-004-ko",
+      "group": "unsupported",
+      "paper_id": "paper-004",
+      "question_language": "ko",
+      "question": "이 논문에서 화성의 평균 기온은 몇 도라고 보고하는가?",
+      "signals": {
+        "top_reranker_score": -3.497457981109619,
+        "second_reranker_score": -3.6320841312408447,
+        "top_score_margin": 0.13462615013122559,
+        "top5_median_score": -5.200497150421143,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "abs-cal-005-en",
+      "group": "unsupported",
+      "paper_id": "paper-005",
+      "question_language": "en",
+      "question": "What tax rate does the paper recommend for cryptocurrency gains?",
+      "signals": {
+        "top_reranker_score": -7.766868591308594,
+        "second_reranker_score": -7.862503528594971,
+        "top_score_margin": 0.09563493728637695,
+        "top5_median_score": -7.887451648712158,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "abs-cal-006-ko",
+      "group": "unsupported",
+      "paper_id": "paper-006",
+      "question_language": "ko",
+      "question": "이 논문은 고혈압 치료제로 어떤 약물을 권장하는가?",
+      "signals": {
+        "top_reranker_score": -3.403820276260376,
+        "second_reranker_score": -3.524860143661499,
+        "top_score_margin": 0.12103986740112305,
+        "top5_median_score": -3.6274681091308594,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "abs-cal-007-en",
+      "group": "unsupported",
+      "paper_id": "paper-007",
+      "question_language": "en",
+      "question": "Which vaccine schedule does the paper propose for newborn infants?",
+      "signals": {
+        "top_reranker_score": -6.724123477935791,
+        "second_reranker_score": -7.119944095611572,
+        "top_score_margin": 0.39582061767578125,
+        "top5_median_score": -7.365925312042236,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "abs-cal-008-ko",
+      "group": "unsupported",
+      "paper_id": "paper-008",
+      "question_language": "ko",
+      "question": "이 논문은 프랑스 혁명의 직접적인 원인을 무엇이라고 설명하는가?",
+      "signals": {
+        "top_reranker_score": -6.564511299133301,
+        "second_reranker_score": -7.128129482269287,
+        "top_score_margin": 0.5636181831359863,
+        "top5_median_score": -7.835713863372803,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "abs-cal-009-en",
+      "group": "unsupported",
+      "paper_id": "paper-009",
+      "question_language": "en",
+      "question": "What recipe does the paper give for baking sourdough bread?",
+      "signals": {
+        "top_reranker_score": -7.202890872955322,
+        "second_reranker_score": -8.280108451843262,
+        "top_score_margin": 1.0772175788879395,
+        "top5_median_score": -8.38779354095459,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "abs-cal-010-ko",
+      "group": "unsupported",
+      "paper_id": "paper-010",
+      "question_language": "ko",
+      "question": "이 논문에서 2024년 대한민국의 인구는 몇 명이라고 제시하는가?",
+      "signals": {
+        "top_reranker_score": -6.2947845458984375,
+        "second_reranker_score": -7.8598127365112305,
+        "top_score_margin": 1.565028190612793,
+        "top5_median_score": -7.9007368087768555,
+        "positive_score_count": 0,
+        "candidate_count": 20,
+        "evidence_count": 5
+      }
+    }
+  ],
+  "runtime_seconds": 24.035
+}

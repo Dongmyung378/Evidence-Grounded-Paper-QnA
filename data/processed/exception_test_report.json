@@ -1,0 +1,30 @@
+{
+  "cases": [
+    {
+      "case": "empty_page",
+      "result": "passed",
+      "handling": "skipped without stopping ingestion"
+    },
+    {
+      "case": "two_column",
+      "result": "passed",
+      "handling": "flagged for review"
+    },
+    {
+      "case": "footnote",
+      "result": "passed",
+      "handling": "retained and reported"
+    },
+    {
+      "case": "long_segment",
+      "result": "passed",
+      "handling": "split with configured overlap"
+    },
+    {
+      "case": "malformed_pdf",
+      "result": "passed",
+      "handling": "failure recorded; batch can continue"
+    }
+  ],
+  "passed": 5
+}

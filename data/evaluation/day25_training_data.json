@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "roadmap_day": 25,
+  "source": "QASPER train/validation only",
+  "leakage_policy": {
+    "verified_40_role": "test_only",
+    "verified_40_used_for_training": false,
+    "qasper_test_used": false
+  },
+  "evidence_policy": "text evidence only; FLOAT SELECTED table/figure placeholders excluded",
+  "negative_policy": "top BM25 non-evidence paragraphs from the same paper",
+  "negatives_per_positive": 3,
+  "splits": {
+    "train": {
+      "questions": 1000,
+      "pairs": 4000,
+      "positives": 1000,
+      "negatives": 3000,
+      "skipped": {
+        "unanswerable_or_nontext": 215,
+        "no_negative": 0
+      },
+      "path": "data/processed/reranker_pairs_train.jsonl"
+    },
+    "validation": {
+      "questions": 200,
+      "pairs": 800,
+      "positives": 200,
+      "negatives": 600,
+      "skipped": {
+        "unanswerable_or_nontext": 15,
+        "no_negative": 0
+      },
+      "path": "data/processed/reranker_pairs_validation.jsonl"
+    }
+  }
+}

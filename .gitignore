@@ -1,0 +1,19 @@
+# Local source data; redistribute only after checking each paper's license.
+data/raw/qasper/
+data/raw/papers/*.pdf
+data/processed/reranker_pairs_*.jsonl
+
+# Generated model/index artifacts.
+data/processed/*.npy
+data/processed/*.npz
+
+# Python cache.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local task and document-review scratch directories.
+.tmp_*/
+
+# Private uploaded PDFs, per-paper artifacts, and local job metadata.
+data/runtime/

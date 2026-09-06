@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "roadmap_day": 20,
+  "experiment": "weighted RRF single-variable comparison",
+  "evaluation_set": {
+    "name": "verified-40",
+    "questions": 40,
+    "languages": {
+      "en": 20,
+      "ko": 20
+    },
+    "papers": 10,
+    "relevance_unit": "gold evidence page",
+    "ranking_unit": "unique PDF page"
+  },
+  "controlled_change": {
+    "parameter": "fusion_weights",
+    "baseline": {
+      "bm25": 1.0,
+      "dense": 1.0
+    },
+    "candidate": {
+      "bm25": 0.8,
+      "dense": 1.2
+    },
+    "fixed": {
+      "corpus": {
+        "papers": 10,
+        "pages": 188,
+        "chunks": 906
+      },
+      "questions": 40,
+      "model": "intfloat/multilingual-e5-small",
+      "candidate_k": 20,
+      "rrf_k": 60,
+      "evaluation_top_k": 10
+    }
+  },
+  "baseline": {
+    "name": "hybrid_equal_weight_rrf",
+    "metrics": {
+      "questions": 40,
+      "recall_at_1": 0.35,
+      "recall_at_5": 0.925,
+      "recall_at_10": 0.975,
+      "mrr": 0.5691666666666666,
+      "by_language": {
+        "en": {
+          "questions": 20,
+          "recall_at_1": 0.4,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "mrr": 0.5991666666666666
+        },
+        "ko": {
+          "questions": 20,
+          "recall_at_1": 0.3,
+          "recall_at_5": 0.85,
+          "recall_at_10": 0.95,
+          "mrr": 0.5391666666666667
+        }
+      }
+    }
+  },
+  "candidate": {
+    "name": "hybrid_weighted_rrf",
+    "metrics": {
+      "questions": 40,
+      "recall_at_1": 0.3,
+      "recall_at_5": 0.9,
+      "recall_at_10": 0.975,
+      "mrr": 0.5245039682539683,
+      "by_language": {
+        "en": {
+          "questions": 20,
+          "recall_at_1": 0.3,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "mrr": 0.5425
+        },
+        "ko": {
+          "questions": 20,
+          "recall_at_1": 0.3,
+          "recall_at_5": 0.8,
+          "recall_at_10": 0.95,
+          "mrr": 0.5065079365079365
+        }
+      }
+    },
+    "embedding_cache": "created"
+  },
+  "delta_candidate_minus_baseline": {
+    "all": {
+      "recall_at_1": -0.05,
+      "recall_at_5": -0.025,
+      "recall_at_10": 0.0,
+      "mrr": -0.044662698413
+    },
+    "by_language": {
+      "en": {
+        "recall_at_1": -0.1,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "mrr": -0.056666666667
+      },
+      "ko": {
+        "recall_at_1": 0.0,
+        "recall_at_5": -0.05,
+        "recall_at_10": 0.0,
+        "mrr": -0.032658730159
+      }
+    }
+  },
+  "question_level_changes": {
+    "recovered_at_5": [],
+    "lost_at_5": [
+      "q-017-ko"
+    ],
+    "rank_changes": [
+      {
+        "question_id": "q-005-en",
+        "paper_id": "paper-002",
+        "language": "en",
+        "gold_page": 1,
+        "baseline_gold_rank": 5,
+        "candidate_gold_rank": 4
+      },
+      {
+        "question_id": "q-005-ko",
+        "paper_id": "paper-002",
+        "language": "ko",
+        "gold_page": 1,
+        "baseline_gold_rank": null,
+        "candidate_gold_rank": 9
+      },
+      {
+        "question_id": "q-007-en",
+        "paper_id": "paper-003",
+        "language": "en",
+        "gold_page": 3,
+        "baseline_gold_rank": 4,
+        "candidate_gold_rank": 5
+      },
+      {
+        "question_id": "q-017-ko",
+        "paper_id": "paper-006",
+        "language": "ko",
+        "gold_page": 1,
+        "baseline_gold_rank": 2,
+        "candidate_gold_rank": null
+      },
+      {
+        "question_id": "q-031-en",
+        "paper_id": "paper-004",
+        "language": "en",
+        "gold_page": 1,
+        "baseline_gold_rank": 2,
+        "candidate_gold_rank": 1
+      },
+      {
+        "question_id": "q-038-en",
+        "paper_id": "paper-004",
+        "language": "en",
+        "gold_page": 1,
+        "baseline_gold_rank": 1,
+        "candidate_gold_rank": 2
+      },
+      {
+        "question_id": "q-038-ko",
+        "paper_id": "paper-004",
+        "language": "ko",
+        "gold_page": 1,
+        "baseline_gold_rank": 2,
+        "candidate_gold_rank": 3
+      },
+      {
+        "question_id": "q-039-en",
+        "paper_id": "paper-005",
+        "language": "en",
+        "gold_page": 14,
+        "baseline_gold_rank": 4,
+        "candidate_gold_rank": 5
+      },
+      {
+        "question_id": "q-041-en",
+        "paper_id": "paper-008",
+        "language": "en",
+        "gold_page": 6,
+        "baseline_gold_rank": 1,
+        "candidate_gold_rank": 2
+      },
+      {
+        "question_id": "q-042-ko",
+        "paper_id": "paper-009",
+        "language": "ko",
+        "gold_page": 23,
+        "baseline_gold_rank": 3,
+        "candidate_gold_rank": 5
+      },
+      {
+        "question_id": "q-043-en",
+        "paper_id": "paper-010",
+        "language": "en",
+        "gold_page": 19,
+        "baseline_gold_rank": 3,
+        "candidate_gold_rank": 4
+      },
+      {
+        "question_id": "q-043-ko",
+        "paper_id": "paper-010",
+        "language": "ko",
+        "gold_page": 19,
+        "baseline_gold_rank": 8,
+        "candidate_gold_rank": 7
+      },
+      {
+        "question_id": "q-049-en",
+        "paper_id": "paper-005",
+        "language": "en",
+        "gold_page": 14,
+        "baseline_gold_rank": 1,
+        "candidate_gold_rank": 2
+      },
+      {
+        "question_id": "q-049-ko",
+        "paper_id": "paper-005",
+        "language": "ko",
+        "gold_page": 14,
+        "baseline_gold_rank": 8,
+        "candidate_gold_rank": 7
+      }
+    ]
+  },
+  "decision": {
+    "primary_metric": "recall_at_5",
+    "candidate_improved_primary_metric": false,
+    "selected_configuration": "baseline_equal_weight_rrf",
+    "reason": "가중 RRF가 동일 평가 세트에서 Recall@5를 높이지 못해 기존 동일 가중치를 유지했다."
+  },
+  "reproduction_command": "python -B scripts/run_day20_experiment.py --bm25-weight 0.8 --dense-weight 1.2"
+}

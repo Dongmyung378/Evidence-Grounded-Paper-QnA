@@ -1,0 +1,24 @@
+{
+  "command": "python scripts/run_ingestion_pipeline.py",
+  "pipeline": "PDF → pages.jsonl → chunks.jsonl",
+  "config": {
+    "chunk_size": 1200,
+    "overlap": 200
+  },
+  "outputs": {
+    "pages": "data\\processed\\pages.jsonl",
+    "chunks": "data\\processed\\chunks.jsonl"
+  },
+  "summary": {
+    "papers_found": 30,
+    "papers_succeeded": 30,
+    "papers_failed": 0,
+    "pages_extracted": 563,
+    "chunks_created": 2463,
+    "warning_counts": {
+      "footnote_like_lines_retained": 223,
+      "long_segment_split": 638,
+      "two_column_suspected": 395
+    }
+  }
+}

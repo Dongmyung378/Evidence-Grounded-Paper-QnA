@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "roadmap_day": 27,
+  "error": {
+    "category": "candidate starvation before reranking",
+    "largest_case": "q-005-ko",
+    "diagnosis": "The verified page was present in dense page Top-10 but disappeared when chunk-level RRF was truncated to 20 before Cross-Encoder scoring."
+  },
+  "controlled_fix": {
+    "before": "RRF Top-20 -> rerank 20 -> final Top-20",
+    "after": "RRF Top-20 with one page-1 candidate guaranteed when absent -> rerank 20 -> final Top-20",
+    "unchanged": [
+      "verified-40 questions and gold pages",
+      "906 chunks",
+      "BM25 and dense models",
+      "equal RRF weights and rrf_k=60",
+      "pretrained Cross-Encoder",
+      "reranker input count=20",
+      "final candidate count=20"
+    ],
+    "question_specific_rules": false
+  },
+  "evaluation_set": {
+    "name": "verified-40",
+    "questions": 40,
+    "languages": {
+      "en": 20,
+      "ko": 20
+    }
+  },
+  "coverage_guard": {
+    "page": 1,
+    "reason": "English papers normally place the title, abstract, or contribution summary in front matter.",
+    "questions_injected": 1,
+    "questions_unchanged": 39
+  },
+  "before": {
+    "name": "hybrid_top20_reranker",
+    "metrics": {
+      "recall_at_1": 0.375,
+      "recall_at_3": 0.8,
+      "recall_at_5": 0.975,
+      "recall_at_10": 0.975,
+      "mrr": 0.6233333333333333,
+      "questions": 40,
+      "by_language": {
+        "en": {
+          "questions": 20,
+          "recall_at_1": 0.45,
+          "recall_at_3": 0.9,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "mrr": 0.6891666666666667
+        },
+        "ko": {
+          "questions": 20,
+          "recall_at_1": 0.3,
+          "recall_at_3": 0.7,
+          "recall_at_5": 0.95,
+          "recall_at_10": 0.95,
+          "mrr": 0.5575
+        }
+      }
+    }
+  },
+  "after": {
+    "name": "front_matter_guard_reranker_top20",
+    "metrics": {
+      "recall_at_1": 0.375,
+      "recall_at_3": 0.825,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr": 0.6316666666666666,
+      "questions": 40,
+      "by_language": {
+        "en": {
+          "questions": 20,
+          "recall_at_1": 0.45,
+          "recall_at_3": 0.9,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "mrr": 0.6891666666666667
+        },
+        "ko": {
+          "questions": 20,
+          "recall_at_1": 0.3,
+          "recall_at_3": 0.75,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "mrr": 0.5741666666666666
+        }
+      }
+    }
+  },
+  "delta_after_minus_before": {
+    "all": {
+      "recall_at_1": 0.0,
+      "recall_at_3": 0.025,
+      "recall_at_5": 0.025,
+      "recall_at_10": 0.025,
+      "mrr": 0.008333333333
+    },
+    "by_language": {
+      "en": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "ko": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.05,
+        "recall_at_5": 0.05,
+        "recall_at_10": 0.05,
+        "mrr": 0.016666666667
+      }
+    }
+  },
+  "cases": {
+    "recovered_at_5": [
+      "q-005-ko"
+    ],
+    "lost_at_5": [],
+    "changed_ranks": [
+      {
+        "question_id": "q-005-ko",
+        "paper_id": "paper-002",
+        "language": "ko",
+        "gold_page": 1,
+        "before_gold_rank": null,
+        "after_gold_rank": 3,
+        "before_pages": [
+          10,
+          8,
+          3,
+          4,
+          2,
+          16,
+          18,
+          6,
+          14,
+          13
+        ],
+        "after_pages": [
+          10,
+          8,
+          1,
+          3,
+          4,
+          2,
+          16,
+          18,
+          6,
+          13
+        ],
+        "front_matter_candidate_injected": true
+      }
+    ]
+  },
+  "decision": {
+    "adopt_for_day28_gate": true,
+    "reason": "Adopt only if Recall@5 improves without losing an existing Top-5 hit; Day 28 still freezes the production combination."
+  },
+  "runtime": {
+    "seconds": 22.119,
+    "embedding_cache": "hit"
+  }
+}

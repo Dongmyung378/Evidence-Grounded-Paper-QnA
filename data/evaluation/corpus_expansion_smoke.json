@@ -1,0 +1,517 @@
+{
+  "schema_version": 1,
+  "purpose": "30-paper corpus expansion runtime smoke test",
+  "benchmark_policy": {
+    "verified_40_papers": [
+      "paper-001",
+      "paper-002",
+      "paper-003",
+      "paper-004",
+      "paper-005",
+      "paper-006",
+      "paper-007",
+      "paper-008",
+      "paper-009",
+      "paper-010"
+    ],
+    "expansion_papers": [
+      "paper-011",
+      "paper-012",
+      "paper-013",
+      "paper-014",
+      "paper-015",
+      "paper-016",
+      "paper-017",
+      "paper-018",
+      "paper-019",
+      "paper-020",
+      "paper-021",
+      "paper-022",
+      "paper-023",
+      "paper-024",
+      "paper-025",
+      "paper-026",
+      "paper-027",
+      "paper-028",
+      "paper-029",
+      "paper-030"
+    ],
+    "expansion_used_for_accuracy_claims": false
+  },
+  "models": {
+    "embedding": "intfloat/multilingual-e5-small",
+    "reranker": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+  },
+  "production_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+  "embedding_cache": "hit",
+  "summary": {
+    "papers": 20,
+    "passed": 20,
+    "failed": 0,
+    "english_queries": 10,
+    "korean_queries": 10,
+    "runtime_seconds": 19.268
+  },
+  "cases": [
+    {
+      "paper_id": "paper-011",
+      "question_language": "en",
+      "query": "What is the main objective of this paper?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        3,
+        3,
+        14,
+        8,
+        12
+      ],
+      "evidence_chunk_ids": [
+        "paper-011-p003-c002",
+        "paper-011-p003-c004",
+        "paper-011-p014-c001",
+        "paper-011-p008-c002",
+        "paper-011-p012-c002"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-012",
+      "question_language": "ko",
+      "query": "이 논문의 주요 연구 목적은 무엇인가?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        3,
+        3,
+        4,
+        1,
+        2
+      ],
+      "evidence_chunk_ids": [
+        "paper-012-p003-c001",
+        "paper-012-p003-c003",
+        "paper-012-p004-c002",
+        "paper-012-p001-c004",
+        "paper-012-p002-c006"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-013",
+      "question_language": "en",
+      "query": "What is the main objective of this paper?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        3,
+        2,
+        11,
+        11,
+        2
+      ],
+      "evidence_chunk_ids": [
+        "paper-013-p003-c005",
+        "paper-013-p002-c004",
+        "paper-013-p011-c002",
+        "paper-013-p011-c001",
+        "paper-013-p002-c002"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-014",
+      "question_language": "ko",
+      "query": "이 논문의 주요 연구 목적은 무엇인가?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        2,
+        2,
+        1,
+        1,
+        3
+      ],
+      "evidence_chunk_ids": [
+        "paper-014-p002-c003",
+        "paper-014-p002-c004",
+        "paper-014-p001-c002",
+        "paper-014-p001-c003",
+        "paper-014-p003-c004"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-015",
+      "question_language": "en",
+      "query": "What is the main objective of this paper?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        5,
+        4,
+        12,
+        16,
+        4
+      ],
+      "evidence_chunk_ids": [
+        "paper-015-p005-c002",
+        "paper-015-p004-c006",
+        "paper-015-p012-c004",
+        "paper-015-p016-c001",
+        "paper-015-p004-c002"
+      ],
+      "front_matter_injected": true,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-016",
+      "question_language": "ko",
+      "query": "이 논문의 주요 연구 목적은 무엇인가?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        9,
+        24,
+        24,
+        1,
+        10
+      ],
+      "evidence_chunk_ids": [
+        "paper-016-p009-c001",
+        "paper-016-p024-c001",
+        "paper-016-p024-c004",
+        "paper-016-p001-c006",
+        "paper-016-p010-c003"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-017",
+      "question_language": "en",
+      "query": "What is the main objective of this paper?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        2,
+        1,
+        14,
+        1,
+        7
+      ],
+      "evidence_chunk_ids": [
+        "paper-017-p002-c006",
+        "paper-017-p001-c006",
+        "paper-017-p014-c001",
+        "paper-017-p001-c004",
+        "paper-017-p007-c005"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-018",
+      "question_language": "ko",
+      "query": "이 논문의 주요 연구 목적은 무엇인가?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        2,
+        4,
+        3,
+        4,
+        3
+      ],
+      "evidence_chunk_ids": [
+        "paper-018-p002-c001",
+        "paper-018-p004-c003",
+        "paper-018-p003-c002",
+        "paper-018-p004-c004",
+        "paper-018-p003-c004"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-019",
+      "question_language": "en",
+      "query": "What is the main objective of this paper?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        14,
+        2,
+        8,
+        8,
+        13
+      ],
+      "evidence_chunk_ids": [
+        "paper-019-p014-c001",
+        "paper-019-p002-c003",
+        "paper-019-p008-c002",
+        "paper-019-p008-c004",
+        "paper-019-p013-c003"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-020",
+      "question_language": "ko",
+      "query": "이 논문의 주요 연구 목적은 무엇인가?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        1,
+        1,
+        12,
+        2,
+        13
+      ],
+      "evidence_chunk_ids": [
+        "paper-020-p001-c002",
+        "paper-020-p001-c003",
+        "paper-020-p012-c002",
+        "paper-020-p002-c001",
+        "paper-020-p013-c001"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-021",
+      "question_language": "en",
+      "query": "What is the main objective of this paper?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        13,
+        18,
+        1,
+        19,
+        9
+      ],
+      "evidence_chunk_ids": [
+        "paper-021-p013-c002",
+        "paper-021-p018-c004",
+        "paper-021-p001-c004",
+        "paper-021-p019-c001",
+        "paper-021-p009-c002"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-022",
+      "question_language": "ko",
+      "query": "이 논문의 주요 연구 목적은 무엇인가?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        10,
+        13,
+        9,
+        1,
+        2
+      ],
+      "evidence_chunk_ids": [
+        "paper-022-p010-c001",
+        "paper-022-p013-c001",
+        "paper-022-p009-c002",
+        "paper-022-p001-c003",
+        "paper-022-p002-c001"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-023",
+      "question_language": "en",
+      "query": "What is the main objective of this paper?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        9,
+        2,
+        10,
+        16,
+        9
+      ],
+      "evidence_chunk_ids": [
+        "paper-023-p009-c001",
+        "paper-023-p002-c003",
+        "paper-023-p010-c002",
+        "paper-023-p016-c001",
+        "paper-023-p009-c002"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-024",
+      "question_language": "ko",
+      "query": "이 논문의 주요 연구 목적은 무엇인가?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        3,
+        2,
+        3,
+        1,
+        6
+      ],
+      "evidence_chunk_ids": [
+        "paper-024-p003-c001",
+        "paper-024-p002-c001",
+        "paper-024-p003-c003",
+        "paper-024-p001-c004",
+        "paper-024-p006-c002"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-025",
+      "question_language": "en",
+      "query": "What is the main objective of this paper?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        4,
+        2,
+        3,
+        3,
+        14
+      ],
+      "evidence_chunk_ids": [
+        "paper-025-p004-c001",
+        "paper-025-p002-c001",
+        "paper-025-p003-c001",
+        "paper-025-p003-c003",
+        "paper-025-p014-c003"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-026",
+      "question_language": "ko",
+      "query": "이 논문의 주요 연구 목적은 무엇인가?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        4,
+        1,
+        20,
+        1,
+        4
+      ],
+      "evidence_chunk_ids": [
+        "paper-026-p004-c002",
+        "paper-026-p001-c002",
+        "paper-026-p020-c004",
+        "paper-026-p001-c003",
+        "paper-026-p004-c001"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-027",
+      "question_language": "en",
+      "query": "What is the main objective of this paper?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        18,
+        3,
+        11,
+        18,
+        3
+      ],
+      "evidence_chunk_ids": [
+        "paper-027-p018-c002",
+        "paper-027-p003-c001",
+        "paper-027-p011-c003",
+        "paper-027-p018-c003",
+        "paper-027-p003-c005"
+      ],
+      "front_matter_injected": true,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-028",
+      "question_language": "ko",
+      "query": "이 논문의 주요 연구 목적은 무엇인가?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        1,
+        1,
+        17,
+        15,
+        2
+      ],
+      "evidence_chunk_ids": [
+        "paper-028-p001-c002",
+        "paper-028-p001-c005",
+        "paper-028-p017-c001",
+        "paper-028-p015-c003",
+        "paper-028-p002-c004"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-029",
+      "question_language": "en",
+      "query": "What is the main objective of this paper?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        8,
+        1,
+        7,
+        17,
+        13
+      ],
+      "evidence_chunk_ids": [
+        "paper-029-p008-c002",
+        "paper-029-p001-c003",
+        "paper-029-p007-c004",
+        "paper-029-p017-c001",
+        "paper-029-p013-c006"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    },
+    {
+      "paper_id": "paper-030",
+      "question_language": "ko",
+      "query": "이 논문의 주요 연구 목적은 무엇인가?",
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "evidence_pages": [
+        16,
+        1,
+        16,
+        1,
+        3
+      ],
+      "evidence_chunk_ids": [
+        "paper-030-p016-c004",
+        "paper-030-p001-c003",
+        "paper-030-p016-c003",
+        "paper-030-p001-c002",
+        "paper-030-p003-c003"
+      ],
+      "front_matter_injected": false,
+      "status": "pass"
+    }
+  ]
+}

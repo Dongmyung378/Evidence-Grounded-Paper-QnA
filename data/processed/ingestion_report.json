@@ -1,0 +1,6847 @@
+{
+  "config": {
+    "chunk_size": 1200,
+    "overlap": 200
+  },
+  "outputs": {
+    "pages": "data\\processed\\pages.jsonl",
+    "chunks": "data\\processed\\chunks.jsonl"
+  },
+  "summary": {
+    "papers_found": 30,
+    "papers_succeeded": 30,
+    "papers_failed": 0,
+    "pages_extracted": 563,
+    "chunks_created": 2463,
+    "warning_counts": {
+      "footnote_like_lines_retained": 223,
+      "long_segment_split": 638,
+      "two_column_suspected": 395
+    }
+  },
+  "papers": [
+    {
+      "paper_id": "paper-001",
+      "pdf_path": "data\\raw\\papers\\paper-001.pdf",
+      "status": "success",
+      "page_count": 13,
+      "chunk_count": 58,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "ABSTRACT",
+          "char_count": 1462
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "1.INTRODUCTION",
+          "char_count": 2134
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1.INTRODUCTION",
+          "char_count": 1510
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "2.PROBLEM SETUP",
+          "char_count": 3287
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "3.BAND DEFINITION AND EVALUATION",
+          "char_count": 3575
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "4.METHODS",
+          "char_count": 2751
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "4.METHODS",
+          "char_count": 1920
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "5.RESULTS ON SYNTHETIC EXPERIMENTS",
+          "char_count": 2783
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "5.RESULTS ON SYNTHETIC EXPERIMENTS",
+          "char_count": 2291
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "6.APPLICATION TO HERA DATA",
+          "char_count": 1525
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "6.APPLICATION TO HERA DATA",
+          "char_count": 4014
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "6.APPLICATION TO HERA DATA",
+          "char_count": 3723
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "7.CONCLUSION AND OUTLOOK",
+          "char_count": 1431
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "7.CONCLUSION AND OUTLOOK",
+          "char_count": 2351
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "2. Run a short rank sweep and check whether",
+          "char_count": 2017
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "APPENDIX",
+          "char_count": 3370
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "APPENDIX",
+          "char_count": 1503
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 1678
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 1763
+        }
+      ],
+      "page_record_count": 13
+    },
+    {
+      "paper_id": "paper-002",
+      "pdf_path": "data\\raw\\papers\\paper-002.pdf",
+      "status": "success",
+      "page_count": 20,
+      "chunk_count": 82,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 1639
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 1714
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 3254
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 1877
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "2.1 Applyingµ-Parameterization to MoE",
+          "char_count": 1513
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "2.1 Applyingµ-Parameterization to MoE",
+          "char_count": 2858
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "2.2.1 Estimating Optimal Learning Rates Over Short T oken Budgets",
+          "char_count": 3266
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 6
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "footnote_like_lines_retained",
+          "count": 5
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "3.1 Experimental Setup",
+          "char_count": 1699
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "3.3.1 Learning Rate Dynamics Across T oken Horizons",
+          "char_count": 1646
+        },
+        {
+          "page": 8,
+          "code": "footnote_like_lines_retained",
+          "count": 6
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "3.3.2 Predicting Optimal Learning Rate for Extremely Long T oken Horizon",
+          "char_count": 2389
+        },
+        {
+          "page": 9,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "3.3.3 Applying to Our Foundation Model",
+          "char_count": 2430
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "4 Related Works",
+          "char_count": 1551
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "5 Conclusion",
+          "char_count": 2631
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3771
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3660
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3749
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3342
+        },
+        {
+          "page": 15,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3132
+        },
+        {
+          "page": 16,
+          "code": "footnote_like_lines_retained",
+          "count": 6
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2763
+        },
+        {
+          "page": 17,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3706
+        },
+        {
+          "page": 18,
+          "code": "footnote_like_lines_retained",
+          "count": 4
+        },
+        {
+          "page": 18,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2785
+        },
+        {
+          "page": 19,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 19,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 19,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3606
+        },
+        {
+          "page": 20,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 20,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 20,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 1920
+        }
+      ],
+      "page_record_count": 20
+    },
+    {
+      "paper_id": "paper-003",
+      "pdf_path": "data\\raw\\papers\\paper-003.pdf",
+      "status": "success",
+      "page_count": 10,
+      "chunk_count": 40,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "1. INTRODUCTION",
+          "char_count": 1906
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1. INTRODUCTION",
+          "char_count": 1393
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "2. RELATED WORKS",
+          "char_count": 2362
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "3. FOUNDATIONAL CONCEPTS",
+          "char_count": 2271
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "5. CHALLENGES AND LIMITATIONS",
+          "char_count": 2696
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "5. CHALLENGES AND LIMITATIONS",
+          "char_count": 2119
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "6. RESULTS AND DISCUSSION",
+          "char_count": 1665
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "6. RESULTS AND DISCUSSION",
+          "char_count": 1523
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "6.4 Interpretation of Results",
+          "char_count": 1585
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "7. CONCLUSION",
+          "char_count": 2648
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2975
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        }
+      ],
+      "page_record_count": 10
+    },
+    {
+      "paper_id": "paper-004",
+      "pdf_path": "data\\raw\\papers\\paper-004.pdf",
+      "status": "success",
+      "page_count": 13,
+      "chunk_count": 58,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 2045
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "2 Related Work",
+          "char_count": 2199
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "3.1 SmoothQuant and Quantization Modes",
+          "char_count": 1241
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "3.2 PyTorch and TorchAO",
+          "char_count": 1554
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "4.1 Overall Design",
+          "char_count": 1229
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "4.2 Improving Implementation of Common Quantization Flows",
+          "char_count": 2339
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "5.1 Benchmark Setup for Baseline Collection",
+          "char_count": 2109
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "5.2 Baseline Hotspot Breakdown",
+          "char_count": 3329
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "5.2 Baseline Hotspot Breakdown",
+          "char_count": 1685
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "5.4 Estimated End-to-End Speedup Ceiling",
+          "char_count": 1209
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "5.4 Estimated End-to-End Speedup Ceiling",
+          "char_count": 3011
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "6.1 Benchmark Setup",
+          "char_count": 2296
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "6.3 Comparing Realized Speedup to Estimated Ceiling",
+          "char_count": 2585
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "6.3 Comparing Realized Speedup to Estimated Ceiling",
+          "char_count": 2074
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 4866
+        }
+      ],
+      "page_record_count": 13
+    },
+    {
+      "paper_id": "paper-005",
+      "pdf_path": "data\\raw\\papers\\paper-005.pdf",
+      "status": "success",
+      "page_count": 26,
+      "chunk_count": 97,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 1610
+        },
+        {
+          "page": 2,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 3140
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 2482
+        },
+        {
+          "page": 4,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "2 Related works",
+          "char_count": 2392
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "4.2 Greedy-Continued Coreset for CAD",
+          "char_count": 1556
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "4.3 Implementation in practice",
+          "char_count": 1501
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "footnote_like_lines_retained",
+          "count": 4
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "Method",
+          "char_count": 1696
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "Method",
+          "char_count": 1483
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "Method",
+          "char_count": 2491
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "5.2 Comparison with the SOTA baselines",
+          "char_count": 2420
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "5.4 Ablation study",
+          "char_count": 2498
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "footnote_like_lines_retained",
+          "count": 9
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "5.4 Ablation study",
+          "char_count": 1607
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "5.7 ContCore and PatchCore",
+          "char_count": 1437
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "6 Conclusion",
+          "char_count": 1604
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2644
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3083
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2888
+        },
+        {
+          "page": 18,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 18,
+          "code": "long_segment_split",
+          "section": "7 Theoretical Analysis",
+          "char_count": 1336
+        },
+        {
+          "page": 19,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 20,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 21,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 21,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 21,
+          "code": "long_segment_split",
+          "section": "8 Additional results",
+          "char_count": 1804
+        },
+        {
+          "page": 22,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 22,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 22,
+          "code": "long_segment_split",
+          "section": "Method",
+          "char_count": 1639
+        },
+        {
+          "page": 23,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 23,
+          "code": "footnote_like_lines_retained",
+          "count": 7
+        },
+        {
+          "page": 23,
+          "code": "long_segment_split",
+          "section": "Method",
+          "char_count": 4690
+        },
+        {
+          "page": 24,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 24,
+          "code": "footnote_like_lines_retained",
+          "count": 8
+        },
+        {
+          "page": 24,
+          "code": "long_segment_split",
+          "section": "Method",
+          "char_count": 2897
+        }
+      ],
+      "page_record_count": 26
+    },
+    {
+      "paper_id": "paper-006",
+      "pdf_path": "data\\raw\\papers\\paper-006.pdf",
+      "status": "success",
+      "page_count": 31,
+      "chunk_count": 199,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 3582
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "I. INTRODUCTION",
+          "char_count": 2497
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "I. INTRODUCTION",
+          "char_count": 5245
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "I. INTRODUCTION",
+          "char_count": 2081
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "II. INFERENCE OFECOHYDROLOGY",
+          "char_count": 4079
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "II. INFERENCE OFECOHYDROLOGY",
+          "char_count": 3687
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "II. INFERENCE OFECOHYDROLOGY",
+          "char_count": 5027
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 5
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "II. INFERENCE OFECOHYDROLOGY",
+          "char_count": 1544
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "III. META-ANALYSIS OFEOFMS",
+          "char_count": 4518
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "III. META-ANALYSIS OFEOFMS",
+          "char_count": 5094
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "footnote_like_lines_retained",
+          "count": 6
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "III. META-ANALYSIS OFEOFMS",
+          "char_count": 4117
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "footnote_like_lines_retained",
+          "count": 8
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "III. META-ANALYSIS OFEOFMS",
+          "char_count": 4084
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "footnote_like_lines_retained",
+          "count": 10
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "III. META-ANALYSIS OFEOFMS",
+          "char_count": 3943
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "footnote_like_lines_retained",
+          "count": 8
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "III. META-ANALYSIS OFEOFMS",
+          "char_count": 4294
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "III. META-ANALYSIS OFEOFMS",
+          "char_count": 5091
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "footnote_like_lines_retained",
+          "count": 8
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "IV. CAPABILITIES OFEOFMS ACROSS",
+          "char_count": 4251
+        },
+        {
+          "page": 14,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "IV. CAPABILITIES OFEOFMS ACROSS",
+          "char_count": 4085
+        },
+        {
+          "page": 15,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "IV. CAPABILITIES OFEOFMS ACROSS",
+          "char_count": 4114
+        },
+        {
+          "page": 16,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 16,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "IV. CAPABILITIES OFEOFMS ACROSS",
+          "char_count": 6633
+        },
+        {
+          "page": 17,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 17,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "IV. CAPABILITIES OFEOFMS ACROSS",
+          "char_count": 5103
+        },
+        {
+          "page": 18,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 18,
+          "code": "long_segment_split",
+          "section": "IV. CAPABILITIES OFEOFMS ACROSS",
+          "char_count": 6689
+        },
+        {
+          "page": 19,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 19,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 19,
+          "code": "long_segment_split",
+          "section": "IV. CAPABILITIES OFEOFMS ACROSS",
+          "char_count": 2534
+        },
+        {
+          "page": 19,
+          "code": "long_segment_split",
+          "section": "V. BENCHMARKINGEOFMS FORECOHYDROLOGY",
+          "char_count": 2541
+        },
+        {
+          "page": 20,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 20,
+          "code": "long_segment_split",
+          "section": "V. BENCHMARKINGEOFMS FORECOHYDROLOGY",
+          "char_count": 4553
+        },
+        {
+          "page": 21,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 21,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 21,
+          "code": "long_segment_split",
+          "section": "V. BENCHMARKINGEOFMS FORECOHYDROLOGY",
+          "char_count": 6340
+        },
+        {
+          "page": 22,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 22,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 22,
+          "code": "long_segment_split",
+          "section": "1) Established Data Infrastructure for Model Evaluation",
+          "char_count": 2039
+        },
+        {
+          "page": 22,
+          "code": "long_segment_split",
+          "section": "2) Emerging Data Infrastructure for EOFM Evaluation",
+          "char_count": 1226
+        },
+        {
+          "page": 22,
+          "code": "long_segment_split",
+          "section": "VI. DISCUSSION ANDPROSPECTS",
+          "char_count": 2556
+        },
+        {
+          "page": 23,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 23,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 23,
+          "code": "long_segment_split",
+          "section": "VI. DISCUSSION ANDPROSPECTS",
+          "char_count": 6546
+        },
+        {
+          "page": 24,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 24,
+          "code": "long_segment_split",
+          "section": "VI. DISCUSSION ANDPROSPECTS",
+          "char_count": 6751
+        },
+        {
+          "page": 25,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 25,
+          "code": "long_segment_split",
+          "section": "VI. DISCUSSION ANDPROSPECTS",
+          "char_count": 2078
+        },
+        {
+          "page": 25,
+          "code": "long_segment_split",
+          "section": "VII. CONCLUSION",
+          "char_count": 2630
+        },
+        {
+          "page": 25,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 1646
+        },
+        {
+          "page": 26,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 26,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 26,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 9718
+        },
+        {
+          "page": 27,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 27,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 9339
+        },
+        {
+          "page": 28,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 28,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 28,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 9364
+        },
+        {
+          "page": 29,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 29,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 29,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 9195
+        },
+        {
+          "page": 30,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 30,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 30,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 9053
+        },
+        {
+          "page": 31,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 31,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 6230
+        }
+      ],
+      "page_record_count": 31
+    },
+    {
+      "paper_id": "paper-007",
+      "pdf_path": "data\\raw\\papers\\paper-007.pdf",
+      "status": "success",
+      "page_count": 11,
+      "chunk_count": 30,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 2769
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 2037
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 1537
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "footnote_like_lines_retained",
+          "count": 7
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "3 The union of two lines",
+          "char_count": 1702
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "3 The union of two lines",
+          "char_count": 2127
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 5
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "4 The cusp",
+          "char_count": 2736
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "4 The cusp",
+          "char_count": 1829
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "footnote_like_lines_retained",
+          "count": 7
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "4 The cusp",
+          "char_count": 2062
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "footnote_like_lines_retained",
+          "count": 10
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "4 The cusp",
+          "char_count": 2450
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "4 The cusp",
+          "char_count": 1591
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2588
+        }
+      ],
+      "page_record_count": 11
+    },
+    {
+      "paper_id": "paper-008",
+      "pdf_path": "data\\raw\\papers\\paper-008.pdf",
+      "status": "success",
+      "page_count": 8,
+      "chunk_count": 53,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 1684
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "I. INTRODUCTION",
+          "char_count": 3662
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "I. INTRODUCTION",
+          "char_count": 1864
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "II. RELATEDWORK",
+          "char_count": 3226
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "3. Contact Points",
+          "char_count": 3675
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "3. Contact Points",
+          "char_count": 5861
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "3. Contact Points",
+          "char_count": 4185
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "IV. EXPERIMENTS",
+          "char_count": 1299
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "IV. EXPERIMENTS",
+          "char_count": 5432
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "IV. EXPERIMENTS",
+          "char_count": 4854
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 8108
+        }
+      ],
+      "page_record_count": 8
+    },
+    {
+      "paper_id": "paper-009",
+      "pdf_path": "data\\raw\\papers\\paper-009.pdf",
+      "status": "success",
+      "page_count": 26,
+      "chunk_count": 118,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "ABSTRACT",
+          "char_count": 1777
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1.INTRODUCTION",
+          "char_count": 3501
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "1.INTRODUCTION",
+          "char_count": 5372
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "1.INTRODUCTION",
+          "char_count": 2235
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "2.MICROLENSING FUNDAMENTALS",
+          "char_count": 1538
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "3.DATA",
+          "char_count": 5101
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "3.DATA",
+          "char_count": 5035
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "3.DATA",
+          "char_count": 3673
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "3.DATA",
+          "char_count": 2638
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "3.DATA",
+          "char_count": 4102
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "5.MACHINE LEARNING MODEL",
+          "char_count": 5332
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "5.MACHINE LEARNING MODEL",
+          "char_count": 4450
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "5.MACHINE LEARNING MODEL",
+          "char_count": 5039
+        },
+        {
+          "page": 13,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "5.MACHINE LEARNING MODEL",
+          "char_count": 3224
+        },
+        {
+          "page": 14,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 14,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "5.MACHINE LEARNING MODEL",
+          "char_count": 4120
+        },
+        {
+          "page": 15,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 15,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "5.MACHINE LEARNING MODEL",
+          "char_count": 1672
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "6.RESULTS",
+          "char_count": 2423
+        },
+        {
+          "page": 16,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "6.RESULTS",
+          "char_count": 1856
+        },
+        {
+          "page": 17,
+          "code": "footnote_like_lines_retained",
+          "count": 20
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "6.RESULTS",
+          "char_count": 1751
+        },
+        {
+          "page": 18,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 18,
+          "code": "footnote_like_lines_retained",
+          "count": 21
+        },
+        {
+          "page": 18,
+          "code": "long_segment_split",
+          "section": "6.RESULTS",
+          "char_count": 3750
+        },
+        {
+          "page": 19,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 19,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 19,
+          "code": "long_segment_split",
+          "section": "6.RESULTS",
+          "char_count": 5263
+        },
+        {
+          "page": 20,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 20,
+          "code": "footnote_like_lines_retained",
+          "count": 4
+        },
+        {
+          "page": 20,
+          "code": "long_segment_split",
+          "section": "6.RESULTS",
+          "char_count": 3986
+        },
+        {
+          "page": 21,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 21,
+          "code": "footnote_like_lines_retained",
+          "count": 4
+        },
+        {
+          "page": 21,
+          "code": "long_segment_split",
+          "section": "6.RESULTS",
+          "char_count": 4841
+        },
+        {
+          "page": 22,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 22,
+          "code": "footnote_like_lines_retained",
+          "count": 9
+        },
+        {
+          "page": 22,
+          "code": "long_segment_split",
+          "section": "6.RESULTS",
+          "char_count": 2636
+        },
+        {
+          "page": 23,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 23,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 23,
+          "code": "long_segment_split",
+          "section": "7.SUMMARY AND CONCLUSIONS",
+          "char_count": 5410
+        },
+        {
+          "page": 24,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 24,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 24,
+          "code": "long_segment_split",
+          "section": "7.SUMMARY AND CONCLUSIONS",
+          "char_count": 3891
+        },
+        {
+          "page": 25,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 25,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 4558
+        },
+        {
+          "page": 26,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 26,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 3431
+        }
+      ],
+      "page_record_count": 26
+    },
+    {
+      "paper_id": "paper-010",
+      "pdf_path": "data\\raw\\papers\\paper-010.pdf",
+      "status": "success",
+      "page_count": 30,
+      "chunk_count": 171,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 2101
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "I. I NTRODUCTION",
+          "char_count": 4195
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "I. I NTRODUCTION",
+          "char_count": 7024
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "I. I NTRODUCTION",
+          "char_count": 5948
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "II. S IGNAL MODELS AND PROBLEM FORMULATION",
+          "char_count": 5494
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "II. S IGNAL MODELS AND PROBLEM FORMULATION",
+          "char_count": 2688
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+          "char_count": 2379
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+          "char_count": 5159
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+          "char_count": 5130
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+          "char_count": 4923
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+          "char_count": 3640
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+          "char_count": 4092
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+          "char_count": 4257
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+          "char_count": 4815
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+          "char_count": 2091
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "IV. T HEORETICAL ANALYSIS",
+          "char_count": 2714
+        },
+        {
+          "page": 14,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 14,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "IV. T HEORETICAL ANALYSIS",
+          "char_count": 5147
+        },
+        {
+          "page": 15,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 15,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "IV. T HEORETICAL ANALYSIS",
+          "char_count": 5117
+        },
+        {
+          "page": 16,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 16,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "IV. T HEORETICAL ANALYSIS",
+          "char_count": 3395
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "V. A LGORITHM UNROLLING FOR AUTOMATIC",
+          "char_count": 1704
+        },
+        {
+          "page": 17,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 17,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "V. A LGORITHM UNROLLING FOR AUTOMATIC",
+          "char_count": 4811
+        },
+        {
+          "page": 18,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 18,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 18,
+          "code": "long_segment_split",
+          "section": "V. A LGORITHM UNROLLING FOR AUTOMATIC",
+          "char_count": 5436
+        },
+        {
+          "page": 19,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 19,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 19,
+          "code": "long_segment_split",
+          "section": "VI. E XPERIMENTAL RESULTS",
+          "char_count": 6449
+        },
+        {
+          "page": 20,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 20,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 20,
+          "code": "long_segment_split",
+          "section": "5) Results and Analysis",
+          "char_count": 4950
+        },
+        {
+          "page": 21,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 21,
+          "code": "footnote_like_lines_retained",
+          "count": 9
+        },
+        {
+          "page": 21,
+          "code": "long_segment_split",
+          "section": "5) Results and Analysis",
+          "char_count": 5207
+        },
+        {
+          "page": 22,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 22,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 22,
+          "code": "long_segment_split",
+          "section": "5) Results and Analysis",
+          "char_count": 4878
+        },
+        {
+          "page": 23,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 23,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 23,
+          "code": "long_segment_split",
+          "section": "2) Results and Analysis",
+          "char_count": 4892
+        },
+        {
+          "page": 24,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 24,
+          "code": "long_segment_split",
+          "section": "2) Results and Analysis",
+          "char_count": 2937
+        },
+        {
+          "page": 24,
+          "code": "long_segment_split",
+          "section": "VII. C ONCLUSION",
+          "char_count": 3512
+        },
+        {
+          "page": 25,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 25,
+          "code": "long_segment_split",
+          "section": "APPENDIX A",
+          "char_count": 2269
+        },
+        {
+          "page": 25,
+          "code": "long_segment_split",
+          "section": "APPENDIX B",
+          "char_count": 1616
+        },
+        {
+          "page": 26,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 26,
+          "code": "footnote_like_lines_retained",
+          "count": 15
+        },
+        {
+          "page": 26,
+          "code": "long_segment_split",
+          "section": "APPENDIX C",
+          "char_count": 3091
+        },
+        {
+          "page": 27,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 27,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 27,
+          "code": "long_segment_split",
+          "section": "APPENDIX C",
+          "char_count": 2182
+        },
+        {
+          "page": 27,
+          "code": "long_segment_split",
+          "section": "APPENDIX D",
+          "char_count": 1816
+        },
+        {
+          "page": 28,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 28,
+          "code": "footnote_like_lines_retained",
+          "count": 5
+        },
+        {
+          "page": 28,
+          "code": "long_segment_split",
+          "section": "APPENDIX D",
+          "char_count": 4744
+        },
+        {
+          "page": 29,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 29,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 29,
+          "code": "long_segment_split",
+          "section": "APPENDIX E",
+          "char_count": 2603
+        },
+        {
+          "page": 29,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 3645
+        },
+        {
+          "page": 30,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 30,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 7497
+        }
+      ],
+      "page_record_count": 30
+    },
+    {
+      "paper_id": "paper-011",
+      "pdf_path": "data\\raw\\papers\\paper-011.pdf",
+      "status": "success",
+      "page_count": 19,
+      "chunk_count": 71,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 2153
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 3502
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "2 Calibration Set and Coverage Guarantees",
+          "char_count": 1420
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "2.1 Calibration set and scaling factor",
+          "char_count": 3580
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "2.2 Continuum coverage guarantee",
+          "char_count": 3878
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "2.3 Discrete coverage guarantee",
+          "char_count": 2857
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "3 Function-Valued Split Conformal Calibration",
+          "char_count": 1228
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "3 Function-Valued Split Conformal Calibration",
+          "char_count": 2310
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "4 Numerical Experiments",
+          "char_count": 1633
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "4 Numerical Experiments",
+          "char_count": 4157
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "5 Conclusion",
+          "char_count": 1866
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3368
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3880
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3135
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 4070
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3560
+        },
+        {
+          "page": 14,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3182
+        },
+        {
+          "page": 15,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3936
+        },
+        {
+          "page": 16,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3300
+        },
+        {
+          "page": 17,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 17,
+          "code": "footnote_like_lines_retained",
+          "count": 11
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2004
+        },
+        {
+          "page": 18,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 18,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 18,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 1503
+        },
+        {
+          "page": 19,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        }
+      ],
+      "page_record_count": 19
+    },
+    {
+      "paper_id": "paper-012",
+      "pdf_path": "data\\raw\\papers\\paper-012.pdf",
+      "status": "success",
+      "page_count": 11,
+      "chunk_count": 54,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 2112
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 2735
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 5980
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 5348
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 2692
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "3 Known Weights",
+          "char_count": 1835
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "3.1 General Weighted Recursion",
+          "char_count": 3247
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "3.1 General Weighted Recursion",
+          "char_count": 2924
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "3.3 Weighted RecursiveCopeland",
+          "char_count": 3614
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "4 Identical Weights",
+          "char_count": 3571
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "5 Normalized Weights",
+          "char_count": 3238
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "5 Normalized Weights",
+          "char_count": 1382
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "6 Conclusion",
+          "char_count": 1399
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 1348
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2892
+        }
+      ],
+      "page_record_count": 11
+    },
+    {
+      "paper_id": "paper-013",
+      "pdf_path": "data\\raw\\papers\\paper-013.pdf",
+      "status": "success",
+      "page_count": 13,
+      "chunk_count": 85,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 1730
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 3104
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 2358
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "2.1 Interactive Control Through Semantic",
+          "char_count": 1655
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "2.5 Cross-Model Agreement as an Audit",
+          "char_count": 2723
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "3.2 Stimuli and Rendering",
+          "char_count": 1865
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "3.2 Stimuli and Rendering",
+          "char_count": 1452
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "3.4 Probe Design",
+          "char_count": 2268
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "3.5 Directions and Projection",
+          "char_count": 1873
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "3.6 Cross-Model Convergence",
+          "char_count": 2749
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "3.7 Variation-Subspace Alignment",
+          "char_count": 1787
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "4.1 Convergence across tiers",
+          "char_count": 1756
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "4.2 Convergence depends on both the axis and",
+          "char_count": 2292
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "4.3 Alignment with shape variation",
+          "char_count": 3032
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "4.3 Alignment with shape variation",
+          "char_count": 1493
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "4.4 Robustness to encoders and prompts",
+          "char_count": 1204
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "4.4 Robustness to encoders and prompts",
+          "char_count": 1857
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "5.1 From audit to interface",
+          "char_count": 2333
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "7 Conclusion",
+          "char_count": 2093
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 9485
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 6455
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2736
+        }
+      ],
+      "page_record_count": 13
+    },
+    {
+      "paper_id": "paper-014",
+      "pdf_path": "data\\raw\\papers\\paper-014.pdf",
+      "status": "success",
+      "page_count": 10,
+      "chunk_count": 53,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "ABSTRACT",
+          "char_count": 1493
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 2043
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 3078
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "2 Related Work",
+          "char_count": 2332
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "2 Related Work",
+          "char_count": 2287
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "3 Design Principles",
+          "char_count": 3150
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "3 Design Principles",
+          "char_count": 4165
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "4 System Design",
+          "char_count": 3539
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "4 System Design",
+          "char_count": 4513
+        },
+        {
+          "page": 7,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "4 System Design",
+          "char_count": 4854
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "6 Case Studies",
+          "char_count": 5021
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "6 Case Studies",
+          "char_count": 1223
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "7 Discussion",
+          "char_count": 2351
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "8 Conclusion",
+          "char_count": 1370
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2973
+        }
+      ],
+      "page_record_count": 10
+    },
+    {
+      "paper_id": "paper-015",
+      "pdf_path": "data\\raw\\papers\\paper-015.pdf",
+      "status": "success",
+      "page_count": 17,
+      "chunk_count": 78,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 1210
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 3574
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 5199
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 5803
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 5513
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 4456
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "Results",
+          "char_count": 1273
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "Results",
+          "char_count": 4683
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "Results",
+          "char_count": 1963
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "Related Work",
+          "char_count": 3586
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 5424
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3482
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "1) A domain-specific language (DSL) as a",
+          "char_count": 3032
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "footnote_like_lines_retained",
+          "count": 5
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "1) A domain-specific language (DSL) as a",
+          "char_count": 2958
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "1) A domain-specific language (DSL) as a",
+          "char_count": 4730
+        },
+        {
+          "page": 13,
+          "code": "footnote_like_lines_retained",
+          "count": 4
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "1) A domain-specific language (DSL) as a",
+          "char_count": 2389
+        },
+        {
+          "page": 14,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "1) A domain-specific language (DSL) as a",
+          "char_count": 1652
+        },
+        {
+          "page": 15,
+          "code": "footnote_like_lines_retained",
+          "count": 5
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "1) A domain-specific language (DSL) as a",
+          "char_count": 2767
+        },
+        {
+          "page": 16,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 16,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "1) A domain-specific language (DSL) as a",
+          "char_count": 3390
+        },
+        {
+          "page": 17,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 17,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        }
+      ],
+      "page_record_count": 17
+    },
+    {
+      "paper_id": "paper-016",
+      "pdf_path": "data\\raw\\papers\\paper-016.pdf",
+      "status": "success",
+      "page_count": 24,
+      "chunk_count": 142,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 1816
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "I. INTRODUCTION",
+          "char_count": 3273
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "I. INTRODUCTION",
+          "char_count": 4017
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "II. EXECUTION-EDITSAFETY",
+          "char_count": 2150
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "III. IMPLICATIONS OFEXECUTION-EDITSAFETY",
+          "char_count": 3713
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "IV. MODEL ANDSECURITYOBJECTIVE",
+          "char_count": 5251
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "IV. MODEL ANDSECURITYOBJECTIVE",
+          "char_count": 6049
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "IV. MODEL ANDSECURITYOBJECTIVE",
+          "char_count": 6426
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "V. EXACTCHECKING OFEXECUTIONEDITS",
+          "char_count": 4998
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "V. EXACTCHECKING OFEXECUTIONEDITS",
+          "char_count": 5885
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "V. EXACTCHECKING OFEXECUTIONEDITS",
+          "char_count": 4550
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "V. EXACTCHECKING OFEXECUTIONEDITS",
+          "char_count": 5121
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "VI. RUNTIMEENFORCEMENT",
+          "char_count": 5117
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "VII. FORMALGUARANTEES",
+          "char_count": 4750
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "VII. FORMALGUARANTEES",
+          "char_count": 1532
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "VIII. MECHANIZATION ANDEXECUTABLEVALIDATION",
+          "char_count": 1263
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "IX. RELATEDWORK",
+          "char_count": 1210
+        },
+        {
+          "page": 14,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "X. CONCLUSION",
+          "char_count": 4608
+        },
+        {
+          "page": 15,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "X. CONCLUSION",
+          "char_count": 4526
+        },
+        {
+          "page": 16,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "1) Edit-rule correctness",
+          "char_count": 2417
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "3) Rechecking after a partial execution",
+          "char_count": 2697
+        },
+        {
+          "page": 17,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "3) Rechecking after a partial execution",
+          "char_count": 5665
+        },
+        {
+          "page": 18,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 18,
+          "code": "long_segment_split",
+          "section": "3) Rechecking after a partial execution",
+          "char_count": 6084
+        },
+        {
+          "page": 19,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 19,
+          "code": "long_segment_split",
+          "section": "3) Rechecking after a partial execution",
+          "char_count": 6179
+        },
+        {
+          "page": 20,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 20,
+          "code": "long_segment_split",
+          "section": "3) Rechecking after a partial execution",
+          "char_count": 4819
+        },
+        {
+          "page": 21,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 21,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 21,
+          "code": "long_segment_split",
+          "section": "3) Rechecking after a partial execution",
+          "char_count": 5491
+        },
+        {
+          "page": 22,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 22,
+          "code": "long_segment_split",
+          "section": "3) Rechecking after a partial execution",
+          "char_count": 6251
+        },
+        {
+          "page": 23,
+          "code": "long_segment_split",
+          "section": "3) Rechecking after a partial execution",
+          "char_count": 3313
+        },
+        {
+          "page": 24,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 24,
+          "code": "long_segment_split",
+          "section": "REFERENCES",
+          "char_count": 5122
+        }
+      ],
+      "page_record_count": 24
+    },
+    {
+      "paper_id": "paper-017",
+      "pdf_path": "data\\raw\\papers\\paper-017.pdf",
+      "status": "success",
+      "page_count": 17,
+      "chunk_count": 87,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 1736
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 2619
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 2889
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "2.1 OOXML Documents",
+          "char_count": 1867
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "2.1 OOXML Documents",
+          "char_count": 1856
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "2.2 OOXML Consumers",
+          "char_count": 1525
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "2.3 Related Work",
+          "char_count": 1873
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "2.4 Threat Model",
+          "char_count": 1433
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "3.1 Knowledge Base and Mining",
+          "char_count": 2958
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "analysis",
+          "char_count": 4071
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "analysis",
+          "char_count": 3407
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "3.3 A Realistic Test Set",
+          "char_count": 1902
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+          "char_count": 4709
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+          "char_count": 2578
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+          "char_count": 3536
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+          "char_count": 5132
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+          "char_count": 4753
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+          "char_count": 5543
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+          "char_count": 1741
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "5 Discussion and Limitations",
+          "char_count": 2482
+        },
+        {
+          "page": 14,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 4372
+        },
+        {
+          "page": 15,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 4078
+        },
+        {
+          "page": 16,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 4094
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2426
+        }
+      ],
+      "page_record_count": 17
+    },
+    {
+      "paper_id": "paper-018",
+      "pdf_path": "data\\raw\\papers\\paper-018.pdf",
+      "status": "success",
+      "page_count": 17,
+      "chunk_count": 52,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 1233
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "footnote_like_lines_retained",
+          "count": 6
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 2756
+        },
+        {
+          "page": 4,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "1.1 Connection to Kakeya sets",
+          "char_count": 2175
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "1.2 Alternative hash families",
+          "char_count": 1737
+        },
+        {
+          "page": 5,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "1.2 Alternative hash families",
+          "char_count": 3468
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "1.2 Alternative hash families",
+          "char_count": 3385
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "3.3 Reduction from linear hashing to density-Kakeya",
+          "char_count": 2345
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "3.4 Reduction from density-Kakeya to linear hashing",
+          "char_count": 1711
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "3.5 Comparison and implications on arithmetic Kakeya bounds",
+          "char_count": 3111
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "4.1 Digesting a construction of Green and Ruzsa",
+          "char_count": 1469
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "4.2 Hashing lower bound",
+          "char_count": 1400
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "5 Lower Bound for Multiply-Shift Hashing",
+          "char_count": 2033
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "6 Discussion and Open Problems",
+          "char_count": 2485
+        },
+        {
+          "page": 15,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 1903
+        },
+        {
+          "page": 16,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 16,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 1660
+        },
+        {
+          "page": 17,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 17,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        }
+      ],
+      "page_record_count": 17
+    },
+    {
+      "paper_id": "paper-019",
+      "pdf_path": "data\\raw\\papers\\paper-019.pdf",
+      "status": "success",
+      "page_count": 14,
+      "chunk_count": 85,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "ABSTRACT",
+          "char_count": 1957
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "1. Introduction",
+          "char_count": 3106
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1. Introduction",
+          "char_count": 3925
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "2.1. COSMOS-Web catalog",
+          "char_count": 2337
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "2.3. Sample selection",
+          "char_count": 4202
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "2.4. External GSMF comparison data",
+          "char_count": 1279
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "3.1. Stacking procedure",
+          "char_count": 1800
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "3.2. Blending correction",
+          "char_count": 3676
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "3.3. Uncertainty estimation",
+          "char_count": 2100
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "4.1. Binned SFR–stellar-mass measurements",
+          "char_count": 2094
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "4.2. Main-sequence functional form",
+          "char_count": 1861
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "5.1. Derivation of quiescent fractions",
+          "char_count": 1898
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "5.2. Mass and redshift dependence",
+          "char_count": 3388
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "6.1. Motivation for the GSMF consistency test",
+          "char_count": 1554
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "6.2. GSMF evolution under different main-sequence",
+          "char_count": 1430
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "7.1. A mass-complete JWST main sequence at high redshift",
+          "char_count": 2183
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "7.1.2. Comparison to recent literature",
+          "char_count": 1273
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "7.1.2. Comparison to recent literature",
+          "char_count": 2558
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "7.2. Implications for stellar-mass growth",
+          "char_count": 1961
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "7.2. Implications for stellar-mass growth",
+          "char_count": 2038
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "7.2. Implications for stellar-mass growth",
+          "char_count": 6102
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2812
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 5452
+        },
+        {
+          "page": 14,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 14,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3839
+        }
+      ],
+      "page_record_count": 14
+    },
+    {
+      "paper_id": "paper-020",
+      "pdf_path": "data\\raw\\papers\\paper-020.pdf",
+      "status": "success",
+      "page_count": 18,
+      "chunk_count": 58,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 1261
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 4330
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 1330
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "Method",
+          "char_count": 2906
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "Method",
+          "char_count": 2234
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "Results",
+          "char_count": 2786
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "Results",
+          "char_count": 2437
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "Results",
+          "char_count": 4392
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "Results",
+          "char_count": 2217
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "Results",
+          "char_count": 2311
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "Results",
+          "char_count": 2235
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2031
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3651
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3635
+        },
+        {
+          "page": 14,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 14,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 15,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 15,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 1422
+        },
+        {
+          "page": 16,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 17,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 18,
+          "code": "two_column_suspected"
+        }
+      ],
+      "page_record_count": 18
+    },
+    {
+      "paper_id": "paper-021",
+      "pdf_path": "data\\raw\\papers\\paper-021.pdf",
+      "status": "success",
+      "page_count": 22,
+      "chunk_count": 93,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 1964
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "I. INTRODUCTION",
+          "char_count": 2402
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "II. SETTING",
+          "char_count": 1729
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "III. ALGORITHM",
+          "char_count": 2773
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "0. A special case",
+          "char_count": 1467
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "0. A special case",
+          "char_count": 4916
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "0. A special case",
+          "char_count": 4014
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "0. A special case",
+          "char_count": 5233
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "0. A special case",
+          "char_count": 4902
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "V. COMBINING F ASHIONPOP LOSS AND",
+          "char_count": 3071
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "VI. DISCUSSION",
+          "char_count": 2498
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "VII. ACKNOWLEDGEMENTS",
+          "char_count": 2286
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "footnote_like_lines_retained",
+          "count": 5
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "VII. ACKNOWLEDGEMENTS",
+          "char_count": 6099
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "VII. ACKNOWLEDGEMENTS",
+          "char_count": 6168
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "VII. ACKNOWLEDGEMENTS",
+          "char_count": 5922
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "VII. ACKNOWLEDGEMENTS",
+          "char_count": 3150
+        },
+        {
+          "page": 14,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "VII. ACKNOWLEDGEMENTS",
+          "char_count": 1558
+        },
+        {
+          "page": 15,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "VII. ACKNOWLEDGEMENTS",
+          "char_count": 1443
+        },
+        {
+          "page": 16,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "VII. ACKNOWLEDGEMENTS",
+          "char_count": 1600
+        },
+        {
+          "page": 17,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "VII. ACKNOWLEDGEMENTS",
+          "char_count": 1640
+        },
+        {
+          "page": 18,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 18,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 18,
+          "code": "long_segment_split",
+          "section": "3. Gyromorph generation strategy",
+          "char_count": 2024
+        },
+        {
+          "page": 19,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 19,
+          "code": "long_segment_split",
+          "section": "1. Generic considerations ong",
+          "char_count": 2770
+        },
+        {
+          "page": 20,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 20,
+          "code": "footnote_like_lines_retained",
+          "count": 4
+        },
+        {
+          "page": 20,
+          "code": "long_segment_split",
+          "section": "2. Special case of the sphere",
+          "char_count": 1619
+        },
+        {
+          "page": 21,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 21,
+          "code": "long_segment_split",
+          "section": "3. Poisson point pattern on the sphere",
+          "char_count": 4081
+        },
+        {
+          "page": 22,
+          "code": "two_column_suspected"
+        }
+      ],
+      "page_record_count": 22
+    },
+    {
+      "paper_id": "paper-022",
+      "pdf_path": "data\\raw\\papers\\paper-022.pdf",
+      "status": "success",
+      "page_count": 15,
+      "chunk_count": 48,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 1370
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 4717
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 4333
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 2677
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 3111
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 2962
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 4241
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "Conclusion",
+          "char_count": 3749
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3311
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3079
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 1375
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 1215
+        }
+      ],
+      "page_record_count": 15
+    },
+    {
+      "paper_id": "paper-023",
+      "pdf_path": "data\\raw\\papers\\paper-023.pdf",
+      "status": "success",
+      "page_count": 18,
+      "chunk_count": 71,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "I. INTRODUCTION",
+          "char_count": 3388
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "II. THE CMQC PROTOCOL",
+          "char_count": 4020
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "II. THE CMQC PROTOCOL",
+          "char_count": 4477
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "II. THE CMQC PROTOCOL",
+          "char_count": 2360
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "III. APPLICA TION OF THE PROTOCOL TO",
+          "char_count": 2489
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "III. APPLICA TION OF THE PROTOCOL TO",
+          "char_count": 2371
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "IV. CONCLUSION",
+          "char_count": 1416
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "ACKNOWLEDGMENTS",
+          "char_count": 2236
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "footnote_like_lines_retained",
+          "count": 4
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "ACKNOWLEDGMENTS",
+          "char_count": 2837
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "footnote_like_lines_retained",
+          "count": 15
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "ACKNOWLEDGMENTS",
+          "char_count": 2021
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "ACKNOWLEDGMENTS",
+          "char_count": 2877
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "footnote_like_lines_retained",
+          "count": 4
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "ACKNOWLEDGMENTS",
+          "char_count": 3754
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "ACKNOWLEDGMENTS",
+          "char_count": 3097
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "ACKNOWLEDGMENTS",
+          "char_count": 2831
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "footnote_like_lines_retained",
+          "count": 5
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "ACKNOWLEDGMENTS",
+          "char_count": 3047
+        },
+        {
+          "page": 14,
+          "code": "footnote_like_lines_retained",
+          "count": 11
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "ACKNOWLEDGMENTS",
+          "char_count": 4281
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "ACKNOWLEDGMENTS",
+          "char_count": 4334
+        },
+        {
+          "page": 16,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 16,
+          "code": "footnote_like_lines_retained",
+          "count": 4
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "ACKNOWLEDGMENTS",
+          "char_count": 2944
+        },
+        {
+          "page": 17,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 17,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "ACKNOWLEDGMENTS",
+          "char_count": 5450
+        },
+        {
+          "page": 18,
+          "code": "two_column_suspected"
+        }
+      ],
+      "page_record_count": 18
+    },
+    {
+      "paper_id": "paper-024",
+      "pdf_path": "data\\raw\\papers\\paper-024.pdf",
+      "status": "success",
+      "page_count": 27,
+      "chunk_count": 67,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 3763
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 3103
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 2405
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "footnote_like_lines_retained",
+          "count": 6
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 2828
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 1671
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 4
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 1994
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 2175
+        },
+        {
+          "page": 8,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 8,
+          "code": "footnote_like_lines_retained",
+          "count": 6
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 1961
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 2427
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 2674
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 2043
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 2584
+        },
+        {
+          "page": 14,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 14,
+          "code": "footnote_like_lines_retained",
+          "count": 4
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 1868
+        },
+        {
+          "page": 15,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 15,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 1701
+        },
+        {
+          "page": 16,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 16,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 1532
+        },
+        {
+          "page": 17,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 17,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 1899
+        },
+        {
+          "page": 18,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 18,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 18,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 3908
+        },
+        {
+          "page": 19,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 19,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 2027
+        },
+        {
+          "page": 20,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 20,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 2118
+        },
+        {
+          "page": 21,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 21,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 2241
+        },
+        {
+          "page": 22,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 22,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 2189
+        },
+        {
+          "page": 23,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 23,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 1738
+        },
+        {
+          "page": 24,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 24,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 1234
+        },
+        {
+          "page": 25,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 25,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 1511
+        },
+        {
+          "page": 26,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 26,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 4861
+        }
+      ],
+      "page_record_count": 27
+    },
+    {
+      "paper_id": "paper-025",
+      "pdf_path": "data\\raw\\papers\\paper-025.pdf",
+      "status": "success",
+      "page_count": 23,
+      "chunk_count": 63,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 1477
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 3273
+        },
+        {
+          "page": 3,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 1731
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "2 Related Literature",
+          "char_count": 1461
+        },
+        {
+          "page": 4,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "2 Related Literature",
+          "char_count": 2088
+        },
+        {
+          "page": 5,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "3 Data and Descriptive Evidence",
+          "char_count": 3685
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "4 Decomposition Framework",
+          "char_count": 1572
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "4 Decomposition Framework",
+          "char_count": 2505
+        },
+        {
+          "page": 9,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "5 Decomposition Results",
+          "char_count": 2396
+        },
+        {
+          "page": 10,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "5 Decomposition Results",
+          "char_count": 2344
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "5 Decomposition Results",
+          "char_count": 2669
+        },
+        {
+          "page": 12,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "5 Decomposition Results",
+          "char_count": 1940
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "6 Sources of Employment Reallocation across Job Types",
+          "char_count": 1264
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "6 Sources of Employment Reallocation across Job Types",
+          "char_count": 2676
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "6 Sources of Employment Reallocation across Job Types",
+          "char_count": 1998
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "7 Conclusion",
+          "char_count": 1267
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2091
+        },
+        {
+          "page": 18,
+          "code": "long_segment_split",
+          "section": "Appendix",
+          "char_count": 2943
+        },
+        {
+          "page": 19,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 19,
+          "code": "long_segment_split",
+          "section": "Appendix",
+          "char_count": 1543
+        },
+        {
+          "page": 20,
+          "code": "footnote_like_lines_retained",
+          "count": 6
+        },
+        {
+          "page": 20,
+          "code": "long_segment_split",
+          "section": "Appendix",
+          "char_count": 2068
+        },
+        {
+          "page": 21,
+          "code": "footnote_like_lines_retained",
+          "count": 6
+        },
+        {
+          "page": 21,
+          "code": "long_segment_split",
+          "section": "Appendix",
+          "char_count": 2076
+        },
+        {
+          "page": 22,
+          "code": "footnote_like_lines_retained",
+          "count": 6
+        },
+        {
+          "page": 22,
+          "code": "long_segment_split",
+          "section": "Appendix",
+          "char_count": 1373
+        },
+        {
+          "page": 23,
+          "code": "footnote_like_lines_retained",
+          "count": 6
+        },
+        {
+          "page": 23,
+          "code": "long_segment_split",
+          "section": "Appendix",
+          "char_count": 1381
+        }
+      ],
+      "page_record_count": 23
+    },
+    {
+      "paper_id": "paper-026",
+      "pdf_path": "data\\raw\\papers\\paper-026.pdf",
+      "status": "success",
+      "page_count": 24,
+      "chunk_count": 93,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 2620
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1.1 The green growth contradiction",
+          "char_count": 3464
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "1.2 The monetary root cause",
+          "char_count": 1954
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "1.3 The central claim and article structure",
+          "char_count": 1861
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "1.4 Empirical and intellectual urgency",
+          "char_count": 1311
+        },
+        {
+          "page": 5,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "1.4 Empirical and intellectual urgency",
+          "char_count": 3501
+        },
+        {
+          "page": 6,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "1.4 Empirical and intellectual urgency",
+          "char_count": 3414
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "1.4 Empirical and intellectual urgency",
+          "char_count": 3581
+        },
+        {
+          "page": 8,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "1.4 Empirical and intellectual urgency",
+          "char_count": 3101
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "1.4 Empirical and intellectual urgency",
+          "char_count": 1330
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "3.1 The five bundled functions of interest",
+          "char_count": 1390
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "3.1 The five bundled functions of interest",
+          "char_count": 3152
+        },
+        {
+          "page": 11,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "3.1 The five bundled functions of interest",
+          "char_count": 1404
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "4.1 Formal definition",
+          "char_count": 2083
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "4.2 The three-level nested architecture of the PRR system",
+          "char_count": 3315
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "4.2 The three-level nested architecture of the PRR system",
+          "char_count": 3719
+        },
+        {
+          "page": 14,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "4.5 Comparison with existing alternatives",
+          "char_count": 2722
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "5.3 Governance architecture of distributed polycentric techno-economic bodies",
+          "char_count": 1370
+        },
+        {
+          "page": 17,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "5.5 The transition pathway",
+          "char_count": 1250
+        },
+        {
+          "page": 19,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 20,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 20,
+          "code": "long_segment_split",
+          "section": "7.1 Main conclusions",
+          "char_count": 1377
+        },
+        {
+          "page": 21,
+          "code": "long_segment_split",
+          "section": "7.3 Future research",
+          "char_count": 2128
+        },
+        {
+          "page": 22,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 1734
+        },
+        {
+          "page": 23,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2036
+        },
+        {
+          "page": 24,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 1618
+        }
+      ],
+      "page_record_count": 24
+    },
+    {
+      "paper_id": "paper-027",
+      "pdf_path": "data\\raw\\papers\\paper-027.pdf",
+      "status": "success",
+      "page_count": 22,
+      "chunk_count": 105,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "ABSTRACT",
+          "char_count": 2100
+        },
+        {
+          "page": 2,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "ABSTRACT",
+          "char_count": 2085
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1. Introduction",
+          "char_count": 1883
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "1. Introduction",
+          "char_count": 4627
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "2. Sectoral outlook in Türkiye",
+          "char_count": 3674
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "3. Literature review",
+          "char_count": 4728
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "3. Literature review",
+          "char_count": 5084
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "3. Literature review",
+          "char_count": 5372
+        },
+        {
+          "page": 8,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "4.1. Model specification and data",
+          "char_count": 3750
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "4.1. Model specification and data",
+          "char_count": 2569
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "4.2. Unit root test",
+          "char_count": 1889
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "4.2. Unit root test",
+          "char_count": 2202
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "4.3. Cointegration test",
+          "char_count": 2244
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "4.3. Cointegration test",
+          "char_count": 1957
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "4.5. Robustness check",
+          "char_count": 1376
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "5. Empirical findings",
+          "char_count": 1601
+        },
+        {
+          "page": 13,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "5. Empirical findings",
+          "char_count": 2895
+        },
+        {
+          "page": 14,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "5. Empirical findings",
+          "char_count": 3395
+        },
+        {
+          "page": 15,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "6. Robustness check",
+          "char_count": 2077
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "7. Discussion",
+          "char_count": 4956
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "7. Discussion",
+          "char_count": 1882
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "8. Conclusion",
+          "char_count": 3274
+        },
+        {
+          "page": 18,
+          "code": "long_segment_split",
+          "section": "8. Conclusion",
+          "char_count": 4006
+        },
+        {
+          "page": 19,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 4240
+        },
+        {
+          "page": 20,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 4569
+        },
+        {
+          "page": 21,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 21,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 4574
+        },
+        {
+          "page": 22,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3961
+        }
+      ],
+      "page_record_count": 22
+    },
+    {
+      "paper_id": "paper-028",
+      "pdf_path": "data\\raw\\papers\\paper-028.pdf",
+      "status": "success",
+      "page_count": 25,
+      "chunk_count": 97,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 1412
+        },
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 1805
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "Introduction",
+          "char_count": 4207
+        },
+        {
+          "page": 3,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "1 Kinetic description of active chemotacting particles",
+          "char_count": 3689
+        },
+        {
+          "page": 4,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "1 Kinetic description of active chemotacting particles",
+          "char_count": 3643
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "2 Formal derivation of the macroscopic limits",
+          "char_count": 2952
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "2 Formal derivation of the macroscopic limits",
+          "char_count": 2498
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "2.1 A hydrodynamic theory of invasion",
+          "char_count": 1411
+        },
+        {
+          "page": 7,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "2.1 A hydrodynamic theory of invasion",
+          "char_count": 3260
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "2.1 A hydrodynamic theory of invasion",
+          "char_count": 3253
+        },
+        {
+          "page": 9,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "2.3.1 Method of multiple scales",
+          "char_count": 2684
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "2.3.1 Method of multiple scales",
+          "char_count": 2722
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "3 Long-range migration of cell streams and clumps",
+          "char_count": 2685
+        },
+        {
+          "page": 12,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "3.1 Summary of the model",
+          "char_count": 1956
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "3.2 Numerical Results",
+          "char_count": 3612
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "3.2 Numerical Results",
+          "char_count": 4124
+        },
+        {
+          "page": 15,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 15,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "3.2 Numerical Results",
+          "char_count": 3868
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "3.2 Numerical Results",
+          "char_count": 4298
+        },
+        {
+          "page": 17,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 17,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "3.2 Numerical Results",
+          "char_count": 3435
+        },
+        {
+          "page": 18,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 18,
+          "code": "long_segment_split",
+          "section": "3.2 Numerical Results",
+          "char_count": 2960
+        },
+        {
+          "page": 19,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 19,
+          "code": "long_segment_split",
+          "section": "3.2 Numerical Results",
+          "char_count": 2632
+        },
+        {
+          "page": 20,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 20,
+          "code": "long_segment_split",
+          "section": "3.2 Numerical Results",
+          "char_count": 2793
+        },
+        {
+          "page": 21,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 21,
+          "code": "long_segment_split",
+          "section": "3.2 Numerical Results",
+          "char_count": 3096
+        },
+        {
+          "page": 22,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 22,
+          "code": "long_segment_split",
+          "section": "3.2 Numerical Results",
+          "char_count": 2510
+        },
+        {
+          "page": 23,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 3337
+        },
+        {
+          "page": 24,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 4061
+        },
+        {
+          "page": 25,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 1260
+        }
+      ],
+      "page_record_count": 25
+    },
+    {
+      "paper_id": "paper-029",
+      "pdf_path": "data\\raw\\papers\\paper-029.pdf",
+      "status": "success",
+      "page_count": 21,
+      "chunk_count": 95,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Front Matter",
+          "char_count": 3892
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 3375
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "2.1 Eye-Tracking-Based Reading Technologies",
+          "char_count": 1685
+        },
+        {
+          "page": 3,
+          "code": "long_segment_split",
+          "section": "2.2 Automated Reading Gaze Correction",
+          "char_count": 2278
+        },
+        {
+          "page": 4,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "2.2 Automated Reading Gaze Correction",
+          "char_count": 3718
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "footnote_like_lines_retained",
+          "count": 9
+        },
+        {
+          "page": 5,
+          "code": "long_segment_split",
+          "section": "3.4 Context and transition matrix",
+          "char_count": 1352
+        },
+        {
+          "page": 6,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "3.4 Context and transition matrix",
+          "char_count": 1304
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "4 Methods",
+          "char_count": 2143
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "4 Methods",
+          "char_count": 2895
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "4.3 Parameter choice and analysis design",
+          "char_count": 1660
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "5.1 Parameter Analysis",
+          "char_count": 1243
+        },
+        {
+          "page": 9,
+          "code": "footnote_like_lines_retained",
+          "count": 6
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "5.2 Simulation Analysis",
+          "char_count": 2552
+        },
+        {
+          "page": 10,
+          "code": "footnote_like_lines_retained",
+          "count": 6
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "5.2 Simulation Analysis",
+          "char_count": 1611
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "5.3 Real-Time Analysis",
+          "char_count": 1726
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "5.6 Algorithm Analysis",
+          "char_count": 1923
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "6.1 Probabilistic Modeling Perspective",
+          "char_count": 1670
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "6.2 Contrasting CONF-LA to Learning-based Algorithms",
+          "char_count": 2427
+        },
+        {
+          "page": 13,
+          "code": "long_segment_split",
+          "section": "6.3 Extensions and Advancements on the Algorithm",
+          "char_count": 1805
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "6.4 Evaluation and Future Work",
+          "char_count": 2189
+        },
+        {
+          "page": 15,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 4848
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 5627
+        },
+        {
+          "page": 17,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 17,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 4354
+        },
+        {
+          "page": 18,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 18,
+          "code": "footnote_like_lines_retained",
+          "count": 5
+        },
+        {
+          "page": 18,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 2656
+        },
+        {
+          "page": 19,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 19,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 19,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 1999
+        },
+        {
+          "page": 20,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 20,
+          "code": "footnote_like_lines_retained",
+          "count": 12
+        },
+        {
+          "page": 20,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 1733
+        },
+        {
+          "page": 21,
+          "code": "footnote_like_lines_retained",
+          "count": 3
+        }
+      ],
+      "page_record_count": 21
+    },
+    {
+      "paper_id": "paper-030",
+      "pdf_path": "data\\raw\\papers\\paper-030.pdf",
+      "status": "success",
+      "page_count": 18,
+      "chunk_count": 60,
+      "warnings": [
+        {
+          "page": 1,
+          "code": "long_segment_split",
+          "section": "Abstract",
+          "char_count": 1460
+        },
+        {
+          "page": 2,
+          "code": "long_segment_split",
+          "section": "1 Introduction",
+          "char_count": 3742
+        },
+        {
+          "page": 3,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "2.3 Predictive models and comparative analyses",
+          "char_count": 1441
+        },
+        {
+          "page": 4,
+          "code": "long_segment_split",
+          "section": "2.4 Cross-validation and generalization analyses",
+          "char_count": 1460
+        },
+        {
+          "page": 5,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 5,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 6,
+          "code": "long_segment_split",
+          "section": "3.1 Quantifiability and potency can be predicted from the",
+          "char_count": 2623
+        },
+        {
+          "page": 7,
+          "code": "long_segment_split",
+          "section": "3.2 Predictive information is concentrated in the screening",
+          "char_count": 2369
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "3.2 Predictive information is concentrated in the screening",
+          "char_count": 1559
+        },
+        {
+          "page": 8,
+          "code": "long_segment_split",
+          "section": "3.3 Active but unquantifiable profiles are characterized by",
+          "char_count": 1813
+        },
+        {
+          "page": 9,
+          "code": "long_segment_split",
+          "section": "3.3 Active but unquantifiable profiles are characterized by",
+          "char_count": 1536
+        },
+        {
+          "page": 10,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 10,
+          "code": "long_segment_split",
+          "section": "3.3 Active but unquantifiable profiles are characterized by",
+          "char_count": 2039
+        },
+        {
+          "page": 11,
+          "code": "two_column_suspected"
+        },
+        {
+          "page": 11,
+          "code": "long_segment_split",
+          "section": "3.3 Active but unquantifiable profiles are characterized by",
+          "char_count": 1402
+        },
+        {
+          "page": 12,
+          "code": "footnote_like_lines_retained",
+          "count": 8
+        },
+        {
+          "page": 12,
+          "code": "long_segment_split",
+          "section": "3.4 Chronological evaluation quantifies the profiling-budget",
+          "char_count": 2756
+        },
+        {
+          "page": 13,
+          "code": "footnote_like_lines_retained",
+          "count": 2
+        },
+        {
+          "page": 14,
+          "code": "footnote_like_lines_retained",
+          "count": 1
+        },
+        {
+          "page": 14,
+          "code": "long_segment_split",
+          "section": "3.5 The predictive signal generalizes across assay-mechanism",
+          "char_count": 1953
+        },
+        {
+          "page": 15,
+          "code": "long_segment_split",
+          "section": "4 Discussion",
+          "char_count": 3739
+        },
+        {
+          "page": 16,
+          "code": "long_segment_split",
+          "section": "4 Discussion",
+          "char_count": 3528
+        },
+        {
+          "page": 17,
+          "code": "long_segment_split",
+          "section": "References",
+          "char_count": 1979
+        }
+      ],
+      "page_record_count": 18
+    }
+  ]
+}

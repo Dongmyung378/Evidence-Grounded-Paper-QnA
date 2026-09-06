@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "roadmap_day": 25,
+  "status": "completed_non_production_smoke",
+  "model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+  "data_source": "QASPER train only",
+  "verified_40_used": false,
+  "device": "cpu",
+  "optimizer_steps": 1,
+  "batch_size": 4,
+  "labels": {
+    "positive": 2,
+    "negative": 2
+  },
+  "max_length": 256,
+  "learning_rate": 2e-06,
+  "loss": {
+    "before_step": 2.9285988807678223,
+    "training_step": 2.7564456462860107,
+    "after_step_same_batch": 2.829721450805664
+  },
+  "checkpoint_saved": false,
+  "selected_runtime_model": "pretrained",
+  "decision": "The optimizer path is verified, but a one-step smoke model is not a valid production checkpoint. Keep the measured pretrained reranker until separate training data and a held-out evaluation justify replacement."
+}

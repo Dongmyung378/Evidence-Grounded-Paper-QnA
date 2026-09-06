@@ -1,0 +1,871 @@
+{
+  "schema_version": 1,
+  "roadmap_day": 32,
+  "review_method": "assistant-led semantic comparison; independent human review pending",
+  "review_date": "2026-09-05",
+  "rubric": {
+    "pass": "The answer is materially correct and complete enough, uses the question language, and its citations support the claims.",
+    "partial": "The core answer is supported but a material detail, qualification, number, or comparison is missing.",
+    "fail": "The response falsely abstains, is incorrect or nonresponsive, omits the requested result, or makes an unsupported material claim.",
+    "citation_support": "Pass means the cited text supports the generated claims; not_applicable is used only when no answer or citation was returned."
+  },
+  "provenance": {
+    "manifest": "data/evaluation/day32_review_manifest.json",
+    "blind_model_outputs": "data/evaluation/day32_qna_outputs.json",
+    "manual_labels": "data/evaluation/day32_review_labels.jsonl",
+    "questions": "data/evaluation/questions.jsonl",
+    "verified_gold": "data/evaluation/gold_evidence.jsonl",
+    "gold_loaded_during_generation": false,
+    "configuration": {
+      "retrieval_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+      "generation_config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730",
+      "abstention_config_fingerprint": "fb23fd8573cd263a8488216cf9d799b8deca4c2aaa035b52040d834dabf92929",
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+      "offline": true
+    }
+  },
+  "summary": {
+    "questions_reviewed": 20,
+    "papers": 10,
+    "languages": {
+      "en": 10,
+      "ko": 10
+    },
+    "categories": {
+      "limitation": 5,
+      "factual": 5,
+      "comparison": 5,
+      "numeric": 5
+    },
+    "verdicts": {
+      "pass": 1,
+      "partial": 4,
+      "fail": 15
+    },
+    "strict_pass_rate": 0.05,
+    "pass_or_partial_rate": 0.25,
+    "citation_support": {
+      "pass": 9,
+      "fail": 4,
+      "not_applicable": 7
+    },
+    "language_match": 20,
+    "strict_failure_cases": 15,
+    "false_abstentions": 7,
+    "by_category": {
+      "comparison": {
+        "questions": 5,
+        "pass": 0,
+        "partial": 1,
+        "fail": 4
+      },
+      "factual": {
+        "questions": 5,
+        "pass": 1,
+        "partial": 2,
+        "fail": 2
+      },
+      "limitation": {
+        "questions": 5,
+        "pass": 0,
+        "partial": 1,
+        "fail": 4
+      },
+      "numeric": {
+        "questions": 5,
+        "pass": 0,
+        "partial": 0,
+        "fail": 5
+      }
+    },
+    "by_language": {
+      "en": {
+        "questions": 10,
+        "pass": 1,
+        "partial": 4,
+        "fail": 5
+      },
+      "ko": {
+        "questions": 10,
+        "pass": 0,
+        "partial": 0,
+        "fail": 10
+      }
+    }
+  },
+  "records": [
+    {
+      "question_id": "q-001-en",
+      "paper_id": "paper-001",
+      "question_language": "en",
+      "review_category": "limitation",
+      "question": "What is the main problem addressed in this paper?",
+      "expected": {
+        "gold_answer": "The paper addresses the lack of a structural guarantee that science signals and radio-frequency interference can be separated by rank selection alone in the single-epoch setting.",
+        "gold_page": 2,
+        "gold_section": "Full text section",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "sufficiency": "insufficient",
+        "evidence_ids": [],
+        "cited_pages": [],
+        "abstention_source": "pre_generation_policy",
+        "generation_attempts": 0,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "not_applicable",
+        "language_match": true,
+        "failure_types": [
+          "false_abstention",
+          "threshold_false_negative"
+        ],
+        "notes": "Gold evidence directly answers the question, but the calibrated pre-generation threshold refused it and returned no citation."
+      }
+    },
+    {
+      "question_id": "q-001-ko",
+      "paper_id": "paper-001",
+      "question_language": "ko",
+      "review_category": "limitation",
+      "question": "이 논문에서 다루는 주요 문제는 무엇인가?",
+      "expected": {
+        "gold_answer": "이 논문은 단일 시점 환경에서 rank 선택만으로 과학 신호와 전파 간섭을 분리할 수 있다는 보장이 부족한 문제를 다룬다.",
+        "gold_page": 2,
+        "gold_section": "Full text section",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "sufficiency": "insufficient",
+        "evidence_ids": [],
+        "cited_pages": [],
+        "abstention_source": "pre_generation_policy",
+        "generation_attempts": 0,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "not_applicable",
+        "language_match": true,
+        "failure_types": [
+          "false_abstention",
+          "threshold_false_negative"
+        ],
+        "notes": "Gold 근거가 직접 존재하지만 사전 임계값이 답변 가능 질문을 거부했고 인용도 반환하지 않았다."
+      }
+    },
+    {
+      "question_id": "q-005-en",
+      "paper_id": "paper-002",
+      "question_language": "en",
+      "review_category": "factual",
+      "question": "How does the proposed two-step hyperparameter transfer framework work?",
+      "expected": {
+        "gold_answer": "The framework first transfers learning rates across model widths using a μP adaptation for MoE, MLA, and the Muon optimizer, then extrapolates across token scales with a predictive scaling law.",
+        "gold_page": 1,
+        "gold_section": "Abstract",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "The proposed two-step hyperparameter transfer framework efficiently estimates optimal learning rates for large-scale MoE models, reducing unnecessary computations compared to exhaustive sweeps.",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-01-paper-002-p010-c003",
+          "ev-02-paper-002-p001-c002",
+          "ev-03-paper-002-p008-c004",
+          "ev-04-paper-002-p003-c003",
+          "ev-05-paper-002-p003-c002"
+        ],
+        "cited_pages": [
+          10,
+          1,
+          8,
+          3,
+          3
+        ],
+        "abstention_source": null,
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "partial",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [
+          "missing_method_steps",
+          "incomplete_answer"
+        ],
+        "notes": "The answer states the goal and efficiency benefit, but omits both requested steps: muP width transfer and token-scale scaling-law extrapolation."
+      }
+    },
+    {
+      "question_id": "q-045-ko",
+      "paper_id": "paper-002",
+      "question_language": "ko",
+      "review_category": "comparison",
+      "question": "모델 폭이 달라질 때 학습률 전이와 관련된 주요 결과는 무엇인가?",
+      "expected": {
+        "gold_answer": "주요 결과는 제안된 μP adaptation을 사용하면 폭이 확장된 MoE 모델 사이에서 최적 학습률이 일관되게 전이된다는 것이다.",
+        "gold_page": 1,
+        "gold_section": "Abstract",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "학습률 전이와 관련된 주요 결과는 모델의 학습 성능과 학습률 조정에 대한 효과적인 학습률 전이를 제공합니다.",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-01-paper-002-p004-c002",
+          "ev-02-paper-002-p016-c001",
+          "ev-03-paper-002-p005-c003",
+          "ev-04-paper-002-p006-c001",
+          "ev-05-paper-002-p001-c005"
+        ],
+        "cited_pages": [
+          4,
+          16,
+          5,
+          6,
+          1
+        ],
+        "abstention_source": null,
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [
+          "vague_non_answer",
+          "missing_comparison_result"
+        ],
+        "notes": "근거는 관련되지만 답변이 순환적이고 모호하며, muP 적용 시 폭이 다른 모델 사이에서 최적 학습률이 일관되게 전이된다는 결과를 말하지 않는다."
+      }
+    },
+    {
+      "question_id": "q-007-en",
+      "paper_id": "paper-003",
+      "question_language": "en",
+      "review_category": "factual",
+      "question": "What is the main focus of this paper's review of text summarization?",
+      "expected": {
+        "gold_answer": "The review focuses on transformer-based and large-language-model approaches to automatic text summarization, especially BERT, RoBERTa, and BART.",
+        "gold_page": 3,
+        "gold_section": "Full text section",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "Transformer-based models and large language models (LLMs), specifically BERT, RoBERTa, and BART, are the primary focus of this paper's review of text summarization.",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-02-paper-003-p002-c001",
+          "ev-03-paper-003-p001-c003",
+          "ev-04-paper-003-p002-c003",
+          "ev-05-paper-003-p008-c005"
+        ],
+        "cited_pages": [
+          2,
+          1,
+          2,
+          8
+        ],
+        "abstention_source": null,
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "pass",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [],
+        "notes": "The answer matches the Gold focus on Transformer/LLM summarization and explicitly names BERT, RoBERTa, and BART; the citations support it."
+      }
+    },
+    {
+      "question_id": "q-007-ko",
+      "paper_id": "paper-003",
+      "question_language": "ko",
+      "review_category": "factual",
+      "question": "이 논문이 텍스트 요약을 검토하면서 중점적으로 다루는 내용은 무엇인가?",
+      "expected": {
+        "gold_answer": "이 리뷰는 자동 텍스트 요약에서 Transformer와 대규모 언어 모델 접근법, 특히 BERT, RoBERTa, BART에 중점을 둔다.",
+        "gold_page": 3,
+        "gold_section": "Full text section",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "네, 제공된 논문 근거에서 답을 확인할 수 있습니다.",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-01-paper-003-p001-c002",
+          "ev-02-paper-003-p002-c001",
+          "ev-03-paper-003-p008-c002",
+          "ev-04-paper-003-p003-c004",
+          "ev-05-paper-003-p002-c003"
+        ],
+        "cited_pages": [
+          1,
+          2,
+          8,
+          3,
+          2
+        ],
+        "abstention_source": null,
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "fail",
+        "language_match": true,
+        "failure_types": [
+          "nonresponsive_answer",
+          "missing_factual_content"
+        ],
+        "notes": "'근거에서 확인할 수 있다'는 말만 하고 리뷰의 초점이나 세 모델을 답하지 않아 실질적인 답변과 이를 뒷받침하는 인용 연결이 없다."
+      }
+    },
+    {
+      "question_id": "q-031-en",
+      "paper_id": "paper-004",
+      "question_language": "en",
+      "review_category": "comparison",
+      "question": "What trade-offs between inference speed, memory usage, and accuracy are discussed?",
+      "expected": {
+        "gold_answer": "INT8 inference improves throughput and memory efficiency on CPUs, while the reported trade-off is a possible accuracy cost that is negligible or absent in the evaluated models.",
+        "gold_page": 1,
+        "gold_section": "Abstract",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "sufficiency": "insufficient",
+        "evidence_ids": [],
+        "cited_pages": [],
+        "abstention_source": "pre_generation_policy",
+        "generation_attempts": 0,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "not_applicable",
+        "language_match": true,
+        "failure_types": [
+          "false_abstention",
+          "threshold_false_negative",
+          "comparison_omission"
+        ],
+        "notes": "The paper evidence supports the speed-memory-accuracy trade-off, but the pre-generation policy refused the answer."
+      }
+    },
+    {
+      "question_id": "q-048-ko",
+      "paper_id": "paper-004",
+      "question_language": "ko",
+      "review_category": "numeric",
+      "question": "서버 환경의 INT8 추론에 PyTorch 네이티브 스택을 사용하는 것에 대한 주요 결론은 무엇인가?",
+      "expected": {
+        "gold_answer": "이 작업은 native PyTorch와 TorchAO 도구를 통한 즉시 사용 가능한 배포를 가능하게 하며 최대 5.8배의 throughput 향상을 제공한다.",
+        "gold_page": 1,
+        "gold_section": "Abstract",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "sufficiency": "insufficient",
+        "evidence_ids": [],
+        "cited_pages": [],
+        "abstention_source": "validation_fallback",
+        "generation_attempts": 3,
+        "fallback_used": true
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "not_applicable",
+        "language_match": true,
+        "failure_types": [
+          "false_abstention",
+          "structured_output_validation_failure",
+          "numeric_omission"
+        ],
+        "notes": "모델 출력 검증이 모두 실패해 안전 거부로 전환되었고, 핵심 수치인 최대 5.8배 향상을 답하지 못했다."
+      }
+    },
+    {
+      "question_id": "q-015-en",
+      "paper_id": "paper-005",
+      "question_language": "en",
+      "review_category": "numeric",
+      "question": "What evidence shows that the proposed approach improves continual anomaly detection?",
+      "expected": {
+        "gold_answer": "ContCore achieves state-of-the-art performance across 11 task schedules on MVTecAD and VisA and remains effective in online continual anomaly detection settings.",
+        "gold_page": 14,
+        "gold_section": "Full text section",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "Continued greedy sampling effectively preserves representativeness under strict memory limits.",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-02-paper-005-p001-c004"
+        ],
+        "cited_pages": [
+          1
+        ],
+        "abstention_source": null,
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [
+          "wrong_question_focus",
+          "numeric_omission",
+          "evidence_result_omission"
+        ],
+        "notes": "The response describes a method property instead of the requested performance evidence and omits 11 schedules, MVTecAD, VisA, and the online setting."
+      }
+    },
+    {
+      "question_id": "q-049-ko",
+      "paper_id": "paper-005",
+      "question_language": "ko",
+      "review_category": "limitation",
+      "question": "지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 무엇인가?",
+      "expected": {
+        "gold_answer": "ContCore는 고정 메모리를 유지하고 이론적 근사 보장을 제공하며 지속적 task가 늘어날 때 성능이 급격히 무너지지 않고 점진적으로 저하된다.",
+        "gold_page": 14,
+        "gold_section": "Full text section",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "sufficiency": "insufficient",
+        "evidence_ids": [],
+        "cited_pages": [],
+        "abstention_source": "model",
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "not_applicable",
+        "language_match": true,
+        "failure_types": [
+          "false_abstention",
+          "model_false_refusal",
+          "limitation_omission"
+        ],
+        "notes": "답변 가능한 메모리 효율 결론이 검색되었지만 모델이 insufficient로 잘못 판단해 고정 메모리, 근사 보장, 점진적 저하를 모두 누락했다."
+      }
+    },
+    {
+      "question_id": "q-017-en",
+      "paper_id": "paper-006",
+      "question_language": "en",
+      "review_category": "factual",
+      "question": "How does the paper connect representation learning with process inference?",
+      "expected": {
+        "gold_answer": "The paper connects representation learning to process inference through an observation-to-inference hierarchy that aligns sensing pathways, spatial and temporal support, target variables, and traceable uncertainty.",
+        "gold_page": 1,
+        "gold_section": "Abstract",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "EOFMs support scientifically interpretable inference by connecting EO data with process models, ensuring that the representations are consistent with the observed processes and their associated uncertainties.",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-01-paper-006-p025-c003",
+          "ev-02-paper-006-p005-c001",
+          "ev-03-paper-006-p001-c002",
+          "ev-04-paper-006-p001-c001",
+          "ev-05-paper-006-p006-c001"
+        ],
+        "cited_pages": [
+          25,
+          5,
+          1,
+          1,
+          6
+        ],
+        "abstention_source": null,
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "partial",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [
+          "missing_framework_details",
+          "incomplete_answer"
+        ],
+        "notes": "The answer captures the EO-to-process connection and uncertainty, but omits the named observation-to-inference hierarchy and its spatial/temporal support and target alignment."
+      }
+    },
+    {
+      "question_id": "q-017-ko",
+      "paper_id": "paper-006",
+      "question_language": "ko",
+      "review_category": "factual",
+      "question": "이 논문은 표현 학습과 과정 추론을 어떻게 연결하는가?",
+      "expected": {
+        "gold_answer": "논문은 sensing pathway, 공간·시간적 support, 목표 변수, 추적 가능한 불확실성을 정렬하는 observation-to-inference hierarchy를 통해 표현 학습과 과정 추론을 연결한다.",
+        "gold_page": 1,
+        "gold_section": "Abstract",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "EO 데이터를 통해 지속적인 학습 및 추론의 연결 방법에 대한 이해는 무엇인가요?",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-01-paper-006-p001-c007",
+          "ev-02-paper-006-p001-c001",
+          "ev-03-paper-006-p026-c009",
+          "ev-04-paper-006-p002-c001",
+          "ev-05-paper-006-p002-c002"
+        ],
+        "cited_pages": [
+          1,
+          1,
+          26,
+          2,
+          2
+        ],
+        "abstention_source": null,
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "fail",
+        "language_match": true,
+        "failure_types": [
+          "malformed_non_answer",
+          "question_repetition"
+        ],
+        "notes": "답변 대신 새로운 의문문을 생성했으며 observation-to-inference hierarchy와 핵심 정렬 요소를 설명하지 않는다."
+      }
+    },
+    {
+      "question_id": "q-034-en",
+      "paper_id": "paper-007",
+      "question_language": "en",
+      "review_category": "limitation",
+      "question": "What assumptions are required for the main result about logarithmic Voronoi cells?",
+      "expected": {
+        "gold_answer": "The result is established for one-dimensional algebraic models in the probability simplex, with explicit constructions involving a union of two lines and a cuspidal curve.",
+        "gold_page": 1,
+        "gold_section": "Abstract",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "The main result about logarithmic Voronoi cells requires that the model and the point whose cell we study are defined over Q, so the transcendence appears in the dataspace boundary rather than being inherited from the model point itself.",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-01-paper-007-p002-c001"
+        ],
+        "cited_pages": [
+          2
+        ],
+        "abstention_source": null,
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "partial",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [
+          "scope_omission",
+          "incomplete_answer"
+        ],
+        "notes": "The cited Q-defined construction is a relevant condition, but the answer omits the main scope of one-dimensional algebraic models in the probability simplex and the two explicit constructions."
+      }
+    },
+    {
+      "question_id": "q-034-ko",
+      "paper_id": "paper-007",
+      "question_language": "ko",
+      "review_category": "limitation",
+      "question": "로그 Voronoi cell에 대한 주요 결과를 위해 어떤 가정이 필요한가?",
+      "expected": {
+        "gold_answer": "주요 결과는 probability simplex의 1차원 algebraic model을 대상으로 하며, 두 직선의 합과 cuspidal curve에 대한 명시적 구성을 사용한다.",
+        "gold_page": 1,
+        "gold_section": "Abstract",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "근거에서 직접 확인되는 내용을 한국어로 간결하게 답합니다.",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-01-paper-007-p002-c001",
+          "ev-02-paper-007-p004-c001",
+          "ev-03-paper-007-p001-c004",
+          "ev-04-paper-007-p010-c001",
+          "ev-05-paper-007-p001-c002"
+        ],
+        "cited_pages": [
+          2,
+          4,
+          1,
+          10,
+          1
+        ],
+        "abstention_source": null,
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "fail",
+        "language_match": true,
+        "failure_types": [
+          "placeholder_non_answer",
+          "missing_assumptions"
+        ],
+        "notes": "프롬프트 지시처럼 보이는 문장만 출력하고 1차원 algebraic model, probability simplex, 명시적 구성이라는 가정을 전혀 답하지 않는다."
+      }
+    },
+    {
+      "question_id": "q-041-en",
+      "paper_id": "paper-008",
+      "question_language": "en",
+      "review_category": "numeric",
+      "question": "How is the performance of GOAG evaluated?",
+      "expected": {
+        "gold_answer": "GOAG is evaluated on three dexterous grippers using repeated inference runs and the MultiDex test set, with success rate, efficiency, and diversity reported.",
+        "gold_page": 6,
+        "gold_section": "Experimental Protocols",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "GOAG achieves superior performance on the Multidex dataset compared to other baselines.",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-01-paper-008-p007-c002",
+          "ev-02-paper-008-p006-c005"
+        ],
+        "cited_pages": [
+          7,
+          6
+        ],
+        "abstention_source": null,
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [
+          "wrong_question_focus",
+          "numeric_omission",
+          "protocol_omission"
+        ],
+        "notes": "The response gives a broad performance conclusion rather than how GOAG was evaluated, omitting three grippers, repeated runs, and the success/efficiency/diversity criteria."
+      }
+    },
+    {
+      "question_id": "q-041-ko",
+      "paper_id": "paper-008",
+      "question_language": "ko",
+      "review_category": "comparison",
+      "question": "GOAG의 성능은 어떻게 평가되는가?",
+      "expected": {
+        "gold_answer": "GOAG는 세 종류의 다관절 그리퍼에서 반복 추론과 MultiDex 테스트 세트를 사용해 평가되며, 성공률·효율성·다양성을 보고한다.",
+        "gold_page": 6,
+        "gold_section": "Experimental Protocols",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "sufficiency": "insufficient",
+        "evidence_ids": [],
+        "cited_pages": [],
+        "abstention_source": "model",
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "not_applicable",
+        "language_match": true,
+        "failure_types": [
+          "false_abstention",
+          "model_false_refusal",
+          "comparison_omission"
+        ],
+        "notes": "검색 근거가 있는 평가 절차 질문을 모델이 insufficient로 잘못 거부했다."
+      }
+    },
+    {
+      "question_id": "q-042-en",
+      "paper_id": "paper-009",
+      "question_language": "en",
+      "review_category": "numeric",
+      "question": "How is the Microlensify classifier evaluated on TESS light curves?",
+      "expected": {
+        "gold_answer": "Microlensify is evaluated on TESS Sector 12 light curves from the Eleanor, SPOC, and QLP pipelines, and the paper reports candidate counts after applying cleaning thresholds.",
+        "gold_page": 23,
+        "gold_section": "Evaluation",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "The model was trained on approximately 17,000 simulated microlensing events and a similar number (∼17,500) of real non-microlensing light curves from Sector 12 extracted from Eleanor pipeline. This suggests that the model has been extensively tested and validated against real data sets.",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-01-paper-009-p022-c004",
+          "ev-02-paper-009-p015-c003",
+          "ev-03-paper-009-p004-c002",
+          "ev-04-paper-009-p014-c003",
+          "ev-05-paper-009-p023-c003"
+        ],
+        "cited_pages": [
+          22,
+          15,
+          4,
+          14,
+          23
+        ],
+        "abstention_source": null,
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [
+          "wrong_question_focus",
+          "incomplete_evaluation",
+          "unsupported_inference"
+        ],
+        "notes": "The answer substitutes training-set counts for the requested evaluation protocol, omits the Eleanor/SPOC/QLP coverage and post-cleaning candidate counts, and adds an overly broad validation inference."
+      }
+    },
+    {
+      "question_id": "q-042-ko",
+      "paper_id": "paper-009",
+      "question_language": "ko",
+      "review_category": "numeric",
+      "question": "Microlensify 분류기는 TESS 광도 곡선에서 어떻게 평가되는가?",
+      "expected": {
+        "gold_answer": "Microlensify는 Eleanor, SPOC, QLP 파이프라인의 TESS Sector 12 광도 곡선으로 평가되며, 논문은 정제 기준 적용 후의 후보 수를 보고한다.",
+        "gold_page": 23,
+        "gold_section": "Evaluation",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "Microlensify는 TESS 광도 곡선에서 평가되는 방법으로, TESS 광도 곡선에서의 단일Lens 미세먼지를 파악하는 방법입니다.",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-01-paper-009-p022-c004",
+          "ev-02-paper-009-p004-c002"
+        ],
+        "cited_pages": [
+          22,
+          4
+        ],
+        "abstention_source": null,
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "fail",
+        "language_match": true,
+        "failure_types": [
+          "wrong_question_focus",
+          "mistranslation",
+          "numeric_omission"
+        ],
+        "notes": "평가 방법을 답하지 않고 microlensing을 '미세먼지'로 잘못 표현했으며 Sector 12, 세 파이프라인, 정제 후 후보 수를 누락했다."
+      }
+    },
+    {
+      "question_id": "q-043-en",
+      "paper_id": "paper-010",
+      "question_language": "en",
+      "review_category": "comparison",
+      "question": "What experiments are used to evaluate multi-source distributionally robust graph learning?",
+      "expected": {
+        "gold_answer": "MS-WDRO is evaluated on synthetic benchmarks and the multi-site ABIDE I neuroimaging dataset against seven baselines using graph recovery, sample efficiency, and diagnostic utility.",
+        "gold_page": 19,
+        "gold_section": "Full text section",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "Distributionally robust graph learning frameworks are evaluated using various experiments including synthetic multi-source networks and real multi-site resting-state fMRI cohorts.",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-01-paper-010-p019-c001",
+          "ev-02-paper-010-p018-c007",
+          "ev-03-paper-010-p002-c006",
+          "ev-04-paper-010-p005-c004",
+          "ev-05-paper-010-p002-c003"
+        ],
+        "cited_pages": [
+          19,
+          18,
+          2,
+          5,
+          2
+        ],
+        "abstention_source": null,
+        "generation_attempts": 1,
+        "fallback_used": false
+      },
+      "review": {
+        "verdict": "partial",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [
+          "missing_comparison_details",
+          "incomplete_answer"
+        ],
+        "notes": "The two experiment families are correct, but the answer omits ABIDE I, comparison against seven baselines, and the graph-recovery/sample-efficiency/diagnostic-utility criteria."
+      }
+    },
+    {
+      "question_id": "q-043-ko",
+      "paper_id": "paper-010",
+      "question_language": "ko",
+      "review_category": "comparison",
+      "question": "다중 소스 distributionally robust graph learning을 평가하기 위해 어떤 실험이 사용되는가?",
+      "expected": {
+        "gold_answer": "MS-WDRO는 synthetic benchmark와 multi-site ABIDE I neuroimaging dataset에서 7개 baseline과 비교되며 graph recovery, sample efficiency, diagnostic utility로 평가된다.",
+        "gold_page": 19,
+        "gold_section": "Full text section",
+        "review_status": "verified"
+      },
+      "actual": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "sufficiency": "insufficient",
+        "evidence_ids": [],
+        "cited_pages": [],
+        "abstention_source": "validation_fallback",
+        "generation_attempts": 3,
+        "fallback_used": true
+      },
+      "review": {
+        "verdict": "fail",
+        "citation_support": "not_applicable",
+        "language_match": true,
+        "failure_types": [
+          "false_abstention",
+          "structured_output_validation_failure",
+          "comparison_omission"
+        ],
+        "notes": "유효한 JSON 생성 실패로 안전 거부되어 synthetic/ABIDE I 실험, 7개 baseline, 평가 기준을 모두 답하지 못했다."
+      }
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/evidence-grounded-paper-qna/answer-output.schema.json",
+  "title": "GroundedAnswerOutput",
+  "description": "Provider-neutral Day 29 output contract for a grounded answer or abstention.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "answer",
+    "evidence_ids",
+    "sufficiency",
+    "abstention_reason"
+  ],
+  "properties": {
+    "answer": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    },
+    "evidence_ids": {
+      "type": "array",
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^ev-[0-9]{2}-.+$"
+      }
+    },
+    "sufficiency": {
+      "type": "string",
+      "enum": [
+        "sufficient",
+        "insufficient"
+      ]
+    },
+    "abstention_reason": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "sufficiency": {
+            "const": "sufficient"
+          }
+        },
+        "required": [
+          "sufficiency"
+        ]
+      },
+      "then": {
+        "properties": {
+          "evidence_ids": {
+            "minItems": 1
+          },
+          "abstention_reason": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "sufficiency": {
+            "const": "insufficient"
+          }
+        },
+        "required": [
+          "sufficiency"
+        ]
+      },
+      "then": {
+        "properties": {
+          "evidence_ids": {
+            "maxItems": 0
+          },
+          "abstention_reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  ]
+}

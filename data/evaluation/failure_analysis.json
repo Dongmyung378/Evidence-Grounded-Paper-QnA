@@ -1,0 +1,530 @@
+{
+  "schema_version": 1,
+  "roadmap_day": 19,
+  "review_type": "manual failure analysis grounded in question, gold evidence, and retrieval ranks",
+  "failure_definition": "gold evidence page is outside a retriever's top 5 unique pages",
+  "evaluation_set": "verified-40",
+  "reviewed_cases": 10,
+  "category_counts": {
+    "chunking": 2,
+    "multiple_evidence": 2,
+    "numbers": 3,
+    "terminology": 3
+  },
+  "categories": {
+    "chunking": "청크 경계·길이·추출 잡음으로 핵심 표현이 희석된 사례",
+    "terminology": "질문과 논문 사이 언어·전문용어·약어 불일치 사례",
+    "numbers": "수치·모델명·하드웨어 식별자 중심 근거 사례",
+    "multiple_evidence": "답변 근거가 여러 청크나 페이지에 분산된 사례"
+  },
+  "cases": [
+    {
+      "question_id": "q-049-ko",
+      "paper_id": "paper-005",
+      "language": "ko",
+      "question": "지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 무엇인가?",
+      "gold_page": 14,
+      "gold_section": "Full text section",
+      "gold_evidence_excerpt": "14JUNG ET AL: MEMORY -BOUNDED CONTINUA TION OF GREEDY SAMPLING FOR CAD Sampling Method Overlapping Samples (↑) Average Minimum Distance (↓)Sliced WassersteinDistance (↓)HausdorffDistance (↓) Random 356 1.17 0.0260 2.55 MGS 3933 1.04 0.0014 1.93 Table 10: Comparing of coresets of ContCore and random sampling with respec...",
+      "missed_by": [
+        "bm25",
+        "hybrid_rrf"
+      ],
+      "method_results": {
+        "bm25": {
+          "gold_rank": null,
+          "hit_at_5": false,
+          "predicted_pages_at_5": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "dense": {
+          "gold_rank": 5,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            1,
+            15,
+            17,
+            16,
+            14
+          ]
+        },
+        "hybrid_rrf": {
+          "gold_rank": 8,
+          "hit_at_5": false,
+          "predicted_pages_at_5": [
+            1,
+            3,
+            4,
+            15,
+            17
+          ]
+        }
+      },
+      "category": "chunking",
+      "rationale": "정답이 있는 결론 페이지가 표·그림 캡션과 함께 길고 잡음 많은 청크로 추출되어 핵심 결론 표현이 희석됐다.",
+      "recommended_action": "섹션 경계와 문단 경계를 우선하는 청킹을 검토한다."
+    },
+    {
+      "question_id": "q-005-en",
+      "paper_id": "paper-002",
+      "language": "en",
+      "question": "How does the proposed two-step hyperparameter transfer framework work?",
+      "gold_page": 1,
+      "gold_section": "Abstract",
+      "gold_evidence_excerpt": "Published as a conference paper at COLM 2026 Let’s Scale Step by Step: Compute-Efficient Hyperparameter Transfer for Large-Scale Mixture-of-Experts Nayeon Kim1∗, Hojin Lee2†, Yunju Bak1, Jaesun Park1, Boseop Kim1∗ 1Kakao Corp., 2Upstage AI Abstract Mixture-of-Experts (MoE) architectures significantly expand model capac...",
+      "missed_by": [
+        "bm25"
+      ],
+      "method_results": {
+        "bm25": {
+          "gold_rank": 6,
+          "hit_at_5": false,
+          "predicted_pages_at_5": [
+            3,
+            8,
+            10,
+            2,
+            4
+          ]
+        },
+        "dense": {
+          "gold_rank": 3,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            3,
+            8,
+            1,
+            10,
+            4
+          ]
+        },
+        "hybrid_rrf": {
+          "gold_rank": 5,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            8,
+            3,
+            10,
+            2,
+            1
+          ]
+        }
+      },
+      "category": "chunking",
+      "rationale": "초록의 방법 요약이 여러 청크로 나뉘고 같은 방법명이 본문 여러 페이지에 반복되어 BM25의 정답 페이지가 6위로 밀렸다.",
+      "recommended_action": "초록·결론은 섹션 단위 보존 또는 인접 청크 확장을 검토한다."
+    },
+    {
+      "question_id": "q-005-ko",
+      "paper_id": "paper-002",
+      "language": "ko",
+      "question": "제안된 2단계 하이퍼파라미터 전이 프레임워크는 어떻게 작동하는가?",
+      "gold_page": 1,
+      "gold_section": "Abstract",
+      "gold_evidence_excerpt": "Published as a conference paper at COLM 2026 Let’s Scale Step by Step: Compute-Efficient Hyperparameter Transfer for Large-Scale Mixture-of-Experts Nayeon Kim1∗, Hojin Lee2†, Yunju Bak1, Jaesun Park1, Boseop Kim1∗ 1Kakao Corp., 2Upstage AI Abstract Mixture-of-Experts (MoE) architectures significantly expand model capac...",
+      "missed_by": [
+        "bm25",
+        "dense",
+        "hybrid_rrf"
+      ],
+      "method_results": {
+        "bm25": {
+          "gold_rank": null,
+          "hit_at_5": false,
+          "predicted_pages_at_5": [
+            3,
+            15,
+            7,
+            16,
+            5
+          ]
+        },
+        "dense": {
+          "gold_rank": 9,
+          "hit_at_5": false,
+          "predicted_pages_at_5": [
+            3,
+            13,
+            10,
+            4,
+            2
+          ]
+        },
+        "hybrid_rrf": {
+          "gold_rank": null,
+          "hit_at_5": false,
+          "predicted_pages_at_5": [
+            3,
+            4,
+            2,
+            15,
+            7
+          ]
+        }
+      },
+      "category": "terminology",
+      "rationale": "한국어의 일반적인 프레임워크 표현과 영어 논문의 MoE·MLA·Muon·μP 고유 용어가 직접 대응하지 않아 모든 검색기가 정답 페이지를 상위 5개에 올리지 못했다.",
+      "recommended_action": "다국어 질의 확장과 모델·약어 사전을 검토한다."
+    },
+    {
+      "question_id": "q-001-ko",
+      "paper_id": "paper-001",
+      "language": "ko",
+      "question": "이 논문에서 다루는 주요 문제는 무엇인가?",
+      "gold_page": 2,
+      "gold_section": "Full text section",
+      "gold_evidence_excerpt": "2Kim 2013). This paper does not propose a new algorithm. In- stead, we ask a meta-level question: in the single-epoch regime—a single dynamic spectrum for a fixed baseline and polarization—are the science and interference compo- nents operationally identifiable under any choice of rank? We show that when the science si...",
+      "missed_by": [
+        "dense"
+      ],
+      "method_results": {
+        "bm25": {
+          "gold_rank": 2,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "dense": {
+          "gold_rank": 8,
+          "hit_at_5": false,
+          "predicted_pages_at_5": [
+            12,
+            6,
+            8,
+            13,
+            4
+          ]
+        },
+        "hybrid_rrf": {
+          "gold_rank": 1,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            2,
+            1,
+            4,
+            3,
+            12
+          ]
+        }
+      },
+      "category": "terminology",
+      "rationale": "'주요 문제'라는 한국어 일반 표현이 operational non-identifiability, RFI, subspace overlap이라는 논문의 구체 용어를 충분히 제공하지 않아 dense 순위가 8위였다.",
+      "recommended_action": "질문 의도를 논문 핵심 용어로 확장하는 방식을 검토한다."
+    },
+    {
+      "question_id": "q-017-ko",
+      "paper_id": "paper-006",
+      "language": "ko",
+      "question": "이 논문은 표현 학습과 과정 추론을 어떻게 연결하는가?",
+      "gold_page": 1,
+      "gold_section": "Abstract",
+      "gold_evidence_excerpt": "1 Earth Observation Foundation Models for Terrestrial Ecohydrology: From Representation Learning to Process Inference Yi Yu , Jian Peng , Yucheng Lin , Trevor F. Keenan and Thomas F. A. Bishop Abstract—Earth observation foundation models (EOFMs) are emerging as reusable representation frameworks for data-driven retriev...",
+      "missed_by": [
+        "dense"
+      ],
+      "method_results": {
+        "bm25": {
+          "gold_rank": 1,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "dense": {
+          "gold_rank": null,
+          "hit_at_5": false,
+          "predicted_pages_at_5": [
+            26,
+            28,
+            27,
+            29,
+            30
+          ]
+        },
+        "hybrid_rrf": {
+          "gold_rank": 2,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            2,
+            1,
+            26,
+            28,
+            27
+          ]
+        }
+      },
+      "category": "terminology",
+      "rationale": "한국어의 표현 학습·과정 추론 표현과 영어 초록의 hierarchy·sensing·support·uncertainty 표현 사이 의미 대응이 약해 dense가 10위 안에 들지 못했다.",
+      "recommended_action": "한국어-영어 과학 용어 동의어 확장을 검토한다."
+    },
+    {
+      "question_id": "q-038-ko",
+      "paper_id": "paper-004",
+      "language": "ko",
+      "question": "효율적인 INT8 추론을 평가하기 위해 어떤 실험 설정이 사용되는가?",
+      "gold_page": 1,
+      "gold_section": "Abstract",
+      "gold_evidence_excerpt": "EFFICIENTINT8 INFERENCE OFSMALLNLP MODELS ON SERVERCPUS WITHPYTORCHNATIVESTACK A PREPRINT Weiwen Xia, Yuxin Cui, E Cao Intel Corporation {weiwen.xia,lily.cui,e.cao}@intel.com ABSTRACT Small NLP models, especially BERT-family encoders, remain important in industrial workloads such as classification, ranking, and retriev...",
+      "missed_by": [
+        "bm25"
+      ],
+      "method_results": {
+        "bm25": {
+          "gold_rank": 6,
+          "hit_at_5": false,
+          "predicted_pages_at_5": [
+            4,
+            8,
+            7,
+            3,
+            6
+          ]
+        },
+        "dense": {
+          "gold_rank": 3,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            2,
+            10,
+            1,
+            4,
+            11
+          ]
+        },
+        "hybrid_rrf": {
+          "gold_rank": 2,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            2,
+            1,
+            10,
+            8,
+            7
+          ]
+        }
+      },
+      "category": "numbers",
+      "rationale": "정답 근거가 INT8, FP32, CPU 명칭, 모델명과 같은 숫자·식별자 중심이며 이 항목들이 여러 페이지에 반복되어 BM25 정답 페이지가 6위였다.",
+      "recommended_action": "숫자·모델명·하드웨어 식별자에 대한 필드 가중치를 검토한다."
+    },
+    {
+      "question_id": "q-042-en",
+      "paper_id": "paper-009",
+      "language": "en",
+      "question": "How is the Microlensify classifier evaluated on TESS light curves?",
+      "gold_page": 23,
+      "gold_section": "Evaluation",
+      "gold_evidence_excerpt": "Microlensify reconstructs light curves and predicts the event duration withR2 = 0.97. We tested the trained Microlensify model on Sector 12 light curves from three different TESS pipelines: On ap- proximately 1.5 million Eleanor light curves, the model flagged545objects with classification probability 1.0. On the stric...",
+      "missed_by": [
+        "dense"
+      ],
+      "method_results": {
+        "bm25": {
+          "gold_rank": 1,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            23,
+            5,
+            22,
+            3,
+            4
+          ]
+        },
+        "dense": {
+          "gold_rank": 9,
+          "hit_at_5": false,
+          "predicted_pages_at_5": [
+            14,
+            1,
+            11,
+            4,
+            22
+          ]
+        },
+        "hybrid_rrf": {
+          "gold_rank": 5,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            11,
+            4,
+            5,
+            1,
+            23
+          ]
+        }
+      },
+      "category": "numbers",
+      "rationale": "평가 근거가 관측 섹터, 표본 수, 임계값 등 수치 중심이라 의미 임베딩이 일반 평가 설명보다 정답 페이지를 낮게 평가해 dense 순위가 9위였다.",
+      "recommended_action": "숫자 토큰 보존과 lexical 점수 가중을 검토한다."
+    },
+    {
+      "question_id": "q-045-ko",
+      "paper_id": "paper-002",
+      "language": "ko",
+      "question": "모델 폭이 달라질 때 학습률 전이와 관련된 주요 결과는 무엇인가?",
+      "gold_page": 1,
+      "gold_section": "Abstract",
+      "gold_evidence_excerpt": "Published as a conference paper at COLM 2026 Let’s Scale Step by Step: Compute-Efficient Hyperparameter Transfer for Large-Scale Mixture-of-Experts Nayeon Kim1∗, Hojin Lee2†, Yunju Bak1, Jaesun Park1, Boseop Kim1∗ 1Kakao Corp., 2Upstage AI Abstract Mixture-of-Experts (MoE) architectures significantly expand model capac...",
+      "missed_by": [
+        "dense"
+      ],
+      "method_results": {
+        "bm25": {
+          "gold_rank": 1,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "dense": {
+          "gold_rank": 7,
+          "hit_at_5": false,
+          "predicted_pages_at_5": [
+            8,
+            7,
+            6,
+            16,
+            5
+          ]
+        },
+        "hybrid_rrf": {
+          "gold_rank": 1,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            1,
+            4,
+            3,
+            5,
+            8
+          ]
+        }
+      },
+      "category": "numbers",
+      "rationale": "모델 폭, 학습률, 스케일과 μP 표기가 핵심 단서인데 dense가 정량적 식별자를 충분히 우선하지 않아 7위였다.",
+      "recommended_action": "정량 질의에는 BM25 비중 또는 숫자 일치 보너스를 검토한다."
+    },
+    {
+      "question_id": "q-043-ko",
+      "paper_id": "paper-010",
+      "language": "ko",
+      "question": "다중 소스 distributionally robust graph learning을 평가하기 위해 어떤 실험이 사용되는가?",
+      "gold_page": 19,
+      "gold_section": "Full text section",
+      "gold_evidence_excerpt": "19 seven representative baselines spanning three methodological families: smooth-signal optimization methods, deep-learning- based structure-learning methods, and distributionally robust graph learning methods. Section VI-A reports controlled ex- periments on synthetic multi-source networks, designed to iso- late the e...",
+      "missed_by": [
+        "bm25",
+        "hybrid_rrf"
+      ],
+      "method_results": {
+        "bm25": {
+          "gold_rank": 7,
+          "hit_at_5": false,
+          "predicted_pages_at_5": [
+            1,
+            20,
+            18,
+            30,
+            5
+          ]
+        },
+        "dense": {
+          "gold_rank": 5,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            18,
+            30,
+            1,
+            2,
+            19
+          ]
+        },
+        "hybrid_rrf": {
+          "gold_rank": 8,
+          "hit_at_5": false,
+          "predicted_pages_at_5": [
+            1,
+            18,
+            30,
+            3,
+            5
+          ]
+        }
+      },
+      "category": "multiple_evidence",
+      "rationale": "합성 데이터와 ABIDE 실험, 비교 기준, 평가 지표가 여러 문단·페이지에 분산되어 단일 gold 페이지와 단일 청크 중심 평가에서 hybrid 순위가 8위였다.",
+      "recommended_action": "인접·보완 근거를 묶는 multi-evidence retrieval을 검토한다."
+    },
+    {
+      "question_id": "q-015-en",
+      "paper_id": "paper-005",
+      "language": "en",
+      "question": "What evidence shows that the proposed approach improves continual anomaly detection?",
+      "gold_page": 14,
+      "gold_section": "Full text section",
+      "gold_evidence_excerpt": "14JUNG ET AL: MEMORY -BOUNDED CONTINUA TION OF GREEDY SAMPLING FOR CAD Sampling Method Overlapping Samples (↑) Average Minimum Distance (↓)Sliced WassersteinDistance (↓)HausdorffDistance (↓) Random 356 1.17 0.0260 2.55 MGS 3933 1.04 0.0014 1.93 Table 10: Comparing of coresets of ContCore and random sampling with respec...",
+      "missed_by": [
+        "dense"
+      ],
+      "method_results": {
+        "bm25": {
+          "gold_rank": 2,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            15,
+            14,
+            3,
+            22,
+            2
+          ]
+        },
+        "dense": {
+          "gold_rank": 6,
+          "hit_at_5": false,
+          "predicted_pages_at_5": [
+            6,
+            2,
+            3,
+            1,
+            16
+          ]
+        },
+        "hybrid_rrf": {
+          "gold_rank": 3,
+          "hit_at_5": true,
+          "predicted_pages_at_5": [
+            3,
+            2,
+            14,
+            6,
+            15
+          ]
+        }
+      },
+      "category": "multiple_evidence",
+      "rationale": "개선 근거가 실험 결과와 학습 스케줄 설명, 결론에 분산되어 dense가 개별 결과 페이지를 우선하고 gold 결론 페이지는 6위에 머물렀다.",
+      "recommended_action": "결과와 결론을 연결하는 다중 청크 집계를 검토한다."
+    }
+  ],
+  "limitations": [
+    "40문항·10편의 소규모 평가 세트에 대한 진단이며 일반화 성능 추정은 아니다.",
+    "gold relevance가 단일 페이지 기준이므로 보완 근거 페이지는 오답처럼 집계될 수 있다."
+  ]
+}

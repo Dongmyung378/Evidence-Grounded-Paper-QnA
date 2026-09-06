@@ -1,0 +1,327 @@
+{
+  "schema_version": 1,
+  "roadmap_day": 31,
+  "purpose": "held-out unsupported-question refusal evaluation",
+  "policy": {
+    "status": "calibrated",
+    "config_path": "config/abstention.json",
+    "config_fingerprint": "fb23fd8573cd263a8488216cf9d799b8deca4c2aaa035b52040d834dabf92929",
+    "policy": {
+      "reject_empty_candidates": true,
+      "reject_empty_evidence": true,
+      "minimum_top_reranker_score": -3.0,
+      "comparison": "accept_if_greater_than_or_equal",
+      "normalize_model_abstention": true,
+      "skip_llm_on_pre_generation_rejection": true
+    }
+  },
+  "retrieval_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+  "generation": {
+    "provider": "local_transformers",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730"
+  },
+  "dataset": {
+    "source": "data/evaluation/abstention_questions.jsonl",
+    "evaluation_split": "holdout",
+    "calibration_split_excluded": true
+  },
+  "summary": {
+    "holdout_questions": 10,
+    "holdout_papers": 10,
+    "holdout_languages": {
+      "en": 5,
+      "ko": 5
+    },
+    "holdout_refused": 10,
+    "holdout_refusal_recall": 1.0,
+    "calibration_unsupported_refused": 10,
+    "calibration_unsupported_questions": 10,
+    "answerable_retained": 37,
+    "answerable_questions": 40,
+    "answerable_retention": 0.925,
+    "pre_generation_false_abstentions": [
+      "q-001-en",
+      "q-001-ko",
+      "q-031-en"
+    ],
+    "pre_generation_refused": 9,
+    "model_refused": 1,
+    "validation_fallbacks": 0,
+    "llm_invocations": 1,
+    "runtime_seconds": 25.976
+  },
+  "results": [
+    {
+      "case_id": "abs-test-001-en",
+      "paper_id": "paper-011",
+      "question_language": "en",
+      "question": "What is the boiling point of mercury on Venus according to this paper?",
+      "expected_sufficiency": "insufficient",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "abstention_source": "pre_generation_policy",
+      "llm_skipped": true,
+      "generation_attempts": 0,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -4.804526329040527,
+          "minimum_top_reranker_score": -3.0
+        }
+      },
+      "runtime_seconds": 0.468
+    },
+    {
+      "case_id": "abs-test-002-ko",
+      "paper_id": "paper-012",
+      "question_language": "ko",
+      "question": "이 논문은 임진왜란이 시작된 연도를 언제라고 설명하는가?",
+      "expected_sufficiency": "insufficient",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "검색된 텍스트의 관련도가 낮아 답변을 뒷받침할 수 없습니다."
+      },
+      "abstention_source": "pre_generation_policy",
+      "llm_skipped": true,
+      "generation_attempts": 0,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -6.700106143951416,
+          "minimum_top_reranker_score": -3.0
+        }
+      },
+      "runtime_seconds": 0.218
+    },
+    {
+      "case_id": "abs-test-003-en",
+      "paper_id": "paper-013",
+      "question_language": "en",
+      "question": "What medication dosage does the paper prescribe for type 1 diabetes?",
+      "expected_sufficiency": "insufficient",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "abstention_source": "pre_generation_policy",
+      "llm_skipped": true,
+      "generation_attempts": 0,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -5.9373321533203125,
+          "minimum_top_reranker_score": -3.0
+        }
+      },
+      "runtime_seconds": 0.188
+    },
+    {
+      "case_id": "abs-test-004-ko",
+      "paper_id": "paper-014",
+      "question_language": "ko",
+      "question": "이 논문은 고대 로마 제국의 멸망 원인을 무엇이라고 설명하는가?",
+      "expected_sufficiency": "insufficient",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "검색된 텍스트의 관련도가 낮아 답변을 뒷받침할 수 없습니다."
+      },
+      "abstention_source": "pre_generation_policy",
+      "llm_skipped": true,
+      "generation_attempts": 0,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -6.398677349090576,
+          "minimum_top_reranker_score": -3.0
+        }
+      },
+      "runtime_seconds": 0.186
+    },
+    {
+      "case_id": "abs-test-005-en",
+      "paper_id": "paper-015",
+      "question_language": "en",
+      "question": "Which ingredients does the paper require for baking a chocolate cake?",
+      "expected_sufficiency": "insufficient",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "abstention_source": "pre_generation_policy",
+      "llm_skipped": true,
+      "generation_attempts": 0,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -7.868565082550049,
+          "minimum_top_reranker_score": -3.0
+        }
+      },
+      "runtime_seconds": 0.249
+    },
+    {
+      "case_id": "abs-test-006-ko",
+      "paper_id": "paper-016",
+      "question_language": "ko",
+      "question": "이 논문에서 목성의 위성 수는 몇 개라고 제시하는가?",
+      "expected_sufficiency": "insufficient",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "질문을 뒷받침하는 텍스트 근거가 없습니다."
+      },
+      "abstention_source": "model",
+      "llm_skipped": false,
+      "generation_attempts": 1,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -2.0195086002349854,
+          "minimum_top_reranker_score": -3.0
+        }
+      },
+      "runtime_seconds": 3.98
+    },
+    {
+      "case_id": "abs-test-007-en",
+      "paper_id": "paper-017",
+      "question_language": "en",
+      "question": "What EUR to USD exchange rate does the paper forecast for 2030?",
+      "expected_sufficiency": "insufficient",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "abstention_source": "pre_generation_policy",
+      "llm_skipped": true,
+      "generation_attempts": 0,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -7.075167179107666,
+          "minimum_top_reranker_score": -3.0
+        }
+      },
+      "runtime_seconds": 0.187
+    },
+    {
+      "case_id": "abs-test-008-ko",
+      "paper_id": "paper-018",
+      "question_language": "ko",
+      "question": "이 논문은 독감 예방접종을 어느 계절에 받으라고 권장하는가?",
+      "expected_sufficiency": "insufficient",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "검색된 텍스트의 관련도가 낮아 답변을 뒷받침할 수 없습니다."
+      },
+      "abstention_source": "pre_generation_policy",
+      "llm_skipped": true,
+      "generation_attempts": 0,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -4.501945972442627,
+          "minimum_top_reranker_score": -3.0
+        }
+      },
+      "runtime_seconds": 0.201
+    },
+    {
+      "case_id": "abs-test-009-en",
+      "paper_id": "paper-019",
+      "question_language": "en",
+      "question": "Which ocean route does the paper recommend for a cruise from Sydney to Tokyo?",
+      "expected_sufficiency": "insufficient",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "abstention_source": "pre_generation_policy",
+      "llm_skipped": true,
+      "generation_attempts": 0,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -6.189722061157227,
+          "minimum_top_reranker_score": -3.0
+        }
+      },
+      "runtime_seconds": 0.194
+    },
+    {
+      "case_id": "abs-test-010-ko",
+      "paper_id": "paper-020",
+      "question_language": "ko",
+      "question": "이 논문에서 에베레스트산의 정확한 높이는 몇 미터라고 설명하는가?",
+      "expected_sufficiency": "insufficient",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "검색된 텍스트의 관련도가 낮아 답변을 뒷받침할 수 없습니다."
+      },
+      "abstention_source": "pre_generation_policy",
+      "llm_skipped": true,
+      "generation_attempts": 0,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -4.074822902679443,
+          "minimum_top_reranker_score": -3.0
+        }
+      },
+      "runtime_seconds": 0.193
+    }
+  ]
+}

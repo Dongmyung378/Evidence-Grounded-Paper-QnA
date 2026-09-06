@@ -1,0 +1,5 @@
+{
+  "default_seed": 378,
+  "effective_from_roadmap_day": 33,
+  "policy": "Use 378 for new stochastic experiments and tests. Historical experiment artifacts retain their original seeds. Resource IDs use unseeded UUIDs for uniqueness."
+}

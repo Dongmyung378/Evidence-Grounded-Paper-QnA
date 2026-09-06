@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/evidence-grounded-paper-qna/evidence-object.schema.json",
+  "title": "EvidenceObject",
+  "description": "UI-ready text evidence returned after Day 23 candidate selection.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidence_id",
+    "rank",
+    "paper_id",
+    "page",
+    "section",
+    "chunk_id",
+    "source_page_id",
+    "text",
+    "char_count",
+    "locator",
+    "scores",
+    "source"
+  ],
+  "properties": {
+    "evidence_id": {"type": "string", "minLength": 1},
+    "rank": {"type": "integer", "minimum": 1, "maximum": 5},
+    "paper_id": {"type": "string", "pattern": "^paper-[0-9]{3}$"},
+    "page": {"type": "integer", "minimum": 1},
+    "section": {"type": ["string", "null"]},
+    "chunk_id": {"type": "string", "minLength": 1},
+    "source_page_id": {"type": "string", "minLength": 1},
+    "text": {"type": "string", "minLength": 1},
+    "char_count": {"type": "integer", "minimum": 1},
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["page_label", "section", "chunk_id"],
+      "properties": {
+        "page_label": {"type": "string", "pattern": "^p\\. [1-9][0-9]*$"},
+        "section": {"type": ["string", "null"]},
+        "chunk_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reranker", "hybrid", "pre_rerank_rank", "source_ranks"],
+      "properties": {
+        "reranker": {"type": "number"},
+        "hybrid": {"type": "number"},
+        "pre_rerank_rank": {"type": "integer", "minimum": 1, "maximum": 20},
+        "source_ranks": {
+          "type": "object",
+          "additionalProperties": {"type": "integer", "minimum": 1, "maximum": 20}
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["section_index", "chunk_index"],
+      "properties": {
+        "section_index": {"type": "integer", "minimum": 0},
+        "chunk_index": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

@@ -1,0 +1,1569 @@
+{
+  "schema_version": 1,
+  "roadmap_day": 22,
+  "config": {
+    "embedding_model": "intfloat/multilingual-e5-small",
+    "reranker_model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+    "candidate_source": "equal-weight RRF over BM25 Top-20 and dense Top-20 chunks",
+    "candidate_k": 20,
+    "rrf_k": 60,
+    "fusion_weights": {
+      "bm25": 1.0,
+      "dense": 1.0
+    },
+    "evaluation_top_k": 10,
+    "max_length": 512,
+    "embedding_batch_size": 32,
+    "reranker_batch_size": 8,
+    "embedding_cache": "hit",
+    "ranking_unit": "unique PDF page using the highest-scoring chunk per page"
+  },
+  "evaluation_set": {
+    "name": "verified-40",
+    "questions": 40,
+    "languages": {
+      "en": 20,
+      "ko": 20
+    },
+    "papers": 10,
+    "chunks": 906
+  },
+  "metrics": {
+    "hybrid_top20": {
+      "recall_at_1": 0.35,
+      "recall_at_3": 0.775,
+      "recall_at_5": 0.925,
+      "recall_at_10": 0.975,
+      "mrr": 0.5691666666666666,
+      "questions": 40,
+      "by_language": {
+        "en": {
+          "questions": 20,
+          "recall_at_1": 0.4,
+          "recall_at_3": 0.75,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "mrr": 0.5991666666666666
+        },
+        "ko": {
+          "questions": 20,
+          "recall_at_1": 0.3,
+          "recall_at_3": 0.8,
+          "recall_at_5": 0.85,
+          "recall_at_10": 0.95,
+          "mrr": 0.5391666666666667
+        }
+      }
+    },
+    "hybrid_reranker": {
+      "recall_at_1": 0.375,
+      "recall_at_3": 0.8,
+      "recall_at_5": 0.975,
+      "recall_at_10": 0.975,
+      "mrr": 0.6233333333333333,
+      "questions": 40,
+      "by_language": {
+        "en": {
+          "questions": 20,
+          "recall_at_1": 0.45,
+          "recall_at_3": 0.9,
+          "recall_at_5": 1.0,
+          "recall_at_10": 1.0,
+          "mrr": 0.6891666666666667
+        },
+        "ko": {
+          "questions": 20,
+          "recall_at_1": 0.3,
+          "recall_at_3": 0.7,
+          "recall_at_5": 0.95,
+          "recall_at_10": 0.95,
+          "mrr": 0.5575
+        }
+      }
+    }
+  },
+  "delta_reranker_minus_hybrid_top20": {
+    "all": {
+      "recall_at_1": 0.025,
+      "recall_at_3": 0.025,
+      "recall_at_5": 0.05,
+      "recall_at_10": 0.0,
+      "mrr": 0.054166666667
+    },
+    "by_language": {
+      "en": {
+        "recall_at_1": 0.05,
+        "recall_at_3": 0.15,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "mrr": 0.09
+      },
+      "ko": {
+        "recall_at_1": 0.0,
+        "recall_at_3": -0.1,
+        "recall_at_5": 0.1,
+        "recall_at_10": 0.0,
+        "mrr": 0.018333333333
+      }
+    }
+  },
+  "results": {
+    "hybrid_top20": [
+      {
+        "question_id": "q-001-en",
+        "paper_id": "paper-001",
+        "language": "en",
+        "gold_page": 2,
+        "predicted_pages": [
+          6,
+          8,
+          2,
+          10,
+          11,
+          12,
+          3,
+          4,
+          7,
+          9
+        ],
+        "gold_rank": 3
+      },
+      {
+        "question_id": "q-001-ko",
+        "paper_id": "paper-001",
+        "language": "ko",
+        "gold_page": 2,
+        "predicted_pages": [
+          2,
+          1,
+          4,
+          3,
+          12,
+          6,
+          8,
+          13
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-005-en",
+        "paper_id": "paper-002",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          8,
+          3,
+          10,
+          2,
+          1,
+          4,
+          9,
+          17,
+          14,
+          16
+        ],
+        "gold_rank": 5
+      },
+      {
+        "question_id": "q-005-ko",
+        "paper_id": "paper-002",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          3,
+          4,
+          2,
+          15,
+          7,
+          13,
+          10,
+          16,
+          5,
+          6
+        ],
+        "gold_rank": null
+      },
+      {
+        "question_id": "q-007-en",
+        "paper_id": "paper-003",
+        "language": "en",
+        "gold_page": 3,
+        "predicted_pages": [
+          2,
+          1,
+          9,
+          3,
+          8,
+          6,
+          4,
+          5
+        ],
+        "gold_rank": 4
+      },
+      {
+        "question_id": "q-007-ko",
+        "paper_id": "paper-003",
+        "language": "ko",
+        "gold_page": 3,
+        "predicted_pages": [
+          1,
+          2,
+          3,
+          8,
+          9,
+          6
+        ],
+        "gold_rank": 3
+      },
+      {
+        "question_id": "q-010-en",
+        "paper_id": "paper-004",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          2,
+          1,
+          3,
+          12,
+          11,
+          13,
+          5,
+          9,
+          4,
+          7
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-010-ko",
+        "paper_id": "paper-004",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          2,
+          3,
+          11,
+          13,
+          12,
+          4,
+          5,
+          10
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-011-en",
+        "paper_id": "paper-004",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          2,
+          11,
+          3,
+          4,
+          13,
+          9,
+          12,
+          5
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-011-ko",
+        "paper_id": "paper-004",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          2,
+          1,
+          11,
+          3,
+          13,
+          12,
+          4,
+          7,
+          10,
+          8
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-014-en",
+        "paper_id": "paper-005",
+        "language": "en",
+        "gold_page": 4,
+        "predicted_pages": [
+          4,
+          1,
+          5,
+          14,
+          3,
+          6,
+          2,
+          7,
+          26,
+          11
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-014-ko",
+        "paper_id": "paper-005",
+        "language": "ko",
+        "gold_page": 4,
+        "predicted_pages": [
+          1,
+          4,
+          3,
+          5,
+          11,
+          14,
+          22,
+          17,
+          6
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-015-en",
+        "paper_id": "paper-005",
+        "language": "en",
+        "gold_page": 14,
+        "predicted_pages": [
+          3,
+          2,
+          14,
+          6,
+          15,
+          1,
+          16,
+          22,
+          17,
+          5
+        ],
+        "gold_rank": 3
+      },
+      {
+        "question_id": "q-015-ko",
+        "paper_id": "paper-005",
+        "language": "ko",
+        "gold_page": 14,
+        "predicted_pages": [
+          3,
+          1,
+          14,
+          15,
+          16,
+          17,
+          2,
+          6
+        ],
+        "gold_rank": 3
+      },
+      {
+        "question_id": "q-017-en",
+        "paper_id": "paper-006",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          6,
+          1,
+          2,
+          5,
+          13,
+          22,
+          25,
+          3,
+          18,
+          23
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-017-ko",
+        "paper_id": "paper-006",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          2,
+          1,
+          26,
+          28,
+          27,
+          29
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-021-en",
+        "paper_id": "paper-007",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          2,
+          11,
+          3,
+          10,
+          4,
+          5,
+          6,
+          8
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-021-ko",
+        "paper_id": "paper-007",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          10,
+          1,
+          4,
+          2,
+          11,
+          3,
+          8,
+          7,
+          5
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-029-en",
+        "paper_id": "paper-010",
+        "language": "en",
+        "gold_page": 5,
+        "predicted_pages": [
+          18,
+          2,
+          4,
+          5,
+          3,
+          13,
+          1,
+          24,
+          11,
+          14
+        ],
+        "gold_rank": 4
+      },
+      {
+        "question_id": "q-029-ko",
+        "paper_id": "paper-010",
+        "language": "ko",
+        "gold_page": 5,
+        "predicted_pages": [
+          5,
+          4,
+          30,
+          3,
+          2,
+          1,
+          18,
+          28,
+          14,
+          7
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-031-en",
+        "paper_id": "paper-004",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          8,
+          1,
+          7,
+          2,
+          6,
+          11,
+          5,
+          3,
+          4,
+          13
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-031-ko",
+        "paper_id": "paper-004",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          2,
+          8,
+          11,
+          12,
+          5,
+          7
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-034-en",
+        "paper_id": "paper-007",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          2,
+          10,
+          11,
+          3,
+          8,
+          6,
+          4,
+          9
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-034-ko",
+        "paper_id": "paper-007",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          2,
+          10,
+          11,
+          4,
+          3,
+          8,
+          7,
+          5
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-038-en",
+        "paper_id": "paper-004",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          2,
+          11,
+          4,
+          8,
+          5,
+          9,
+          12,
+          13,
+          6
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-038-ko",
+        "paper_id": "paper-004",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          2,
+          1,
+          10,
+          8,
+          7,
+          11,
+          4,
+          9,
+          3,
+          6
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-039-en",
+        "paper_id": "paper-005",
+        "language": "en",
+        "gold_page": 14,
+        "predicted_pages": [
+          15,
+          2,
+          3,
+          14,
+          6,
+          16,
+          1,
+          17,
+          8,
+          4
+        ],
+        "gold_rank": 4
+      },
+      {
+        "question_id": "q-039-ko",
+        "paper_id": "paper-005",
+        "language": "ko",
+        "gold_page": 14,
+        "predicted_pages": [
+          1,
+          3,
+          2,
+          5,
+          14,
+          15,
+          6,
+          11,
+          8,
+          16
+        ],
+        "gold_rank": 5
+      },
+      {
+        "question_id": "q-041-en",
+        "paper_id": "paper-008",
+        "language": "en",
+        "gold_page": 6,
+        "predicted_pages": [
+          6,
+          7,
+          1,
+          8,
+          4,
+          3,
+          5
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-041-ko",
+        "paper_id": "paper-008",
+        "language": "ko",
+        "gold_page": 6,
+        "predicted_pages": [
+          7,
+          1,
+          6,
+          4,
+          2,
+          3,
+          8
+        ],
+        "gold_rank": 3
+      },
+      {
+        "question_id": "q-042-en",
+        "paper_id": "paper-009",
+        "language": "en",
+        "gold_page": 23,
+        "predicted_pages": [
+          11,
+          4,
+          5,
+          1,
+          23,
+          24,
+          15,
+          14,
+          22,
+          3
+        ],
+        "gold_rank": 5
+      },
+      {
+        "question_id": "q-042-ko",
+        "paper_id": "paper-009",
+        "language": "ko",
+        "gold_page": 23,
+        "predicted_pages": [
+          4,
+          1,
+          23,
+          15,
+          24,
+          11,
+          16,
+          14,
+          3,
+          22
+        ],
+        "gold_rank": 3
+      },
+      {
+        "question_id": "q-043-en",
+        "paper_id": "paper-010",
+        "language": "en",
+        "gold_page": 19,
+        "predicted_pages": [
+          18,
+          1,
+          19,
+          3,
+          2,
+          5,
+          6,
+          20,
+          30,
+          22
+        ],
+        "gold_rank": 3
+      },
+      {
+        "question_id": "q-043-ko",
+        "paper_id": "paper-010",
+        "language": "ko",
+        "gold_page": 19,
+        "predicted_pages": [
+          1,
+          18,
+          30,
+          3,
+          5,
+          2,
+          20,
+          19,
+          29
+        ],
+        "gold_rank": 8
+      },
+      {
+        "question_id": "q-045-en",
+        "paper_id": "paper-002",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          7,
+          16,
+          1,
+          3,
+          6,
+          4,
+          8,
+          17,
+          10,
+          15
+        ],
+        "gold_rank": 3
+      },
+      {
+        "question_id": "q-045-ko",
+        "paper_id": "paper-002",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          4,
+          3,
+          5,
+          8,
+          7,
+          6,
+          16,
+          2
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-048-en",
+        "paper_id": "paper-004",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          2,
+          11,
+          3,
+          4,
+          5,
+          6,
+          13,
+          9,
+          12
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-048-ko",
+        "paper_id": "paper-004",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          2,
+          1,
+          11,
+          3,
+          12,
+          13,
+          4,
+          7,
+          10,
+          5
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-049-en",
+        "paper_id": "paper-005",
+        "language": "en",
+        "gold_page": 14,
+        "predicted_pages": [
+          14,
+          1,
+          15,
+          3,
+          2,
+          6,
+          16,
+          22,
+          10,
+          5
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-049-ko",
+        "paper_id": "paper-005",
+        "language": "ko",
+        "gold_page": 14,
+        "predicted_pages": [
+          1,
+          3,
+          4,
+          15,
+          17,
+          16,
+          2,
+          14
+        ],
+        "gold_rank": 8
+      }
+    ],
+    "hybrid_reranker": [
+      {
+        "question_id": "q-001-en",
+        "paper_id": "paper-001",
+        "language": "en",
+        "gold_page": 2,
+        "predicted_pages": [
+          2,
+          8,
+          11,
+          3,
+          6,
+          7,
+          12,
+          10,
+          4,
+          9
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-001-ko",
+        "paper_id": "paper-001",
+        "language": "ko",
+        "gold_page": 2,
+        "predicted_pages": [
+          1,
+          2,
+          6,
+          3,
+          12,
+          8,
+          4,
+          13
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-005-en",
+        "paper_id": "paper-002",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          10,
+          8,
+          3,
+          2,
+          9,
+          4,
+          16,
+          17,
+          14
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-005-ko",
+        "paper_id": "paper-002",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          10,
+          8,
+          3,
+          4,
+          2,
+          16,
+          18,
+          6,
+          14,
+          13
+        ],
+        "gold_rank": null
+      },
+      {
+        "question_id": "q-007-en",
+        "paper_id": "paper-003",
+        "language": "en",
+        "gold_page": 3,
+        "predicted_pages": [
+          1,
+          2,
+          8,
+          3,
+          9,
+          5,
+          4,
+          6
+        ],
+        "gold_rank": 4
+      },
+      {
+        "question_id": "q-007-ko",
+        "paper_id": "paper-003",
+        "language": "ko",
+        "gold_page": 3,
+        "predicted_pages": [
+          1,
+          2,
+          8,
+          3,
+          6,
+          9
+        ],
+        "gold_rank": 4
+      },
+      {
+        "question_id": "q-010-en",
+        "paper_id": "paper-004",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          2,
+          1,
+          3,
+          12,
+          13,
+          4,
+          9,
+          5,
+          11,
+          7
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-010-ko",
+        "paper_id": "paper-004",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          2,
+          1,
+          10,
+          3,
+          13,
+          12,
+          11,
+          4,
+          5
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-011-en",
+        "paper_id": "paper-004",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          11,
+          2,
+          3,
+          4,
+          12,
+          13,
+          9,
+          5
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-011-ko",
+        "paper_id": "paper-004",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          11,
+          2,
+          3,
+          4,
+          7,
+          12,
+          13,
+          10,
+          8
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-014-en",
+        "paper_id": "paper-005",
+        "language": "en",
+        "gold_page": 4,
+        "predicted_pages": [
+          3,
+          5,
+          4,
+          14,
+          6,
+          1,
+          26,
+          2,
+          7,
+          21
+        ],
+        "gold_rank": 3
+      },
+      {
+        "question_id": "q-014-ko",
+        "paper_id": "paper-005",
+        "language": "ko",
+        "gold_page": 4,
+        "predicted_pages": [
+          3,
+          4,
+          22,
+          5,
+          14,
+          1,
+          6,
+          17,
+          11
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-015-en",
+        "paper_id": "paper-005",
+        "language": "en",
+        "gold_page": 14,
+        "predicted_pages": [
+          14,
+          1,
+          2,
+          22,
+          3,
+          6,
+          16,
+          5,
+          17,
+          15
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-015-ko",
+        "paper_id": "paper-005",
+        "language": "ko",
+        "gold_page": 14,
+        "predicted_pages": [
+          1,
+          14,
+          3,
+          2,
+          6,
+          16,
+          17,
+          15
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-017-en",
+        "paper_id": "paper-006",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          25,
+          1,
+          5,
+          6,
+          4,
+          13,
+          23,
+          3,
+          2,
+          22
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-017-ko",
+        "paper_id": "paper-006",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          26,
+          2,
+          27,
+          28,
+          29
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-021-en",
+        "paper_id": "paper-007",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          2,
+          3,
+          11,
+          5,
+          8,
+          10,
+          4,
+          6
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-021-ko",
+        "paper_id": "paper-007",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          2,
+          4,
+          3,
+          11,
+          8,
+          10,
+          5,
+          7
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-029-en",
+        "paper_id": "paper-010",
+        "language": "en",
+        "gold_page": 5,
+        "predicted_pages": [
+          2,
+          5,
+          1,
+          18,
+          4,
+          3,
+          24,
+          14,
+          13,
+          11
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-029-ko",
+        "paper_id": "paper-010",
+        "language": "ko",
+        "gold_page": 5,
+        "predicted_pages": [
+          2,
+          5,
+          1,
+          4,
+          18,
+          28,
+          3,
+          30,
+          7,
+          14
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-031-en",
+        "paper_id": "paper-004",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          8,
+          2,
+          6,
+          7,
+          11,
+          5,
+          3,
+          13,
+          4
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-031-ko",
+        "paper_id": "paper-004",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          11,
+          2,
+          8,
+          5,
+          12,
+          7
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-034-en",
+        "paper_id": "paper-007",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          2,
+          1,
+          4,
+          10,
+          3,
+          8,
+          6,
+          11,
+          9
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-034-ko",
+        "paper_id": "paper-007",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          2,
+          4,
+          10,
+          1,
+          8,
+          3,
+          11,
+          7,
+          5
+        ],
+        "gold_rank": 4
+      },
+      {
+        "question_id": "q-038-en",
+        "paper_id": "paper-004",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          1,
+          2,
+          9,
+          7,
+          4,
+          12,
+          11,
+          5,
+          6,
+          8
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-038-ko",
+        "paper_id": "paper-004",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          2,
+          1,
+          11,
+          10,
+          8,
+          3,
+          4,
+          7,
+          9,
+          6
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-039-en",
+        "paper_id": "paper-005",
+        "language": "en",
+        "gold_page": 14,
+        "predicted_pages": [
+          3,
+          14,
+          2,
+          13,
+          1,
+          8,
+          16,
+          17,
+          6,
+          15
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-039-ko",
+        "paper_id": "paper-005",
+        "language": "ko",
+        "gold_page": 14,
+        "predicted_pages": [
+          1,
+          16,
+          3,
+          14,
+          2,
+          6,
+          11,
+          8,
+          15,
+          5
+        ],
+        "gold_rank": 4
+      },
+      {
+        "question_id": "q-041-en",
+        "paper_id": "paper-008",
+        "language": "en",
+        "gold_page": 6,
+        "predicted_pages": [
+          7,
+          6,
+          1,
+          3,
+          4,
+          8,
+          5
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-041-ko",
+        "paper_id": "paper-008",
+        "language": "ko",
+        "gold_page": 6,
+        "predicted_pages": [
+          7,
+          6,
+          3,
+          1,
+          2,
+          4,
+          8
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-042-en",
+        "paper_id": "paper-009",
+        "language": "en",
+        "gold_page": 23,
+        "predicted_pages": [
+          22,
+          15,
+          4,
+          14,
+          23,
+          1,
+          11,
+          20,
+          24,
+          5
+        ],
+        "gold_rank": 5
+      },
+      {
+        "question_id": "q-042-ko",
+        "paper_id": "paper-009",
+        "language": "ko",
+        "gold_page": 23,
+        "predicted_pages": [
+          22,
+          15,
+          4,
+          1,
+          23,
+          14,
+          11,
+          20,
+          24,
+          3
+        ],
+        "gold_rank": 5
+      },
+      {
+        "question_id": "q-043-en",
+        "paper_id": "paper-010",
+        "language": "en",
+        "gold_page": 19,
+        "predicted_pages": [
+          19,
+          18,
+          2,
+          5,
+          1,
+          3,
+          6,
+          20,
+          30,
+          22
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-043-ko",
+        "paper_id": "paper-010",
+        "language": "ko",
+        "gold_page": 19,
+        "predicted_pages": [
+          19,
+          18,
+          2,
+          5,
+          1,
+          3,
+          30,
+          20,
+          29
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-045-en",
+        "paper_id": "paper-002",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          7,
+          1,
+          3,
+          16,
+          6,
+          4,
+          10,
+          8,
+          15,
+          17
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-045-ko",
+        "paper_id": "paper-002",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          4,
+          16,
+          5,
+          6,
+          1,
+          7,
+          3,
+          8,
+          2
+        ],
+        "gold_rank": 5
+      },
+      {
+        "question_id": "q-048-en",
+        "paper_id": "paper-004",
+        "language": "en",
+        "gold_page": 1,
+        "predicted_pages": [
+          11,
+          1,
+          2,
+          3,
+          4,
+          12,
+          6,
+          5,
+          13,
+          9
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-048-ko",
+        "paper_id": "paper-004",
+        "language": "ko",
+        "gold_page": 1,
+        "predicted_pages": [
+          2,
+          1,
+          11,
+          3,
+          7,
+          4,
+          13,
+          12,
+          10,
+          5
+        ],
+        "gold_rank": 2
+      },
+      {
+        "question_id": "q-049-en",
+        "paper_id": "paper-005",
+        "language": "en",
+        "gold_page": 14,
+        "predicted_pages": [
+          14,
+          6,
+          1,
+          4,
+          5,
+          2,
+          3,
+          15,
+          16,
+          17
+        ],
+        "gold_rank": 1
+      },
+      {
+        "question_id": "q-049-ko",
+        "paper_id": "paper-005",
+        "language": "ko",
+        "gold_page": 14,
+        "predicted_pages": [
+          14,
+          1,
+          3,
+          4,
+          2,
+          16,
+          17,
+          15
+        ],
+        "gold_rank": 1
+      }
+    ]
+  },
+  "runtime_seconds": 64.254
+}

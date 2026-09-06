@@ -1,0 +1,441 @@
+{
+  "seed": 378,
+  "prompt_version": "compact-v2",
+  "method": "same model, saved retrieved evidence, unchanged pre-generation refusal decisions",
+  "model": {
+    "provider": "local_transformers",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "device": "cuda",
+    "dtype": "float16",
+    "config_path": "config/generation.json",
+    "config_fingerprint": "99e5a39510063edeaeb9f445e0a75d9c1672724335906d4d8870eb6643c05730"
+  },
+  "results": [
+    {
+      "question_id": "q-001-en",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "attempts": [],
+      "seconds": 0.0
+    },
+    {
+      "question_id": "q-001-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "검색된 텍스트의 관련도가 낮아 답변을 뒷받침할 수 없습니다."
+      },
+      "attempts": [],
+      "seconds": 0.0
+    },
+    {
+      "question_id": "q-005-en",
+      "response": {
+        "answer": "The proposed two-step hyperparameter transfer framework works by first adapting µP specifically for MoE architectures, which enables the transfer of optimal learning rates across model widths. Then, it establishes a scaling law that predicts the optimal learning rate as the token budget scales, allowing for extrapolation to trillion-token horizons.",
+        "evidence_ids": [
+          "ev-01-paper-002-p010-c003",
+          "ev-02-paper-002-p001-c002",
+          "ev-03-paper-002-p008-c004",
+          "ev-04-paper-002-p003-c003",
+          "ev-05-paper-002-p003-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "{\n  \"answer\": \"The proposed two-step hyperparameter transfer framework works by first adapting µP specifically for MoE architectures, which enables the transfer of optimal learning rates across model widths. Then, it establishes a scaling law that predicts the optimal learning rate as the token budget scales, allowing for extrapolation to trillion-token horizons.\",\n  \"evidence_ids\": [\"ev-01-paper-002-p010-c003\", \"ev-02-paper-002-p001-c002\", \"ev-03-paper-002-p008-c004\", \"ev-04-paper-002-p003-c003\", \"ev-05-paper-002-p003-c002\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}",
+          "valid": true
+        }
+      ],
+      "seconds": 6.371
+    },
+    {
+      "question_id": "q-045-ko",
+      "response": {
+        "answer": "모델 폭이 달라질 때 학습률 전이와 관련된 주요 결과는 다음과 같습니다.",
+        "evidence_ids": [
+          "ev-01-paper-002-p004-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"모델 폭이 달라질 때 학습률 전이와 관련된 주요 결과는 다음과 같습니다.\",\n  \"evidence_ids\": [\"ev-01-paper-002-p004-c002\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 2.785
+    },
+    {
+      "question_id": "q-007-en",
+      "response": {
+        "answer": "Text summarization",
+        "evidence_ids": [
+          "ev-01-paper-003-p001-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "{\n  \"answer\": \"Text summarization\",\n  \"evidence_ids\": [\"ev-01-paper-003-p001-c002\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}",
+          "valid": true
+        }
+      ],
+      "seconds": 1.936
+    },
+    {
+      "question_id": "q-007-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "Output validation failed."
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"Transformer-based summarization methods are discussed in this study. Specifically, BERT, RoBERTa, and BART are examined.\",\n  \"evidence_ids\": [\"ev-01-paper-003-p001-c002\", \"ev-02-paper-003-p002-c001\", \"ev-03-paper-003-p008-c002\", \"ev-04-paper-003-p003-c004\", \"ev-05-paper-003-p002-c003\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": false,
+          "error": "a Korean question requires a Korean answer"
+        },
+        {
+          "raw": "```json\n{\n  \"answer\": \"Transformer-based summarization methods are discussed in this study. Specifically, BERT, RoBERTa, and BART are examined.\",\n  \"evidence_ids\": [\"ev-01-paper-003-p001-c002\", \"ev-02-paper-003-p002-c001\", \"ev-03-paper-003-p008-c002\", \"ev-04-paper-003-p003-c004\", \"ev-05-paper-003-p002-c003\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": false,
+          "error": "a Korean question requires a Korean answer"
+        },
+        {
+          "raw": "```json\n{\n  \"answer\": \"Transformer-based summarization methods are discussed in this study. Specifically, BERT, RoBERTa, and BART are examined.\",\n  \"evidence_ids\": [\"ev-01-paper-003-p001-c002\", \"ev-02-paper-003-p002-c001\", \"ev-03-paper-003-p008-c002\", \"ev-04-paper-003-p003-c004\", \"ev-05-paper-003-p002-c003\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": false,
+          "error": "a Korean question requires a Korean answer"
+        }
+      ],
+      "seconds": 14.694
+    },
+    {
+      "question_id": "q-031-en",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "attempts": [],
+      "seconds": 0.0
+    },
+    {
+      "question_id": "q-048-ko",
+      "response": {
+        "answer": "서버 환경의 INT8 추론에 PyTorch 네이티브 스택을 사용하는 것에 대한 주요 결론은 훨씬 빠르고 효율적으로 CPU에 인텔 Xeon CPU를 배포할 수 있습니다.",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-01-paper-004-p002-c001",
+          "ev-02-paper-004-p011-c004",
+          "ev-03-paper-004-p001-c002",
+          "ev-04-paper-004-p003-c001",
+          "ev-05-paper-004-p001-c003"
+        ],
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"서버 환경의 INT8 추론에 PyTorch 네이티브 스택을 사용하는 것에 대한 주요 결론은 훨씬 빠르고 효율적으로 CPU에 인텔 Xeon CPU를 배포할 수 있습니다.\",\n  \"sufficiency\": \"sufficient\",\n  \"evidence_ids\": [\"ev-01-paper-004-p002-c001\", \"ev-02-paper-004-p011-c004\", \"ev-03-paper-004-p001-c002\", \"ev-04-paper-004-p003-c001\", \"ev-05-paper-004-p001-c003\"],\n  \"abstention_reason\": \"\"\n}\n```",
+          "valid": false,
+          "error": "a sufficient answer requires abstention_reason=null"
+        },
+        {
+          "raw": "```json\n{\n  \"answer\": \"서버 환경의 INT8 추론에 PyTorch 네이티브 스택을 사용하는 것에 대한 주요 결론은 훨씬 빠르고 효율적으로 CPU에 인텔 Xeon CPU를 배포할 수 있습니다.\",\n  \"sufficiency\": \"sufficient\",\n  \"evidence_ids\": [\"ev-01-paper-004-p002-c001\", \"ev-02-paper-004-p011-c004\", \"ev-03-paper-004-p001-c002\", \"ev-04-paper-004-p003-c001\", \"ev-05-paper-004-p001-c003\"],\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 11.924
+    },
+    {
+      "question_id": "q-015-en",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "Output validation failed."
+      },
+      "attempts": [
+        {
+          "raw": "{\n  \"answer\": \"ContCore, on the other hand, shows the least false positives and predicts the anomaly maps closest to the ground truth comparing with the SOTA baselines.\",\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": \"\"\n}",
+          "valid": false,
+          "error": "answer output fields mismatch; missing=['evidence_ids'], extra=[]"
+        },
+        {
+          "raw": "{\n  \"answer\": \"ContCore, on the other hand, shows the least false positives and predicts the anomaly maps closest to the ground truth comparing with the SOTA baselines.\",\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": []\n}",
+          "valid": false,
+          "error": "answer output fields mismatch; missing=['evidence_ids'], extra=[]"
+        },
+        {
+          "raw": "{\n  \"answer\": \"ContCore, on the other hand, shows the least false positives and predicts the anomaly maps closest to the ground truth comparing with the SOTA baselines.\",\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": []\n}",
+          "valid": false,
+          "error": "answer output fields mismatch; missing=['evidence_ids'], extra=[]"
+        }
+      ],
+      "seconds": 5.694
+    },
+    {
+      "question_id": "q-049-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "Output validation failed."
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 Continue greedy sampling는 메모리 효율성을 유지하면서도 정확한 탐지를 가능하게 합니다. 이 방법은 새로운 테스트 데이터와 현재의 코어 크기 사이에 상호작용하여 메모리를 최소화하고, 이를 통해 메모리 효율성을 유지합니다.\",\n  \"sufficiency\": \"sufficient\",\n  \"evidence_ids\": [\"ev-01-paper-005-p001-c004\", \"ev-02-paper-005-p001-c004\", \"ev-03-paper-005-p003-c001\", \"ev-04-paper-005-p004-c001\", \"ev-05-paper-005-p003-c002\"]\n}\n```",
+          "valid": false,
+          "error": "answer output fields mismatch; missing=['abstention_reason'], extra=[]"
+        },
+        {
+          "raw": "```json\n{\n  \"answer\": \"지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 Continue greedy sampling는 메모리 효율성을 유지하면서도 정확한 탐지를 가능하게 합니다. 이 방법은 새로운 테스트 데이터와 현재의 코어 크기 사이에 상호작용하여 메모리를 최소화하고, 이를 통해 메모리 효율성을 유지합니다.\",\n  \"sufficiency\": \"sufficient\",\n  \"evidence_ids\": [\"ev-01-paper-005-p001-c004\", \"ev-02-paper-005-p001-c004\", \"ev-03-paper-005-p003-c001\", \"ev-04-paper-005-p004-c001\", \"ev-05-paper-005-p003-c002\"]\n}\n```",
+          "valid": false,
+          "error": "answer output fields mismatch; missing=['abstention_reason'], extra=[]"
+        },
+        {
+          "raw": "```json\n{\n  \"answer\": \"지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 Continue greedy sampling는 메모리 효율성을 유지하면서도 정확한 탐지를 가능하게 합니다. 이 방법은 새로운 테스트 데이터와 현재의 코어 크기 사이에 상호작용하여 메모리를 최소화하고, 이를 통해 메모리 효율성을 유지합니다.\",\n  \"sufficiency\": \"sufficient\",\n  \"evidence_ids\": [\"ev-01-paper-005-p001-c004\", \"ev-02-paper-005-p001-c004\", \"ev-03-paper-005-p003-c001\", \"ev-04-paper-005-p004-c001\", \"ev-05-paper-005-p003-c002\"]\n}\n```",
+          "valid": false,
+          "error": "answer output fields mismatch; missing=['abstention_reason'], extra=[]"
+        }
+      ],
+      "seconds": 19.288
+    },
+    {
+      "question_id": "q-017-en",
+      "response": {
+        "answer": "The paper connects representation learning with process inference by establishing an observation-to-inference hierarchy, demonstrating that EOFM relevance depends on target-specific sensing pathways, spatial and temporal support, and traceable uncertainty.",
+        "evidence_ids": [
+          "ev-01-paper-006-p025-c003"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "{\n  \"answer\": \"The paper connects representation learning with process inference by establishing an observation-to-inference hierarchy, demonstrating that EOFM relevance depends on target-specific sensing pathways, spatial and temporal support, and traceable uncertainty.\",\n  \"evidence_ids\": [\"ev-01-paper-006-p025-c003\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": \"\"\n}",
+          "valid": false,
+          "error": "a sufficient answer requires abstention_reason=null"
+        },
+        {
+          "raw": "{\n  \"answer\": \"The paper connects representation learning with process inference by establishing an observation-to-inference hierarchy, demonstrating that EOFM relevance depends on target-specific sensing pathways, spatial and temporal support, and traceable uncertainty.\",\n  \"evidence_ids\": [\"ev-01-paper-006-p025-c003\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}",
+          "valid": true
+        }
+      ],
+      "seconds": 5.955
+    },
+    {
+      "question_id": "q-017-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "Output validation failed."
+      },
+      "attempts": [
+        {
+          "raw": "제공된 논문 근거에서 답을 확인할 수 없습니다.\n\nsufficiency: insufficient\n\nevidence_ids: []",
+          "valid": false,
+          "error": "model response is not valid JSON: Expecting value"
+        },
+        {
+          "raw": "제공된 논문 근거에서 답을 확인할 수 없습니다.\n\nsufficiency: insufficient\n\nevidence_ids: []",
+          "valid": false,
+          "error": "model response is not valid JSON: Expecting value"
+        },
+        {
+          "raw": "제공된 논문 근거에서 답을 확인할 수 없습니다.\n\nsufficiency: insufficient\n\nevidence_ids: []",
+          "valid": false,
+          "error": "model response is not valid JSON: Expecting value"
+        }
+      ],
+      "seconds": 3.54
+    },
+    {
+      "question_id": "q-034-en",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "Output validation failed."
+      },
+      "attempts": [
+        {
+          "raw": "{\n  \"answer\": \"The assumption that the model and the point whose cell we study are defined over Q is necessary.\",\n  \"evidence_ids\": [\"ev-01-paper-007-p002-c001\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": \"The assumption that the model and the point whose cell we study are defined over Q is necessary.\"\n}",
+          "valid": false,
+          "error": "a sufficient answer requires abstention_reason=null"
+        },
+        {
+          "raw": "{\n  \"answer\": \"The assumption that the model and the point whose cell we study are defined over Q is necessary.\",\n  \"evidence_ids\": [\"ev-01-paper-007-p002-c001\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": \"The assumption that the model and the point whose cell we study are defined over Q is necessary.\"\n}",
+          "valid": false,
+          "error": "a sufficient answer requires abstention_reason=null"
+        },
+        {
+          "raw": "{\n  \"answer\": \"The assumption that the model and the point whose cell we study are defined over Q is necessary.\",\n  \"evidence_ids\": [\"ev-01-paper-007-p002-c001\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": \"The assumption that the model and the point whose cell we study are defined over Q is necessary.\"\n}",
+          "valid": false,
+          "error": "a sufficient answer requires abstention_reason=null"
+        }
+      ],
+      "seconds": 9.356
+    },
+    {
+      "question_id": "q-034-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "Output validation failed."
+      },
+      "attempts": [
+        {
+          "raw": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+          "valid": false,
+          "error": "model response is not valid JSON: Expecting value"
+        },
+        {
+          "raw": "{\n    \"answer\": \"로그 Voronoi cell에 대한 주요 결과를 위해 어떤 가정이 필요한가?\",\n    \"evidence_ids\": [],\n    \"sufficiency\": \"insufficient\",\n    \"abstention_reason\": null\n}",
+          "valid": false,
+          "error": "an insufficient answer requires a non-empty abstention_reason"
+        },
+        {
+          "raw": "{\n    \"answer\": \"로그 Voronoi cell에 대한 주요 결과를 위해 어떤 가정이 필요한가?\",\n    \"evidence_ids\": [\"ev-01-paper-007-p002-c001\"],\n    \"sufficiency\": \"sufficient\",\n    \"abstention_reason\": \"제공된 논문 근거에서 답을 확인할 수 없습니다.\"\n}",
+          "valid": false,
+          "error": "a sufficient answer requires abstention_reason=null"
+        }
+      ],
+      "seconds": 7.345
+    },
+    {
+      "question_id": "q-041-en",
+      "response": {
+        "answer": "GOAG is evaluated using the test set of the Multidex dataset (Table II).",
+        "evidence_ids": [
+          "ev-01-paper-008-p007-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "{\n  \"answer\": \"GOAG is evaluated using the test set of the Multidex dataset (Table II).\",\n  \"evidence_ids\": [\"ev-01-paper-008-p007-c002\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}",
+          "valid": true
+        }
+      ],
+      "seconds": 3.187
+    },
+    {
+      "question_id": "q-041-ko",
+      "response": {
+        "answer": "GOAG의 성능은 100번의 인식 실행으로 이루어진다. 이 중 100번의 인식 실행은 각 모델의 인식 시간을 평가한다.",
+        "sufficiency": "sufficient",
+        "evidence_ids": [
+          "ev-01-paper-008-p007-c002"
+        ],
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"GOAG의 성능은 100번의 인식 실행으로 이루어진다. 이 중 100번의 인식 실행은 각 모델의 인식 시간을 평가한다.\",\n  \"sufficiency\": \"sufficient\",\n  \"evidence_ids\": [\"ev-01-paper-008-p007-c002\"],\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 4.446
+    },
+    {
+      "question_id": "q-042-en",
+      "response": {
+        "answer": "The Microlensify classifier is evaluated on TESS light curves using various metrics such as KMTNet event finding algorithm and signal-to-noise ratio and skewness-von Neumann parameter space.",
+        "evidence_ids": [
+          "ev-03-paper-009-p004-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "{\n  \"answer\": \"The Microlensify classifier is evaluated on TESS light curves using various metrics such as KMTNet event finding algorithm and signal-to-noise ratio and skewness-von Neumann parameter space.\",\n  \"evidence_ids\": [\"ev-03-paper-009-p004-c002\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}",
+          "valid": true
+        }
+      ],
+      "seconds": 3.914
+    },
+    {
+      "question_id": "q-042-ko",
+      "response": {
+        "answer": "Microlensify는 TESS 광도 곡선에서 다양한 광도 곡선의 분류기를 평가하는 방법입니다.",
+        "evidence_ids": [
+          "ev-01-paper-009-p022-c004"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"Microlensify는 TESS 광도 곡선에서 다양한 광도 곡선의 분류기를 평가하는 방법입니다.\",\n  \"evidence_ids\": [\"ev-01-paper-009-p022-c004\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 3.721
+    },
+    {
+      "question_id": "q-043-en",
+      "response": {
+        "answer": "Experiments on Synthetic Data",
+        "evidence_ids": [
+          "ev-01-paper-010-p019-c001"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"Experiments on Synthetic Data\",\n  \"evidence_ids\": [\"ev-01-paper-010-p019-c001\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": \"\"\n}\n```",
+          "valid": false,
+          "error": "a sufficient answer requires abstention_reason=null"
+        },
+        {
+          "raw": "```json\n{\n  \"answer\": \"Experiments on Synthetic Data\",\n  \"evidence_ids\": [\"ev-01-paper-010-p019-c001\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 76.332
+    },
+    {
+      "question_id": "q-043-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "Output validation failed."
+      },
+      "attempts": [
+        {
+          "raw": "제공된 논문 근거에서 답을 확인할 수 있습니다. 이는 다중 소스 distributionally robust graph learning를 평가하기 위한 다양한 실험입니다.\n\n데이터 분석 결과:\n- 데이터셋: 다중 소스 신호 생성 시각화 데이터셋\n- 기법: 다중 소스 distributionally robust graph learning\n\n결과:\n- 실험 결과: MS-WDRO는 다중 소스 신호 생성 시각화 데이터셋에서 효과적인 다중 소스 distributionally robust graph learning를 수행하였습니다.\n\n이러한 결과는 다중 소스 distributionally robust graph learning의 성능을 평가하는 데 도움이 되었습니다.",
+          "valid": false,
+          "error": "model response is not valid JSON: Expecting value"
+        },
+        {
+          "raw": "제공된 논문 근거에서 답을 확인할 수 있습니다. 이는 다중 소스 distributionally robust graph learning를 평가하기 위한 다양한 실험입니다.\n\n데이터 분석 결과:\n- 데이터셋: 다중 소스 신호 생성 시각화 데이터셋\n- 기법: 다중 소스 distributionally robust graph learning\n\n결과:\n- 실험 결과: MS-WDRO는 다중 소스 신호 생성 시각화 데이터셋에서 효과적인 다중 소스 distributionally robust graph learning를 수행하였습니다.\n\n이러한 결과는 다중 소스 distributionally robust graph learning의 성능을 평가하는 데 도움이 되었습니다.",
+          "valid": false,
+          "error": "model response is not valid JSON: Expecting value"
+        },
+        {
+          "raw": "제공된 논문 근거에서 답을 확인할 수 있습니다. 이는 다중 소스 distributionally robust graph learning를 평가하기 위한 다양한 실험입니다.\n\n데이터 분석 결과:\n- 데이터셋: 다중 소스 신호 생성 시각화 데이터셋\n- 기법: 다중 소스 distributionally robust graph learning\n\n결과:\n- 실험 결과: MS-WDRO는 다중 소스 신호 생성 시각화 데이터셋에서 효과적인 다중 소스 distributionally robust graph learning를 수행하였습니다.\n\n이러한 결과는 다중 소스 distributionally robust graph learning의 성능을 평가하는 데 도움이 되었습니다.",
+          "valid": false,
+          "error": "model response is not valid JSON: Expecting value"
+        }
+      ],
+      "seconds": 114.371
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "project_evaluation": {
+    "name": "verified-40",
+    "role": "test",
+    "questions": 40,
+    "languages": {
+      "en": 20,
+      "ko": 20
+    },
+    "papers": 10,
+    "leakage_policy": "The project evaluation questions and gold evidence are kept separate from QASPER train/validation/test records."
+  },
+  "qasper_source": {
+    "train": 888,
+    "validation": 281,
+    "test": 416,
+    "role": "source dataset only; not mixed into the project verified-40 evaluation"
+  }
+}

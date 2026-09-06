@@ -1,0 +1,72 @@
+{
+  "roadmap_day": 33,
+  "evaluated_at": "2026-09-06T03:28:33.223273+00:00",
+  "seed": 378,
+  "tests_run": 10,
+  "test_failures": 0,
+  "test_errors": 0,
+  "http_smoke": {
+    "transport": "real TCP HTTP on loopback with Uvicorn",
+    "source_pdf": "data/raw/papers/paper-003.pdf",
+    "source_sha256": "b7c14b197f575310226c1bc6502d72e41c0fe14732b47b2204159a1e6f4b5b8a",
+    "upload_status_code": 201,
+    "analyze_status_code": 202,
+    "upload": {
+      "paper_id": "paper-0fa6e7516fda47f6a8c707a7f4b83b67",
+      "filename": "paper-003.pdf",
+      "size_bytes": 341371,
+      "page_count": 10,
+      "status": "uploaded"
+    },
+    "job": {
+      "job_id": "job-d81a817b242a414688e2488b5a718c93",
+      "paper_id": "paper-0fa6e7516fda47f6a8c707a7f4b83b67",
+      "status": "completed",
+      "stage": "parsing_and_chunking",
+      "seed": 378,
+      "created_at": "2026-09-06T03:28:31.640808+00:00",
+      "updated_at": "2026-09-06T03:28:33.006837+00:00",
+      "page_count": 10,
+      "text_page_count": 10,
+      "chunk_count": 40,
+      "warning_count": 23,
+      "error_code": null,
+      "error_message": null
+    },
+    "observed_states": [
+      "queued",
+      "running",
+      "running",
+      "running",
+      "running",
+      "running",
+      "completed"
+    ],
+    "traceability_passed": true,
+    "duplicate_analyze_reused_job": true,
+    "runtime_seconds": 1.73
+  },
+  "frozen_inputs_unchanged": true,
+  "frozen_input_sha256": {
+    "config/production_retrieval.json": "8ea2043be423b8f5b4ea1bc30d27247cf48c2b5ffc5a8b292da30368d5fdfb51",
+    "config/generation.json": "3b4ee2c8056a373cd99cf5d9766ec4740d2d33b5b8409b24b54b5c4c2d1d961a",
+    "config/abstention.json": "5f6185cccbc70fa2f189be6e38d693fc153bd0ea0015a50cb902d6b9e416478e",
+    "data/processed/chunks.jsonl": "20a7a2b96dfa08e97b4cf2e22bcc6580245b489245be20e72c3a5af43729ac29",
+    "data/processed/pages.jsonl": "71fd9ac0d6f491365576e5e1217a9a4ad5c37ed400a179884e94b9e3b3cb330b",
+    "data/evaluation/questions.jsonl": "b1b9abdb6ca21c383b678cbc8a1588be4a65ea2fbc94cb3534d1a2a4801865fd",
+    "data/evaluation/gold_evidence.jsonl": "3f625564d18419dbf03a83152f836afba3573b8a6fc924c0504c2401c79defa8"
+  },
+  "implementation_sha256": {
+    "app/__init__.py": "7770712f24f99e1cf57ff916a12849fc0134a23f066ebfcc735f3322b0bc8170",
+    "app/main.py": "ba8d565f0517044d0261e2c1c4f47f3fe15dfc3d0c5cf74f455d553d90e0644c",
+    "app/models.py": "7c6e2b995049dbf25525c853404ad39458c3d1343b59ce26edca7206d4df7726",
+    "app/service.py": "27c52a9cfd271c161bf0d5cb16c24f25fd14fe8d48c8b2df94d0bc9160a43cdf",
+    "app/storage.py": "1241b6631c2d8072c077c846e2a7ab39f3e359cd635ad022b88af989307a2798",
+    "tests/test_day33_api.py": "b1f693b4a8358639300aa4deaf16817357d637060cbf15ab20188103289fc53c",
+    "config/reproducibility.json": "c5de04f160fd366e99c13fc205ae7b0b2dc76b6a4a428ef9ab91abc4761acdc4",
+    "scripts/ingest_papers.py": "5179880ce3c87dd3bb0cd1dcc8aae3f79fc06ee41d14702e347929c131d0807b",
+    "scripts/evaluate_day33.py": "4e8d67d1144f8ac7c7a4930b1934139867fd25ce7423b8b2927fce3b6002be40"
+  },
+  "temporary_runtime_removed": true,
+  "scope": "upload registration and parsing/chunking jobs; no retrieval index or Q&A API yet"
+}

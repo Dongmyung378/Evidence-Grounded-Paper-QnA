@@ -1,0 +1,1507 @@
+{
+  "schema_version": 1,
+  "roadmap_days": [
+    23,
+    24
+  ],
+  "purpose": "human-readable answerability review and UI evidence contract verification",
+  "evaluation_note": "Gold pages are included only to verify this demo; they are not pipeline inputs.",
+  "corpus": {
+    "papers": 10,
+    "chunks": 906
+  },
+  "embedding_cache": "hit",
+  "examples": [
+    {
+      "question_id": "q-001-ko",
+      "case_type": "multilingual_success",
+      "summary": "한국어 질문에서 영어 근거를 찾는 대표 성공 사례",
+      "paper_id": "paper-001",
+      "question": "이 논문에서 다루는 주요 문제는 무엇인가?",
+      "question_language": "ko",
+      "gold_page": 2,
+      "gold_candidate_rank": 2,
+      "gold_page_in_evidence": true,
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "candidate_policy": {
+        "candidate_k": 20,
+        "sources": {
+          "bm25": 20,
+          "dense": 20
+        },
+        "fusion": "equal_weight_reciprocal_rank_fusion",
+        "fusion_weights": {
+          "bm25": 1.0,
+          "dense": 1.0
+        },
+        "rrf_k": 60,
+        "reranker_model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+        "embedding_model": "intfloat/multilingual-e5-small"
+      },
+      "evidence_selection": {
+        "input_candidates": 20,
+        "selected": 5,
+        "skipped": {
+          "duplicate_chunk_id": 0,
+          "duplicate_text": 0,
+          "near_duplicate": 0,
+          "page_cap": 0
+        },
+        "policy": {
+          "top_k": 5,
+          "max_per_page": 2,
+          "near_duplicate_metric": "token_3_shingle_jaccard",
+          "near_duplicate_threshold": 0.85
+        }
+      },
+      "candidates": [
+        {
+          "candidate_rank": 1,
+          "chunk_id": "paper-001-p001-c002",
+          "paper_id": "paper-001",
+          "page": 1,
+          "section": "ABSTRACT",
+          "source_page_id": "paper-001-p001",
+          "text_excerpt": "ABSTRACT Low-rank decomposition (singular value decomposition / principal component analysis based) is widely used as a first-line tool for mitigating radio-frequency interference (RFI) in low-frequency radio astronomy, both in operational pipelines and methodological studies. In thesingle-epochregi",
+          "reranker_score": -4.340181827545166,
+          "hybrid_score": 0.016129032258064516,
+          "pre_rerank_rank": 9,
+          "source_ranks": {
+            "bm25": 2
+          }
+        },
+        {
+          "candidate_rank": 2,
+          "chunk_id": "paper-001-p002-c003",
+          "paper_id": "paper-001",
+          "page": 2,
+          "section": "2.PROBLEM SETUP",
+          "source_page_id": "paper-001-p002",
+          "text_excerpt": "2.PROBLEM SETUP 2.1.Single-epoch observation matrix We consider a single-epoch time–frequency snapshot obtained by fixing an interferometric baseline and polarization. The observation is represented as a matrix D∈R T×F withTtime samples andFfrequency channels, D(t,ν) =S(t,ν) +I(t,ν) +N(t,ν),(1) wher",
+          "reranker_score": -4.451130390167236,
+          "hybrid_score": 0.014705882352941176,
+          "pre_rerank_rank": 19,
+          "source_ranks": {
+            "bm25": 8
+          }
+        },
+        {
+          "candidate_rank": 3,
+          "chunk_id": "paper-001-p006-c003",
+          "paper_id": "paper-001",
+          "page": 6,
+          "section": "5.RESULTS ON SYNTHETIC EXPERIMENTS",
+          "source_page_id": "paper-001-p006",
+          "text_excerpt": "he two components. Figure 3.FWSVD sensitivity to (w core,w prot). Median relative bias in the science band as a function ofw prot for several fixed values ofw core. Stronger down-weighting of the science core (smallerw core) reduces the median bias, but gains saturate oncew core ≲0.03–0.05.",
+          "reranker_score": -4.644389629364014,
+          "hybrid_score": 0.015384615384615385,
+          "pre_rerank_rank": 15,
+          "source_ranks": {
+            "dense": 5
+          }
+        },
+        {
+          "candidate_rank": 4,
+          "chunk_id": "paper-001-p001-c005",
+          "paper_id": "paper-001",
+          "page": 1,
+          "section": "1.INTRODUCTION",
+          "source_page_id": "paper-001-p001",
+          "text_excerpt": "perform RFI detection/mitigation on time–frequency data (e.g., Akeret et al. 2017; Wilensky et al. 2019; Kerrigan et al. 2019; Yang et al. 2020; Vafaei Sadr et al. 2020; Connor & van Leeuwen 2018), but typically rely on large labeled data sets and diversity across epochs or instruments. This work in",
+          "reranker_score": -4.91234016418457,
+          "hybrid_score": 0.028205128205128206,
+          "pre_rerank_rank": 2,
+          "source_ranks": {
+            "bm25": 5,
+            "dense": 18
+          }
+        },
+        {
+          "candidate_rank": 5,
+          "chunk_id": "paper-001-p002-c002",
+          "paper_id": "paper-001",
+          "page": 2,
+          "section": "1.INTRODUCTION",
+          "source_page_id": "paper-001-p002",
+          "text_excerpt": "bility via mixed-mode inspection, rank sweeps, and Pareto diagnostics, and we propose a minimal, reproducible quality-assurance (QA) framework for reporting the operational risk of any chosen singleepoch cleaning configuration. Figure 1 provides a synthetic illustration of the single-epoch failure m",
+          "reranker_score": -4.969682216644287,
+          "hybrid_score": 0.014925373134328358,
+          "pre_rerank_rank": 17,
+          "source_ranks": {
+            "bm25": 7
+          }
+        },
+        {
+          "candidate_rank": 6,
+          "chunk_id": "paper-001-p001-c004",
+          "paper_id": "paper-001",
+          "page": 1,
+          "section": "1.INTRODUCTION",
+          "source_page_id": "paper-001-p001",
+          "text_excerpt": "1.INTRODUCTION Low-frequency radio observations increasingly face spectrally structured radio-frequency interference (RFI), including unintentional electromagnetic radiation (UEMR) from low-Earth-orbit (LEO) satellite constellations, which can contaminate Epoch of Reionization (EoR) experiments (e.g",
+          "reranker_score": -5.088624000549316,
+          "hybrid_score": 0.015625,
+          "pre_rerank_rank": 13,
+          "source_ranks": {
+            "bm25": 4
+          }
+        },
+        {
+          "candidate_rank": 7,
+          "chunk_id": "paper-001-p002-c001",
+          "paper_id": "paper-001",
+          "page": 2,
+          "section": "1.INTRODUCTION",
+          "source_page_id": "paper-001-p002",
+          "text_excerpt": "2Kim 2013). This paper does not propose a new algorithm. Instead, we ask a meta-level question: in the single-epoch regime—a single dynamic spectrum for a fixed baseline and polarization—are the science and interference components operationally identifiable under any choice of rank? We show that whe",
+          "reranker_score": -5.154874324798584,
+          "hybrid_score": 0.028850145288501453,
+          "pre_rerank_rank": 1,
+          "source_ranks": {
+            "bm25": 6,
+            "dense": 13
+          }
+        },
+        {
+          "candidate_rank": 8,
+          "chunk_id": "paper-001-p006-c001",
+          "paper_id": "paper-001",
+          "page": 6,
+          "section": "5.RESULTS ON SYNTHETIC EXPERIMENTS",
+          "source_page_id": "paper-001-p006",
+          "text_excerpt": "6Kim Figure 2. Rank sweep on the synthetic comb + broadband ripple + sloped background case.The trade-off between RFI leakage and science distortion is shown as a function of rankk. Lower ranks suppress large-scale structure but retain RFI, while higher ranks increasingly distort the science signal.",
+          "reranker_score": -5.480064392089844,
+          "hybrid_score": 0.015625,
+          "pre_rerank_rank": 14,
+          "source_ranks": {
+            "dense": 4
+          }
+        },
+        {
+          "candidate_rank": 9,
+          "chunk_id": "paper-001-p002-c005",
+          "paper_id": "paper-001",
+          "page": 2,
+          "section": "2.PROBLEM SETUP",
+          "source_page_id": "paper-001-p002",
+          "text_excerpt": "es (e.g., Gavish & Donoho 2014), and eigenvalue-distribution criteria for factor models (e.g., Onatski 2010). These approaches are extremely useful when the underlying low-rank structure is well separated from noise or when the goal is dimension reduction, but they implicitly rely on assumptions tha",
+          "reranker_score": -5.573160648345947,
+          "hybrid_score": 0.027799227799227798,
+          "pre_rerank_rank": 4,
+          "source_ranks": {
+            "bm25": 10,
+            "dense": 14
+          }
+        },
+        {
+          "candidate_rank": 10,
+          "chunk_id": "paper-001-p003-c003",
+          "paper_id": "paper-001",
+          "page": 3,
+          "section": "3.BAND DEFINITION AND EVALUATION",
+          "source_page_id": "paper-001-p003",
+          "text_excerpt": "is the frequency window over which recovery performance is evaluated, while the science core represents the highest-priority region whose spectral fidelity is most critical. The outside band is primarily used to learn low-rank structure and interference patterns. The fixed science band and protected",
+          "reranker_score": -5.60781192779541,
+          "hybrid_score": 0.0259915611814346,
+          "pre_rerank_rank": 6,
+          "source_ranks": {
+            "bm25": 15,
+            "dense": 19
+          }
+        },
+        {
+          "candidate_rank": 11,
+          "chunk_id": "paper-001-p012-c003",
+          "paper_id": "paper-001",
+          "page": 12,
+          "section": "REFERENCES",
+          "source_page_id": "paper-001-p012",
+          "text_excerpt": "REFERENCES Abdurashidova, Z., Aguirre, J. E., Alexander, P., et al. 2022, The Astrophysical Journal, 925, 221 Akeret, J., Chang, C., Lucchi, A., & Refregier, A. 2017, Astronomy and Computing, 18, 35 Bassa, C. G., Di Vruno, F., Prabu, T., et al. 2024, Astronomy & Astrophysics, 689, L10 Cand` es, E. J",
+          "reranker_score": -5.716903209686279,
+          "hybrid_score": 0.016129032258064516,
+          "pre_rerank_rank": 10,
+          "source_ranks": {
+            "dense": 2
+          }
+        },
+        {
+          "candidate_rank": 12,
+          "chunk_id": "paper-001-p006-c002",
+          "paper_id": "paper-001",
+          "page": 6,
+          "section": "5.RESULTS ON SYNTHETIC EXPERIMENTS",
+          "source_page_id": "paper-001-p006",
+          "text_excerpt": "therefore define a practical operating range for FWSVD in this testbed. The Pareto projection of the same trade-off is shown in Figure 4, where each panel plots|Bias −|(science distortion) against Bias+ (residual contamination) for each trial. The knee of the Pareto front—identified as the point of ",
+          "reranker_score": -5.74116849899292,
+          "hybrid_score": 0.015873015873015872,
+          "pre_rerank_rank": 12,
+          "source_ranks": {
+            "dense": 3
+          }
+        },
+        {
+          "candidate_rank": 13,
+          "chunk_id": "paper-001-p002-c004",
+          "paper_id": "paper-001",
+          "page": 2,
+          "section": "2.PROBLEM SETUP",
+          "source_page_id": "paper-001-p002",
+          "text_excerpt": "d “standard SVD cleaning” interchangeably to denote this rank-k truncation of the SVD (e.g., Golub & Van Loan 2013). We avoid the abbreviation “TSVD” to prevent confusion with the temporally smoothed variant (TempSVD) introduced below. In the idealized low-rank + sparse setting studied in the robust",
+          "reranker_score": -5.815463542938232,
+          "hybrid_score": 0.014492753623188406,
+          "pre_rerank_rank": 20,
+          "source_ranks": {
+            "bm25": 9
+          }
+        },
+        {
+          "candidate_rank": 14,
+          "chunk_id": "paper-001-p008-c003",
+          "paper_id": "paper-001",
+          "page": 8,
+          "section": "6.APPLICATION TO HERA DATA",
+          "source_page_id": "paper-001-p008",
+          "text_excerpt": "S(ν), even though the absolute error| ˆS(ν)−S(ν)|remains large. Conversely, when bright residual RFI contamination is confined to a small number of heavily masked channels, the residual-power proxy can be driven to deceptively low values. These effects explain why rank-averaged diagnostics can exhib",
+          "reranker_score": -5.929556369781494,
+          "hybrid_score": 0.015151515151515152,
+          "pre_rerank_rank": 16,
+          "source_ranks": {
+            "dense": 6
+          }
+        },
+        {
+          "candidate_rank": 15,
+          "chunk_id": "paper-001-p002-c007",
+          "paper_id": "paper-001",
+          "page": 2,
+          "section": "3.BAND DEFINITION AND EVALUATION",
+          "source_page_id": "paper-001-p002",
+          "text_excerpt": "3.BAND DEFINITION AND EVALUATION METRICS 3.1.Fixed Science Band and Core",
+          "reranker_score": -6.01503324508667,
+          "hybrid_score": 0.02797339593114241,
+          "pre_rerank_rank": 3,
+          "source_ranks": {
+            "bm25": 12,
+            "dense": 11
+          }
+        },
+        {
+          "candidate_rank": 16,
+          "chunk_id": "paper-001-p004-c003",
+          "paper_id": "paper-001",
+          "page": 4,
+          "section": "4.METHODS",
+          "source_page_id": "paper-001-p004",
+          "text_excerpt": "thmsamples, normalized to unit row sum). We form the smoothed matrix D(sm) =KD,(13) compute its rank-ktruncated-SVD approximation (D(sm))k, and subtract this fit from the original (unsmoothed) snapshot, D(TempSVD) clean (k) =D−(D (sm))k.(14) The window widthmcontrols the strength of temporal averagi",
+          "reranker_score": -6.0205278396606445,
+          "hybrid_score": 0.027364110201042444,
+          "pre_rerank_rank": 5,
+          "source_ranks": {
+            "bm25": 19,
+            "dense": 8
+          }
+        },
+        {
+          "candidate_rank": 17,
+          "chunk_id": "paper-001-p001-c003",
+          "paper_id": "paper-001",
+          "page": 1,
+          "section": "ABSTRACT",
+          "source_page_id": "paper-001-p001",
+          "text_excerpt": "50–225 MHz, we show that truncated SVD can produce band-wide bias, while frequency-weighted SVD shifts the trade-off to safer operating points but does not remove the bias floor. Rather than proposing a new subtraction method, we provide compact diagnostics—mixedmode inspection, rank sweeps, and Par",
+          "reranker_score": -6.080776691436768,
+          "hybrid_score": 0.015873015873015872,
+          "pre_rerank_rank": 11,
+          "source_ranks": {
+            "bm25": 3
+          }
+        },
+        {
+          "candidate_rank": 18,
+          "chunk_id": "paper-001-p001-c001",
+          "paper_id": "paper-001",
+          "page": 1,
+          "section": "Front Matter",
+          "source_page_id": "paper-001-p001",
+          "text_excerpt": "Draft version April 20, 2026 Typeset using LATEXtwocolumnstyle in AASTeX631 Operational Non-identifiability of Single-epoch Low-rank RFI Mitigation: Controlled Failure-mode Analysis and HERA Evidence Yujin Kim 1 1Department of Data Science, Jeju National University, Jeju, South Korea",
+          "reranker_score": -6.546992301940918,
+          "hybrid_score": 0.01639344262295082,
+          "pre_rerank_rank": 7,
+          "source_ranks": {
+            "bm25": 1
+          }
+        },
+        {
+          "candidate_rank": 19,
+          "chunk_id": "paper-001-p013-c002",
+          "paper_id": "paper-001",
+          "page": 13,
+          "section": "REFERENCES",
+          "source_page_id": "paper-001-p013",
+          "text_excerpt": "tatistics, 92, 1004, doi: 10.1162/REST a 00039 Parsons, A. R., Pober, J. C., Aguirre, J. E., et al. 2012, The Astrophysical Journal, 753, 81 Pober, J. C., Liu, A., Dillon, J. S., et al. 2014, The Astrophysical Journal, 782, 66 Vafaei Sadr, A., Bassett, B. A., Oozeer, N., Fantaye, Y., & Finlay, C. 20",
+          "reranker_score": -6.6680192947387695,
+          "hybrid_score": 0.014925373134328358,
+          "pre_rerank_rank": 18,
+          "source_ranks": {
+            "dense": 7
+          }
+        },
+        {
+          "candidate_rank": 20,
+          "chunk_id": "paper-001-p012-c004",
+          "paper_id": "paper-001",
+          "page": 12,
+          "section": "REFERENCES",
+          "source_page_id": "paper-001-p012",
+          "text_excerpt": "Astronomy & Astrophysics, 378, 327 Furlanetto, S. R., Oh, S. P., & Briggs, F. H. 2006, Cosmology at low frequencies: The 21 cm transition and the high-redshift Universe, Vol. 433, 181–301, doi: 10.1016/j.physrep.2006.08.002 Gavish, M., & Donoho, D. L. 2014, IEEE Transactions on Information Theory, 6",
+          "reranker_score": -6.879190921783447,
+          "hybrid_score": 0.01639344262295082,
+          "pre_rerank_rank": 8,
+          "source_ranks": {
+            "dense": 1
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev-01-paper-001-p001-c002",
+          "rank": 1,
+          "paper_id": "paper-001",
+          "page": 1,
+          "section": "ABSTRACT",
+          "chunk_id": "paper-001-p001-c002",
+          "source_page_id": "paper-001-p001",
+          "text": "ABSTRACT Low-rank decomposition (singular value decomposition / principal component analysis based) is widely used as a first-line tool for mitigating radio-frequency interference (RFI) in low-frequency radio astronomy, both in operational pipelines and methodological studies. In thesingle-epochregime— when only one time–frequency dynamic spectrumD(t,ν) is available—there is no structural guarantee that science and interference can be separated by rank selection alone. We model the observation asD=S+I+N, whereSis approximately low-rank science signal,Iis sparse but spectrally structured RFI, andNis noise. WhenSandIsubstantially share the same singular-vector subspace (mixed singular directions), no choice of rank can simultaneously suppress residual RFI contamination and preserve the science signal; we call thisoperational non-identifiability. Using controlled synthetic experiments with satellite-like harmonic-comb RFI and weak spectral features, and 420 calibrated HERA snapshots over 50–225 MHz, we show that truncated SVD can produce band-wide bias, while frequency-weighted SVD shifts the trade-off to safer operating points but does not remove the bias floor. Rather than proposing",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 1",
+            "section": "ABSTRACT",
+            "chunk_id": "paper-001-p001-c002"
+          },
+          "scores": {
+            "reranker": -4.340181827545166,
+            "hybrid": 0.016129032258064516,
+            "pre_rerank_rank": 9,
+            "source_ranks": {
+              "bm25": 2
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-001-p002-c003",
+          "rank": 2,
+          "paper_id": "paper-001",
+          "page": 2,
+          "section": "2.PROBLEM SETUP",
+          "chunk_id": "paper-001-p002-c003",
+          "source_page_id": "paper-001-p002",
+          "text": "2.PROBLEM SETUP 2.1.Single-epoch observation matrix We consider a single-epoch time–frequency snapshot obtained by fixing an interferometric baseline and polarization. The observation is represented as a matrix D∈R T×F withTtime samples andFfrequency channels, D(t,ν) =S(t,ν) +I(t,ν) +N(t,ν),(1) whereS(t,ν) is the scientific component,I(t,ν) is structured RFI, andN(t,ν) is noise. In the single-epoch regime we assume no additional diversity from repeated epochs or external information (e.g., satellite ephemerides or auxiliary observations):Dalone must support any separation betweenSandI. 2.2.Low-rank (subspace) cleaning operator LetD=UΣV ⊤ be the SVD, with left singular vectorsU∈R T×T , right singular vectorsV∈R F×F , and singular values Σ = diag(σ 1,...,σ min(T,F) ) ordered nonincreasingly. For a chosen rankk, the truncated SVD approximation is Dk =U 1:kΣ1:kV⊤ 1:k,(2) and the corresponding residual (“cleaned” result) is Dclean(k) =D−D k.(3) Throughout the paper we use “truncated SVD” and “standard SVD cleaning” interchangeably to denote this rank-k truncation of the SVD (e.g., Golub & Van Loan 2013). We avoid the abbreviation “TSVD” to prevent confusion with the temporally smoothed",
+          "char_count": 1199,
+          "locator": {
+            "page_label": "p. 2",
+            "section": "2.PROBLEM SETUP",
+            "chunk_id": "paper-001-p002-c003"
+          },
+          "scores": {
+            "reranker": -4.451130390167236,
+            "hybrid": 0.014705882352941176,
+            "pre_rerank_rank": 19,
+            "source_ranks": {
+              "bm25": 8
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-001-p006-c003",
+          "rank": 3,
+          "paper_id": "paper-001",
+          "page": 6,
+          "section": "5.RESULTS ON SYNTHETIC EXPERIMENTS",
+          "chunk_id": "paper-001-p006-c003",
+          "source_page_id": "paper-001-p006",
+          "text": "he two components. Figure 3.FWSVD sensitivity to (w core,w prot). Median relative bias in the science band as a function ofw prot for several fixed values ofw core. Stronger down-weighting of the science core (smallerw core) reduces the median bias, but gains saturate oncew core ≲0.03–0.05.",
+          "char_count": 291,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "5.RESULTS ON SYNTHETIC EXPERIMENTS",
+            "chunk_id": "paper-001-p006-c003"
+          },
+          "scores": {
+            "reranker": -4.644389629364014,
+            "hybrid": 0.015384615384615385,
+            "pre_rerank_rank": 15,
+            "source_ranks": {
+              "dense": 5
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-001-p001-c005",
+          "rank": 4,
+          "paper_id": "paper-001",
+          "page": 1,
+          "section": "1.INTRODUCTION",
+          "chunk_id": "paper-001-p001-c005",
+          "source_page_id": "paper-001-p001",
+          "text": "perform RFI detection/mitigation on time–frequency data (e.g., Akeret et al. 2017; Wilensky et al. 2019; Kerrigan et al. 2019; Yang et al. 2020; Vafaei Sadr et al. 2020; Connor & van Leeuwen 2018), but typically rely on large labeled data sets and diversity across epochs or instruments. This work instead targets thesingle-epoch, fixed-baseline configuration. 1.1.Relation to prior work A substantial literature uses low-rank and lowrank+sparse decompositions for mitigating foregrounds and RFI (Leshem et al. 2000; Fridman & Baan 2001; Cand` es et al. 2011; Chandrasekaran et al. 2011), and related extensions such as independent component analysis (ICA), non-negative matrix factorization (NMF), and robust principal component analysis (RPCA) variants for 21 cm analysis and RFI suppression (e.g., Datta et al. 2010; Parsons et al. 2012; Morales et al. 2012; Pober et al. 2014). Many formulations implicitly rely on conditions that limit subspace overlap between the science and contaminant components and on perturbation bounds for singular vectors (e.g., Wedin 1972; Golub & Van Loan arXiv:2601.00046v2 [astro-ph.IM] 17 Apr 2026",
+          "char_count": 1133,
+          "locator": {
+            "page_label": "p. 1",
+            "section": "1.INTRODUCTION",
+            "chunk_id": "paper-001-p001-c005"
+          },
+          "scores": {
+            "reranker": -4.91234016418457,
+            "hybrid": 0.028205128205128206,
+            "pre_rerank_rank": 2,
+            "source_ranks": {
+              "bm25": 5,
+              "dense": 18
+            }
+          },
+          "source": {
+            "section_index": 3,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-05-paper-001-p002-c002",
+          "rank": 5,
+          "paper_id": "paper-001",
+          "page": 2,
+          "section": "1.INTRODUCTION",
+          "chunk_id": "paper-001-p002-c002",
+          "source_page_id": "paper-001-p002",
+          "text": "bility via mixed-mode inspection, rank sweeps, and Pareto diagnostics, and we propose a minimal, reproducible quality-assurance (QA) framework for reporting the operational risk of any chosen singleepoch cleaning configuration. Figure 1 provides a synthetic illustration of the single-epoch failure mechanism considered in this paper: when foreground-like and RFIlike structure co-occupy the leading singular mode, lowrank subtraction cannot cleanly separate contamination removal from scientific preservation.",
+          "char_count": 510,
+          "locator": {
+            "page_label": "p. 2",
+            "section": "1.INTRODUCTION",
+            "chunk_id": "paper-001-p002-c002"
+          },
+          "scores": {
+            "reranker": -4.969682216644287,
+            "hybrid": 0.014925373134328358,
+            "pre_rerank_rank": 17,
+            "source_ranks": {
+              "bm25": 7
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "q-043-ko",
+      "case_type": "reranker_recovery",
+      "summary": "Day 22 reranker가 Top-5로 복구한 사례",
+      "paper_id": "paper-010",
+      "question": "다중 소스 distributionally robust graph learning을 평가하기 위해 어떤 실험이 사용되는가?",
+      "question_language": "ko",
+      "gold_page": 19,
+      "gold_candidate_rank": 1,
+      "gold_page_in_evidence": true,
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "candidate_policy": {
+        "candidate_k": 20,
+        "sources": {
+          "bm25": 20,
+          "dense": 20
+        },
+        "fusion": "equal_weight_reciprocal_rank_fusion",
+        "fusion_weights": {
+          "bm25": 1.0,
+          "dense": 1.0
+        },
+        "rrf_k": 60,
+        "reranker_model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+        "embedding_model": "intfloat/multilingual-e5-small"
+      },
+      "evidence_selection": {
+        "input_candidates": 20,
+        "selected": 5,
+        "skipped": {
+          "duplicate_chunk_id": 0,
+          "duplicate_text": 0,
+          "near_duplicate": 0,
+          "page_cap": 0
+        },
+        "policy": {
+          "top_k": 5,
+          "max_per_page": 2,
+          "near_duplicate_metric": "token_3_shingle_jaccard",
+          "near_duplicate_threshold": 0.85
+        }
+      },
+      "candidates": [
+        {
+          "candidate_rank": 1,
+          "chunk_id": "paper-010-p019-c001",
+          "paper_id": "paper-010",
+          "page": 19,
+          "section": "VI. E XPERIMENTAL RESULTS",
+          "source_page_id": "paper-010-p019",
+          "text_excerpt": "19 seven representative baselines spanning three methodological families: smooth-signal optimization methods, deep-learningbased structure-learning methods, and distributionally robust graph learning methods. Section VI-A reports controlled experiments on synthetic multi-source networks, designed to",
+          "reranker_score": 4.334220886230469,
+          "hybrid_score": 0.014084507042253521,
+          "pre_rerank_rank": 15,
+          "source_ranks": {
+            "bm25": 11
+          }
+        },
+        {
+          "candidate_rank": 2,
+          "chunk_id": "paper-010-p018-c007",
+          "paper_id": "paper-010",
+          "page": 18,
+          "section": "VI. E XPERIMENTAL RESULTS",
+          "source_page_id": "paper-010-p018",
+          "text_excerpt": "VI. E XPERIMENTAL RESULTS We evaluate the proposed multi-source Wasserstein distributionally robust graph learning framework (MS-WDRO) against",
+          "reranker_score": 4.136216640472412,
+          "hybrid_score": 0.032266458495966696,
+          "pre_rerank_rank": 2,
+          "source_ranks": {
+            "bm25": 3,
+            "dense": 1
+          }
+        },
+        {
+          "candidate_rank": 3,
+          "chunk_id": "paper-010-p002-c002",
+          "paper_id": "paper-010",
+          "page": 2,
+          "section": "I. I NTRODUCTION",
+          "source_page_id": "paper-010-p002",
+          "text_excerpt": "at the empirical distribution certifies that the learned estimator performs well for any distribution that lies within a controlled optimal transport distance from the training data, a guarantee that purely moment-based ambiguity sets [22], [23] cannot provide in the absence of shape assumptions. Th",
+          "reranker_score": 3.829852342605591,
+          "hybrid_score": 0.015625,
+          "pre_rerank_rank": 12,
+          "source_ranks": {
+            "dense": 4
+          }
+        },
+        {
+          "candidate_rank": 4,
+          "chunk_id": "paper-010-p002-c006",
+          "paper_id": "paper-010",
+          "page": 2,
+          "section": "I. I NTRODUCTION",
+          "source_page_id": "paper-010-p002",
+          "text_excerpt": "sing source distributions into a structurally sound nominal distribution for robust graph estimation. Despite clear practical motivation, the intersection of multisource learning, Wasserstein distributional robustness, and smooth-signal graph topology inference remains largely unexplored. A further ",
+          "reranker_score": 3.820396900177002,
+          "hybrid_score": 0.026742734890354787,
+          "pre_rerank_rank": 10,
+          "source_ranks": {
+            "bm25": 19,
+            "dense": 11
+          }
+        },
+        {
+          "candidate_rank": 5,
+          "chunk_id": "paper-010-p005-c004",
+          "paper_id": "paper-010",
+          "page": 5,
+          "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+          "source_page_id": "paper-010-p005",
+          "text_excerpt": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH LEARNING This section develops the proposed distributionally robust graph learning framework in four steps. We begin by revisiting the baseline estimator of Section II-B through the lens of empirical risk minimization and robustifying it against a sing",
+          "reranker_score": 3.4936232566833496,
+          "hybrid_score": 0.027583600982429624,
+          "pre_rerank_rank": 8,
+          "source_ranks": {
+            "bm25": 7,
+            "dense": 19
+          }
+        },
+        {
+          "candidate_rank": 6,
+          "chunk_id": "paper-010-p001-c003",
+          "paper_id": "paper-010",
+          "page": 1,
+          "section": "Abstract",
+          "source_page_id": "paper-010-p001",
+          "text_excerpt": "ator, solved efficiently via a provably convergent ADMM scheme. We establish non-asymptotic guarantees: a finite-sample concentration bound for the empirical barycenter, a pooling bias lower bound proving naive aggregation is suboptimal, and an out-of-sample excess risk bound decaying at a parametri",
+          "reranker_score": 3.3050429821014404,
+          "hybrid_score": 0.0136986301369863,
+          "pre_rerank_rank": 18,
+          "source_ranks": {
+            "bm25": 13
+          }
+        },
+        {
+          "candidate_rank": 7,
+          "chunk_id": "paper-010-p003-c001",
+          "paper_id": "paper-010",
+          "page": 3,
+          "section": "I. I NTRODUCTION",
+          "source_page_id": "paper-010-p003",
+          "text_excerpt": "3 or dual-ascent substep, while acquiring data-adaptive calibration capability unavailable to the fixed-parameter solver. This paradigm has been successfully applied to compressive sensing magnetic resonance imaging via deep ADMM-Net [42], to sparse graph recovery via GLAD [43], and to graph signal ",
+          "reranker_score": 3.2219672203063965,
+          "hybrid_score": 0.028991596638655463,
+          "pre_rerank_rank": 7,
+          "source_ranks": {
+            "bm25": 10,
+            "dense": 8
+          }
+        },
+        {
+          "candidate_rank": 8,
+          "chunk_id": "paper-010-p001-c002",
+          "paper_id": "paper-010",
+          "page": 1,
+          "section": "Abstract",
+          "source_page_id": "paper-010-p001",
+          "text_excerpt": "Abstract central to graph signal processing, with applications in brain connectivity, sensor networks, and social networks. In practice, target-domain samples are scarce, while heterogeneous sourcedomain data are abundant. Fusing these sources into a reliable nominal distribution is challenging: Euc",
+          "reranker_score": 2.9164507389068604,
+          "hybrid_score": 0.013513513513513514,
+          "pre_rerank_rank": 20,
+          "source_ranks": {
+            "bm25": 14
+          }
+        },
+        {
+          "candidate_rank": 9,
+          "chunk_id": "paper-010-p003-c007",
+          "paper_id": "paper-010",
+          "page": 3,
+          "section": "II. S IGNAL MODELS AND PROBLEM FORMULATION",
+          "source_page_id": "paper-010-p003",
+          "text_excerpt": "II. S IGNAL MODELS AND PROBLEM FORMULATION This section lays the groundwork for the multi-source distributionally robust framework developed in the sequel. We proceed in three steps. We first specify the generative model that links observed graph signals to the underlying topology, showing that smoo",
+          "reranker_score": 2.884936809539795,
+          "hybrid_score": 0.027526395173453996,
+          "pre_rerank_rank": 9,
+          "source_ranks": {
+            "bm25": 8,
+            "dense": 18
+          }
+        },
+        {
+          "candidate_rank": 10,
+          "chunk_id": "paper-010-p001-c001",
+          "paper_id": "paper-010",
+          "page": 1,
+          "section": "Front Matter",
+          "source_page_id": "paper-010-p001",
+          "text_excerpt": "1 Multi-Source Wasserstein Distributionally Robust Graph Learning Chuansen Peng, Yifan Xia, Jinshan Zhong, and Xiaojing Shen",
+          "reranker_score": 1.9257797002792358,
+          "hybrid_score": 0.032266458495966696,
+          "pre_rerank_rank": 1,
+          "source_ranks": {
+            "bm25": 1,
+            "dense": 3
+          }
+        },
+        {
+          "candidate_rank": 11,
+          "chunk_id": "paper-010-p019-c005",
+          "paper_id": "paper-010",
+          "page": 19,
+          "section": "VI. E XPERIMENTAL RESULTS",
+          "source_page_id": "paper-010-p019",
+          "text_excerpt": "phase (SigRep, GLE-ADMM, MUGL, WDRO-GL), where all source and target samples are concatenated into a single empirical distribution prior to estimation; and (ii) source meta-training, applied to methods that are explicitly designed to learn a solver on a distribution of training instances and general",
+          "reranker_score": 1.5375617742538452,
+          "hybrid_score": 0.014925373134328358,
+          "pre_rerank_rank": 13,
+          "source_ranks": {
+            "dense": 7
+          }
+        },
+        {
+          "candidate_rank": 12,
+          "chunk_id": "paper-010-p030-c002",
+          "paper_id": "paper-010",
+          "page": 30,
+          "section": "REFERENCES",
+          "source_page_id": "paper-010-p030",
+          "text_excerpt": "tributionally robust convex optimization. Operations Research , 62(6):1358–1376, 2014. [24] Peyman Mohajerin Esfahani and Daniel Kuhn. Data-driven distributionally robust optimization using the Wasserstein metric: Performance guarantees and tractable reformulations. Mathematical Programming , 171(1)",
+          "reranker_score": 0.6072691082954407,
+          "hybrid_score": 0.0315136476426799,
+          "pre_rerank_rank": 3,
+          "source_ranks": {
+            "bm25": 5,
+            "dense": 2
+          }
+        },
+        {
+          "candidate_rank": 13,
+          "chunk_id": "paper-010-p030-c003",
+          "paper_id": "paper-010",
+          "page": 30,
+          "section": "REFERENCES",
+          "source_page_id": "paper-010-p030",
+          "text_excerpt": "rial training. In Proceedings of the International Conference on Learning Representations (ICLR), 2018. [29] Xiang Zhang, Yinfei Xu, Mingjie Shao, and Yonina C Eldar. Wasserstein distributionally robust graph learning via algorithm unrolling. IEEE Transactions on Signal Processing , 73:676–690, 2025",
+          "reranker_score": 0.4000649154186249,
+          "hybrid_score": 0.02964426877470356,
+          "pre_rerank_rank": 5,
+          "source_ranks": {
+            "bm25": 9,
+            "dense": 6
+          }
+        },
+        {
+          "candidate_rank": 14,
+          "chunk_id": "paper-010-p030-c008",
+          "paper_id": "paper-010",
+          "page": 30,
+          "section": "REFERENCES",
+          "source_page_id": "paper-010-p030",
+          "text_excerpt": "Conference on Machine Learning (ICML) , pages 440–448. PMLR, 2017. [55] Xingyue Pu, Tianyue Cao, Xiaoyun Zhang, Xiaowen Dong, and Siheng Chen. Learning to learn graph topologies. In Proceedings of the Advances in Neural Information Processing Systems (NeurIPS), volume 34, pages 4249–4262, 2021. [56]",
+          "reranker_score": 0.2662440538406372,
+          "hybrid_score": 0.031009615384615385,
+          "pre_rerank_rank": 4,
+          "source_ranks": {
+            "bm25": 4,
+            "dense": 5
+          }
+        },
+        {
+          "candidate_rank": 15,
+          "chunk_id": "paper-010-p030-c001",
+          "paper_id": "paper-010",
+          "page": 30,
+          "section": "REFERENCES",
+          "source_page_id": "paper-010-p030",
+          "text_excerpt": "30 [18] Santiago Segarra, Antonio G Marques, Gonzalo Mateos, and Alejandro Ribeiro. Network topology inference from spectral templates. IEEE Transactions on Signal and Information Processing over Networks , 3(3):467–483, 2017. [19] Yanli Yuan, Kun Guo, Zehui Xiong, and Tony QS Quek. Joint network to",
+          "reranker_score": -0.9576216340065002,
+          "hybrid_score": 0.029437229437229435,
+          "pre_rerank_rank": 6,
+          "source_ranks": {
+            "bm25": 6,
+            "dense": 10
+          }
+        },
+        {
+          "candidate_rank": 16,
+          "chunk_id": "paper-010-p020-c001",
+          "paper_id": "paper-010",
+          "page": 20,
+          "section": "VI. E XPERIMENTAL RESULTS",
+          "source_page_id": "paper-010-p020",
+          "text_excerpt": "20 TABLE I BASELINE METHODS , THEIR METHODOLOGICAL FAMILY , AND THE PROTOCOL USED TO ADAPT THEM TO THE MULTI -SOURCE SETTING . Method Family Reference Adaptation protocol SigRep Smooth-signal optimization [10] Naive pooling GLE-ADMM Smooth-signal optimization [53] Naive pooling DeepGraph Deep learni",
+          "reranker_score": -1.747118353843689,
+          "hybrid_score": 0.016129032258064516,
+          "pre_rerank_rank": 11,
+          "source_ranks": {
+            "bm25": 2
+          }
+        },
+        {
+          "candidate_rank": 17,
+          "chunk_id": "paper-010-p029-c007",
+          "paper_id": "paper-010",
+          "page": 29,
+          "section": "REFERENCES",
+          "source_page_id": "paper-010-p029",
+          "text_excerpt": "ph signals. Automatica, 148:110796, 2023. [10] Xiaowen Dong, Dorina Thanou, Pascal Frossard, and Pierre Vandergheynst. Learning Laplacian matrix in smooth graph signal representations. IEEE Transactions on Signal Processing, 64(23):6160–6173, 2016. [11] Vassilis Kalofolias. How to learn a graph from",
+          "reranker_score": -1.8307499885559082,
+          "hybrid_score": 0.014492753623188406,
+          "pre_rerank_rank": 14,
+          "source_ranks": {
+            "dense": 9
+          }
+        },
+        {
+          "candidate_rank": 18,
+          "chunk_id": "paper-010-p030-c006",
+          "paper_id": "paper-010",
+          "page": 30,
+          "section": "REFERENCES",
+          "source_page_id": "paper-010-p030",
+          "text_excerpt": "ina C Eldar, and Lingxiao Zhao. Graph unrolling networks: Interpretable neural networks for graph signal denoising. IEEE Transactions on Signal Processing , 69:3699–3713, 2021. [45] Elliott H Lieb. Convex trace functions and the Wigner-Yanase-Dyson conjecture. Les Rencontres Physiciens-Math ´ematici",
+          "reranker_score": -2.8625762462615967,
+          "hybrid_score": 0.013888888888888888,
+          "pre_rerank_rank": 17,
+          "source_ranks": {
+            "bm25": 12
+          }
+        },
+        {
+          "candidate_rank": 19,
+          "chunk_id": "paper-010-p029-c008",
+          "paper_id": "paper-010",
+          "page": 29,
+          "section": "REFERENCES",
+          "source_page_id": "paper-010-p029",
+          "text_excerpt": "s of the IEEE Global Conference on Signal and Information Processing (GlobalSIP), pages 356–360. IEEE, 2016. [15] Seyed Saman Saboksayr and Gonzalo Mateos. Accelerated graph learning from smooth signals. IEEE Signal Processing Letters, 28:2192– 2196, 2021. [16] Antonio G Marques, Santiago Segarra, G",
+          "reranker_score": -4.443530559539795,
+          "hybrid_score": 0.0136986301369863,
+          "pre_rerank_rank": 19,
+          "source_ranks": {
+            "dense": 13
+          }
+        },
+        {
+          "candidate_rank": 20,
+          "chunk_id": "paper-010-p019-c007",
+          "paper_id": "paper-010",
+          "page": 19,
+          "section": "VI. E XPERIMENTAL RESULTS",
+          "source_page_id": "paper-010-p019",
+          "text_excerpt": "roposed DeepGraph [Belilovsky et al., 2017] GLAD [Shrivastava et al., 2020] SigRep [Dong et al., 2016] GLE-ADMM [Zhao et al., 2019] L2G [Pu et al., 2021] MUGL [Wang et al., 2023] WDRO-GL [Zhang et al., 2025] MS-WDRO (proposed) Fig. 2. Edge F -score and relative Frobenius error versus target sample s",
+          "reranker_score": -4.674678802490234,
+          "hybrid_score": 0.013888888888888888,
+          "pre_rerank_rank": 16,
+          "source_ranks": {
+            "dense": 12
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev-01-paper-010-p019-c001",
+          "rank": 1,
+          "paper_id": "paper-010",
+          "page": 19,
+          "section": "VI. E XPERIMENTAL RESULTS",
+          "chunk_id": "paper-010-p019-c001",
+          "source_page_id": "paper-010-p019",
+          "text": "19 seven representative baselines spanning three methodological families: smooth-signal optimization methods, deep-learningbased structure-learning methods, and distributionally robust graph learning methods. Section VI-A reports controlled experiments on synthetic multi-source networks, designed to isolate the effect of target-domain sample scarcity, source-target heterogeneity, and the number of available source domains under known ground truth. Section VI-B validates the framework on a real multi-site resting-state fMRI cohort, where no ground-truth connectivity graph is available and performance must instead be assessed through held-out signal reconstruction and a downstream clinical classification task. Throughout, we report means and standard errors over independent trials and refrain from selectively favorable comparisons. A. Experiments on Synthetic Data 1) Multi-Source Network Generation: Each trial instantiates a ground-truth target network G⋆ = (V,E⋆) on N nodes, drawn from one of three canonical random-graph families used throughout the graph signal processing literature: an Erd˝os–R´enyi graph with connection probability p = 0.18, a Barab´asi–Albert graph with attachme",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 19",
+            "section": "VI. E XPERIMENTAL RESULTS",
+            "chunk_id": "paper-010-p019-c001"
+          },
+          "scores": {
+            "reranker": 4.334220886230469,
+            "hybrid": 0.014084507042253521,
+            "pre_rerank_rank": 15,
+            "source_ranks": {
+              "bm25": 11
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-010-p018-c007",
+          "rank": 2,
+          "paper_id": "paper-010",
+          "page": 18,
+          "section": "VI. E XPERIMENTAL RESULTS",
+          "chunk_id": "paper-010-p018-c007",
+          "source_page_id": "paper-010-p018",
+          "text": "VI. E XPERIMENTAL RESULTS We evaluate the proposed multi-source Wasserstein distributionally robust graph learning framework (MS-WDRO) against",
+          "char_count": 142,
+          "locator": {
+            "page_label": "p. 18",
+            "section": "VI. E XPERIMENTAL RESULTS",
+            "chunk_id": "paper-010-p018-c007"
+          },
+          "scores": {
+            "reranker": 4.136216640472412,
+            "hybrid": 0.032266458495966696,
+            "pre_rerank_rank": 2,
+            "source_ranks": {
+              "bm25": 3,
+              "dense": 1
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-010-p002-c002",
+          "rank": 3,
+          "paper_id": "paper-010",
+          "page": 2,
+          "section": "I. I NTRODUCTION",
+          "chunk_id": "paper-010-p002-c002",
+          "source_page_id": "paper-010-p002",
+          "text": "at the empirical distribution certifies that the learned estimator performs well for any distribution that lies within a controlled optimal transport distance from the training data, a guarantee that purely moment-based ambiguity sets [22], [23] cannot provide in the absence of shape assumptions. The foundations of Wasserstein DRO, duality theory, tractable reformulations, and finite-sample performance guarantees, have been developed in considerable depth [24], and the framework has been applied to a broad array of statistical learning problems including logistic regression [27] and adversarially robust training [28]. Most recently, Wasserstein DRO has been specialized to graph Laplacian estimation from smooth signals [29], demonstrating that distributional robustness yields measurable improvements in graph recovery accuracy when target-domain samples are limited. These developments concentrate on the single-source setting, in which all observations are assumed to arise from one underlying distribution. Motivated by this body of work, the present paper extends Wasserstein distributional robustness from single source to the multi-source regime, in which signals collected across seve",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 2",
+            "section": "I. I NTRODUCTION",
+            "chunk_id": "paper-010-p002-c002"
+          },
+          "scores": {
+            "reranker": 3.829852342605591,
+            "hybrid": 0.015625,
+            "pre_rerank_rank": 12,
+            "source_ranks": {
+              "dense": 4
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-010-p002-c006",
+          "rank": 4,
+          "paper_id": "paper-010",
+          "page": 2,
+          "section": "I. I NTRODUCTION",
+          "chunk_id": "paper-010-p002-c006",
+          "source_page_id": "paper-010-p002",
+          "text": "sing source distributions into a structurally sound nominal distribution for robust graph estimation. Despite clear practical motivation, the intersection of multisource learning, Wasserstein distributional robustness, and smooth-signal graph topology inference remains largely unexplored. A further challenge is the joint calibration of multiple interacting hyperparameters inherent in any WDRO-based graph learning framework: the ambiguity set radius determines the degree of distributional robustness; the sparsity regularization coefficient controls graph density; the augmented Lagrangian penalty governs algorithmic convergence; and the barycentric fusion weights modulate the relative contribution of each source domain. These parameters interact nonlinearly and cannot be calibrated in isolation. Conventional cross-validation over the resulting joint parameter space is computationally prohibitive in the multi-source regime, and concentration-inequality-based radius selection, while theoretically motivated, is inherently conservative and ignores the mutual coupling among the parameters. A principled, end-to-end trainable framework that simultaneously addresses multi-source fusion, dist",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 2",
+            "section": "I. I NTRODUCTION",
+            "chunk_id": "paper-010-p002-c006"
+          },
+          "scores": {
+            "reranker": 3.820396900177002,
+            "hybrid": 0.026742734890354787,
+            "pre_rerank_rank": 10,
+            "source_ranks": {
+              "bm25": 19,
+              "dense": 11
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 6
+          }
+        },
+        {
+          "evidence_id": "ev-05-paper-010-p005-c004",
+          "rank": 5,
+          "paper_id": "paper-010",
+          "page": 5,
+          "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+          "chunk_id": "paper-010-p005-c004",
+          "source_page_id": "paper-010-p005",
+          "text": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH LEARNING This section develops the proposed distributionally robust graph learning framework in four steps. We begin by revisiting the baseline estimator of Section II-B through the lens of empirical risk minimization and robustifying it against a single source’s sampling uncertainty via a Wasserstein ambiguity set (Section III-A). We then extend this single-source construction to the heterogeneous multi-source setting motivating this paper, replacing the naively pooled empirical distribution with a Wasserstein barycentric ambiguity set that fuses the M source distributions while explicitly accounting for their residual sampling and heterogeneity error (Section III-B). The resulting min–max problem is then reduced to a singlelevel, tractable convex program via Wasserstein strong duality (Section III-C), which in turn admits an efficient ADMM solver with closed-form per-block updates (Section III-D). A. Basic Formulation The baseline problem (6) can be equivalently cast as an empirical risk minimization (ERM) problem, min L∈L Ex∼Pn[−Fn(L| X)] +ρP(L), (12) where Pn is the empirical distribution of the observed signals x1,..., xn, Pn = 1",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 5",
+            "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+            "chunk_id": "paper-010-p005-c004"
+          },
+          "scores": {
+            "reranker": 3.4936232566833496,
+            "hybrid": 0.027583600982429624,
+            "pre_rerank_rank": 8,
+            "source_ranks": {
+              "bm25": 7,
+              "dense": 19
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 1
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "q-005-ko",
+      "case_type": "known_limitation",
+      "summary": "후보 생성 또는 용어 불일치를 사람이 판별하는 사례",
+      "paper_id": "paper-002",
+      "question": "제안된 2단계 하이퍼파라미터 전이 프레임워크는 어떻게 작동하는가?",
+      "question_language": "ko",
+      "gold_page": 1,
+      "gold_candidate_rank": null,
+      "gold_page_in_evidence": false,
+      "candidate_count": 20,
+      "evidence_count": 5,
+      "candidate_policy": {
+        "candidate_k": 20,
+        "sources": {
+          "bm25": 20,
+          "dense": 20
+        },
+        "fusion": "equal_weight_reciprocal_rank_fusion",
+        "fusion_weights": {
+          "bm25": 1.0,
+          "dense": 1.0
+        },
+        "rrf_k": 60,
+        "reranker_model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+        "embedding_model": "intfloat/multilingual-e5-small"
+      },
+      "evidence_selection": {
+        "input_candidates": 20,
+        "selected": 5,
+        "skipped": {
+          "duplicate_chunk_id": 0,
+          "duplicate_text": 0,
+          "near_duplicate": 0,
+          "page_cap": 0
+        },
+        "policy": {
+          "top_k": 5,
+          "max_per_page": 2,
+          "near_duplicate_metric": "token_3_shingle_jaccard",
+          "near_duplicate_threshold": 0.85
+        }
+      },
+      "candidates": [
+        {
+          "candidate_rank": 1,
+          "chunk_id": "paper-002-p010-c003",
+          "paper_id": "paper-002",
+          "page": 10,
+          "section": "5 Conclusion",
+          "source_page_id": "paper-002-p010",
+          "text_excerpt": "5 Conclusion We propose a compute-efficient two-step framework for hyperparameter transfer in largescale Mixture-of-Experts (MoE) pretraining, enabling accurate optimal learning rate estimation without exhaustive sweeps. By combining µP-based width transferability with a linear scaling law across to",
+          "reranker_score": 6.45538854598999,
+          "hybrid_score": 0.014492753623188406,
+          "pre_rerank_rank": 17,
+          "source_ranks": {
+            "dense": 9
+          }
+        },
+        {
+          "candidate_rank": 2,
+          "chunk_id": "paper-002-p008-c004",
+          "paper_id": "paper-002",
+          "page": 8,
+          "section": "3.3.3 Applying to Our Foundation Model",
+          "source_page_id": "paper-002-p008",
+          "text_excerpt": "3.3.3 Applying to Our Foundation Model To validate the effectiveness of our approach, we apply the proposed two-step hyperparameter transfer framework to predict the optimal learning rate for pretraining a large-scale MoE foundation model (155B total, 17B active parameters) over a 10T-token horizon.",
+          "reranker_score": 5.181527614593506,
+          "hybrid_score": 0.014925373134328358,
+          "pre_rerank_rank": 14,
+          "source_ranks": {
+            "dense": 7
+          }
+        },
+        {
+          "candidate_rank": 3,
+          "chunk_id": "paper-002-p003-c002",
+          "paper_id": "paper-002",
+          "page": 3,
+          "section": "1 Introduction",
+          "source_page_id": "paper-002-p003",
+          "text_excerpt": "MoE Architectures:Building on prior work discussing the adaptation of µP to MoE architectures, we study zero-shot hyperparameter transfer when scaling both model width and the total number of experts (i.e., sparsity expansion). We further explore the use of the Muon optimizer in this setting, extend",
+          "reranker_score": 4.162502765655518,
+          "hybrid_score": 0.016129032258064516,
+          "pre_rerank_rank": 5,
+          "source_ranks": {
+            "dense": 2
+          }
+        },
+        {
+          "candidate_rank": 4,
+          "chunk_id": "paper-002-p003-c003",
+          "paper_id": "paper-002",
+          "page": 3,
+          "section": "2 Methods",
+          "source_page_id": "paper-002-p003",
+          "text_excerpt": "2 Methods Our two-step hyperparameter transfer framework requires two key components: (1) formulating µP specifically for MoE architectures, and (2) establishing a scaling law that predicts the optimal learning rate as the token budget scales. Section 2.1 describes our adaptation of µP to MoE archit",
+          "reranker_score": 3.9546258449554443,
+          "hybrid_score": 0.03278688524590164,
+          "pre_rerank_rank": 1,
+          "source_ranks": {
+            "bm25": 1,
+            "dense": 1
+          }
+        },
+        {
+          "candidate_rank": 5,
+          "chunk_id": "paper-002-p004-c004",
+          "paper_id": "paper-002",
+          "page": 4,
+          "section": "2.2 Extrapolating Optimal Learning Rates to Long Token Horizons",
+          "source_page_id": "paper-002-p004",
+          "text_excerpt": "2.2 Extrapolating Optimal Learning Rates to Long Token Horizons Although µP-based hyperparameter transfer significantly reduces search costs, performing a direct search for the optimal learning rate over trillions of training tokens (e.g., 10T tokens) remains computationally prohibitive even when us",
+          "reranker_score": 0.5216056704521179,
+          "hybrid_score": 0.030090497737556562,
+          "pre_rerank_rank": 2,
+          "source_ranks": {
+            "bm25": 8,
+            "dense": 5
+          }
+        },
+        {
+          "candidate_rank": 6,
+          "chunk_id": "paper-002-p002-c001",
+          "paper_id": "paper-002",
+          "page": 2,
+          "section": "1 Introduction",
+          "source_page_id": "paper-002-p002",
+          "text_excerpt": "Published as a conference paper at COLM 2026 Proxy Scale Search Grid Target Scale M&D Joint Scaling Token Scale (D) Model Scale (M) (a) Conventional Hyperparameter Scaling Token Scale (D) Model Scale (M) Proxy Scale Search Grid μP Token Scaling Law Target Scale (b) Two-Step Hyperparameter Transfer F",
+          "reranker_score": -0.6567076444625854,
+          "hybrid_score": 0.015151515151515152,
+          "pre_rerank_rank": 12,
+          "source_ranks": {
+            "dense": 6
+          }
+        },
+        {
+          "candidate_rank": 7,
+          "chunk_id": "paper-002-p002-c004",
+          "paper_id": "paper-002",
+          "page": 2,
+          "section": "1 Introduction",
+          "source_page_id": "paper-002-p002",
+          "text_excerpt": "k for large-scale MoE pretraining. Figure 1 illustrates the difference between conventional hyperparameter scaling approaches and our proposed method. Conventional approaches consider model and token scales simultaneously, thereby relying on exhaustive 2",
+          "reranker_score": -0.7400359511375427,
+          "hybrid_score": 0.02758751902587519,
+          "pre_rerank_rank": 3,
+          "source_ranks": {
+            "bm25": 12,
+            "dense": 13
+          }
+        },
+        {
+          "candidate_rank": 8,
+          "chunk_id": "paper-002-p003-c001",
+          "paper_id": "paper-002",
+          "page": 3,
+          "section": "1 Introduction",
+          "source_page_id": "paper-002-p003",
+          "text_excerpt": "Published as a conference paper at COLM 2026 2D sweeps across both dimensions to empirically predict optimal configurations at large scale. In contrast, our approach leverages µP to enable robust transfer across model scales. This requires only a few small-scale proxy runs to extrapolate the optimal",
+          "reranker_score": -0.8760969638824463,
+          "hybrid_score": 0.014705882352941176,
+          "pre_rerank_rank": 16,
+          "source_ranks": {
+            "dense": 8
+          }
+        },
+        {
+          "candidate_rank": 9,
+          "chunk_id": "paper-002-p003-c004",
+          "paper_id": "paper-002",
+          "page": 3,
+          "section": "2.1 Applyingµ-Parameterization to MoE",
+          "source_page_id": "paper-002-p003",
+          "text_excerpt": "2.1 Applyingµ-Parameterization to MoE Although determining the optimal learning rate is critical for successful model training, conducting comprehensive hyperparameter search for large-scale MoE models exceeding 100B parameters is computationally prohibitive. Therefore, we adopt Maximal Update Param",
+          "reranker_score": -3.402651071548462,
+          "hybrid_score": 0.025,
+          "pre_rerank_rank": 4,
+          "source_ranks": {
+            "bm25": 20,
+            "dense": 20
+          }
+        },
+        {
+          "candidate_rank": 10,
+          "chunk_id": "paper-002-p010-c001",
+          "paper_id": "paper-002",
+          "page": 10,
+          "section": "4 Related Works",
+          "source_page_id": "paper-002-p010",
+          "text_excerpt": "Published as a conference paper at COLM 2026 example, Mała´snicki et al. (2025) attempt to apply µP to the Switch Transformer (Fedus et al., 2022) architecture, but their study was limited to the AdamW optimizer (Loshchilov & Hutter, 2017) under restrictive settings, such as fixing the total and act",
+          "reranker_score": -3.477139949798584,
+          "hybrid_score": 0.015625,
+          "pre_rerank_rank": 9,
+          "source_ranks": {
+            "dense": 4
+          }
+        },
+        {
+          "candidate_rank": 11,
+          "chunk_id": "paper-002-p016-c001",
+          "paper_id": "paper-002",
+          "page": 16,
+          "section": "References",
+          "source_page_id": "paper-002-p016",
+          "text_excerpt": "Published as a conference paper at COLM 2026 10 4 10 3 10 2 Learning Rate 3 4 5 6 7 8Loss 0.24B (Base Proxy) 0.7B 2.27B 8.02B (a) Standard Parameterization (SP) 10 4 10 3 10 2 Learning Rate 3 4 5 6 7Loss 0.24B (Base Proxy) 0.7B 2.27B 8.02B Transferred Optimal LR (b) Maximal Update Parameterization (",
+          "reranker_score": -3.608931303024292,
+          "hybrid_score": 0.015625,
+          "pre_rerank_rank": 10,
+          "source_ranks": {
+            "bm25": 4
+          }
+        },
+        {
+          "candidate_rank": 12,
+          "chunk_id": "paper-002-p018-c001",
+          "paper_id": "paper-002",
+          "page": 18,
+          "section": "References",
+          "source_page_id": "paper-002-p018",
+          "text_excerpt": "Published as a conference paper at COLM 2026 64000 65000 66000 67000 68000 69000 70000 Training Step 0.00 0.25 0.50 0.75 1.00 1.25 1.50 1.75MaxVio init:stg1, update:on init:stg1, update:off init:0, update:off (a) Average MaxVio 64000 65000 66000 67000 68000 69000 70000 Training Step 0 1 2 3 4MaxVio ",
+          "reranker_score": -3.8921756744384766,
+          "hybrid_score": 0.014925373134328358,
+          "pre_rerank_rank": 15,
+          "source_ranks": {
+            "bm25": 7
+          }
+        },
+        {
+          "candidate_rank": 13,
+          "chunk_id": "paper-002-p006-c001",
+          "paper_id": "paper-002",
+          "page": 6,
+          "section": "2.2.1 Estimating Optimal Learning Rates Over Short T oken Budgets",
+          "source_page_id": "paper-002-p006",
+          "text_excerpt": "Published as a conference paper at COLM 2026 10 4 10 3 10 2 Learning Rate 3 4 5 6 7Loss t0.6B a0.3B (Base Proxy) t2.2B a0.7B t8B a1.5B t30.7B a3.6B (a) SP (Standard Parameterization) 10 4 10 3 10 2 Learning Rate 3 4 5 6 7Loss t0.6B a0.3B (Base Proxy) t2.2B a0.7B t8B a1.5B t30.7B a3.6B Transferred Op",
+          "reranker_score": -4.714568138122559,
+          "hybrid_score": 0.014285714285714285,
+          "pre_rerank_rank": 19,
+          "source_ranks": {
+            "bm25": 10
+          }
+        },
+        {
+          "candidate_rank": 14,
+          "chunk_id": "paper-002-p014-c003",
+          "paper_id": "paper-002",
+          "page": 14,
+          "section": "References",
+          "source_page_id": "paper-002-p014",
+          "text_excerpt": "ture learning in infinite-width neural networks. In Marina Meila and Tong Zhang (eds.),Proceedings of the 38th International Conference on Machine Learning, volume 139 ofProceedings of Machine Learning Research, pp. 11727–11737. PMLR, 18–24 Jul 2021. URL https://proceedings.mlr.press/v139/ yang21c.h",
+          "reranker_score": -5.019463062286377,
+          "hybrid_score": 0.014285714285714285,
+          "pre_rerank_rank": 20,
+          "source_ranks": {
+            "dense": 10
+          }
+        },
+        {
+          "candidate_rank": 15,
+          "chunk_id": "paper-002-p006-c002",
+          "paper_id": "paper-002",
+          "page": 6,
+          "section": "2.2.2 Extrapolating Optimal Learning Rates Across Long T oken Horizons",
+          "source_page_id": "paper-002-p006",
+          "text_excerpt": "2.2.2 Extrapolating Optimal Learning Rates Across Long T oken Horizons We leverage the optimal learning rates estimated from short-token budget experiments via Equation (2) to extrapolate the optimal learning rate for the full target token horizon. Specifically, we perform a linear regression in log",
+          "reranker_score": -5.451150417327881,
+          "hybrid_score": 0.015151515151515152,
+          "pre_rerank_rank": 13,
+          "source_ranks": {
+            "bm25": 6
+          }
+        },
+        {
+          "candidate_rank": 16,
+          "chunk_id": "paper-002-p013-c002",
+          "paper_id": "paper-002",
+          "page": 13,
+          "section": "References",
+          "source_page_id": "paper-002-p013",
+          "text_excerpt": "eview.net/forum?id=2M9CUnYnBA. Deepak Narayanan, Mohammad Shoeybi, Jared Casper, Patrick LeGresley, Mostofa Patwary, Vijay Korthikanti, Dmitri Vainbrand, Prethvi Kashinkunti, Julie Bernauer, Bryan Catanzaro, et al. Efficient large-scale language model training on gpu clusters using megatron-lm. InPr",
+          "reranker_score": -5.495275497436523,
+          "hybrid_score": 0.015873015873015872,
+          "pre_rerank_rank": 8,
+          "source_ranks": {
+            "dense": 3
+          }
+        },
+        {
+          "candidate_rank": 17,
+          "chunk_id": "paper-002-p007-c004",
+          "paper_id": "paper-002",
+          "page": 7,
+          "section": "3.3.1 Learning Rate Dynamics Across T oken Horizons",
+          "source_page_id": "paper-002-p007",
+          "text_excerpt": "3.3.1 Learning Rate Dynamics Across T oken Horizons 6 × 10 4 1 × 10 3 2 × 10 3 3 × 10 3 6 × 10 3 2.0 2.1 2.2 2.3Loss 40B 60B 80B 100B Learning Rate Figure 4: Solid lines ( −) denote the base proxy model (5.6B total, 1.8B active), while dashed lines (−−) represent the 2× widthscaled held-out model (2",
+          "reranker_score": -5.614605903625488,
+          "hybrid_score": 0.015873015873015872,
+          "pre_rerank_rank": 7,
+          "source_ranks": {
+            "bm25": 3
+          }
+        },
+        {
+          "candidate_rank": 18,
+          "chunk_id": "paper-002-p019-c003",
+          "paper_id": "paper-002",
+          "page": 19,
+          "section": "References",
+          "source_page_id": "paper-002-p019",
+          "text_excerpt": "y. Higher values indicate stronger domain-dependent expert specialization. (iii) Mean pairwise Jensen–Shannon divergence.For any two domains a and b with routing distributionsp(e|a)andp(e|b), letm= 1 2 \u0000 p(e|a) +p(e|b) \u0001 . Then JSD(a,b) = 1 2 DKL(p(e|a)∥m ) + 1 2 DKL(p(e|b)∥m ) (7) The reported mean",
+          "reranker_score": -5.802029132843018,
+          "hybrid_score": 0.014492753623188406,
+          "pre_rerank_rank": 18,
+          "source_ranks": {
+            "bm25": 9
+          }
+        },
+        {
+          "candidate_rank": 19,
+          "chunk_id": "paper-002-p015-c001",
+          "paper_id": "paper-002",
+          "page": 15,
+          "section": "References",
+          "source_page_id": "paper-002-p015",
+          "text_excerpt": "Published as a conference paper at COLM 2026 Model Scale Total Params. Active Params.n layers dmodel dff nheads nexperts λrouted Models for Section 3.2 and Appendix C DenseBase proxy 0.24B 0.24B 48 384 1536 4 - Dense2×scale 0.7B 0.7B 48 768 3072 8 - Dense4×scale 2.27B 2.27B 48 1536 6144 16 - Dense8×",
+          "reranker_score": -6.0578789710998535,
+          "hybrid_score": 0.016129032258064516,
+          "pre_rerank_rank": 6,
+          "source_ranks": {
+            "bm25": 2
+          }
+        },
+        {
+          "candidate_rank": 20,
+          "chunk_id": "paper-002-p005-c005",
+          "paper_id": "paper-002",
+          "page": 5,
+          "section": "2.2.1 Estimating Optimal Learning Rates Over Short T oken Budgets",
+          "source_page_id": "paper-002-p005",
+          "text_excerpt": "rates using these merged checkpoints. Following Bjorck et al. (2025), for each token scale (B), we model the relationship between the validation loss (L) and the log-transformed learning rate (logη ) using a second-order polynomial: L(η) =a(logη) 2 +b(logη) +c(2) 5",
+          "reranker_score": -7.153834819793701,
+          "hybrid_score": 0.015384615384615385,
+          "pre_rerank_rank": 11,
+          "source_ranks": {
+            "bm25": 5
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev-01-paper-002-p010-c003",
+          "rank": 1,
+          "paper_id": "paper-002",
+          "page": 10,
+          "section": "5 Conclusion",
+          "chunk_id": "paper-002-p010-c003",
+          "source_page_id": "paper-002-p010",
+          "text": "5 Conclusion We propose a compute-efficient two-step framework for hyperparameter transfer in largescale Mixture-of-Experts (MoE) pretraining, enabling accurate optimal learning rate estimation without exhaustive sweeps. By combining µP-based width transferability with a linear scaling law across token budgets, we show that optimal learning rates for trilliontoken large-scale MoE pretraining can be reliably predicted from small proxy experiments, thereby reducing unnecessary computation. We validate this methodology by pretraining our foundation model (155B total, 17B active parameters) from scratch. While conducting exhaustive full-scale sweeps to definitively verify the optimality of the predicted learning rate (3.85× 10−4) is computationally infeasible, the exceptionally stable loss trajectory (Figure 6) and highly competitive benchmark scores (Figure 7) provide strong empirical evidence that our extrapolated configuration is effective and reliable for extreme-scale pretraining. In this study, we focus on MoE architectures with Multi-head Latent Attention (MLA) (Liu et al., 2024a) and the Muon optimizer (Jordan et al., 2024). Extending this framework to diverse MoE structures an",
+          "char_count": 1200,
+          "locator": {
+            "page_label": "p. 10",
+            "section": "5 Conclusion",
+            "chunk_id": "paper-002-p010-c003"
+          },
+          "scores": {
+            "reranker": 6.45538854598999,
+            "hybrid": 0.014492753623188406,
+            "pre_rerank_rank": 17,
+            "source_ranks": {
+              "dense": 9
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-002-p008-c004",
+          "rank": 2,
+          "paper_id": "paper-002",
+          "page": 8,
+          "section": "3.3.3 Applying to Our Foundation Model",
+          "chunk_id": "paper-002-p008-c004",
+          "source_page_id": "paper-002-p008",
+          "text": "3.3.3 Applying to Our Foundation Model To validate the effectiveness of our approach, we apply the proposed two-step hyperparameter transfer framework to predict the optimal learning rate for pretraining a large-scale MoE foundation model (155B total, 17B active parameters) over a 10T-token horizon. Detailed model configurations are provided in Table 3. As shown in Figure 2b, the full-scale pretraining of this MoE model requires approximately 98× the total compute of the proxy runs used for optimal learning rate prediction. 8",
+          "char_count": 531,
+          "locator": {
+            "page_label": "p. 8",
+            "section": "3.3.3 Applying to Our Foundation Model",
+            "chunk_id": "paper-002-p008-c004"
+          },
+          "scores": {
+            "reranker": 5.181527614593506,
+            "hybrid": 0.014925373134328358,
+            "pre_rerank_rank": 14,
+            "source_ranks": {
+              "dense": 7
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-002-p003-c002",
+          "rank": 3,
+          "paper_id": "paper-002",
+          "page": 3,
+          "section": "1 Introduction",
+          "chunk_id": "paper-002-p003-c002",
+          "source_page_id": "paper-002-p003",
+          "text": "MoE Architectures:Building on prior work discussing the adaptation of µP to MoE architectures, we study zero-shot hyperparameter transfer when scaling both model width and the total number of experts (i.e., sparsity expansion). We further explore the use of the Muon optimizer in this setting, extending the empirical scope ofµP-based MoE scaling. • Token-Scale Extrapolation within a Two-Step Framework:We introduce a twostep predictive framework to extrapolate optimal learning rates to unseen, long token horizons based on cost-effective small-scale proxy runs, significantly reducing the computational overhead of hyperparameter tuning. • Large-Scale Validation:We apply the proposed two-step framework to pretrain a large-scale MoE foundation model (155B total, 17B active parameters) from scratch over 10 trillion tokens, validating its practical effectiveness at scale.",
+          "char_count": 876,
+          "locator": {
+            "page_label": "p. 3",
+            "section": "1 Introduction",
+            "chunk_id": "paper-002-p003-c002"
+          },
+          "scores": {
+            "reranker": 4.162502765655518,
+            "hybrid": 0.016129032258064516,
+            "pre_rerank_rank": 5,
+            "source_ranks": {
+              "dense": 2
+            }
+          },
+          "source": {
+            "section_index": 1,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-002-p003-c003",
+          "rank": 4,
+          "paper_id": "paper-002",
+          "page": 3,
+          "section": "2 Methods",
+          "chunk_id": "paper-002-p003-c003",
+          "source_page_id": "paper-002-p003",
+          "text": "2 Methods Our two-step hyperparameter transfer framework requires two key components: (1) formulating µP specifically for MoE architectures, and (2) establishing a scaling law that predicts the optimal learning rate as the token budget scales. Section 2.1 describes our adaptation of µP to MoE architectures, and the results in Section 3.2 validate that this formulation ensures that the optimal learning rate can be reliably transferred across model widths. Section 2.2 then addresses extrapolation to extended training horizons: Section 2.2.1 defines the optimal learning rate at a given token scale, and Section 2.2.2 presents our methodology for extending these estimates to unseen, large-scale token horizons. The efficacy of this extrapolation is demonstrated in Section 3.3.",
+          "char_count": 781,
+          "locator": {
+            "page_label": "p. 3",
+            "section": "2 Methods",
+            "chunk_id": "paper-002-p003-c003"
+          },
+          "scores": {
+            "reranker": 3.9546258449554443,
+            "hybrid": 0.03278688524590164,
+            "pre_rerank_rank": 1,
+            "source_ranks": {
+              "bm25": 1,
+              "dense": 1
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-05-paper-002-p004-c004",
+          "rank": 5,
+          "paper_id": "paper-002",
+          "page": 4,
+          "section": "2.2 Extrapolating Optimal Learning Rates to Long Token Horizons",
+          "chunk_id": "paper-002-p004-c004",
+          "source_page_id": "paper-002-p004",
+          "text": "2.2 Extrapolating Optimal Learning Rates to Long Token Horizons Although µP-based hyperparameter transfer significantly reduces search costs, performing a direct search for the optimal learning rate over trillions of training tokens (e.g., 10T tokens) remains computationally prohibitive even when using small proxy models. To address this challenge, we aim to identify the optimal learning rate within a constrained token budget and extrapolate the results to the full target token horizon. Building upon the methodology in Section 2.1, the results presented in Section 3.2 verify that optimal learning rates can be successfully transferred when scaling MoE model width. Therefore, if a scaling rule along the token dimension is established, hyperparameter transfer from small proxy models trained on limited token budgets to large-scale models with extensive token budgets can be optimized through a two-step framework. Importantly, our framework deliberately focuses on learning rate transfer, excluding batch size. This is not merely a simplification—batch size occupies a fundamentally different role: it is not only a modeling hyperparameter but also a system-level variable frequently 4",
+          "char_count": 1193,
+          "locator": {
+            "page_label": "p. 4",
+            "section": "2.2 Extrapolating Optimal Learning Rates to Long Token Horizons",
+            "chunk_id": "paper-002-p004-c004"
+          },
+          "scores": {
+            "reranker": 0.5216056704521179,
+            "hybrid": 0.030090497737556562,
+            "pre_rerank_rank": 2,
+            "source_ranks": {
+              "bm25": 8,
+              "dense": 5
+            }
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 1
+          }
+        }
+      ]
+    }
+  ],
+  "runtime_seconds": 27.604
+}

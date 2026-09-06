@@ -1,0 +1,398 @@
+{
+  "seed": 378,
+  "prompt_version": "compact-v2",
+  "method": "same model, saved retrieved evidence, unchanged pre-generation refusal decisions",
+  "model": {
+    "provider": "local_transformers",
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "device": "cpu",
+    "dtype": "float32",
+    "device_fallback_reason": "insufficient_free_cuda_memory",
+    "config_path": "config/generation_candidate.json",
+    "config_fingerprint": "167cd126c28dcc9097971c6dcd04fe264cad3e26aa8cb0386be40c8745baba52"
+  },
+  "results": [
+    {
+      "question_id": "q-001-en",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "attempts": [],
+      "seconds": 0.0
+    },
+    {
+      "question_id": "q-001-ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "검색된 텍스트의 관련도가 낮아 답변을 뒷받침할 수 없습니다."
+      },
+      "attempts": [],
+      "seconds": 0.0
+    },
+    {
+      "question_id": "q-005-en",
+      "response": {
+        "answer": "The proposed two-step hyperparameter transfer framework involves:\n\n1. Formulating µP specifically for MoE architectures using Multi-head Latent Attention (MLA) and the Muon optimizer.\n2. Establishing a scaling law that predicts the optimal learning rate as the token budget scales.",
+        "evidence_ids": [
+          "ev-01-paper-002-p010-c003",
+          "ev-02-paper-002-p001-c002",
+          "ev-03-paper-002-p008-c004",
+          "ev-04-paper-002-p003-c003",
+          "ev-05-paper-002-p003-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"The proposed two-step hyperparameter transfer framework involves:\\n\\n1. Formulating µP specifically for MoE architectures using Multi-head Latent Attention (MLA) and the Muon optimizer.\\n2. Establishing a scaling law that predicts the optimal learning rate as the token budget scales.\",\n  \"evidence_ids\": [\"ev-01-paper-002-p010-c003\", \"ev-02-paper-002-p001-c002\", \"ev-03-paper-002-p008-c004\", \"ev-04-paper-002-p003-c003\", \"ev-05-paper-002-p003-c002\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 59.455
+    },
+    {
+      "question_id": "q-045-ko",
+      "response": {
+        "answer": "모델 폭이 달라질 때 학습률 전이는 두 가지 중요한 결과를 제공합니다.\n\n1. **표준 파라미터화 (Standard Parameterization, SP):**\n   - 학습률의 최적값은 모델 크기와 토큰 범위에 따라 변동합니다.\n   - 이로 인해 다양한 모델 크기에 대한 최적 학습률을 찾는데 어려움이 있습니다.\n\n2. **최대 업데이트 파라미터화 (Maximal Update Parameterization, µP):**\n   - 최적 학습률은 기반 프록시 모델에서 consistently 전이됩니다.\n   - 이는 넓은 MLA 모델과 MoE 모델에서도 뚜렷한 임계값을 보여줍니다.",
+        "evidence_ids": [
+          "ev-02-paper-002-p016-c001"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"모델 폭이 달라질 때 학습률 전이는 두 가지 중요한 결과를 제공합니다.\",\n  \"evidence_ids\": [],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": false,
+          "error": "a sufficient answer requires at least one evidence_id"
+        },
+        {
+          "raw": "```json\n{\n  \"answer\": \"모델 폭이 달라질 때 학습률 전이는 두 가지 중요한 결과를 제공합니다.\\n\\n1. **표준 파라미터화 (Standard Parameterization, SP):**\\n   - 학습률의 최적값은 모델 크기와 토큰 범위에 따라 변동합니다.\\n   - 이로 인해 다양한 모델 크기에 대한 최적 학습률을 찾는데 어려움이 있습니다.\\n\\n2. **최대 업데이트 파라미터화 (Maximal Update Parameterization, µP):**\\n   - 최적 학습률은 기반 프록시 모델에서 consistently 전이됩니다.\\n   - 이는 넓은 MLA 모델과 MoE 모델에서도 뚜렷한 임계값을 보여줍니다.\",\n  \"evidence_ids\": [\"ev-02-paper-002-p016-c001\"],\n  \"sufficiency\": \"sufficient\"\n}\n```",
+          "valid": false,
+          "error": "answer output fields mismatch; missing=['abstention_reason'], extra=[]"
+        },
+        {
+          "raw": "```json\n{\n  \"answer\": \"모델 폭이 달라질 때 학습률 전이는 두 가지 중요한 결과를 제공합니다.\\n\\n1. **표준 파라미터화 (Standard Parameterization, SP):**\\n   - 학습률의 최적값은 모델 크기와 토큰 범위에 따라 변동합니다.\\n   - 이로 인해 다양한 모델 크기에 대한 최적 학습률을 찾는데 어려움이 있습니다.\\n\\n2. **최대 업데이트 파라미터화 (Maximal Update Parameterization, µP):**\\n   - 최적 학습률은 기반 프록시 모델에서 consistently 전이됩니다.\\n   - 이는 넓은 MLA 모델과 MoE 모델에서도 뚜렷한 임계값을 보여줍니다.\",\n  \"evidence_ids\": [\"ev-02-paper-002-p016-c001\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 202.807
+    },
+    {
+      "question_id": "q-007-en",
+      "response": {
+        "answer": "This paper focuses on a review of modern summarization techniques, emphasizing transformer-based models and large language models like BERT, RoBERTa, and BART.",
+        "evidence_ids": [
+          "ev-01-paper-003-p001-c002",
+          "ev-02-paper-003-p002-c001",
+          "ev-03-paper-003-p001-c003"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "{\n  \"answer\": \"This paper focuses on a review of modern summarization techniques, emphasizing transformer-based models and large language models like BERT, RoBERTa, and BART.\",\n  \"evidence_ids\": [\"ev-01-paper-003-p001-c002\", \"ev-02-paper-003-p002-c001\", \"ev-03-paper-003-p001-c003\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}",
+          "valid": true
+        }
+      ],
+      "seconds": 41.734
+    },
+    {
+      "question_id": "q-007-ko",
+      "response": {
+        "answer": "이 논문은 텍스트 요약의 다양한 방법론과 모델에 대해 심도 있는 연구를 제공합니다.",
+        "evidence_ids": [
+          "ev-01-paper-003-p001-c002",
+          "ev-02-paper-003-p002-c001",
+          "ev-03-paper-003-p008-c002",
+          "ev-04-paper-003-p003-c004"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"이 논문은 텍스트 요약의 다양한 방법론과 모델에 대해 심도 있는 연구를 제공합니다.\",\n  \"evidence_ids\": [\"ev-01-paper-003-p001-c002\", \"ev-02-paper-003-p002-c001\", \"ev-03-paper-003-p008-c002\", \"ev-04-paper-003-p003-c004\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 44.113
+    },
+    {
+      "question_id": "q-031-en",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "attempts": [],
+      "seconds": 0.0
+    },
+    {
+      "question_id": "q-048-ko",
+      "response": {
+        "answer": "INT8 추론에 PyTorch 네이티브 스택을 사용하면 서버 환경에서도 빠른 THROUGHPUT 성능을 제공하며, 임베디드 모델의 정확도를 약간 상쇄하지만, 대체적으로 큰 THROUGHPUT 성능 향상과 함께 유지된다.",
+        "evidence_ids": [
+          "ev-01-paper-004-p002-c001",
+          "ev-02-paper-004-p011-c004"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"INT8 추론에 PyTorch 네이티브 스택을 사용하면 서버 환경에서도 빠른 THROUGHPUT 성능을 제공하며, 임베디드 모델의 정확도를 약간 상쇄하지만, 대체적으로 큰 THROUGHPUT 성능 향상과 함께 유지된다.\",\n  \"evidence_ids\": [\"ev-01-paper-004-p002-c001\", \"ev-02-paper-004-p011-c004\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 51.507
+    },
+    {
+      "question_id": "q-015-en",
+      "response": {
+        "answer": "ContCore achieved state-of-the-art results across 11 continual task schedules on MVTecAD and VisA while maintaining efficient training and inference.",
+        "evidence_ids": [
+          "ev-01-paper-005-p014-c003",
+          "ev-02-paper-005-p001-c004"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"ContCore achieved state-of-the-art results across 11 continual task schedules on MVTecAD and VisA while maintaining efficient training and inference.\",\n  \"evidence_ids\": [\"ev-01-paper-005-p014-c003\", \"ev-02-paper-005-p001-c004\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 38.484
+    },
+    {
+      "question_id": "q-049-ko",
+      "response": {
+        "answer": "지속적 이상 탐지에서는 메모리 효율성을 보장하는 데 중요한 점은 메모리를 제한적으로 사용하면서도 정확한 대상 추출을 유지하는 것이다.",
+        "evidence_ids": [
+          "ev-01-paper-005-p014-c003",
+          "ev-02-paper-005-p001-c004",
+          "ev-03-paper-005-p003-c001",
+          "ev-04-paper-005-p004-c001",
+          "ev-05-paper-005-p003-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"지속적 이상 탐지에서는 메모리 효율성을 보장하는 데 중요한 점은 메모리를 제한적으로 사용하면서도 정확한 대상 추출을 유지하는 것이다.\",\n  \"evidence_ids\": [\n    \"ev-01-paper-005-p014-c003\",\n    \"ev-02-paper-005-p001-c004\",\n    \"ev-03-paper-005-p003-c001\",\n    \"ev-04-paper-005-p004-c001\",\n    \"ev-05-paper-005-p003-c002\"\n  ],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 57.158
+    },
+    {
+      "question_id": "q-017-en",
+      "response": {
+        "answer": "EOFMs (Earth Observation-based Models) learn reusable representations from EO data to support process inference in ecohydrology. This connection is established through the observation-to-inference hierarchy, where EOFM relevance depends on target-specific sensing pathways, spatial and temporal support, and traceable uncertainty.",
+        "evidence_ids": [
+          "ev-01-paper-006-p025-c003",
+          "ev-02-paper-006-p005-c001",
+          "ev-03-paper-006-p001-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"EOFMs (Earth Observation-based Models) learn reusable representations from EO data to support process inference in ecohydrology. This connection is established through the observation-to-inference hierarchy, where EOFM relevance depends on target-specific sensing pathways, spatial and temporal support, and traceable uncertainty.\",\n  \"evidence_ids\": [\"ev-01-paper-006-p025-c003\", \"ev-02-paper-006-p005-c001\", \"ev-03-paper-006-p001-c002\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 43.792
+    },
+    {
+      "question_id": "q-017-ko",
+      "response": {
+        "answer": "논문에서는 데이터 기반 접근법이 표현 학습과 과정 추론 사이의 연결을 강조하고 있다.",
+        "evidence_ids": [
+          "ev-01-paper-006-p001-c007",
+          "ev-02-paper-006-p001-c001",
+          "ev-03-paper-006-p026-c009",
+          "ev-04-paper-006-p002-c001",
+          "ev-05-paper-006-p002-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"논문에서는 데이터 기반 접근법이 표현 학습과 과정 추론 사이의 연결을 강조하고 있다.\",\n  \"evidence_ids\": [\n    \"ev-01-paper-006-p001-c007\",\n    \"ev-02-paper-006-p001-c001\",\n    \"ev-03-paper-006-p026-c009\",\n    \"ev-04-paper-006-p002-c001\",\n    \"ev-05-paper-006-p002-c002\"\n  ],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 55.742
+    },
+    {
+      "question_id": "q-034-en",
+      "response": {
+        "answer": "The main result requires that the model and the point whose cell we study are defined over \\(\\mathbb{Q}\\), ensuring that the transcendence phenomenon occurs.",
+        "evidence_ids": [
+          "ev-01-paper-007-p002-c001"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"The main result requires that the model and the point whose cell we study are defined over \\\\(\\\\mathbb{Q}\\\\), ensuring that the transcendence phenomenon occurs.\",\n  \"evidence_ids\": [\"ev-01-paper-007-p002-c001\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 40.307
+    },
+    {
+      "question_id": "q-034-ko",
+      "response": {
+        "answer": "로그arithmic Voronoi cell에 대해 주요 결과 중 하나는 두 개의 선의 합의 로그 Voronoi 씽트에서 특정 빠른 점에서 대수적 경계점이 존재한다는 것이다.",
+        "evidence_ids": [
+          "ev-05-paper-007-p001-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"로그arithmic Voronoi cell의 경우, 모델과 점이 모두 Q 위에 정의되어 있어, 이는 데이터 공간 경계에서 발생하는 대수적 성질보다 모델 점 자체에서 전달되는 대수적 성질을 나타내는 것이 가능하다.\",\n  \"evidence_ids\": [],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": false,
+          "error": "a sufficient answer requires at least one evidence_id"
+        },
+        {
+          "raw": "```json\n{\n  \"answer\": \"로그arithmic Voronoi cell에 대해 주요 결과 중 하나는 두 개의 선의 합의 로그 Voronoi 씽트에서 특정 빠른 점에서 대수적 경계점이 존재한다는 것이다.\",\n  \"evidence_ids\": [\"ev-05-paper-007-p001-c002\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 95.646
+    },
+    {
+      "question_id": "q-041-en",
+      "response": {
+        "answer": "GOAG is evaluated on the Multidex dataset, where it achieves an average success rate of 86.93%.",
+        "evidence_ids": [
+          "ev-04-paper-008-p006-c004"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"GOAG is evaluated on the Multidex dataset, where it achieves an average success rate of 86.93%.\",\n  \"evidence_ids\": [\"ev-04-paper-008-p006-c004\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 34.741
+    },
+    {
+      "question_id": "q-041-ko",
+      "response": {
+        "answer": "GOAG의 성능은 다수의 레이저 테스트 셀과 실제 객체를 사용하여 평가된다.",
+        "evidence_ids": [
+          "ev-02-paper-008-p006-c005"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"GOAG의 성능은 다수의 레이저 테스트 셀과 실제 객체를 사용하여 평가된다.\",\n  \"evidence_ids\": [\"ev-02-paper-008-p006-c005\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 39.075
+    },
+    {
+      "question_id": "q-042-en",
+      "response": {
+        "answer": "Microlensify was evaluated on approximately 1.5 million TESS light curves from Sector 12, sourced from the Eleanor pipeline. Each light curve was standardized to a fixed length of 940 data points to meet the input requirements of the model.",
+        "evidence_ids": [
+          "ev-02-paper-009-p015-c003"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"Microlensify was evaluated on approximately 1.5 million TESS light curves from Sector 12, sourced from the Eleanor pipeline. Each light curve was standardized to a fixed length of 940 data points to meet the input requirements of the model.\",\n  \"evidence_ids\": [\"ev-02-paper-009-p015-c003\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 41.057
+    },
+    {
+      "question_id": "q-042-ko",
+      "response": {
+        "answer": "Microlensify 분류기는 TESS 광도 곡선에서 다음과 같이 평가됩니다.",
+        "evidence_ids": [
+          "ev-01-paper-009-p022-c004"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"Microlensify 분류기의 성능은 TESS 광도 곡선에서 다음과 같이 평가됩니다.\",\n  \"evidence_ids\": [ev-01-paper-009-p022-c004],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": false,
+          "error": "model response is not valid JSON: Expecting value"
+        },
+        {
+          "raw": "```json\n{\n  \"answer\": \"Microlensify 분류기는 TESS 광도 곡선에서 다음과 같이 평가됩니다.\",\n  \"evidence_ids\": [\"ev-01-paper-009-p022-c004\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 68.811
+    },
+    {
+      "question_id": "q-043-en",
+      "response": {
+        "answer": "Experiments on synthetic data and a real multi-site resting-state fMRI cohort.",
+        "evidence_ids": [
+          "ev-01-paper-010-p019-c001",
+          "ev-02-paper-010-p018-c007"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"Experiments on synthetic data and a real multi-site resting-state fMRI cohort.\",\n  \"evidence_ids\": [\"ev-01-paper-010-p019-c001\", \"ev-02-paper-010-p018-c007\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 30.996
+    },
+    {
+      "question_id": "q-043-ko",
+      "response": {
+        "answer": "다중 소스 distributionally robust graph learning을 평가하기 위해, 제안된 MS-WDRO를 여러 소스의 분포에 대해 비교하는 실험이 수행되었다.",
+        "evidence_ids": [
+          "ev-03-paper-010-p018-c007"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "attempts": [
+        {
+          "raw": "```json\n{\n  \"answer\": \"다중 소스 distributionally robust graph learning을 평가하기 위해, 제안된 MS-WDRO를 여러 소스의 분포에 대해 비교하는 실험이 수행되었다.\",\n  \"evidence_ids\": [\"ev-03-paper-010-p018-c007\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+          "valid": true
+        }
+      ],
+      "seconds": 32.777
+    }
+  ]
+}
