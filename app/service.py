@@ -11,6 +11,7 @@ from uuid import uuid4
 from pypdf import PdfReader
 
 from scripts.ingest_papers import process_paper, write_jsonl
+from .question_engine import RuntimeQuestionEngine
 from .storage import Store
 
 
@@ -25,6 +26,7 @@ class Settings:
     max_upload_bytes: int = 20 * 1024 * 1024
     seed: int = DEFAULT_SEED
     max_pending_jobs: int = 16
+    model_local_files_only: bool = False
 
 
 class UploadError(Exception):
@@ -32,8 +34,13 @@ class UploadError(Exception):
         self.code, self.message, self.status = code, message, status
 
 
+class PaperStateError(Exception):
+    def __init__(self, code, message, status=409):
+        self.code, self.message, self.status = code, message, status
+
+
 class Service:
-    def __init__(self, settings):
+    def __init__(self, settings, question_engine=None):
         self.settings = settings
         self.root = settings.data_dir.resolve()
         self.root.mkdir(parents=True, exist_ok=True)
@@ -55,6 +62,10 @@ class Service:
             raise RuntimeError("Runtime directory already in use; use one API worker.") from None
         try:
             self.store = Store(self.root)
+            self.question_engine = question_engine or RuntimeQuestionEngine(
+                seed=settings.seed,
+                local_files_only=settings.model_local_files_only,
+            )
             self.executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="paper-analysis")
             for job_id in self.store.recover():
                 self.executor.submit(self.run, job_id)
@@ -117,6 +128,108 @@ class Service:
         if schedule:
             self.executor.submit(self.run, job["job_id"])
         return job
+
+    @staticmethod
+    def _read_jsonl(path):
+        with Path(path).open(encoding="utf-8") as source:
+            return [json.loads(line) for line in source if line.strip()]
+
+    def _overview(self, directory):
+        pages = self._read_jsonl(directory / "pages.jsonl")
+        sections = []
+        abstract_parts = []
+        for page in pages:
+            for segment in page.get("sections", []):
+                section = segment.get("section")
+                if section and section not in sections and section != "Front Matter":
+                    sections.append(section)
+                normalized = "".join(character for character in (section or "").lower() if character.isalpha())
+                if normalized == "abstract":
+                    text = segment.get("text", "").strip()
+                    if text and text not in abstract_parts:
+                        abstract_parts.append(text)
+        abstract = " ".join(abstract_parts).strip() or None
+        if abstract and abstract.lower().startswith("abstract"):
+            abstract = abstract[8:].lstrip(" :-")
+        return {"abstract": abstract, "sections": sections[:100]}
+
+    def paper(self, paper_id):
+        paper, job = self.store.paper(paper_id)
+        status = "uploaded"
+        if job:
+            status = {
+                "queued": "queued",
+                "running": "processing",
+                "completed": "ready",
+                "failed": "failed",
+            }[job["status"]]
+        directory = self.root / "papers" / paper_id
+        overview = self._overview(directory) if status == "ready" else None
+        return {
+            "paper_id": paper_id,
+            "filename": paper["filename"],
+            "size_bytes": paper["size_bytes"],
+            "uploaded_at": paper["created_at"],
+            "status": status,
+            "page_count": paper["page_count"],
+            "text_page_count": job["text_page_count"] if job else None,
+            "chunk_count": job["chunk_count"] if job else None,
+            "warning_count": job["warning_count"] if job else None,
+            "analysis": job,
+            "overview": overview,
+        }
+
+    def ask(self, paper_id, question):
+        _, job = self.store.paper(paper_id)
+        if job is None:
+            raise PaperStateError(
+                "analysis_required",
+                "Analyze the paper before asking a question.",
+            )
+        if job["status"] in {"queued", "running"}:
+            raise PaperStateError(
+                "analysis_in_progress",
+                "Paper analysis is still in progress. Retry shortly.",
+            )
+        if job["status"] == "failed":
+            raise PaperStateError(
+                "analysis_failed",
+                "Paper analysis failed. Retry the analysis request first.",
+            )
+        directory = self.root / "papers" / paper_id
+        result = self.question_engine.ask(question.strip(), paper_id, directory)
+        response = result["response"]
+        return {
+            "paper_id": paper_id,
+            "question": question.strip(),
+            "question_language": result["question_language"],
+            "answer": response["answer"],
+            "sufficiency": response["sufficiency"],
+            "abstention_reason": response["abstention_reason"],
+            "evidence": [
+                {
+                    "evidence_id": item["evidence_id"],
+                    "page": item["page"],
+                    "section": item.get("section"),
+                    "text": item["text"],
+                    "locator": item["locator"],
+                }
+                for item in result["cited_evidence"]
+            ],
+            "runtime_seconds": result["pipeline"]["runtime_seconds"],
+        }
+
+    def health(self):
+        values = self.store.health()
+        return {
+            "status": "ok",
+            "service": "evidence-grounded-paper-qna",
+            "version": "0.34.0",
+            "seed": self.settings.seed,
+            "storage": "ok",
+            "question_engine": self.question_engine.status,
+            **values,
+        }
 
     def run(self, job_id):
         if not self.store.claim(job_id):

@@ -11,7 +11,7 @@ CACHE_PATH = PROJECT_ROOT / "data" / "processed" / "dense_embeddings.npz"
 DEFAULT_MODEL = "intfloat/multilingual-e5-small"
 
 
-def load_model(model_name=DEFAULT_MODEL):
+def load_model(model_name=DEFAULT_MODEL, local_files_only=False):
     try:
         from sentence_transformers import SentenceTransformer
     except ImportError as exc:
@@ -19,7 +19,7 @@ def load_model(model_name=DEFAULT_MODEL):
             "Dense retrieval requires sentence-transformers. "
             "Install project dependencies with: pip install -r requirements.txt"
         ) from exc
-    return SentenceTransformer(model_name)
+    return SentenceTransformer(model_name, local_files_only=local_files_only)
 
 
 def encode_chunks(model, chunks, batch_size=32):

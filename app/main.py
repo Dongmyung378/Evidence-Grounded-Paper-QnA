@@ -1,5 +1,6 @@
-"""Day 33: run with python -m uvicorn app.main:app --workers 1."""
+"""Day 34 API: run with python -m uvicorn app.main:app --workers 1."""
 
+import logging
 import os
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -10,9 +11,20 @@ from fastapi import FastAPI, File, HTTPException, Request, Response, UploadFile
 from fastapi.responses import JSONResponse
 from starlette.concurrency import run_in_threadpool
 
-from .models import AnalyzeRequest, JobResult, UploadResult
-from .service import Service, Settings, UploadError
+from .models import (
+    AnalyzeRequest,
+    HealthResult,
+    JobResult,
+    PaperResult,
+    QuestionRequest,
+    QuestionResult,
+    UploadResult,
+)
+from .service import PaperStateError, Service, Settings, UploadError
 from .storage import QueueFull
+
+
+LOGGER = logging.getLogger(__name__)
 
 
 class BodyLimit:
@@ -63,20 +75,20 @@ class BodyLimit:
         })(scope, receive, send)
 
 
-def create_app(settings=None):
+def create_app(settings=None, question_engine=None):
     if settings is None:
         settings = Settings(data_dir=Path(os.environ.get("PAPER_QNA_DATA_DIR", Settings().data_dir)))
 
     @asynccontextmanager
     async def lifespan(api):
-        service = await run_in_threadpool(Service, settings)
+        service = await run_in_threadpool(Service, settings, question_engine)
         api.state.service = service
         try:
             yield
         finally:
             await run_in_threadpool(service.close)
 
-    api = FastAPI(title="Evidence Grounded Paper Q&A", version="0.33.0", lifespan=lifespan)
+    api = FastAPI(title="Evidence Grounded Paper Q&A", version="0.34.0", lifespan=lifespan)
     api.add_middleware(BodyLimit, maximum=settings.max_upload_bytes + 64 * 1024)
 
     @api.post("/upload", response_model=UploadResult, status_code=201,
@@ -111,6 +123,47 @@ def create_app(settings=None):
             return request.app.state.service.store.job(job_id)
         except KeyError:
             raise HTTPException(404, detail={"code": "job_not_found", "message": "Analysis job not found."}) from None
+
+    @api.get("/papers/{paper_id}", response_model=PaperResult,
+             summary="Read the uploaded paper and analysis result")
+    def paper_result(paper_id: str, request: Request):
+        try:
+            return request.app.state.service.paper(paper_id)
+        except KeyError:
+            raise HTTPException(404, detail={"code": "paper_not_found", "message": "Paper not found."}) from None
+
+    @api.post("/question", response_model=QuestionResult,
+              summary="Answer one Korean or English question with paper evidence")
+    async def question(body: QuestionRequest, request: Request):
+        try:
+            return await run_in_threadpool(
+                request.app.state.service.ask,
+                body.paper_id,
+                body.question,
+            )
+        except KeyError:
+            raise HTTPException(404, detail={"code": "paper_not_found", "message": "Paper not found."}) from None
+        except PaperStateError as exc:
+            headers = {"Retry-After": "2"} if exc.code == "analysis_in_progress" else None
+            raise HTTPException(
+                exc.status,
+                detail={"code": exc.code, "message": exc.message},
+                headers=headers,
+            ) from None
+        except Exception:
+            LOGGER.exception("Question request failed for paper %s", body.paper_id)
+            raise HTTPException(
+                503,
+                detail={
+                    "code": "question_service_unavailable",
+                    "message": "The local question service could not produce an answer.",
+                },
+                headers={"Retry-After": "5"},
+            ) from None
+
+    @api.get("/health", response_model=HealthResult, summary="Check API readiness")
+    def health(request: Request):
+        return request.app.state.service.health()
 
     return api
 

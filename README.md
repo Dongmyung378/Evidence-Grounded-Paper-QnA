@@ -22,11 +22,14 @@ This project accepts one English academic paper PDF and provides:
 - BM25 and dense retrieval
 - Page and section references
 
-Planned next steps:
+Current implementation also includes:
 
 - Grounded answer generation
 - Abstention when the paper does not contain enough evidence
-- FastAPI and a simple web UI
+- FastAPI upload, analysis, result, health, and question endpoints
+
+The next integration milestone is the simple web UI and the complete Day 35
+PDF-to-answer flow test.
 
 ## Core Pipeline
 
@@ -514,6 +517,33 @@ python -B scripts/validate_day33.py
 See [API usage and behavior](docs/day33_api.md) and
 [Day 33 review](data/evaluation/day33_report.md).
 
+## Day 34: question, paper result, and health API
+
+The API now exposes `GET /health`, `GET /papers/{paper_id}`, and
+`POST /question`. A completed uploaded paper is searched through the frozen BM25,
+multilingual dense, RRF, Cross-Encoder, and evidence-selection path. The calibrated
+abstention policy and local Qwen generator then return an English or Korean answer
+with only the cited paper text, page, and section records.
+
+Models load lazily on the first question and are reused. Uploaded-paper embeddings
+are cached privately below `data/runtime/`. The service keeps one paper active in
+memory, matching the MVP's one-paper-at-a-time scope. Use one Uvicorn worker.
+
+```bash
+python -B -m unittest discover -s tests -v
+python -B scripts/evaluate_day34.py
+python -B scripts/validate_day34.py
+```
+
+The saved acceptance run passed 24 tests and used real `curl` over Uvicorn TCP:
+health 200, upload 201, analyze 202, paper result 200, and question 200. The answer
+was sufficient and included page-linked source text. This completes the original
+Day 34 functional gate, but it does not supersede the weak Day 32 aggregate
+answer-quality review.
+
+See [Day 34 API usage](docs/day34_api.md) and
+[Day 34 review](data/evaluation/day34_report.md).
+
 ## Batch ingestion
 
 Post-Day-33 reliability changes and model experiments are documented in
@@ -553,6 +583,5 @@ manifest. Each chunk can be traced back to its original paper page and section.
 
 ## Planned next steps
 
-- Day 34 FastAPI question, paper result, and health endpoints
 - Day 35 full API flow: upload, parse, index, question, and answer
 - FastAPI, Streamlit, and Docker service integration

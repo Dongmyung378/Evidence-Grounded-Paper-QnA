@@ -88,6 +88,32 @@ class Store:
             raise KeyError(job_id)
         return dict(row)
 
+    def paper(self, paper_id):
+        with self.connect() as db:
+            paper = db.execute(
+                "SELECT * FROM papers WHERE paper_id=?",
+                (paper_id,),
+            ).fetchone()
+            if paper is None:
+                raise KeyError(paper_id)
+            job = db.execute(
+                "SELECT * FROM jobs WHERE paper_id=?",
+                (paper_id,),
+            ).fetchone()
+        return dict(paper), (dict(job) if job is not None else None)
+
+    def health(self):
+        with self.connect() as db:
+            papers = db.execute("SELECT count(*) FROM papers").fetchone()[0]
+            counts = {
+                status: db.execute(
+                    "SELECT count(*) FROM jobs WHERE status=?",
+                    (status,),
+                ).fetchone()[0]
+                for status in ("queued", "running", "completed", "failed")
+            }
+        return {"papers": papers, "jobs": counts}
+
     def recover(self):
         # Called only while this service owns the exclusive runtime-directory lock.
         with self.connect() as db:

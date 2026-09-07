@@ -2,6 +2,7 @@
 
 from bm25_retrieval import build_index, rank_chunks as rank_bm25_chunks
 from dense_retrieval import (
+    CACHE_PATH,
     DEFAULT_MODEL,
     encode_query,
     load_model,
@@ -24,13 +25,20 @@ class CandidateEvidencePipeline:
         embedding_batch_size=32,
         reranker_batch_size=8,
         max_length=512,
+        chunks=None,
+        embedding_cache_path=CACHE_PATH,
+        embedding_model=None,
+        reranker=None,
+        local_files_only=False,
     ):
         self.embedding_model_name = embedding_model_name
         self.reranker_model_name = reranker_model_name
         self.embedding_batch_size = embedding_batch_size
         self.reranker_batch_size = reranker_batch_size
         self.max_length = max_length
-        self.chunks = load_chunks()
+        self.chunks = list(chunks) if chunks is not None else load_chunks()
+        if not self.chunks:
+            raise ValueError("Candidate evidence requires at least one chunk")
         self.grouped_chunks = chunks_by_paper(self.chunks)
         self.indices_by_paper = {
             paper_id: [
@@ -44,18 +52,26 @@ class CandidateEvidencePipeline:
             paper_id: build_index(paper_chunks)
             for paper_id, paper_chunks in self.grouped_chunks.items()
         }
-        self.embedding_model = load_model(embedding_model_name)
+        self.embedding_model = embedding_model or load_model(
+            embedding_model_name,
+            local_files_only=local_files_only,
+        )
         all_embeddings, self.embedding_cache_hit = load_or_create_embeddings(
             self.embedding_model,
             self.chunks,
             embedding_model_name,
             embedding_batch_size,
+            cache_path=embedding_cache_path,
         )
         self.grouped_embeddings = {
             paper_id: all_embeddings[indices]
             for paper_id, indices in self.indices_by_paper.items()
         }
-        self.reranker = load_reranker(reranker_model_name, max_length=max_length)
+        self.reranker = reranker or load_reranker(
+            reranker_model_name,
+            max_length=max_length,
+            local_files_only=local_files_only,
+        )
 
     @staticmethod
     def _candidate_object(item):

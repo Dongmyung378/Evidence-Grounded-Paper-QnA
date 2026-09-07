@@ -5,7 +5,7 @@ import json
 from copy import deepcopy
 from pathlib import Path
 
-from candidate_evidence_pipeline import CandidateEvidencePipeline
+from candidate_evidence_pipeline import CACHE_PATH, CandidateEvidencePipeline
 from retrieval_common import PROJECT_ROOT
 
 
@@ -60,7 +60,15 @@ def config_fingerprint(config):
 class ProductionRetrieval:
     """The only retrieval entry point intended for API and user-facing CLI use."""
 
-    def __init__(self, config_path=CONFIG_PATH):
+    def __init__(
+        self,
+        config_path=CONFIG_PATH,
+        chunks=None,
+        embedding_cache_path=CACHE_PATH,
+        embedding_model=None,
+        reranker=None,
+        local_files_only=False,
+    ):
         self.config_path = Path(config_path)
         self.config = load_production_config(self.config_path)
         self.fingerprint = config_fingerprint(self.config)
@@ -72,6 +80,11 @@ class ProductionRetrieval:
             embedding_batch_size=runtime["embedding_batch_size"],
             reranker_batch_size=runtime["reranker_batch_size"],
             max_length=self.config["reranking"]["max_length"],
+            chunks=chunks,
+            embedding_cache_path=embedding_cache_path,
+            embedding_model=embedding_model,
+            reranker=reranker,
+            local_files_only=local_files_only,
         )
 
     @property

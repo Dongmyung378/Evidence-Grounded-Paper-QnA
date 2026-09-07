@@ -1,0 +1,213 @@
+{
+  "roadmap_day": 34,
+  "evaluated_at": "2026-09-07T04:23:59.359318+00:00",
+  "seed": 378,
+  "tests_run": 24,
+  "test_failures": 0,
+  "test_errors": 0,
+  "http_smoke": {
+    "transport": "curl over real TCP HTTP on loopback with Uvicorn",
+    "source_pdf": "data/raw/papers/paper-003.pdf",
+    "source_sha256": "b7c14b197f575310226c1bc6502d72e41c0fe14732b47b2204159a1e6f4b5b8a",
+    "health_before": {
+      "status": "ok",
+      "service": "evidence-grounded-paper-qna",
+      "version": "0.34.0",
+      "seed": 378,
+      "storage": "ok",
+      "question_engine": "lazy",
+      "papers": 0,
+      "jobs": {
+        "queued": 0,
+        "running": 0,
+        "completed": 0,
+        "failed": 0
+      }
+    },
+    "upload_status_code": 201,
+    "analyze_status_code": 202,
+    "paper_result_status_code": 200,
+    "question_status_code": 200,
+    "upload": {
+      "paper_id": "paper-0000000000000000000000000000017a",
+      "filename": "paper-003.pdf",
+      "size_bytes": 341371,
+      "page_count": 10,
+      "status": "uploaded"
+    },
+    "job": {
+      "job_id": "job-5f14cdcb3a354a7aa06b91d9c0d4efdc",
+      "paper_id": "paper-0000000000000000000000000000017a",
+      "status": "completed",
+      "stage": "parsing_and_chunking",
+      "seed": 378,
+      "created_at": "2026-09-07T04:23:26.757358+00:00",
+      "updated_at": "2026-09-07T04:23:28.291786+00:00",
+      "page_count": 10,
+      "text_page_count": 10,
+      "chunk_count": 40,
+      "warning_count": 23,
+      "error_code": null,
+      "error_message": null
+    },
+    "observed_job_states": [
+      "running",
+      "running",
+      "running",
+      "running",
+      "running",
+      "completed"
+    ],
+    "paper_result": {
+      "paper_id": "paper-0000000000000000000000000000017a",
+      "filename": "paper-003.pdf",
+      "size_bytes": 341371,
+      "uploaded_at": "2026-09-07T04:23:26.748722+00:00",
+      "status": "ready",
+      "page_count": 10,
+      "text_page_count": 10,
+      "chunk_count": 40,
+      "warning_count": 23,
+      "analysis": {
+        "job_id": "job-5f14cdcb3a354a7aa06b91d9c0d4efdc",
+        "paper_id": "paper-0000000000000000000000000000017a",
+        "status": "completed",
+        "stage": "parsing_and_chunking",
+        "seed": 378,
+        "created_at": "2026-09-07T04:23:26.757358+00:00",
+        "updated_at": "2026-09-07T04:23:28.291786+00:00",
+        "page_count": 10,
+        "text_page_count": 10,
+        "chunk_count": 40,
+        "warning_count": 23,
+        "error_code": null,
+        "error_message": null
+      },
+      "overview": {
+        "abstract": "Text summarization refers to the task of condensing a document into a shorter version while preserving its key information. Automatic text summarization (ATS), driven by advancements in natural language processing (NLP), has developed rapidly in recent years. ATS methods are commonly categorized by input type (such as single-document or multi-document summarization) and by output type (extractive, abstractive, and hybrid). This article presents a focused review of modern summarization techniques with an emphasis on transformer -based models and large language models (LLMs), specifically BERT, RoBERTa and BART. It examines their architectures, pretraining strategies, and their suitability for extractive and abstractive summarization tasks. The paper also discusses key challenges, including computational requirements, data limitations, and issues such as factual i nconsistency in generated summaries, and highlights the strengths and limitations of encoder-only and encoder–decoder models. KEYWORDS Abstractive summarization, extractive summarization, Large Language Models, transformer models, BART, BERT, RoBERTa.",
+        "sections": [
+          "ABSTRACT",
+          "1. INTRODUCTION",
+          "2. RELATED WORKS",
+          "3. FOUNDATIONAL CONCEPTS",
+          "4.1 Dataset Selection",
+          "4.2 Preprocessing and Tokenization",
+          "4.3 Model Architectures and Implementation",
+          "4.4 TRAINING PIPELINES AND COMPATIBILITY",
+          "4.5 Evaluation Metrics",
+          "5. CHALLENGES AND LIMITATIONS",
+          "6. RESULTS AND DISCUSSION",
+          "6.4 Interpretation of Results",
+          "7. CONCLUSION",
+          "References"
+        ]
+      }
+    },
+    "question_result": {
+      "paper_id": "paper-0000000000000000000000000000017a",
+      "question": "What is the main focus of this paper's review of text summarization?",
+      "question_language": "en",
+      "answer": "Transformer-based models and large language models (LLMs), specifically BERT, RoBERTa, and BART, are discussed in the paper as having architectures, pretraining strategies, and suitable for extractive and abstractive summarization tasks.",
+      "sufficiency": "sufficient",
+      "abstention_reason": null,
+      "evidence": [
+        {
+          "evidence_id": "ev-02-paper-0000000000000000000000000000017a-p002-c001",
+          "page": 2,
+          "section": "1. INTRODUCTION",
+          "text": "2 transformer architectures for summarization. In particular, there is limited discussion on how architectural differences between encoder-only and encoder–decoder models influence their performance and suitability for extractive and abstractive tasks. This paper presents a focused review of transformer-based summarization methods, with a comparative analysis of BERT, RoBERTa, and BART. It examines their architectures, pretraining strategies, and applications in ATS, and discusses their strengths, limitations, and practical considerations. The goal is to provide a clearer understanding of how these models differ and to support the selection of appropriate approaches for different summarization tasks and resource settings. This paper is organized as follows. Section-2 presents a review of related work and foundational concepts in Automatic Text Summarization (ATS). Section-3 describes the methodologies employed in the study, including dataset selection, preprocessing procedures, and model training. Section -4 examines the challenges encountered during the implementation process, along with relevant challenges reported in prior research. Section-5 details the experimental results and",
+          "locator": {
+            "page_label": "p. 2",
+            "section": "1. INTRODUCTION",
+            "chunk_id": "paper-0000000000000000000000000000017a-p002-c001"
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-0000000000000000000000000000017a-p001-c003",
+          "page": 1,
+          "section": "1. INTRODUCTION",
+          "text": "1. INTRODUCTION The rapid growth of digital text across domains such as scientific research, journalism, legal documentation, and social media has created a strong need for efficient methods to process and understand large volumes of information. Automatic Text Summarization (ATS) addresses this challenge by generating concise summaries that preserve the most important content, supporting applications in information retrieval, knowledge management, and decision-making. Early approaches to ATS relied on statistical and rule-based techniques, which were computationally efficient but often lacked contextual understanding and linguistic coherence. With the advancement of deep learning, neural network-based methods significantly improved summarization quality. More recently, transformer-based models have become the dominant approach in natural language processing, enabling substantial progress in both extractive and abstractive summarization tasks. Pre-trained language models such as BERT (Bidirectional Encoder Representations from Transformers), RoBERTa (A Robustly Optimized BERT Pretraining Approach), and BART (Bidirectional and Auto Regressive Transformers) have demonstrated strong p",
+          "locator": {
+            "page_label": "p. 1",
+            "section": "1. INTRODUCTION",
+            "chunk_id": "paper-0000000000000000000000000000017a-p001-c003"
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-0000000000000000000000000000017a-p002-c003",
+          "page": 2,
+          "section": "2. RELATED WORKS",
+          "text": "2. RELATED WORKS A substantial body of research has explored Automatic Text Summarization (ATS) from both methodological and application-oriented perspectives. Several comprehensive surveys have reviewed the evolution of ATS techniques, covering statistical, machine learning, and deep learning approaches [1], [5], [12]. These studies provide broad overviews of the field, highlighting the transition from extractive to abstractive methods and the growing role of neural architectures. In the area of extractive summarization, prior work has focused on improving sentence selection using feature-based and graph-based approaches. For example, comparative studies have analyzed the effectiveness of features such as term frequency, sentence po sition, and similarity measures in multidocument summarization [2], while more recent approaches utilize graph representations and attention mechanisms to enhance relevance and coherence [4]. Although these methods improve content selection, they are inherently limited to extracting existing sentences and often fail to produce fluent summaries. Abstractive summarization has been extensively studied as a means to overcome these limitations. Early neural",
+          "locator": {
+            "page_label": "p. 2",
+            "section": "2. RELATED WORKS",
+            "chunk_id": "paper-0000000000000000000000000000017a-p002-c003"
+          }
+        },
+        {
+          "evidence_id": "ev-05-paper-0000000000000000000000000000017a-p008-c005",
+          "page": 8,
+          "section": "References",
+          "text": "References 1. Sharma, G., & Sharma, D. (2023). Automatic Text Summarization Methods: A Comprehensive Review. SN Computer Science, 4(1), 33. 2. Mutlu, B., Sezer, E. A., & Akcayol, M. A. (2019). Multi-document extractive text summarization: A comparative assessment on features. Knowledge-Based Systems, 183, 104848. 3. Shafiq, N., Hamid, I., Asif, M., Nawaz, Q., Aljuaid, H., & Ali, H. (2023). Abstractive text summarization of low-resourced languages using deep learning. PeerJ Computer Science, 9, e1176. 4. Lin, Y. C., & Ma, J. (2023). Automatic Text Extractive Summarization Based on Text Graph Representation and Attention Matrix. Lecture Notes in Computer Science, vol. 14089. Springer.",
+          "locator": {
+            "page_label": "p. 8",
+            "section": "References",
+            "chunk_id": "paper-0000000000000000000000000000017a-p008-c005"
+          }
+        }
+      ],
+      "runtime_seconds": 11.004
+    },
+    "health_after": {
+      "status": "ok",
+      "service": "evidence-grounded-paper-qna",
+      "version": "0.34.0",
+      "seed": 378,
+      "storage": "ok",
+      "question_engine": "ready",
+      "papers": 1,
+      "jobs": {
+        "queued": 0,
+        "running": 0,
+        "completed": 1,
+        "failed": 0
+      }
+    },
+    "paper_id_fixed_for_reproducible_acceptance": true,
+    "runtime_embedding_cache_created": true,
+    "runtime_seconds": 32.876
+  },
+  "frozen_inputs_unchanged": true,
+  "frozen_input_sha256": {
+    "config/production_retrieval.json": "8ea2043be423b8f5b4ea1bc30d27247cf48c2b5ffc5a8b292da30368d5fdfb51",
+    "config/generation.json": "3b4ee2c8056a373cd99cf5d9766ec4740d2d33b5b8409b24b54b5c4c2d1d961a",
+    "config/abstention_candidate.json": "c155a72ed60e221643ea9c50de9dea516394722bfe17dcb38de1f3cfb68f9c59",
+    "config/runtime_qna.json": "03bfe89e9ff4a8f722a19288ed60d5ea878fb598a491ed2fb2190ff5a82597b6",
+    "data/processed/chunks.jsonl": "20a7a2b96dfa08e97b4cf2e22bcc6580245b489245be20e72c3a5af43729ac29",
+    "data/processed/pages.jsonl": "71fd9ac0d6f491365576e5e1217a9a4ad5c37ed400a179884e94b9e3b3cb330b",
+    "data/evaluation/questions.jsonl": "b1b9abdb6ca21c383b678cbc8a1588be4a65ea2fbc94cb3534d1a2a4801865fd",
+    "data/evaluation/gold_evidence.jsonl": "3f625564d18419dbf03a83152f836afba3573b8a6fc924c0504c2401c79defa8"
+  },
+  "implementation_sha256": {
+    "app/main.py": "da1142f43f88717e9d7a097ff1ddaee290fbde62c2957c9c5e128657bcbc7157",
+    "app/models.py": "f759ce789b29b2baaf716c983e1a888b6da3ebf96955dcf3ccdc1a29ebb32f3b",
+    "app/question_engine.py": "e4a56a2ed0a96f7fef5a265d22e2d38dde80ccd3c92efc224af5a366bd941f51",
+    "app/service.py": "1de80f87377e437dedd647c992842cf33304e0d7ff3059b4fee37a71241085d9",
+    "app/storage.py": "8b83cf3c48aa933799878551108b63d5e8aa5aec535933796717e203e473ebfa",
+    "scripts/bm25_retrieval.py": "3ac54cf1eece0679a596fde42748453c43aee264bd2e1a1e3b2011aba517214f",
+    "scripts/candidate_evidence_pipeline.py": "2c75e4f2b53c8d7c8e38f23f45e312644c914da89ecba25f45120394d77d6122",
+    "scripts/dense_retrieval.py": "07fc60f5d82dca168c00626819c64b1dcab478a711144bfd31a07c03c86a7b85",
+    "scripts/evidence_selector.py": "9d8f6cc02613ffb7bb750dd8c5a7e26ee379ccb8999491e11fedf273c50b0a5f",
+    "scripts/evaluate_day34.py": "245a7a7ebcbde6617042472d866294638c376a82223442b924557b32567e9fb9",
+    "scripts/hybrid_retrieval.py": "a8d7735539cfea6c6e46c5665cbb1c65f1b9a32659d723a256712e695b8025cd",
+    "scripts/production_retrieval.py": "bd942718c1f4998fd4dad24a245a67b4ff659a45e88ebe7f083fbb44d3a120c3",
+    "scripts/qna_pipeline.py": "bb2824f1e3932ed8024bde857db22671f8e875abd3bc67eb38f16fdc00025408",
+    "scripts/reranker.py": "22479dfd081d4c4dc820b81c15d66eabd6852d089b977c3f2b9ca39f32fdeb0a",
+    "scripts/validate_day34.py": "d42717320b35901ab397075e8b7c55a12fe5de8dbee179cd8dfe0a690e7981dc",
+    "tests/test_day33_api.py": "b1f693b4a8358639300aa4deaf16817357d637060cbf15ab20188103289fc53c",
+    "tests/test_day34_api.py": "e407a42f46a96985d018bc800afa82375568a6233b41548f105fd11e0875f18c",
+    "tests/test_improvements.py": "953c3175bcba6e86e9e65f88ebd804bbbeeb591c9f53b7ecf514486359f8595c"
+  },
+  "temporary_runtime_removed": true,
+  "scope": "health, paper result, and one-paper grounded question API"
+}

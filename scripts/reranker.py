@@ -4,7 +4,11 @@
 DEFAULT_RERANKER_MODEL = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
 
 
-def load_reranker(model_name=DEFAULT_RERANKER_MODEL, max_length=512):
+def load_reranker(
+    model_name=DEFAULT_RERANKER_MODEL,
+    max_length=512,
+    local_files_only=False,
+):
     try:
         from sentence_transformers import CrossEncoder
     except ImportError as exc:
@@ -12,7 +16,11 @@ def load_reranker(model_name=DEFAULT_RERANKER_MODEL, max_length=512):
             "Reranking requires sentence-transformers. "
             "Install project dependencies with: pip install -r requirements.txt"
         ) from exc
-    return CrossEncoder(model_name, max_length=max_length)
+    return CrossEncoder(
+        model_name,
+        max_length=max_length,
+        local_files_only=local_files_only,
+    )
 
 
 def rerank_chunks(model, query, candidates, top_k=None, batch_size=8):
