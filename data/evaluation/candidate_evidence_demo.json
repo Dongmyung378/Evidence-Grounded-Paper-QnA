@@ -4,8 +4,8 @@
     23,
     24
   ],
-  "purpose": "human-readable answerability review and UI evidence contract verification",
-  "evaluation_note": "Gold pages are included only to verify this demo; they are not pipeline inputs.",
+  "purpose": "사람이 읽는 답변 가능성 검토와 UI 근거 계약 검증",
+  "evaluation_note": "Gold 페이지는 이 사례 검증에만 포함하며 파이프라인 입력으로 사용하지 않는다.",
   "corpus": {
     "papers": 10,
     "chunks": 906

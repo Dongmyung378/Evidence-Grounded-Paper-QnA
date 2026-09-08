@@ -73,7 +73,11 @@ def detect_heading(line):
             line,
         )
     roman_match = re.match(r"^[IVXLCDM]+\.\s+([A-Z][A-Z\s-]{2,80})$", line)
-    abstract_match = re.match(r"^abstract\s*[—:-]", line, flags=re.IGNORECASE)
+    abstract_match = re.match(
+        r"^abstract\s*(?:\u2014|:|-)",
+        line,
+        flags=re.IGNORECASE,
+    )
     known = normalized in KNOWN_HEADINGS
     appendix = re.match(r"^appendix(?:\s+[a-z])?$", normalized)
     punctuation_target = numbered_match.group(2) if numbered_match else line

@@ -139,8 +139,8 @@ def main():
     artifact = {
         "schema_version": 1,
         "roadmap_day": 19,
-        "review_type": "manual failure analysis grounded in question, gold evidence, and retrieval ranks",
-        "failure_definition": "gold evidence page is outside a retriever's top 5 unique pages",
+        "review_type": "질문, Gold 근거, 검색 순위에 기반한 수동 실패 분석",
+        "failure_definition": "Gold 근거 페이지가 검색기의 고유 페이지 Top-5 밖에 있는 경우",
         "evaluation_set": "verified-40",
         "reviewed_cases": len(cases),
         "category_counts": dict(sorted(category_counts.items())),
@@ -160,7 +160,7 @@ def main():
     args.output.write_text(json.dumps(artifact, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     lines = [
-        "# Day 19 검색 실패 분석",
+        "# 19일차 검색 실패 분석",
         "",
         "고정된 verified 40문항에서 한 검색기라도 gold 근거 페이지를 Top-5에 포함하지 못한 사례 중 10건을 수동 검토했다. 분류는 질문, gold 근거, 세 검색기의 페이지 순위를 함께 확인해 정했다.",
         "",

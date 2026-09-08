@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "roadmap_day": 19,
-  "review_type": "manual failure analysis grounded in question, gold evidence, and retrieval ranks",
-  "failure_definition": "gold evidence page is outside a retriever's top 5 unique pages",
+  "review_type": "질문, Gold 근거, 검색 순위에 기반한 수동 실패 분석",
+  "failure_definition": "Gold 근거 페이지가 검색기의 고유 페이지 Top-5 밖에 있는 경우",
   "evaluation_set": "verified-40",
   "reviewed_cases": 10,
   "category_counts": {

@@ -20,46 +20,45 @@ DEMO_CASES = [
 
 def markdown(payload):
     lines = [
-        "# Day 23-24 Candidate and Evidence Demo",
+        "# 23일차부터 24일차 후보와 근거 사례",
         "",
-        "## Fixed policy",
+        "## 고정 정책",
         "",
-        "- Candidate pool: BM25 Top-20 + dense Top-20, equal-weight RRF, 20 unique chunks",
-        "- Reranking: multilingual Cross-Encoder over all 20 candidates",
-        "- Final evidence: first 5 non-duplicate chunks, maximum 2 chunks per PDF page",
-        "- Near duplicate: token 3-shingle Jaccard similarity >= 0.85",
-        "- Scope: text evidence only; no answer generation or automatic abstention decision",
+        "- 후보군: BM25 Top-20 + Dense Top-20, 동일 가중치 RRF, 고유 청크 20개",
+        "- 재정렬: 후보 20개 전체에 다국어 Cross-Encoder 적용",
+        "- 최종 근거: 중복이 아닌 상위 5개, PDF 페이지마다 최대 2개",
+        "- 유사 중복: token 3-shingle Jaccard 유사도 0.85 이상",
+        "- 범위: 텍스트 근거만 사용하며 답변 생성과 자동 거절 판정은 제외",
         "",
-        "## Human answerability checklist",
+        "## 사람이 확인하는 답변 가능성 점검표",
         "",
-        "For each case, read the five evidence texts and check whether they directly support",
-        "the requested claim, whether critical qualifiers are present, and whether the page",
-        "and section locators are sufficient for verification. A low score alone is not an",
-        "abstention rule; automatic sufficiency is intentionally deferred to the later roadmap.",
+        "각 사례의 근거 5개를 읽고 요청한 내용을 직접 뒷받침하는지, 중요한 한정 표현이",
+        "있는지, 페이지와 절 위치만으로 확인 가능한지 살핀다. 낮은 점수만으로 답변을",
+        "거절하지 않으며 자동 충분성 판정은 이후 로드맵 단계에서 다룬다.",
         "",
     ]
     for case in payload["examples"]:
         lines.extend([
-            f"## {case['question_id']} — {case['case_type']}",
+            f"## {case['question_id']} - {case['case_type']}",
             "",
-            f"- Question: {case['question']}",
-            f"- Paper: `{case['paper_id']}`",
-            f"- Gold page (evaluation only): {case['gold_page']}",
-            f"- Candidate count: {case['candidate_count']}",
-            f"- Evidence count: {case['evidence_count']}",
-            f"- Gold page in Top-5 evidence: {'yes' if case['gold_page_in_evidence'] else 'no'}",
-            f"- Purpose: {case['summary']}",
+            f"- 질문: {case['question']}",
+            f"- 논문: `{case['paper_id']}`",
+            f"- Gold 페이지(평가 전용): {case['gold_page']}",
+            f"- 후보 수: {case['candidate_count']}",
+            f"- 근거 수: {case['evidence_count']}",
+            f"- Top-5 근거에 Gold 페이지 포함: {'예' if case['gold_page_in_evidence'] else '아니요'}",
+            f"- 목적: {case['summary']}",
             "",
         ])
         for evidence in case["evidence"]:
-            excerpt = " ".join(evidence["text"].split())[:500]
+            excerpt = " ".join(evidence["text"].split())[:500].rstrip()
             lines.extend([
-                f"### Evidence {evidence['rank']}: p. {evidence['page']} · {evidence['section']}",
+                f"### 근거 {evidence['rank']}: p. {evidence['page']} - {evidence['section']}",
                 "",
                 f"- chunk_id: `{evidence['chunk_id']}`",
-                f"- reranker score: {evidence['scores']['reranker']:.6f}",
-                f"- Hybrid rank: {evidence['scores']['pre_rerank_rank']}",
-                f"- Text: {excerpt}",
+                f"- 재정렬 점수: {evidence['scores']['reranker']:.6f}",
+                f"- Hybrid 순위: {evidence['scores']['pre_rerank_rank']}",
+                f"- 원문: {excerpt}",
                 "",
             ])
     return "\n".join(lines).rstrip() + "\n"
@@ -70,7 +69,18 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--json-output", type=Path, default=DEFAULT_JSON)
     parser.add_argument("--markdown-output", type=Path, default=DEFAULT_MARKDOWN)
+    parser.add_argument(
+        "--render-only",
+        action="store_true",
+        help="기존 JSON을 사용해 Markdown 설명만 다시 만듭니다.",
+    )
     args = parser.parse_args()
+
+    if args.render_only:
+        payload = json.loads(args.json_output.read_text(encoding="utf-8"))
+        args.markdown_output.write_text(markdown(payload), encoding="utf-8")
+        print(f"Saved: {args.markdown_output}")
+        return
 
     questions, gold_by_question = load_evaluation_data()
     question_by_id = {row["question_id"]: row for row in questions}
@@ -108,8 +118,8 @@ def main():
     payload = {
         "schema_version": 1,
         "roadmap_days": [23, 24],
-        "purpose": "human-readable answerability review and UI evidence contract verification",
-        "evaluation_note": "Gold pages are included only to verify this demo; they are not pipeline inputs.",
+        "purpose": "사람이 읽는 답변 가능성 검토와 UI 근거 계약 검증",
+        "evaluation_note": "Gold 페이지는 이 사례 검증에만 포함하며 파이프라인 입력으로 사용하지 않는다.",
         "corpus": {"papers": 10, "chunks": len(pipeline.chunks)},
         "embedding_cache": "hit" if pipeline.embedding_cache_hit else "created",
         "examples": examples,

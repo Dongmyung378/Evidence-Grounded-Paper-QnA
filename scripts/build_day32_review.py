@@ -15,7 +15,6 @@ QUESTIONS_PATH = EVALUATION_DIR / "questions.jsonl"
 GOLD_PATH = EVALUATION_DIR / "gold_evidence.jsonl"
 REVIEW_PATH = EVALUATION_DIR / "day32_manual_review.json"
 FAILURES_PATH = EVALUATION_DIR / "day32_failure_cases.md"
-REPORT_PATH = EVALUATION_DIR / "day32_report.md"
 
 
 def validate_review_binding():
@@ -157,112 +156,35 @@ def main():
     )
 
     failure_lines = [
-        "# Day 32 Strict Failure Cases",
+        "# 32일차 엄격 실패 사례",
         "",
-        "These are strict `fail` judgments from the balanced 20-question manual review.",
-        "A `partial` answer is tracked in the full review but is not counted toward the",
-        "roadmap requirement of at least five recorded failures.",
+        "균형 있게 선정한 20문항 수동 검토에서 `fail`로 판정한 사례다.",
+        "`partial` 판정은 전체 검토에는 포함되지만 로드맵의 최소 5개 실패 기록에는",
+        "포함하지 않는다. 질문, 기대 답변, 실제 답변은 평가 원문 언어를 유지한다.",
         "",
-        f"- Strict failures: **{len(strict_failures)}/20**",
-        f"- False abstentions: **{len(false_abstentions)}/20**",
-        "- Source: `data/evaluation/day32_manual_review.json`",
+        f"- 엄격 실패: **{len(strict_failures)}/20**",
+        f"- 잘못된 거절: **{len(false_abstentions)}/20**",
+        "- 출처: `data/evaluation/day32_manual_review.json`",
         "",
     ]
     for index, row in enumerate(strict_failures, start=1):
         actual = row["actual"]
-        pages = ", ".join(str(page) for page in actual["cited_pages"]) or "none"
+        pages = ", ".join(str(page) for page in actual["cited_pages"]) or "없음"
         failure_lines.extend(
             [
                 f"## {index}. {row['question_id']} - {row['review_category']}",
                 "",
-                f"- Paper / language: `{row['paper_id']}` / `{row['question_language']}`",
-                f"- Question: {row['question']}",
-                f"- Expected: {row['expected']['gold_answer']}",
-                f"- Actual: {actual['answer']}",
-                f"- Gold page / cited pages: {row['expected']['gold_page']} / {pages}",
-                f"- Failure types: `{', '.join(row['review']['failure_types'])}`",
-                f"- Review: {row['review']['notes']}",
+                f"- 논문 / 언어: `{row['paper_id']}` / `{row['question_language']}`",
+                f"- 질문: {row['question']}",
+                f"- 기대 답변: {row['expected']['gold_answer']}",
+                f"- 실제 답변: {actual['answer']}",
+                f"- Gold 페이지 / 인용 페이지: {row['expected']['gold_page']} / {pages}",
+                f"- 실패 유형: `{', '.join(row['review']['failure_types'])}`",
+                f"- 검토: {row['review']['notes']}",
                 "",
             ]
         )
     FAILURES_PATH.write_text("\n".join(failure_lines), encoding="utf-8")
-
-    report_lines = [
-        "# Day 32 Manual Q&A Review",
-        "",
-        "## Roadmap gate",
-        "",
-        "- Task: manually review 20 factual, numeric, comparison, and limitation questions.",
-        "- Completion criterion: record at least five failure cases.",
-        f"- Result: **PASS** - 20 questions reviewed and {len(strict_failures)} strict failures recorded.",
-        "",
-        "## Review design",
-        "",
-        "The sample contains five questions per category, ten English and ten Korean",
-        "questions, and two questions from every verified benchmark paper (001-010).",
-        "Judgments were made by the assistant, not an independent human reviewer.",
-        "Bilingual counterparts are correlated (13 distinct question stems in 20 records).",
-        "The sample is diagnostic and does not estimate accuracy across all 30 papers.",
-        "The live Day 31 pipeline generated answers without loading Gold data. Gold answers",
-        "and evidence were joined only after generation for manual semantic and citation review.",
-        "",
-        "## Results",
-        "",
-        f"- Verdicts: pass {verdicts['pass']}, partial {verdicts['partial']}, fail {verdicts['fail']}",
-        f"- Strict pass rate: {summary['strict_pass_rate']:.1%}",
-        f"- Pass-or-partial rate: {summary['pass_or_partial_rate']:.1%}",
-        f"- Citation support: pass {summary['citation_support']['pass']}, fail {summary['citation_support']['fail']}, not applicable {summary['citation_support']['not_applicable']}",
-        f"- False abstentions: {summary['false_abstentions']}",
-        f"- Language matched: {summary['language_match']}/20",
-        "",
-        "| Category | Pass | Partial | Fail |",
-        "|---|---:|---:|---:|",
-    ]
-    for category in ("factual", "numeric", "comparison", "limitation"):
-        values = summary["by_category"][category]
-        report_lines.append(
-            f"| {category} | {values['pass']} | {values['partial']} | {values['fail']} |"
-        )
-    report_lines.extend(
-        [
-            "",
-            "## Findings",
-            "",
-            "1. Retrieval quality does not guarantee answer quality: several responses had",
-            "   relevant cited evidence but did not answer the requested relation or protocol.",
-            "2. The calibrated abstention policy produced seven false refusals in this sample,",
-            "   including three pre-generation refusals, two model refusals, and two validation fallbacks.",
-            "3. The 0.5B local generator frequently omitted numbers and comparison details and",
-            "   produced non-answers or malformed Korean content.",
-            "4. Citation IDs remained structurally valid, but four generated answers did not",
-            "   establish a meaningful claim-to-citation relationship.",
-            "",
-            "## Decision",
-            "",
-            "Day 32 is complete against the original roadmap because the full 20-question",
-            "review and more than five strict failure records exist. This is an evaluation",
-            "completion, not an answer-quality release gate: the current 0.5B generator and",
-            "abstention calibration require improvement before public deployment quality claims.",
-            "The frozen Day 28 retrieval configuration is unchanged.",
-            "",
-        "## Review provenance",
-        "",
-        "Judgments are bound to the SHA-256 hashes of the reviewed outputs and labels.",
-        "After any model rerun, review the new answers and refresh the binding explicitly.",
-        "Never reuse old labels automatically for changed model outputs.",
-        "",
-        "## Reproduce",
-            "",
-            "```bash",
-            "# Optional new run; review its outputs separately before assigning labels.",
-            "python -B scripts/run_day32_review.py --offline --output data/evaluation/day32_rerun.json",
-            "# Rebuild and validate the frozen original review.",
-            "python -B scripts/build_day32_review.py",
-            "python -B scripts/validate_day32.py",
-            "```",
-        ]
-    )
-    REPORT_PATH.write_text("\n".join(report_lines) + "\n", encoding="utf-8")
 
     print("Day 32 review artifacts built")
     print(

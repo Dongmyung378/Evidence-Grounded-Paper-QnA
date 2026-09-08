@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "roadmap_day": 32,
-  "review_method": "assistant-led semantic comparison; independent human review pending",
+  "review_method": "어시스턴트 주도 의미 비교, 독립적인 사람 검토는 아직 수행하지 않음",
   "review_date": "2026-09-05",
   "rubric": {
     "pass": "The answer is materially correct and complete enough, uses the question language, and its citations support the claims.",
@@ -124,7 +124,7 @@
           "false_abstention",
           "threshold_false_negative"
         ],
-        "notes": "Gold evidence directly answers the question, but the calibrated pre-generation threshold refused it and returned no citation."
+        "notes": "Gold 근거가 질문에 직접 답하지만 보정된 생성 전 임계값이 답변을 거절해 인용이 반환되지 않았다."
       }
     },
     {
@@ -200,7 +200,7 @@
           "missing_method_steps",
           "incomplete_answer"
         ],
-        "notes": "The answer states the goal and efficiency benefit, but omits both requested steps: muP width transfer and token-scale scaling-law extrapolation."
+        "notes": "답변은 목표와 효율 이점을 말하지만 요청한 두 단계인 muP 폭 전이와 토큰 규모 스케일링 법칙 외삽을 모두 누락했다."
       }
     },
     {
@@ -283,7 +283,7 @@
         "citation_support": "pass",
         "language_match": true,
         "failure_types": [],
-        "notes": "The answer matches the Gold focus on Transformer/LLM summarization and explicitly names BERT, RoBERTa, and BART; the citations support it."
+        "notes": "답변은 Transformer 및 LLM 요약이라는 Gold 초점과 일치하고 BERT, RoBERTa, BART를 명시하며 인용도 이를 뒷받침한다."
       }
     },
     {
@@ -360,7 +360,7 @@
           "threshold_false_negative",
           "comparison_omission"
         ],
-        "notes": "The paper evidence supports the speed-memory-accuracy trade-off, but the pre-generation policy refused the answer."
+        "notes": "논문 근거가 속도, 메모리, 정확도의 절충 관계를 뒷받침하지만 생성 전 정책이 답변을 거절했다."
       }
     },
     {
@@ -430,7 +430,7 @@
           "numeric_omission",
           "evidence_result_omission"
         ],
-        "notes": "The response describes a method property instead of the requested performance evidence and omits 11 schedules, MVTecAD, VisA, and the online setting."
+        "notes": "요청한 성능 근거 대신 방법 특성을 설명했고 11개 스케줄, MVTecAD, VisA, 온라인 환경을 누락했다."
       }
     },
     {
@@ -507,7 +507,7 @@
           "missing_framework_details",
           "incomplete_answer"
         ],
-        "notes": "The answer captures the EO-to-process connection and uncertainty, but omits the named observation-to-inference hierarchy and its spatial/temporal support and target alignment."
+        "notes": "EO와 과정의 연결 및 불확실성은 담았지만 observation-to-inference hierarchy와 시공간 support 및 목표 정렬을 누락했다."
       }
     },
     {
@@ -587,7 +587,7 @@
           "scope_omission",
           "incomplete_answer"
         ],
-        "notes": "The cited Q-defined construction is a relevant condition, but the answer omits the main scope of one-dimensional algebraic models in the probability simplex and the two explicit constructions."
+        "notes": "인용된 Q 정의 구성은 관련 조건이지만 확률 단체의 1차원 대수 모델이라는 주 범위와 두 가지 명시적 구성을 누락했다."
       }
     },
     {
@@ -670,7 +670,7 @@
           "numeric_omission",
           "protocol_omission"
         ],
-        "notes": "The response gives a broad performance conclusion rather than how GOAG was evaluated, omitting three grippers, repeated runs, and the success/efficiency/diversity criteria."
+        "notes": "GOAG 평가 방법 대신 포괄적인 성능 결론을 제시했고 세 종류 그리퍼, 반복 실행, 성공률과 효율성 및 다양성 기준을 누락했다."
       }
     },
     {
@@ -748,7 +748,7 @@
           "incomplete_evaluation",
           "unsupported_inference"
         ],
-        "notes": "The answer substitutes training-set counts for the requested evaluation protocol, omits the Eleanor/SPOC/QLP coverage and post-cleaning candidate counts, and adds an overly broad validation inference."
+        "notes": "요청한 평가 절차 대신 학습 세트 개수를 제시하고 Eleanor, SPOC, QLP 범위와 정제 후 후보 수를 누락했으며 지나치게 넓은 검증 해석을 덧붙였다."
       }
     },
     {
@@ -831,7 +831,7 @@
           "missing_comparison_details",
           "incomplete_answer"
         ],
-        "notes": "The two experiment families are correct, but the answer omits ABIDE I, comparison against seven baselines, and the graph-recovery/sample-efficiency/diagnostic-utility criteria."
+        "notes": "두 실험 유형은 맞지만 ABIDE I, 7개 기준선과의 비교, 그래프 복원 및 표본 효율성과 진단 유용성 기준을 누락했다."
       }
     },
     {

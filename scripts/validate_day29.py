@@ -14,7 +14,7 @@ from retrieval_common import PROJECT_ROOT, load_chunks
 
 
 EXAMPLES_PATH = PROJECT_ROOT / "data" / "evaluation" / "day29_prompt_examples.json"
-REPORT_PATH = PROJECT_ROOT / "data" / "evaluation" / "day29_report.md"
+PROGRESS_PATH = PROJECT_ROOT / "docs" / "roadmap" / "progress.md"
 DAY28_METRICS_PATH = (
     PROJECT_ROOT / "data" / "evaluation" / "day28_production_metrics.json"
 )
@@ -85,12 +85,12 @@ def main():
         production_config
     )
     assert CONTRACT_PATH.exists() and TEST_PATH.exists()
-    assert REPORT_PATH.exists() and REPORT_PATH.stat().st_size > 0
+    assert "## 29일차" in PROGRESS_PATH.read_text(encoding="utf-8")
 
-    readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
-    requirements = (PROJECT_ROOT / "requirements.md").read_text(encoding="utf-8")
-    assert "Day 29: grounded answer contract" in readme
-    assert "Day 29 Grounded Answer Contract" in requirements
+    requirements = (
+        PROJECT_ROOT / "docs" / "project" / "requirements.md"
+    ).read_text(encoding="utf-8")
+    assert "## 29일차 근거 기반 답변 계약" in requirements
 
     print("Day 29 prompt/output schema gate passed")
     print("fields=answer,evidence_ids,sufficiency,abstention_reason")

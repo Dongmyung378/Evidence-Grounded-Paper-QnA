@@ -33,7 +33,7 @@
     }
   },
   "selected_baseline": "hybrid_rrf",
-  "demo_definition": "success and failure examples from the same fixed page-level evaluation",
+  "demo_definition": "같은 고정 페이지 기준 평가에서 선정한 성공 및 실패 사례",
   "examples": [
     {
       "question_id": "q-001-ko",

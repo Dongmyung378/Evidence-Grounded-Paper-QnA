@@ -22,7 +22,7 @@ CALIBRATION_PATH = (
 RESULTS_PATH = (
     PROJECT_ROOT / "data" / "evaluation" / "day31_abstention_results.json"
 )
-REPORT_PATH = PROJECT_ROOT / "data" / "evaluation" / "day31_report.md"
+PROGRESS_PATH = PROJECT_ROOT / "docs" / "roadmap" / "progress.md"
 
 
 def main():
@@ -120,12 +120,12 @@ def main():
     ).read_text(encoding="utf-8")
     assert "AbstentionPolicy" in pipeline_source
     assert "enable_abstention=False" in day30_source
-    assert REPORT_PATH.exists() and REPORT_PATH.stat().st_size > 0
+    assert "## 31일차" in PROGRESS_PATH.read_text(encoding="utf-8")
 
-    readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
-    requirements = (PROJECT_ROOT / "requirements.md").read_text(encoding="utf-8")
-    assert "Day 31: calibrated abstention" in readme
-    assert "Day 31 Abstention Policy" in requirements
+    requirements = (
+        PROJECT_ROOT / "docs" / "project" / "requirements.md"
+    ).read_text(encoding="utf-8")
+    assert "## 31일차 답변 거절 정책" in requirements
 
     print("Day 31 abstention gate passed")
     print("holdout_refusal=10/10 en=5 ko=5")

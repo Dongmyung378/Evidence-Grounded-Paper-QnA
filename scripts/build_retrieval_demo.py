@@ -29,7 +29,7 @@ def metric_row(values):
 
 
 def rank_text(rank):
-    return "not in Top-10" if rank is None else str(rank)
+    return "Top-10 밖" if rank is None else str(rank)
 
 
 def main():
@@ -89,7 +89,7 @@ def main():
             for method, values in baseline["metrics"].items()
         },
         "selected_baseline": baseline["selected_baseline"],
-        "demo_definition": "success and failure examples from the same fixed page-level evaluation",
+        "demo_definition": "같은 고정 페이지 기준 평가에서 선정한 성공 및 실패 사례",
         "examples": examples,
         "interactive_command": (
             "python -B scripts/search_hybrid.py --paper-id paper-001 "
@@ -100,11 +100,11 @@ def main():
     args.output.write_text(json.dumps(artifact, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     lines = [
-        "# Day 21 Retrieval Baseline and Demo",
+        "# 21일차 검색 기준선과 사례",
         "",
-        "## Baseline table",
+        "## 기준선 표",
         "",
-        "| Retriever | Recall@1 | Recall@5 | Recall@10 | MRR |",
+        "| 검색기 | Recall@1 | Recall@5 | Recall@10 | MRR |",
         "|---|---:|---:|---:|---:|",
     ]
     display_names = {"bm25": "BM25", "dense": "Dense", "hybrid_rrf": "Hybrid RRF"}
@@ -113,28 +113,28 @@ def main():
             f"| {display_names[method]} | {metrics['recall_at_1']:.3f} | "
             f"{metrics['recall_at_5']:.3f} | {metrics['recall_at_10']:.3f} | {metrics['mrr']:.4f} |"
         )
-    lines.extend(["", "Hybrid RRF is retained as the selected baseline.", "", "## Retrieval demo", ""])
+    lines.extend(["", "Hybrid RRF를 선택한 기준선으로 유지한다.", "", "## 검색 사례", ""])
     for example in examples:
         lines.extend([
-            f"### {example['question_id']} — {example['demo_type']}",
+            f"### {example['question_id']} - {example['demo_type']}",
             "",
-            f"- Question: {example['question']}",
-            f"- Paper / gold page: {example['paper_id']} / {example['gold_page']}",
-            f"- Summary: {example['summary']}",
+            f"- 질문: {example['question']}",
+            f"- 논문 / Gold 페이지: {example['paper_id']} / {example['gold_page']}",
+            f"- 요약: {example['summary']}",
         ])
         for method in ("bm25", "dense", "hybrid_rrf"):
             result = example["method_results"][method]
             lines.append(
-                f"- {display_names[method]}: gold rank {rank_text(result['gold_rank'])}; "
-                f"Top-5 pages {result['predicted_pages_at_5']}"
+                f"- {display_names[method]}: Gold 순위 {rank_text(result['gold_rank'])}; "
+                f"Top-5 페이지 {result['predicted_pages_at_5']}"
             )
         lines.extend([
-            f"- Diagnosis: {example['diagnosis']}",
-            f"- Next action: {example['next_action']}",
+            f"- 진단: {example['diagnosis']}",
+            f"- 다음 작업: {example['next_action']}",
             "",
         ])
     lines.extend([
-        "## Interactive reproduction",
+        "## 대화형 재현",
         "",
         "```bash",
         artifact["interactive_command"],

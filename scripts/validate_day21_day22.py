@@ -17,7 +17,7 @@ def main():
     configure_utf8_stdout()
     demo = load("retrieval_demo.json")
     reranker = load("reranker_metrics.json")
-    report_path = PROJECT_ROOT / "data" / "evaluation" / "day21_day22_report.md"
+    progress_path = PROJECT_ROOT / "docs" / "roadmap" / "progress.md"
 
     assert demo["roadmap_day"] == 21
     assert demo["evaluation_set"]["questions"] == 40
@@ -38,7 +38,7 @@ def main():
         assert reranker["metrics"][method]["questions"] == 40
         assert METRICS <= set(reranker["metrics"][method])
         assert len(reranker["results"][method]) == 40
-    assert report_path.exists() and report_path.stat().st_size > 0
+    assert "## 21일차부터 24일차" in progress_path.read_text(encoding="utf-8")
 
     before = reranker["metrics"]["hybrid_top20"]
     after = reranker["metrics"]["hybrid_reranker"]

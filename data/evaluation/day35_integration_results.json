@@ -1,11 +1,12 @@
 {
-  "roadmap_day": 34,
-  "evaluated_at": "2026-09-08T01:43:08.068470+00:00",
+  "roadmap_day": 35,
+  "evaluated_at": "2026-09-08T02:13:43.881447+00:00",
   "seed": 378,
+  "roadmap_gate": "PDF -> parse -> index -> question -> answer",
   "tests_run": 24,
   "test_failures": 0,
   "test_errors": 0,
-  "http_smoke": {
+  "complete_flow": {
     "transport": "curl over real TCP HTTP on loopback with Uvicorn",
     "source_pdf": "paper-003.pdf",
     "source_sha256": "b7c14b197f575310226c1bc6502d72e41c0fe14732b47b2204159a1e6f4b5b8a",
@@ -48,13 +49,13 @@
       "status": "uploaded"
     },
     "job": {
-      "job_id": "job-fcb2782f69f0408d943ba426490953ee",
+      "job_id": "job-bfd976c05bd54ed285c597a4b577f1f6",
       "paper_id": "paper-0000000000000000000000000000017a",
       "status": "completed",
       "stage": "parsing_and_chunking",
       "seed": 378,
-      "created_at": "2026-09-08T01:42:22.522012+00:00",
-      "updated_at": "2026-09-08T01:42:23.814121+00:00",
+      "created_at": "2026-09-08T02:13:14.594838+00:00",
+      "updated_at": "2026-09-08T02:13:15.925377+00:00",
       "page_count": 10,
       "text_page_count": 10,
       "chunk_count": 40,
@@ -67,27 +68,26 @@
       "running",
       "running",
       "running",
-      "running",
       "completed"
     ],
     "paper_result": {
       "paper_id": "paper-0000000000000000000000000000017a",
       "filename": "paper-003.pdf",
       "size_bytes": 341371,
-      "uploaded_at": "2026-09-08T01:42:22.495551+00:00",
+      "uploaded_at": "2026-09-08T02:13:14.573855+00:00",
       "status": "ready",
       "page_count": 10,
       "text_page_count": 10,
       "chunk_count": 40,
       "warning_count": 23,
       "analysis": {
-        "job_id": "job-fcb2782f69f0408d943ba426490953ee",
+        "job_id": "job-bfd976c05bd54ed285c597a4b577f1f6",
         "paper_id": "paper-0000000000000000000000000000017a",
         "status": "completed",
         "stage": "parsing_and_chunking",
         "seed": 378,
-        "created_at": "2026-09-08T01:42:22.522012+00:00",
-        "updated_at": "2026-09-08T01:42:23.814121+00:00",
+        "created_at": "2026-09-08T02:13:14.594838+00:00",
+        "updated_at": "2026-09-08T02:13:15.925377+00:00",
         "page_count": 10,
         "text_page_count": 10,
         "chunk_count": 40,
@@ -176,7 +176,7 @@
           }
         }
       ],
-      "runtime_seconds": 10.384
+      "runtime_seconds": 10.158
     },
     "health_after": {
       "status": "ok",
@@ -195,7 +195,7 @@
     },
     "paper_id_fixed_for_reproducible_acceptance": true,
     "runtime_embedding_cache_created": true,
-    "runtime_seconds": 45.801
+    "runtime_seconds": 29.443
   },
   "frozen_inputs_unchanged": true,
   "frozen_input_sha256": {
@@ -214,21 +214,26 @@
     "app/question_engine.py": "e4a56a2ed0a96f7fef5a265d22e2d38dde80ccd3c92efc224af5a366bd941f51",
     "app/service.py": "1de80f87377e437dedd647c992842cf33304e0d7ff3059b4fee37a71241085d9",
     "app/storage.py": "8b83cf3c48aa933799878551108b63d5e8aa5aec535933796717e203e473ebfa",
+    "scripts/abstention_policy.py": "b14d18e7e4e5aa5db6fedf65814b3cd85439a4f12e664599675903e8e8c078fa",
+    "scripts/answer_quality.py": "17644705684de6630411cf50d3a9b8160d4236d786336f733b12c65919f416bc",
     "scripts/api_acceptance.py": "83e02078f9ef159a906676cbe500ef055507ce29a9cb2f7ece456727607d7c3f",
     "scripts/bm25_retrieval.py": "3ac54cf1eece0679a596fde42748453c43aee264bd2e1a1e3b2011aba517214f",
     "scripts/candidate_evidence_pipeline.py": "2c75e4f2b53c8d7c8e38f23f45e312644c914da89ecba25f45120394d77d6122",
     "scripts/dense_retrieval.py": "07fc60f5d82dca168c00626819c64b1dcab478a711144bfd31a07c03c86a7b85",
-    "scripts/evaluate_day34.py": "a64cb44a424f2537cb9318b985a4bf1d2ea5adb04ccfc0853e31f66c6f20563f",
+    "scripts/evaluate_day35.py": "2f0a7e1aa18b55449147f54b9ef540377917b460136a439ce911d85aefa3ce30",
     "scripts/evidence_selector.py": "9d8f6cc02613ffb7bb750dd8c5a7e26ee379ccb8999491e11fedf273c50b0a5f",
+    "scripts/grounded_answer_contract.py": "8699558d7262d358a4b42ff7951ef8bd7c967e0cfda50dde498d9e29e2b0aefc",
     "scripts/hybrid_retrieval.py": "a8d7735539cfea6c6e46c5665cbb1c65f1b9a32659d723a256712e695b8025cd",
+    "scripts/ingest_papers.py": "c2abec88bab50e769a413a2a925b90adb6b0f6c9fcf0ff70b12350a0b5880761",
+    "scripts/local_llm.py": "966a0c922c95944ec9d6afdd598f6cc9a33d5ee28f3fc3a6aa73eee9c5cc3cca",
     "scripts/production_retrieval.py": "bd942718c1f4998fd4dad24a245a67b4ff659a45e88ebe7f083fbb44d3a120c3",
     "scripts/qna_pipeline.py": "bb2824f1e3932ed8024bde857db22671f8e875abd3bc67eb38f16fdc00025408",
     "scripts/reranker.py": "22479dfd081d4c4dc820b81c15d66eabd6852d089b977c3f2b9ca39f32fdeb0a",
-    "scripts/validate_day34.py": "d42717320b35901ab397075e8b7c55a12fe5de8dbee179cd8dfe0a690e7981dc",
+    "scripts/validate_day35.py": "59e9e675f15c21a5a0713cf2e071c77d5368403139956f015d81203379a449ec",
     "tests/test_day33_api.py": "b1f693b4a8358639300aa4deaf16817357d637060cbf15ab20188103289fc53c",
     "tests/test_day34_api.py": "e407a42f46a96985d018bc800afa82375568a6233b41548f105fd11e0875f18c",
     "tests/test_improvements.py": "953c3175bcba6e86e9e65f88ebd804bbbeeb591c9f53b7ecf514486359f8595c"
   },
   "temporary_runtime_removed": true,
-  "scope": "health, paper result, and one-paper grounded question API"
+  "quality_claim": "functional integration only"
 }

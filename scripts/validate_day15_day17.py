@@ -1,4 +1,4 @@
-"""Validate Day 15–17 retrieval artifacts against the fixed evaluation set."""
+"""Validate Day 15-17 retrieval artifacts against the fixed evaluation set."""
 
 import json
 from pathlib import Path
@@ -29,7 +29,7 @@ def main():
         assert set(metrics["by_language"]) == {"en", "ko"}
         assert all(len(row["predicted_pages"]) <= 10 for row in results)
 
-    print("Day 15–17 retrieval validation passed")
+    print("Day 15-17 retrieval validation passed")
     print("questions=40 retrievers=bm25,dense,hybrid_rrf")
     print(
         "recall_at_5="
