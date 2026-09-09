@@ -24,5 +24,10 @@
 - `day33_api_results.json`: 업로드와 분석 API 실행 증거
 - `day34_api_results.json`: 질문과 결과 API 실행 증거
 - `day35_integration_results.json`: PDF부터 답변까지 전체 HTTP 통합 증거
+  - 분석 중 모델 준비 장치와 질문 단계별 실행 시간 포함
+
+## UI 평가
+
+- `day36_ui_results.json`: 실제 Streamlit 브라우저 업로드와 분석, 개요, 질문 입력 검증 결과
 
 JSON, JSONL, CSV의 필드 이름과 영어 논문 원문은 프로그램 계약과 평가 재현성을 위해 유지한다. 사람이 읽는 설명 문서는 한국어로 작성한다.

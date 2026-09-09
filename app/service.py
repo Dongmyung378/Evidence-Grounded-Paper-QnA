@@ -27,6 +27,7 @@ class Settings:
     seed: int = DEFAULT_SEED
     max_pending_jobs: int = 16
     model_local_files_only: bool = False
+    prepare_question_runtime: bool = False
 
 
 class UploadError(Exception):
@@ -199,6 +200,8 @@ class Service:
         directory = self.root / "papers" / paper_id
         result = self.question_engine.ask(question.strip(), paper_id, directory)
         response = result["response"]
+        pipeline = result["pipeline"]
+        llm = pipeline.get("llm") or {}
         return {
             "paper_id": paper_id,
             "question": question.strip(),
@@ -216,7 +219,17 @@ class Service:
                 }
                 for item in result["cited_evidence"]
             ],
-            "runtime_seconds": result["pipeline"]["runtime_seconds"],
+            "runtime_seconds": pipeline["runtime_seconds"],
+            "runtime": {
+                "total_seconds": pipeline["runtime_seconds"],
+                "retrieval_seconds": pipeline.get("retrieval_seconds", 0.0),
+                "generation_seconds": pipeline.get("generation_seconds", 0.0),
+                "generation_attempts": pipeline.get("generation_attempts", 0),
+                "llm_device": llm.get("device"),
+                "device_fallback_reason": llm.get("device_fallback_reason"),
+                "fallback_used": pipeline.get("fallback_used", False),
+                "abstention_source": pipeline.get("abstention_source"),
+            },
         }
 
     def health(self):
@@ -255,6 +268,22 @@ class Service:
             report["pdf_path"] = f"{job['paper_id']}.pdf"
             report["seed"] = job["seed"]
             report["config"] = {"chunk_size": 1200, "overlap": 200}
+            prepare = getattr(self.question_engine, "prepare", None)
+            if self.settings.prepare_question_runtime and callable(prepare):
+                try:
+                    report["question_runtime_preparation"] = prepare(
+                        job["paper_id"], directory
+                    )
+                except Exception as error:
+                    LOGGER.warning(
+                        "Question runtime preparation was deferred for job %s: %s",
+                        job_id,
+                        type(error).__name__,
+                    )
+                    report["question_runtime_preparation"] = {
+                        "status": "deferred",
+                        "reason": "model_preparation_failed",
+                    }
             report_path = directory / "ingestion_report.json.tmp"
             report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             report_path.replace(directory / "ingestion_report.json")

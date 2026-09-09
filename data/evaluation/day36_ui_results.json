@@ -1,0 +1,101 @@
+{
+  "roadmap_day": 36,
+  "evaluated_at": "2026-09-09T01:46:38.617231+00:00",
+  "seed": 378,
+  "roadmap_gate": "browser PDF upload -> analysis status -> overview -> question input",
+  "tests_run": 33,
+  "test_failures": 0,
+  "test_errors": 0,
+  "transport": "headless Chromium against Streamlit and real loopback FastAPI",
+  "browser_executable": "msedge.exe",
+  "checks": {
+    "streamlit_server_ready": true,
+    "browser_loaded": true,
+    "file_uploader_visible": true,
+    "selected_filename_visible": true,
+    "analysis_completed_visible": true,
+    "overview_visible": true,
+    "question_input_visible": true,
+    "question_input_enabled": true,
+    "metric_values": [
+      " 10 ",
+      " 10 ",
+      " 40 ",
+      " 23 "
+    ],
+    "one_pdf_registered": true,
+    "analysis_job_completed": true,
+    "overview_data_created": true,
+    "question_runtime_prepared": true
+  },
+  "runtime": {
+    "papers": 1,
+    "jobs": {
+      "completed": 1
+    },
+    "filename": "paper-003.pdf",
+    "uploaded_page_count": 10,
+    "seed": 378,
+    "analyzed_page_count": 10,
+    "text_page_count": 10,
+    "chunk_count": 40,
+    "warning_count": 23,
+    "question_runtime_preparation": {
+      "status": "ready",
+      "runtime_seconds": 17.567,
+      "embedding_device": "cpu",
+      "reranker_device": "cpu",
+      "embedding_cache_hit": false,
+      "generator": {
+        "provider": "local_transformers",
+        "model": "Qwen/Qwen2.5-0.5B-Instruct",
+        "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+        "device": "cuda",
+        "dtype": "float16",
+        "device_fallback_reason": null,
+        "config_path": "config/generation_runtime.json",
+        "config_fingerprint": "1fed86c8b7a8d0fb89758ace82af8c101ce8a299bf5dbd1ac4182db46bdf5cb1"
+      }
+    }
+  },
+  "api_health_after": {
+    "status": "ok",
+    "service": "evidence-grounded-paper-qna",
+    "version": "0.34.0",
+    "seed": 378,
+    "storage": "ok",
+    "question_engine": "ready",
+    "papers": 1,
+    "jobs": {
+      "queued": 0,
+      "running": 0,
+      "completed": 1,
+      "failed": 0
+    }
+  },
+  "frozen_inputs_unchanged": true,
+  "frozen_input_sha256": {
+    "config/production_retrieval.json": "8ea2043be423b8f5b4ea1bc30d27247cf48c2b5ffc5a8b292da30368d5fdfb51",
+    "config/generation.json": "3b4ee2c8056a373cd99cf5d9766ec4740d2d33b5b8409b24b54b5c4c2d1d961a",
+    "config/abstention_candidate.json": "c155a72ed60e221643ea9c50de9dea516394722bfe17dcb38de1f3cfb68f9c59",
+    "config/runtime_qna.json": "8ea8520afe794f4fa716f1d6fc6739f54909e411ec92e6403a79b229bef85f54",
+    "config/generation_runtime.json": "80b2fb2c7c1fb41fcdd456a35642ce5eb969f5db0844fb0bc316fce6ae5c323e",
+    "data/processed/chunks.jsonl": "20a7a2b96dfa08e97b4cf2e22bcc6580245b489245be20e72c3a5af43729ac29",
+    "data/processed/pages.jsonl": "71fd9ac0d6f491365576e5e1217a9a4ad5c37ed400a179884e94b9e3b3cb330b",
+    "data/evaluation/questions.jsonl": "b1b9abdb6ca21c383b678cbc8a1588be4a65ea2fbc94cb3534d1a2a4801865fd",
+    "data/evaluation/gold_evidence.jsonl": "3f625564d18419dbf03a83152f836afba3573b8a6fc924c0504c2401c79defa8"
+  },
+  "implementation_sha256": {
+    ".streamlit/config.toml": "76c880f33bc0f5c559a275b40d097f4e28060ff09e83d48dd1ba51b48ee7bc5e",
+    "requirements.txt": "cc8cd63c1a1048dbd23cb2de9ab9c1fec65dccb99248f2438e5350a2c26ba889",
+    "ui/__init__.py": "16cca96be42faacff44a609d8f0246cf4adfb2dff4930f8a69f556669ab2bda2",
+    "ui/api_client.py": "700914f953b911e50951e56309be6815d18ae1af4ed28c91f6aac4b7a1581233",
+    "ui/app.py": "c0443f7123974557bb2b29794b84008ec5f9ae191f100a60660e1c09789d8627",
+    "tests/test_day36_ui.py": "49ca9b55058935448b591919a148211677edc93a71cb79ca1bca09394c98311d",
+    "scripts/evaluate_day36.py": "e7598f5cf301e019f2062c81e60a9c0786fa2edd5ef93e6dfd318438650b94f2",
+    "scripts/validate_day36.py": "06f68ffbbb0401139d1f169d8a2ff8c1a93fcce396c60a032ec00adf8b61c86b",
+    "scripts/verify_project.py": "a68d05610129da7ad8e23f67285a7ff8d985a06ffd20d916e58f94bd3c603d53"
+  },
+  "temporary_runtime_removed": true,
+  "quality_claim": "functional UI integration only; answer quality is unchanged"
+}

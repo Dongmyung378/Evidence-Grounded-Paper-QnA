@@ -4,11 +4,13 @@ import json
 import random
 import sys
 import threading
+import time
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS_DIR = ROOT / "scripts"
+RUNTIME_CONFIG_PATH = ROOT / "config" / "runtime_qna.json"
 
 
 def load_jsonl(path):
@@ -16,12 +18,49 @@ def load_jsonl(path):
         return [json.loads(line) for line in source if line.strip()]
 
 
+def load_runtime_profile(path=RUNTIME_CONFIG_PATH):
+    profile = json.loads(Path(path).read_text(encoding="utf-8"))
+    if profile.get("schema_version") != 1:
+        raise ValueError("Unsupported runtime Q&A profile schema")
+    devices = profile.get("devices") or {}
+    for name in ("embedding", "reranker"):
+        if devices.get(name) not in {"cpu", "cuda"}:
+            raise ValueError(f"runtime_qna.devices.{name} must be cpu or cuda")
+    if devices.get("generator") not in {"auto", "cpu", "cuda"}:
+        raise ValueError("runtime_qna.devices.generator must be auto, cpu, or cuda")
+    for name in ("generation_config", "abstention_config"):
+        target = ROOT / profile[name]
+        if not target.is_file():
+            raise ValueError(f"Runtime Q&A profile points to a missing file: {profile[name]}")
+    generation = json.loads(
+        (ROOT / profile["generation_config"]).read_text(encoding="utf-8")
+    )
+    if generation.get("device") != devices["generator"]:
+        raise ValueError(
+            "runtime_qna.devices.generator must match generation_config.device"
+        )
+    return profile
+
+
 class RuntimeQuestionEngine:
     """Load models lazily and keep only one uploaded paper active in memory."""
 
-    def __init__(self, seed=378, local_files_only=False):
+    def __init__(
+        self,
+        seed=378,
+        local_files_only=False,
+        runtime_config_path=RUNTIME_CONFIG_PATH,
+    ):
         self.seed = int(seed)
         self.local_files_only = bool(local_files_only)
+        self.runtime_config_path = Path(runtime_config_path)
+        self.profile = load_runtime_profile(self.runtime_config_path)
+        self.generation_config_path = ROOT / self.profile["generation_config"]
+        self.embedding_device = self.profile["devices"]["embedding"]
+        self.reranker_device = self.profile["devices"]["reranker"]
+        self.prepare_models_during_analysis = bool(
+            self.profile.get("prepare_models_during_analysis", False)
+        )
         self._lock = threading.Lock()
         self._pipeline = None
         self._active_paper_id = None
@@ -70,15 +109,37 @@ class RuntimeQuestionEngine:
             embedding_model=(previous.embedding_model if previous else None),
             reranker=(previous.reranker if previous else None),
             local_files_only=self.local_files_only,
+            embedding_device=self.embedding_device,
+            reranker_device=self.reranker_device,
         )
         if self._pipeline is None:
             self._pipeline = GroundedQAPipeline(
                 retrieval=retrieval,
+                generation_config_path=self.generation_config_path,
                 local_files_only=self.local_files_only,
             )
         else:
             self._pipeline.retrieval = retrieval
         self._active_paper_id = paper_id
+
+    def prepare(self, paper_id, directory):
+        """Build the paper index and optionally load the generator before questions."""
+        if not self.prepare_models_during_analysis:
+            return {"status": "deferred", "reason": "runtime_preparation_disabled"}
+        with self._lock:
+            started = time.perf_counter()
+            self._seed_runtime()
+            if self._active_paper_id != paper_id:
+                self._activate(paper_id, Path(directory))
+            llm = self._pipeline.prepare_generator()
+            return {
+                "status": "ready",
+                "runtime_seconds": round(time.perf_counter() - started, 3),
+                "embedding_device": self.embedding_device,
+                "reranker_device": self.reranker_device,
+                "embedding_cache_hit": self._pipeline.retrieval.embedding_cache_hit,
+                "generator": llm,
+            }
 
     def ask(self, question, paper_id, directory):
         with self._lock:

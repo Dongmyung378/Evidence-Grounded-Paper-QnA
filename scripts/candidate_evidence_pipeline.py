@@ -30,12 +30,16 @@ class CandidateEvidencePipeline:
         embedding_model=None,
         reranker=None,
         local_files_only=False,
+        embedding_device=None,
+        reranker_device=None,
     ):
         self.embedding_model_name = embedding_model_name
         self.reranker_model_name = reranker_model_name
         self.embedding_batch_size = embedding_batch_size
         self.reranker_batch_size = reranker_batch_size
         self.max_length = max_length
+        self.embedding_device = embedding_device
+        self.reranker_device = reranker_device
         self.chunks = list(chunks) if chunks is not None else load_chunks()
         if not self.chunks:
             raise ValueError("Candidate evidence requires at least one chunk")
@@ -55,6 +59,7 @@ class CandidateEvidencePipeline:
         self.embedding_model = embedding_model or load_model(
             embedding_model_name,
             local_files_only=local_files_only,
+            device=embedding_device,
         )
         all_embeddings, self.embedding_cache_hit = load_or_create_embeddings(
             self.embedding_model,
@@ -71,6 +76,7 @@ class CandidateEvidencePipeline:
             reranker_model_name,
             max_length=max_length,
             local_files_only=local_files_only,
+            device=reranker_device,
         )
 
     @staticmethod

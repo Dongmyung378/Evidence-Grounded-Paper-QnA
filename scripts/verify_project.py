@@ -40,6 +40,7 @@ VALIDATORS = [
     "validate_day33.py",
     "validate_day34.py",
     "validate_day35.py",
+    "validate_day36.py",
     "validate_improvements.py",
 ]
 

@@ -32,6 +32,7 @@ FROZEN_FILES = [
     "config/generation.json",
     "config/abstention_candidate.json",
     "config/runtime_qna.json",
+    "config/generation_runtime.json",
     "data/processed/chunks.jsonl",
     "data/processed/pages.jsonl",
     "data/evaluation/questions.jsonl",
@@ -62,6 +63,7 @@ IMPLEMENTATION_FILES = [
     "tests/test_day33_api.py",
     "tests/test_day34_api.py",
     "tests/test_improvements.py",
+    "tests/test_runtime_performance.py",
 ]
 
 

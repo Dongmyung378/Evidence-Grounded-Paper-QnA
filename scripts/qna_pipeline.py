@@ -67,6 +67,10 @@ class GroundedQAPipeline:
             )
         return self.llm
 
+    def prepare_generator(self):
+        """Load the configured local generator without running an answer request."""
+        return self._get_llm().metadata()
+
     def _llm_metadata(self, loaded):
         if self.llm is not None and callable(getattr(self.llm, "metadata", None)):
             return {**self.llm.metadata(), "loaded": loaded}
@@ -95,7 +99,9 @@ class GroundedQAPipeline:
         language = question_language or detected_language
         if language not in {"en", "ko"} or language != detected_language:
             raise ValueError("question_language must match the question text (en or ko)")
+        retrieval_started = time.perf_counter()
         retrieval_result = self.retrieval.run(query, paper_id)
+        retrieval_seconds = time.perf_counter() - retrieval_started
         evidence = retrieval_result["evidence"]
 
         policy_decision = {
@@ -114,6 +120,7 @@ class GroundedQAPipeline:
         fallback_used = False
         abstention_source = None
         llm_loaded = False
+        generation_seconds = 0.0
 
         if pre_generation_abstention:
             response = self.abstention_policy.refusal_payload(
@@ -130,10 +137,20 @@ class GroundedQAPipeline:
             base_messages = request["messages"]
             messages = list(base_messages)
             max_attempts = self.generation_config["validation_attempts"]
+            llm_load_started = time.perf_counter()
             llm = self._get_llm()
+            generation_seconds += time.perf_counter() - llm_load_started
+            if getattr(llm, "device", None) == "cpu":
+                max_attempts = min(
+                    max_attempts,
+                    self.generation_config.get(
+                        "cpu_validation_attempts", max_attempts
+                    ),
+                )
             llm_loaded = True
             for attempt_number in range(1, max_attempts + 1):
                 raw_response = ""
+                attempt_started = time.perf_counter()
                 try:
                     raw_response = llm.generate(
                         messages,
@@ -182,6 +199,8 @@ class GroundedQAPipeline:
                             ),
                         },
                     ]
+                finally:
+                    generation_seconds += time.perf_counter() - attempt_started
 
             fallback_used = response is None
             if fallback_used:
@@ -245,6 +264,8 @@ class GroundedQAPipeline:
                         else None
                     ),
                 },
+                "retrieval_seconds": round(retrieval_seconds, 3),
+                "generation_seconds": round(generation_seconds, 3),
                 "runtime_seconds": round(time.perf_counter() - started, 3),
             },
         }

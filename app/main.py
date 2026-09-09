@@ -77,7 +77,13 @@ class BodyLimit:
 
 def create_app(settings=None, question_engine=None):
     if settings is None:
-        settings = Settings(data_dir=Path(os.environ.get("PAPER_QNA_DATA_DIR", Settings().data_dir)))
+        prepare_runtime = os.environ.get(
+            "PAPER_QNA_PREPARE_MODELS", "1"
+        ).strip().lower() not in {"0", "false", "no"}
+        settings = Settings(
+            data_dir=Path(os.environ.get("PAPER_QNA_DATA_DIR", Settings().data_dir)),
+            prepare_question_runtime=prepare_runtime,
+        )
 
     @asynccontextmanager
     async def lifespan(api):

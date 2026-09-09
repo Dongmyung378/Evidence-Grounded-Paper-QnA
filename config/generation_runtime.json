@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "roadmap_day": 30,
+  "provider": "local_transformers",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "trust_remote_code": false,
+  "device": "auto",
+  "dtype": "auto",
+  "max_input_tokens": 8192,
+  "max_new_tokens": 384,
+  "do_sample": false,
+  "validation_attempts": 3,
+  "cpu_validation_attempts": 2,
+  "max_time_seconds": 18.0,
+  "cpu_threads": 8,
+  "safe_fallback_on_validation_error": true
+}

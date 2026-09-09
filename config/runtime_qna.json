@@ -1,8 +1,14 @@
 {
   "schema_version": 1,
   "abstention_config": "config/abstention_candidate.json",
-  "generation_config": "config/generation.json",
+  "generation_config": "config/generation_runtime.json",
+  "devices": {
+    "embedding": "cpu",
+    "reranker": "cpu",
+    "generator": "auto"
+  },
+  "prepare_models_during_analysis": true,
   "answer_guard": "reject_canned_or_question_only_responses",
   "seed": 378,
-  "decision": "Keep the original generator; the compact prompt and 1.5B candidate did not establish reliable bilingual quality. Adopt the separately verified -3.35 refusal threshold."
+  "decision": "Keep the verified 0.5B generator, 384-token output budget, and -3.35 refusal threshold. For the 6 GB local GPU runtime, keep retrieval models on CPU, reserve GPU memory for generation, use up to three attempts on GPU, and cap CPU fallback at two time-bounded attempts."
 }

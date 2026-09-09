@@ -43,6 +43,11 @@ def main():
     assert flow["paper_result"]["overview"]["sections"]
     assert flow["health_before"]["question_engine"] == "lazy"
     assert flow["health_after"]["question_engine"] == "ready"
+    preparation = flow["question_runtime_preparation"]
+    assert preparation["status"] == "ready"
+    assert preparation["embedding_device"] == "cpu"
+    assert preparation["reranker_device"] == "cpu"
+    assert preparation["generator"]["device"] in {"cpu", "cuda"}
 
     trace = flow["traceability"]
     assert trace["pages"] == trace["unique_page_ids"] == 10
@@ -56,6 +61,11 @@ def main():
     assert answer["sufficiency"] == "sufficient"
     assert answer["answer"].strip()
     assert answer["evidence"]
+    assert answer["runtime"]["generation_attempts"] <= 3
+    if answer["runtime"]["llm_device"] == "cpu":
+        assert answer["runtime"]["generation_attempts"] <= 2
+    assert answer["runtime"]["llm_device"] in {"cpu", "cuda"}
+    assert answer["runtime"]["total_seconds"] == answer["runtime_seconds"]
     assert all(item["page"] >= 1 and item["text"].strip() for item in answer["evidence"])
     assert result["temporary_runtime_removed"] is True
     assert result["quality_claim"] == "functional integration only"

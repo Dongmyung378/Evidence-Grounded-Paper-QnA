@@ -37,11 +37,22 @@ def main():
     assert smoke["paper_result"]["overview"]["abstract"]
     assert smoke["health_before"]["question_engine"] == "lazy"
     assert smoke["health_after"]["question_engine"] == "ready"
+    preparation = smoke["question_runtime_preparation"]
+    assert preparation["status"] == "ready"
+    assert preparation["embedding_device"] == "cpu"
+    assert preparation["reranker_device"] == "cpu"
+    assert preparation["generator"]["device"] in {"cpu", "cuda"}
     answer = smoke["question_result"]
     assert answer["question_language"] == "en"
     assert answer["sufficiency"] == "sufficient"
     assert answer["answer"].strip()
     assert answer["evidence"]
+    assert answer["runtime"]["generation_attempts"] <= 3
+    if answer["runtime"]["llm_device"] == "cpu":
+        assert answer["runtime"]["generation_attempts"] <= 2
+    assert answer["runtime"]["llm_device"] in {"cpu", "cuda"}
+    assert answer["runtime"]["retrieval_seconds"] >= 0
+    assert answer["runtime"]["generation_seconds"] >= 0
     assert all(item["page"] >= 1 and item["text"].strip() for item in answer["evidence"])
     assert smoke["runtime_embedding_cache_created"] is True
     assert smoke["paper_id_fixed_for_reproducible_acceptance"] is True

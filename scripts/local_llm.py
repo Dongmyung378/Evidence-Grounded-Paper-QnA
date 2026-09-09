@@ -29,7 +29,13 @@ def validate_generation_config(config):
     assert config["max_new_tokens"] > 0
     assert config["do_sample"] is False
     assert config["validation_attempts"] >= 1
+    if "cpu_validation_attempts" in config:
+        assert 1 <= config["cpu_validation_attempts"] <= config["validation_attempts"]
     assert config["safe_fallback_on_validation_error"] is True
+    if "max_time_seconds" in config:
+        assert config["max_time_seconds"] > 0
+    if "cpu_threads" in config:
+        assert isinstance(config["cpu_threads"], int) and config["cpu_threads"] > 0
     return config
 
 
@@ -101,7 +107,9 @@ class LocalTransformersLLM:
                 self.model = self.model.to(dtype=self.dtype)
                 self.device_fallback_reason = "insufficient_free_cuda_memory"
         if self.device == "cpu":
-            torch.set_num_threads(min(4, torch.get_num_threads()))
+            torch.set_num_threads(
+                min(self.config.get("cpu_threads", 4), torch.get_num_threads())
+            )
         self._torch = torch
         try:
             self.model.to(self.device)
@@ -117,7 +125,9 @@ class LocalTransformersLLM:
         self.dtype = self._torch.float32
         self.model.to(device="cpu", dtype=self.dtype)
         self.device_fallback_reason = reason
-        self._torch.set_num_threads(min(4, self._torch.get_num_threads()))
+        self._torch.set_num_threads(
+            min(self.config.get("cpu_threads", 4), self._torch.get_num_threads())
+        )
         self._torch.cuda.empty_cache()
 
     def generate(self, messages, response_schema=None):
@@ -143,6 +153,8 @@ class LocalTransformersLLM:
             "do_sample": self.config["do_sample"],
             "pad_token_id": self.tokenizer.eos_token_id,
         }
+        if self.config.get("max_time_seconds"):
+            generation_args["max_time"] = self.config["max_time_seconds"]
         try:
             with self._torch.inference_mode():
                 output = self.model.generate(**encoded, **generation_args)

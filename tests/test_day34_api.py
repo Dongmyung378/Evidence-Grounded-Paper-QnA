@@ -82,7 +82,18 @@ class FakeQuestionEngine:
                 "abstention_reason": None,
             },
             "cited_evidence": [evidence],
-            "pipeline": {"runtime_seconds": 0.012},
+            "pipeline": {
+                "runtime_seconds": 0.012,
+                "retrieval_seconds": 0.007,
+                "generation_seconds": 0.005,
+                "generation_attempts": 1,
+                "fallback_used": False,
+                "abstention_source": None,
+                "llm": {
+                    "device": "cuda",
+                    "device_fallback_reason": None,
+                },
+            },
         }
 
 
@@ -166,6 +177,9 @@ class Day34API(unittest.TestCase):
         self.assertEqual(answer["sufficiency"], "sufficient")
         self.assertEqual(answer["evidence"][0]["page"], 1)
         self.assertEqual(answer["evidence"][0]["locator"]["page_label"], "p. 1")
+        self.assertEqual(answer["runtime"]["generation_attempts"], 1)
+        self.assertEqual(answer["runtime"]["llm_device"], "cuda")
+        self.assertEqual(answer["runtime"]["retrieval_seconds"], 0.007)
         self.assertNotIn(str(self.settings.data_dir), response.text)
         final_health = self.client.get("/health").json()
         self.assertEqual(final_health["question_engine"], "ready")

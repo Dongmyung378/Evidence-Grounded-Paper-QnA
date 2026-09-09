@@ -16,7 +16,7 @@ Evidence-Grounded Paper Q&A는 영어 연구 논문 한 편을 대상으로 질�
 - 고정된 Qwen 모델을 이용한 로컬 답변 생성
 - 답변에 사용한 페이지 단위 원문 근거 제공
 - 논문에서 근거를 찾지 못할 때 답변 거절
-- FastAPI를 통한 전체 처리 흐름 제공
+- FastAPI와 한영 Streamlit 화면을 통한 전체 처리 흐름 제공
 
 ## 처리 방식
 
@@ -45,6 +45,7 @@ PDF 업로드
 | 운영 검색 MRR | 0.6317 |
 | 근거 없는 홀드아웃 질문 거절 | 10/10 |
 | 실제 HTTP 통합 흐름 | 통과 |
+| 실제 브라우저 PDF 업로드 흐름 | 통과 |
 
 검색 수치는 질문마다 수동으로 검증한 Gold 페이지 한 개를 기준으로 측정했습니다. 추가 논문 20편은 파싱과 실행 강건성 검증에 사용합니다. 아직 수동 검증 질문과 Gold 근거가 없으므로 정확도 수치에는 포함하지 않습니다.
 
@@ -59,9 +60,15 @@ python -m pip install -r requirements.txt
 python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 1
 ```
 
-서버 실행 후 `http://127.0.0.1:8000/docs`에서 대화형 API 문서를 확인할 수 있습니다.
+두 번째 터미널에서 Streamlit을 실행합니다.
 
-첫 질문에서는 Hugging Face에서 고정된 임베딩, 재정렬, 생성 모델을 내려받을 수 있습니다. 모델이 캐시에 저장된 이후에는 전체 질문과 답변 흐름을 로컬에서 실행할 수 있습니다.
+```bash
+python -m streamlit run ui/app.py
+```
+
+웹 화면은 `http://127.0.0.1:8501`, 대화형 API 문서는 `http://127.0.0.1:8000/docs`에서 확인할 수 있습니다.
+
+논문 분석 중 고정된 임베딩, 재정렬, 생성 모델을 준비합니다. 처음 실행할 때는 Hugging Face에서 모델을 내려받을 수 있습니다. 6GB GPU용 프로필은 검색 모델을 CPU에 두고 답변 생성에 GPU 메모리를 우선 사용합니다. 실행 설정을 바꾼 뒤에는 FastAPI를 다시 시작해야 합니다.
 
 ## API 사용 흐름
 
@@ -105,6 +112,17 @@ curl -X POST http://127.0.0.1:8000/question \
   "answer": "...",
   "sufficiency": "sufficient",
   "abstention_reason": null,
+  "runtime_seconds": 9.7,
+  "runtime": {
+    "total_seconds": 9.7,
+    "retrieval_seconds": 0.97,
+    "generation_seconds": 8.729,
+    "generation_attempts": 1,
+    "llm_device": "cuda",
+    "device_fallback_reason": null,
+    "fallback_used": false,
+    "abstention_source": null
+  },
   "evidence": [
     {
       "evidence_id": "ev-...",
@@ -144,6 +162,8 @@ curl -X POST http://127.0.0.1:8000/question \
 
 모델 리비전과 실행 설정은 `config/`에 고정되어 있어 저장된 평가 결과와 현재 구현을 비교할 수 있습니다.
 
+브라우저 실행은 `config/generation_runtime.json`을 사용합니다. 검토된 384토큰은 유지하고 GPU에서는 최대 3회 검증하며, CPU 대체 실행은 시간이 제한된 최대 2회로 줄입니다. 측정 결과와 한계는 [로컬 실행 성능 개선](docs/reviews/runtime_performance_KO.md)에 정리했습니다.
+
 ## 저장소 구조
 
 ```text
@@ -160,6 +180,7 @@ docs/
   reviews/           품질 및 개선 검토
 scripts/             수집, 검색, 평가, 검증 도구
 tests/               API와 회귀 테스트
+ui/                  한영 Streamlit 화면과 API 클라이언트
 ```
 
 ## 검증 방법
@@ -177,6 +198,12 @@ python -B scripts/evaluate_day35.py
 python -B scripts/validate_day35.py
 ```
 
+실제 브라우저로 수행한 Streamlit 수용 결과는 다음 명령으로 검증합니다.
+
+```bash
+python -B scripts/validate_day36.py
+```
+
 통합 평가 스크립트는 임시 포트에 Uvicorn을 실행하고 curl로 질문 API를 호출합니다. 페이지와 청크 추적성을 확인한 뒤 임시 런타임 디렉터리를 제거합니다.
 
 ## 범위와 한계
@@ -190,7 +217,9 @@ python -B scripts/validate_day35.py
 - [프로젝트 범위](docs/project/scope.md)
 - [기능 및 비기능 요구사항](docs/project/requirements.md)
 - [API 전체 통합 게이트](docs/api/day35.md)
+- [36일차 Streamlit UI](docs/ui/day36_KO.md)
 - [구현 진행 기록](docs/roadmap/progress.md)
 - [품질 및 개선 검토](docs/reviews/improvements.md)
+- [로컬 실행 성능 개선](docs/reviews/runtime_performance_KO.md)
 
-백엔드는 전체 API 통합 게이트까지 구현했습니다. 다음 작업은 간단한 웹 UI이며, 이후 Docker 패키징과 배포를 진행합니다.
+원 계획의 36일차까지 완료했습니다. 브라우저 PDF 업로드, 분석 진행 상태, 논문 개요, 질문 입력을 구현하고 검증했습니다. 다음 작업은 37일차 근거 화면이며, 이후 오류 처리, Docker 패키징, 배포를 진행합니다.

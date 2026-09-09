@@ -68,6 +68,8 @@ class ProductionRetrieval:
         embedding_model=None,
         reranker=None,
         local_files_only=False,
+        embedding_device=None,
+        reranker_device=None,
     ):
         self.config_path = Path(config_path)
         self.config = load_production_config(self.config_path)
@@ -85,6 +87,8 @@ class ProductionRetrieval:
             embedding_model=embedding_model,
             reranker=reranker,
             local_files_only=local_files_only,
+            embedding_device=embedding_device,
+            reranker_device=reranker_device,
         )
 
     @property

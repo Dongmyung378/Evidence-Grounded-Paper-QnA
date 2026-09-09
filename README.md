@@ -16,7 +16,7 @@ The project focuses on a simple requirement: an answer should be easy to trace b
 - Generates answers locally with a pinned Qwen model
 - Returns page-linked source evidence for supported answers
 - Refuses questions when the paper does not provide enough evidence
-- Exposes the complete workflow through FastAPI
+- Exposes the complete workflow through FastAPI and a bilingual Streamlit interface
 
 ## How it works
 
@@ -45,6 +45,7 @@ The runtime only searches chunks that belong to the selected paper. Uploaded pap
 | Production retrieval MRR | 0.6317 |
 | Unsupported holdout questions refused | 10/10 |
 | Real HTTP integration flow | Passed |
+| Real browser PDF upload flow | Passed |
 
 The retrieval figures use one manually verified gold page per question. The 20 expansion papers are used for parsing and runtime robustness checks, not accuracy claims, because they do not yet have manually verified questions and gold evidence.
 
@@ -59,9 +60,15 @@ python -m pip install -r requirements.txt
 python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 1
 ```
 
-Open `http://127.0.0.1:8000/docs` for the interactive API documentation.
+Start Streamlit in a second terminal:
 
-The first question may download the pinned embedding, reranker, and generation models from Hugging Face. Once cached, the full question-answering path can run locally.
+```bash
+python -m streamlit run ui/app.py
+```
+
+Open `http://127.0.0.1:8501` for the web interface or `http://127.0.0.1:8000/docs` for the interactive API documentation.
+
+During analysis, the service prepares the pinned embedding, reranker, and generation models. The first run may download them from Hugging Face. The 6 GB GPU profile keeps retrieval models on CPU and reserves GPU memory for answer generation. Restart FastAPI after changing runtime settings.
 
 ## API workflow
 
@@ -105,6 +112,17 @@ A supported response contains the answer and only the evidence objects cited by 
   "answer": "...",
   "sufficiency": "sufficient",
   "abstention_reason": null,
+  "runtime_seconds": 9.7,
+  "runtime": {
+    "total_seconds": 9.7,
+    "retrieval_seconds": 0.97,
+    "generation_seconds": 8.729,
+    "generation_attempts": 1,
+    "llm_device": "cuda",
+    "device_fallback_reason": null,
+    "fallback_used": false,
+    "abstention_source": null
+  },
   "evidence": [
     {
       "evidence_id": "ev-...",
@@ -144,6 +162,8 @@ A supported response contains the answer and only the evidence objects cited by 
 
 Model revisions and runtime parameters are pinned in `config/` so results can be checked against the saved evaluation artifacts.
 
+The browser runtime uses `config/generation_runtime.json`. It keeps the reviewed 384-token budget, allows up to three validation attempts on GPU, and limits CPU fallback to two time-bounded attempts. See [local runtime performance](docs/reviews/runtime_performance.md) for the measured acceptance result and limitations.
+
 ## Repository layout
 
 ```text
@@ -160,6 +180,7 @@ docs/
   reviews/           quality and improvement reviews
 scripts/             ingestion, retrieval, evaluation, and validation tools
 tests/               API and regression tests
+ui/                  bilingual Streamlit interface and API client
 ```
 
 ## Verification
@@ -177,6 +198,12 @@ python -B scripts/evaluate_day35.py
 python -B scripts/validate_day35.py
 ```
 
+Validate the saved real-browser Streamlit acceptance result:
+
+```bash
+python -B scripts/validate_day36.py
+```
+
 The integration evaluator starts Uvicorn on a temporary loopback port, calls the question endpoint with curl, verifies page and chunk traceability, and removes its temporary runtime directory afterward.
 
 ## Scope and limitations
@@ -190,7 +217,9 @@ Raw PDFs, QASPER source files, and user uploads remain local unless their redist
 - [Project scope](docs/project/scope.md)
 - [Functional requirements](docs/project/requirements.md)
 - [API integration gate](docs/api/day35.md)
+- [Day 36 Streamlit UI](docs/ui/day36.md)
 - [Implementation history](docs/roadmap/progress.md)
 - [Quality and improvement review](docs/reviews/improvements.md)
+- [Local runtime performance](docs/reviews/runtime_performance.md)
 
-The backend workflow is complete through the full API integration gate. The next implementation step is a small web interface, followed by Docker packaging and deployment work.
+The original roadmap is complete through Day 36. Browser upload, analysis progress, the paper overview, and question entry are implemented and verified. The next step is the Day 37 evidence panel, followed by error handling, Docker packaging, and deployment.

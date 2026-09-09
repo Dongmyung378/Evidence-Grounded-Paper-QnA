@@ -113,6 +113,7 @@ def run_complete_api_flow(
         data_dir=runtime_root,
         seed=seed,
         model_local_files_only=model_local_files_only,
+        prepare_question_runtime=True,
     )
     fixed_paper_uuid = UUID(int=seed)
     with patch("app.service.uuid4", return_value=fixed_paper_uuid):
@@ -177,6 +178,9 @@ def run_complete_api_flow(
                 assert paper["overview"]["sections"]
 
             paper_directory = runtime_root / "papers" / uploaded["paper_id"]
+            ingestion_report = json.loads(
+                (paper_directory / "ingestion_report.json").read_text(encoding="utf-8")
+            )
             pages, chunks = validate_traceability(
                 paper_directory,
                 uploaded["paper_id"],
@@ -231,6 +235,9 @@ def run_complete_api_flow(
                 "job": job,
                 "observed_job_states": states,
                 "paper_result": paper,
+                "question_runtime_preparation": ingestion_report.get(
+                    "question_runtime_preparation"
+                ),
                 "traceability": {
                     "pages": len(pages),
                     "chunks": len(chunks),

@@ -80,6 +80,17 @@ class EvidenceResult(BaseModel):
     locator: EvidenceLocator
 
 
+class QuestionRuntime(BaseModel):
+    total_seconds: float
+    retrieval_seconds: float
+    generation_seconds: float
+    generation_attempts: int
+    llm_device: Literal["cpu", "cuda"] | None = None
+    device_fallback_reason: str | None = None
+    fallback_used: bool
+    abstention_source: str | None = None
+
+
 class QuestionResult(BaseModel):
     paper_id: str
     question: str
@@ -89,6 +100,7 @@ class QuestionResult(BaseModel):
     abstention_reason: str | None = None
     evidence: list[EvidenceResult]
     runtime_seconds: float
+    runtime: QuestionRuntime
 
 
 class QueueHealth(BaseModel):

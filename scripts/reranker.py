@@ -8,6 +8,7 @@ def load_reranker(
     model_name=DEFAULT_RERANKER_MODEL,
     max_length=512,
     local_files_only=False,
+    device=None,
 ):
     try:
         from sentence_transformers import CrossEncoder
@@ -16,11 +17,13 @@ def load_reranker(
             "Reranking requires sentence-transformers. "
             "Install project dependencies with: pip install -r requirements.txt"
         ) from exc
-    return CrossEncoder(
-        model_name,
-        max_length=max_length,
-        local_files_only=local_files_only,
-    )
+    options = {
+        "max_length": max_length,
+        "local_files_only": local_files_only,
+    }
+    if device is not None:
+        options["device"] = device
+    return CrossEncoder(model_name, **options)
 
 
 def rerank_chunks(model, query, candidates, top_k=None, batch_size=8):
