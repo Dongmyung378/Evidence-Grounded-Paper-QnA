@@ -10,7 +10,6 @@ from run_day30_smoke import QUESTION_IDS
 
 
 RESULTS_PATH = PROJECT_ROOT / "data" / "evaluation" / "day30_e2e_results.json"
-PROGRESS_PATH = PROJECT_ROOT / "docs" / "roadmap" / "progress.md"
 DAY28_METRICS_PATH = (
     PROJECT_ROOT / "data" / "evaluation" / "day28_production_metrics.json"
 )
@@ -102,12 +101,10 @@ def main():
     assert "ProductionRetrieval" in pipeline_source
     assert "LocalTransformersLLM" in pipeline_source
     assert "gold_evidence" not in smoke_source
-    assert "## 30일차" in PROGRESS_PATH.read_text(encoding="utf-8")
-
     requirements = (
         PROJECT_ROOT / "docs" / "project" / "requirements.md"
     ).read_text(encoding="utf-8")
-    assert "## 30일차 로컬 Q&A 연결" in requirements
+    assert "## 로컬 Q&A 연결" in requirements
 
     print("Day 30 local end-to-end Q&A gate passed")
     print("questions=10 papers=10 languages=en:5,ko:5")

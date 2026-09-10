@@ -165,6 +165,9 @@ def run_browser(
     ui_url: str,
     browser_path: Path,
     node_modules: str | None,
+    browser_script: str = BROWSER_SCRIPT,
+    source_pdf: Path = SOURCE_PDF,
+    extra_arguments: list[str] | None = None,
 ) -> dict:
     node = shutil.which("node")
     if node is None:
@@ -188,10 +191,11 @@ def run_browser(
         [
             node,
             "-e",
-            BROWSER_SCRIPT,
+            browser_script,
             ui_url,
-            str(SOURCE_PDF),
+            str(source_pdf),
             str(browser_path),
+            *(extra_arguments or []),
         ],
         env=environment,
         cwd=ROOT,

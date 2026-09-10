@@ -15,5 +15,8 @@ __pycache__/
 # Local task and document-review scratch directories.
 .tmp_*/
 
+# Private implementation journal. Keep day-by-day notes off GitHub.
+local_notes/
+
 # Private uploaded PDFs, per-paper artifacts, and local job metadata.
 data/runtime/

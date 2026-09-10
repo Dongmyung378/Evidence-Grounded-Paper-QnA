@@ -8,7 +8,7 @@
 
 ## 실행 정책
 
-고정된 30일차 생성 설정은 유지하고 브라우저 실행에만 별도 프로필을 적용했다.
+고정된 기준선 생성 설정은 유지하고 브라우저 실행에만 별도 프로필을 적용했다.
 
 - 다국어 임베딩 모델은 CPU에서 실행한다.
 - Cross-Encoder 재정렬 모델은 CPU에서 실행한다.
@@ -19,11 +19,11 @@
 - API는 검색 시간, 생성 시간, 시도 횟수, 생성 장치, 대체 응답 여부, 거절 출처를 반환한다.
 - 화면은 실제 거절 사유와 단계별 실행 시간을 표시한다.
 
-기존 `config/generation.json`은 30일차 실험 입력으로 보존했다. 브라우저 서비스는 `config/runtime_qna.json`을 통해 `config/generation_runtime.json`을 읽는다.
+기존 `config/generation.json`은 기준선 실험 입력으로 보존했다. 브라우저 서비스는 `config/runtime_qna.json`을 통해 `config/generation_runtime.json`을 읽는다.
 
 ## 수용 측정
 
-NVIDIA GeForce RTX 3060 Laptop GPU 6GB 환경에서 시드 378로 실제 HTTP 전체 흐름을 다시 실행했다. `paper-003.pdf`와 기존 35일차 영어 수용 질문을 사용했다.
+NVIDIA GeForce RTX 3060 Laptop GPU 6GB 환경에서 시드 378로 실제 HTTP 전체 흐름을 다시 실행했다. `paper-003.pdf`와 기존 영어 HTTP 수용 질문을 사용했다.
 
 | 측정 항목 | 결과 |
 |---|---:|

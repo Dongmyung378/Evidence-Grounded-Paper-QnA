@@ -1,6 +1,6 @@
 # 문서 안내
 
-최상단 `README.md`는 프로젝트 소개와 실행 방법만 담습니다. 상세 설계, 일차별 진행 기록, 검토 결과는 아래 문서로 분리합니다.
+최상단 `README.md`와 `README_KO.md`는 프로젝트 소개와 실행 방법을 제공한다. 상세 문서는 구현 일지 대신 기능, 검증, 한계를 기준으로 구성한다.
 
 ## 프로젝트 문서
 
@@ -10,20 +10,19 @@
 
 ## API 문서
 
-- [33일차 업로드와 분석 API](api/day33.md)
-- [34일차 질문과 결과 API](api/day34.md)
-- [35일차 전체 통합 게이트](api/day35.md)
+- [PDF 업로드와 분석 API](api/upload_analysis.md)
+- [질문, 논문 결과, 상태 API](api/question_answer.md)
+- [전체 API 통합 게이트](api/integration.md)
 
 ## UI 문서
 
-- [Day 36 Streamlit UI in English](ui/day36.md)
-- [36일차 Streamlit UI 한국어](ui/day36_KO.md)
+- [Streamlit interface in English](ui/interface.md)
+- [Streamlit 사용자 화면](ui/interface_KO.md)
 
-## 진행 및 검토
+## 품질 및 실행 검토
 
-- [1일차부터 36일차 진행 기록](roadmap/progress.md)
-- [개선 사항 검토](reviews/improvements.md)
+- [답변 품질 및 개선 검토](reviews/improvements.md)
 - [로컬 실행 성능 개선](reviews/runtime_performance_KO.md)
 - [Local runtime performance](reviews/runtime_performance.md)
 
-평가 수치와 실행 증거는 `data/evaluation/`에 있으며, 각 파일의 역할은 [평가 데이터 안내](../data/evaluation/README.md)에 정리되어 있습니다.
+평가 수치와 실행 증거는 `data/evaluation/`에 있으며, 각 파일의 역할은 [평가 데이터 안내](../data/evaluation/README.md)에 정리되어 있다.

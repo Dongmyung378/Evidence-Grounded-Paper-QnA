@@ -8,7 +8,7 @@ A local Korean question took 84.52 seconds and ended in a safe refusal. Inspecti
 
 ## Runtime policy
 
-The browser runtime now uses a separate profile without changing the frozen Day 30 generation configuration.
+The browser runtime uses a separate profile without changing the frozen baseline generation configuration.
 
 - The multilingual embedding model runs on CPU.
 - The Cross-Encoder reranker runs on CPU.
@@ -19,11 +19,11 @@ The browser runtime now uses a separate profile without changing the frozen Day 
 - The API reports retrieval time, generation time, attempt count, generation device, fallback state, and abstention source.
 - The UI shows the actual abstention reason and the runtime breakdown.
 
-The original `config/generation.json` remains the historical Day 30 experiment input. The browser service reads `config/generation_runtime.json` through `config/runtime_qna.json`.
+The original `config/generation.json` remains the frozen baseline experiment input. The browser service reads `config/generation_runtime.json` through `config/runtime_qna.json`.
 
 ## Acceptance measurement
 
-The complete HTTP flow was rerun on an NVIDIA GeForce RTX 3060 Laptop GPU with 6 GB VRAM and seed 378. The run used `paper-003.pdf` and the existing Day 35 English acceptance question.
+The complete HTTP flow was rerun on an NVIDIA GeForce RTX 3060 Laptop GPU with 6 GB VRAM and seed 378. The run used `paper-003.pdf` and the established English HTTP acceptance question.
 
 | Measurement | Result |
 |---|---:|

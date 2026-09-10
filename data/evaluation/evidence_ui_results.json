@@ -1,32 +1,27 @@
 {
-  "roadmap_day": 36,
-  "evaluated_at": "2026-09-10T05:42:08.127564+00:00",
+  "schema_version": 1,
+  "evaluated_at": "2026-09-10T05:41:23.375571+00:00",
   "seed": 378,
-  "roadmap_gate": "browser PDF upload -> analysis status -> overview -> question input",
+  "requirement": "answer beside cited evidence text, page, and section",
   "tests_run": 35,
   "test_failures": 0,
   "test_errors": 0,
   "transport": "headless Chromium against Streamlit and real loopback FastAPI",
   "browser_executable": "msedge.exe",
+  "question": "What is the main focus of this paper's review of text summarization?",
   "checks": {
-    "streamlit_server_ready": true,
     "browser_loaded": true,
-    "file_uploader_visible": true,
-    "selected_filename_visible": true,
-    "analysis_completed_visible": true,
-    "overview_visible": true,
-    "question_input_visible": true,
-    "question_input_enabled": true,
-    "metric_values": [
-      " 10 ",
-      " 10 ",
-      " 40 ",
-      " 23 "
-    ],
-    "one_pdf_registered": true,
-    "analysis_job_completed": true,
-    "overview_data_created": true,
-    "question_runtime_prepared": true
+    "question_submitted": true,
+    "answer_visible": true,
+    "evidence_panel_visible": true,
+    "answer_and_evidence_side_by_side": true,
+    "evidence_count": 4,
+    "page_visible": true,
+    "section_visible": true,
+    "original_text_visible": true,
+    "chunk_id_visible": true,
+    "cited_evidence_count_visible": true,
+    "no_insufficient_warning": true
   },
   "runtime": {
     "papers": 1,
@@ -42,7 +37,7 @@
     "warning_count": 23,
     "question_runtime_preparation": {
       "status": "ready",
-      "runtime_seconds": 18.093,
+      "runtime_seconds": 27.033,
       "embedding_device": "cpu",
       "reranker_device": "cpu",
       "embedding_cache_hit": false,
@@ -87,15 +82,15 @@
   },
   "implementation_sha256": {
     ".streamlit/config.toml": "fe1fdda9d56d4415fbac1898e9f90bc0b5953d5bcc9bbebb146ff73e6a7ce804",
-    "requirements.txt": "cc8cd63c1a1048dbd23cb2de9ab9c1fec65dccb99248f2438e5350a2c26ba889",
     "ui/__init__.py": "8c6c618142feed722dce1484f56daf3a011c593ff2c7bde1f6406ca678988a7f",
     "ui/api_client.py": "254c22eb6fc075968144cb9c4dd688fccb90fdfb4ad4f99c732362c98e726a8a",
     "ui/app.py": "0b70d3603831d935ad47fd7a894e20fc2d72966ee395c70e7e825d11b6a96da0",
     "tests/test_day36_ui.py": "0449a9789585d0ae5a1814bdbe43be8454dbe4e175c6cf6dcdc17cd21074263c",
     "scripts/evaluate_day36.py": "fd4f614a5b7342fb524dcf1515e278c2fb6ae9a831fb6247ed66ee35271a77ee",
-    "scripts/validate_day36.py": "06f68ffbbb0401139d1f169d8a2ff8c1a93fcce396c60a032ec00adf8b61c86b",
+    "scripts/evaluate_evidence_ui.py": "73267d4a00ae0e6796a112d6a31c88c764d3e0f2b0d41166db54ccfbb0896413",
+    "scripts/validate_evidence_ui.py": "83a04d1c31f53e1a7544d075459918e7094ec846be69690bdb2d27ce92745ddd",
     "scripts/verify_project.py": "19d3e3f99d9eecdb899b01d6159593759fed9a583696bc1c7a37c3e1ceff3cef"
   },
   "temporary_runtime_removed": true,
-  "quality_claim": "functional UI integration only; answer quality is unchanged"
+  "quality_claim": "evidence presentation and traceability only"
 }

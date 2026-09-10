@@ -41,6 +41,7 @@ VALIDATORS = [
     "validate_day34.py",
     "validate_day35.py",
     "validate_day36.py",
+    "validate_evidence_ui.py",
     "validate_improvements.py",
 ]
 

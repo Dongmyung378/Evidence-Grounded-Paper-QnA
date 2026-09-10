@@ -18,7 +18,6 @@ def main():
     fix = load("day27_error_fix.json")
     rejected = load("day27_pool_widening_rejected.json")
     ablation_path = PROJECT_ROOT / "data" / "evaluation" / "ablation.csv"
-    progress_path = PROJECT_ROOT / "docs" / "roadmap" / "progress.md"
 
     assert training["roadmap_day"] == 25
     assert training["leakage_policy"] == {
@@ -63,8 +62,6 @@ def main():
     assert any(row["question_id"] == "q-005-ko" for row in fix["cases"]["changed_ranks"])
     assert fix["decision"]["adopt_for_day28_gate"] is True
     assert rejected["decision"]["adopt_for_day28_gate"] is False
-    assert "## 25일차부터 27일차" in progress_path.read_text(encoding="utf-8")
-
     print("Day 25-27 gate validation passed")
     print("day25=qasper_pairs+cpu_optimizer_step+pretrained_fallback")
     print("day26=ablation.csv systems=4 scopes=3")

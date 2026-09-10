@@ -143,6 +143,83 @@ class StreamlitShell(unittest.TestCase):
         self.assertIn("업로드하고 분석", labels)
         self.assertEqual(app.text_area[0].label, "이 논문에 관해 질문하세요")
 
+    def test_supported_answer_shows_original_evidence_locator_and_text(self):
+        app = AppTest.from_file(str(ROOT / "ui" / "app.py"), default_timeout=10)
+        app.session_state.paper = {
+            "paper_id": PAPER_ID,
+            "status": "ready",
+            "page_count": 2,
+            "text_page_count": 2,
+            "chunk_count": 4,
+            "warning_count": 0,
+            "overview": {"abstract": "A short abstract.", "sections": ["Methods"]},
+        }
+        app.session_state.answer = {
+            "answer": "The method is supported by the cited passage.",
+            "sufficiency": "sufficient",
+            "abstention_reason": None,
+            "runtime_seconds": 0.2,
+            "runtime": {
+                "retrieval_seconds": 0.05,
+                "generation_seconds": 0.15,
+                "generation_attempts": 1,
+                "llm_device": "cuda",
+            },
+            "evidence": [{
+                "evidence_id": "ev-01",
+                "page": 2,
+                "section": "Methods",
+                "text": "This exact sentence comes from the uploaded paper.",
+                "locator": {
+                    "page_label": "p. 2",
+                    "section": "Methods",
+                    "chunk_id": f"{PAPER_ID}-p002-c001",
+                },
+            }],
+        }
+        app.run()
+        self.assertFalse(app.exception, app.exception)
+        visible = "\n".join(
+            str(element.value)
+            for kind in ("markdown", "caption", "info", "warning")
+            for element in app.get(kind)
+        )
+        self.assertIn("Answer", visible)
+        self.assertIn("Source evidence", visible)
+        self.assertIn("Evidence 1", visible)
+        self.assertIn("Page 2 | Section: Methods", visible)
+        self.assertIn("This exact sentence comes from the uploaded paper.", visible)
+        self.assertIn(f"Chunk ID: {PAPER_ID}-p002-c001", visible)
+
+    def test_insufficient_answer_does_not_invent_evidence(self):
+        app = AppTest.from_file(str(ROOT / "ui" / "app.py"), default_timeout=10)
+        app.session_state.paper = {
+            "paper_id": PAPER_ID,
+            "status": "ready",
+            "page_count": 1,
+            "text_page_count": 1,
+            "chunk_count": 1,
+            "warning_count": 0,
+            "overview": {"abstract": None, "sections": []},
+        }
+        app.session_state.answer = {
+            "answer": "The answer cannot be verified from the provided paper evidence.",
+            "sufficiency": "insufficient",
+            "abstention_reason": "No relevant passage passed the evidence threshold.",
+            "runtime_seconds": 0.1,
+            "runtime": {},
+            "evidence": [],
+        }
+        app.run()
+        visible = "\n".join(
+            str(element.value)
+            for kind in ("markdown", "caption", "info", "warning")
+            for element in app.get(kind)
+        )
+        self.assertIn("No source passage is cited", visible)
+        self.assertIn("No relevant passage passed", visible)
+        self.assertNotIn("Evidence 1", visible)
+
 
 if __name__ == "__main__":
     unittest.main()

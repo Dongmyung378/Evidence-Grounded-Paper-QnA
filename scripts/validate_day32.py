@@ -17,7 +17,6 @@ OUTPUTS_PATH = EVALUATION_DIR / "day32_qna_outputs.json"
 LABELS_PATH = EVALUATION_DIR / "day32_review_labels.jsonl"
 REVIEW_PATH = EVALUATION_DIR / "day32_manual_review.json"
 FAILURES_PATH = EVALUATION_DIR / "day32_failure_cases.md"
-PROGRESS_PATH = PROJECT_ROOT / "docs" / "roadmap" / "progress.md"
 RUNNER_PATH = PROJECT_ROOT / "scripts" / "run_day32_review.py"
 
 
@@ -144,12 +143,10 @@ def main():
     failures_text = FAILURES_PATH.read_text(encoding="utf-8")
     assert "엄격 실패:" in failures_text
     assert all(question_id in failures_text for question_id in strict_fail_ids)
-    assert "## 32일차" in PROGRESS_PATH.read_text(encoding="utf-8")
-
     requirements = (
         PROJECT_ROOT / "docs" / "project" / "requirements.md"
     ).read_text(encoding="utf-8")
-    assert "## 32일차 수동 Q&A 검토" in requirements
+    assert "## 수동 Q&A 검토" in requirements
 
     print("Day 32 manual Q&A review gate passed")
     print("reviewed=20 categories=5x4 languages=en:10,ko:10 papers=10")

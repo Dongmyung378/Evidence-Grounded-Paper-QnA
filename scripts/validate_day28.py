@@ -8,7 +8,6 @@ from retrieval_common import PROJECT_ROOT, load_chunks, load_jsonl
 
 METRICS_PATH = PROJECT_ROOT / "data" / "evaluation" / "day28_production_metrics.json"
 SMOKE_PATH = PROJECT_ROOT / "data" / "evaluation" / "corpus_expansion_smoke.json"
-PROGRESS_PATH = PROJECT_ROOT / "docs" / "roadmap" / "progress.md"
 CLI_PATH = PROJECT_ROOT / "scripts" / "search_evidence.py"
 
 
@@ -48,7 +47,6 @@ def main():
     assert smoke["summary"]["passed"] == 20 and smoke["summary"]["failed"] == 0
     assert smoke["summary"]["english_queries"] == 10
     assert smoke["summary"]["korean_queries"] == 10
-    assert "## 28일차" in PROGRESS_PATH.read_text(encoding="utf-8")
     cli_source = CLI_PATH.read_text(encoding="utf-8")
     assert "from production_retrieval import ProductionRetrieval" in cli_source
     assert "CandidateEvidencePipeline" not in cli_source

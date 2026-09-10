@@ -25,12 +25,13 @@ python -B scripts/evaluate_day35.py
 python -B scripts/validate_day35.py
 ```
 
-36일차 Streamlit UI의 저장된 브라우저 수용 결과는 다음 명령으로 검증한다.
+Streamlit 업로드 및 근거 화면의 저장된 브라우저 수용 결과는 다음 명령으로 검증한다.
 
 ```bash
 python -B scripts/validate_day36.py
+python -B scripts/validate_evidence_ui.py
 ```
 
-`scripts/evaluate_day36.py`는 실제 FastAPI와 Streamlit 서버, Chromium 브라우저를 실행해 결과를 다시 만든다. 이 평가기를 다시 실행하려면 Node.js, Playwright, 로컬 Edge 또는 Chrome이 필요하다.
+`scripts/evaluate_day36.py`는 업로드와 분석 화면을 검증하고, `scripts/evaluate_evidence_ui.py`는 질문부터 답변과 원문 근거 카드까지 검증한다. 두 평가기는 실제 FastAPI와 Streamlit 서버, Chromium 브라우저를 실행한다. 다시 실행하려면 Node.js, Playwright, 로컬 Edge 또는 Chrome이 필요하다.
 
 실행 성능 정책은 `config/runtime_qna.json`과 `config/generation_runtime.json`에 있다. 실제 전체 흐름의 모델 준비 장치, 검색 및 생성 시간, 시도 횟수는 `data/evaluation/day35_integration_results.json`에서 확인할 수 있다.

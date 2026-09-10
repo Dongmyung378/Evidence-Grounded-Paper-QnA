@@ -31,7 +31,6 @@ def main():
     configure_utf8_stdout()
     demo = load("candidate_evidence_demo.json")
     schema = load("evidence_object_schema.json")
-    progress = PROJECT_ROOT / "docs" / "roadmap" / "progress.md"
 
     assert demo["roadmap_days"] == [23, 24]
     assert demo["corpus"] == {"papers": 10, "chunks": 906}
@@ -77,7 +76,6 @@ def main():
         hits.append(case["gold_page_in_evidence"])
 
     assert any(hits) and not all(hits), "Demo must support both answerable and inspectable failure cases"
-    assert "## 21일차부터 24일차" in progress.read_text(encoding="utf-8")
     print("Day 23-24 gate validation passed")
     print("day23=reranked_top20->deduplicated_top5")
     print("day24=evidence_object(page+section+chunk_id+text+scores)")

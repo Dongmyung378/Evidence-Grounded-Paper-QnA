@@ -1,4 +1,4 @@
-"""Day 36 Streamlit interface for upload, analysis, overview, and questions."""
+"""Streamlit interface for one-paper questions with visible source evidence."""
 
 from __future__ import annotations
 
@@ -60,6 +60,16 @@ COPY = {
             "the first question can still take longer."
         ),
         "answer": "Answer",
+        "evidence_title": "Source evidence",
+        "evidence_intro": "Only passages cited by the answer are shown.",
+        "evidence_item": "Evidence {index}",
+        "evidence_count": "Cited evidence: {count}",
+        "page": "Page {page}",
+        "section": "Section: {section}",
+        "section_unknown": "Section not identified",
+        "source_text": "Original paper text",
+        "chunk_id": "Chunk ID: {chunk_id}",
+        "no_evidence": "No source passage is cited for an insufficient answer.",
         "insufficient": "The paper does not provide enough evidence for this question.",
         "reason": "Reason: {reason}",
         "runtime": "Answer time: {seconds:.2f} seconds",
@@ -110,6 +120,16 @@ COPY = {
             "조금 더 오래 걸릴 수 있습니다."
         ),
         "answer": "답변",
+        "evidence_title": "원문 근거",
+        "evidence_intro": "답변이 실제로 인용한 논문 원문만 표시합니다.",
+        "evidence_item": "근거 {index}",
+        "evidence_count": "인용 근거: {count}개",
+        "page": "{page}페이지",
+        "section": "절: {section}",
+        "section_unknown": "절 정보 없음",
+        "source_text": "논문 원문",
+        "chunk_id": "청크 ID: {chunk_id}",
+        "no_evidence": "근거 부족 답변에는 인용 원문이 없습니다.",
         "insufficient": "이 질문에 답할 만한 근거가 논문에 충분하지 않습니다.",
         "reason": "사유: {reason}",
         "runtime": "답변 시간: {seconds:.2f}초",
@@ -244,25 +264,58 @@ def render_question(
 
     result = st.session_state.get("answer")
     if result:
+        render_answer_with_evidence(result, text)
+
+
+def render_answer_with_evidence(result: dict, text: dict[str, str]) -> None:
+    """Render the answer beside every cited source passage."""
+    answer_column, evidence_column = st.columns((0.9, 1.1), gap="large")
+    evidence = result.get("evidence") or []
+
+    with answer_column:
         st.markdown(f"#### {text['answer']}")
-        if result.get("sufficiency") == "insufficient":
-            st.warning(text["insufficient"])
-        st.write(result.get("answer") or text["insufficient"])
-        reason = result.get("abstention_reason")
-        if reason:
-            st.caption(text["reason"].format(reason=reason))
-        runtime = float(result.get("runtime_seconds") or 0.0)
-        st.caption(text["runtime"].format(seconds=runtime))
-        details = result.get("runtime") or {}
-        if details:
-            st.caption(
-                text["runtime_detail"].format(
-                    retrieval=float(details.get("retrieval_seconds") or 0.0),
-                    generation=float(details.get("generation_seconds") or 0.0),
-                    attempts=int(details.get("generation_attempts") or 0),
-                    device=str(details.get("llm_device") or "N/A").upper(),
+        with st.container(border=True):
+            if result.get("sufficiency") == "insufficient":
+                st.warning(text["insufficient"])
+            st.write(result.get("answer") or text["insufficient"])
+            if result.get("sufficiency") == "sufficient":
+                st.caption(text["evidence_count"].format(count=len(evidence)))
+            reason = result.get("abstention_reason")
+            if reason:
+                st.caption(text["reason"].format(reason=reason))
+            runtime = float(result.get("runtime_seconds") or 0.0)
+            st.caption(text["runtime"].format(seconds=runtime))
+            details = result.get("runtime") or {}
+            if details:
+                st.caption(
+                    text["runtime_detail"].format(
+                        retrieval=float(details.get("retrieval_seconds") or 0.0),
+                        generation=float(details.get("generation_seconds") or 0.0),
+                        attempts=int(details.get("generation_attempts") or 0),
+                        device=str(details.get("llm_device") or "N/A").upper(),
+                    )
                 )
-            )
+
+    with evidence_column:
+        st.markdown(f"#### {text['evidence_title']}")
+        st.caption(text["evidence_intro"])
+        if not evidence:
+            st.info(text["no_evidence"])
+            return
+        for index, item in enumerate(evidence, start=1):
+            locator = item.get("locator") or {}
+            page = item.get("page")
+            section = item.get("section") or locator.get("section")
+            chunk_id = locator.get("chunk_id") or "N/A"
+            with st.container(border=True):
+                st.markdown(f"##### {text['evidence_item'].format(index=index)}")
+                st.caption(
+                    f"{text['page'].format(page=page)} | "
+                    f"{text['section'].format(section=section or text['section_unknown'])}"
+                )
+                st.markdown(f"**{text['source_text']}**")
+                st.write(item.get("text") or "")
+                st.caption(text["chunk_id"].format(chunk_id=chunk_id))
 
 
 def main() -> None:

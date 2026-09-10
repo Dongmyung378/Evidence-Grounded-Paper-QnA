@@ -1,9 +1,4 @@
-# 35일차 전체 API 통합 게이트
-
-## 원 계획 기준
-
-- 작업: UI 없이 API 전체 흐름 테스트
-- 완료 기준: PDF -> parse -> index -> question -> answer가 한 번에 성공
+# 전체 API 통합 게이트
 
 ## 구현 내용
 
@@ -29,4 +24,4 @@ python -B scripts/evaluate_day35.py
 python -B scripts/validate_day35.py
 ```
 
-결과는 `data/evaluation/day35_integration_results.json`에 저장된다. 최근 실행에서는 검색 모델을 CPU에 두고 생성 모델을 CUDA에 올렸으며, 답변 9.700초 중 검색 0.970초와 생성 8.729초가 기록됐다. 이 게이트는 전체 기능 연결과 실행 장치 배치를 검증하며 답변 정확도 향상을 주장하지 않는다. 답변 품질 한계는 Day 32 수동 검토 결과를 따른다.
+결과는 `data/evaluation/day35_integration_results.json`에 저장된다. 최근 실행에서는 검색 모델을 CPU에 두고 생성 모델을 CUDA에 올렸으며, 답변 9.700초 중 검색 0.970초와 생성 8.729초가 기록됐다. 이 게이트는 전체 기능 연결과 실행 장치 배치를 검증하며 답변 정확도 향상을 주장하지 않는다. 답변 품질 한계는 별도의 수동 답변 검토 결과를 따른다.

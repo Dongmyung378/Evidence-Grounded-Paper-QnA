@@ -46,6 +46,7 @@ The runtime only searches chunks that belong to the selected paper. Uploaded pap
 | Unsupported holdout questions refused | 10/10 |
 | Real HTTP integration flow | Passed |
 | Real browser PDF upload flow | Passed |
+| Real browser answer and evidence flow | Passed |
 
 The retrieval figures use one manually verified gold page per question. The 20 expansion papers are used for parsing and runtime robustness checks, not accuracy claims, because they do not yet have manually verified questions and gold evidence.
 
@@ -176,7 +177,7 @@ data/
 docs/
   project/           scope, requirements, and data policy
   api/               API behavior and acceptance checks
-  roadmap/           implementation history
+  ui/                interface behavior and evidence presentation
   reviews/           quality and improvement reviews
 scripts/             ingestion, retrieval, evaluation, and validation tools
 tests/               API and regression tests
@@ -202,6 +203,7 @@ Validate the saved real-browser Streamlit acceptance result:
 
 ```bash
 python -B scripts/validate_day36.py
+python -B scripts/validate_evidence_ui.py
 ```
 
 The integration evaluator starts Uvicorn on a temporary loopback port, calls the question endpoint with curl, verifies page and chunk traceability, and removes its temporary runtime directory afterward.
@@ -216,10 +218,9 @@ Raw PDFs, QASPER source files, and user uploads remain local unless their redist
 
 - [Project scope](docs/project/scope.md)
 - [Functional requirements](docs/project/requirements.md)
-- [API integration gate](docs/api/day35.md)
-- [Day 36 Streamlit UI](docs/ui/day36.md)
-- [Implementation history](docs/roadmap/progress.md)
+- [API integration gate](docs/api/integration.md)
+- [Streamlit interface and evidence panel](docs/ui/interface.md)
 - [Quality and improvement review](docs/reviews/improvements.md)
 - [Local runtime performance](docs/reviews/runtime_performance.md)
 
-The original roadmap is complete through Day 36. Browser upload, analysis progress, the paper overview, and question entry are implemented and verified. The next step is the Day 37 evidence panel, followed by error handling, Docker packaging, and deployment.
+The browser flow now covers PDF upload, analysis, paper overview, question entry, answer display, and traceable source evidence. Error resilience, container packaging, and public deployment remain outside the current verified implementation.
