@@ -16,6 +16,7 @@ Evidence-Grounded Paper Q&A는 영어 연구 논문 한 편을 대상으로 질�
 - 고정된 Qwen 모델을 이용한 로컬 답변 생성
 - 답변에 사용한 페이지 단위 원문 근거 제공
 - 논문에서 근거를 찾지 못할 때 답변 거절
+- 큰 파일과 잘못된 PDF를 분석 전에 차단하고 파싱 실패 후에도 다시 업로드할 수 있는 화면
 - FastAPI와 한영 Streamlit 화면을 통한 전체 처리 흐름 제공
 
 ## 처리 방식
@@ -47,6 +48,7 @@ PDF 업로드
 | 실제 HTTP 통합 흐름 | 통과 |
 | 실제 브라우저 PDF 업로드 흐름 | 통과 |
 | 실제 브라우저 답변 및 근거 흐름 | 통과 |
+| 실제 브라우저 오류 처리 및 재시도 흐름 | 통과 |
 
 검색 수치는 질문마다 수동으로 검증한 Gold 페이지 한 개를 기준으로 측정했습니다. 추가 논문 20편은 파싱과 실행 강건성 검증에 사용합니다. 아직 수동 검증 질문과 Gold 근거가 없으므로 정확도 수치에는 포함하지 않습니다.
 
@@ -204,6 +206,7 @@ python -B scripts/validate_day35.py
 ```bash
 python -B scripts/validate_day36.py
 python -B scripts/validate_evidence_ui.py
+python -B scripts/validate_error_recovery_ui.py
 ```
 
 통합 평가 스크립트는 임시 포트에 Uvicorn을 실행하고 curl로 질문 API를 호출합니다. 페이지와 청크 추적성을 확인한 뒤 임시 런타임 디렉터리를 제거합니다.
@@ -223,4 +226,4 @@ python -B scripts/validate_evidence_ui.py
 - [품질 및 개선 검토](docs/reviews/improvements.md)
 - [로컬 실행 성능 개선](docs/reviews/runtime_performance_KO.md)
 
-현재 브라우저 흐름은 PDF 업로드, 분석, 논문 개요, 질문 입력, 답변, 추적 가능한 원문 근거 표시까지 지원합니다. 오류 대응 강화, 컨테이너 패키징, 공개 배포는 아직 검증된 구현 범위에 포함되지 않습니다.
+현재 브라우저 흐름은 PDF 업로드, 분석, 논문 개요, 질문 입력, 답변, 추적 가능한 원문 근거, 한영 업로드 오류, 파싱 실패 후 재시도까지 지원합니다. 컨테이너 패키징과 공개 배포는 아직 검증된 구현 범위에 포함되지 않습니다.

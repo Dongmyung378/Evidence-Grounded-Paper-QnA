@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "evaluated_at": "2026-09-11T00:56:14.984916+00:00",
+  "seed": 378,
+  "requirement": "file size, invalid PDF, parsing failure, and successful retry",
+  "tests_run": 39,
+  "test_failures": 0,
+  "test_errors": 0,
+  "transport": "headless Chromium against Streamlit and deterministic loopback API",
+  "browser_executable": "msedge.exe",
+  "checks": {
+    "browser_loaded": true,
+    "oversized_message_visible": true,
+    "oversized_upload_disabled": true,
+    "invalid_pdf_message_visible": true,
+    "invalid_upload_disabled": true,
+    "parse_button_initially_ready": true,
+    "parsing_failure_message_visible": true,
+    "parsing_status_closed_as_error": true,
+    "upload_control_ready_after_failure": true,
+    "retry_button_ready_after_failure": true,
+    "question_locked_after_failure": true,
+    "no_spinner_after_failure": true,
+    "successful_retry_completed": true,
+    "question_enabled_after_retry": true
+  },
+  "request_log": {
+    "uploads": [
+      "parse-failure.pdf",
+      "valid.pdf"
+    ],
+    "analyses": [
+      "paper-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "paper-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ],
+    "jobs": [
+      "job-cccccccccccccccccccccccccccccccc",
+      "job-dddddddddddddddddddddddddddddddd"
+    ],
+    "papers": [
+      "paper-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  "client_rejected_before_api": [
+    "oversized.pdf",
+    "invalid.pdf"
+  ],
+  "recovery_sequence": [
+    "oversized rejected",
+    "invalid PDF rejected",
+    "parsing failure displayed",
+    "valid PDF completed"
+  ],
+  "frozen_inputs_unchanged": true,
+  "frozen_input_sha256": {
+    "config/production_retrieval.json": "8ea2043be423b8f5b4ea1bc30d27247cf48c2b5ffc5a8b292da30368d5fdfb51",
+    "config/generation.json": "3b4ee2c8056a373cd99cf5d9766ec4740d2d33b5b8409b24b54b5c4c2d1d961a",
+    "config/abstention_candidate.json": "c155a72ed60e221643ea9c50de9dea516394722bfe17dcb38de1f3cfb68f9c59",
+    "config/runtime_qna.json": "8ea8520afe794f4fa716f1d6fc6739f54909e411ec92e6403a79b229bef85f54",
+    "config/generation_runtime.json": "80b2fb2c7c1fb41fcdd456a35642ce5eb969f5db0844fb0bc316fce6ae5c323e",
+    "data/processed/chunks.jsonl": "20a7a2b96dfa08e97b4cf2e22bcc6580245b489245be20e72c3a5af43729ac29",
+    "data/processed/pages.jsonl": "71fd9ac0d6f491365576e5e1217a9a4ad5c37ed400a179884e94b9e3b3cb330b",
+    "data/evaluation/questions.jsonl": "b1b9abdb6ca21c383b678cbc8a1588be4a65ea2fbc94cb3534d1a2a4801865fd",
+    "data/evaluation/gold_evidence.jsonl": "3f625564d18419dbf03a83152f836afba3573b8a6fc924c0504c2401c79defa8"
+  },
+  "implementation_sha256": {
+    ".streamlit/config.toml": "c358ce25fbbd2a2efdb9d7cb485ae88378e77b67ace76b73baa14fad620c9901",
+    "app/main.py": "1baf59cc8b42d451a2c7b4d66e3a15dd1fe600df3f675591aff67c57c2f277e2",
+    "app/service.py": "83726702b2a5a0e9c6e9f12ef4ae530da85d3eff5d53a03eb3ed7ce301b27d0f",
+    "ui/api_client.py": "254c22eb6fc075968144cb9c4dd688fccb90fdfb4ad4f99c732362c98e726a8a",
+    "ui/error_messages.py": "d9af33d756491594a2f7f5b84d4f14b90a88b32278bd11cc968c242c20501251",
+    "ui/app.py": "73f3d025e0c3251960aa02eec5182e65c93f9a3fe91da6026f7d3a0ac90dba4e",
+    "tests/test_error_handling.py": "a4f75b16ad832bfd03f91da516efc021abe24f76a13a0c7b0c950e4ded603154",
+    "scripts/evaluate_day36.py": "900bbaa13af1e54b3930cd5ebb026217431d474e87ad56d47631606534634d92",
+    "scripts/evaluate_error_recovery_ui.py": "fdd39c0f15430f5dce6797c3e697416473433deba881cd532de7672aa6d4e877",
+    "scripts/validate_error_recovery_ui.py": "7e6bfddc2c03857501f52784e1d126ceaec98771929e7f69162deb022194374f",
+    "scripts/verify_project.py": "9382d692d660b8ec10efd03e8f76b8c969bfcb07a7c21685c072d0a1042d3e09"
+  },
+  "temporary_files_removed": true,
+  "quality_claim": "UI failure handling and recovery only"
+}

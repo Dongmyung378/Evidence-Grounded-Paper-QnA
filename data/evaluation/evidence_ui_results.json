@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "evaluated_at": "2026-09-10T05:41:23.375571+00:00",
+  "evaluated_at": "2026-09-11T00:58:01.500135+00:00",
   "seed": 378,
   "requirement": "answer beside cited evidence text, page, and section",
-  "tests_run": 35,
+  "tests_run": 39,
   "test_failures": 0,
   "test_errors": 0,
   "transport": "headless Chromium against Streamlit and real loopback FastAPI",
@@ -37,7 +37,7 @@
     "warning_count": 23,
     "question_runtime_preparation": {
       "status": "ready",
-      "runtime_seconds": 27.033,
+      "runtime_seconds": 16.466,
       "embedding_device": "cpu",
       "reranker_device": "cpu",
       "embedding_cache_hit": false,
@@ -81,15 +81,17 @@
     "data/evaluation/gold_evidence.jsonl": "3f625564d18419dbf03a83152f836afba3573b8a6fc924c0504c2401c79defa8"
   },
   "implementation_sha256": {
-    ".streamlit/config.toml": "fe1fdda9d56d4415fbac1898e9f90bc0b5953d5bcc9bbebb146ff73e6a7ce804",
+    ".streamlit/config.toml": "c358ce25fbbd2a2efdb9d7cb485ae88378e77b67ace76b73baa14fad620c9901",
     "ui/__init__.py": "8c6c618142feed722dce1484f56daf3a011c593ff2c7bde1f6406ca678988a7f",
     "ui/api_client.py": "254c22eb6fc075968144cb9c4dd688fccb90fdfb4ad4f99c732362c98e726a8a",
-    "ui/app.py": "0b70d3603831d935ad47fd7a894e20fc2d72966ee395c70e7e825d11b6a96da0",
+    "ui/error_messages.py": "d9af33d756491594a2f7f5b84d4f14b90a88b32278bd11cc968c242c20501251",
+    "ui/app.py": "73f3d025e0c3251960aa02eec5182e65c93f9a3fe91da6026f7d3a0ac90dba4e",
     "tests/test_day36_ui.py": "0449a9789585d0ae5a1814bdbe43be8454dbe4e175c6cf6dcdc17cd21074263c",
-    "scripts/evaluate_day36.py": "fd4f614a5b7342fb524dcf1515e278c2fb6ae9a831fb6247ed66ee35271a77ee",
-    "scripts/evaluate_evidence_ui.py": "73267d4a00ae0e6796a112d6a31c88c764d3e0f2b0d41166db54ccfbb0896413",
+    "tests/test_error_handling.py": "a4f75b16ad832bfd03f91da516efc021abe24f76a13a0c7b0c950e4ded603154",
+    "scripts/evaluate_day36.py": "900bbaa13af1e54b3930cd5ebb026217431d474e87ad56d47631606534634d92",
+    "scripts/evaluate_evidence_ui.py": "9e8ee0c56693a3c21286afe8a955b52bdd132182ae70b61602424284d09c660a",
     "scripts/validate_evidence_ui.py": "83a04d1c31f53e1a7544d075459918e7094ec846be69690bdb2d27ce92745ddd",
-    "scripts/verify_project.py": "19d3e3f99d9eecdb899b01d6159593759fed9a583696bc1c7a37c3e1ceff3cef"
+    "scripts/verify_project.py": "9382d692d660b8ec10efd03e8f76b8c969bfcb07a7c21685c072d0a1042d3e09"
   },
   "temporary_runtime_removed": true,
   "quality_claim": "evidence presentation and traceability only"

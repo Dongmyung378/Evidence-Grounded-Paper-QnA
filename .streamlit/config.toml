@@ -1,6 +1,8 @@
 [server]
 headless = true
-maxUploadSize = 20
+# The UI enforces the 20 MiB product limit before calling FastAPI.
+# This slightly higher transport ceiling lets the UI show its localized message.
+maxUploadSize = 21
 
 [browser]
 gatherUsageStats = false

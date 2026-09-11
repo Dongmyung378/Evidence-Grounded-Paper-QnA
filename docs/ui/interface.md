@@ -16,12 +16,19 @@ The interface supports:
 - a question field enabled only after analysis succeeds
 - answer, abstention reason, and runtime diagnostics
 - a source-evidence panel beside the answer
+- localized upload validation and recoverable parsing-failure states
 
 ## Evidence presentation
 
 Each cited evidence item is displayed in a bordered card with its citation number, page, section, exact paper text, and chunk ID. The answer panel reports the number of cited evidence items. When the backend returns an insufficient result, the interface shows the reason without creating evidence cards.
 
 This layout makes the answer traceable to the original paper while preserving the backend's validated evidence contract. It does not claim that the local generation model has production-level answer quality.
+
+## Error handling and recovery
+
+The interface applies the same 20 MiB product limit as FastAPI. File size, extension, content type, and PDF header are checked before upload, while full PDF readability and text extraction remain backend checks. English and Korean messages cover oversized files, invalid or encrypted PDFs, missing text, queue pressure, timeouts, parsing failure, and unavailable services. Unknown backend errors use a safe generic message instead of exposing internal details.
+
+When parsing fails, the progress indicator is cleared, the analysis status closes as an error, and the question field stays locked. The file selector and upload button remain available so the user can choose another PDF without refreshing the page.
 
 ## Local run
 
@@ -44,12 +51,15 @@ The browser gates use a real loopback FastAPI server, Streamlit server, and head
 
 | Check | Result |
 |---|---:|
-| Regression and UI tests | 35 passed |
+| Regression and UI tests | 39 passed |
 | Browser PDF upload and analysis | Passed |
 | Browser question submission | Passed |
 | Answer and evidence side by side | Passed |
 | Evidence cards displayed | 4 |
 | Page, section, original text, and chunk ID | Passed |
+| Oversized and invalid PDF blocked before API | Passed |
+| Parsing failure message and closed progress state | Passed |
+| Successful upload after parsing failure | Passed |
 | Seed | 378 |
 | Frozen evaluation inputs changed | No |
 | Temporary runtime retained | No |
@@ -57,6 +67,7 @@ The browser gates use a real loopback FastAPI server, Streamlit server, and head
 ```bash
 python -B scripts/validate_day36.py
 python -B scripts/validate_evidence_ui.py
+python -B scripts/validate_error_recovery_ui.py
 ```
 
-Machine-readable records are stored in `data/evaluation/day36_ui_results.json` and `data/evaluation/evidence_ui_results.json`. Rerunning either browser evaluator requires Node.js, Playwright, and a local Chromium browser in addition to the Python dependencies.
+Machine-readable records are stored in `data/evaluation/day36_ui_results.json`, `data/evaluation/evidence_ui_results.json`, and `data/evaluation/error_recovery_ui_results.json`. Rerunning the browser evaluators requires Node.js, Playwright, and a local Chromium browser in addition to the Python dependencies.

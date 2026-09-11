@@ -16,6 +16,7 @@ The project focuses on a simple requirement: an answer should be easy to trace b
 - Generates answers locally with a pinned Qwen model
 - Returns page-linked source evidence for supported answers
 - Refuses questions when the paper does not provide enough evidence
+- Rejects oversized or invalid PDFs before analysis and keeps the upload screen recoverable after parsing failures
 - Exposes the complete workflow through FastAPI and a bilingual Streamlit interface
 
 ## How it works
@@ -47,6 +48,7 @@ The runtime only searches chunks that belong to the selected paper. Uploaded pap
 | Real HTTP integration flow | Passed |
 | Real browser PDF upload flow | Passed |
 | Real browser answer and evidence flow | Passed |
+| Real browser error handling and retry flow | Passed |
 
 The retrieval figures use one manually verified gold page per question. The 20 expansion papers are used for parsing and runtime robustness checks, not accuracy claims, because they do not yet have manually verified questions and gold evidence.
 
@@ -204,6 +206,7 @@ Validate the saved real-browser Streamlit acceptance result:
 ```bash
 python -B scripts/validate_day36.py
 python -B scripts/validate_evidence_ui.py
+python -B scripts/validate_error_recovery_ui.py
 ```
 
 The integration evaluator starts Uvicorn on a temporary loopback port, calls the question endpoint with curl, verifies page and chunk traceability, and removes its temporary runtime directory afterward.
@@ -223,4 +226,4 @@ Raw PDFs, QASPER source files, and user uploads remain local unless their redist
 - [Quality and improvement review](docs/reviews/improvements.md)
 - [Local runtime performance](docs/reviews/runtime_performance.md)
 
-The browser flow now covers PDF upload, analysis, paper overview, question entry, answer display, and traceable source evidence. Error resilience, container packaging, and public deployment remain outside the current verified implementation.
+The browser flow now covers PDF upload, analysis, paper overview, question entry, answer display, traceable source evidence, localized upload errors, and recovery after parsing failure. Container packaging and public deployment remain outside the current verified implementation.

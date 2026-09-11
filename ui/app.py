@@ -14,6 +14,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from ui.api_client import ApiClientError, PaperQnaClient
+from ui.error_messages import localized_error_message, validate_upload
 
 
 DEFAULT_API_URL = os.environ.get("PAPER_QNA_API_URL", "http://127.0.0.1:8000")
@@ -141,73 +142,53 @@ COPY = {
     },
 }
 
-ERROR_COPY = {
-    "en": {
-        "api_unreachable": "Cannot reach FastAPI. Start the API server and check the URL.",
-        "invalid_file_type": "Upload a PDF file.",
-        "file_too_large": "The PDF must be no larger than 20 MiB.",
-        "empty_file": "The selected file is empty.",
-        "invalid_pdf": "The selected file is not a readable PDF.",
-        "encrypted_pdf": "Password-protected PDFs are not supported.",
-        "no_extractable_text": "No text was found. Upload a text-based PDF.",
-        "analysis_timeout": "Analysis took too long. Check the API and try again.",
-    },
-    "ko": {
-        "api_unreachable": "FastAPI에 연결할 수 없습니다. API 서버와 주소를 확인하세요.",
-        "invalid_file_type": "PDF 파일을 업로드하세요.",
-        "file_too_large": "PDF 크기는 20 MiB 이하여야 합니다.",
-        "empty_file": "선택한 파일이 비어 있습니다.",
-        "invalid_pdf": "읽을 수 있는 PDF 파일이 아닙니다.",
-        "encrypted_pdf": "비밀번호로 보호된 PDF는 지원하지 않습니다.",
-        "no_extractable_text": "텍스트가 없습니다. 텍스트 기반 PDF를 업로드하세요.",
-        "analysis_timeout": "분석 시간이 너무 오래 걸립니다. API 상태를 확인하고 다시 시도하세요.",
-    },
-}
-
-
 def reset_paper_state() -> None:
     for key in ("paper", "paper_id", "job", "answer", "workflow_error"):
         st.session_state.pop(key, None)
 
 
 def display_error(error: ApiClientError, language: str) -> None:
-    message = ERROR_COPY[language].get(error.code, error.message)
-    st.error(message)
+    st.error(localized_error_message(language, error.code))
 
 
 def analyze_uploaded_file(client: PaperQnaClient, uploaded_file, text: dict[str, str]) -> None:
     progress = st.progress(5, text=text["uploading"])
     status_box = st.status(text["uploading"], expanded=True)
-    uploaded = client.upload(
-        uploaded_file.name,
-        uploaded_file.getvalue(),
-        uploaded_file.type or "application/pdf",
-    )
-    st.session_state.paper_id = uploaded["paper_id"]
-    progress.progress(25, text=text["queued"])
-    status_box.write(text["queued"])
-    job = client.analyze(uploaded["paper_id"])
-
-    def update(current: dict) -> None:
-        state = current.get("status")
-        if state == "queued":
-            progress.progress(35, text=text["queued"])
-        elif state == "running":
-            progress.progress(70, text=text["running"])
-            status_box.write(text["running"])
-
-    job = client.wait_for_job(job["job_id"], on_update=update)
-    st.session_state.job = job
-    if job.get("status") != "completed":
-        raise ApiClientError(
-            str(job.get("error_code") or "analysis_failed"),
-            str(job.get("error_message") or text["failed"]),
+    try:
+        uploaded = client.upload(
+            uploaded_file.name,
+            uploaded_file.getvalue(),
+            uploaded_file.type or "application/pdf",
         )
-    paper = client.paper(uploaded["paper_id"])
-    st.session_state.paper = paper
-    st.session_state.answer = None
-    progress.progress(100, text=text["completed"])
-    status_box.update(label=text["completed"], state="complete", expanded=False)
+        st.session_state.paper_id = uploaded["paper_id"]
+        progress.progress(25, text=text["queued"])
+        status_box.write(text["queued"])
+        job = client.analyze(uploaded["paper_id"])
+
+        def update(current: dict) -> None:
+            state = current.get("status")
+            if state == "queued":
+                progress.progress(35, text=text["queued"])
+            elif state == "running":
+                progress.progress(70, text=text["running"])
+                status_box.write(text["running"])
+
+        job = client.wait_for_job(job["job_id"], on_update=update)
+        st.session_state.job = job
+        if job.get("status") != "completed":
+            raise ApiClientError(
+                str(job.get("error_code") or "analysis_failed"),
+                str(job.get("error_message") or text["failed"]),
+            )
+        paper = client.paper(uploaded["paper_id"])
+        st.session_state.paper = paper
+        st.session_state.answer = None
+        progress.progress(100, text=text["completed"])
+        status_box.update(label=text["completed"], state="complete", expanded=False)
+    except Exception:
+        progress.empty()
+        status_box.update(label=text["failed"], state="error", expanded=True)
+        raise
 
 
 def render_overview(paper: dict, text: dict[str, str]) -> None:
@@ -353,8 +334,8 @@ def main() -> None:
 
     try:
         client = PaperQnaClient(api_url)
-    except ValueError as error:
-        st.sidebar.error(str(error))
+    except ValueError:
+        st.sidebar.error(localized_error_message(language, "invalid_api_url"))
         client = None
 
     if st.sidebar.button(text["check_api"], disabled=client is None):
@@ -362,8 +343,7 @@ def main() -> None:
             health = client.health()
             st.sidebar.success(f"{text['api_ready']} Seed {health.get('seed', 378)}")
         except ApiClientError as error:
-            message = ERROR_COPY[language].get(error.code, error.message)
-            st.sidebar.error(message)
+            st.sidebar.error(localized_error_message(language, error.code))
 
     st.title(text["title"])
     st.write(text["intro"])
@@ -375,14 +355,27 @@ def main() -> None:
         help=text["upload_help"],
         on_change=reset_paper_state,
     )
+    upload_error_code = None
     if uploaded_file is not None:
         size_mib = uploaded_file.size / (1024 * 1024)
         st.caption(f"{text['file_selected']}: {uploaded_file.name} ({size_mib:.2f} MiB)")
+        upload_error_code = validate_upload(
+            uploaded_file.name,
+            uploaded_file.type,
+            uploaded_file.size,
+            bytes(uploaded_file.getbuffer()[:5]),
+        )
+        if upload_error_code:
+            st.error(localized_error_message(language, upload_error_code))
 
     if st.button(
         text["upload_button"],
         type="primary",
-        disabled=uploaded_file is None or client is None,
+        disabled=(
+            uploaded_file is None
+            or client is None
+            or upload_error_code is not None
+        ),
     ):
         reset_paper_state()
         try:
