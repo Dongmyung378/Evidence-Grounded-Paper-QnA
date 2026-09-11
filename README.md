@@ -18,6 +18,7 @@ The project focuses on a simple requirement: an answer should be easy to trace b
 - Refuses questions when the paper does not provide enough evidence
 - Rejects oversized or invalid PDFs before analysis and keeps the upload screen recoverable after parsing failures
 - Exposes the complete workflow through FastAPI and a bilingual Streamlit interface
+- Runs the backend and UI as separate, health-checked Docker Compose services
 
 ## How it works
 
@@ -49,6 +50,7 @@ The runtime only searches chunks that belong to the selected paper. Uploaded pap
 | Real browser PDF upload flow | Passed |
 | Real browser answer and evidence flow | Passed |
 | Real browser error handling and retry flow | Passed |
+| Docker Compose backend and UI health gate | Passed |
 
 The retrieval figures use one manually verified gold page per question. The 20 expansion papers are used for parsing and runtime robustness checks, not accuracy claims, because they do not yet have manually verified questions and gold evidence.
 
@@ -56,7 +58,25 @@ The answer generator is still the weakest part of the system. In a balanced 20-q
 
 ## Quick start
 
-Python 3.11 or later is recommended.
+### Docker Compose
+
+Docker Desktop or Docker Engine with Compose v2 is required. The default configuration starts both services, stores uploaded-paper runtime data and model downloads in named volumes, and keeps the UI connected to the backend through the private Compose network.
+
+```bash
+docker compose up --build
+```
+
+Open `http://127.0.0.1:8501` for the web interface or `http://127.0.0.1:8000/docs` for the interactive API documentation. Stop the services without deleting uploaded-paper data or the model cache:
+
+```bash
+docker compose down
+```
+
+The first backend build installs a CPU-only PyTorch runtime. The first analysis can download the pinned embedding, reranker, and generation models. Copy `.env.example` to `.env` only when ports, queue size, model preparation, offline mode, logging, or a Hugging Face token must be changed. The real `.env` file is excluded from Git and the Docker build context.
+
+### Python
+
+Python 3.11 or later is recommended for running without containers.
 
 ```bash
 python -m pip install -r requirements.txt
@@ -184,6 +204,8 @@ docs/
 scripts/             ingestion, retrieval, evaluation, and validation tools
 tests/               API and regression tests
 ui/                  bilingual Streamlit interface and API client
+Dockerfile           split backend and UI image targets
+compose.yaml         local two-service demo and persistent volumes
 ```
 
 ## Verification
@@ -209,11 +231,18 @@ python -B scripts/validate_evidence_ui.py
 python -B scripts/validate_error_recovery_ui.py
 ```
 
+Re-run or validate the Docker Compose acceptance gate:
+
+```bash
+python -B scripts/evaluate_container.py
+python -B scripts/validate_container.py
+```
+
 The integration evaluator starts Uvicorn on a temporary loopback port, calls the question endpoint with curl, verifies page and chunk traceability, and removes its temporary runtime directory afterward.
 
 ## Scope and limitations
 
-The current MVP does not support scanned PDFs, OCR, image or graph interpretation, reliable formula interpretation, multi-paper comparison, user accounts, or a public deployment. Table and figure text may be extracted as plain text, but the system does not interpret their visual structure.
+The current MVP does not support scanned PDFs, OCR, image or graph interpretation, reliable formula interpretation, multi-paper comparison, user accounts, or a public deployment. Docker packaging has been verified locally, but deployment to an internet-facing server has not. Table and figure text may be extracted as plain text, but the system does not interpret their visual structure.
 
 Raw PDFs, QASPER source files, and user uploads remain local unless their redistribution terms explicitly allow publication. See [data sources and handling](docs/project/data_sources.md) for details.
 
@@ -223,7 +252,8 @@ Raw PDFs, QASPER source files, and user uploads remain local unless their redist
 - [Functional requirements](docs/project/requirements.md)
 - [API integration gate](docs/api/integration.md)
 - [Streamlit interface and evidence panel](docs/ui/interface.md)
+- [Docker Compose local run](docs/deployment/docker.md)
 - [Quality and improvement review](docs/reviews/improvements.md)
 - [Local runtime performance](docs/reviews/runtime_performance.md)
 
-The browser flow now covers PDF upload, analysis, paper overview, question entry, answer display, traceable source evidence, localized upload errors, and recovery after parsing failure. Container packaging and public deployment remain outside the current verified implementation.
+The browser flow covers PDF upload, analysis, paper overview, question entry, answer display, traceable source evidence, localized upload errors, and recovery after parsing failure. The backend and UI also run as verified Docker Compose services. Public deployment remains outside the current verified implementation.

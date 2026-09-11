@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "evaluated_at": "2026-09-11T00:58:01.500135+00:00",
+  "evaluated_at": "2026-09-11T11:22:08.580309+00:00",
   "seed": 378,
   "requirement": "answer beside cited evidence text, page, and section",
-  "tests_run": 39,
+  "tests_run": 44,
   "test_failures": 0,
   "test_errors": 0,
   "transport": "headless Chromium against Streamlit and real loopback FastAPI",
@@ -37,7 +37,7 @@
     "warning_count": 23,
     "question_runtime_preparation": {
       "status": "ready",
-      "runtime_seconds": 16.466,
+      "runtime_seconds": 18.887,
       "embedding_device": "cpu",
       "reranker_device": "cpu",
       "embedding_cache_hit": false,
@@ -91,7 +91,7 @@
     "scripts/evaluate_day36.py": "900bbaa13af1e54b3930cd5ebb026217431d474e87ad56d47631606534634d92",
     "scripts/evaluate_evidence_ui.py": "9e8ee0c56693a3c21286afe8a955b52bdd132182ae70b61602424284d09c660a",
     "scripts/validate_evidence_ui.py": "83a04d1c31f53e1a7544d075459918e7094ec846be69690bdb2d27ce92745ddd",
-    "scripts/verify_project.py": "9382d692d660b8ec10efd03e8f76b8c969bfcb07a7c21685c072d0a1042d3e09"
+    "scripts/verify_project.py": "c361b3d9a7da50a35389d478c1d13b349a461fbf039a53e70d841d09bbb00ebb"
   },
   "temporary_runtime_removed": true,
   "quality_claim": "evidence presentation and traceability only"

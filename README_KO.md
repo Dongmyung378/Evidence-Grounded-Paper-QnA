@@ -18,6 +18,7 @@ Evidence-Grounded Paper Q&A는 영어 연구 논문 한 편을 대상으로 질�
 - 논문에서 근거를 찾지 못할 때 답변 거절
 - 큰 파일과 잘못된 PDF를 분석 전에 차단하고 파싱 실패 후에도 다시 업로드할 수 있는 화면
 - FastAPI와 한영 Streamlit 화면을 통한 전체 처리 흐름 제공
+- 상태 확인이 포함된 백엔드와 UI Docker Compose 서비스 분리 실행
 
 ## 처리 방식
 
@@ -49,6 +50,7 @@ PDF 업로드
 | 실제 브라우저 PDF 업로드 흐름 | 통과 |
 | 실제 브라우저 답변 및 근거 흐름 | 통과 |
 | 실제 브라우저 오류 처리 및 재시도 흐름 | 통과 |
+| Docker Compose 백엔드 및 UI 상태 검증 | 통과 |
 
 검색 수치는 질문마다 수동으로 검증한 Gold 페이지 한 개를 기준으로 측정했습니다. 추가 논문 20편은 파싱과 실행 강건성 검증에 사용합니다. 아직 수동 검증 질문과 Gold 근거가 없으므로 정확도 수치에는 포함하지 않습니다.
 
@@ -56,7 +58,25 @@ PDF 업로드
 
 ## 빠른 실행
 
-Python 3.11 이상 환경을 권장합니다.
+### Docker Compose
+
+Docker Desktop 또는 Compose v2를 지원하는 Docker Engine이 필요합니다. 기본 구성은 백엔드와 UI를 함께 실행하고, 업로드 논문 처리 자료와 모델 다운로드를 이름 있는 볼륨에 보존합니다. UI는 외부에 노출하지 않은 Compose 내부 주소로 백엔드와 통신합니다.
+
+```bash
+docker compose up --build
+```
+
+웹 화면은 `http://127.0.0.1:8501`, 대화형 API 문서는 `http://127.0.0.1:8000/docs`에서 확인합니다. 업로드 자료와 모델 캐시를 유지하면서 서비스를 종료하려면 다음 명령을 사용합니다.
+
+```bash
+docker compose down
+```
+
+최초 백엔드 빌드는 CPU 전용 PyTorch 실행 환경을 설치합니다. 첫 분석에서는 고정된 임베딩, 재정렬, 생성 모델을 내려받을 수 있습니다. 포트, 대기열 크기, 모델 사전 준비, 오프라인 모드, 로그 수준 또는 Hugging Face 토큰을 바꿀 때만 `.env.example`을 `.env`로 복사해 수정합니다. 실제 `.env`는 Git과 Docker 빌드 컨텍스트에서 제외됩니다.
+
+### Python
+
+컨테이너 없이 실행할 때는 Python 3.11 이상 환경을 권장합니다.
 
 ```bash
 python -m pip install -r requirements.txt
@@ -184,6 +204,8 @@ docs/
 scripts/             수집, 검색, 평가, 검증 도구
 tests/               API와 회귀 테스트
 ui/                  한영 Streamlit 화면과 API 클라이언트
+Dockerfile           백엔드와 UI 이미지 빌드 대상
+compose.yaml         로컬 2개 서비스와 영속 볼륨 구성
 ```
 
 ## 검증 방법
@@ -209,11 +231,18 @@ python -B scripts/validate_evidence_ui.py
 python -B scripts/validate_error_recovery_ui.py
 ```
 
+Docker Compose 수용 검증을 다시 실행하거나 저장 결과를 확인합니다.
+
+```bash
+python -B scripts/evaluate_container.py
+python -B scripts/validate_container.py
+```
+
 통합 평가 스크립트는 임시 포트에 Uvicorn을 실행하고 curl로 질문 API를 호출합니다. 페이지와 청크 추적성을 확인한 뒤 임시 런타임 디렉터리를 제거합니다.
 
 ## 범위와 한계
 
-현재 MVP는 스캔 PDF, OCR, 이미지나 그래프 해석, 신뢰할 수 있는 수식 해석, 여러 논문 비교, 사용자 계정, 공개 배포를 지원하지 않습니다. 표와 그림의 문자가 일반 텍스트로 추출될 수는 있지만 시각적 구조를 해석하지 않습니다.
+현재 MVP는 스캔 PDF, OCR, 이미지나 그래프 해석, 신뢰할 수 있는 수식 해석, 여러 논문 비교, 사용자 계정, 공개 배포를 지원하지 않습니다. Docker 패키징은 로컬에서 검증했지만 인터넷에 공개된 서버 배포는 아직 수행하지 않았습니다. 표와 그림의 문자가 일반 텍스트로 추출될 수는 있지만 시각적 구조를 해석하지 않습니다.
 
 원본 PDF, QASPER 원본 파일, 사용자 업로드 파일은 재배포 조건이 명시적으로 허용하지 않는 한 로컬에만 보관합니다. 자세한 내용은 [데이터 출처와 취급 정책](docs/project/data_sources.md)을 참고하세요.
 
@@ -223,7 +252,8 @@ python -B scripts/validate_error_recovery_ui.py
 - [기능 및 비기능 요구사항](docs/project/requirements.md)
 - [API 전체 통합 게이트](docs/api/integration.md)
 - [Streamlit 사용자 화면과 근거 패널](docs/ui/interface_KO.md)
+- [Docker Compose 로컬 실행](docs/deployment/docker_KO.md)
 - [품질 및 개선 검토](docs/reviews/improvements.md)
 - [로컬 실행 성능 개선](docs/reviews/runtime_performance_KO.md)
 
-현재 브라우저 흐름은 PDF 업로드, 분석, 논문 개요, 질문 입력, 답변, 추적 가능한 원문 근거, 한영 업로드 오류, 파싱 실패 후 재시도까지 지원합니다. 컨테이너 패키징과 공개 배포는 아직 검증된 구현 범위에 포함되지 않습니다.
+현재 브라우저 흐름은 PDF 업로드, 분석, 논문 개요, 질문 입력, 답변, 추적 가능한 원문 근거, 한영 업로드 오류, 파싱 실패 후 재시도까지 지원합니다. 백엔드와 UI의 Docker Compose 실행도 검증했습니다. 공개 배포는 아직 검증된 구현 범위에 포함되지 않습니다.

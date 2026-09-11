@@ -39,6 +39,7 @@ FROZEN_FILES = [
     "data/evaluation/gold_evidence.jsonl",
 ]
 IMPLEMENTATION_FILES = [
+    "app/config.py",
     "app/main.py",
     "app/models.py",
     "app/question_engine.py",

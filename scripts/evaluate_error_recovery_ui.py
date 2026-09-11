@@ -48,6 +48,7 @@ FROZEN_FILES = [
 ]
 IMPLEMENTATION_FILES = [
     ".streamlit/config.toml",
+    "app/config.py",
     "app/main.py",
     "app/service.py",
     "ui/api_client.py",

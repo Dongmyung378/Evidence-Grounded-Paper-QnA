@@ -32,4 +32,8 @@
 - `evidence_ui_results.json`: 실제 브라우저 질문, 답변, 원문 근거, 페이지, 절, 청크 ID 표시 검증 결과
 - `error_recovery_ui_results.json`: 크기 초과, 잘못된 PDF, 파싱 실패 표시와 정상 파일 재시도 검증 결과
 
+## 컨테이너 평가
+
+- `container_results.json`: Docker Compose 백엔드와 UI 빌드, 상태 확인, HTTP 연결 및 정리 검증 결과
+
 JSON, JSONL, CSV의 필드 이름과 영어 논문 원문은 프로그램 계약과 평가 재현성을 위해 유지한다. 사람이 읽는 설명 문서는 한국어로 작성한다.

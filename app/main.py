@@ -1,9 +1,7 @@
 """Day 34 API: run with python -m uvicorn app.main:app --workers 1."""
 
 import logging
-import os
 from contextlib import asynccontextmanager
-from pathlib import Path
 from tempfile import SpooledTemporaryFile
 from typing import Annotated
 
@@ -11,6 +9,7 @@ from fastapi import FastAPI, File, HTTPException, Request, Response, UploadFile
 from fastapi.responses import JSONResponse
 from starlette.concurrency import run_in_threadpool
 
+from .config import settings_from_environment
 from .models import (
     AnalyzeRequest,
     HealthResult,
@@ -77,13 +76,7 @@ class BodyLimit:
 
 def create_app(settings=None, question_engine=None):
     if settings is None:
-        prepare_runtime = os.environ.get(
-            "PAPER_QNA_PREPARE_MODELS", "1"
-        ).strip().lower() not in {"0", "false", "no"}
-        settings = Settings(
-            data_dir=Path(os.environ.get("PAPER_QNA_DATA_DIR", Settings().data_dir)),
-            prepare_question_runtime=prepare_runtime,
-        )
+        settings = settings_from_environment()
 
     @asynccontextmanager
     async def lifespan(api):

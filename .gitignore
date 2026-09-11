@@ -15,6 +15,11 @@ __pycache__/
 # Local task and document-review scratch directories.
 .tmp_*/
 
+# Local environment overrides and secrets. Commit only the example file.
+.env
+.env.*
+!.env.example
+
 # Private implementation journal. Keep day-by-day notes off GitHub.
 local_notes/
 

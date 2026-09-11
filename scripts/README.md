@@ -35,4 +35,13 @@ python -B scripts/validate_error_recovery_ui.py
 
 `scripts/evaluate_day36.py`는 업로드와 분석 화면을 검증하고, `scripts/evaluate_evidence_ui.py`는 질문부터 답변과 원문 근거 카드까지 검증한다. `scripts/evaluate_error_recovery_ui.py`는 크기 초과, 잘못된 PDF, 파싱 실패 후 정상 재시도를 검증한다. 평가기는 실제 Streamlit 서버와 Chromium 브라우저를 실행한다. 다시 실행하려면 Node.js, Playwright, 로컬 Edge 또는 Chrome이 필요하다.
 
+Docker Compose 로컬 데모는 다음 명령으로 실제 이미지를 빌드하고 검증한다.
+
+```bash
+python -B scripts/evaluate_container.py
+python -B scripts/validate_container.py
+```
+
+평가기는 사용하지 않는 포트에서 백엔드와 UI를 실행하고 상태 확인, HTTP 응답, 내부 서비스 연결, 비루트 사용자를 검사한 뒤 임시 컨테이너와 테스트 볼륨을 제거한다.
+
 실행 성능 정책은 `config/runtime_qna.json`과 `config/generation_runtime.json`에 있다. 실제 전체 흐름의 모델 준비 장치, 검색 및 생성 시간, 시도 횟수는 `data/evaluation/day35_integration_results.json`에서 확인할 수 있다.

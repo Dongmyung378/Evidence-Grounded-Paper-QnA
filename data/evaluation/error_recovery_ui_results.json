@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "evaluated_at": "2026-09-11T00:56:14.984916+00:00",
+  "evaluated_at": "2026-09-11T11:22:43.462439+00:00",
   "seed": 378,
   "requirement": "file size, invalid PDF, parsing failure, and successful retry",
-  "tests_run": 39,
+  "tests_run": 44,
   "test_failures": 0,
   "test_errors": 0,
   "transport": "headless Chromium against Streamlit and deterministic loopback API",
@@ -65,16 +65,17 @@
   },
   "implementation_sha256": {
     ".streamlit/config.toml": "c358ce25fbbd2a2efdb9d7cb485ae88378e77b67ace76b73baa14fad620c9901",
-    "app/main.py": "1baf59cc8b42d451a2c7b4d66e3a15dd1fe600df3f675591aff67c57c2f277e2",
+    "app/config.py": "9dee85daa1b9eb62de221fced3f1dcb1a172ef439d0f3d2005e80354cefb3d7e",
+    "app/main.py": "46d78ace5d90a77280bb66392c55a8457309662e82fe75336794595443452e27",
     "app/service.py": "83726702b2a5a0e9c6e9f12ef4ae530da85d3eff5d53a03eb3ed7ce301b27d0f",
     "ui/api_client.py": "254c22eb6fc075968144cb9c4dd688fccb90fdfb4ad4f99c732362c98e726a8a",
     "ui/error_messages.py": "d9af33d756491594a2f7f5b84d4f14b90a88b32278bd11cc968c242c20501251",
     "ui/app.py": "73f3d025e0c3251960aa02eec5182e65c93f9a3fe91da6026f7d3a0ac90dba4e",
     "tests/test_error_handling.py": "a4f75b16ad832bfd03f91da516efc021abe24f76a13a0c7b0c950e4ded603154",
     "scripts/evaluate_day36.py": "900bbaa13af1e54b3930cd5ebb026217431d474e87ad56d47631606534634d92",
-    "scripts/evaluate_error_recovery_ui.py": "fdd39c0f15430f5dce6797c3e697416473433deba881cd532de7672aa6d4e877",
+    "scripts/evaluate_error_recovery_ui.py": "380481cc0bc794bb709f30d412f99587e4c405c8c83473fc3f0195aee01822e9",
     "scripts/validate_error_recovery_ui.py": "7e6bfddc2c03857501f52784e1d126ceaec98771929e7f69162deb022194374f",
-    "scripts/verify_project.py": "9382d692d660b8ec10efd03e8f76b8c969bfcb07a7c21685c072d0a1042d3e09"
+    "scripts/verify_project.py": "c361b3d9a7da50a35389d478c1d13b349a461fbf039a53e70d841d09bbb00ebb"
   },
   "temporary_files_removed": true,
   "quality_claim": "UI failure handling and recovery only"

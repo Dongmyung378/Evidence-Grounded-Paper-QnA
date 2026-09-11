@@ -1,0 +1,89 @@
+name: evidence-grounded-paper-qna
+
+services:
+  backend:
+    image: evidence-grounded-paper-qna-backend:local
+    build:
+      context: .
+      target: backend
+    init: true
+    restart: unless-stopped
+    environment:
+      PAPER_QNA_DATA_DIR: /var/lib/paper-qna
+      PAPER_QNA_PREPARE_MODELS: ${PAPER_QNA_PREPARE_MODELS:-true}
+      PAPER_QNA_MODEL_LOCAL_FILES_ONLY: ${PAPER_QNA_MODEL_LOCAL_FILES_ONLY:-false}
+      PAPER_QNA_SEED: ${PAPER_QNA_SEED:-378}
+      PAPER_QNA_MAX_PENDING_JOBS: ${PAPER_QNA_MAX_PENDING_JOBS:-16}
+      HF_HOME: /var/cache/huggingface
+      HF_TOKEN: ${HF_TOKEN:-}
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+    command:
+      - python
+      - -m
+      - uvicorn
+      - app.main:app
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+      - --workers
+      - "1"
+      - --log-level
+      - ${PAPER_QNA_LOG_LEVEL:-info}
+    ports:
+      - "${PAPER_QNA_API_PORT:-8000}:8000"
+    volumes:
+      - paper-qna-runtime:/var/lib/paper-qna
+      - paper-qna-model-cache:/var/cache/huggingface
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - >-
+          import urllib.request;
+          urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=4).read()
+      interval: 10s
+      timeout: 5s
+      start_period: 20s
+      retries: 12
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+  ui:
+    image: evidence-grounded-paper-qna-ui:local
+    build:
+      context: .
+      target: ui
+    init: true
+    restart: unless-stopped
+    environment:
+      PAPER_QNA_API_URL: http://backend:8000
+    ports:
+      - "${PAPER_QNA_UI_PORT:-8501}:8501"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - >-
+          import urllib.request;
+          urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=4).read()
+      interval: 10s
+      timeout: 5s
+      start_period: 15s
+      retries: 12
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+volumes:
+  paper-qna-runtime:
+  paper-qna-model-cache:
