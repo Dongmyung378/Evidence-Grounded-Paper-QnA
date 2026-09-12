@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "evaluated_at": "2026-09-11T11:30:21.928990+00:00",
+  "evaluated_at": "2026-09-11T12:41:16.327785+00:00",
   "seed": 378,
   "requirement": "docker compose up runs the backend and UI local demo",
   "commands": [
@@ -33,6 +33,14 @@
     "runtime_volume": "/var/lib/paper-qna",
     "model_cache_volume": "/var/cache/huggingface",
     "model_preparation_for_gate": false,
+    "host_bindings": {
+      "backend": [
+        "127.0.0.1"
+      ],
+      "ui": [
+        "127.0.0.1"
+      ]
+    },
     "secrets_recorded": false
   },
   "security": {
@@ -41,7 +49,12 @@
     "capabilities_dropped": true,
     "no_new_privileges": true
   },
-  "runtime_seconds": 19.081,
+  "delivery_scope": {
+    "mode": "local_portfolio_demo",
+    "public_server_required": false,
+    "public_url_required": false
+  },
+  "runtime_seconds": 17.992,
   "implementation_sha256": {
     ".dockerignore": "1f1bb122ea8c002441ec588e368f22a46921de99de445aac0e036d3cd3520e45",
     ".env.example": "89644277750a88a606dca1f82ae42869c7c1bd161ed075976418d6d9a97cad5a",
@@ -49,14 +62,17 @@
     "Dockerfile": "1c472781860fc3d6a5b7427ed9812bd8e5e652f620e593c5d4f8134ef170e614",
     "app/config.py": "9dee85daa1b9eb62de221fced3f1dcb1a172ef439d0f3d2005e80354cefb3d7e",
     "app/main.py": "46d78ace5d90a77280bb66392c55a8457309662e82fe75336794595443452e27",
-    "compose.yaml": "8808f501c8cf257327f5f5eacab2955145e46b77d9c40bffc856a19780a84550",
+    "compose.yaml": "a5e4ef01274f822727e9ddd59b20e8857eff179a1fa9f3ef06fb5c3a789f59f7",
+    "docs/project/scope.md": "1ef72b1a7fa56597bbff7f0aa15618dbb8164b518b866211e70ab91f409657ee",
+    "docs/project/requirements.md": "2fef2aa0047bf94a6d5acbd87b32332f8ae434b7d950ab40f759454930ee57dc",
     "requirements-backend.txt": "16e9dd798c133f6544fa5c0dfb985fdd5e1259739547c56a52d148abe5e71464",
     "requirements-ui.txt": "f9c71d6827b1acfd0b6a349b70f8756ed84ab3479b01536d61b26a81e02be537",
-    "scripts/evaluate_container.py": "04a2e5b6e86fbf43614498c9b555a80064c9724672aea912cb0a6e3969162cbb",
-    "scripts/validate_container.py": "cb20365a406b9e0fba44bed9ef977c554a7aa9fb8f7d38397affe6b263fcb04b",
-    "scripts/verify_project.py": "c361b3d9a7da50a35389d478c1d13b349a461fbf039a53e70d841d09bbb00ebb",
-    "tests/test_container_config.py": "f259e2db685824982d6cd31e5455ae1eb75874ab79eb71cdc4400deb4defc55a"
+    "scripts/evaluate_container.py": "d5010377ed7606459179373b9f2c7bdacfce295009509ffcef11239368d02b34",
+    "scripts/validate_container.py": "e6c9ded711c9a3bcfb5cdeb9090b4aedc619c2fbbec94158587be5b223861aad",
+    "scripts/validate_portfolio_scope.py": "f15e35683cbfdc593727db5245bbe5ad76fea8632992ab8fe3a181a517633c34",
+    "scripts/verify_project.py": "177ef0cf92ec756d1fd5ce9383986d4bd5338d098ebce7bf2dde7398d99ae9f5",
+    "tests/test_container_config.py": "80e2f0b7a5d0c63dd89df419b15d99aca37209c86b21ff8da2e736702a36e8b7"
   },
-  "quality_claim": "local Docker packaging only; public deployment is not verified",
+  "quality_claim": "local Docker packaging and service connectivity; public hosting is intentionally out of scope",
   "temporary_stack_removed": true
 }

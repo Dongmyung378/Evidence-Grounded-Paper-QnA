@@ -51,7 +51,7 @@ The browser gates use a real loopback FastAPI server, Streamlit server, and head
 
 | Check | Result |
 |---|---:|
-| Regression and UI tests | 44 passed |
+| Regression and UI tests | 45 passed |
 | Browser PDF upload and analysis | Passed |
 | Browser question submission | Passed |
 | Answer and evidence side by side | Passed |

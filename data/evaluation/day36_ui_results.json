@@ -1,9 +1,9 @@
 {
   "roadmap_day": 36,
-  "evaluated_at": "2026-09-11T11:20:59.923620+00:00",
+  "evaluated_at": "2026-09-11T12:31:23.927179+00:00",
   "seed": 378,
   "roadmap_gate": "browser PDF upload -> analysis status -> overview -> question input",
-  "tests_run": 44,
+  "tests_run": 45,
   "test_failures": 0,
   "test_errors": 0,
   "transport": "headless Chromium against Streamlit and real loopback FastAPI",
@@ -42,7 +42,7 @@
     "warning_count": 23,
     "question_runtime_preparation": {
       "status": "ready",
-      "runtime_seconds": 18.501,
+      "runtime_seconds": 27.033,
       "embedding_device": "cpu",
       "reranker_device": "cpu",
       "embedding_cache_hit": false,
@@ -96,7 +96,7 @@
     "tests/test_error_handling.py": "a4f75b16ad832bfd03f91da516efc021abe24f76a13a0c7b0c950e4ded603154",
     "scripts/evaluate_day36.py": "900bbaa13af1e54b3930cd5ebb026217431d474e87ad56d47631606534634d92",
     "scripts/validate_day36.py": "06f68ffbbb0401139d1f169d8a2ff8c1a93fcce396c60a032ec00adf8b61c86b",
-    "scripts/verify_project.py": "c361b3d9a7da50a35389d478c1d13b349a461fbf039a53e70d841d09bbb00ebb"
+    "scripts/verify_project.py": "177ef0cf92ec756d1fd5ce9383986d4bd5338d098ebce7bf2dde7398d99ae9f5"
   },
   "temporary_runtime_removed": true,
   "quality_claim": "functional UI integration only; answer quality is unchanged"

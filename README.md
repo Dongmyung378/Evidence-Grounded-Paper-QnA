@@ -6,6 +6,8 @@ Evidence-Grounded Paper Q&A is a local-first service for asking questions about 
 
 The project focuses on a simple requirement: an answer should be easy to trace back to the paper it came from.
 
+This repository is delivered as a local portfolio demo. Docker Compose is the final distribution target; public server hosting and a public URL are intentionally outside the project scope.
+
 ## What it does
 
 - Uploads one text-extractable English PDF up to 20 MiB
@@ -242,7 +244,7 @@ The integration evaluator starts Uvicorn on a temporary loopback port, calls the
 
 ## Scope and limitations
 
-The current MVP does not support scanned PDFs, OCR, image or graph interpretation, reliable formula interpretation, multi-paper comparison, user accounts, or a public deployment. Docker packaging has been verified locally, but deployment to an internet-facing server has not. Table and figure text may be extracted as plain text, but the system does not interpret their visual structure.
+The current MVP does not support scanned PDFs, OCR, image or graph interpretation, reliable formula interpretation, multi-paper comparison, or user accounts. It is intentionally distributed as a local portfolio demo rather than a publicly hosted service. Docker packaging and local service connectivity have been verified. Table and figure text may be extracted as plain text, but the system does not interpret their visual structure.
 
 Raw PDFs, QASPER source files, and user uploads remain local unless their redistribution terms explicitly allow publication. See [data sources and handling](docs/project/data_sources.md) for details.
 
@@ -256,4 +258,4 @@ Raw PDFs, QASPER source files, and user uploads remain local unless their redist
 - [Quality and improvement review](docs/reviews/improvements.md)
 - [Local runtime performance](docs/reviews/runtime_performance.md)
 
-The browser flow covers PDF upload, analysis, paper overview, question entry, answer display, traceable source evidence, localized upload errors, and recovery after parsing failure. The backend and UI also run as verified Docker Compose services. Public deployment remains outside the current verified implementation.
+The browser flow covers PDF upload, analysis, paper overview, question entry, answer display, traceable source evidence, localized upload errors, and recovery after parsing failure. The backend and UI also run as verified Docker Compose services. Local execution is the complete delivery boundary for this portfolio project.

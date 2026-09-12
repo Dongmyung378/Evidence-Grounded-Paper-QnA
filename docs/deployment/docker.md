@@ -27,6 +27,8 @@ Open the following addresses:
 - API documentation: `http://127.0.0.1:8000/docs`
 - API health: `http://127.0.0.1:8000/health`
 
+Both published ports bind to `127.0.0.1` by default, so the demo is not exposed to other devices on the network.
+
 Stop the services while retaining uploaded-paper state and downloaded models:
 
 ```bash
@@ -76,7 +78,7 @@ python -B scripts/evaluate_container.py
 python -B scripts/validate_container.py
 ```
 
-The saved machine-readable result is `data/evaluation/container_results.json`. This gate proves local container packaging and service connectivity. It does not prove answer quality or public server deployment.
+The saved machine-readable result is `data/evaluation/container_results.json`. This gate proves local container packaging and service connectivity. It does not prove answer quality; public server hosting is intentionally outside the project scope.
 
 ## Operational notes
 

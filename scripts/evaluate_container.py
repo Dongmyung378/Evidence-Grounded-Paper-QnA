@@ -24,10 +24,13 @@ IMPLEMENTATION_FILES = [
     "app/config.py",
     "app/main.py",
     "compose.yaml",
+    "docs/project/scope.md",
+    "docs/project/requirements.md",
     "requirements-backend.txt",
     "requirements-ui.txt",
     "scripts/evaluate_container.py",
     "scripts/validate_container.py",
+    "scripts/validate_portfolio_scope.py",
     "scripts/verify_project.py",
     "tests/test_container_config.py",
 ]
@@ -132,6 +135,26 @@ def main() -> None:
 
     try:
         run([*prefix, "config", "--quiet"], environment=environment)
+        resolved_compose = json.loads(
+            run(
+                [*prefix, "config", "--format", "json"],
+                environment=environment,
+                capture=True,
+            ).stdout
+        )
+        host_bindings = {
+            service: sorted(
+                {
+                    str(port.get("host_ip"))
+                    for port in resolved_compose["services"][service]["ports"]
+                }
+            )
+            for service in ("backend", "ui")
+        }
+        assert host_bindings == {
+            "backend": ["127.0.0.1"],
+            "ui": ["127.0.0.1"],
+        }
         run(
             [
                 *prefix,
@@ -228,6 +251,7 @@ def main() -> None:
                 "runtime_volume": "/var/lib/paper-qna",
                 "model_cache_volume": "/var/cache/huggingface",
                 "model_preparation_for_gate": False,
+                "host_bindings": host_bindings,
                 "secrets_recorded": False,
             },
             "security": {
@@ -236,9 +260,17 @@ def main() -> None:
                 "capabilities_dropped": True,
                 "no_new_privileges": True,
             },
+            "delivery_scope": {
+                "mode": "local_portfolio_demo",
+                "public_server_required": False,
+                "public_url_required": False,
+            },
             "runtime_seconds": round(time.perf_counter() - started, 3),
             "implementation_sha256": implementation_hashes(),
-            "quality_claim": "local Docker packaging only; public deployment is not verified",
+            "quality_claim": (
+                "local Docker packaging and service connectivity; "
+                "public hosting is intentionally out of scope"
+            ),
         }
     finally:
         try:

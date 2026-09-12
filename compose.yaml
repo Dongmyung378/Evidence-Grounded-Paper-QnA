@@ -32,7 +32,7 @@ services:
       - --log-level
       - ${PAPER_QNA_LOG_LEVEL:-info}
     ports:
-      - "${PAPER_QNA_API_PORT:-8000}:8000"
+      - "127.0.0.1:${PAPER_QNA_API_PORT:-8000}:8000"
     volumes:
       - paper-qna-runtime:/var/lib/paper-qna
       - paper-qna-model-cache:/var/cache/huggingface
@@ -63,7 +63,7 @@ services:
     environment:
       PAPER_QNA_API_URL: http://backend:8000
     ports:
-      - "${PAPER_QNA_UI_PORT:-8501}:8501"
+      - "127.0.0.1:${PAPER_QNA_UI_PORT:-8501}:8501"
     depends_on:
       backend:
         condition: service_healthy

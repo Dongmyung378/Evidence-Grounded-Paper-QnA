@@ -27,6 +27,8 @@ docker compose up --build
 - API 문서: `http://127.0.0.1:8000/docs`
 - API 상태: `http://127.0.0.1:8000/health`
 
+두 포트는 기본적으로 `127.0.0.1`에만 연결하므로 네트워크의 다른 장치에 데모가 노출되지 않습니다.
+
 업로드 논문 상태와 내려받은 모델을 유지하면서 종료합니다.
 
 ```bash
@@ -76,7 +78,7 @@ python -B scripts/evaluate_container.py
 python -B scripts/validate_container.py
 ```
 
-기계 판독 결과는 `data/evaluation/container_results.json`에 저장합니다. 이 검증은 로컬 컨테이너 패키징과 서비스 연결을 입증하며, 답변 품질이나 공개 서버 배포를 입증하지는 않습니다.
+기계 판독 결과는 `data/evaluation/container_results.json`에 저장합니다. 이 검증은 로컬 컨테이너 패키징과 서비스 연결을 입증하며 답변 품질을 입증하지는 않습니다. 공개 서버 운영은 프로젝트 범위에서 의도적으로 제외합니다.
 
 ## 운영 참고사항
 

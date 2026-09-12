@@ -19,7 +19,7 @@
 - [Streamlit interface in English](ui/interface.md)
 - [Streamlit 사용자 화면](ui/interface_KO.md)
 
-## 실행 및 배포 문서
+## 실행 및 재현 문서
 
 - [Docker Compose local run](deployment/docker.md)
 - [Docker Compose 로컬 실행](deployment/docker_KO.md)

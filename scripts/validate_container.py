@@ -17,8 +17,16 @@ def main() -> None:
     )
     assert result["temporary_stack_removed"] is True
     assert result["quality_claim"] == (
-        "local Docker packaging only; public deployment is not verified"
+        "local Docker packaging and service connectivity; "
+        "public hosting is intentionally out of scope"
     )
+
+    delivery_scope = result["delivery_scope"]
+    assert delivery_scope == {
+        "mode": "local_portfolio_demo",
+        "public_server_required": False,
+        "public_url_required": False,
+    }
 
     services = result["services"]
     assert set(services) == {"backend", "ui"}
@@ -36,6 +44,10 @@ def main() -> None:
     assert configuration["ui_backend_url"] == "http://backend:8000"
     assert configuration["runtime_volume"] == "/var/lib/paper-qna"
     assert configuration["model_cache_volume"] == "/var/cache/huggingface"
+    assert configuration["host_bindings"] == {
+        "backend": ["127.0.0.1"],
+        "ui": ["127.0.0.1"],
+    }
     assert configuration["secrets_recorded"] is False
     assert all(result["security"].values())
 

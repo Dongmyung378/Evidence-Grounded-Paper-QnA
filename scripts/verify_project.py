@@ -44,6 +44,7 @@ VALIDATORS = [
     "validate_evidence_ui.py",
     "validate_error_recovery_ui.py",
     "validate_container.py",
+    "validate_portfolio_scope.py",
     "validate_improvements.py",
 ]
 

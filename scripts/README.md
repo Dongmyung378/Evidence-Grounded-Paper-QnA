@@ -44,4 +44,12 @@ python -B scripts/validate_container.py
 
 평가기는 사용하지 않는 포트에서 백엔드와 UI를 실행하고 상태 확인, HTTP 응답, 내부 서비스 연결, 비루트 사용자를 검사한 뒤 임시 컨테이너와 테스트 볼륨을 제거한다.
 
+로컬 포트폴리오 제공 범위와 공개 문서의 일관성은 다음 명령으로 확인한다.
+
+```bash
+python -B scripts/validate_portfolio_scope.py
+```
+
+이 검증은 Docker Compose가 최종 제공 환경인지, 공개 서버와 공개 URL이 완료 조건에서 제외됐는지, 로컬 일지가 Git 추적 대상에서 빠졌는지 확인한다.
+
 실행 성능 정책은 `config/runtime_qna.json`과 `config/generation_runtime.json`에 있다. 실제 전체 흐름의 모델 준비 장치, 검색 및 생성 시간, 시도 횟수는 `data/evaluation/day35_integration_results.json`에서 확인할 수 있다.

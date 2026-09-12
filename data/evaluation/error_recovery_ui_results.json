@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "evaluated_at": "2026-09-11T11:22:43.462439+00:00",
+  "evaluated_at": "2026-09-11T12:34:06.540703+00:00",
   "seed": 378,
   "requirement": "file size, invalid PDF, parsing failure, and successful retry",
-  "tests_run": 44,
+  "tests_run": 45,
   "test_failures": 0,
   "test_errors": 0,
   "transport": "headless Chromium against Streamlit and deterministic loopback API",
@@ -75,7 +75,7 @@
     "scripts/evaluate_day36.py": "900bbaa13af1e54b3930cd5ebb026217431d474e87ad56d47631606534634d92",
     "scripts/evaluate_error_recovery_ui.py": "380481cc0bc794bb709f30d412f99587e4c405c8c83473fc3f0195aee01822e9",
     "scripts/validate_error_recovery_ui.py": "7e6bfddc2c03857501f52784e1d126ceaec98771929e7f69162deb022194374f",
-    "scripts/verify_project.py": "c361b3d9a7da50a35389d478c1d13b349a461fbf039a53e70d841d09bbb00ebb"
+    "scripts/verify_project.py": "177ef0cf92ec756d1fd5ce9383986d4bd5338d098ebce7bf2dde7398d99ae9f5"
   },
   "temporary_files_removed": true,
   "quality_claim": "UI failure handling and recovery only"
