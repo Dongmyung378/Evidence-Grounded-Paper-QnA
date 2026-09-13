@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "status": "frozen",
+  "seed": 378,
+  "models": {
+    "embedding": {
+      "name": "intfloat/multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "runtime_role": "multilingual_dense_retrieval"
+    },
+    "reranker": {
+      "name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+      "revision": "1427fd652930e4ba29e8149678df786c240d8825",
+      "runtime_role": "candidate_and_sentence_reranking"
+    },
+    "translation": {
+      "name": "facebook/nllb-200-distilled-600M",
+      "revision": "38bd1c6a0f58097b26ef7c7cd73a0dcac034350a",
+      "runtime_role": "english_to_korean_translation",
+      "license": "cc-by-nc-4.0",
+      "usage_scope": "local_noncommercial_portfolio_demo"
+    },
+    "legacy_generator": {
+      "name": "Qwen/Qwen2.5-0.5B-Instruct",
+      "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+      "runtime_role": "historical_regression_only"
+    }
+  },
+  "observed_runtime": {
+    "retrieval_revisions": "Read from the model cache used by the successful Docker Compose benchmark.",
+    "translation_revision": "Matches config/translation.json and the successful Docker Compose benchmark.",
+    "legacy_generator_revision": "Matches the frozen historical generation configurations."
+  },
+  "change_policy": "Change a model or revision only through a saved regression run and a new evaluation freeze."
+}

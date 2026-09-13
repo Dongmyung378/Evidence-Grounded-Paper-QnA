@@ -7,6 +7,7 @@ from pathlib import Path
 import numpy as np
 
 from dense_retrieval import CACHE_PATH, DEFAULT_MODEL, chunks_fingerprint
+from model_lock import locked_model
 from retrieval_common import PROJECT_ROOT, load_chunks, load_jsonl
 
 
@@ -45,8 +46,13 @@ def main():
     assert {row["paper_id"] for row in questions} == benchmark
     assert not ({row["paper_id"] for row in questions} & expansion)
 
+    embedding_model = locked_model("embedding")
+    assert embedding_model["name"] == DEFAULT_MODEL
+    expected_cache_model = (
+        f"{embedding_model['name']}@{embedding_model['revision']}"
+    )
     with np.load(CACHE_PATH, allow_pickle=False) as cache:
-        assert str(cache["model"].item()) == DEFAULT_MODEL
+        assert str(cache["model"].item()) == expected_cache_model
         assert str(cache["fingerprint"].item()) == chunks_fingerprint(chunks)
         assert len(cache["embeddings"]) == len(chunks)
 

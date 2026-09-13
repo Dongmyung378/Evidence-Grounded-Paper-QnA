@@ -7,6 +7,10 @@ from pathlib import Path
 from abstention_policy import CONFIG_PATH as ABSTENTION_CONFIG_PATH
 from abstention_policy import AbstentionPolicy
 from answer_quality import validate_informative_answer
+from answer_coverage import (
+    coverage_decision, expand_answer_evidence, generate_coverage_answer,
+    load_coverage_config, select_problem_overview,
+)
 from grounded_generation import (
     CONFIG_PATH as ANSWER_GENERATION_CONFIG_PATH,
     generate_evidence_first_answer,
@@ -29,6 +33,7 @@ from local_translation import (
     load_translation_config,
     translation_config_fingerprint,
 )
+from model_lock import locked_model
 from production_retrieval import ProductionRetrieval
 from reranker import load_reranker
 from retrieval_common import PROJECT_ROOT
@@ -56,6 +61,7 @@ class GroundedQAPipeline:
         translator=None,
         sentence_selector=None,
         answer_strategy=None,
+        enable_answer_coverage=False,
     ):
         self.retrieval = retrieval or ProductionRetrieval()
         self.local_files_only = local_files_only
@@ -76,6 +82,12 @@ class GroundedQAPipeline:
             raise ValueError("Unsupported answer strategy")
         self.answer_strategy = answer_strategy
         self.sentence_selector = sentence_selector
+        # 정보 범위 확장은 실험용 선택 기능이다. 기본 API 경로는 변경하지 않는다.
+        self.coverage_config = load_coverage_config()
+        self.enable_answer_coverage = (
+            self.coverage_config["enabled"] if enable_answer_coverage is None
+            else bool(enable_answer_coverage)
+        )
         if self.answer_strategy == "evidence_first":
             self.answer_generation_config_path = Path(
                 answer_generation_config_path
@@ -140,11 +152,15 @@ class GroundedQAPipeline:
             self.sentence_selector = reranker
         else:
             config = self.answer_generation_config["sentence_selector"]
+            model = locked_model("reranker")
+            if config["model"] != model["name"]:
+                raise ValueError("Sentence selector does not match the model lock")
             self.sentence_selector = load_reranker(
                 config["model"],
                 max_length=config["max_length"],
                 local_files_only=self.local_files_only,
                 device="cpu",
+                revision=model["revision"],
             )
         return self.sentence_selector
 
@@ -197,6 +213,15 @@ class GroundedQAPipeline:
                 retrieval_result
             )
 
+        retrieval_pipeline = getattr(self.retrieval, "pipeline", None)
+        context_chunks = getattr(retrieval_pipeline, "chunks", None)
+        coverage_active = bool(self.enable_answer_coverage and
+            self.answer_strategy == "evidence_first" and context_chunks)
+        overview = []
+        if coverage_active and self.enable_abstention:
+            policy_decision, overview = coverage_decision(
+                retrieval_result, policy_decision, context_chunks, self.coverage_config)
+
         pre_generation_abstention = policy_decision["abstain"]
         attempts = []
         response = None
@@ -215,14 +240,26 @@ class GroundedQAPipeline:
             generation_started = time.perf_counter()
             answer_model = self._get_llm() if language == "ko" else None
             llm_loaded = language == "ko"
-            generated = generate_evidence_first_answer(
-                answer_model,
-                self._get_sentence_selector(),
-                query,
-                evidence,
-                question_language=language,
-                config=self.answer_generation_config,
-            )
+            if coverage_active:
+                answer_context = overview or expand_answer_evidence(
+                    retrieval_result, context_chunks,
+                    candidate_limit=self.coverage_config["candidate_limit"],
+                    max_chunks=self.coverage_config["maximum_context_chunks"])
+                generated = generate_coverage_answer(answer_model,
+                    self._get_sentence_selector(), query, answer_context,
+                    config=self.answer_generation_config,
+                    selected=select_problem_overview(overview) if overview else None,
+                    coverage_config=self.coverage_config)
+                evidence = generated["answer_evidence"]
+            else:
+                generated = generate_evidence_first_answer(
+                    answer_model,
+                    self._get_sentence_selector(),
+                    query,
+                    evidence,
+                    question_language=language,
+                    config=self.answer_generation_config,
+                )
             generation_seconds = time.perf_counter() - generation_started
             response = generated["response"]
             attempts = [
@@ -382,6 +419,11 @@ class GroundedQAPipeline:
                 ],
                 "llm": self._llm_metadata(llm_loaded),
                 "answer_strategy": self.answer_strategy,
+                "answer_coverage": {
+                    "enabled": coverage_active,
+                    "route": policy_decision.get("coverage_route"),
+                    "dense_similarity": retrieval_result.get("retrieval_diagnostics", {}).get("top_dense_similarity"),
+                },
                 "answer_generation_config": (
                     str(
                         self.answer_generation_config_path.relative_to(PROJECT_ROOT)

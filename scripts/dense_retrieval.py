@@ -11,7 +11,12 @@ CACHE_PATH = PROJECT_ROOT / "data" / "processed" / "dense_embeddings.npz"
 DEFAULT_MODEL = "intfloat/multilingual-e5-small"
 
 
-def load_model(model_name=DEFAULT_MODEL, local_files_only=False, device=None):
+def load_model(
+    model_name=DEFAULT_MODEL,
+    local_files_only=False,
+    device=None,
+    revision=None,
+):
     try:
         from sentence_transformers import SentenceTransformer
     except ImportError as exc:
@@ -22,6 +27,8 @@ def load_model(model_name=DEFAULT_MODEL, local_files_only=False, device=None):
     options = {"local_files_only": local_files_only}
     if device is not None:
         options["device"] = device
+    if revision is not None:
+        options["revision"] = revision
     return SentenceTransformer(model_name, **options)
 
 
@@ -44,7 +51,14 @@ def chunks_fingerprint(chunks):
     return digest.hexdigest()
 
 
-def load_or_create_embeddings(model, chunks, model_name=DEFAULT_MODEL, batch_size=32, cache_path=CACHE_PATH):
+def load_or_create_embeddings(
+    model,
+    chunks,
+    model_name=DEFAULT_MODEL,
+    batch_size=32,
+    cache_path=CACHE_PATH,
+    model_revision=None,
+):
     """Load matching passage embeddings or create a local reusable cache."""
     try:
         import numpy as np
@@ -52,6 +66,9 @@ def load_or_create_embeddings(model, chunks, model_name=DEFAULT_MODEL, batch_siz
         raise RuntimeError("Dense retrieval requires numpy.") from exc
 
     fingerprint = chunks_fingerprint(chunks)
+    model_identity = (
+        f"{model_name}@{model_revision}" if model_revision else model_name
+    )
     cache_path = Path(cache_path) if cache_path else None
     if cache_path and cache_path.exists():
         try:
@@ -59,7 +76,7 @@ def load_or_create_embeddings(model, chunks, model_name=DEFAULT_MODEL, batch_siz
                 cache_model = str(cache["model"].item())
                 cache_fingerprint = str(cache["fingerprint"].item())
                 embeddings = cache["embeddings"]
-                if cache_model == model_name and cache_fingerprint == fingerprint and len(embeddings) == len(chunks):
+                if cache_model == model_identity and cache_fingerprint == fingerprint and len(embeddings) == len(chunks):
                     return embeddings, True
         except (KeyError, OSError, ValueError):
             # A stale or interrupted cache is safely replaced below.
@@ -70,7 +87,7 @@ def load_or_create_embeddings(model, chunks, model_name=DEFAULT_MODEL, batch_siz
         cache_path.parent.mkdir(parents=True, exist_ok=True)
         np.savez_compressed(
             cache_path,
-            model=np.array(model_name),
+            model=np.array(model_identity),
             fingerprint=np.array(fingerprint),
             embeddings=embeddings,
         )

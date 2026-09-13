@@ -64,6 +64,8 @@ python -B scripts/validate_portfolio_scope.py
 
 현재 답변 정책은 `config/runtime_qna.json`, `config/answer_generation.json`, `config/translation.json`에 있다. 영어 추출형 답변과 한국어 번역의 고정 20문항 평가는 다음 명령으로 재현하고 검증한다.
 
+선택 실행용 답변 확장은 기본 API와 분리한다. `python -B scripts/review_answer_coverage.py`는 저장된 60문항, 원문 연결과 고정 20문항 판정을 모델 실행 없이 검증한다. [실험 검토](../docs/reviews/answer_coverage_KO.md)를 참고한다.
+
 ```bash
 python -B scripts/evaluate_grounded_generation.py
 python -B scripts/build_grounded_generation_review.py
@@ -71,3 +73,13 @@ python -B scripts/validate_grounded_generation.py
 ```
 
 기존 Qwen 실행 성능과 실제 전체 HTTP 흐름 기록은 `data/evaluation/day35_integration_results.json`에 과거 기준선으로 유지한다.
+
+최종 모델 리비전, 시드, 평가 입력과 성능표는 다음 명령으로 다시 만들고 검증한다.
+
+```bash
+python -B scripts/evaluate_frozen_retrieval.py
+python -B scripts/build_evaluation_freeze.py
+python -B scripts/validate_evaluation_freeze.py
+```
+
+첫 명령은 고정 리비전의 임베딩과 재정렬 모델을 CPU에서 실행한다. 전용 임베딩 캐시가 없으면 최초 실행 시간이 길어질 수 있다. 두 번째 명령은 현재 검토가 끝난 출처만 해시로 묶으며, 전체 검증에서는 세 번째 명령만 실행해 동결 파일이 임의로 다시 생성되지 않게 한다.

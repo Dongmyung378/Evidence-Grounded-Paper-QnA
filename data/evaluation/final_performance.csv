@@ -1,0 +1,31 @@
+area,metric,scope,value,unit,source,qualification
+corpus,papers,robustness,30,count,frozen_retrieval_metrics.json,Only the first 10 papers have verified accuracy labels.
+corpus,pages,robustness,563,count,frozen_retrieval_metrics.json,Text-extractable PDF pages.
+corpus,chunks,robustness,2463,count,frozen_retrieval_metrics.json,Section-aware searchable chunks.
+corpus,expansion_pass_rate,papers-011..030,1.0,ratio,corpus_expansion_smoke.json,"Runtime smoke only, not an accuracy claim."
+retrieval,questions,verified-40,40,count,frozen_retrieval_metrics.json,20 English and 20 Korean questions.
+retrieval,recall_at_1,verified-40-current,0.3,ratio,frozen_retrieval_metrics.json,"Current code, CPU retrieval devices, and revision-pinned models."
+retrieval,recall_at_3,verified-40-current,0.85,ratio,frozen_retrieval_metrics.json,"Current code, CPU retrieval devices, and revision-pinned models."
+retrieval,recall_at_5,verified-40-current,1.0,ratio,frozen_retrieval_metrics.json,"Current code, CPU retrieval devices, and revision-pinned models."
+retrieval,recall_at_10,verified-40-current,1.0,ratio,frozen_retrieval_metrics.json,"Current code, CPU retrieval devices, and revision-pinned models."
+retrieval,mrr,verified-40-current,0.58375,ratio,frozen_retrieval_metrics.json,"Current code, CPU retrieval devices, and revision-pinned models."
+retrieval,mrr,verified-40-en,0.6308333333333334,ratio,frozen_retrieval_metrics.json,"English subset, 20 questions."
+retrieval,mrr,verified-40-ko,0.5366666666666666,ratio,frozen_retrieval_metrics.json,"Korean subset, 20 questions."
+retrieval,mrr,verified-40-historical,0.6316666666666666,ratio,day28_production_metrics.json,Historical only; not the current headline metric.
+answer_quality,questions_reviewed,fixed-20,20,count,grounded_generation_review.json,13 independent meanings because some questions are bilingual pairs.
+answer_quality,strict_pass_rate,fixed-20,0.15,ratio,grounded_generation_review.json,Assistant-led semantic review.
+answer_quality,pass_or_partial_rate,fixed-20,0.85,ratio,grounded_generation_review.json,Assistant-led semantic review.
+answer_quality,citation_failures,fixed-20,0,count,grounded_generation_review.json,Two refused questions have no citation and are not applicable.
+answer_quality,false_abstentions,fixed-20,2,count,grounded_generation_review.json,Verified answerable questions refused by the relevance gate.
+answer_quality,answer_stage_time,fixed-20,12.48,seconds_total,grounded_generation_review.json,Saved evidence input; not full HTTP latency.
+abstention,answerable_retention,calibration-40,0.95,ratio,abstention_improvement_results.json,Verified answerable calibration set.
+abstention,unsupported_refusal,holdout-10,1.0,ratio,abstention_improvement_results.json,Unsupported holdout questions.
+abstention,holdout_fallbacks,holdout-10,0,count,abstention_improvement_results.json,No validation fallback accepted.
+container,questions_completed,3-papers-10-questions,10,count,container_qna_review.json,Five bilingual question meanings.
+container,pass_or_partial_rate,3-papers-10-questions,1.0,ratio,container_qna_review.json,Assistant-led semantic review.
+container,citation_support,3-papers-10-questions,1.0,ratio,container_qna_review.json,Live returned evidence inspected after generation.
+container,exact_gold_page_hit_rate,3-papers-10-questions,0.4,ratio,container_qna_review.json,Disclosed page-alignment limitation.
+container,english_api_mean,cpu-5-questions,1.47,seconds,container_qna_review.json,Hardware-specific local Docker measurement.
+container,korean_api_mean,cpu-5-questions,11.95,seconds,container_qna_review.json,Hardware-specific local Docker measurement.
+container,first_analysis,empty-model-cache,106.471,seconds,container_qna_review.json,Includes model download and initialization.
+container,later_analysis_mean,warm-model-cache-2-papers,6.027,seconds,container_qna_review.json,Hardware-specific local Docker measurement.

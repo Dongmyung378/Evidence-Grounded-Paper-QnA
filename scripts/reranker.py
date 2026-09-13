@@ -9,6 +9,7 @@ def load_reranker(
     max_length=512,
     local_files_only=False,
     device=None,
+    revision=None,
 ):
     try:
         from sentence_transformers import CrossEncoder
@@ -23,6 +24,8 @@ def load_reranker(
     }
     if device is not None:
         options["device"] = device
+    if revision is not None:
+        options["revision"] = revision
     return CrossEncoder(model_name, **options)
 
 

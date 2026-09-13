@@ -48,6 +48,8 @@ VALIDATORS = [
     "validate_improvements.py",
     "validate_grounded_generation.py",
     "validate_container_qna.py",
+    "validate_evaluation_freeze.py",
+    "review_answer_coverage.py",
 ]
 
 

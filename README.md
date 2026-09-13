@@ -48,8 +48,8 @@ The runtime only searches chunks that belong to the selected paper. Uploaded pap
 | Verified benchmark | 40 questions across 10 papers |
 | Benchmark languages | 20 English, 20 Korean |
 | Production retrieval Recall@5 | 1.000 |
-| Production retrieval MRR | 0.6317 |
-| Unsupported holdout questions refused | 10/10 |
+| Production retrieval MRR | 0.5838 |
+| Unsupported holdout questions refused (historical saved run) | 10/10 |
 | Fixed 20-question answer review | 3 pass, 14 partial, 3 fail |
 | Answer pass-or-partial rate | 0.850 |
 | Fixed-evidence answer-stage time | 12.48 seconds |
@@ -63,12 +63,15 @@ The runtime only searches chunks that belong to the selected paper. Uploaded pap
 | Container English answer API mean | 1.470 seconds |
 | Container Korean answer API mean | 11.950 seconds |
 | Offline cached container restart | Passed |
+| Final evaluation freeze | Passed, seed 378 and model revisions locked |
 
 The retrieval figures use one manually verified gold page per question. The 20 expansion papers are used for parsing and runtime robustness checks, not accuracy claims, because they do not yet have manually verified questions and gold evidence.
 
 The balanced 20-question answer review improved from 1 pass, 4 partial, and 15 fail to 3 pass, 14 partial, and 3 fail. False abstentions fell from 7 to 2. The candidate used the exact saved retrieval evidence and did not load Gold during answer construction. The review was assistant-led rather than independently human-reviewed, and the paired questions represent 13 distinct meanings, so this is portfolio evidence rather than a production-quality claim. See [answer quality review](docs/reviews/answer_quality.md).
 
 The fixed Docker Compose benchmark also exercised fresh PDF upload, analysis, ten English and Korean questions, UI health, an offline cached restart, deterministic repeated output, and cleanup. All ten responses matched the requested language and returned supporting source evidence. Semantic review found 4 pass, 6 partial, and 0 fail. Korean remains supported for the portfolio demo, with slower CPU latency and translation fluency documented as limitations. See [Docker Compose Q&A benchmark](docs/reviews/container_qna.md).
+
+The final revision-pinned retrieval run reports Recall@5 and Recall@10 of 1.000 and MRR of 0.5838. The earlier 0.6317 MRR is retained as a historical result because its unversioned embedding cache cannot reproduce the later saved answer-evidence ordering. The current metric, model revisions, seed, source hashes, and 30-row performance table are bound in the [final evaluation freeze](docs/reviews/final_evaluation.md).
 
 ## Quick start
 
@@ -261,9 +264,19 @@ python -B scripts/build_container_qna_review.py
 python -B scripts/validate_container_qna.py
 ```
 
+Re-run the revision-pinned retrieval evaluation or validate the final freeze:
+
+```bash
+python -B scripts/evaluate_frozen_retrieval.py
+python -B scripts/build_evaluation_freeze.py
+python -B scripts/validate_evaluation_freeze.py
+```
+
 The integration evaluator starts Uvicorn on a temporary loopback port, calls the question endpoint with curl, verifies page and chunk traceability, and removes its temporary runtime directory afterward.
 
 ## Scope and limitations
+
+An [opt-in coverage experiment](docs/reviews/answer_coverage.md) improved the assistant-reviewed fixed-20 result from 3 to 10 passes, with extra answer-stage work and some regressions. It is not enabled in the UI/API. Its fresh baseline reproduced 9/10 unsupported holdout refusals, not the historical 10/10 above. Docker was not remeasured.
 
 The current MVP does not support scanned PDFs, OCR, image or graph interpretation, reliable formula interpretation, multi-paper comparison, or user accounts. It is intentionally distributed as a local portfolio demo rather than a publicly hosted service. Docker packaging and local service connectivity have been verified. Table and figure text may be extracted as plain text, but the system does not interpret their visual structure.
 
@@ -279,5 +292,6 @@ Raw PDFs, QASPER source files, and user uploads remain local unless their redist
 - [Quality and improvement review](docs/reviews/improvements.md)
 - [Local runtime performance](docs/reviews/runtime_performance.md)
 - [Docker Compose Q&A benchmark](docs/reviews/container_qna.md)
+- [Final evaluation freeze](docs/reviews/final_evaluation.md)
 
 The browser flow covers PDF upload, analysis, paper overview, question entry, answer display, traceable source evidence, localized upload errors, and recovery after parsing failure. The backend and UI also run as verified Docker Compose services. Local execution is the complete delivery boundary for this portfolio project.

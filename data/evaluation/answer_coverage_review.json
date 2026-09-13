@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "seed": 378,
+  "decision": "opt_in_only_default_unchanged",
+  "reviewer": "assistant_led_not_independent_human_review",
+  "evaluation_scope": "재사용한 개발 질문 40개, 근거 없는 질문 20개. 사후 의미 검토는 고정 20개에 한정한다.",
+  "metric_scope": "답변 생성 여부는 정답률이 아니다. 과거 holdout도 이번 오류 분석에 사용했으므로 더 이상 독립 테스트가 아니다.",
+  "timing_scope": "호스트 답변 단계 평균. 후보의 문장 재정렬 시간을 포함하며 검색, 모델 초기화, HTTP 및 Docker 시간은 제외한다. 실행 순서와 번역 캐시 영향이 있어 속도 벤치마크로 일반화하지 않는다.",
+  "metrics": {
+    "baseline": {
+      "fixed20_verdicts": {
+        "fail": 3,
+        "partial": 14,
+        "pass": 3
+      },
+      "answerable_answered": 38,
+      "unsupported_refused": 19,
+      "unsupported_former_holdout_refused": 9,
+      "mean_answer_stage_seconds": 0.760531
+    },
+    "candidate": {
+      "fixed20_verdicts": {
+        "pass": 10,
+        "partial": 10
+      },
+      "answerable_answered": 40,
+      "unsupported_refused": 20,
+      "unsupported_former_holdout_refused": 10,
+      "mean_answer_stage_seconds": 2.617691
+    }
+  },
+  "candidate_source_traceability_checked": 40,
+  "detail_regression_ids": [
+    "q-041-en"
+  ],
+  "translation_semantics_automatically_verified": false,
+  "source_hashes": {
+    "data/evaluation/answer_coverage_outputs.json": "359f25d739ad092d7fb3f29b35fd5c24cd4f0af83a95496c25063ab22e0503b0",
+    "data/evaluation/answer_coverage_review_labels.jsonl": "c6f41257545c74be1dfe17b384ec9ebb4ceab9b6ff9eb56ebf39e2a17dc2b279",
+    "data/evaluation/day32_review_manifest.json": "36936de26ebba22262748117a30fcdc916ec69349156bd160000f8c368bd62a8",
+    "data/evaluation/gold_evidence.jsonl": "3f625564d18419dbf03a83152f836afba3573b8a6fc924c0504c2401c79defa8",
+    "scripts/review_answer_coverage.py": "79ede7809398d19e7ef4da94bfd1f411a650451ed4b2fbcf3ffb8585b8ee3cab"
+  }
+}

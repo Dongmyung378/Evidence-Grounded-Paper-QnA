@@ -22,6 +22,8 @@ class CandidateEvidencePipeline:
         self,
         embedding_model_name=DEFAULT_MODEL,
         reranker_model_name=DEFAULT_RERANKER_MODEL,
+        embedding_model_revision=None,
+        reranker_model_revision=None,
         embedding_batch_size=32,
         reranker_batch_size=8,
         max_length=512,
@@ -35,6 +37,8 @@ class CandidateEvidencePipeline:
     ):
         self.embedding_model_name = embedding_model_name
         self.reranker_model_name = reranker_model_name
+        self.embedding_model_revision = embedding_model_revision
+        self.reranker_model_revision = reranker_model_revision
         self.embedding_batch_size = embedding_batch_size
         self.reranker_batch_size = reranker_batch_size
         self.max_length = max_length
@@ -60,6 +64,7 @@ class CandidateEvidencePipeline:
             embedding_model_name,
             local_files_only=local_files_only,
             device=embedding_device,
+            revision=embedding_model_revision,
         )
         all_embeddings, self.embedding_cache_hit = load_or_create_embeddings(
             self.embedding_model,
@@ -67,6 +72,7 @@ class CandidateEvidencePipeline:
             embedding_model_name,
             embedding_batch_size,
             cache_path=embedding_cache_path,
+            model_revision=embedding_model_revision,
         )
         self.grouped_embeddings = {
             paper_id: all_embeddings[indices]
@@ -77,6 +83,7 @@ class CandidateEvidencePipeline:
             max_length=max_length,
             local_files_only=local_files_only,
             device=reranker_device,
+            revision=reranker_model_revision,
         )
 
     @staticmethod
@@ -158,6 +165,9 @@ class CandidateEvidencePipeline:
             "roadmap_days": [23, 24],
             "query": query,
             "paper_id": paper_id,
+            "retrieval_diagnostics": {
+                "top_dense_similarity": float(dense[0]["score"]) if dense else None,
+            },
             "candidate_policy": {
                 "candidate_k": candidate_k,
                 "sources": {"bm25": source_k, "dense": source_k},
@@ -170,7 +180,9 @@ class CandidateEvidencePipeline:
                     "candidate_injected": front_matter_injected,
                 },
                 "reranker_model": self.reranker_model_name,
+                "reranker_revision": self.reranker_model_revision,
                 "embedding_model": self.embedding_model_name,
+                "embedding_revision": self.embedding_model_revision,
             },
             "candidates": [self._candidate_object(item) for item in reranked],
             "evidence_selection": selection,

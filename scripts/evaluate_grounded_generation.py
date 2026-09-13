@@ -16,6 +16,7 @@ from grounded_generation import (
 )
 from local_translation import CONFIG_PATH as TRANSLATION_CONFIG_PATH
 from local_translation import LocalEnglishKoreanTranslator
+from model_lock import locked_model
 from reranker import load_reranker
 from retrieval_common import PROJECT_ROOT, configure_utf8_stdout
 
@@ -54,11 +55,15 @@ def main():
     baseline = json.loads(BASELINE_PATH.read_text(encoding="utf-8"))
     answer_config = load_answer_generation_config(args.answer_config)
     abstention = AbstentionPolicy(PROJECT_ROOT / "config" / "abstention_candidate.json")
+    selector_model = locked_model("reranker")
+    if answer_config["sentence_selector"]["model"] != selector_model["name"]:
+        raise ValueError("Sentence selector does not match the model lock")
     selector = load_reranker(
         answer_config["sentence_selector"]["model"],
         max_length=answer_config["sentence_selector"]["max_length"],
         local_files_only=True,
         device="cpu",
+        revision=selector_model["revision"],
     )
     generator = LocalEnglishKoreanTranslator(
         args.translation_config,

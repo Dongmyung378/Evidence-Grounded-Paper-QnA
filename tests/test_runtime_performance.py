@@ -75,9 +75,23 @@ class RuntimePerformance(unittest.TestCase):
             embedding_cache_path=None,
             embedding_device="cpu",
             reranker_device="cpu",
+            embedding_model_revision=(
+                "614241f622f53c4eeff9890bdc4f31cfecc418b3"
+            ),
+            reranker_model_revision=(
+                "1427fd652930e4ba29e8149678df786c240d8825"
+            ),
         )
         self.assertEqual(load_embedding.call_args.kwargs["device"], "cpu")
         self.assertEqual(load_reranker.call_args.kwargs["device"], "cpu")
+        self.assertEqual(
+            load_embedding.call_args.kwargs["revision"],
+            "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        )
+        self.assertEqual(
+            load_reranker.call_args.kwargs["revision"],
+            "1427fd652930e4ba29e8149678df786c240d8825",
+        )
 
     def test_runtime_generation_stops_after_two_invalid_attempts(self):
         llm = SequenceLLM(["not json", "still not json", "unused"])

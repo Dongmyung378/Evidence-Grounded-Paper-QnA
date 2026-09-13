@@ -44,4 +44,14 @@
 
 컨테이너 검증은 로컬 포트폴리오 실행 범위만 다룬다. 공개 서버와 공개 URL은 프로젝트 완료 조건이 아니다.
 
+## 최종 평가 동결
+
+선택 실행 실험의 `answer_coverage_outputs.json`은 기준선과 후보 60문항 응답, `answer_coverage_review_labels.jsonl`은 고정 20문항 판정, `answer_coverage_review.json`은 집계와 해시다. 기본 API는 기존 방식을 유지한다. [성과와 한계](../../docs/reviews/answer_coverage_KO.md)를 참고한다.
+
+- `frozen_retrieval_metrics.json`: CPU 검색 장치와 정확한 모델 리비전으로 다시 실행한 검증 40문항 현재 검색 결과
+- `final_performance.csv`: 범위, 단위, 출처와 해석 조건을 포함한 최종 성능표
+- `final_evaluation.json`: 평가 입력, 설정, 모델, 구현, 측정 산출물과 패키징 해시를 묶은 최종 동결 매니페스트
+
+과거 `day28_production_metrics.json`의 MRR 0.6317은 이력 비교용으로 보존한다. 현재 대표 검색 지표는 재현 가능한 고정 리비전 평가의 MRR 0.5838이다. 두 평가 모두 Recall@5와 Recall@10은 1.000이다.
+
 JSON, JSONL, CSV의 필드 이름과 영어 논문 원문은 프로그램 계약과 평가 재현성을 위해 유지한다. 사람이 읽는 주요 설명은 영어와 한국어 문서를 함께 제공한다.

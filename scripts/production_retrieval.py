@@ -6,6 +6,8 @@ from copy import deepcopy
 from pathlib import Path
 
 from candidate_evidence_pipeline import CACHE_PATH, CandidateEvidencePipeline
+from model_lock import CONFIG_PATH as MODEL_LOCK_PATH
+from model_lock import load_model_lock, model_lock_fingerprint
 from retrieval_common import PROJECT_ROOT
 
 
@@ -70,15 +72,26 @@ class ProductionRetrieval:
         local_files_only=False,
         embedding_device=None,
         reranker_device=None,
+        model_lock_path=MODEL_LOCK_PATH,
     ):
         self.config_path = Path(config_path)
         self.config = load_production_config(self.config_path)
         self.fingerprint = config_fingerprint(self.config)
+        self.model_lock_path = Path(model_lock_path)
+        self.model_lock = load_model_lock(self.model_lock_path)
+        self.model_lock_fingerprint = model_lock_fingerprint(self.model_lock_path)
         models = self.config["models"]
+        locked_models = self.model_lock["models"]
+        if models["embedding"] != locked_models["embedding"]["name"]:
+            raise ValueError("Production embedding model does not match the model lock")
+        if models["reranker"] != locked_models["reranker"]["name"]:
+            raise ValueError("Production reranker model does not match the model lock")
         runtime = self.config["runtime"]
         self.pipeline = CandidateEvidencePipeline(
             embedding_model_name=models["embedding"],
             reranker_model_name=models["reranker"],
+            embedding_model_revision=locked_models["embedding"]["revision"],
+            reranker_model_revision=locked_models["reranker"]["revision"],
             embedding_batch_size=runtime["embedding_batch_size"],
             reranker_batch_size=runtime["reranker_batch_size"],
             max_length=self.config["reranking"]["max_length"],
@@ -115,5 +128,13 @@ class ProductionRetrieval:
             "config_path": str(self.config_path.relative_to(PROJECT_ROOT)).replace("\\", "/"),
             "config_fingerprint": self.fingerprint,
             "config": deepcopy(self.config),
+            "model_lock": {
+                "path": str(self.model_lock_path.relative_to(PROJECT_ROOT)).replace(
+                    "\\", "/"
+                ),
+                "fingerprint": self.model_lock_fingerprint,
+                "embedding": deepcopy(self.model_lock["models"]["embedding"]),
+                "reranker": deepcopy(self.model_lock["models"]["reranker"]),
+            },
         }
         return result

@@ -1,0 +1,20 @@
+{"question_id":"q-001-en","baseline":"fail","candidate":"pass","notes":"기존 거절을 해소하고 단일 시점에서 rank 선택만으로 신호 분리를 보장할 수 없다는 핵심을 복원했다."}
+{"question_id":"q-001-ko","baseline":"fail","candidate":"partial","notes":"분리 보장 부족을 답하지만 singular value와 single epoch의 번역이 부정확하다."}
+{"question_id":"q-005-en","baseline":"partial","candidate":"pass","notes":"폭과 토큰 규모의 두 단계에 MLA와 Muon 설명을 추가했다. 중복 문장은 남는다."}
+{"question_id":"q-045-ko","baseline":"pass","candidate":"pass","notes":"두 답변 모두 폭을 키운 MoE에서 학습률 전이를 설명한다. 후보는 SP 비교를 빼지만 질문의 핵심 결론은 유지한다."}
+{"question_id":"q-007-en","baseline":"pass","candidate":"pass","notes":"두 답변 모두 Transformer, LLM, BERT, RoBERTa, BART를 포함한다."}
+{"question_id":"q-007-ko","baseline":"pass","candidate":"pass","notes":"검토 대상과 세 모델을 유지한다."}
+{"question_id":"q-031-en","baseline":"partial","candidate":"partial","notes":"처리량과 정확도는 설명하지만 메모리 관련 설명은 서로 다른 구현의 절충이 섞여 명확하지 않다."}
+{"question_id":"q-048-ko","baseline":"partial","candidate":"partial","notes":"5.8배와 native PyTorch는 유지되지만 TorchAO는 여전히 빠진다."}
+{"question_id":"q-015-en","baseline":"partial","candidate":"pass","notes":"11개 task schedule, MVTecAD, VisA와 온라인 설정을 복원했다."}
+{"question_id":"q-049-ko","baseline":"partial","candidate":"pass","notes":"고정 메모리, 근사 보장과 점진적 품질 저하를 모두 포함한다. 표현은 어색하다."}
+{"question_id":"q-017-en","baseline":"partial","candidate":"pass","notes":"관찰에서 추론으로 이어지는 계층, 목표별 감지 경로, 시공간 support와 불확실성을 포함한다."}
+{"question_id":"q-017-ko","baseline":"fail","candidate":"partial","notes":"계층과 연결 구조를 복원했지만 생태수문학과 센서 관련 전문용어 오역이 남는다."}
+{"question_id":"q-034-en","baseline":"partial","candidate":"pass","notes":"확률 simplex, 1차원 대수 모델, 두 직선과 cuspidal curve 구성을 모두 포함한다."}
+{"question_id":"q-034-ko","baseline":"partial","candidate":"partial","notes":"두 구성을 추가했지만 simplex, singular point와 real-analytic boundary 등의 번역이 부정확하다."}
+{"question_id":"q-041-en","baseline":"partial","candidate":"partial","detail_regression":true,"notes":"후보는 기존의 세 gripper와 성공률 문장을 잃었다. 효율성과 다양성도 빠져 있다."}
+{"question_id":"q-041-ko","baseline":"partial","candidate":"partial","notes":"MultiDex와 반복 추론은 유지하지만 세 gripper와 평가 지표가 빠진다."}
+{"question_id":"q-042-en","baseline":"partial","candidate":"partial","notes":"SPOC와 QLP를 추가했지만 정제 후 후보 수 설명은 여전히 없다."}
+{"question_id":"q-042-ko","baseline":"partial","candidate":"partial","notes":"SPOC와 QLP를 추가했지만 정제 후 후보 수가 빠지고 광도 곡선 등의 번역이 어색하다."}
+{"question_id":"q-043-en","baseline":"partial","candidate":"pass","notes":"ABIDE I, 7개 기준선과 graph recovery, sample efficiency, diagnostic utility를 복원했다."}
+{"question_id":"q-043-ko","baseline":"partial","candidate":"partial","notes":"핵심 데이터와 비교 지표는 복원했다. 뒤 문장에서 source domain과 target domain을 혼동하는 번역이 있어 완전 통과로 올리지 않는다."}
