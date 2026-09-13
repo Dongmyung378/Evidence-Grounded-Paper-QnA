@@ -38,6 +38,9 @@
 ## 컨테이너 평가
 
 - `container_results.json`: Docker Compose 백엔드와 UI 빌드, 상태 확인, HTTP 연결 및 정리 검증 결과
+- `container_qna_results.json`: 논문 3편과 한영 질문 10개의 실제 Docker Compose 종단간 실행, 시간, 오프라인 재시작 결과
+- `container_qna_review_labels.jsonl`: 컨테이너 질의응답 10건의 의미 품질 판정
+- `container_qna_review.json`: 실행 결과, 수동 판정, Gold를 해시로 연결한 컨테이너 검토 요약
 
 컨테이너 검증은 로컬 포트폴리오 실행 범위만 다룬다. 공개 서버와 공개 URL은 프로젝트 완료 조건이 아니다.
 

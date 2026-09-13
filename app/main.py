@@ -87,7 +87,7 @@ def create_app(settings=None, question_engine=None):
         finally:
             await run_in_threadpool(service.close)
 
-    api = FastAPI(title="Evidence Grounded Paper Q&A", version="0.34.0", lifespan=lifespan)
+    api = FastAPI(title="Evidence Grounded Paper Q&A", version="0.41.0", lifespan=lifespan)
     api.add_middleware(BodyLimit, maximum=settings.max_upload_bytes + 64 * 1024)
 
     @api.post("/upload", response_model=UploadResult, status_code=201,

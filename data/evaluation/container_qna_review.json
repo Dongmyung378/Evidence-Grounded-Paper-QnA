@@ -1,0 +1,504 @@
+{
+  "schema_version": 1,
+  "evaluation": "docker-compose-qna-review",
+  "review_date": "2026-09-13",
+  "review_method": "Assistant-led semantic comparison against verified Gold and live returned evidence; no independent human review was performed.",
+  "gold_loaded_during_container_execution": false,
+  "provenance": {
+    "benchmark_config": "config/container_qna_benchmark.json",
+    "benchmark_config_sha256": "5bac9723ff61f9e067cca746c651dc7d711481533829296b270543b3215112ec",
+    "container_results": "data/evaluation/container_qna_results.json",
+    "container_results_sha256": "ac0ba653bade8ed1591167b3224880934496f6f226dd400a5a11d72a14aa9e5d",
+    "manual_labels": "data/evaluation/container_qna_review_labels.jsonl",
+    "manual_labels_sha256": "a691c5029ff85e9249f01b0c2e51039c9ed84ea43a2ebfb16e00bb73488918c7",
+    "verified_gold": "data/evaluation/gold_evidence.jsonl",
+    "verified_gold_sha256": "3f625564d18419dbf03a83152f836afba3573b8a6fc924c0504c2401c79defa8"
+  },
+  "rubric": {
+    "pass": "Correct, responsive, and supported by the returned evidence.",
+    "partial": "Supported and useful, but missing detail or reduced by source or translation quality.",
+    "fail": "Incorrect, unsupported, or not responsive to the question."
+  },
+  "summary": {
+    "papers": 3,
+    "questions": 10,
+    "languages": {
+      "en": 5,
+      "ko": 5
+    },
+    "verdicts": {
+      "pass": 4,
+      "partial": 6,
+      "fail": 0
+    },
+    "strict_pass_rate": 0.4,
+    "pass_or_partial_rate": 1.0,
+    "citation_support": {
+      "pass": 10,
+      "fail": 0
+    },
+    "language_match": 10,
+    "exact_gold_page_hits": 4,
+    "exact_gold_page_hit_rate": 0.4,
+    "by_language": {
+      "en": {
+        "questions": 5,
+        "verdicts": {
+          "pass": 3,
+          "partial": 2,
+          "fail": 0
+        },
+        "strict_pass_rate": 0.6,
+        "pass_or_partial_rate": 1.0,
+        "citation_support": 5,
+        "language_match": 5
+      },
+      "ko": {
+        "questions": 5,
+        "verdicts": {
+          "pass": 1,
+          "partial": 4,
+          "fail": 0
+        },
+        "strict_pass_rate": 0.2,
+        "pass_or_partial_rate": 1.0,
+        "citation_support": 5,
+        "language_match": 5
+      }
+    },
+    "container_contract": {
+      "sufficient": 10,
+      "insufficient": 0,
+      "fallbacks": 0,
+      "evidence_responses": 10,
+      "ui_http_status": 200
+    },
+    "runtime": {
+      "build_seconds": 111.999,
+      "first_analysis_seconds": 106.471,
+      "later_analysis_mean_seconds": 6.027,
+      "first_to_later_analysis_ratio": 17.6657,
+      "english_api_mean_seconds": 1.47,
+      "korean_api_mean_seconds": 11.95,
+      "korean_to_english_api_mean_ratio": 8.1293,
+      "paper_warning_count": 91,
+      "model_cache_bytes": 6937424283
+    }
+  },
+  "language_decision": {
+    "decision": "retain_korean_with_documented_limits",
+    "reason": "All five Korean responses matched the requested language and cited supporting source text, while all were at least partially correct. Korean remains useful for the local portfolio demo, but CPU latency and translation fluency are documented limitations rather than production guarantees."
+  },
+  "acceptance": {
+    "docker_compose_flow": "pass",
+    "answer_and_evidence_contract": "pass",
+    "offline_cached_restart": "pass",
+    "deterministic_restart_response": "pass",
+    "benchmark_cleanup": "pass"
+  },
+  "known_limits": [
+    "The review contains five bilingual question pairs from three papers, not ten independent meanings.",
+    "The semantic labels were not assigned by an independent human evaluator.",
+    "All ten benchmark questions are answerable, so abstention quality is covered only by the separate unsupported holdout evaluation.",
+    "Exact verified Gold page overlap is four of ten even though manual inspection found all returned evidence passages supported their answers.",
+    "Korean CPU answer time is materially slower than English and some translations are awkward or incomplete.",
+    "The first analysis includes an empty-cache model download and initialization cost."
+  ],
+  "records": [
+    {
+      "question_id": "q-007-en",
+      "paper_id": "paper-003",
+      "language": "en",
+      "question": "What is the main focus of this paper's review of text summarization?",
+      "expected": {
+        "gold_answer": "The review focuses on transformer-based and large-language-model approaches to automatic text summarization, especially BERT, RoBERTa, and BART.",
+        "gold_page": 3
+      },
+      "actual": {
+        "answer": "This article presents a focused review of modern summarization techniques with an emphasis on transformer -based models and large language models (LLMs), specifically BERT, RoBERTa and BART. This paper presents a focused review of transformer-based summarization methods, with a comparative analysis of BERT, RoBERTa, and BART. Text summarization refers to the task of condensing a document into a shorter version while preserving its key information.",
+        "sufficiency": "sufficient",
+        "evidence_pages": [
+          1,
+          2
+        ],
+        "wall_seconds": 1.408,
+        "api_runtime": {
+          "total_seconds": 1.285,
+          "retrieval_seconds": 0.991,
+          "generation_seconds": 0.294,
+          "generation_attempts": 0,
+          "llm_device": "cpu",
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": null
+        }
+      },
+      "exact_gold_page_hit": false,
+      "review": {
+        "question_id": "q-007-en",
+        "verdict": "pass",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [],
+        "notes": "The answer correctly identifies transformer and large language model summarization and names BERT, RoBERTa, and BART."
+      }
+    },
+    {
+      "question_id": "q-007-ko",
+      "paper_id": "paper-003",
+      "language": "ko",
+      "question": "이 논문이 텍스트 요약을 검토하면서 중점적으로 다루는 내용은 무엇인가?",
+      "expected": {
+        "gold_answer": "이 리뷰는 자동 텍스트 요약에서 Transformer와 대규모 언어 모델 접근법, 특히 BERT, RoBERTa, BART에 중점을 둔다.",
+        "gold_page": 3
+      },
+      "actual": {
+        "answer": "이 문서에서는 트랜스포머 기반 모델과 큰 언어 모델 (LLM) 를 강조하는 현대 요약 기술에 대한 집중적인 검토를 소개합니다. 특히 BERT, RoBERTa 및 BART. 이 논문은 트랜스포머 기반의 요약 방법의 집중적인 검토를 제시하고, BERT, RoBERTa 및 BART의 비교 분석을 제공합니다.",
+        "sufficiency": "sufficient",
+        "evidence_pages": [
+          1,
+          2
+        ],
+        "wall_seconds": 8.564,
+        "api_runtime": {
+          "total_seconds": 8.219,
+          "retrieval_seconds": 0.943,
+          "generation_seconds": 7.276,
+          "generation_attempts": 1,
+          "llm_device": "cpu",
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": null
+        }
+      },
+      "exact_gold_page_hit": false,
+      "review": {
+        "question_id": "q-007-ko",
+        "verdict": "pass",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [],
+        "notes": "The Korean answer preserves the review focus and all three model names despite minor stylistic awkwardness."
+      }
+    },
+    {
+      "question_id": "q-010-en",
+      "paper_id": "paper-004",
+      "language": "en",
+      "question": "What problem does this paper address in deploying small NLP models on server CPUs?",
+      "expected": {
+        "gold_answer": "The paper addresses the need to make small NLP models efficient for production inference on server CPUs, where FP32 execution can be costly.",
+        "gold_page": 1
+      },
+      "actual": {
+        "answer": "This work strengthens the PyTorch-native inference path for small NLP models on server CPUs, enabling users to deploy SmoothQuant-optimized INT8 inference with minimal effort and without leaving the PyTorch ecosystem or using third-party tools. INT8 Inference of Small NLP Models on Xeon CPUsA PREPRINT • Comprehensive performance analysis with roofline models and benchmarks are conducted to show the effectiveness of the proposed workflow and optimizations. • Benchmarks are conducted on BERT, DistilBERT, and XLM-RoBERTa over SQuAD [Rajpurkar et al., 2016] and MultiNLI [Williams et al., 2018] showing negligible accuracy loss and substantial throughput gains compared to FP32 baselines. INT8 Inference of Small NLP Models on Xeon CPUsA PREPRINT server-class inference performance.",
+        "sufficiency": "sufficient",
+        "evidence_pages": [
+          2,
+          3
+        ],
+        "wall_seconds": 1.698,
+        "api_runtime": {
+          "total_seconds": 1.552,
+          "retrieval_seconds": 1.19,
+          "generation_seconds": 0.362,
+          "generation_attempts": 0,
+          "llm_device": "cpu",
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": null
+        }
+      },
+      "exact_gold_page_hit": false,
+      "review": {
+        "question_id": "q-010-en",
+        "verdict": "partial",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [
+          "response_focus"
+        ],
+        "notes": "The response describes the PyTorch-native INT8 solution and measured gains, but frames the FP32 server-cost problem only indirectly."
+      }
+    },
+    {
+      "question_id": "q-010-ko",
+      "paper_id": "paper-004",
+      "language": "ko",
+      "question": "이 논문은 서버 CPU에서 소형 NLP 모델을 배포할 때 어떤 문제를 다루는가?",
+      "expected": {
+        "gold_answer": "이 논문은 서버 CPU에서 소형 NLP 모델을 운영할 때 FP32 추론 비용이 커지는 문제를 다룬다.",
+        "gold_page": 1
+      },
+      "actual": {
+        "answer": "이 작업은 서버 CPU에 있는 작은 NLP 모델의 PyTorch 네이티브 추론 경로를 강화하여 사용자가 최소의 노력과 PyTorch 생태계를 떠나거나 제3자 도구를 사용하지 않고 SmoothQuant 최적화된 INT8 추론을 배포할 수 있게 한다. INT8 XEon CPU에 대한 작은 NLP 모델의 추론 (Inference of Small NLP Models on Xeon CPUsA PREPRINT) • 제안된 작업 흐름과 최적화의 효과를 보여주기 위해 지붕 라인 모델과 벤치마크와 함께 종합적인 성능 분석이 수행됩니다. • 벤치마크는 SQuAD [Rajpurkar et al., 2016] 및 MultiNLI [Williams et al., 2018]에 대해 BERT, DistilBERT, XLM-RoBERTa에 수행됩니다. FP32 기본 라인에 비해 무시할 수없는 정확성 손실과 상당한 처리량 향상을 보여줍니다.",
+        "sufficiency": "sufficient",
+        "evidence_pages": [
+          2
+        ],
+        "wall_seconds": 25.737,
+        "api_runtime": {
+          "total_seconds": 23.895,
+          "retrieval_seconds": 1.332,
+          "generation_seconds": 22.563,
+          "generation_attempts": 1,
+          "llm_device": "cpu",
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": null
+        }
+      },
+      "exact_gold_page_hit": false,
+      "review": {
+        "question_id": "q-010-ko",
+        "verdict": "partial",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [
+          "response_focus",
+          "translation_fluency"
+        ],
+        "notes": "The supported INT8 deployment solution is present, but the underlying FP32 cost problem is indirect and the translation is awkward."
+      }
+    },
+    {
+      "question_id": "q-031-en",
+      "paper_id": "paper-004",
+      "language": "en",
+      "question": "What trade-offs between inference speed, memory usage, and accuracy are discussed?",
+      "expected": {
+        "gold_answer": "INT8 inference improves throughput and memory efficiency on CPUs, while the reported trade-off is a possible accuracy cost that is negligible or absent in the evaluated models.",
+        "gold_page": 1
+      },
+      "actual": {
+        "answer": "Across BERT, DistilBERT, and XLM-RoBERTa benchmarks, the approach delivers up to 5.8× end-to-end throughput speedup with negligible—and in some cases no measurable—accuracy loss relative to the FP32 baseline. Static quantization generally offers lower runtime overhead, whereas dynamic quantization can sometimes preserve accuracy more effectively at the cost of additional execution work. Straightforward FP32 execution on CPU is often suboptimal because transformer inference is dominated by matrix multiplications (GEMM) with substantial compute and memory cost.",
+        "sufficiency": "sufficient",
+        "evidence_pages": [
+          1,
+          2
+        ],
+        "wall_seconds": 1.562,
+        "api_runtime": {
+          "total_seconds": 1.51,
+          "retrieval_seconds": 1.161,
+          "generation_seconds": 0.349,
+          "generation_attempts": 0,
+          "llm_device": "cpu",
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": null
+        }
+      },
+      "exact_gold_page_hit": true,
+      "review": {
+        "question_id": "q-031-en",
+        "verdict": "pass",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [],
+        "notes": "The response covers throughput gain, negligible accuracy loss, quantization-mode overhead, and the compute and memory cost of FP32 inference."
+      }
+    },
+    {
+      "question_id": "q-031-ko",
+      "paper_id": "paper-004",
+      "language": "ko",
+      "question": "추론 속도, 메모리 사용량, 정확도 사이의 어떤 trade-off가 논의되는가?",
+      "expected": {
+        "gold_answer": "INT8 추론은 CPU에서 throughput과 메모리 효율을 높이며, 평가된 모델에서는 정확도 비용이 매우 작거나 나타나지 않는 trade-off를 보인다.",
+        "gold_page": 1
+      },
+      "actual": {
+        "answer": "정적 양자화는 일반적으로 더 낮은 런타임 오버헤드를 제공합니다. 반면 역동적 양자화는 때때로 정확성을 더 효과적으로 유지할 수 있습니다. 3.1 SmoothQuant 및 Quantization 모드 트랜스포머 모델에서 활성화 외상값이 일반적이며 간단한 INT8 양량화에서 큰 양량화 오류로 이어질 수 있습니다.",
+        "sufficiency": "sufficient",
+        "evidence_pages": [
+          2
+        ],
+        "wall_seconds": 9.069,
+        "api_runtime": {
+          "total_seconds": 8.582,
+          "retrieval_seconds": 1.067,
+          "generation_seconds": 7.516,
+          "generation_attempts": 1,
+          "llm_device": "cpu",
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": null
+        }
+      },
+      "exact_gold_page_hit": false,
+      "review": {
+        "question_id": "q-031-ko",
+        "verdict": "partial",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [
+          "missing_detail",
+          "translation_fluency"
+        ],
+        "notes": "The static-versus-dynamic quantization trade-off is supported, but throughput and memory-efficiency gains are omitted."
+      }
+    },
+    {
+      "question_id": "q-014-en",
+      "paper_id": "paper-005",
+      "language": "en",
+      "question": "How does the proposed memory-bounded continuation approach work?",
+      "expected": {
+        "gold_answer": "ContCore performs greedy expansion on features from a new task and then greedy consolidation to enforce a fixed memory budget while preserving a representative coreset.",
+        "gold_page": 4
+      },
+      "actual": {
+        "answer": "JUNG ET AL: MEMORY -BOUNDED CONTINUA TION OF GREEDY SAMPLING FOR CAD3 To mitigate these issues, dedicated solutions for CAD [18, 19, 20, 27] have been proposed. The approach extends to online continual AD settings where prior methods fail significantly, demonstrating robustness beyond specif Greedy consolidation enforces the memory constraint by selecting maximally separated features from the combined set (red circles), producing a greedy-continued coreset that preserves coverage across tasks. parameters from old tasks from diluting, but often struggle to balance stability and plasticity.",
+        "sufficiency": "sufficient",
+        "evidence_pages": [
+          3,
+          14,
+          4
+        ],
+        "wall_seconds": 1.481,
+        "api_runtime": {
+          "total_seconds": 1.353,
+          "retrieval_seconds": 1.057,
+          "generation_seconds": 0.296,
+          "generation_attempts": 0,
+          "llm_device": "cpu",
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": null
+        }
+      },
+      "exact_gold_page_hit": true,
+      "review": {
+        "question_id": "q-014-en",
+        "verdict": "partial",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [
+          "missing_detail",
+          "source_noise"
+        ],
+        "notes": "Greedy consolidation and fixed-memory preservation are present, but greedy expansion is omitted and extracted header fragments reduce clarity."
+      }
+    },
+    {
+      "question_id": "q-014-ko",
+      "paper_id": "paper-005",
+      "language": "ko",
+      "question": "제안된 메모리 제한형 continuation 접근법은 어떻게 작동하는가?",
+      "expected": {
+        "gold_answer": "ContCore는 새 task의 feature에 greedy expansion을 적용한 뒤 greedy consolidation으로 고정 메모리 예산을 지키면서 대표적인 coreset을 유지한다.",
+        "gold_page": 4
+      },
+      "actual": {
+        "answer": "우리는 이전에 탐욕적으로 샘플링된 집합에 대해 탐욕적인 선택을 반복적으로 적용하는 계속된 탐욕적인 샘플링이 엄격한 메모리 한계 내에서 대표성을 효과적으로 보존한다는 것을 관찰합니다. JUNG ET AL: CAD3에 대한 염기-부착된 재배 샘플링의 연속성 이러한 문제를 완화하기 위해 CAD [18, 19, 20, 27]에 대한 전용 솔루션이 제안되었습니다.",
+        "sufficiency": "sufficient",
+        "evidence_pages": [
+          3
+        ],
+        "wall_seconds": 9.188,
+        "api_runtime": {
+          "total_seconds": 8.554,
+          "retrieval_seconds": 1.041,
+          "generation_seconds": 7.512,
+          "generation_attempts": 1,
+          "llm_device": "cpu",
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": null
+        }
+      },
+      "exact_gold_page_hit": false,
+      "review": {
+        "question_id": "q-014-ko",
+        "verdict": "partial",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [
+          "missing_detail",
+          "translation_fluency"
+        ],
+        "notes": "Continued greedy sampling and bounded-memory representativeness are stated, but the expansion and consolidation steps are not explained."
+      }
+    },
+    {
+      "question_id": "q-049-en",
+      "paper_id": "paper-005",
+      "language": "en",
+      "question": "What is the main conclusion about memory efficiency in continual anomaly detection?",
+      "expected": {
+        "gold_answer": "ContCore maintains fixed memory, provides a theoretical approximation guarantee, and degrades gracefully rather than catastrophically as continual tasks accumulate.",
+        "gold_page": 14
+      },
+      "actual": {
+        "answer": "We observed that continued greedy sampling effectively preserves representativeness under strict memory limits, and provided theoretical justification showing the greedy-continued coreset approximates the oracle coreset within a bounded gap. We observe thatcontinued greedy sampling, which iteratively applies greedy selection over previously greedy-sampled sets, effectively preserves representativeness under strict memory limits. Despite discarding data at each step to satisfy the memory constraint, coreset quality degrades gracefully rather than catastrophically, enabling reliable anomaly detection across the tasks.",
+        "sufficiency": "sufficient",
+        "evidence_pages": [
+          14,
+          1
+        ],
+        "wall_seconds": 1.658,
+        "api_runtime": {
+          "total_seconds": 1.65,
+          "retrieval_seconds": 1.269,
+          "generation_seconds": 0.381,
+          "generation_attempts": 0,
+          "llm_device": "cpu",
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": null
+        }
+      },
+      "exact_gold_page_hit": true,
+      "review": {
+        "question_id": "q-049-en",
+        "verdict": "pass",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [],
+        "notes": "The response states fixed-memory representativeness, the bounded-gap guarantee, and graceful rather than catastrophic degradation."
+      }
+    },
+    {
+      "question_id": "q-049-ko",
+      "paper_id": "paper-005",
+      "language": "ko",
+      "question": "지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 무엇인가?",
+      "expected": {
+        "gold_answer": "ContCore는 고정 메모리를 유지하고 이론적 근사 보장을 제공하며 지속적 task가 늘어날 때 성능이 급격히 무너지지 않고 점진적으로 저하된다.",
+        "gold_page": 14
+      },
+      "actual": {
+        "answer": "우리의 기여는 다음과 같습니다. • 우리는 지속적인 탐욕적인 샘플링이 엄격한 메모리 한계 내에서 효과적으로 대표성을 보존하고, 제한없는 메모리 성장 없이 지속적인 AD를 가능하게한다는 것을 관찰합니다. 우리는 계속된 탐욕적인 샘플링이 엄격한 메모리 한계 내에서 효과적으로 표현성을 보존하고 있으며 탐욕적인 계속된 코르셋이 제한된 격차 내에서 오라클 코르셋에 접근하는 이론적 정당화를 제공한다는 것을 관찰했습니다.",
+        "sufficiency": "sufficient",
+        "evidence_pages": [
+          3,
+          14
+        ],
+        "wall_seconds": 10.905,
+        "api_runtime": {
+          "total_seconds": 10.499,
+          "retrieval_seconds": 1.25,
+          "generation_seconds": 9.249,
+          "generation_attempts": 1,
+          "llm_device": "cpu",
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": null
+        }
+      },
+      "exact_gold_page_hit": true,
+      "review": {
+        "question_id": "q-049-ko",
+        "verdict": "partial",
+        "citation_support": "pass",
+        "language_match": true,
+        "failure_types": [
+          "missing_detail",
+          "translation_fluency"
+        ],
+        "notes": "Fixed memory and the bounded-gap guarantee are retained, while graceful performance degradation is omitted and wording is repetitive."
+      }
+    }
+  ]
+}

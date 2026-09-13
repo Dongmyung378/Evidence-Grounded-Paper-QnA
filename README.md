@@ -58,10 +58,17 @@ The runtime only searches chunks that belong to the selected paper. Uploaded pap
 | Real browser answer and evidence flow | Passed |
 | Real browser error handling and retry flow | Passed |
 | Docker Compose backend and UI health gate | Passed |
+| Fixed Docker Compose Q&A flow | 3 papers, 10/10 questions passed |
+| Container answer review | 4 pass, 6 partial, 0 fail |
+| Container English answer API mean | 1.470 seconds |
+| Container Korean answer API mean | 11.950 seconds |
+| Offline cached container restart | Passed |
 
 The retrieval figures use one manually verified gold page per question. The 20 expansion papers are used for parsing and runtime robustness checks, not accuracy claims, because they do not yet have manually verified questions and gold evidence.
 
 The balanced 20-question answer review improved from 1 pass, 4 partial, and 15 fail to 3 pass, 14 partial, and 3 fail. False abstentions fell from 7 to 2. The candidate used the exact saved retrieval evidence and did not load Gold during answer construction. The review was assistant-led rather than independently human-reviewed, and the paired questions represent 13 distinct meanings, so this is portfolio evidence rather than a production-quality claim. See [answer quality review](docs/reviews/answer_quality.md).
+
+The fixed Docker Compose benchmark also exercised fresh PDF upload, analysis, ten English and Korean questions, UI health, an offline cached restart, deterministic repeated output, and cleanup. All ten responses matched the requested language and returned supporting source evidence. Semantic review found 4 pass, 6 partial, and 0 fail. Korean remains supported for the portfolio demo, with slower CPU latency and translation fluency documented as limitations. See [Docker Compose Q&A benchmark](docs/reviews/container_qna.md).
 
 ## Quick start
 
@@ -246,6 +253,14 @@ python -B scripts/evaluate_container.py
 python -B scripts/validate_container.py
 ```
 
+Run or validate the fixed three-paper and ten-question container benchmark:
+
+```bash
+python -B scripts/run_container_qna_benchmark.py
+python -B scripts/build_container_qna_review.py
+python -B scripts/validate_container_qna.py
+```
+
 The integration evaluator starts Uvicorn on a temporary loopback port, calls the question endpoint with curl, verifies page and chunk traceability, and removes its temporary runtime directory afterward.
 
 ## Scope and limitations
@@ -263,5 +278,6 @@ Raw PDFs, QASPER source files, and user uploads remain local unless their redist
 - [Docker Compose local run](docs/deployment/docker.md)
 - [Quality and improvement review](docs/reviews/improvements.md)
 - [Local runtime performance](docs/reviews/runtime_performance.md)
+- [Docker Compose Q&A benchmark](docs/reviews/container_qna.md)
 
 The browser flow covers PDF upload, analysis, paper overview, question entry, answer display, traceable source evidence, localized upload errors, and recovery after parsing failure. The backend and UI also run as verified Docker Compose services. Local execution is the complete delivery boundary for this portfolio project.

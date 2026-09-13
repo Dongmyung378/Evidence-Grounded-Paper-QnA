@@ -44,6 +44,16 @@ python -B scripts/validate_container.py
 
 평가기는 사용하지 않는 포트에서 백엔드와 UI를 실행하고 상태 확인, HTTP 응답, 내부 서비스 연결, 비루트 사용자를 검사한 뒤 임시 컨테이너와 테스트 볼륨을 제거한다.
 
+논문 3편과 한영 질문 10개의 실제 컨테이너 질의응답, 오프라인 캐시 재시작, 답변 의미 품질은 다음 명령으로 재현하고 검증한다.
+
+```bash
+python -B scripts/run_container_qna_benchmark.py
+python -B scripts/build_container_qna_review.py
+python -B scripts/validate_container_qna.py
+```
+
+전체 벤치마크는 전용 Compose 프로젝트의 임시 실행 볼륨만 제거하고 모델 캐시는 반복 실행을 위해 보존한다. 검증 스크립트만 실행할 때는 Docker가 실행 중일 필요가 없다.
+
 로컬 포트폴리오 제공 범위와 공개 문서의 일관성은 다음 명령으로 확인한다.
 
 ```bash

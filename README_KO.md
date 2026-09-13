@@ -58,10 +58,17 @@ PDF 업로드
 | 실제 브라우저 답변 및 근거 흐름 | 통과 |
 | 실제 브라우저 오류 처리 및 재시도 흐름 | 통과 |
 | Docker Compose 백엔드 및 UI 상태 검증 | 통과 |
+| 고정 Docker Compose 질의응답 흐름 | 논문 3편, 질문 10/10 통과 |
+| 컨테이너 답변 검토 | 통과 4, 부분 통과 6, 실패 0 |
+| 컨테이너 영어 답변 API 평균 | 1.470초 |
+| 컨테이너 한국어 답변 API 평균 | 11.950초 |
+| 오프라인 캐시 컨테이너 재시작 | 통과 |
 
 검색 수치는 질문마다 수동으로 검증한 Gold 페이지 한 개를 기준으로 측정했습니다. 추가 논문 20편은 파싱과 실행 강건성 검증에 사용합니다. 아직 수동 검증 질문과 Gold 근거가 없으므로 정확도 수치에는 포함하지 않습니다.
 
 균형 있게 선정한 20문항 답변 검토는 기존 통과 1개, 부분 통과 4개, 실패 15개에서 통과 3개, 부분 통과 14개, 실패 3개로 개선됐습니다. 잘못된 거절은 7개에서 2개로 줄었습니다. 동일한 저장 검색 근거를 사용했고 답변 구성 중에는 Gold를 읽지 않았습니다. 다만 독립적인 사람 검토가 아닌 어시스턴트 주도 검토이고, 한영 쌍을 제외하면 서로 다른 질문 의미는 13개이므로 운영 수준 성능이 아닌 포트폴리오 검증으로 해석해야 합니다. 자세한 내용은 [답변 품질 검토](docs/reviews/answer_quality_KO.md)에 정리했습니다.
+
+고정 Docker Compose 벤치마크에서는 새로운 PDF 업로드와 분석, 한영 질문 10개, UI 상태, 오프라인 캐시 재시작, 재시작 전후 결정적 출력, 임시 자원 정리까지 실제로 수행했습니다. 10개 답변 모두 요청 언어와 이를 지지하는 원문 근거를 반환했습니다. 의미 검토 결과는 통과 4개, 부분 통과 6개, 실패 0개입니다. 한국어는 포트폴리오 범위에서 유지하되 CPU 속도와 번역 자연스러움의 한계를 함께 공개합니다. 자세한 내용은 [Docker Compose 질의응답 벤치마크](docs/reviews/container_qna_KO.md)를 참고하세요.
 
 ## 빠른 실행
 
@@ -246,6 +253,14 @@ python -B scripts/evaluate_container.py
 python -B scripts/validate_container.py
 ```
 
+논문 3편과 질문 10개의 고정 컨테이너 벤치마크를 실행하거나 저장 결과를 검증합니다.
+
+```bash
+python -B scripts/run_container_qna_benchmark.py
+python -B scripts/build_container_qna_review.py
+python -B scripts/validate_container_qna.py
+```
+
 통합 평가 스크립트는 임시 포트에 Uvicorn을 실행하고 curl로 질문 API를 호출합니다. 페이지와 청크 추적성을 확인한 뒤 임시 런타임 디렉터리를 제거합니다.
 
 ## 범위와 한계
@@ -263,5 +278,6 @@ python -B scripts/validate_container.py
 - [Docker Compose 로컬 실행](docs/deployment/docker_KO.md)
 - [품질 및 개선 검토](docs/reviews/improvements.md)
 - [로컬 실행 성능 개선](docs/reviews/runtime_performance_KO.md)
+- [Docker Compose 질의응답 벤치마크](docs/reviews/container_qna_KO.md)
 
 현재 브라우저 흐름은 PDF 업로드, 분석, 논문 개요, 질문 입력, 답변, 추적 가능한 원문 근거, 한영 업로드 오류, 파싱 실패 후 재시도까지 지원합니다. 백엔드와 UI의 Docker Compose 실행도 검증했습니다. 로컬 실행이 이 포트폴리오 프로젝트의 최종 제공 범위입니다.

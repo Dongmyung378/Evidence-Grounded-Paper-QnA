@@ -1,0 +1,764 @@
+{
+  "schema_version": 1,
+  "evaluation": "container-qna-3-paper-10-question",
+  "evaluated_at": "2026-09-13T02:29:07.280267+00:00",
+  "seed": 378,
+  "gold_loaded_during_execution": false,
+  "delivery": "Docker Compose local portfolio demo",
+  "compose_project": "paper-qna-container-benchmark",
+  "versions": {
+    "docker_client": "28.5.2",
+    "docker_server": "28.5.2",
+    "compose": "2.40.3-desktop.1"
+  },
+  "ports": {
+    "backend": 2730,
+    "ui": 2731
+  },
+  "build_seconds": 111.999,
+  "health_before": {
+    "status": "ok",
+    "service": "evidence-grounded-paper-qna",
+    "version": "0.41.0",
+    "seed": 378,
+    "storage": "ok",
+    "question_engine": "lazy",
+    "papers": 0,
+    "jobs": {
+      "queued": 0,
+      "running": 0,
+      "completed": 0,
+      "failed": 0
+    }
+  },
+  "health_after": {
+    "status": "ok",
+    "service": "evidence-grounded-paper-qna",
+    "version": "0.41.0",
+    "seed": 378,
+    "storage": "ok",
+    "question_engine": "ready",
+    "papers": 3,
+    "jobs": {
+      "queued": 0,
+      "running": 0,
+      "completed": 3,
+      "failed": 0
+    }
+  },
+  "ui_http_status": 200,
+  "provenance": {
+    "benchmark_config": "config/container_qna_benchmark.json",
+    "benchmark_config_sha256": "5bac9723ff61f9e067cca746c651dc7d711481533829296b270543b3215112ec",
+    "runtime_config_sha256": "89cc3f5a3e50aab81a901be07824f306ce3dd89ea22b92c8700d59bca71e16a0",
+    "answer_config_sha256": "49a2e0d072098f4eb27dc270c8d6da1afc8877985b39f11279f2ae3d88dd1293",
+    "translation_config_sha256": "a17777804c9deb1a4147e93bc33ed35c4b28d10313364de48f3e2bfe5f26cac5",
+    "implementation_sha256": "1e8ed8d793357d3f1ce70e5023b5a59cb1bd74f8a445227f99b6ad34bb5abedb"
+  },
+  "papers": [
+    {
+      "benchmark_paper_id": "paper-003",
+      "runtime_paper_id": "paper-6e79cf98c14e481aad16b6273cccf2e8",
+      "source_pdf": "data/raw/papers/paper-003.pdf",
+      "source_sha256": "b7c14b197f575310226c1bc6502d72e41c0fe14732b47b2204159a1e6f4b5b8a",
+      "source_size_bytes": 341371,
+      "upload_seconds": 0.083,
+      "analysis_seconds": 106.471,
+      "observed_job_states": [
+        "running",
+        "completed"
+      ],
+      "page_count": 10,
+      "text_page_count": 10,
+      "chunk_count": 40,
+      "warning_count": 23,
+      "question_runtime_preparation": {
+        "status": "ready",
+        "runtime_seconds": 99.324,
+        "embedding_device": "cpu",
+        "reranker_device": "cpu",
+        "embedding_cache_hit": false,
+        "generator": {
+          "provider": "local_nllb",
+          "model": "facebook/nllb-200-distilled-600M",
+          "revision": "38bd1c6a0f58097b26ef7c7cd73a0dcac034350a",
+          "license": "cc-by-nc-4.0",
+          "device": "cpu",
+          "dtype": "float32",
+          "device_fallback_reason": null,
+          "config_path": "config/translation.json",
+          "config_fingerprint": "6f7446c3aca9eb596585b118b31f24e85961854452bff24df23c5473e23a1c1b"
+        }
+      }
+    },
+    {
+      "benchmark_paper_id": "paper-004",
+      "runtime_paper_id": "paper-dc7df58b4bfb41ab999e9f1db830fb78",
+      "source_pdf": "data/raw/papers/paper-004.pdf",
+      "source_sha256": "3dcf01604636e56dbb3e0a8e313ed301bb5993d3ed68e28a1e8775f8c0a00c8f",
+      "source_size_bytes": 343642,
+      "upload_seconds": 0.082,
+      "analysis_seconds": 4.156,
+      "observed_job_states": [
+        "running",
+        "completed"
+      ],
+      "page_count": 13,
+      "text_page_count": 13,
+      "chunk_count": 58,
+      "warning_count": 21,
+      "question_runtime_preparation": {
+        "status": "ready",
+        "runtime_seconds": 3.131,
+        "embedding_device": "cpu",
+        "reranker_device": "cpu",
+        "embedding_cache_hit": false,
+        "generator": {
+          "provider": "local_nllb",
+          "model": "facebook/nllb-200-distilled-600M",
+          "revision": "38bd1c6a0f58097b26ef7c7cd73a0dcac034350a",
+          "license": "cc-by-nc-4.0",
+          "device": "cpu",
+          "dtype": "float32",
+          "device_fallback_reason": null,
+          "config_path": "config/translation.json",
+          "config_fingerprint": "6f7446c3aca9eb596585b118b31f24e85961854452bff24df23c5473e23a1c1b"
+        }
+      }
+    },
+    {
+      "benchmark_paper_id": "paper-005",
+      "runtime_paper_id": "paper-8cdcec6de09440348802e15d3e582707",
+      "source_pdf": "data/raw/papers/paper-005.pdf",
+      "source_sha256": "7141652c549f81dcc74c06d03e95db730f4cb8b7ef313d2dbe32eefa05c61399",
+      "source_size_bytes": 13094177,
+      "upload_seconds": 0.288,
+      "analysis_seconds": 7.898,
+      "observed_job_states": [
+        "running",
+        "completed"
+      ],
+      "page_count": 26,
+      "text_page_count": 26,
+      "chunk_count": 97,
+      "warning_count": 47,
+      "question_runtime_preparation": {
+        "status": "ready",
+        "runtime_seconds": 5.335,
+        "embedding_device": "cpu",
+        "reranker_device": "cpu",
+        "embedding_cache_hit": false,
+        "generator": {
+          "provider": "local_nllb",
+          "model": "facebook/nllb-200-distilled-600M",
+          "revision": "38bd1c6a0f58097b26ef7c7cd73a0dcac034350a",
+          "license": "cc-by-nc-4.0",
+          "device": "cpu",
+          "dtype": "float32",
+          "device_fallback_reason": null,
+          "config_path": "config/translation.json",
+          "config_fingerprint": "6f7446c3aca9eb596585b118b31f24e85961854452bff24df23c5473e23a1c1b"
+        }
+      }
+    }
+  ],
+  "results": [
+    {
+      "question_id": "q-007-en",
+      "benchmark_paper_id": "paper-003",
+      "runtime_paper_id": "paper-6e79cf98c14e481aad16b6273cccf2e8",
+      "question": "What is the main focus of this paper's review of text summarization?",
+      "language": "en",
+      "answer": "This article presents a focused review of modern summarization techniques with an emphasis on transformer -based models and large language models (LLMs), specifically BERT, RoBERTa and BART. This paper presents a focused review of transformer-based summarization methods, with a comparative analysis of BERT, RoBERTa, and BART. Text summarization refers to the task of condensing a document into a shorter version while preserving its key information.",
+      "sufficiency": "sufficient",
+      "abstention_reason": null,
+      "evidence": [
+        {
+          "evidence_id": "ev-01-paper-6e79cf98c14e481aad16b6273cccf2e8-p001-c002",
+          "page": 1,
+          "section": "ABSTRACT",
+          "text": "ABSTRACT Text summarization refers to the task of condensing a document into a shorter version while preserving its key information. Automatic text summarization (ATS), driven by advancements in natural language processing (NLP), has developed rapidly in recent years. ATS methods are commonly categorized by input type (such as single-document or multi-document summarization) and by output type (extractive, abstractive, and hybrid). This article presents a focused review of modern summarization techniques with an emphasis on transformer -based models and large language models (LLMs), specifically BERT, RoBERTa and BART. It examines their architectures, pretraining strategies, and their suitability for extractive and abstractive summarization tasks. The paper also discusses key challenges, including computational requirements, data limitations, and issues such as factual i nconsistency in generated summaries, and highlights the strengths and limitations of encoder-only and encoder–decoder models. KEYWORDS Abstractive summarization, extractive summarization, Large Language Models, transformer models, BART, BERT, RoBERTa.",
+          "locator": {
+            "page_label": "p. 1",
+            "section": "ABSTRACT",
+            "chunk_id": "paper-6e79cf98c14e481aad16b6273cccf2e8-p001-c002"
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-6e79cf98c14e481aad16b6273cccf2e8-p002-c001",
+          "page": 2,
+          "section": "1. INTRODUCTION",
+          "text": "2 transformer architectures for summarization. In particular, there is limited discussion on how architectural differences between encoder-only and encoder–decoder models influence their performance and suitability for extractive and abstractive tasks. This paper presents a focused review of transformer-based summarization methods, with a comparative analysis of BERT, RoBERTa, and BART. It examines their architectures, pretraining strategies, and applications in ATS, and discusses their strengths, limitations, and practical considerations. The goal is to provide a clearer understanding of how these models differ and to support the selection of appropriate approaches for different summarization tasks and resource settings. This paper is organized as follows. Section-2 presents a review of related work and foundational concepts in Automatic Text Summarization (ATS). Section-3 describes the methodologies employed in the study, including dataset selection, preprocessing procedures, and model training. Section -4 examines the challenges encountered during the implementation process, along with relevant challenges reported in prior research. Section-5 details the experimental results and",
+          "locator": {
+            "page_label": "p. 2",
+            "section": "1. INTRODUCTION",
+            "chunk_id": "paper-6e79cf98c14e481aad16b6273cccf2e8-p002-c001"
+          }
+        }
+      ],
+      "wall_seconds": 1.408,
+      "api_runtime": {
+        "total_seconds": 1.285,
+        "retrieval_seconds": 0.991,
+        "generation_seconds": 0.294,
+        "generation_attempts": 0,
+        "llm_device": "cpu",
+        "device_fallback_reason": null,
+        "fallback_used": false,
+        "abstention_source": null
+      }
+    },
+    {
+      "question_id": "q-007-ko",
+      "benchmark_paper_id": "paper-003",
+      "runtime_paper_id": "paper-6e79cf98c14e481aad16b6273cccf2e8",
+      "question": "이 논문이 텍스트 요약을 검토하면서 중점적으로 다루는 내용은 무엇인가?",
+      "language": "ko",
+      "answer": "이 문서에서는 트랜스포머 기반 모델과 큰 언어 모델 (LLM) 를 강조하는 현대 요약 기술에 대한 집중적인 검토를 소개합니다. 특히 BERT, RoBERTa 및 BART. 이 논문은 트랜스포머 기반의 요약 방법의 집중적인 검토를 제시하고, BERT, RoBERTa 및 BART의 비교 분석을 제공합니다.",
+      "sufficiency": "sufficient",
+      "abstention_reason": null,
+      "evidence": [
+        {
+          "evidence_id": "ev-01-paper-6e79cf98c14e481aad16b6273cccf2e8-p001-c002",
+          "page": 1,
+          "section": "ABSTRACT",
+          "text": "ABSTRACT Text summarization refers to the task of condensing a document into a shorter version while preserving its key information. Automatic text summarization (ATS), driven by advancements in natural language processing (NLP), has developed rapidly in recent years. ATS methods are commonly categorized by input type (such as single-document or multi-document summarization) and by output type (extractive, abstractive, and hybrid). This article presents a focused review of modern summarization techniques with an emphasis on transformer -based models and large language models (LLMs), specifically BERT, RoBERTa and BART. It examines their architectures, pretraining strategies, and their suitability for extractive and abstractive summarization tasks. The paper also discusses key challenges, including computational requirements, data limitations, and issues such as factual i nconsistency in generated summaries, and highlights the strengths and limitations of encoder-only and encoder–decoder models. KEYWORDS Abstractive summarization, extractive summarization, Large Language Models, transformer models, BART, BERT, RoBERTa.",
+          "locator": {
+            "page_label": "p. 1",
+            "section": "ABSTRACT",
+            "chunk_id": "paper-6e79cf98c14e481aad16b6273cccf2e8-p001-c002"
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-6e79cf98c14e481aad16b6273cccf2e8-p002-c001",
+          "page": 2,
+          "section": "1. INTRODUCTION",
+          "text": "2 transformer architectures for summarization. In particular, there is limited discussion on how architectural differences between encoder-only and encoder–decoder models influence their performance and suitability for extractive and abstractive tasks. This paper presents a focused review of transformer-based summarization methods, with a comparative analysis of BERT, RoBERTa, and BART. It examines their architectures, pretraining strategies, and applications in ATS, and discusses their strengths, limitations, and practical considerations. The goal is to provide a clearer understanding of how these models differ and to support the selection of appropriate approaches for different summarization tasks and resource settings. This paper is organized as follows. Section-2 presents a review of related work and foundational concepts in Automatic Text Summarization (ATS). Section-3 describes the methodologies employed in the study, including dataset selection, preprocessing procedures, and model training. Section -4 examines the challenges encountered during the implementation process, along with relevant challenges reported in prior research. Section-5 details the experimental results and",
+          "locator": {
+            "page_label": "p. 2",
+            "section": "1. INTRODUCTION",
+            "chunk_id": "paper-6e79cf98c14e481aad16b6273cccf2e8-p002-c001"
+          }
+        }
+      ],
+      "wall_seconds": 8.564,
+      "api_runtime": {
+        "total_seconds": 8.219,
+        "retrieval_seconds": 0.943,
+        "generation_seconds": 7.276,
+        "generation_attempts": 1,
+        "llm_device": "cpu",
+        "device_fallback_reason": null,
+        "fallback_used": false,
+        "abstention_source": null
+      }
+    },
+    {
+      "question_id": "q-010-en",
+      "benchmark_paper_id": "paper-004",
+      "runtime_paper_id": "paper-dc7df58b4bfb41ab999e9f1db830fb78",
+      "question": "What problem does this paper address in deploying small NLP models on server CPUs?",
+      "language": "en",
+      "answer": "This work strengthens the PyTorch-native inference path for small NLP models on server CPUs, enabling users to deploy SmoothQuant-optimized INT8 inference with minimal effort and without leaving the PyTorch ecosystem or using third-party tools. INT8 Inference of Small NLP Models on Xeon CPUsA PREPRINT • Comprehensive performance analysis with roofline models and benchmarks are conducted to show the effectiveness of the proposed workflow and optimizations. • Benchmarks are conducted on BERT, DistilBERT, and XLM-RoBERTa over SQuAD [Rajpurkar et al., 2016] and MultiNLI [Williams et al., 2018] showing negligible accuracy loss and substantial throughput gains compared to FP32 baselines. INT8 Inference of Small NLP Models on Xeon CPUsA PREPRINT server-class inference performance.",
+      "sufficiency": "sufficient",
+      "abstention_reason": null,
+      "evidence": [
+        {
+          "evidence_id": "ev-01-paper-dc7df58b4bfb41ab999e9f1db830fb78-p002-c001",
+          "page": 2,
+          "section": "1 Introduction",
+          "text": "INT8 Inference of Small NLP Models on Xeon CPUsA PREPRINT • Comprehensive performance analysis with roofline models and benchmarks are conducted to show the effectiveness of the proposed workflow and optimizations. • Benchmarks are conducted on BERT, DistilBERT, and XLM-RoBERTa over SQuAD [Rajpurkar et al., 2016] and MultiNLI [Williams et al., 2018] showing negligible accuracy loss and substantial throughput gains compared to FP32 baselines. This work strengthens the PyTorch-native inference path for small NLP models on server CPUs, enabling users to deploy SmoothQuant-optimized INT8 inference with minimal effort and without leaving the PyTorch ecosystem or using third-party tools.",
+          "locator": {
+            "page_label": "p. 2",
+            "section": "1 Introduction",
+            "chunk_id": "paper-dc7df58b4bfb41ab999e9f1db830fb78-p002-c001"
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-dc7df58b4bfb41ab999e9f1db830fb78-p003-c001",
+          "page": 3,
+          "section": "3.2 PyTorch and TorchAO",
+          "text": "INT8 Inference of Small NLP Models on Xeon CPUsA PREPRINT server-class inference performance. Ahead-of-Time Inductor (AOTI) is a specialized version of TorchInductor that compiles the model into a shared binary, eliminating Python overhead and enabling easier integration into production systems. TorchAO is the PyTorch-native quantization library that provides user-friendly APIs for PTQ and QAT [Or et al., 2025]. It supports a range of low-precision data types and quantization methods through a modular design. 3.3 Challenges The integration of SmoothQuant is straightforward in terms of correctness, but achieving high performance on CPU requires additional engineering effort. TorchAO quantizes models in eager mode without backend-aware lowering or graph-level optimization. That makes the resulting model correct, but not necessarily fast enough for production CPU inference. To achieve peak performance with native PyTorch, the quantized model must be compiled with TorchInductor, which introduces several engineering challenges: • The SmoothQuant workflow shares common code with existing TorchAO quantization flows, which contain inefficient operations for high-performance inference. • Th",
+          "locator": {
+            "page_label": "p. 3",
+            "section": "3.2 PyTorch and TorchAO",
+            "chunk_id": "paper-dc7df58b4bfb41ab999e9f1db830fb78-p003-c001"
+          }
+        }
+      ],
+      "wall_seconds": 1.698,
+      "api_runtime": {
+        "total_seconds": 1.552,
+        "retrieval_seconds": 1.19,
+        "generation_seconds": 0.362,
+        "generation_attempts": 0,
+        "llm_device": "cpu",
+        "device_fallback_reason": null,
+        "fallback_used": false,
+        "abstention_source": null
+      }
+    },
+    {
+      "question_id": "q-010-ko",
+      "benchmark_paper_id": "paper-004",
+      "runtime_paper_id": "paper-dc7df58b4bfb41ab999e9f1db830fb78",
+      "question": "이 논문은 서버 CPU에서 소형 NLP 모델을 배포할 때 어떤 문제를 다루는가?",
+      "language": "ko",
+      "answer": "이 작업은 서버 CPU에 있는 작은 NLP 모델의 PyTorch 네이티브 추론 경로를 강화하여 사용자가 최소의 노력과 PyTorch 생태계를 떠나거나 제3자 도구를 사용하지 않고 SmoothQuant 최적화된 INT8 추론을 배포할 수 있게 한다. INT8 XEon CPU에 대한 작은 NLP 모델의 추론 (Inference of Small NLP Models on Xeon CPUsA PREPRINT) • 제안된 작업 흐름과 최적화의 효과를 보여주기 위해 지붕 라인 모델과 벤치마크와 함께 종합적인 성능 분석이 수행됩니다. • 벤치마크는 SQuAD [Rajpurkar et al., 2016] 및 MultiNLI [Williams et al., 2018]에 대해 BERT, DistilBERT, XLM-RoBERTa에 수행됩니다. FP32 기본 라인에 비해 무시할 수없는 정확성 손실과 상당한 처리량 향상을 보여줍니다.",
+      "sufficiency": "sufficient",
+      "abstention_reason": null,
+      "evidence": [
+        {
+          "evidence_id": "ev-01-paper-dc7df58b4bfb41ab999e9f1db830fb78-p002-c001",
+          "page": 2,
+          "section": "1 Introduction",
+          "text": "INT8 Inference of Small NLP Models on Xeon CPUsA PREPRINT • Comprehensive performance analysis with roofline models and benchmarks are conducted to show the effectiveness of the proposed workflow and optimizations. • Benchmarks are conducted on BERT, DistilBERT, and XLM-RoBERTa over SQuAD [Rajpurkar et al., 2016] and MultiNLI [Williams et al., 2018] showing negligible accuracy loss and substantial throughput gains compared to FP32 baselines. This work strengthens the PyTorch-native inference path for small NLP models on server CPUs, enabling users to deploy SmoothQuant-optimized INT8 inference with minimal effort and without leaving the PyTorch ecosystem or using third-party tools.",
+          "locator": {
+            "page_label": "p. 2",
+            "section": "1 Introduction",
+            "chunk_id": "paper-dc7df58b4bfb41ab999e9f1db830fb78-p002-c001"
+          }
+        }
+      ],
+      "wall_seconds": 25.737,
+      "api_runtime": {
+        "total_seconds": 23.895,
+        "retrieval_seconds": 1.332,
+        "generation_seconds": 22.563,
+        "generation_attempts": 1,
+        "llm_device": "cpu",
+        "device_fallback_reason": null,
+        "fallback_used": false,
+        "abstention_source": null
+      }
+    },
+    {
+      "question_id": "q-031-en",
+      "benchmark_paper_id": "paper-004",
+      "runtime_paper_id": "paper-dc7df58b4bfb41ab999e9f1db830fb78",
+      "question": "What trade-offs between inference speed, memory usage, and accuracy are discussed?",
+      "language": "en",
+      "answer": "Across BERT, DistilBERT, and XLM-RoBERTa benchmarks, the approach delivers up to 5.8× end-to-end throughput speedup with negligible—and in some cases no measurable—accuracy loss relative to the FP32 baseline. Static quantization generally offers lower runtime overhead, whereas dynamic quantization can sometimes preserve accuracy more effectively at the cost of additional execution work. Straightforward FP32 execution on CPU is often suboptimal because transformer inference is dominated by matrix multiplications (GEMM) with substantial compute and memory cost.",
+      "sufficiency": "sufficient",
+      "abstention_reason": null,
+      "evidence": [
+        {
+          "evidence_id": "ev-01-paper-dc7df58b4bfb41ab999e9f1db830fb78-p001-c002",
+          "page": 1,
+          "section": "ABSTRACT",
+          "text": "ABSTRACT Small NLP models, especially BERT-family encoders, remain important in industrial workloads such as classification, ranking, and retrieval even in the era of large language models. On server CPUs, INT8 quantization offers an attractive latency-throughput-cost trade-off, but users increasingly expect such acceleration to be available directly in the native PyTorch stack. We integrate SmoothQuant into TorchAO and optimize the resulting inference path for Intel Xeon CPUs through graph-level fusion in TorchInductor and efficient INT8 GEMM kernel selection across oneDNN-, A VX512_VNNI-, and AMX-based implementations. Across BERT, DistilBERT, and XLM-RoBERTa benchmarks, the approach delivers up to 5.8× end-to-end throughput speedup with negligible—and in some cases no measurable—accuracy loss relative to the FP32 baseline. We also validated our work by detailed performance analysis with roofline models. The implementation has been upstreamed to PyTorch and TorchAO, enabling out-of-the-box deployment with native PyTorch tooling. KeywordsNLP·INT8 quantization·CPU inference·PyTorch·TorchInductor·Roofline Model·Intel Xeon",
+          "locator": {
+            "page_label": "p. 1",
+            "section": "ABSTRACT",
+            "chunk_id": "paper-dc7df58b4bfb41ab999e9f1db830fb78-p001-c002"
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-dc7df58b4bfb41ab999e9f1db830fb78-p002-c006",
+          "page": 2,
+          "section": "3.1 SmoothQuant and Quantization Modes",
+          "text": "ization, they are computed at runtime and may vary by input. Static quantization generally offers lower runtime overhead, whereas dynamic quantization can sometimes preserve accuracy more effectively at the cost of additional execution work.",
+          "locator": {
+            "page_label": "p. 2",
+            "section": "3.1 SmoothQuant and Quantization Modes",
+            "chunk_id": "paper-dc7df58b4bfb41ab999e9f1db830fb78-p002-c006"
+          }
+        },
+        {
+          "evidence_id": "ev-02-paper-dc7df58b4bfb41ab999e9f1db830fb78-p001-c003",
+          "page": 1,
+          "section": "1 Introduction",
+          "text": "1 Introduction Although large language models (LLMs) have attracted much of the recent attention, small NLP models based on the BERT family remain widely deployed for production tasks such as classification, ranking, and retrieval [Devlin et al., 2019, Sanh et al., 2019, Conneau et al., 2020]. CPU inference continues to play a central role in such deployments because of its favorable cost profile and the ubiquity of server CPU infrastructure. Within the PyTorch ecosystem, there is strong demand for efficient inference using the native software stack. Straightforward FP32 execution on CPU is often suboptimal because transformer inference is dominated by matrix multiplications (GEMM) with substantial compute and memory cost. INT8 quantization is a widely adopted technique for reducing both footprint and execution time while maintaining acceptable accuracy [Jacob et al., 2018, Nagel et al., 2021]. At the same time, modern Intel Xeon CPUs expose instruction-set support such as VNNI and AMX that can substantially accelerate INT8 GEMM workloads [Intel Corporation, 2023]. In this work, we integrate SmoothQuant [Xiao et al., 2023], a post-training quantization method designed to mitigate a",
+          "locator": {
+            "page_label": "p. 1",
+            "section": "1 Introduction",
+            "chunk_id": "paper-dc7df58b4bfb41ab999e9f1db830fb78-p001-c003"
+          }
+        }
+      ],
+      "wall_seconds": 1.562,
+      "api_runtime": {
+        "total_seconds": 1.51,
+        "retrieval_seconds": 1.161,
+        "generation_seconds": 0.349,
+        "generation_attempts": 0,
+        "llm_device": "cpu",
+        "device_fallback_reason": null,
+        "fallback_used": false,
+        "abstention_source": null
+      }
+    },
+    {
+      "question_id": "q-031-ko",
+      "benchmark_paper_id": "paper-004",
+      "runtime_paper_id": "paper-dc7df58b4bfb41ab999e9f1db830fb78",
+      "question": "추론 속도, 메모리 사용량, 정확도 사이의 어떤 trade-off가 논의되는가?",
+      "language": "ko",
+      "answer": "정적 양자화는 일반적으로 더 낮은 런타임 오버헤드를 제공합니다. 반면 역동적 양자화는 때때로 정확성을 더 효과적으로 유지할 수 있습니다. 3.1 SmoothQuant 및 Quantization 모드 트랜스포머 모델에서 활성화 외상값이 일반적이며 간단한 INT8 양량화에서 큰 양량화 오류로 이어질 수 있습니다.",
+      "sufficiency": "sufficient",
+      "abstention_reason": null,
+      "evidence": [
+        {
+          "evidence_id": "ev-04-paper-dc7df58b4bfb41ab999e9f1db830fb78-p002-c005",
+          "page": 2,
+          "section": "3.1 SmoothQuant and Quantization Modes",
+          "text": "3.1 SmoothQuant and Quantization Modes Activation outliers are common in transformer models and can lead to large quantization error under straightforward INT8 quantization. SmoothQuant [Xiao et al., 2023] addresses this issue by redistributing scale factors between activations and weights: the activation tensor is divided by a per-channel smoothing factor, while the corresponding weight tensor is multiplied by the same factor. This transformation reduces activation outliers while preserving the linear layer mathematically. The smoothing factors are derived offline using a small calibration dataset. After smoothing, the model becomes substantially more amenable to standard INT8 quantization [Jacob et al., 2018, Nagel et al., 2021]. The resulting quantization flow can be either static or dynamic, depending on when activation quantization parameters are determined. In static quantization, scales and zero points are obtained during calibration and then fixed in the graph. In dynamic quantization, they are computed at runtime and may vary by input. Static quantization generally offers lower runtime overhead, whereas dynamic quantization can sometimes preserve accuracy more effectively",
+          "locator": {
+            "page_label": "p. 2",
+            "section": "3.1 SmoothQuant and Quantization Modes",
+            "chunk_id": "paper-dc7df58b4bfb41ab999e9f1db830fb78-p002-c005"
+          }
+        }
+      ],
+      "wall_seconds": 9.069,
+      "api_runtime": {
+        "total_seconds": 8.582,
+        "retrieval_seconds": 1.067,
+        "generation_seconds": 7.516,
+        "generation_attempts": 1,
+        "llm_device": "cpu",
+        "device_fallback_reason": null,
+        "fallback_used": false,
+        "abstention_source": null
+      }
+    },
+    {
+      "question_id": "q-014-en",
+      "benchmark_paper_id": "paper-005",
+      "runtime_paper_id": "paper-8cdcec6de09440348802e15d3e582707",
+      "question": "How does the proposed memory-bounded continuation approach work?",
+      "language": "en",
+      "answer": "JUNG ET AL: MEMORY -BOUNDED CONTINUA TION OF GREEDY SAMPLING FOR CAD3 To mitigate these issues, dedicated solutions for CAD [18, 19, 20, 27] have been proposed. The approach extends to online continual AD settings where prior methods fail significantly, demonstrating robustness beyond specif Greedy consolidation enforces the memory constraint by selecting maximally separated features from the combined set (red circles), producing a greedy-continued coreset that preserves coverage across tasks. parameters from old tasks from diluting, but often struggle to balance stability and plasticity.",
+      "sufficiency": "sufficient",
+      "abstention_reason": null,
+      "evidence": [
+        {
+          "evidence_id": "ev-01-paper-8cdcec6de09440348802e15d3e582707-p003-c001",
+          "page": 3,
+          "section": "1 Introduction",
+          "text": "JUNG ET AL: MEMORY -BOUNDED CONTINUA TION OF GREEDY SAMPLING FOR CAD3 To mitigate these issues, dedicated solutions for CAD [18, 19, 20, 27] have been proposed. Memory-based methods such as DNE [18] and UCAD [20] handle multiple steps of simple tasks well, but struggle on complex ones (e.g., 10-class task in Fig. 1(a) bottom). Conversely, parameter regularization-based methods such as CDAD [19] and IUF [27] use iterative SVD to project the gradients of new tasks into the null space of parameters to minimize changes to previous task information, but still suffer from forgetting with a large number of tasks (Fig. 1(a) top). A natural question arises: can we design a bounded coreset that preserves the representational quality of an unbounded one? Greedy sampling selects maximally separated points, producing a compact yet representative summary of normal data [26]. Since anomaly detection relies on measuring distance from normality, a representative coreset is essential for reliable detection. Extending this property to the continual setting under fixed memory is non-trivial. We observe thatcontinued greedy sampling, which iteratively applies greedy selection over previously greedy-sam",
+          "locator": {
+            "page_label": "p. 3",
+            "section": "1 Introduction",
+            "chunk_id": "paper-8cdcec6de09440348802e15d3e582707-p003-c001"
+          }
+        },
+        {
+          "evidence_id": "ev-04-paper-8cdcec6de09440348802e15d3e582707-p014-c003",
+          "page": 14,
+          "section": "6 Conclusion",
+          "text": "6 Conclusion Greedy sampling selects maximally separated points, producing a compact yet representative summary of normal data. Since anomaly detection relies on measuring distance from normality, a representative coreset is essential for reliable detection. The challenge for continual AD is maintaining representativeness as tasks accumulate under memory constraints. We observed that continued greedy sampling effectively preserves representativeness under strict memory limits, and provided theoretical justification showing the greedy-continued coreset approximates the oracle coreset within a bounded gap. We instantiated this principle in ContCore, which constructs a greedy-continued coreset through greedy expansion and consolidation. Unlike neural methods susceptible to catastrophic forgetting or naive coreset methods requiring unbounded memory, ContCore maintains fixed memory with theoretical guarantees. ContCore achieves state-of-the-art results across 11 continual task schedules on MVTecAD and VisA while maintaining efficient training and inference. The approach extends to online continual AD settings where prior methods fail significantly, demonstrating robustness beyond specif",
+          "locator": {
+            "page_label": "p. 14",
+            "section": "6 Conclusion",
+            "chunk_id": "paper-8cdcec6de09440348802e15d3e582707-p014-c003"
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-8cdcec6de09440348802e15d3e582707-p004-c001",
+          "page": 4,
+          "section": "2 Related works",
+          "text": "4JUNG ET AL: MEMORY -BOUNDED CONTINUA TION OF GREEDY SAMPLING FOR CAD Figure 2: Memory-bounded continuation of greedy sampling via ContCore. Greedy expansion selects maximally distant features from new task features relative to the current coreset (green circles). Greedy consolidation enforces the memory constraint by selecting maximally separated features from the combined set (red circles), producing a greedy-continued coreset that preserves coverage across tasks. parameters from old tasks from diluting, but often struggle to balance stability and plasticity. Replay-based methods [25], inspired by biological mechanisms [28], store a subset of past data in a memory buffer to interleave with new data during training. Though effective, they scale poorly as memory grows with task count, and their performance heavily depends on replay-sample quality [3, 24]. Continual anomaly detection (CAD)DNE [ 18] models each task features with the mean vector and covariance matrix of the assumed Gaussian distributions for fast, lightweight training and inference, but struggles with complex, multi-class tasks and lacks pixel-level AD ability. UCAD [20] uses a memory bank with key-prompt modules, co",
+          "locator": {
+            "page_label": "p. 4",
+            "section": "2 Related works",
+            "chunk_id": "paper-8cdcec6de09440348802e15d3e582707-p004-c001"
+          }
+        }
+      ],
+      "wall_seconds": 1.481,
+      "api_runtime": {
+        "total_seconds": 1.353,
+        "retrieval_seconds": 1.057,
+        "generation_seconds": 0.296,
+        "generation_attempts": 0,
+        "llm_device": "cpu",
+        "device_fallback_reason": null,
+        "fallback_used": false,
+        "abstention_source": null
+      }
+    },
+    {
+      "question_id": "q-014-ko",
+      "benchmark_paper_id": "paper-005",
+      "runtime_paper_id": "paper-8cdcec6de09440348802e15d3e582707",
+      "question": "제안된 메모리 제한형 continuation 접근법은 어떻게 작동하는가?",
+      "language": "ko",
+      "answer": "우리는 이전에 탐욕적으로 샘플링된 집합에 대해 탐욕적인 선택을 반복적으로 적용하는 계속된 탐욕적인 샘플링이 엄격한 메모리 한계 내에서 대표성을 효과적으로 보존한다는 것을 관찰합니다. JUNG ET AL: CAD3에 대한 염기-부착된 재배 샘플링의 연속성 이러한 문제를 완화하기 위해 CAD [18, 19, 20, 27]에 대한 전용 솔루션이 제안되었습니다.",
+      "sufficiency": "sufficient",
+      "abstention_reason": null,
+      "evidence": [
+        {
+          "evidence_id": "ev-05-paper-8cdcec6de09440348802e15d3e582707-p003-c002",
+          "page": 3,
+          "section": "1 Introduction",
+          "text": "ion. Extending this property to the continual setting under fixed memory is non-trivial. We observe thatcontinued greedy sampling, which iteratively applies greedy selection over previously greedy-sampled sets, effectively preserves representativeness under strict memory limits. We call the resulting set agreedy-continued coresetand provide theoretical justification by showing it approximates the oracle coreset within a bounded gap. We implement this principle through ContCore, which constructs the greedy-continued coreset via two steps: greedy expansion samples features from the new task that are maximally distant from the current coreset, and greedy consolidation enforces the memory constraint while preserving representativeness. Our contributions are: • We observe that continued greedy sampling effectively preserves representativeness under strict memory limits, enabling continual AD without unbounded memory growth. We provide theoretical justification by showing the resulting greedy-continued coreset approximates the oracle coreset within a bounded gap. • We instantiate this principle in ContCore, which constructs agreedy-continued coreset that maintains representativeness of n",
+          "locator": {
+            "page_label": "p. 3",
+            "section": "1 Introduction",
+            "chunk_id": "paper-8cdcec6de09440348802e15d3e582707-p003-c002"
+          }
+        },
+        {
+          "evidence_id": "ev-01-paper-8cdcec6de09440348802e15d3e582707-p003-c001",
+          "page": 3,
+          "section": "1 Introduction",
+          "text": "JUNG ET AL: MEMORY -BOUNDED CONTINUA TION OF GREEDY SAMPLING FOR CAD3 To mitigate these issues, dedicated solutions for CAD [18, 19, 20, 27] have been proposed. Memory-based methods such as DNE [18] and UCAD [20] handle multiple steps of simple tasks well, but struggle on complex ones (e.g., 10-class task in Fig. 1(a) bottom). Conversely, parameter regularization-based methods such as CDAD [19] and IUF [27] use iterative SVD to project the gradients of new tasks into the null space of parameters to minimize changes to previous task information, but still suffer from forgetting with a large number of tasks (Fig. 1(a) top). A natural question arises: can we design a bounded coreset that preserves the representational quality of an unbounded one? Greedy sampling selects maximally separated points, producing a compact yet representative summary of normal data [26]. Since anomaly detection relies on measuring distance from normality, a representative coreset is essential for reliable detection. Extending this property to the continual setting under fixed memory is non-trivial. We observe thatcontinued greedy sampling, which iteratively applies greedy selection over previously greedy-sam",
+          "locator": {
+            "page_label": "p. 3",
+            "section": "1 Introduction",
+            "chunk_id": "paper-8cdcec6de09440348802e15d3e582707-p003-c001"
+          }
+        }
+      ],
+      "wall_seconds": 9.188,
+      "api_runtime": {
+        "total_seconds": 8.554,
+        "retrieval_seconds": 1.041,
+        "generation_seconds": 7.512,
+        "generation_attempts": 1,
+        "llm_device": "cpu",
+        "device_fallback_reason": null,
+        "fallback_used": false,
+        "abstention_source": null
+      }
+    },
+    {
+      "question_id": "q-049-en",
+      "benchmark_paper_id": "paper-005",
+      "runtime_paper_id": "paper-8cdcec6de09440348802e15d3e582707",
+      "question": "What is the main conclusion about memory efficiency in continual anomaly detection?",
+      "language": "en",
+      "answer": "We observed that continued greedy sampling effectively preserves representativeness under strict memory limits, and provided theoretical justification showing the greedy-continued coreset approximates the oracle coreset within a bounded gap. We observe thatcontinued greedy sampling, which iteratively applies greedy selection over previously greedy-sampled sets, effectively preserves representativeness under strict memory limits. Despite discarding data at each step to satisfy the memory constraint, coreset quality degrades gracefully rather than catastrophically, enabling reliable anomaly detection across the tasks.",
+      "sufficiency": "sufficient",
+      "abstention_reason": null,
+      "evidence": [
+        {
+          "evidence_id": "ev-01-paper-8cdcec6de09440348802e15d3e582707-p014-c003",
+          "page": 14,
+          "section": "6 Conclusion",
+          "text": "6 Conclusion Greedy sampling selects maximally separated points, producing a compact yet representative summary of normal data. Since anomaly detection relies on measuring distance from normality, a representative coreset is essential for reliable detection. The challenge for continual AD is maintaining representativeness as tasks accumulate under memory constraints. We observed that continued greedy sampling effectively preserves representativeness under strict memory limits, and provided theoretical justification showing the greedy-continued coreset approximates the oracle coreset within a bounded gap. We instantiated this principle in ContCore, which constructs a greedy-continued coreset through greedy expansion and consolidation. Unlike neural methods susceptible to catastrophic forgetting or naive coreset methods requiring unbounded memory, ContCore maintains fixed memory with theoretical guarantees. ContCore achieves state-of-the-art results across 11 continual task schedules on MVTecAD and VisA while maintaining efficient training and inference. The approach extends to online continual AD settings where prior methods fail significantly, demonstrating robustness beyond specif",
+          "locator": {
+            "page_label": "p. 14",
+            "section": "6 Conclusion",
+            "chunk_id": "paper-8cdcec6de09440348802e15d3e582707-p014-c003"
+          }
+        },
+        {
+          "evidence_id": "ev-03-paper-8cdcec6de09440348802e15d3e582707-p001-c004",
+          "page": 1,
+          "section": "Abstract",
+          "text": "Abstract Greedy sampling produces a compact yet representative summary of normal data, which is essential for reliable anomaly detection that relies on measuring distance from normality. For continual anomaly detection where tasks arrive sequentially, extending greedy sampling is straightforward with unbounded memory through coreset accumulation. However, practical deployment requires fixed memory where the coreset size remains constant regardless of task count. We observe thatcontinued greedy sampling, which iteratively applies greedy selection over previously greedy-sampled sets, effectively preserves representativeness under strict memory limits. Despite discarding data at each step to satisfy the memory constraint, coreset quality degrades gracefully rather than catastrophically, enabling reliable anomaly detection across the tasks. We provide theoretical justification by showing that resultinggreedy-continued coresetapproximates the oracle coreset within a bounded gap. We instantiate this principle in ContCore, which constructs a greedy-continued coreset through greedy expansion on new task features followed by greedy consolidation to enforce the memory budget. Unlike neural m",
+          "locator": {
+            "page_label": "p. 1",
+            "section": "Abstract",
+            "chunk_id": "paper-8cdcec6de09440348802e15d3e582707-p001-c004"
+          }
+        }
+      ],
+      "wall_seconds": 1.658,
+      "api_runtime": {
+        "total_seconds": 1.65,
+        "retrieval_seconds": 1.269,
+        "generation_seconds": 0.381,
+        "generation_attempts": 0,
+        "llm_device": "cpu",
+        "device_fallback_reason": null,
+        "fallback_used": false,
+        "abstention_source": null
+      }
+    },
+    {
+      "question_id": "q-049-ko",
+      "benchmark_paper_id": "paper-005",
+      "runtime_paper_id": "paper-8cdcec6de09440348802e15d3e582707",
+      "question": "지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 무엇인가?",
+      "language": "ko",
+      "answer": "우리의 기여는 다음과 같습니다. • 우리는 지속적인 탐욕적인 샘플링이 엄격한 메모리 한계 내에서 효과적으로 대표성을 보존하고, 제한없는 메모리 성장 없이 지속적인 AD를 가능하게한다는 것을 관찰합니다. 우리는 계속된 탐욕적인 샘플링이 엄격한 메모리 한계 내에서 효과적으로 표현성을 보존하고 있으며 탐욕적인 계속된 코르셋이 제한된 격차 내에서 오라클 코르셋에 접근하는 이론적 정당화를 제공한다는 것을 관찰했습니다.",
+      "sufficiency": "sufficient",
+      "abstention_reason": null,
+      "evidence": [
+        {
+          "evidence_id": "ev-05-paper-8cdcec6de09440348802e15d3e582707-p003-c002",
+          "page": 3,
+          "section": "1 Introduction",
+          "text": "ion. Extending this property to the continual setting under fixed memory is non-trivial. We observe thatcontinued greedy sampling, which iteratively applies greedy selection over previously greedy-sampled sets, effectively preserves representativeness under strict memory limits. We call the resulting set agreedy-continued coresetand provide theoretical justification by showing it approximates the oracle coreset within a bounded gap. We implement this principle through ContCore, which constructs the greedy-continued coreset via two steps: greedy expansion samples features from the new task that are maximally distant from the current coreset, and greedy consolidation enforces the memory constraint while preserving representativeness. Our contributions are: • We observe that continued greedy sampling effectively preserves representativeness under strict memory limits, enabling continual AD without unbounded memory growth. We provide theoretical justification by showing the resulting greedy-continued coreset approximates the oracle coreset within a bounded gap. • We instantiate this principle in ContCore, which constructs agreedy-continued coreset that maintains representativeness of n",
+          "locator": {
+            "page_label": "p. 3",
+            "section": "1 Introduction",
+            "chunk_id": "paper-8cdcec6de09440348802e15d3e582707-p003-c002"
+          }
+        },
+        {
+          "evidence_id": "ev-01-paper-8cdcec6de09440348802e15d3e582707-p014-c003",
+          "page": 14,
+          "section": "6 Conclusion",
+          "text": "6 Conclusion Greedy sampling selects maximally separated points, producing a compact yet representative summary of normal data. Since anomaly detection relies on measuring distance from normality, a representative coreset is essential for reliable detection. The challenge for continual AD is maintaining representativeness as tasks accumulate under memory constraints. We observed that continued greedy sampling effectively preserves representativeness under strict memory limits, and provided theoretical justification showing the greedy-continued coreset approximates the oracle coreset within a bounded gap. We instantiated this principle in ContCore, which constructs a greedy-continued coreset through greedy expansion and consolidation. Unlike neural methods susceptible to catastrophic forgetting or naive coreset methods requiring unbounded memory, ContCore maintains fixed memory with theoretical guarantees. ContCore achieves state-of-the-art results across 11 continual task schedules on MVTecAD and VisA while maintaining efficient training and inference. The approach extends to online continual AD settings where prior methods fail significantly, demonstrating robustness beyond specif",
+          "locator": {
+            "page_label": "p. 14",
+            "section": "6 Conclusion",
+            "chunk_id": "paper-8cdcec6de09440348802e15d3e582707-p014-c003"
+          }
+        }
+      ],
+      "wall_seconds": 10.905,
+      "api_runtime": {
+        "total_seconds": 10.499,
+        "retrieval_seconds": 1.25,
+        "generation_seconds": 9.249,
+        "generation_attempts": 1,
+        "llm_device": "cpu",
+        "device_fallback_reason": null,
+        "fallback_used": false,
+        "abstention_source": null
+      }
+    }
+  ],
+  "summary": {
+    "papers": 3,
+    "questions": 10,
+    "languages": {
+      "en": 5,
+      "ko": 5
+    },
+    "sufficient": 10,
+    "insufficient": 0,
+    "fallbacks": 0,
+    "evidence_responses": 10,
+    "analysis_seconds": {
+      "mean": 39.508,
+      "median": 7.898,
+      "p95": 106.471,
+      "maximum": 106.471
+    },
+    "first_analysis_seconds": 106.471,
+    "later_analysis_seconds": {
+      "mean": 6.027,
+      "median": 6.027,
+      "p95": 7.898,
+      "maximum": 7.898
+    },
+    "by_language": {
+      "en": {
+        "questions": 5,
+        "sufficient": 5,
+        "insufficient": 0,
+        "fallbacks": 0,
+        "wall_seconds": {
+          "mean": 1.561,
+          "median": 1.562,
+          "p95": 1.698,
+          "maximum": 1.698
+        },
+        "api_total_seconds": {
+          "mean": 1.47,
+          "median": 1.51,
+          "p95": 1.65,
+          "maximum": 1.65
+        },
+        "retrieval_seconds": {
+          "mean": 1.134,
+          "median": 1.161,
+          "p95": 1.269,
+          "maximum": 1.269
+        },
+        "generation_seconds": {
+          "mean": 0.336,
+          "median": 0.349,
+          "p95": 0.381,
+          "maximum": 0.381
+        }
+      },
+      "ko": {
+        "questions": 5,
+        "sufficient": 5,
+        "insufficient": 0,
+        "fallbacks": 0,
+        "wall_seconds": {
+          "mean": 12.693,
+          "median": 9.188,
+          "p95": 25.737,
+          "maximum": 25.737
+        },
+        "api_total_seconds": {
+          "mean": 11.95,
+          "median": 8.582,
+          "p95": 23.895,
+          "maximum": 23.895
+        },
+        "retrieval_seconds": {
+          "mean": 1.127,
+          "median": 1.067,
+          "p95": 1.332,
+          "maximum": 1.332
+        },
+        "generation_seconds": {
+          "mean": 10.823,
+          "median": 7.516,
+          "p95": 22.563,
+          "maximum": 22.563
+        }
+      }
+    }
+  },
+  "offline_restart": {
+    "local_files_only": true,
+    "stack_start_seconds": 12.65,
+    "health_before_question": {
+      "status": "ok",
+      "service": "evidence-grounded-paper-qna",
+      "version": "0.41.0",
+      "seed": 378,
+      "storage": "ok",
+      "question_engine": "lazy",
+      "papers": 3,
+      "jobs": {
+        "queued": 0,
+        "running": 0,
+        "completed": 3,
+        "failed": 0
+      }
+    },
+    "health_after_question": {
+      "status": "ok",
+      "service": "evidence-grounded-paper-qna",
+      "version": "0.41.0",
+      "seed": 378,
+      "storage": "ok",
+      "question_engine": "ready",
+      "papers": 3,
+      "jobs": {
+        "queued": 0,
+        "running": 0,
+        "completed": 3,
+        "failed": 0
+      }
+    },
+    "question_id": "q-049-ko",
+    "question_wall_seconds": 21.282,
+    "question_api_runtime": {
+      "total_seconds": 11.912,
+      "retrieval_seconds": 1.174,
+      "generation_seconds": 10.738,
+      "generation_attempts": 1,
+      "llm_device": "cpu",
+      "device_fallback_reason": null,
+      "fallback_used": false,
+      "abstention_source": null
+    },
+    "response_matches_initial_run": true,
+    "runtime_volume_preserved": true,
+    "cache_before_restart": {
+      "files": 67,
+      "bytes": 6937424283
+    },
+    "cache_after_restart": {
+      "files": 67,
+      "bytes": 6937424283
+    },
+    "cache_size_unchanged": true
+  },
+  "stack_removed_after_evaluation": true,
+  "temporary_runtime_volume_removed": true,
+  "model_cache_volume_preserved": true
+}

@@ -47,6 +47,7 @@ VALIDATORS = [
     "validate_portfolio_scope.py",
     "validate_improvements.py",
     "validate_grounded_generation.py",
+    "validate_container_qna.py",
 ]
 
 

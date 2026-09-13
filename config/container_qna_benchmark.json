@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "name": "container-qna-3-paper-10-question",
+  "seed": 378,
+  "scope": {
+    "papers": 3,
+    "questions": 10,
+    "languages": {
+      "en": 5,
+      "ko": 5
+    },
+    "question_pairing": "Five English-Korean pairs compare the same question meanings.",
+    "gold_isolation": "Gold answers and Gold evidence are not loaded by the container execution script."
+  },
+  "selection_policy": {
+    "papers": "Three verified benchmark papers covering summarization, CPU INT8 inference, and continual anomaly detection.",
+    "questions": "Five pre-existing bilingual pairs covering paper focus, problem, method, trade-off, and conclusion.",
+    "pdf_stress": "The set includes two short PDFs and the largest verified benchmark PDF."
+  },
+  "papers": [
+    {
+      "paper_id": "paper-003",
+      "pdf": "data/raw/papers/paper-003.pdf",
+      "questions": [
+        {
+          "question_id": "q-007-en",
+          "language": "en",
+          "question": "What is the main focus of this paper's review of text summarization?"
+        },
+        {
+          "question_id": "q-007-ko",
+          "language": "ko",
+          "question": "이 논문이 텍스트 요약을 검토하면서 중점적으로 다루는 내용은 무엇인가?"
+        }
+      ]
+    },
+    {
+      "paper_id": "paper-004",
+      "pdf": "data/raw/papers/paper-004.pdf",
+      "questions": [
+        {
+          "question_id": "q-010-en",
+          "language": "en",
+          "question": "What problem does this paper address in deploying small NLP models on server CPUs?"
+        },
+        {
+          "question_id": "q-010-ko",
+          "language": "ko",
+          "question": "이 논문은 서버 CPU에서 소형 NLP 모델을 배포할 때 어떤 문제를 다루는가?"
+        },
+        {
+          "question_id": "q-031-en",
+          "language": "en",
+          "question": "What trade-offs between inference speed, memory usage, and accuracy are discussed?"
+        },
+        {
+          "question_id": "q-031-ko",
+          "language": "ko",
+          "question": "추론 속도, 메모리 사용량, 정확도 사이의 어떤 trade-off가 논의되는가?"
+        }
+      ]
+    },
+    {
+      "paper_id": "paper-005",
+      "pdf": "data/raw/papers/paper-005.pdf",
+      "questions": [
+        {
+          "question_id": "q-014-en",
+          "language": "en",
+          "question": "How does the proposed memory-bounded continuation approach work?"
+        },
+        {
+          "question_id": "q-014-ko",
+          "language": "ko",
+          "question": "제안된 메모리 제한형 continuation 접근법은 어떻게 작동하는가?"
+        },
+        {
+          "question_id": "q-049-en",
+          "language": "en",
+          "question": "What is the main conclusion about memory efficiency in continual anomaly detection?"
+        },
+        {
+          "question_id": "q-049-ko",
+          "language": "ko",
+          "question": "지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 무엇인가?"
+        }
+      ]
+    }
+  ],
+  "gates": {
+    "all_http_requests_succeed": true,
+    "all_answers_match_question_language": true,
+    "all_sufficient_answers_have_traceable_evidence": true,
+    "all_insufficient_answers_have_no_evidence": true,
+    "fallbacks_allowed": 0,
+    "offline_restart_required": true,
+    "offline_restart_question": "q-049-ko"
+  }
+}

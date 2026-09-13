@@ -31,5 +31,7 @@
 - [답변 품질 및 개선 검토](reviews/improvements.md)
 - [로컬 실행 성능 개선](reviews/runtime_performance_KO.md)
 - [Local runtime performance](reviews/runtime_performance.md)
+- [Docker Compose Q&A benchmark](reviews/container_qna.md)
+- [Docker Compose 질의응답 벤치마크](reviews/container_qna_KO.md)
 
 평가 수치와 실행 증거는 `data/evaluation/`에 있으며, 각 파일의 역할은 [평가 데이터 안내](../data/evaluation/README.md)에 정리되어 있다.
