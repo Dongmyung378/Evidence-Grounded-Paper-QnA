@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "provider": "local_nllb",
+  "model": "facebook/nllb-200-distilled-600M",
+  "revision": "38bd1c6a0f58097b26ef7c7cd73a0dcac034350a",
+  "license": "cc-by-nc-4.0",
+  "source_language": "eng_Latn",
+  "target_language": "kor_Hang",
+  "trust_remote_code": false,
+  "use_safetensors": true,
+  "device": "auto",
+  "dtype": "auto",
+  "max_input_tokens": 512,
+  "max_output_tokens": 256,
+  "num_beams": 4,
+  "do_sample": false,
+  "cpu_threads": 8
+}

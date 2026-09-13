@@ -2,6 +2,9 @@
 
 [English](runtime_performance.md) | [한국어](runtime_performance_KO.md)
 
+> This is the historical Qwen runtime measurement. The browser now uses the
+> evidence-first path documented in [answer quality review](answer_quality.md).
+
 ## Why this change was needed
 
 A local Korean question took 84.52 seconds and ended in a safe refusal. Inspection showed that the retrieval models had occupied most of the 6 GB GPU before the answer generator was loaded. The generator therefore moved to CPU and repeated an invalid response up to three times. The question language was not the direct cause.

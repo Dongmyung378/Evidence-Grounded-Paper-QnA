@@ -26,6 +26,8 @@
 
 ## 품질 및 실행 검토
 
+- [Answer quality review](reviews/answer_quality.md)
+- [답변 품질 검토](reviews/answer_quality_KO.md)
 - [답변 품질 및 개선 검토](reviews/improvements.md)
 - [로컬 실행 성능 개선](reviews/runtime_performance_KO.md)
 - [Local runtime performance](reviews/runtime_performance.md)

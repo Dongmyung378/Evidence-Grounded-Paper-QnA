@@ -52,4 +52,12 @@ python -B scripts/validate_portfolio_scope.py
 
 이 검증은 Docker Compose가 최종 제공 환경인지, 공개 서버와 공개 URL이 완료 조건에서 제외됐는지, 로컬 일지가 Git 추적 대상에서 빠졌는지 확인한다.
 
-실행 성능 정책은 `config/runtime_qna.json`과 `config/generation_runtime.json`에 있다. 실제 전체 흐름의 모델 준비 장치, 검색 및 생성 시간, 시도 횟수는 `data/evaluation/day35_integration_results.json`에서 확인할 수 있다.
+현재 답변 정책은 `config/runtime_qna.json`, `config/answer_generation.json`, `config/translation.json`에 있다. 영어 추출형 답변과 한국어 번역의 고정 20문항 평가는 다음 명령으로 재현하고 검증한다.
+
+```bash
+python -B scripts/evaluate_grounded_generation.py
+python -B scripts/build_grounded_generation_review.py
+python -B scripts/validate_grounded_generation.py
+```
+
+기존 Qwen 실행 성능과 실제 전체 HTTP 흐름 기록은 `data/evaluation/day35_integration_results.json`에 과거 기준선으로 유지한다.

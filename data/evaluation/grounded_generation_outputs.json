@@ -1,0 +1,1050 @@
+{
+  "schema_version": 1,
+  "evaluation": "fixed-20-answer-quality",
+  "seed": 378,
+  "gold_loaded_during_generation": false,
+  "method": "Current abstention threshold, saved Day 32 retrieval evidence, Cross-Encoder sentence compression, plain answer generation, deterministic citation assembly and numeric claim validation.",
+  "provenance": {
+    "baseline_outputs": "data/evaluation/day32_qna_outputs.json",
+    "baseline_sha256": "59449747441dff0c7b736e3ef9a4b0401d3cf764e44c3060bf74fa23d5b96af7",
+    "answer_config": "config/answer_generation.json",
+    "answer_config_sha256": "49a2e0d072098f4eb27dc270c8d6da1afc8877985b39f11279f2ae3d88dd1293",
+    "implementation_sha256": "89134a2b223752553fb6b28fd61822e18ce2c9e5fffcf98129bb92621ead7425",
+    "translation_config": "config/translation.json",
+    "translation_config_sha256": "a17777804c9deb1a4147e93bc33ed35c4b28d10313364de48f3e2bfe5f26cac5",
+    "abstention_config": "config/abstention_candidate.json"
+  },
+  "models": {
+    "translator": {
+      "provider": "local_nllb",
+      "model": "facebook/nllb-200-distilled-600M",
+      "revision": "38bd1c6a0f58097b26ef7c7cd73a0dcac034350a",
+      "license": "cc-by-nc-4.0",
+      "device": "cuda",
+      "dtype": "float16",
+      "device_fallback_reason": null,
+      "config_path": "config/translation.json",
+      "config_fingerprint": "6f7446c3aca9eb596585b118b31f24e85961854452bff24df23c5473e23a1c1b"
+    },
+    "sentence_selector": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+  },
+  "summary": {
+    "questions": 20,
+    "sufficient": 18,
+    "insufficient": 2,
+    "pre_generation_refusals": 2,
+    "model_refusals": 0,
+    "validation_fallbacks": 0,
+    "generation_attempts": 9,
+    "runtime_seconds": 12.48
+  },
+  "results": [
+    {
+      "question_id": "q-001-en",
+      "paper_id": "paper-001",
+      "question": "What is the main problem addressed in this paper?",
+      "question_language": "en",
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The retrieved text is not relevant enough to support an answer."
+      },
+      "selected_sentences": [],
+      "attempts": [],
+      "fallback_used": false,
+      "abstention_source": "pre_generation_policy",
+      "runtime_seconds": 0.0
+    },
+    {
+      "question_id": "q-001-ko",
+      "paper_id": "paper-001",
+      "question": "이 논문에서 다루는 주요 문제는 무엇인가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "검색된 텍스트의 관련도가 낮아 답변을 뒷받침할 수 없습니다."
+      },
+      "selected_sentences": [],
+      "attempts": [],
+      "fallback_used": false,
+      "abstention_source": "pre_generation_policy",
+      "runtime_seconds": 0.0
+    },
+    {
+      "question_id": "q-005-en",
+      "paper_id": "paper-002",
+      "question": "How does the proposed two-step hyperparameter transfer framework work?",
+      "question_language": "en",
+      "response": {
+        "answer": "Our two-step hyperparameter transfer framework requires two key components: (1) formulating µP specifically for MoE architectures, and (2) establishing a scaling law that predicts the optimal learning rate as the token budget scales. In this paper, we propose a compute-efficient, two-step hyperparameter transfer framework that estimates optimal learning rates for training large MoE models by transferring them across scaling model widths, and subsequently extrapolating to trillion-token horizons. We propose a compute-efficient two-step framework for hyperparameter transfer in largescale Mixture-of-Experts (MoE) pretraining, enabling accurate optimal learning rate estimation without exhaustive sweeps.",
+        "evidence_ids": [
+          "ev-04-paper-002-p003-c003",
+          "ev-02-paper-002-p001-c002",
+          "ev-01-paper-002-p010-c003"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-014",
+          "evidence_id": "ev-04-paper-002-p003-c003",
+          "page": 3,
+          "section": "2 Methods",
+          "evidence_rank": 4,
+          "position": 1,
+          "text": "2 Methods Our two-step hyperparameter transfer framework requires two key components: (1) formulating µP specifically for MoE architectures, and (2) establishing a scaling law that predicts the optimal learning rate as the token budget scales.",
+          "cross_encoder_score": 6.120019435882568,
+          "intent_bonus": 6.0,
+          "selector_score": 12.120019435882568
+        },
+        {
+          "sentence_id": "s-008",
+          "evidence_id": "ev-02-paper-002-p001-c002",
+          "page": 1,
+          "section": "Abstract",
+          "evidence_rank": 2,
+          "position": 3,
+          "text": "In this paper, we propose a compute-efficient, two-step hyperparameter transfer framework that estimates optimal learning rates for training large MoE models by transferring them across scaling model widths, and subsequently extrapolating to trillion-token horizons.",
+          "cross_encoder_score": 6.234193325042725,
+          "intent_bonus": 2.0,
+          "selector_score": 8.234193325042725
+        },
+        {
+          "sentence_id": "s-001",
+          "evidence_id": "ev-01-paper-002-p010-c003",
+          "page": 10,
+          "section": "5 Conclusion",
+          "evidence_rank": 1,
+          "position": 1,
+          "text": "5 Conclusion We propose a compute-efficient two-step framework for hyperparameter transfer in largescale Mixture-of-Experts (MoE) pretraining, enabling accurate optimal learning rate estimation without exhaustive sweeps.",
+          "cross_encoder_score": 4.856427192687988,
+          "intent_bonus": 2.0,
+          "selector_score": 6.856427192687988
+        }
+      ],
+      "attempts": [],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 0.353
+    },
+    {
+      "question_id": "q-045-ko",
+      "paper_id": "paper-002",
+      "question": "모델 폭이 달라질 때 학습률 전이와 관련된 주요 결과는 무엇인가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "(b) μP에서, 기본 프록시에서 확인된 최적의 학습률은 2×2.2B 전체, 0.7B 활성), 4×8B 전체, 1.5B 활성) 및 8×30.7B 전체, 3.6B 활성) 로 확장된 모델들 사이에서 지속적으로 전송됩니다. (a) SP에 따르면, 최적의 학습 속도는 모델 너비 스케일로 변하며, 기본 프록시 모델 (0.6B 전체, 0.3B 활성) 에서 더 큰 변종으로 전송되지 않습니다.",
+        "evidence_ids": [
+          "ev-04-paper-002-p006-c001"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-015",
+          "evidence_id": "ev-04-paper-002-p006-c001",
+          "page": 6,
+          "section": "2.2.1 Estimating Optimal Learning Rates Over Short T oken Budgets",
+          "evidence_rank": 4,
+          "position": 4,
+          "text": "(b) Under µP , the optimal learning rate identified in the base proxy consistently transfers across models scaled to 2×(2.2B total, 0.7B active), 4×(8B total, 1.5B active), and 8×(30.7B total, 3.6B active) the base width.",
+          "cross_encoder_score": -0.40696293115615845,
+          "intent_bonus": 13.0,
+          "selector_score": 12.593037068843842
+        },
+        {
+          "sentence_id": "s-014",
+          "evidence_id": "ev-04-paper-002-p006-c001",
+          "page": 6,
+          "section": "2.2.1 Estimating Optimal Learning Rates Over Short T oken Budgets",
+          "evidence_rank": 4,
+          "position": 3,
+          "text": "(a) Under SP , the optimal learning rate shifts as model width scales, failing to transfer from the base proxy model (0.6B total, 0.3B active) to larger variants.",
+          "cross_encoder_score": 1.1005631685256958,
+          "intent_bonus": 7.0,
+          "selector_score": 8.100563168525696
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "(b) μP에서, 기본 프록시에서 확인된 최적의 학습률은 2×2.2B 전체, 0.7B 활성), 4×8B 전체, 1.5B 활성) 및 8×30.7B 전체, 3.6B 활성) 로 확장된 모델들 사이에서 지속적으로 전송됩니다. (a) SP에 따르면, 최적의 학습 속도는 모델 너비 스케일로 변하며, 기본 프록시 모델 (0.6B 전체, 0.3B 활성) 에서 더 큰 변종으로 전송되지 않습니다."
+        }
+      ],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 1.408
+    },
+    {
+      "question_id": "q-007-en",
+      "paper_id": "paper-003",
+      "question": "What is the main focus of this paper's review of text summarization?",
+      "question_language": "en",
+      "response": {
+        "answer": "This article presents a focused review of modern summarization techniques with an emphasis on transformer -based models and large language models (LLMs), specifically BERT, RoBERTa and BART. This paper presents a focused review of transformer-based summarization methods, with a comparative analysis of BERT, RoBERTa, and BART. Text summarization refers to the task of condensing a document into a shorter version while preserving its key information.",
+        "evidence_ids": [
+          "ev-01-paper-003-p001-c002",
+          "ev-02-paper-003-p002-c001"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-004",
+          "evidence_id": "ev-01-paper-003-p001-c002",
+          "page": 1,
+          "section": "ABSTRACT",
+          "evidence_rank": 1,
+          "position": 4,
+          "text": "This article presents a focused review of modern summarization techniques with an emphasis on transformer -based models and large language models (LLMs), specifically BERT, RoBERTa and BART.",
+          "cross_encoder_score": 3.5321621894836426,
+          "intent_bonus": 7.5,
+          "selector_score": 11.032162189483643
+        },
+        {
+          "sentence_id": "s-009",
+          "evidence_id": "ev-02-paper-003-p002-c001",
+          "page": 2,
+          "section": "1. INTRODUCTION",
+          "evidence_rank": 2,
+          "position": 3,
+          "text": "This paper presents a focused review of transformer-based summarization methods, with a comparative analysis of BERT, RoBERTa, and BART.",
+          "cross_encoder_score": 2.6584267616271973,
+          "intent_bonus": 5.0,
+          "selector_score": 7.658426761627197
+        },
+        {
+          "sentence_id": "s-001",
+          "evidence_id": "ev-01-paper-003-p001-c002",
+          "page": 1,
+          "section": "ABSTRACT",
+          "evidence_rank": 1,
+          "position": 1,
+          "text": "ABSTRACT Text summarization refers to the task of condensing a document into a shorter version while preserving its key information.",
+          "cross_encoder_score": 3.3072104454040527,
+          "intent_bonus": 0.0,
+          "selector_score": 3.3072104454040527
+        }
+      ],
+      "attempts": [],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 0.223
+    },
+    {
+      "question_id": "q-007-ko",
+      "paper_id": "paper-003",
+      "question": "이 논문이 텍스트 요약을 검토하면서 중점적으로 다루는 내용은 무엇인가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "이 문서에서는 트랜스포머 기반 모델과 큰 언어 모델 (LLM) 를 강조하는 현대 요약 기술에 대한 집중적인 검토를 소개합니다. 특히 BERT, RoBERTa 및 BART. 이 논문은 트랜스포머 기반의 요약 방법의 집중적인 검토를 제시하고, BERT, RoBERTa 및 BART의 비교 분석을 제공합니다.",
+        "evidence_ids": [
+          "ev-01-paper-003-p001-c002",
+          "ev-02-paper-003-p002-c001"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-004",
+          "evidence_id": "ev-01-paper-003-p001-c002",
+          "page": 1,
+          "section": "ABSTRACT",
+          "evidence_rank": 1,
+          "position": 4,
+          "text": "This article presents a focused review of modern summarization techniques with an emphasis on transformer -based models and large language models (LLMs), specifically BERT, RoBERTa and BART.",
+          "cross_encoder_score": -3.219578504562378,
+          "intent_bonus": 9.5,
+          "selector_score": 6.280421495437622
+        },
+        {
+          "sentence_id": "s-009",
+          "evidence_id": "ev-02-paper-003-p002-c001",
+          "page": 2,
+          "section": "1. INTRODUCTION",
+          "evidence_rank": 2,
+          "position": 3,
+          "text": "This paper presents a focused review of transformer-based summarization methods, with a comparative analysis of BERT, RoBERTa, and BART.",
+          "cross_encoder_score": -3.7894139289855957,
+          "intent_bonus": 7.0,
+          "selector_score": 3.2105860710144043
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "이 문서에서는 트랜스포머 기반 모델과 큰 언어 모델 (LLM) 를 강조하는 현대 요약 기술에 대한 집중적인 검토를 소개합니다. 특히 BERT, RoBERTa 및 BART. 이 논문은 트랜스포머 기반의 요약 방법의 집중적인 검토를 제시하고, BERT, RoBERTa 및 BART의 비교 분석을 제공합니다."
+        }
+      ],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 0.961
+    },
+    {
+      "question_id": "q-031-en",
+      "paper_id": "paper-004",
+      "question": "What trade-offs between inference speed, memory usage, and accuracy are discussed?",
+      "question_language": "en",
+      "response": {
+        "answer": "Across BERT, DistilBERT, and XLM-RoBERTa benchmarks, the approach delivers up to 5.8× end-to-end throughput speedup with negligible—and in some cases no measurable—accuracy loss relative to the FP32 baseline. Static quantization generally offers lower runtime overhead, whereas dynamic quantization can sometimes preserve accuracy more effectively at the cost of additional execution work. Straightforward FP32 execution on CPU is often suboptimal because transformer inference is dominated by matrix multiplications (GEMM) with substantial compute and memory cost.",
+        "evidence_ids": [
+          "ev-01-paper-004-p001-c002",
+          "ev-04-paper-004-p002-c006",
+          "ev-02-paper-004-p001-c003"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-004",
+          "evidence_id": "ev-01-paper-004-p001-c002",
+          "page": 1,
+          "section": "ABSTRACT",
+          "evidence_rank": 1,
+          "position": 4,
+          "text": "Across BERT, DistilBERT, and XLM-RoBERTa benchmarks, the approach delivers up to 5.8× end-to-end throughput speedup with negligible—and in some cases no measurable—accuracy loss relative to the FP32 baseline.",
+          "cross_encoder_score": -6.420189380645752,
+          "intent_bonus": 3.0,
+          "selector_score": -3.420189380645752
+        },
+        {
+          "sentence_id": "s-020",
+          "evidence_id": "ev-04-paper-004-p002-c006",
+          "page": 2,
+          "section": "3.1 SmoothQuant and Quantization Modes",
+          "evidence_rank": 4,
+          "position": 2,
+          "text": "Static quantization generally offers lower runtime overhead, whereas dynamic quantization can sometimes preserve accuracy more effectively at the cost of additional execution work.",
+          "cross_encoder_score": -7.023492813110352,
+          "intent_bonus": 3.0,
+          "selector_score": -4.023492813110352
+        },
+        {
+          "sentence_id": "s-011",
+          "evidence_id": "ev-02-paper-004-p001-c003",
+          "page": 1,
+          "section": "1 Introduction",
+          "evidence_rank": 2,
+          "position": 4,
+          "text": "Straightforward FP32 execution on CPU is often suboptimal because transformer inference is dominated by matrix multiplications (GEMM) with substantial compute and memory cost.",
+          "cross_encoder_score": -5.002372741699219,
+          "intent_bonus": 0.0,
+          "selector_score": -5.002372741699219
+        }
+      ],
+      "attempts": [],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 0.26
+    },
+    {
+      "question_id": "q-048-ko",
+      "paper_id": "paper-004",
+      "question": "서버 환경의 INT8 추론에 PyTorch 네이티브 스택을 사용하는 것에 대한 주요 결론은 무엇인가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "BERT, DistilBERT 및 XLM-RoBERTa 벤치마크를 통해, 접근 방식은 FP32 기본 기준에 비해 가볍고 일부 경우에 측정 가능한 정확성 손실이 없는 5.8x까지의 엔드-투-엔드 처리 속도를 제공합니다. 이 작업은 서버 CPU에 있는 작은 NLP 모델의 PyTorch 네이티브 추론 경로를 강화하여 사용자가 최소의 노력과 PyTorch 생태계를 떠나거나 제3자 도구를 사용하지 않고 SmoothQuant 최적화된 INT8 추론을 배포할 수 있게 한다.",
+        "evidence_ids": [
+          "ev-03-paper-004-p001-c002",
+          "ev-01-paper-004-p002-c001"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-012",
+          "evidence_id": "ev-03-paper-004-p001-c002",
+          "page": 1,
+          "section": "ABSTRACT",
+          "evidence_rank": 3,
+          "position": 4,
+          "text": "Across BERT, DistilBERT, and XLM-RoBERTa benchmarks, the approach delivers up to 5.8× end-to-end throughput speedup with negligible—and in some cases no measurable—accuracy loss relative to the FP32 baseline.",
+          "cross_encoder_score": -6.404896259307861,
+          "intent_bonus": 22.0,
+          "selector_score": 15.595103740692139
+        },
+        {
+          "sentence_id": "s-002",
+          "evidence_id": "ev-01-paper-004-p002-c001",
+          "page": 2,
+          "section": "1 Introduction",
+          "evidence_rank": 1,
+          "position": 2,
+          "text": "This work strengthens the PyTorch-native inference path for small NLP models on server CPUs, enabling users to deploy SmoothQuant-optimized INT8 inference with minimal effort and without leaving the PyTorch ecosystem or using third-party tools.",
+          "cross_encoder_score": 8.018392562866211,
+          "intent_bonus": 6.0,
+          "selector_score": 14.018392562866211
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "BERT, DistilBERT 및 XLM-RoBERTa 벤치마크를 통해, 접근 방식은 FP32 기본 기준에 비해 가볍고 일부 경우에 측정 가능한 정확성 손실이 없는 5.8x까지의 엔드-투-엔드 처리 속도를 제공합니다. 이 작업은 서버 CPU에 있는 작은 NLP 모델의 PyTorch 네이티브 추론 경로를 강화하여 사용자가 최소의 노력과 PyTorch 생태계를 떠나거나 제3자 도구를 사용하지 않고 SmoothQuant 최적화된 INT8 추론을 배포할 수 있게 한다."
+        }
+      ],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 1.226
+    },
+    {
+      "question_id": "q-015-en",
+      "paper_id": "paper-005",
+      "question": "What evidence shows that the proposed approach improves continual anomaly detection?",
+      "question_language": "en",
+      "response": {
+        "answer": "Our propose method ContCore, on the other hand, shows the least false positives and predicts the anomaly maps closest to the ground truth comparing with the SOTA baselines. The key challenge in Continual Anomaly Detection (CAD) is preventing catastrophic forgetting and holding the legacy information while detecting newly introduced anomalies under the unsupervised setup (i.e., without class labels and given only normal training images). The approach extends to online continual AD settings where prior methods fail significantly, demonstrating robustness beyond specif",
+        "evidence_ids": [
+          "ev-05-paper-005-p022-c004",
+          "ev-03-paper-005-p002-c002",
+          "ev-01-paper-005-p014-c003"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-034",
+          "evidence_id": "ev-05-paper-005-p022-c004",
+          "page": 22,
+          "section": "Method",
+          "evidence_rank": 5,
+          "position": 10,
+          "text": "Our propose method ContCore, on the other hand, shows the least false positives and predicts the anomaly maps closest to the ground truth comparing with the SOTA baselines.",
+          "cross_encoder_score": -0.03547084704041481,
+          "intent_bonus": 0.0,
+          "selector_score": -0.03547084704041481
+        },
+        {
+          "sentence_id": "s-021",
+          "evidence_id": "ev-03-paper-005-p002-c002",
+          "page": 2,
+          "section": "1 Introduction",
+          "evidence_rank": 3,
+          "position": 6,
+          "text": "The key challenge in Continual Anomaly Detection (CAD) is preventing catastrophic forgetting and holding the legacy information while detecting newly introduced anomalies under the unsupervised setup (i.e., without class labels and given only normal training images).",
+          "cross_encoder_score": -2.1132781505584717,
+          "intent_bonus": 0.0,
+          "selector_score": -2.1132781505584717
+        },
+        {
+          "sentence_id": "s-008",
+          "evidence_id": "ev-01-paper-005-p014-c003",
+          "page": 14,
+          "section": "6 Conclusion",
+          "evidence_rank": 1,
+          "position": 8,
+          "text": "The approach extends to online continual AD settings where prior methods fail significantly, demonstrating robustness beyond specif",
+          "cross_encoder_score": -2.2498953342437744,
+          "intent_bonus": 0.0,
+          "selector_score": -2.2498953342437744
+        }
+      ],
+      "attempts": [],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 0.267
+    },
+    {
+      "question_id": "q-049-ko",
+      "paper_id": "paper-005",
+      "question": "지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 무엇인가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "우리의 기여는 다음과 같습니다. • 우리는 지속적인 탐욕적인 샘플링이 엄격한 메모리 한계 내에서 효과적으로 대표성을 보존하고, 제한없는 메모리 성장 없이 지속적인 AD를 가능하게한다는 것을 관찰합니다. 우리는 계속된 탐욕적인 샘플링이 엄격한 메모리 한계 내에서 효과적으로 표현성을 보존하고 있으며 탐욕적인 계속된 코르셋이 제한된 격차 내에서 오라클 코르셋에 접근하는 이론적 정당화를 제공한다는 것을 관찰했습니다.",
+        "evidence_ids": [
+          "ev-05-paper-005-p003-c002",
+          "ev-01-paper-005-p014-c003"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-032",
+          "evidence_id": "ev-05-paper-005-p003-c002",
+          "page": 3,
+          "section": "1 Introduction",
+          "evidence_rank": 5,
+          "position": 6,
+          "text": "Our contributions are: • We observe that continued greedy sampling effectively preserves representativeness under strict memory limits, enabling continual AD without unbounded memory growth.",
+          "cross_encoder_score": -0.20104940235614777,
+          "intent_bonus": 17.0,
+          "selector_score": 16.798950597643852
+        },
+        {
+          "sentence_id": "s-004",
+          "evidence_id": "ev-01-paper-005-p014-c003",
+          "page": 14,
+          "section": "6 Conclusion",
+          "evidence_rank": 1,
+          "position": 4,
+          "text": "We observed that continued greedy sampling effectively preserves representativeness under strict memory limits, and provided theoretical justification showing the greedy-continued coreset approximates the oracle coreset within a bounded gap.",
+          "cross_encoder_score": -0.5191439390182495,
+          "intent_bonus": 12.5,
+          "selector_score": 11.98085606098175
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "우리의 기여는 다음과 같습니다. • 우리는 지속적인 탐욕적인 샘플링이 엄격한 메모리 한계 내에서 효과적으로 대표성을 보존하고, 제한없는 메모리 성장 없이 지속적인 AD를 가능하게한다는 것을 관찰합니다. 우리는 계속된 탐욕적인 샘플링이 엄격한 메모리 한계 내에서 효과적으로 표현성을 보존하고 있으며 탐욕적인 계속된 코르셋이 제한된 격차 내에서 오라클 코르셋에 접근하는 이론적 정당화를 제공한다는 것을 관찰했습니다."
+        }
+      ],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 1.126
+    },
+    {
+      "question_id": "q-017-en",
+      "paper_id": "paper-006",
+      "question": "How does the paper connect representation learning with process inference?",
+      "question_language": "en",
+      "response": {
+        "answer": "The scientific value of EOFMs for terrestrial ecohydrology depends on whether reusable representations learned from EO data support credible process inference. emerging as reusable representation frameworks for data-driven retrieval, prediction and process modelling within ecohydrology, which integrate EO, meteorological forcing and process models to characterise coupled water, energy and carbon dynamics in vegetation and soil across scales. Together, these requirements frame the role of EOFMs in ecohydrology by specifying the scaleaware, temporally resolved and process-relevant information their representations must retain for defensible inference.",
+        "evidence_ids": [
+          "ev-01-paper-006-p025-c003",
+          "ev-03-paper-006-p001-c002",
+          "ev-02-paper-006-p005-c001"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-001",
+          "evidence_id": "ev-01-paper-006-p025-c003",
+          "page": 25,
+          "section": "VII. CONCLUSION",
+          "evidence_rank": 1,
+          "position": 2,
+          "text": "CONCLUSION The scientific value of EOFMs for terrestrial ecohydrology depends on whether reusable representations learned from EO data support credible process inference.",
+          "cross_encoder_score": -2.080038547515869,
+          "intent_bonus": 4.0,
+          "selector_score": 1.9199614524841309
+        },
+        {
+          "sentence_id": "s-012",
+          "evidence_id": "ev-03-paper-006-p001-c002",
+          "page": 1,
+          "section": "Abstract",
+          "evidence_rank": 3,
+          "position": 1,
+          "text": "Abstract emerging as reusable representation frameworks for data-driven retrieval, prediction and process modelling within ecohydrology, which integrate EO, meteorological forcing and process models to characterise coupled water, energy and carbon dynamics in vegetation and soil across scales.",
+          "cross_encoder_score": -2.312671184539795,
+          "intent_bonus": 4.0,
+          "selector_score": 1.687328815460205
+        },
+        {
+          "sentence_id": "s-009",
+          "evidence_id": "ev-02-paper-006-p005-c001",
+          "page": 5,
+          "section": "II. INFERENCE OFECOHYDROLOGY",
+          "evidence_rank": 2,
+          "position": 4,
+          "text": "Together, these requirements frame the role of EOFMs in ecohydrology by specifying the scaleaware, temporally resolved and process-relevant information their representations must retain for defensible inference.",
+          "cross_encoder_score": -2.909400701522827,
+          "intent_bonus": 4.0,
+          "selector_score": 1.0905992984771729
+        }
+      ],
+      "attempts": [],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 0.311
+    },
+    {
+      "question_id": "q-017-ko",
+      "paper_id": "paper-006",
+      "question": "이 논문은 표현 학습과 과정 추론을 어떻게 연결하는가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "기상학적 강제 및 프로세스 모델과 함께, 이러한 보완적인 EO 데이터는 지역 프로세스 이해와 SM 건조화 [11], 가뭄 발생 및 회복 [12], 육지 대기 에너지 교환 [13], 식물 물 사용 [4] 및 탄소 흡수 [14]의 지역-세계 분석을 연결합니다. 지구 관측 기반 모델 (EOFM) 는 광범위한, 이질적인 EO 데이터에서 재사용 가능한 표현을 학습하고 선형 탐사, 미세 조정, 매개 변수 효율적 어댑터 또는 요청을 통해 하류 작업에 적응하는 대규모 사전 훈련 모델이다 [16], [18].",
+        "evidence_ids": [
+          "ev-01-paper-006-p001-c007",
+          "ev-05-paper-006-p002-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-001",
+          "evidence_id": "ev-01-paper-006-p001-c007",
+          "page": 1,
+          "section": "I. INTRODUCTION",
+          "evidence_rank": 1,
+          "position": 2,
+          "text": "Together with meteorological forcing and process models, these complementary EO data connect local process understanding with regional-to-global analyses of SM dry-down [11], drought onset and recovery [12], land– atmosphere energy exchange [13], plant water use [4] and carbon uptake [14].",
+          "cross_encoder_score": -3.4453084468841553,
+          "intent_bonus": 0.0,
+          "selector_score": -3.4453084468841553
+        },
+        {
+          "sentence_id": "s-010",
+          "evidence_id": "ev-05-paper-006-p002-c002",
+          "page": 2,
+          "section": "I. INTRODUCTION",
+          "evidence_rank": 5,
+          "position": 2,
+          "text": "An Earth observation foundation model (EOFM) is a large pretrained model that learns reusable representations from extensive, heterogeneous EO data and adapts them to downstream tasks through linear probing, fine-tuning, parameterefficient adapters or prompting [16], [18].",
+          "cross_encoder_score": -5.507650375366211,
+          "intent_bonus": 2.0,
+          "selector_score": -3.507650375366211
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "기상학적 강제 및 프로세스 모델과 함께, 이러한 보완적인 EO 데이터는 지역 프로세스 이해와 SM 건조화 [11], 가뭄 발생 및 회복 [12], 육지 대기 에너지 교환 [13], 식물 물 사용 [4] 및 탄소 흡수 [14]의 지역-세계 분석을 연결합니다. 지구 관측 기반 모델 (EOFM) 는 광범위한, 이질적인 EO 데이터에서 재사용 가능한 표현을 학습하고 선형 탐사, 미세 조정, 매개 변수 효율적 어댑터 또는 요청을 통해 하류 작업에 적응하는 대규모 사전 훈련 모델이다 [16], [18]."
+        }
+      ],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 1.188
+    },
+    {
+      "question_id": "q-034-en",
+      "paper_id": "paper-007",
+      "question": "What assumptions are required for the main result about logarithmic Voronoi cells?",
+      "question_language": "en",
+      "response": {
+        "answer": "In this paper, we show that even for one-dimensional algebraic models, logarithmic Voronoi boundaries can be transcendental. Main results We show that logarithmic Voronoi boundaries need not be algebraic. The models are shown in magenta and sampled logarithmic Voronoi cells in teal.",
+        "evidence_ids": [
+          "ev-02-paper-007-p001-c004",
+          "ev-01-paper-007-p002-c001",
+          "ev-05-paper-007-p002-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-016",
+          "evidence_id": "ev-02-paper-007-p001-c004",
+          "page": 1,
+          "section": "1 Introduction",
+          "evidence_rank": 2,
+          "position": 10,
+          "text": "In this paper, we show that even for one-dimensional algebraic models, logarithmic Voronoi boundaries can be transcendental.",
+          "cross_encoder_score": 2.6769261360168457,
+          "intent_bonus": 7.5,
+          "selector_score": 10.176926136016846
+        },
+        {
+          "sentence_id": "s-001",
+          "evidence_id": "ev-01-paper-007-p002-c001",
+          "page": 2,
+          "section": "1 Introduction",
+          "evidence_rank": 1,
+          "position": 1,
+          "text": "Main results We show that logarithmic Voronoi boundaries need not be algebraic.",
+          "cross_encoder_score": 3.795558452606201,
+          "intent_bonus": 5.5,
+          "selector_score": 9.295558452606201
+        },
+        {
+          "sentence_id": "s-023",
+          "evidence_id": "ev-05-paper-007-p002-c002",
+          "page": 2,
+          "section": "1 Introduction",
+          "evidence_rank": 5,
+          "position": 3,
+          "text": "The models are shown in magenta and sampled logarithmic Voronoi cells in teal.",
+          "cross_encoder_score": 3.2870590686798096,
+          "intent_bonus": 2.5,
+          "selector_score": 5.78705906867981
+        }
+      ],
+      "attempts": [],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 0.217
+    },
+    {
+      "question_id": "q-034-ko",
+      "paper_id": "paper-007",
+      "question": "로그 Voronoi cell에 대한 주요 결과를 위해 어떤 가정이 필요한가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "우리는 확률 단순성의 일차원 대수 모형에 대한 로가리듬 보로노이 경계가 대수적일 필요가 없다는 것을 보여줍니다. 이 논문에서 우리는 단차원 대수학 모델에서도 로가리듬 보로노이 경계가 초월적일 수 있음을 보여줍니다.",
+        "evidence_ids": [
+          "ev-05-paper-007-p001-c002",
+          "ev-03-paper-007-p001-c004"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-028",
+          "evidence_id": "ev-05-paper-007-p001-c002",
+          "page": 1,
+          "section": "Abstract",
+          "evidence_rank": 5,
+          "position": 1,
+          "text": "Abstract We show that logarithmic Voronoi boundaries for one-dimensional algebraic models in the probability simplex need not be algebraic.",
+          "cross_encoder_score": -0.6818422675132751,
+          "intent_bonus": 13.0,
+          "selector_score": 12.318157732486725
+        },
+        {
+          "sentence_id": "s-020",
+          "evidence_id": "ev-03-paper-007-p001-c004",
+          "page": 1,
+          "section": "1 Introduction",
+          "evidence_rank": 3,
+          "position": 10,
+          "text": "In this paper, we show that even for one-dimensional algebraic models, logarithmic Voronoi boundaries can be transcendental.",
+          "cross_encoder_score": -1.2213858366012573,
+          "intent_bonus": 7.5,
+          "selector_score": 6.278614163398743
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "우리는 확률 단순성의 일차원 대수 모형에 대한 로가리듬 보로노이 경계가 대수적일 필요가 없다는 것을 보여줍니다. 이 논문에서 우리는 단차원 대수학 모델에서도 로가리듬 보로노이 경계가 초월적일 수 있음을 보여줍니다."
+        }
+      ],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 0.773
+    },
+    {
+      "question_id": "q-041-en",
+      "paper_id": "paper-008",
+      "question": "How is the performance of GOAG evaluated?",
+      "question_language": "en",
+      "response": {
+        "answer": "We extensively compare GOAG against the following baselines using the test set of the Multidex [8] dataset. Our evaluation involved 100 inference runs per method, using a batch size of 10 to manage GPU memory. While being trained in an object-agnostic manner, GOAG achieved a higher average success rate for generating accurate grasps across all three grippers compared to the baselines.",
+        "evidence_ids": [
+          "ev-02-paper-008-p006-c005",
+          "ev-01-paper-008-p007-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-012",
+          "evidence_id": "ev-02-paper-008-p006-c005",
+          "page": 6,
+          "section": "IV. EXPERIMENTS",
+          "evidence_rank": 2,
+          "position": 7,
+          "text": "We extensively compare GOAG against the following baselines using the test set of the Multidex [8] dataset.",
+          "cross_encoder_score": -0.8671827912330627,
+          "intent_bonus": 15.0,
+          "selector_score": 14.132817208766937
+        },
+        {
+          "sentence_id": "s-011",
+          "evidence_id": "ev-02-paper-008-p006-c005",
+          "page": 6,
+          "section": "IV. EXPERIMENTS",
+          "evidence_rank": 2,
+          "position": 6,
+          "text": "Our evaluation involved 100 inference runs per method, using a batch size of 10 to manage GPU memory.",
+          "cross_encoder_score": -6.464136123657227,
+          "intent_bonus": 19.0,
+          "selector_score": 12.535863876342773
+        },
+        {
+          "sentence_id": "s-005",
+          "evidence_id": "ev-01-paper-008-p007-c002",
+          "page": 7,
+          "section": "IV. EXPERIMENTS",
+          "evidence_rank": 1,
+          "position": 8,
+          "text": "While being trained in an object-agnostic manner, GOAG achieved a higher average success rate for generating accurate grasps across all three grippers compared to the baselines.",
+          "cross_encoder_score": 1.8941107988357544,
+          "intent_bonus": 9.0,
+          "selector_score": 10.894110798835754
+        }
+      ],
+      "attempts": [],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 0.328
+    },
+    {
+      "question_id": "q-041-ko",
+      "paper_id": "paper-008",
+      "question": "GOAG의 성능은 어떻게 평가되는가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "우리는 Multidex [8] 데이터 세트의 테스트 세트를 사용하여 다음과 같은 기준과 GOAG를 광범위하게 비교합니다. 우리의 평가에는 한 방법당 100개의 추론 실행이 포함되었고 GPU 메모리를 관리하기 위해 10개의 배치를 사용했습니다.",
+        "evidence_ids": [
+          "ev-02-paper-008-p006-c005"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-012",
+          "evidence_id": "ev-02-paper-008-p006-c005",
+          "page": 6,
+          "section": "IV. EXPERIMENTS",
+          "evidence_rank": 2,
+          "position": 7,
+          "text": "We extensively compare GOAG against the following baselines using the test set of the Multidex [8] dataset.",
+          "cross_encoder_score": -0.8062928318977356,
+          "intent_bonus": 15.0,
+          "selector_score": 14.193707168102264
+        },
+        {
+          "sentence_id": "s-011",
+          "evidence_id": "ev-02-paper-008-p006-c005",
+          "page": 6,
+          "section": "IV. EXPERIMENTS",
+          "evidence_rank": 2,
+          "position": 6,
+          "text": "Our evaluation involved 100 inference runs per method, using a batch size of 10 to manage GPU memory.",
+          "cross_encoder_score": -5.147820472717285,
+          "intent_bonus": 19.0,
+          "selector_score": 13.852179527282715
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "우리는 Multidex [8] 데이터 세트의 테스트 세트를 사용하여 다음과 같은 기준과 GOAG를 광범위하게 비교합니다. 우리의 평가에는 한 방법당 100개의 추론 실행이 포함되었고 GPU 메모리를 관리하기 위해 10개의 배치를 사용했습니다."
+        }
+      ],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 0.751
+    },
+    {
+      "question_id": "q-042-en",
+      "paper_id": "paper-009",
+      "question": "How is the Microlensify classifier evaluated on TESS light curves?",
+      "question_language": "en",
+      "response": {
+        "answer": "A separate test set of 5500 fully cleaned light curves is used to evaluate the model’s ability to achieve zero false positives and zero false negatives in microlensing classification. 6.1.Microlensify Predictions on Sector 12 of Eleanor To evaluate the performance of our trained model, we applied it to approximately1.5million TESS light curves from Sector12(no simulations included), sourced from the Eleanor pipeline (the same pipeline used for the training data), to identify potential microlensing events and estimate their durations and enable their reconstruction. In this section, we explore Microlensify’s predictions of singleâĂŚ-lens microlensing events in TESS light curves extracted with different pipelines, as well as in light curves from other microlensing surveys, including OGLE, KMTNet, and MOA.",
+        "evidence_ids": [
+          "ev-04-paper-009-p014-c003",
+          "ev-02-paper-009-p015-c003"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-021",
+          "evidence_id": "ev-04-paper-009-p014-c003",
+          "page": 14,
+          "section": "5.MACHINE LEARNING MODEL",
+          "evidence_rank": 4,
+          "position": 6,
+          "text": "A separate test set of 5500 fully cleaned light curves is used to evaluate the model’s ability to achieve zero false positives and zero false negatives in microlensing classification.",
+          "cross_encoder_score": 2.1949222087860107,
+          "intent_bonus": 6.0,
+          "selector_score": 8.19492220878601
+        },
+        {
+          "sentence_id": "s-006",
+          "evidence_id": "ev-02-paper-009-p015-c003",
+          "page": 15,
+          "section": "6.RESULTS",
+          "evidence_rank": 2,
+          "position": 2,
+          "text": "6.1.Microlensify Predictions on Sector 12 of Eleanor To evaluate the performance of our trained model, we applied it to approximately1.5million TESS light curves from Sector12(no simulations included), sourced from the Eleanor pipeline (the same pipeline used for the training data), to identify potential microlensing events and estimate their durations and enable their reconstruction.",
+          "cross_encoder_score": 5.017190933227539,
+          "intent_bonus": 3.0,
+          "selector_score": 8.017190933227539
+        },
+        {
+          "sentence_id": "s-005",
+          "evidence_id": "ev-02-paper-009-p015-c003",
+          "page": 15,
+          "section": "6.RESULTS",
+          "evidence_rank": 2,
+          "position": 1,
+          "text": "6.RESULTS In this section, we explore Microlensify’s predictions of singleâĂŚ-lens microlensing events in TESS light curves extracted with different pipelines, as well as in light curves from other microlensing surveys, including OGLE, KMTNet, and MOA.",
+          "cross_encoder_score": 3.401172399520874,
+          "intent_bonus": 3.0,
+          "selector_score": 6.401172399520874
+        }
+      ],
+      "attempts": [],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 0.349
+    },
+    {
+      "question_id": "q-042-ko",
+      "paper_id": "paper-009",
+      "question": "Microlensify 분류기는 TESS 광도 곡선에서 어떻게 평가되는가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "6.1.Eleanor의 12 분야에 대한 미세 렌즈 예측을 평가하기 위해, 우리는 이 모델의 성능을 평가하기 위해, Eleanor 파이프라인 (훈련 데이터에 사용된 파이프라인 같은) 에서 얻은 약 150만 개의 TESS 빛 곡선을 적용했습니다. 이 섹션에서는 다른 파이프라인으로 추출된 TESS 광 곡선에서 단일 렌즈 마이크로 렌즈 현상의 Microlensify의 예측을 탐구하고 OGLE, KMTNet, MOA 등 다른 마이크로 렌즈 조사에서 광 곡선에서도 탐구합니다.",
+        "evidence_ids": [
+          "ev-03-paper-009-p015-c003"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-014",
+          "evidence_id": "ev-03-paper-009-p015-c003",
+          "page": 15,
+          "section": "6.RESULTS",
+          "evidence_rank": 3,
+          "position": 2,
+          "text": "6.1.Microlensify Predictions on Sector 12 of Eleanor To evaluate the performance of our trained model, we applied it to approximately1.5million TESS light curves from Sector12(no simulations included), sourced from the Eleanor pipeline (the same pipeline used for the training data), to identify potential microlensing events and estimate their durations and enable their reconstruction.",
+          "cross_encoder_score": 6.518650531768799,
+          "intent_bonus": 3.0,
+          "selector_score": 9.518650531768799
+        },
+        {
+          "sentence_id": "s-013",
+          "evidence_id": "ev-03-paper-009-p015-c003",
+          "page": 15,
+          "section": "6.RESULTS",
+          "evidence_rank": 3,
+          "position": 1,
+          "text": "6.RESULTS In this section, we explore Microlensify’s predictions of singleâĂŚ-lens microlensing events in TESS light curves extracted with different pipelines, as well as in light curves from other microlensing surveys, including OGLE, KMTNet, and MOA.",
+          "cross_encoder_score": 4.905488967895508,
+          "intent_bonus": 3.0,
+          "selector_score": 7.905488967895508
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "6.1.Eleanor의 12 분야에 대한 미세 렌즈 예측을 평가하기 위해, 우리는 이 모델의 성능을 평가하기 위해, Eleanor 파이프라인 (훈련 데이터에 사용된 파이프라인 같은) 에서 얻은 약 150만 개의 TESS 빛 곡선을 적용했습니다. 이 섹션에서는 다른 파이프라인으로 추출된 TESS 광 곡선에서 단일 렌즈 마이크로 렌즈 현상의 Microlensify의 예측을 탐구하고 OGLE, KMTNet, MOA 등 다른 마이크로 렌즈 조사에서 광 곡선에서도 탐구합니다."
+        }
+      ],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 1.45
+    },
+    {
+      "question_id": "q-043-en",
+      "paper_id": "paper-010",
+      "question": "What experiments are used to evaluate multi-source distributionally robust graph learning?",
+      "question_language": "en",
+      "response": {
+        "answer": "Section VI-A reports controlled experiments on synthetic multi-source networks, designed to isolate the effect of target-domain sample scarcity, source-target heterogeneity, and the number of available source domains under known ground truth. Section VI-B validates the framework on a real multi-site resting-state fMRI cohort, where no ground-truth connectivity graph is available and performance must instead be assessed through held-out signal reconstruction and a downstream clinical classification task. A further challenge is the joint calibration of multiple interacting hyperparameters inherent in any WDRO-based graph learning framework: the ambiguity set radius determines the degree of distributional robustness; the sparsity regularization coefficient controls graph density; the augmented Lagrangian penalty governs algorithmic convergence; and the barycentric fusion weights modulate the relative contribution of each source domain.",
+        "evidence_ids": [
+          "ev-01-paper-010-p019-c001",
+          "ev-03-paper-010-p002-c006"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-001",
+          "evidence_id": "ev-01-paper-010-p019-c001",
+          "page": 19,
+          "section": "VI. E XPERIMENTAL RESULTS",
+          "evidence_rank": 1,
+          "position": 2,
+          "text": "Section VI-A reports controlled experiments on synthetic multi-source networks, designed to isolate the effect of target-domain sample scarcity, source-target heterogeneity, and the number of available source domains under known ground truth.",
+          "cross_encoder_score": -1.230468988418579,
+          "intent_bonus": 13.0,
+          "selector_score": 11.769531011581421
+        },
+        {
+          "sentence_id": "s-002",
+          "evidence_id": "ev-01-paper-010-p019-c001",
+          "page": 19,
+          "section": "VI. E XPERIMENTAL RESULTS",
+          "evidence_rank": 1,
+          "position": 3,
+          "text": "Section VI-B validates the framework on a real multi-site resting-state fMRI cohort, where no ground-truth connectivity graph is available and performance must instead be assessed through held-out signal reconstruction and a downstream clinical classification task.",
+          "cross_encoder_score": -4.935282230377197,
+          "intent_bonus": 13.0,
+          "selector_score": 8.064717769622803
+        },
+        {
+          "sentence_id": "s-005",
+          "evidence_id": "ev-03-paper-010-p002-c006",
+          "page": 2,
+          "section": "I. I NTRODUCTION",
+          "evidence_rank": 3,
+          "position": 3,
+          "text": "A further challenge is the joint calibration of multiple interacting hyperparameters inherent in any WDRO-based graph learning framework: the ambiguity set radius determines the degree of distributional robustness; the sparsity regularization coefficient controls graph density; the augmented Lagrangian penalty governs algorithmic convergence; and the barycentric fusion weights modulate the relative contribution of each source domain.",
+          "cross_encoder_score": 0.7749600410461426,
+          "intent_bonus": 0.0,
+          "selector_score": 0.7749600410461426
+        }
+      ],
+      "attempts": [],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 0.181
+    },
+    {
+      "question_id": "q-043-ko",
+      "paper_id": "paper-010",
+      "question": "다중 소스 distributionally robust graph learning을 평가하기 위해 어떤 실험이 사용되는가?",
+      "question_language": "ko",
+      "response": {
+        "answer": "섹션 VI-B는 실제 다시티 휴식 상태 fMRI 코호트에 대한 프레임워크를 검증하고 있으며, 그 경우 토지 진실 연결 그래프가 제공되지 않으며 성능은 유지된 신호 재구성 및 하류 임상 분류 작업을 통해 평가되어야합니다. 섹션 VI-A는 표적 도메인 샘플 희소성, 표적 도메인 이질성, 그리고 알려진 토지 진실에 따라 사용할 수 있는 표적 도메인 수를 분리하기 위해 설계된 합성 다원원 네트워크에 대한 통제된 실험을 보고합니다.",
+        "evidence_ids": [
+          "ev-01-paper-010-p019-c001"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "selected_sentences": [
+        {
+          "sentence_id": "s-002",
+          "evidence_id": "ev-01-paper-010-p019-c001",
+          "page": 19,
+          "section": "VI. E XPERIMENTAL RESULTS",
+          "evidence_rank": 1,
+          "position": 3,
+          "text": "Section VI-B validates the framework on a real multi-site resting-state fMRI cohort, where no ground-truth connectivity graph is available and performance must instead be assessed through held-out signal reconstruction and a downstream clinical classification task.",
+          "cross_encoder_score": -0.10529682040214539,
+          "intent_bonus": 13.0,
+          "selector_score": 12.894703179597855
+        },
+        {
+          "sentence_id": "s-001",
+          "evidence_id": "ev-01-paper-010-p019-c001",
+          "page": 19,
+          "section": "VI. E XPERIMENTAL RESULTS",
+          "evidence_rank": 1,
+          "position": 2,
+          "text": "Section VI-A reports controlled experiments on synthetic multi-source networks, designed to isolate the effect of target-domain sample scarcity, source-target heterogeneity, and the number of available source domains under known ground truth.",
+          "cross_encoder_score": -4.167870998382568,
+          "intent_bonus": 13.0,
+          "selector_score": 8.832129001617432
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "valid",
+          "raw_response": "섹션 VI-B는 실제 다시티 휴식 상태 fMRI 코호트에 대한 프레임워크를 검증하고 있으며, 그 경우 토지 진실 연결 그래프가 제공되지 않으며 성능은 유지된 신호 재구성 및 하류 임상 분류 작업을 통해 평가되어야합니다. 섹션 VI-A는 표적 도메인 샘플 희소성, 표적 도메인 이질성, 그리고 알려진 토지 진실에 따라 사용할 수 있는 표적 도메인 수를 분리하기 위해 설계된 합성 다원원 네트워크에 대한 통제된 실험을 보고합니다."
+        }
+      ],
+      "fallback_used": false,
+      "abstention_source": null,
+      "runtime_seconds": 1.105
+    }
+  ]
+}

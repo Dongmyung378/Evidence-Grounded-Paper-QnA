@@ -59,8 +59,10 @@ class ContainerContract(unittest.TestCase):
         self.assertIn("python:3.11-slim@sha256:", dockerfile)
         self.assertGreaterEqual(dockerfile.count("USER paperqna"), 2)
         self.assertIn("sentence-transformers", backend)
+        self.assertIn("sentencepiece", backend)
         self.assertNotIn("streamlit", backend)
         self.assertIn("streamlit", ui)
+        self.assertNotIn("sentencepiece", ui)
         self.assertNotIn("torch", ui)
         self.assertNotIn("transformers", ui)
 

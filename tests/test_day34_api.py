@@ -134,7 +134,7 @@ class Day34API(unittest.TestCase):
     def test_health_paper_result_and_english_question(self):
         health = self.client.get("/health")
         self.assertEqual(health.status_code, 200)
-        self.assertEqual(health.json()["version"], "0.34.0")
+        self.assertEqual(health.json()["version"], "0.41.0")
         self.assertEqual(health.json()["seed"], SEED)
         self.assertEqual(health.json()["question_engine"], "lazy")
         self.assertEqual(health.json()["papers"], 0)

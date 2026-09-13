@@ -18,6 +18,9 @@
 - `day31_abstention_results.json`: 거절 정책 홀드아웃 평가
 - `day32_manual_review.json`: 수동 답변 품질 검토
 - `day32_failure_cases.md`: 엄격 실패 사례
+- `grounded_generation_outputs.json`: 같은 20문항과 저장 근거를 사용한 근거 우선 답변 출력
+- `grounded_generation_review_labels.jsonl`: 문항별 수동 의미 판정
+- `grounded_generation_review.json`: 기존 경로와 근거 우선 경로의 해시 연결 비교
 
 ## API 평가
 
@@ -38,4 +41,4 @@
 
 컨테이너 검증은 로컬 포트폴리오 실행 범위만 다룬다. 공개 서버와 공개 URL은 프로젝트 완료 조건이 아니다.
 
-JSON, JSONL, CSV의 필드 이름과 영어 논문 원문은 프로그램 계약과 평가 재현성을 위해 유지한다. 사람이 읽는 설명 문서는 한국어로 작성한다.
+JSON, JSONL, CSV의 필드 이름과 영어 논문 원문은 프로그램 계약과 평가 재현성을 위해 유지한다. 사람이 읽는 주요 설명은 영어와 한국어 문서를 함께 제공한다.

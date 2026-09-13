@@ -15,7 +15,8 @@ This repository is delivered as a local portfolio demo. Docker Compose is the fi
 - Accepts English and Korean questions
 - Combines BM25 and multilingual dense retrieval with reciprocal rank fusion
 - Reranks candidates with a multilingual Cross-Encoder
-- Generates answers locally with a pinned Qwen model
+- Compresses Top-5 evidence into question-relevant source sentences
+- Returns extractive English answers and locally translated Korean answers
 - Returns page-linked source evidence for supported answers
 - Refuses questions when the paper does not provide enough evidence
 - Rejects oversized or invalid PDFs before analysis and keeps the upload screen recoverable after parsing failures
@@ -32,7 +33,8 @@ PDF upload
   -> reciprocal rank fusion
   -> Cross-Encoder reranking
   -> evidence selection
-  -> local answer generation
+  -> evidence sentence compression
+  -> extractive English answer or local English-to-Korean translation
   -> answer and citation validation
 ```
 
@@ -48,6 +50,9 @@ The runtime only searches chunks that belong to the selected paper. Uploaded pap
 | Production retrieval Recall@5 | 1.000 |
 | Production retrieval MRR | 0.6317 |
 | Unsupported holdout questions refused | 10/10 |
+| Fixed 20-question answer review | 3 pass, 14 partial, 3 fail |
+| Answer pass-or-partial rate | 0.850 |
+| Fixed-evidence answer-stage time | 12.48 seconds |
 | Real HTTP integration flow | Passed |
 | Real browser PDF upload flow | Passed |
 | Real browser answer and evidence flow | Passed |
@@ -56,7 +61,7 @@ The runtime only searches chunks that belong to the selected paper. Uploaded pap
 
 The retrieval figures use one manually verified gold page per question. The 20 expansion papers are used for parsing and runtime robustness checks, not accuracy claims, because they do not yet have manually verified questions and gold evidence.
 
-The answer generator is still the weakest part of the system. In a balanced 20-question manual review, 1 answer passed, 4 were partial, and 15 failed. The API and evidence traceability are working, but the current 0.5B local model is not presented as production-quality answer generation.
+The balanced 20-question answer review improved from 1 pass, 4 partial, and 15 fail to 3 pass, 14 partial, and 3 fail. False abstentions fell from 7 to 2. The candidate used the exact saved retrieval evidence and did not load Gold during answer construction. The review was assistant-led rather than independently human-reviewed, and the paired questions represent 13 distinct meanings, so this is portfolio evidence rather than a production-quality claim. See [answer quality review](docs/reviews/answer_quality.md).
 
 ## Quick start
 
@@ -74,7 +79,7 @@ Open `http://127.0.0.1:8501` for the web interface or `http://127.0.0.1:8000/doc
 docker compose down
 ```
 
-The first backend build installs a CPU-only PyTorch runtime. The first analysis can download the pinned embedding, reranker, and generation models. Copy `.env.example` to `.env` only when ports, queue size, model preparation, offline mode, logging, or a Hugging Face token must be changed. The real `.env` file is excluded from Git and the Docker build context.
+The first backend build installs a CPU-only PyTorch runtime. The first analysis can download the pinned embedding, reranker, and translation models. Copy `.env.example` to `.env` only when ports, queue size, model preparation, offline mode, logging, or a Hugging Face token must be changed. The real `.env` file is excluded from Git and the Docker build context.
 
 ### Python
 
@@ -93,7 +98,7 @@ python -m streamlit run ui/app.py
 
 Open `http://127.0.0.1:8501` for the web interface or `http://127.0.0.1:8000/docs` for the interactive API documentation.
 
-During analysis, the service prepares the pinned embedding, reranker, and generation models. The first run may download them from Hugging Face. The 6 GB GPU profile keeps retrieval models on CPU and reserves GPU memory for answer generation. Restart FastAPI after changing runtime settings.
+During analysis, the service prepares the pinned embedding, reranker, and translation models. The first run may download them from Hugging Face. The 6 GB GPU profile keeps retrieval models on CPU and reserves GPU memory for Korean translation. Restart FastAPI after changing runtime settings.
 
 ## API workflow
 
@@ -179,7 +184,8 @@ A supported response contains the answer and only the evidence objects cited by 
 
 - Embedding: `intfloat/multilingual-e5-small`
 - Reranker: `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1`
-- Generator: `Qwen/Qwen2.5-0.5B-Instruct`
+- Korean translation: `facebook/nllb-200-distilled-600M`
+- Historical generation baseline: `Qwen/Qwen2.5-0.5B-Instruct`
 - Sparse retrieval: BM25 Top-20
 - Dense retrieval: Top-20 normalized cosine similarity
 - Fusion: equal-weight reciprocal rank fusion with `rrf_k=60`
@@ -187,7 +193,7 @@ A supported response contains the answer and only the evidence objects cited by 
 
 Model revisions and runtime parameters are pinned in `config/` so results can be checked against the saved evaluation artifacts.
 
-The browser runtime uses `config/generation_runtime.json`. It keeps the reviewed 384-token budget, allows up to three validation attempts on GPU, and limits CPU fallback to two time-bounded attempts. See [local runtime performance](docs/reviews/runtime_performance.md) for the measured acceptance result and limitations.
+The browser runtime reads `config/answer_generation.json` and `config/translation.json` through `config/runtime_qna.json`. English answers are assembled extractively from selected source sentences. Korean answers translate only those sentences with the revision-pinned NLLB model. Citations are assembled in code, and unsupported numeric claims fail closed. The NLLB checkpoint is CC-BY-NC-4.0 and is used only for this local non-commercial portfolio demo. The Qwen configuration remains available for historical regression comparison.
 
 ## Repository layout
 

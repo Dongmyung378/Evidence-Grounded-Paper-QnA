@@ -3,6 +3,7 @@ pypdf==6.16.2
 sentence-transformers==6.0.0
 numpy==1.26.4
 transformers==5.16.1
+sentencepiece==0.2.1
 fastapi==0.139.0
 uvicorn==0.50.0
 python-multipart==0.0.32

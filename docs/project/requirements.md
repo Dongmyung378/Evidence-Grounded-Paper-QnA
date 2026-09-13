@@ -116,7 +116,7 @@
 
 ## 근거 기반 답변 계약
 
-- 모델 출력은 정확히 `answer`, `evidence_ids`, `sufficiency`, `abstention_reason`을 가진다.
+- API 답변은 정확히 `answer`, `evidence_ids`, `sufficiency`, `abstention_reason`을 가진다.
 - `sufficiency`는 `sufficient` 또는 `insufficient`만 허용한다.
 - 충분한 답변은 제공된 근거에서 고유 식별자 1개부터 5개를 인용한다.
 - 부족한 답변은 근거를 인용하지 않고 질문 언어의 거절 답변을 제공한다.
@@ -125,11 +125,14 @@
 
 ## 로컬 Q&A 연결
 
-- 실행 흐름은 query -> production retrieval -> reranker -> evidence selection -> local LLM -> answer validation이다.
-- 기본 생성 모델은 정확한 리비전으로 고정한 `Qwen/Qwen2.5-0.5B-Instruct`이다.
-- 생성은 결정론적으로 실행하고 CUDA 사용이 불가능하면 CPU로 전환한다.
+- 실행 흐름은 query -> production retrieval -> reranker -> evidence selection -> sentence compression -> extractive answer or translation -> answer validation이다.
+- 영어 답변은 질문과 가장 관련 있는 원문 문장을 추출해 구성한다.
+- 한국어 답변은 정확한 리비전으로 고정한 `facebook/nllb-200-distilled-600M`으로 선택 문장만 번역한다.
+- 번역은 결정론적으로 실행하고 CUDA 사용이 불가능하면 CPU로 전환한다.
 - 생성 단계에 Gold 답변과 Gold 근거를 전달하지 않는다.
-- 잘못된 모델 출력은 제한 횟수 재시도 후 안전한 거절로 바꾼다.
+- 인용은 모델이 생성하지 않고 선택 문장의 근거 ID로 코드에서 조립한다.
+- 근거에 없는 숫자, 수식, 미번역 CJK 문자 또는 검증 지시 노출은 안전한 거절로 바꾼다.
+- NLLB 체크포인트의 CC-BY-NC-4.0 조건에 따라 현재 제공 범위는 비상업 로컬 포트폴리오 데모로 제한한다.
 
 ## 답변 거절 정책
 

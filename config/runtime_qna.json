@@ -2,13 +2,16 @@
   "schema_version": 1,
   "abstention_config": "config/abstention_candidate.json",
   "generation_config": "config/generation_runtime.json",
+  "answer_strategy": "evidence_first",
+  "answer_generation_config": "config/answer_generation.json",
+  "translation_config": "config/translation.json",
   "devices": {
     "embedding": "cpu",
     "reranker": "cpu",
     "generator": "auto"
   },
   "prepare_models_during_analysis": true,
-  "answer_guard": "reject_canned_or_question_only_responses",
+  "answer_guard": "deterministic_citations_numeric_validation_and_safe_fallback",
   "seed": 378,
-  "decision": "Keep the verified 0.5B generator, 384-token output budget, and -3.35 refusal threshold. For the 6 GB local GPU runtime, keep retrieval models on CPU, reserve GPU memory for generation, use up to three attempts on GPU, and cap CPU fallback at two time-bounded attempts."
+  "decision": "Use evidence-first sentence compression. Return extractive English answers and translate only selected source sentences into Korean with the pinned NLLB model. Keep the verified -3.35 refusal threshold, deterministic citations, numeric validation, and safe fallback. The legacy 0.5B JSON generator remains available only for regression comparison."
 }

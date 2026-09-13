@@ -28,7 +28,12 @@ def load_runtime_profile(path=RUNTIME_CONFIG_PATH):
             raise ValueError(f"runtime_qna.devices.{name} must be cpu or cuda")
     if devices.get("generator") not in {"auto", "cpu", "cuda"}:
         raise ValueError("runtime_qna.devices.generator must be auto, cpu, or cuda")
-    for name in ("generation_config", "abstention_config"):
+    for name in (
+        "generation_config",
+        "abstention_config",
+        "answer_generation_config",
+        "translation_config",
+    ):
         target = ROOT / profile[name]
         if not target.is_file():
             raise ValueError(f"Runtime Q&A profile points to a missing file: {profile[name]}")
@@ -39,6 +44,15 @@ def load_runtime_profile(path=RUNTIME_CONFIG_PATH):
         raise ValueError(
             "runtime_qna.devices.generator must match generation_config.device"
         )
+    translation = json.loads(
+        (ROOT / profile["translation_config"]).read_text(encoding="utf-8")
+    )
+    if translation.get("device") != devices["generator"]:
+        raise ValueError(
+            "runtime_qna.devices.generator must match translation_config.device"
+        )
+    if profile.get("answer_strategy") != "evidence_first":
+        raise ValueError("runtime_qna.answer_strategy must be evidence_first")
     return profile
 
 
@@ -56,6 +70,10 @@ class RuntimeQuestionEngine:
         self.runtime_config_path = Path(runtime_config_path)
         self.profile = load_runtime_profile(self.runtime_config_path)
         self.generation_config_path = ROOT / self.profile["generation_config"]
+        self.answer_generation_config_path = (
+            ROOT / self.profile["answer_generation_config"]
+        )
+        self.translation_config_path = ROOT / self.profile["translation_config"]
         self.embedding_device = self.profile["devices"]["embedding"]
         self.reranker_device = self.profile["devices"]["reranker"]
         self.prepare_models_during_analysis = bool(
@@ -116,6 +134,8 @@ class RuntimeQuestionEngine:
             self._pipeline = GroundedQAPipeline(
                 retrieval=retrieval,
                 generation_config_path=self.generation_config_path,
+                translation_config_path=self.translation_config_path,
+                answer_generation_config_path=self.answer_generation_config_path,
                 local_files_only=self.local_files_only,
             )
         else:

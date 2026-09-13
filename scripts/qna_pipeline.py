@@ -1,4 +1,4 @@
-"""Day 30 Q&A pipeline with the calibrated Day 31 abstention policy."""
+"""Runtime pipeline for retrieval, abstention, and grounded answers."""
 
 import time
 import json
@@ -7,6 +7,11 @@ from pathlib import Path
 from abstention_policy import CONFIG_PATH as ABSTENTION_CONFIG_PATH
 from abstention_policy import AbstentionPolicy
 from answer_quality import validate_informative_answer
+from grounded_generation import (
+    CONFIG_PATH as ANSWER_GENERATION_CONFIG_PATH,
+    generate_evidence_first_answer,
+    load_answer_generation_config,
+)
 from grounded_answer_contract import (
     ABSTENTION_ANSWERS,
     AnswerValidationError,
@@ -18,7 +23,14 @@ from grounded_answer_contract import (
 )
 from local_llm import CONFIG_PATH, LocalTransformersLLM
 from local_llm import generation_config_fingerprint, load_generation_config
+from local_translation import (
+    CONFIG_PATH as TRANSLATION_CONFIG_PATH,
+    LocalEnglishKoreanTranslator,
+    load_translation_config,
+    translation_config_fingerprint,
+)
 from production_retrieval import ProductionRetrieval
+from reranker import load_reranker
 from retrieval_common import PROJECT_ROOT
 
 
@@ -29,27 +41,75 @@ def _fallback_reason(language):
 
 
 class GroundedQAPipeline:
-    """Run retrieval, refusal policy, local LLM, and grounded-output validation."""
+    """Run retrieval, refusal policy, answer construction, and validation."""
 
     def __init__(
         self,
         retrieval=None,
         llm=None,
         generation_config_path=CONFIG_PATH,
+        translation_config_path=None,
+        answer_generation_config_path=None,
         abstention_config_path=None,
         enable_abstention=True,
         local_files_only=False,
+        translator=None,
+        sentence_selector=None,
+        answer_strategy=None,
     ):
         self.retrieval = retrieval or ProductionRetrieval()
-        self.generation_config_path = Path(generation_config_path)
-        self.generation_config = load_generation_config(self.generation_config_path)
-        self.llm = llm
         self.local_files_only = local_files_only
         self.enable_abstention = bool(enable_abstention)
+        runtime_path = PROJECT_ROOT / "config/runtime_qna.json"
+        profile = (
+            json.loads(runtime_path.read_text(encoding="utf-8"))
+            if runtime_path.exists()
+            else {}
+        )
+        if answer_strategy is None:
+            answer_strategy = (
+                "legacy_json"
+                if llm is not None and translator is None
+                else profile.get("answer_strategy", "legacy_json")
+            )
+        if answer_strategy not in {"legacy_json", "evidence_first"}:
+            raise ValueError("Unsupported answer strategy")
+        self.answer_strategy = answer_strategy
+        self.sentence_selector = sentence_selector
+        if self.answer_strategy == "evidence_first":
+            self.answer_generation_config_path = Path(
+                answer_generation_config_path
+                or PROJECT_ROOT
+                / profile.get(
+                    "answer_generation_config",
+                    str(ANSWER_GENERATION_CONFIG_PATH.relative_to(PROJECT_ROOT)),
+                )
+            )
+            self.answer_generation_config = load_answer_generation_config(
+                self.answer_generation_config_path
+            )
+            self.generation_config_path = Path(
+                translation_config_path
+                or PROJECT_ROOT
+                / profile.get(
+                    "translation_config",
+                    str(TRANSLATION_CONFIG_PATH.relative_to(PROJECT_ROOT)),
+                )
+            )
+            self.generation_config = load_translation_config(
+                self.generation_config_path
+            )
+            self.llm = translator or llm
+        else:
+            self.answer_generation_config_path = None
+            self.answer_generation_config = None
+            self.generation_config_path = Path(generation_config_path)
+            self.generation_config = load_generation_config(
+                self.generation_config_path
+            )
+            self.llm = llm
         if abstention_config_path is None:
-            runtime_path = PROJECT_ROOT / "config/runtime_qna.json"
             if runtime_path.exists():
-                profile = json.loads(runtime_path.read_text(encoding="utf-8"))
                 abstention_config_path = PROJECT_ROOT / profile["abstention_config"]
             else:
                 abstention_config_path = ABSTENTION_CONFIG_PATH
@@ -61,11 +121,32 @@ class GroundedQAPipeline:
 
     def _get_llm(self):
         if self.llm is None:
-            self.llm = LocalTransformersLLM(
-                self.generation_config_path,
-                local_files_only=self.local_files_only,
+            llm_class = (
+                LocalEnglishKoreanTranslator
+                if self.answer_strategy == "evidence_first"
+                else LocalTransformersLLM
+            )
+            self.llm = llm_class(
+                self.generation_config_path, local_files_only=self.local_files_only
             )
         return self.llm
+
+    def _get_sentence_selector(self):
+        if self.sentence_selector is not None:
+            return self.sentence_selector
+        pipeline = getattr(self.retrieval, "pipeline", None)
+        reranker = getattr(pipeline, "reranker", None)
+        if reranker is not None:
+            self.sentence_selector = reranker
+        else:
+            config = self.answer_generation_config["sentence_selector"]
+            self.sentence_selector = load_reranker(
+                config["model"],
+                max_length=config["max_length"],
+                local_files_only=self.local_files_only,
+                device="cpu",
+            )
+        return self.sentence_selector
 
     def prepare_generator(self):
         """Load the configured local generator without running an answer request."""
@@ -87,8 +168,10 @@ class GroundedQAPipeline:
             "config_path": str(
                 self.generation_config_path.relative_to(PROJECT_ROOT)
             ).replace("\\", "/"),
-            "config_fingerprint": generation_config_fingerprint(
-                self.generation_config
+            "config_fingerprint": (
+                translation_config_fingerprint(self.generation_config)
+                if self.answer_strategy == "evidence_first"
+                else generation_config_fingerprint(self.generation_config)
             ),
             "loaded": False,
         }
@@ -128,6 +211,38 @@ class GroundedQAPipeline:
                 policy_decision["reason_code"],
             )
             abstention_source = "pre_generation_policy"
+        elif self.answer_strategy == "evidence_first":
+            generation_started = time.perf_counter()
+            answer_model = self._get_llm() if language == "ko" else None
+            llm_loaded = language == "ko"
+            generated = generate_evidence_first_answer(
+                answer_model,
+                self._get_sentence_selector(),
+                query,
+                evidence,
+                question_language=language,
+                config=self.answer_generation_config,
+            )
+            generation_seconds = time.perf_counter() - generation_started
+            response = generated["response"]
+            attempts = [
+                {
+                    **attempt,
+                    "raw_response": (
+                        attempt.get("raw_response") if include_debug else None
+                    ),
+                }
+                for attempt in generated["attempts"]
+            ]
+            fallback_used = generated["fallback_used"]
+            if fallback_used:
+                abstention_source = "validation_fallback"
+            elif response["sufficiency"] == "insufficient":
+                abstention_source = "model"
+            if self.enable_abstention:
+                response = self.abstention_policy.enforce_model_response(
+                    response, language
+                )
         else:
             request = build_grounded_answer_request(
                 query,
@@ -231,14 +346,29 @@ class GroundedQAPipeline:
         if self.enable_abstention:
             stages.append("abstention_policy")
         if not pre_generation_abstention:
-            stages.extend(["local_llm", "answer_validation"])
+            if self.answer_strategy == "evidence_first":
+                stages.extend(["sentence_selection"])
+                stages.append(
+                    "local_translation" if language == "ko" else "extractive_answer"
+                )
+                stages.append("answer_validation")
+            else:
+                stages.extend(["local_llm", "answer_validation"])
         if self.enable_abstention:
             stages.append("abstention_enforcement")
 
         result = {
             "schema_version": 1,
-            "roadmap_day": 31 if self.enable_abstention else 30,
-            "roadmap_days": [30, 31] if self.enable_abstention else [30],
+            "roadmap_day": (
+                41
+                if self.answer_strategy == "evidence_first"
+                else (31 if self.enable_abstention else 30)
+            ),
+            "roadmap_days": (
+                [30, 31, 41]
+                if self.answer_strategy == "evidence_first"
+                else ([30, 31] if self.enable_abstention else [30])
+            ),
             "paper_id": paper_id,
             "query": query,
             "question_language": language,
@@ -251,6 +381,14 @@ class GroundedQAPipeline:
                     "config_fingerprint"
                 ],
                 "llm": self._llm_metadata(llm_loaded),
+                "answer_strategy": self.answer_strategy,
+                "answer_generation_config": (
+                    str(
+                        self.answer_generation_config_path.relative_to(PROJECT_ROOT)
+                    ).replace("\\", "/")
+                    if self.answer_generation_config_path
+                    else None
+                ),
                 "llm_skipped": pre_generation_abstention,
                 "generation_attempts": len(attempts),
                 "fallback_used": fallback_used,
