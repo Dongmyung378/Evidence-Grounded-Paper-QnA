@@ -1,4 +1,4 @@
-"""Frozen Day 28 production retrieval configuration and execution path."""
+"""Frozen production retrieval configuration and execution path."""
 
 import hashlib
 import json
@@ -23,7 +23,6 @@ def load_production_config(path=CONFIG_PATH):
 
 def validate_production_config(config):
     assert config["schema_version"] == 1
-    assert config["roadmap_day"] == 28
     assert config["status"] == "frozen"
     assert config["corpus"]["processing_scope"] == "one_paper_at_a_time"
     assert config["benchmark"] == {
@@ -50,7 +49,6 @@ def validate_production_config(config):
     }
     assert config["quality_gates"]["minimum_recall_at_5"] == 1.0
     assert config["quality_gates"]["maximum_lost_top5_hits"] == 0
-    assert config["change_policy"]["frozen_after_day"] == 28
     return config
 
 
@@ -122,7 +120,6 @@ class ProductionRetrieval:
             near_duplicate_threshold=evidence["near_duplicate_threshold"],
             front_matter_page=retrieval["front_matter_guard"]["page"],
         )
-        result["roadmap_days"] = [23, 24, 27, 28]
         result["production"] = {
             "status": self.config["status"],
             "config_path": str(self.config_path.relative_to(PROJECT_ROOT)).replace("\\", "/"),

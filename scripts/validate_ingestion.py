@@ -1,4 +1,4 @@
-"""Validate chunk invariants produced by the Day 11/12 ingestion pipeline."""
+"""Validate chunk invariants produced by the ingestion pipeline."""
 
 import json
 from pathlib import Path

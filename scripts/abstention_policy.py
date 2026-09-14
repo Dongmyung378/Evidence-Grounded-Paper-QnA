@@ -1,4 +1,4 @@
-"""Calibrated Day 31 policy for refusing unsupported paper answers."""
+"""Calibrated policy for refusing unsupported paper answers."""
 
 import hashlib
 import json
@@ -32,7 +32,6 @@ def load_abstention_config(path=CONFIG_PATH):
 
 def validate_abstention_config(config):
     assert config["schema_version"] == 1
-    assert config["roadmap_day"] == 31
     assert config["status"] == "calibrated"
     policy = config["policy"]
     assert policy["reject_empty_candidates"] is True

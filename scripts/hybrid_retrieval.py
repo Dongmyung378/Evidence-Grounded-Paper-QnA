@@ -45,7 +45,7 @@ def reciprocal_rank_fusion(result_sets, rrf_k=60, top_k=None, weights=None):
 def build_rerank_pool(result_sets, rrf_k=60, candidate_k=20, mode="top20"):
     """Build the Cross-Encoder input pool while preserving RRF metadata.
 
-    ``top20`` reproduces the Day 22 baseline. ``source_union`` retains the
+    ``top20`` keeps the first 20 fused candidates. ``source_union`` retains the
     unique union of each source's Top-K before reranking; the Cross-Encoder then
     returns the final Top-K. The latter fixes candidate starvation without
     changing retrieval models or using question-specific rules.

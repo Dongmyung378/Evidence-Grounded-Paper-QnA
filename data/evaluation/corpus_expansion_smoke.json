@@ -42,7 +42,7 @@
     "embedding": "intfloat/multilingual-e5-small",
     "reranker": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
   },
-  "production_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+  "production_config_fingerprint": "0c29b27950ba19aea6fd336db857f691b0fafcd82eada850c868d7ffe0d3579a",
   "embedding_cache": "hit",
   "summary": {
     "papers": 20,
@@ -50,7 +50,7 @@
     "failed": 0,
     "english_queries": 10,
     "korean_queries": 10,
-    "runtime_seconds": 19.268
+    "runtime_seconds": 41.958
   },
   "cases": [
     {
@@ -61,16 +61,16 @@
       "evidence_count": 5,
       "evidence_pages": [
         3,
+        8,
         3,
         14,
-        8,
         12
       ],
       "evidence_chunk_ids": [
         "paper-011-p003-c002",
-        "paper-011-p003-c004",
-        "paper-011-p014-c001",
         "paper-011-p008-c002",
+        "paper-011-p003-c001",
+        "paper-011-p014-c001",
         "paper-011-p012-c002"
       ],
       "front_matter_injected": false,
@@ -85,16 +85,16 @@
       "evidence_pages": [
         3,
         3,
-        4,
         1,
-        2
+        4,
+        1
       ],
       "evidence_chunk_ids": [
         "paper-012-p003-c001",
         "paper-012-p003-c003",
-        "paper-012-p004-c002",
         "paper-012-p001-c004",
-        "paper-012-p002-c006"
+        "paper-012-p004-c002",
+        "paper-012-p001-c002"
       ],
       "front_matter_injected": false,
       "status": "pass"
@@ -107,17 +107,17 @@
       "evidence_count": 5,
       "evidence_pages": [
         3,
+        11,
         2,
-        11,
-        11,
-        2
+        2,
+        1
       ],
       "evidence_chunk_ids": [
         "paper-013-p003-c005",
-        "paper-013-p002-c004",
         "paper-013-p011-c002",
-        "paper-013-p011-c001",
-        "paper-013-p002-c002"
+        "paper-013-p002-c004",
+        "paper-013-p002-c002",
+        "paper-013-p001-c004"
       ],
       "front_matter_injected": false,
       "status": "pass"
@@ -152,18 +152,18 @@
       "candidate_count": 20,
       "evidence_count": 5,
       "evidence_pages": [
-        5,
         4,
+        5,
         12,
-        16,
-        4
+        4,
+        16
       ],
       "evidence_chunk_ids": [
-        "paper-015-p005-c002",
         "paper-015-p004-c006",
+        "paper-015-p005-c002",
         "paper-015-p012-c004",
-        "paper-015-p016-c001",
-        "paper-015-p004-c002"
+        "paper-015-p004-c002",
+        "paper-015-p016-c001"
       ],
       "front_matter_injected": true,
       "status": "pass"
@@ -177,16 +177,16 @@
       "evidence_pages": [
         9,
         24,
-        24,
         1,
-        10
+        10,
+        24
       ],
       "evidence_chunk_ids": [
         "paper-016-p009-c001",
         "paper-016-p024-c001",
-        "paper-016-p024-c004",
         "paper-016-p001-c006",
-        "paper-016-p010-c003"
+        "paper-016-p010-c003",
+        "paper-016-p024-c004"
       ],
       "front_matter_injected": false,
       "status": "pass"
@@ -206,10 +206,10 @@
       ],
       "evidence_chunk_ids": [
         "paper-017-p002-c006",
-        "paper-017-p001-c006",
-        "paper-017-p014-c001",
         "paper-017-p001-c004",
-        "paper-017-p007-c005"
+        "paper-017-p014-c001",
+        "paper-017-p001-c006",
+        "paper-017-p007-c006"
       ],
       "front_matter_injected": false,
       "status": "pass"
@@ -223,16 +223,16 @@
       "evidence_pages": [
         2,
         4,
-        3,
         4,
+        3,
         3
       ],
       "evidence_chunk_ids": [
         "paper-018-p002-c001",
-        "paper-018-p004-c003",
-        "paper-018-p003-c002",
         "paper-018-p004-c004",
-        "paper-018-p003-c004"
+        "paper-018-p004-c003",
+        "paper-018-p003-c004",
+        "paper-018-p003-c002"
       ],
       "front_matter_injected": false,
       "status": "pass"
@@ -248,14 +248,14 @@
         2,
         8,
         8,
-        13
+        4
       ],
       "evidence_chunk_ids": [
         "paper-019-p014-c001",
         "paper-019-p002-c003",
         "paper-019-p008-c002",
         "paper-019-p008-c004",
-        "paper-019-p013-c003"
+        "paper-019-p004-c001"
       ],
       "front_matter_injected": false,
       "status": "pass"
@@ -269,16 +269,16 @@
       "evidence_pages": [
         1,
         1,
-        12,
         2,
-        13
+        12,
+        2
       ],
       "evidence_chunk_ids": [
         "paper-020-p001-c002",
         "paper-020-p001-c003",
-        "paper-020-p012-c002",
         "paper-020-p002-c001",
-        "paper-020-p013-c001"
+        "paper-020-p012-c002",
+        "paper-020-p002-c003"
       ],
       "front_matter_injected": false,
       "status": "pass"
@@ -290,15 +290,15 @@
       "candidate_count": 20,
       "evidence_count": 5,
       "evidence_pages": [
-        13,
         18,
+        13,
         1,
         19,
         9
       ],
       "evidence_chunk_ids": [
-        "paper-021-p013-c002",
         "paper-021-p018-c004",
+        "paper-021-p013-c002",
         "paper-021-p001-c004",
         "paper-021-p019-c001",
         "paper-021-p009-c002"
@@ -315,16 +315,16 @@
       "evidence_pages": [
         10,
         13,
-        9,
         1,
-        2
+        9,
+        1
       ],
       "evidence_chunk_ids": [
         "paper-022-p010-c001",
         "paper-022-p013-c001",
-        "paper-022-p009-c002",
         "paper-022-p001-c003",
-        "paper-022-p002-c001"
+        "paper-022-p009-c002",
+        "paper-022-p001-c002"
       ],
       "front_matter_injected": false,
       "status": "pass"
@@ -338,15 +338,15 @@
       "evidence_pages": [
         9,
         2,
-        10,
         16,
+        10,
         9
       ],
       "evidence_chunk_ids": [
         "paper-023-p009-c001",
         "paper-023-p002-c003",
-        "paper-023-p010-c002",
         "paper-023-p016-c001",
+        "paper-023-p010-c002",
         "paper-023-p009-c002"
       ],
       "front_matter_injected": false,
@@ -363,14 +363,14 @@
         2,
         3,
         1,
-        6
+        1
       ],
       "evidence_chunk_ids": [
         "paper-024-p003-c001",
         "paper-024-p002-c001",
         "paper-024-p003-c003",
         "paper-024-p001-c004",
-        "paper-024-p006-c002"
+        "paper-024-p001-c002"
       ],
       "front_matter_injected": false,
       "status": "pass"
@@ -428,17 +428,17 @@
       "candidate_count": 20,
       "evidence_count": 5,
       "evidence_pages": [
-        18,
         3,
-        11,
         18,
+        18,
+        11,
         3
       ],
       "evidence_chunk_ids": [
-        "paper-027-p018-c002",
         "paper-027-p003-c001",
-        "paper-027-p011-c003",
+        "paper-027-p018-c002",
         "paper-027-p018-c003",
+        "paper-027-p011-c003",
         "paper-027-p003-c005"
       ],
       "front_matter_injected": true,
@@ -474,15 +474,15 @@
       "candidate_count": 20,
       "evidence_count": 5,
       "evidence_pages": [
-        8,
         1,
+        8,
         7,
         17,
         13
       ],
       "evidence_chunk_ids": [
-        "paper-029-p008-c002",
         "paper-029-p001-c003",
+        "paper-029-p008-c002",
         "paper-029-p007-c004",
         "paper-029-p017-c001",
         "paper-029-p013-c006"
@@ -499,15 +499,15 @@
       "evidence_pages": [
         16,
         1,
-        16,
         1,
+        16,
         3
       ],
       "evidence_chunk_ids": [
         "paper-030-p016-c004",
         "paper-030-p001-c003",
-        "paper-030-p016-c003",
         "paper-030-p001-c002",
+        "paper-030-p016-c003",
         "paper-030-p003-c003"
       ],
       "front_matter_injected": false,

@@ -1,4 +1,4 @@
-"""Search one paper and print the Day 24 UI-ready Top-5 evidence."""
+"""Search one paper and print UI-ready Top-5 evidence."""
 
 import argparse
 import json

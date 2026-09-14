@@ -21,7 +21,7 @@ from reranker import load_reranker
 from retrieval_common import PROJECT_ROOT, configure_utf8_stdout
 
 
-BASELINE_PATH = PROJECT_ROOT / "data" / "evaluation" / "day32_qna_outputs.json"
+BASELINE_PATH = PROJECT_ROOT / "data" / "evaluation" / "answer_evidence_inputs.json"
 OUTPUT_PATH = PROJECT_ROOT / "data" / "evaluation" / "grounded_generation_outputs.json"
 
 
@@ -54,7 +54,7 @@ def main():
     set_seed(378)
     baseline = json.loads(BASELINE_PATH.read_text(encoding="utf-8"))
     answer_config = load_answer_generation_config(args.answer_config)
-    abstention = AbstentionPolicy(PROJECT_ROOT / "config" / "abstention_candidate.json")
+    abstention = AbstentionPolicy(PROJECT_ROOT / "config" / "abstention.json")
     selector_model = locked_model("reranker")
     if answer_config["sentence_selector"]["model"] != selector_model["name"]:
         raise ValueError("Sentence selector does not match the model lock")
@@ -125,7 +125,7 @@ def main():
         "evaluation": "fixed-20-answer-quality",
         "seed": 378,
         "gold_loaded_during_generation": False,
-        "method": "Current abstention threshold, saved Day 32 retrieval evidence, Cross-Encoder sentence compression, plain answer generation, deterministic citation assembly and numeric claim validation.",
+        "method": "Current abstention threshold, fixed retrieval evidence, Cross-Encoder sentence compression, plain answer generation, deterministic citation assembly, and numeric claim validation.",
         "provenance": {
             "baseline_outputs": str(BASELINE_PATH.relative_to(PROJECT_ROOT)).replace("\\", "/"),
             "baseline_sha256": sha256(BASELINE_PATH),
@@ -134,7 +134,7 @@ def main():
             "implementation_sha256": sha256(Path(__file__).with_name("grounded_generation.py")),
             "translation_config": str(args.translation_config.relative_to(PROJECT_ROOT)).replace("\\", "/"),
             "translation_config_sha256": sha256(args.translation_config),
-            "abstention_config": "config/abstention_candidate.json",
+            "abstention_config": "config/abstention.json",
         },
         "models": {
             "translator": generator.metadata(),

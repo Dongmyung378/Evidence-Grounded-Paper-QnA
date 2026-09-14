@@ -1,4 +1,4 @@
-"""Validate the complete Day 13/14 pipeline outputs and traceability."""
+"""Validate complete pipeline outputs and traceability."""
 
 import json
 from pathlib import Path

@@ -1,4 +1,4 @@
-"""Ask one question through the local Q&A pipeline with Day 31 abstention."""
+"""Ask one question through the local evidence-grounded Q&A pipeline."""
 
 import argparse
 import json

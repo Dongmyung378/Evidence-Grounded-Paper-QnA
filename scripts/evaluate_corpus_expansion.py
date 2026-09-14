@@ -19,7 +19,11 @@ QUERIES = {
 def main():
     configure_utf8_stdout()
     started = time.perf_counter()
-    production = ProductionRetrieval()
+    production = ProductionRetrieval(
+        local_files_only=True,
+        embedding_device="cpu",
+        reranker_device="cpu",
+    )
     cases = []
 
     for offset, paper_id in enumerate(EXPANSION_PAPERS):

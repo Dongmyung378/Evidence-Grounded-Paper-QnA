@@ -12,11 +12,11 @@
     "chunks": "data/processed/chunks.jsonl",
     "chunks_sha256": "20a7a2b96dfa08e97b4cf2e22bcc6580245b489245be20e72c3a5af43729ac29",
     "production_config": "config/production_retrieval.json",
-    "production_config_fingerprint": "186d2f3c8b0b858eae1a309c2444ddd1eca09ebfa3613bb9214b86f40770703e",
+    "production_config_fingerprint": "0c29b27950ba19aea6fd336db857f691b0fafcd82eada850c868d7ffe0d3579a",
     "model_lock": "config/model_lock.json",
     "model_lock_sha256": "7cc5ba9ca615090de955ea9743fdc25bb95028fec872a3d05cfd362af72e3956",
     "evaluation_freeze": "config/evaluation_freeze.json",
-    "evaluation_freeze_sha256": "6d3c1d7d64a2040060c3bb78a7672891170712a7682fd61038ce0f70ae1656e8",
+    "evaluation_freeze_sha256": "c976469346500f42a6a928bd4486441f1561886f7e8fb407f1a3d8722aa201fa",
     "implementation_sha256": "2f74122d78f461714eb2484431e75ed46ac60d314d3bb0254c78276421a8d964"
   },
   "models": {
@@ -89,7 +89,7 @@
   "evidence_contract_passed": 40,
   "front_matter_guard_injections": 1,
   "embedding_cache": "hit",
-  "runtime_seconds": 50.786,
+  "runtime_seconds": 59.605,
   "results": [
     {
       "question_id": "q-001-en",

@@ -31,14 +31,12 @@ class EvaluationFreezeTests(unittest.TestCase):
             self.config["metric_policy"]["current_retrieval_source"],
             "data/evaluation/frozen_retrieval_metrics.json",
         )
-        self.assertFalse(
-            self.config["metric_policy"]["historical_mrr_is_current_claim"]
-        )
+        self.assertTrue(self.config["metric_policy"]["latency_is_hardware_specific"])
 
     def test_every_frozen_source_exists_and_is_unique(self):
         paths = source_paths(self.config)
         self.assertEqual(len(paths), len(set(paths)))
-        self.assertGreaterEqual(len(paths), 35)
+        self.assertGreaterEqual(len(paths), 30)
 
     def test_builder_is_deterministic_and_covers_required_areas(self):
         first_csv, first_json = build_outputs()

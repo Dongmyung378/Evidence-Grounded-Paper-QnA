@@ -1,4 +1,4 @@
-"""Day 34 API: run with python -m uvicorn app.main:app --workers 1."""
+"""FastAPI application entry point."""
 
 import logging
 from contextlib import asynccontextmanager

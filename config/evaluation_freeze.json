@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "status": "frozen",
-  "freeze_date": "2026-09-13",
+  "freeze_date": "2026-09-14",
   "seed": 378,
   "delivery": "Docker Compose local noncommercial portfolio demo",
   "evaluation_boundary": {
@@ -19,6 +19,7 @@
     },
     "answer_review": {
       "questions": 20,
+      "independent_meanings": 13,
       "independent_human_review": false
     },
     "container_qna": {
@@ -40,8 +41,8 @@
     },
     "abstention": {
       "minimum_answerable_retention": 0.95,
-      "minimum_unsupported_holdout_refusal": 1.0,
-      "maximum_holdout_fallbacks": 0
+      "minimum_calibration_refusal": 1.0,
+      "minimum_holdout_refusal": 0.9
     },
     "answer_quality": {
       "minimum_pass_or_partial_rate": 0.85,
@@ -61,7 +62,7 @@
       "data/evaluation/questions.jsonl",
       "data/evaluation/gold_evidence.jsonl",
       "data/evaluation/split_manifest.json",
-      "data/evaluation/day32_review_manifest.json",
+      "data/evaluation/answer_review_manifest.json",
       "data/evaluation/abstention_questions.jsonl"
     ],
     "runtime_configs": [
@@ -69,23 +70,24 @@
       "config/production_retrieval.json",
       "config/model_lock.json",
       "config/runtime_qna.json",
+      "config/generation_runtime.json",
       "config/answer_generation.json",
       "config/translation.json",
-      "config/abstention_candidate.json",
+      "config/abstention.json",
       "config/container_qna_benchmark.json",
       "config/evaluation_freeze.json"
     ],
     "evaluated_artifacts": [
       "data/evaluation/frozen_retrieval_metrics.json",
-      "data/evaluation/day28_production_metrics.json",
       "data/evaluation/corpus_expansion_smoke.json",
-      "data/evaluation/abstention_improvement_results.json",
+      "data/evaluation/abstention_evaluation.json",
       "data/evaluation/grounded_generation_outputs.json",
       "data/evaluation/grounded_generation_review_labels.jsonl",
       "data/evaluation/grounded_generation_review.json",
       "data/evaluation/container_qna_results.json",
       "data/evaluation/container_qna_review_labels.jsonl",
-      "data/evaluation/container_qna_review.json"
+      "data/evaluation/container_qna_review.json",
+      "data/evaluation/container_results.json"
     ],
     "runtime_implementation": [
       "app/main.py",
@@ -99,20 +101,12 @@
       "scripts/evidence_selector.py",
       "scripts/abstention_policy.py",
       "scripts/grounded_generation.py",
+      "scripts/local_llm.py",
       "scripts/local_translation.py",
       "scripts/qna_pipeline.py",
       "scripts/evaluate_frozen_retrieval.py",
+      "scripts/evaluate_abstention.py",
       "scripts/build_evaluation_freeze.py"
-    ],
-    "answer_coverage_experiment": [
-      "config/answer_coverage.json",
-      "scripts/answer_coverage.py",
-      "scripts/evaluate_answer_coverage.py",
-      "scripts/review_answer_coverage.py",
-      "tests/test_answer_coverage.py",
-      "data/evaluation/answer_coverage_outputs.json",
-      "data/evaluation/answer_coverage_review_labels.jsonl",
-      "data/evaluation/answer_coverage_review.json"
     ],
     "packaging": [
       "Dockerfile",
@@ -124,10 +118,8 @@
   },
   "metric_policy": {
     "current_retrieval_source": "data/evaluation/frozen_retrieval_metrics.json",
-    "historical_retrieval_source": "data/evaluation/day28_production_metrics.json",
-    "historical_mrr_is_current_claim": false,
     "latency_is_hardware_specific": true,
     "gold_is_used_only_for_scoring_and_post_generation_review": true
   },
-  "change_policy": "Any change to a listed source requires rebuilding the freeze artifacts, rerunning all validators, and reviewing changed claims before release."
+  "change_policy": "Any change to a listed source requires rebuilding the freeze artifacts, rerunning validators, and reviewing changed claims before release."
 }

@@ -1,4 +1,4 @@
-"""Local Hugging Face text-generation adapter for Day 30."""
+"""Local Hugging Face text-generation adapter."""
 
 import hashlib
 import json
@@ -7,7 +7,7 @@ from pathlib import Path
 from retrieval_common import PROJECT_ROOT
 
 
-CONFIG_PATH = PROJECT_ROOT / "config" / "generation.json"
+CONFIG_PATH = PROJECT_ROOT / "config" / "generation_runtime.json"
 
 
 def load_generation_config(path=CONFIG_PATH):
@@ -18,7 +18,6 @@ def load_generation_config(path=CONFIG_PATH):
 
 def validate_generation_config(config):
     assert config["schema_version"] == 1
-    assert config["roadmap_day"] == 30
     assert config["provider"] == "local_transformers"
     assert isinstance(config["model"], str) and config["model"]
     assert isinstance(config["revision"], str) and config["revision"]

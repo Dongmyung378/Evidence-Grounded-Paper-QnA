@@ -3,16 +3,16 @@
   "evaluation": "fixed-20-answer-quality",
   "seed": 378,
   "gold_loaded_during_generation": false,
-  "method": "Current abstention threshold, saved Day 32 retrieval evidence, Cross-Encoder sentence compression, plain answer generation, deterministic citation assembly and numeric claim validation.",
+  "method": "Current abstention threshold, fixed retrieval evidence, Cross-Encoder sentence compression, plain answer generation, deterministic citation assembly, and numeric claim validation.",
   "provenance": {
-    "baseline_outputs": "data/evaluation/day32_qna_outputs.json",
-    "baseline_sha256": "59449747441dff0c7b736e3ef9a4b0401d3cf764e44c3060bf74fa23d5b96af7",
+    "baseline_outputs": "data/evaluation/answer_evidence_inputs.json",
+    "baseline_sha256": "701cfe5ae09d9c9247b96b7a3b789a58165bafe9c842d68173b3fd1ff6a39ea0",
     "answer_config": "config/answer_generation.json",
     "answer_config_sha256": "49a2e0d072098f4eb27dc270c8d6da1afc8877985b39f11279f2ae3d88dd1293",
     "implementation_sha256": "89134a2b223752553fb6b28fd61822e18ce2c9e5fffcf98129bb92621ead7425",
     "translation_config": "config/translation.json",
     "translation_config_sha256": "a17777804c9deb1a4147e93bc33ed35c4b28d10313364de48f3e2bfe5f26cac5",
-    "abstention_config": "config/abstention_candidate.json"
+    "abstention_config": "config/abstention.json"
   },
   "models": {
     "translator": {
@@ -36,7 +36,7 @@
     "model_refusals": 0,
     "validation_fallbacks": 0,
     "generation_attempts": 9,
-    "runtime_seconds": 12.48
+    "runtime_seconds": 13.037
   },
   "results": [
     {
@@ -129,7 +129,7 @@
       "attempts": [],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 0.353
+      "runtime_seconds": 0.357
     },
     {
       "question_id": "q-045-ko",
@@ -179,7 +179,7 @@
       ],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 1.408
+      "runtime_seconds": 1.863
     },
     {
       "question_id": "q-007-en",
@@ -287,7 +287,7 @@
       ],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 0.961
+      "runtime_seconds": 0.927
     },
     {
       "question_id": "q-031-en",
@@ -345,7 +345,7 @@
       "attempts": [],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 0.26
+      "runtime_seconds": 0.271
     },
     {
       "question_id": "q-048-ko",
@@ -396,7 +396,7 @@
       ],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 1.226
+      "runtime_seconds": 1.165
     },
     {
       "question_id": "q-015-en",
@@ -454,7 +454,7 @@
       "attempts": [],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 0.267
+      "runtime_seconds": 0.278
     },
     {
       "question_id": "q-049-ko",
@@ -505,7 +505,7 @@
       ],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 1.126
+      "runtime_seconds": 1.091
     },
     {
       "question_id": "q-017-en",
@@ -563,7 +563,7 @@
       "attempts": [],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 0.311
+      "runtime_seconds": 0.234
     },
     {
       "question_id": "q-017-ko",
@@ -614,7 +614,7 @@
       ],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 1.188
+      "runtime_seconds": 1.15
     },
     {
       "question_id": "q-034-en",
@@ -672,7 +672,7 @@
       "attempts": [],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 0.217
+      "runtime_seconds": 0.293
     },
     {
       "question_id": "q-034-ko",
@@ -723,7 +723,7 @@
       ],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 0.773
+      "runtime_seconds": 0.901
     },
     {
       "question_id": "q-041-en",
@@ -780,7 +780,7 @@
       "attempts": [],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 0.328
+      "runtime_seconds": 0.388
     },
     {
       "question_id": "q-041-ko",
@@ -830,7 +830,7 @@
       ],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 0.751
+      "runtime_seconds": 0.799
     },
     {
       "question_id": "q-042-en",
@@ -887,7 +887,7 @@
       "attempts": [],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 0.349
+      "runtime_seconds": 0.32
     },
     {
       "question_id": "q-042-ko",
@@ -937,7 +937,7 @@
       ],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 1.45
+      "runtime_seconds": 1.469
     },
     {
       "question_id": "q-043-en",
@@ -994,7 +994,7 @@
       "attempts": [],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 0.181
+      "runtime_seconds": 0.196
     },
     {
       "question_id": "q-043-ko",
@@ -1044,7 +1044,7 @@
       ],
       "fallback_used": false,
       "abstention_source": null,
-      "runtime_seconds": 1.105
+      "runtime_seconds": 1.108
     }
   ]
 }

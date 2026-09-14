@@ -20,7 +20,7 @@ from candidate_evidence_pipeline import CandidateEvidencePipeline
 from grounded_answer_contract import ABSTENTION_ANSWERS
 from local_llm import LocalTransformersLLM, load_generation_config
 from qna_pipeline import GroundedQAPipeline
-from test_qna_pipeline import EVIDENCE, SequenceLLM
+from qna_fixtures import EVIDENCE, SequenceLLM
 
 
 class FakeEmbedding:

@@ -2,296 +2,113 @@
 
 [English](README.md) | [한국어](README_KO.md)
 
-Evidence-Grounded Paper Q&A is a local-first service for asking questions about one English research paper at a time. It accepts questions in English or Korean and returns an answer in the same language, together with the original supporting text, page number, section, and chunk ID.
+Evidence-Grounded Paper Q&A is a local application for asking English or Korean questions about one text-based English research paper. Every supported answer is paired with the original sentence, page, section, and chunk identifier used as evidence.
 
-The project focuses on a simple requirement: an answer should be easy to trace back to the paper it came from.
+## Demo
 
-This repository is delivered as a local portfolio demo. Docker Compose is the final distribution target; public server hosting and a public URL are intentionally outside the project scope.
+| English answer | Korean answer |
+|---|---|
+| ![English answer with cited paper evidence](docs/assets/screenshots/03-english-answer-evidence.png) | ![Korean answer with cited paper evidence](docs/assets/screenshots/04-korean-answer-evidence.png) |
+
+Additional screens: [PDF upload](docs/assets/screenshots/01-upload.png), [paper overview](docs/assets/screenshots/02-analysis-complete.png), and [Docker images](docs/assets/screenshots/docker.png).
 
 ## What it does
 
-- Uploads one text-extractable English PDF up to 20 MiB
-- Extracts a paper overview, page text, and section-aware chunks
-- Accepts English and Korean questions
-- Combines BM25 and multilingual dense retrieval with reciprocal rank fusion
-- Reranks candidates with a multilingual Cross-Encoder
-- Compresses Top-5 evidence into question-relevant source sentences
-- Returns extractive English answers and locally translated Korean answers
-- Returns page-linked source evidence for supported answers
-- Refuses questions when the paper does not provide enough evidence
-- Rejects oversized or invalid PDFs before analysis and keeps the upload screen recoverable after parsing failures
-- Exposes the complete workflow through FastAPI and a bilingual Streamlit interface
-- Runs the backend and UI as separate, health-checked Docker Compose services
+- Uploads one text-based English PDF up to 20 MiB
+- Extracts pages, sections, an abstract, and traceable text chunks
+- Retrieves evidence with BM25 and multilingual E5, then fuses and reranks candidates
+- Answers in the language of the question
+- Shows only cited evidence with page, section, original text, and chunk ID
+- Refuses questions when the retrieved paper text is not sufficient
+- Runs locally with FastAPI, Streamlit, and Docker Compose
 
-## How it works
+## System
 
-```text
-PDF upload
-  -> page-level text extraction
-  -> section-aware chunking
-  -> BM25 and dense indexes
-  -> reciprocal rank fusion
-  -> Cross-Encoder reranking
-  -> evidence selection
-  -> evidence sentence compression
-  -> extractive English answer or local English-to-Korean translation
-  -> answer and citation validation
+```mermaid
+flowchart LR
+    PDF[English PDF] --> Parse[Page and section extraction]
+    Parse --> Chunk[Traceable chunks]
+    Question[English or Korean question] --> BM25[BM25]
+    Question --> Dense[Multilingual E5]
+    Chunk --> BM25
+    Chunk --> Dense
+    BM25 --> RRF[Reciprocal rank fusion]
+    Dense --> RRF
+    RRF --> Rank[Cross-encoder reranker]
+    Rank --> Guard[Evidence and refusal policy]
+    Guard --> Answer[Extractive answer or Korean translation]
+    Answer --> Cite[Answer with source evidence]
 ```
 
-The runtime only searches chunks that belong to the selected paper. Uploaded papers and their indexes are stored separately from the frozen evaluation corpus.
+See [architecture](docs/architecture.md) for component responsibilities and trust boundaries.
 
-## Current evaluation
+## Evaluation
 
-| Check | Result |
+| Scope | Result |
 |---|---:|
-| Local robustness corpus | 30 papers, 563 pages, 2,463 chunks |
-| Verified benchmark | 40 questions across 10 papers |
-| Benchmark languages | 20 English, 20 Korean |
-| Production retrieval Recall@5 | 1.000 |
-| Production retrieval MRR | 0.5838 |
-| Unsupported holdout questions refused (historical saved run) | 10/10 |
-| Fixed 20-question answer review | 3 pass, 14 partial, 3 fail |
-| Answer pass-or-partial rate | 0.850 |
-| Fixed-evidence answer-stage time | 12.48 seconds |
-| Real HTTP integration flow | Passed |
-| Real browser PDF upload flow | Passed |
-| Real browser answer and evidence flow | Passed |
-| Real browser error handling and retry flow | Passed |
-| Docker Compose backend and UI health gate | Passed |
-| Fixed Docker Compose Q&A flow | 3 papers, 10/10 questions passed |
-| Container answer review | 4 pass, 6 partial, 0 fail |
-| Container English answer API mean | 1.470 seconds |
-| Container Korean answer API mean | 11.950 seconds |
-| Offline cached container restart | Passed |
-| Final evaluation freeze | Passed, seed 378 and model revisions locked |
+| Corpus robustness | 30 papers, 563 pages, 2,463 chunks |
+| Verified retrieval benchmark | 40 questions on 10 papers, 20 EN and 20 KO |
+| Recall@1 / Recall@3 | 0.300 / 0.850 |
+| Recall@5 / Recall@10 | 1.000 / 1.000 |
+| MRR overall / EN / KO | 0.5838 / 0.6308 / 0.5367 |
+| Answerable retention / unsupported holdout refusal | 95% / 90% |
+| Reviewed answers | 3 pass, 14 partial, 3 fail |
+| Pass or partial | 85% |
+| Citation support failures | 0 |
+| Docker Q&A review | 4 pass, 6 partial, 0 fail |
+| Docker API mean | EN 1.47 s, KO 11.95 s |
 
-The retrieval figures use one manually verified gold page per question. The 20 expansion papers are used for parsing and runtime robustness checks, not accuracy claims, because they do not yet have manually verified questions and gold evidence.
+Retrieval accuracy is measured only on the first 10 papers. The other 20 papers are parser and runtime robustness cases without manually verified Gold evidence. Answer labels are assistant-led, not an independent human evaluation. Details and artifact links are in [evaluation](docs/evaluation.md).
 
-The balanced 20-question answer review improved from 1 pass, 4 partial, and 15 fail to 3 pass, 14 partial, and 3 fail. False abstentions fell from 7 to 2. The candidate used the exact saved retrieval evidence and did not load Gold during answer construction. The review was assistant-led rather than independently human-reviewed, and the paired questions represent 13 distinct meanings, so this is portfolio evidence rather than a production-quality claim. See [answer quality review](docs/reviews/answer_quality.md).
+## Run locally
 
-The fixed Docker Compose benchmark also exercised fresh PDF upload, analysis, ten English and Korean questions, UI health, an offline cached restart, deterministic repeated output, and cleanup. All ten responses matched the requested language and returned supporting source evidence. Semantic review found 4 pass, 6 partial, and 0 fail. Korean remains supported for the portfolio demo, with slower CPU latency and translation fluency documented as limitations. See [Docker Compose Q&A benchmark](docs/reviews/container_qna.md).
-
-The final revision-pinned retrieval run reports Recall@5 and Recall@10 of 1.000 and MRR of 0.5838. The earlier 0.6317 MRR is retained as a historical result because its unversioned embedding cache cannot reproduce the later saved answer-evidence ordering. The current metric, model revisions, seed, source hashes, and 30-row performance table are bound in the [final evaluation freeze](docs/reviews/final_evaluation.md).
-
-## Quick start
-
-### Docker Compose
-
-Docker Desktop or Docker Engine with Compose v2 is required. The default configuration starts both services, stores uploaded-paper runtime data and model downloads in named volumes, and keeps the UI connected to the backend through the private Compose network.
+Docker Desktop is required for the recommended path.
 
 ```bash
-docker compose up --build
+docker compose up --build -d
+docker compose ps
 ```
 
-Open `http://127.0.0.1:8501` for the web interface or `http://127.0.0.1:8000/docs` for the interactive API documentation. Stop the services without deleting uploaded-paper data or the model cache:
+- UI: `http://127.0.0.1:8501`
+- API documentation: `http://127.0.0.1:8000/docs`
+- Health check: `http://127.0.0.1:8000/health`
+
+The first analysis can take several minutes while pinned models are downloaded. The UI waits up to 600 seconds. Model files and uploaded papers remain in named Docker volumes after a normal shutdown.
 
 ```bash
 docker compose down
 ```
 
-The first backend build installs a CPU-only PyTorch runtime. The first analysis can download the pinned embedding, reranker, and translation models. Copy `.env.example` to `.env` only when ports, queue size, model preparation, offline mode, logging, or a Hugging Face token must be changed. The real `.env` file is excluded from Git and the Docker build context.
+Do not add `--volumes` unless uploaded data and the model cache should also be removed. See [Docker setup](docs/deployment/docker.md) for configuration and troubleshooting.
 
-### Python
-
-Python 3.11 or later is recommended for running without containers.
-
-```bash
-python -m pip install -r requirements.txt
-python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 1
-```
-
-Start Streamlit in a second terminal:
-
-```bash
-python -m streamlit run ui/app.py
-```
-
-Open `http://127.0.0.1:8501` for the web interface or `http://127.0.0.1:8000/docs` for the interactive API documentation.
-
-During analysis, the service prepares the pinned embedding, reranker, and translation models. The first run may download them from Hugging Face. The 6 GB GPU profile keeps retrieval models on CPU and reserves GPU memory for Korean translation. Restart FastAPI after changing runtime settings.
-
-## API workflow
-
-Register a PDF:
-
-```bash
-curl -X POST http://127.0.0.1:8000/upload \
-  -F "file=@data/raw/papers/paper-003.pdf"
-```
-
-Start analysis with the returned `paper_id`:
-
-```bash
-curl -X POST http://127.0.0.1:8000/analyze \
-  -H "Content-Type: application/json" \
-  -d '{"paper_id":"paper-..."}'
-```
-
-Poll the returned job and inspect the paper result:
-
-```bash
-curl http://127.0.0.1:8000/jobs/job-...
-curl http://127.0.0.1:8000/papers/paper-...
-```
-
-Ask a question after analysis is complete:
-
-```bash
-curl -X POST http://127.0.0.1:8000/question \
-  -H "Content-Type: application/json" \
-  -d '{"paper_id":"paper-...","question":"What is the main contribution of this paper?"}'
-```
-
-A supported response contains the answer and only the evidence objects cited by the model:
-
-```json
-{
-  "paper_id": "paper-...",
-  "question": "What is the main contribution of this paper?",
-  "question_language": "en",
-  "answer": "...",
-  "sufficiency": "sufficient",
-  "abstention_reason": null,
-  "runtime_seconds": 9.7,
-  "runtime": {
-    "total_seconds": 9.7,
-    "retrieval_seconds": 0.97,
-    "generation_seconds": 8.729,
-    "generation_attempts": 1,
-    "llm_device": "cuda",
-    "device_fallback_reason": null,
-    "fallback_used": false,
-    "abstention_source": null
-  },
-  "evidence": [
-    {
-      "evidence_id": "ev-...",
-      "page": 3,
-      "section": "Introduction",
-      "text": "Original text from the paper...",
-      "locator": {
-        "page_label": "p. 3",
-        "section": "Introduction",
-        "chunk_id": "paper-...-p003-c001"
-      }
-    }
-  ]
-}
-```
-
-## API endpoints
-
-| Method | Endpoint | Purpose |
-|---|---|---|
-| `GET` | `/health` | Check storage, queue, and model readiness |
-| `POST` | `/upload` | Register one PDF |
-| `POST` | `/analyze` | Queue parsing and chunking |
-| `GET` | `/jobs/{job_id}` | Read analysis status |
-| `GET` | `/papers/{paper_id}` | Read the paper overview and processing result |
-| `POST` | `/question` | Ask an English or Korean question |
-
-## Models and retrieval
-
-- Embedding: `intfloat/multilingual-e5-small`
-- Reranker: `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1`
-- Korean translation: `facebook/nllb-200-distilled-600M`
-- Historical generation baseline: `Qwen/Qwen2.5-0.5B-Instruct`
-- Sparse retrieval: BM25 Top-20
-- Dense retrieval: Top-20 normalized cosine similarity
-- Fusion: equal-weight reciprocal rank fusion with `rrf_k=60`
-- Final evidence: Top-5, at most two chunks per page
-
-Model revisions and runtime parameters are pinned in `config/` so results can be checked against the saved evaluation artifacts.
-
-The browser runtime reads `config/answer_generation.json` and `config/translation.json` through `config/runtime_qna.json`. English answers are assembled extractively from selected source sentences. Korean answers translate only those sentences with the revision-pinned NLLB model. Citations are assembled in code, and unsupported numeric claims fail closed. The NLLB checkpoint is CC-BY-NC-4.0 and is used only for this local non-commercial portfolio demo. The Qwen configuration remains available for historical regression comparison.
-
-## Repository layout
-
-```text
-app/                 FastAPI routes and runtime services
-config/              retrieval, generation, and abstention settings
-data/
-  metadata/          paper sources and license records
-  processed/         page and chunk artifacts
-  evaluation/        benchmark inputs and evaluation results
-docs/
-  project/           scope, requirements, and data policy
-  api/               API behavior and acceptance checks
-  ui/                interface behavior and evidence presentation
-  reviews/           quality and improvement reviews
-scripts/             ingestion, retrieval, evaluation, and validation tools
-tests/               API and regression tests
-ui/                  bilingual Streamlit interface and API client
-Dockerfile           split backend and UI image targets
-compose.yaml         local two-service demo and persistent volumes
-```
-
-## Verification
-
-Run the saved-artifact validators and regression tests:
+## Verify
 
 ```bash
 python -B scripts/verify_project.py
 ```
 
-Re-run the real HTTP flow from PDF upload through answer generation:
+The verification command runs current regression tests and validates data integrity, traceability, reviewed answers, Docker evidence, and the evaluation manifest. It does not download models or repeat long benchmarks.
 
-```bash
-python -B scripts/evaluate_day35.py
-python -B scripts/validate_day35.py
+## Repository structure
+
+```text
+app/            FastAPI endpoints, jobs, storage, and Q&A service
+config/         pinned model and runtime configuration
+data/           metadata, processed corpus, and final evaluation evidence
+docs/           architecture, evaluation, data, and Docker documentation
+scripts/        current ingestion, evaluation, and validation commands
+tests/          product and regression tests
+ui/             bilingual Streamlit interface
 ```
 
-Validate the saved real-browser Streamlit acceptance result:
+## Scope
 
-```bash
-python -B scripts/validate_day36.py
-python -B scripts/validate_evidence_ui.py
-python -B scripts/validate_error_recovery_ui.py
-```
-
-Re-run or validate the Docker Compose acceptance gate:
-
-```bash
-python -B scripts/evaluate_container.py
-python -B scripts/validate_container.py
-```
-
-Run or validate the fixed three-paper and ten-question container benchmark:
-
-```bash
-python -B scripts/run_container_qna_benchmark.py
-python -B scripts/build_container_qna_review.py
-python -B scripts/validate_container_qna.py
-```
-
-Re-run the revision-pinned retrieval evaluation or validate the final freeze:
-
-```bash
-python -B scripts/evaluate_frozen_retrieval.py
-python -B scripts/build_evaluation_freeze.py
-python -B scripts/validate_evaluation_freeze.py
-```
-
-The integration evaluator starts Uvicorn on a temporary loopback port, calls the question endpoint with curl, verifies page and chunk traceability, and removes its temporary runtime directory afterward.
-
-## Scope and limitations
-
-An [opt-in coverage experiment](docs/reviews/answer_coverage.md) improved the assistant-reviewed fixed-20 result from 3 to 10 passes, with extra answer-stage work and some regressions. It is not enabled in the UI/API. Its fresh baseline reproduced 9/10 unsupported holdout refusals, not the historical 10/10 above. Docker was not remeasured.
-
-The current MVP does not support scanned PDFs, OCR, image or graph interpretation, reliable formula interpretation, multi-paper comparison, or user accounts. It is intentionally distributed as a local portfolio demo rather than a publicly hosted service. Docker packaging and local service connectivity have been verified. Table and figure text may be extracted as plain text, but the system does not interpret their visual structure.
-
-Raw PDFs, QASPER source files, and user uploads remain local unless their redistribution terms explicitly allow publication. See [data sources and handling](docs/project/data_sources.md) for details.
+This portfolio MVP excludes scanned PDFs and OCR, visual interpretation of tables or figures, reliable formula interpretation, multi-paper comparison, accounts, and public hosting. Raw PDFs and user uploads are excluded from Git unless redistribution is explicitly permitted.
 
 ## Documentation
 
-- [Project scope](docs/project/scope.md)
-- [Functional requirements](docs/project/requirements.md)
-- [API integration gate](docs/api/integration.md)
-- [Streamlit interface and evidence panel](docs/ui/interface.md)
-- [Docker Compose local run](docs/deployment/docker.md)
-- [Quality and improvement review](docs/reviews/improvements.md)
-- [Local runtime performance](docs/reviews/runtime_performance.md)
-- [Docker Compose Q&A benchmark](docs/reviews/container_qna.md)
-- [Final evaluation freeze](docs/reviews/final_evaluation.md)
-
-The browser flow covers PDF upload, analysis, paper overview, question entry, answer display, traceable source evidence, localized upload errors, and recovery after parsing failure. The backend and UI also run as verified Docker Compose services. Local execution is the complete delivery boundary for this portfolio project.
+- [Documentation index](docs/README.md)
+- [Architecture](docs/architecture.md)
+- [Evaluation](docs/evaluation.md)
+- [Data and licensing](docs/data.md)
+- [Docker setup](docs/deployment/docker.md)

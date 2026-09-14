@@ -27,7 +27,7 @@ def jaccard_similarity(left, right):
 
 
 def evidence_object(item, rank):
-    """Convert one scored chunk into the stable Day 24 UI contract."""
+    """Convert one scored chunk into the stable UI evidence contract."""
     chunk = item["chunk"]
     section = chunk.get("section")
     source_ranks = {

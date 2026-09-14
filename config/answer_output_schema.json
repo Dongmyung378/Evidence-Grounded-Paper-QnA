@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.local/evidence-grounded-paper-qna/answer-output.schema.json",
   "title": "GroundedAnswerOutput",
-  "description": "Provider-neutral Day 29 output contract for a grounded answer or abstention.",
+  "description": "Provider-neutral output contract for a grounded answer or abstention.",
   "type": "object",
   "additionalProperties": false,
   "required": [

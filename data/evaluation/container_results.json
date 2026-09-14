@@ -63,8 +63,6 @@
     "app/config.py": "9dee85daa1b9eb62de221fced3f1dcb1a172ef439d0f3d2005e80354cefb3d7e",
     "app/main.py": "46d78ace5d90a77280bb66392c55a8457309662e82fe75336794595443452e27",
     "compose.yaml": "a5e4ef01274f822727e9ddd59b20e8857eff179a1fa9f3ef06fb5c3a789f59f7",
-    "docs/project/scope.md": "1ef72b1a7fa56597bbff7f0aa15618dbb8164b518b866211e70ab91f409657ee",
-    "docs/project/requirements.md": "2fef2aa0047bf94a6d5acbd87b32332f8ae434b7d950ab40f759454930ee57dc",
     "requirements-backend.txt": "16e9dd798c133f6544fa5c0dfb985fdd5e1259739547c56a52d148abe5e71464",
     "requirements-ui.txt": "f9c71d6827b1acfd0b6a349b70f8756ed84ab3479b01536d61b26a81e02be537",
     "scripts/evaluate_container.py": "d5010377ed7606459179373b9f2c7bdacfce295009509ffcef11239368d02b34",

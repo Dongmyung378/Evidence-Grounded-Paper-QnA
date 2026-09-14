@@ -1,4 +1,4 @@
-"""Day 23-24 Hybrid candidate and UI evidence pipeline."""
+"""Hybrid candidate retrieval and UI evidence pipeline."""
 
 from bm25_retrieval import build_index, rank_chunks as rank_bm25_chunks
 from dense_retrieval import (
@@ -162,12 +162,8 @@ class CandidateEvidencePipeline:
         )
         return {
             "schema_version": 1,
-            "roadmap_days": [23, 24],
             "query": query,
             "paper_id": paper_id,
-            "retrieval_diagnostics": {
-                "top_dense_similarity": float(dense[0]["score"]) if dense else None,
-            },
             "candidate_policy": {
                 "candidate_k": candidate_k,
                 "sources": {"bm25": source_k, "dense": source_k},

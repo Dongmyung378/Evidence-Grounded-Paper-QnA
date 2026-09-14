@@ -186,7 +186,6 @@ class GroundedGenerationTests(unittest.TestCase):
             "paper-001",
             question_language="ko",
         )
-        self.assertEqual(result["roadmap_day"], 41)
         self.assertEqual(result["pipeline"]["answer_strategy"], "evidence_first")
         self.assertIn("sentence_selection", result["pipeline"]["stages"])
         self.assertIn("local_translation", result["pipeline"]["stages"])

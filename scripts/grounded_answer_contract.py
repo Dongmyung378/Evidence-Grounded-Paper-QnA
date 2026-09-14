@@ -1,4 +1,4 @@
-"""Provider-neutral Day 29 prompt and grounded-answer JSON contract."""
+"""Provider-neutral prompt and grounded-answer JSON contract."""
 
 import json
 import re
@@ -28,7 +28,7 @@ FULL_JSON_FENCE_PATTERN = re.compile(
 
 
 class AnswerValidationError(ValueError):
-    """Raised when an LLM response violates the Day 29 answer contract."""
+    """Raised when an LLM response violates the answer contract."""
 
 
 def load_answer_output_schema(path=SCHEMA_PATH):
@@ -95,7 +95,7 @@ def _format_evidence_context(evidence):
 
 
 def build_grounded_answer_request(question, evidence, question_language=None):
-    """Build messages plus a JSON Schema for a future Day 30 LLM call."""
+    """Build messages plus a JSON Schema for a grounded LLM call."""
     detected_language = detect_question_language(question)
     language = question_language or detected_language
     _validate_language(language)
@@ -282,6 +282,6 @@ def parse_and_validate_answer(raw_response, evidence, question_language):
 
 
 def resolve_answer_evidence(payload, evidence):
-    """Resolve cited IDs back to the Day 24 page/section evidence objects."""
+    """Resolve cited IDs back to page/section evidence objects."""
     evidence_by_id = _evidence_id_map(evidence)
     return [evidence_by_id[evidence_id] for evidence_id in payload["evidence_ids"]]

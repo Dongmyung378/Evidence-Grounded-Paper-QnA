@@ -1,0 +1,1168 @@
+{
+  "schema_version": 1,
+  "evaluation": "abstention-policy",
+  "seed": 378,
+  "summary": {
+    "answerable_retained": 38,
+    "answerable_total": 40,
+    "answerable_retention": 0.95,
+    "calibration_refused": 10,
+    "calibration_total": 10,
+    "calibration_refusal_rate": 1.0,
+    "holdout_refused": 9,
+    "holdout_total": 10,
+    "holdout_refusal_rate": 0.9
+  },
+  "provenance": {
+    "questions": "data/evaluation/questions.jsonl",
+    "questions_sha256": "b1b9abdb6ca21c383b678cbc8a1588be4a65ea2fbc94cb3534d1a2a4801865fd",
+    "unsupported_questions": "data/evaluation/abstention_questions.jsonl",
+    "unsupported_questions_sha256": "6d88a343daf5fec805f589e22245784079dbd5d432debb3004f8183cffc5cfd6",
+    "policy": "config/abstention.json",
+    "policy_sha256": "58b37d6f6a8f259cecd3bfef9441d6827858e7766027b493f8055c1ea6f12157",
+    "production_config_fingerprint": "0c29b27950ba19aea6fd336db857f691b0fafcd82eada850c868d7ffe0d3579a"
+  },
+  "runtime_seconds": 94.799,
+  "records": [
+    {
+      "case_id": "q-001-en",
+      "paper_id": "paper-001",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": false,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -5.544947147369385,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-001-ko",
+      "paper_id": "paper-001",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": false,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -4.1183319091796875,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-005-en",
+      "paper_id": "paper-002",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 8.53429889678955,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-005-ko",
+      "paper_id": "paper-002",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 6.348670482635498,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-007-en",
+      "paper_id": "paper-003",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 9.809988021850586,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-007-ko",
+      "paper_id": "paper-003",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 0.6460551619529724,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-010-en",
+      "paper_id": "paper-004",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 4.922242641448975,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-010-ko",
+      "paper_id": "paper-004",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 2.920301914215088,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-011-en",
+      "paper_id": "paper-004",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 10.322150230407715,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-011-ko",
+      "paper_id": "paper-004",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 7.477690696716309,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-014-en",
+      "paper_id": "paper-005",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 2.3913440704345703,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-014-ko",
+      "paper_id": "paper-005",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 2.0045690536499023,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-015-en",
+      "paper_id": "paper-005",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 0.5528481006622314,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-015-ko",
+      "paper_id": "paper-005",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -0.7859313488006592,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-017-en",
+      "paper_id": "paper-006",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 0.6152080297470093,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-017-ko",
+      "paper_id": "paper-006",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -1.560835361480713,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-021-en",
+      "paper_id": "paper-007",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 9.880839347839355,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-021-ko",
+      "paper_id": "paper-007",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 3.828700304031372,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-029-en",
+      "paper_id": "paper-010",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 3.0473389625549316,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-029-ko",
+      "paper_id": "paper-010",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 3.109673500061035,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-031-en",
+      "paper_id": "paper-004",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -3.3382625579833984,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-031-ko",
+      "paper_id": "paper-004",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -2.0466713905334473,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-034-en",
+      "paper_id": "paper-007",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 3.141339063644409,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-034-ko",
+      "paper_id": "paper-007",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 1.3956191539764404,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-038-en",
+      "paper_id": "paper-004",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 1.4675108194351196,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-038-ko",
+      "paper_id": "paper-004",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 3.2852976322174072,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-039-en",
+      "paper_id": "paper-005",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 1.844225525856018,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-039-ko",
+      "paper_id": "paper-005",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -0.5357387661933899,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-041-en",
+      "paper_id": "paper-008",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 5.820476055145264,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-041-ko",
+      "paper_id": "paper-008",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 3.999056577682495,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-042-en",
+      "paper_id": "paper-009",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 9.703746795654297,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-042-ko",
+      "paper_id": "paper-009",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 8.605340957641602,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-043-en",
+      "paper_id": "paper-010",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 8.221100807189941,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-043-ko",
+      "paper_id": "paper-010",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 4.279819011688232,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-045-en",
+      "paper_id": "paper-002",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 4.440752029418945,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-045-ko",
+      "paper_id": "paper-002",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 1.902116060256958,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-048-en",
+      "paper_id": "paper-004",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 8.726946830749512,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-048-ko",
+      "paper_id": "paper-004",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 5.569741725921631,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-049-en",
+      "paper_id": "paper-005",
+      "question_language": "en",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 3.52323317527771,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "q-049-ko",
+      "paper_id": "paper-005",
+      "question_language": "ko",
+      "split": "answerable",
+      "expected_sufficiency": "sufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": true,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": 0.9497072696685791,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-cal-001-en",
+      "paper_id": "paper-001",
+      "question_language": "en",
+      "split": "calibration",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -8.304439544677734,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-cal-002-ko",
+      "paper_id": "paper-002",
+      "question_language": "ko",
+      "split": "calibration",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -7.35939359664917,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-cal-003-en",
+      "paper_id": "paper-003",
+      "question_language": "en",
+      "split": "calibration",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -7.941970348358154,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-cal-004-ko",
+      "paper_id": "paper-004",
+      "question_language": "ko",
+      "split": "calibration",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -3.4974565505981445,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-cal-005-en",
+      "paper_id": "paper-005",
+      "question_language": "en",
+      "split": "calibration",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -7.766878128051758,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-cal-006-ko",
+      "paper_id": "paper-006",
+      "question_language": "ko",
+      "split": "calibration",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -3.4038279056549072,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-cal-007-en",
+      "paper_id": "paper-007",
+      "question_language": "en",
+      "split": "calibration",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -6.724130630493164,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-cal-008-ko",
+      "paper_id": "paper-008",
+      "question_language": "ko",
+      "split": "calibration",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -6.564515113830566,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-cal-009-en",
+      "paper_id": "paper-009",
+      "question_language": "en",
+      "split": "calibration",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -7.202897548675537,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-cal-010-ko",
+      "paper_id": "paper-010",
+      "question_language": "ko",
+      "split": "calibration",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -6.294793128967285,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-test-001-en",
+      "paper_id": "paper-011",
+      "question_language": "en",
+      "split": "holdout",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -4.8045334815979,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-test-002-ko",
+      "paper_id": "paper-012",
+      "question_language": "ko",
+      "split": "holdout",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -6.700109958648682,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-test-003-en",
+      "paper_id": "paper-013",
+      "question_language": "en",
+      "split": "holdout",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -5.937328338623047,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-test-004-ko",
+      "paper_id": "paper-014",
+      "question_language": "ko",
+      "split": "holdout",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -6.398682117462158,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-test-005-en",
+      "paper_id": "paper-015",
+      "question_language": "en",
+      "split": "holdout",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -7.868566989898682,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-test-006-ko",
+      "paper_id": "paper-016",
+      "question_language": "ko",
+      "split": "holdout",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "sufficient",
+      "correct": false,
+      "decision": {
+        "abstain": false,
+        "reason_code": null,
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -2.0195114612579346,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-test-007-en",
+      "paper_id": "paper-017",
+      "question_language": "en",
+      "split": "holdout",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -7.075173854827881,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-test-008-ko",
+      "paper_id": "paper-018",
+      "question_language": "ko",
+      "split": "holdout",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -4.501953601837158,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-test-009-en",
+      "paper_id": "paper-019",
+      "question_language": "en",
+      "split": "holdout",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -6.18972635269165,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    },
+    {
+      "case_id": "abs-test-010-ko",
+      "paper_id": "paper-020",
+      "question_language": "ko",
+      "split": "holdout",
+      "expected_sufficiency": "insufficient",
+      "predicted_sufficiency": "insufficient",
+      "correct": true,
+      "decision": {
+        "abstain": true,
+        "reason_code": "low_relevance",
+        "signals": {
+          "candidate_count": 20,
+          "evidence_count": 5,
+          "top_reranker_score": -4.07482385635376,
+          "minimum_top_reranker_score": -3.35
+        }
+      }
+    }
+  ]
+}

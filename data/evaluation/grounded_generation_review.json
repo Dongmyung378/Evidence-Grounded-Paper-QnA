@@ -2,17 +2,17 @@
   "schema_version": 1,
   "evaluation": "evidence-first-answer-quality",
   "review_date": "2026-09-12",
-  "review_method": "Assistant-led semantic comparison against verified Gold; no independent human review was performed.",
+  "review_method": "Assistant-led semantic review against verified Gold; no independent human review was performed.",
   "gold_loaded_during_generation": false,
   "provenance": {
-    "candidate_outputs": "data/evaluation/grounded_generation_outputs.json",
-    "candidate_outputs_sha256": "7ed497cbe256f353d03f5942cbd5027311c910ec9dcea562f1b575a96fc05b92",
+    "outputs": "data/evaluation/grounded_generation_outputs.json",
+    "outputs_sha256": "174dceb8c39782e4d5bd96054d484c369efd3150cf2466bf46792b61b56df9b0",
     "manual_labels": "data/evaluation/grounded_generation_review_labels.jsonl",
     "manual_labels_sha256": "aef88dc1f9224278f1e9b47344c1e1dfc4ca1fd02c47043a321aa6d4cbd88b13",
-    "baseline_review": "data/evaluation/day32_manual_review.json",
-    "baseline_review_sha256": "5fbc67902142d0b3cb35a747768db2e39066956ec9b9cbddb9f64ec9d3d35ab0",
-    "fixed_question_manifest": "data/evaluation/day32_review_manifest.json",
-    "verified_gold": "data/evaluation/gold_evidence.jsonl"
+    "question_manifest": "data/evaluation/answer_review_manifest.json",
+    "question_manifest_sha256": "6bfbda1e9e57c9c24f9c17c97413095acf620f441ba959e9c1674ae425d101ea",
+    "verified_gold": "data/evaluation/gold_evidence.jsonl",
+    "verified_gold_sha256": "3f625564d18419dbf03a83152f836afba3573b8a6fc924c0504c2401c79defa8"
   },
   "rubric": {
     "pass": "The answer is materially correct and complete enough, uses the question language, and its citations support the claims.",
@@ -46,71 +46,16 @@
     },
     "language_match": 20,
     "false_abstentions": 2,
-    "fixed_evidence_runtime_seconds": 12.48,
+    "fixed_evidence_runtime_seconds": 13.037,
     "fixed_evidence_generation_attempts": 9
   },
-  "comparison": {
-    "baseline": {
-      "verdicts": {
-        "pass": 1,
-        "partial": 4,
-        "fail": 15
-      },
-      "strict_pass_rate": 0.05,
-      "pass_or_partial_rate": 0.25,
-      "false_abstentions": 7,
-      "fixed_evidence_runtime_seconds": 118.863
-    },
-    "candidate": {
-      "questions_reviewed": 20,
-      "languages": {
-        "en": 10,
-        "ko": 10
-      },
-      "categories": {
-        "limitation": 5,
-        "factual": 5,
-        "comparison": 5,
-        "numeric": 5
-      },
-      "verdicts": {
-        "pass": 3,
-        "partial": 14,
-        "fail": 3
-      },
-      "strict_pass_rate": 0.15,
-      "pass_or_partial_rate": 0.85,
-      "citation_support": {
-        "pass": 18,
-        "fail": 0,
-        "not_applicable": 2
-      },
-      "language_match": 20,
-      "false_abstentions": 2,
-      "fixed_evidence_runtime_seconds": 12.48,
-      "fixed_evidence_generation_attempts": 9
-    },
-    "delta": {
-      "pass": 2,
-      "partial": 10,
-      "fail": -12,
-      "strict_pass_rate": 0.1,
-      "pass_or_partial_rate": 0.6,
-      "false_abstentions": -5,
-      "fixed_evidence_runtime_seconds": -106.383
-    }
-  },
-  "adoption": {
-    "decision": "adopt",
-    "reason": "The candidate improves strict and partial-or-better review rates, reduces false abstentions, preserves citation support, and reduces fixed-evidence answer time without accepting unsupported numeric claims.",
-    "known_limits": [
-      "The 20 records contain English/Korean pairs and represent 13 distinct question meanings.",
-      "The review was not performed by an independent human evaluator.",
-      "Two page-1 questions are still rejected by the pre-generation relevance gate.",
-      "Some answers remain partial because the fixed Top-5 evidence omits verified details.",
-      "The NLLB translation model is CC-BY-NC-4.0 and is used only in this local non-commercial portfolio demo."
-    ]
-  },
+  "known_limits": [
+    "The 20 records represent 13 distinct question meanings because some questions are bilingual pairs.",
+    "The review was not performed by an independent human evaluator.",
+    "Two answerable page-1 questions are rejected by the pre-generation relevance gate.",
+    "Some answers remain partial because the fixed Top-5 evidence omits verified details.",
+    "The NLLB translation model license limits this demo to noncommercial use."
+  ],
   "records": [
     {
       "question_id": "q-001-en",
@@ -193,7 +138,7 @@
           1,
           10
         ],
-        "runtime_seconds": 0.353
+        "runtime_seconds": 0.357
       },
       "review": {
         "question_id": "q-005-en",
@@ -225,7 +170,7 @@
         "selected_pages": [
           6
         ],
-        "runtime_seconds": 1.408
+        "runtime_seconds": 1.863
       },
       "review": {
         "question_id": "q-045-ko",
@@ -289,7 +234,7 @@
           1,
           2
         ],
-        "runtime_seconds": 0.961
+        "runtime_seconds": 0.927
       },
       "review": {
         "question_id": "q-007-ko",
@@ -322,7 +267,7 @@
           1,
           2
         ],
-        "runtime_seconds": 0.26
+        "runtime_seconds": 0.271
       },
       "review": {
         "question_id": "q-031-en",
@@ -356,7 +301,7 @@
           1,
           2
         ],
-        "runtime_seconds": 1.226
+        "runtime_seconds": 1.165
       },
       "review": {
         "question_id": "q-048-ko",
@@ -392,7 +337,7 @@
           2,
           14
         ],
-        "runtime_seconds": 0.267
+        "runtime_seconds": 0.278
       },
       "review": {
         "question_id": "q-015-en",
@@ -427,7 +372,7 @@
           3,
           14
         ],
-        "runtime_seconds": 1.126
+        "runtime_seconds": 1.091
       },
       "review": {
         "question_id": "q-049-ko",
@@ -463,7 +408,7 @@
           1,
           5
         ],
-        "runtime_seconds": 0.311
+        "runtime_seconds": 0.234
       },
       "review": {
         "question_id": "q-017-en",
@@ -498,7 +443,7 @@
           1,
           2
         ],
-        "runtime_seconds": 1.188
+        "runtime_seconds": 1.15
       },
       "review": {
         "question_id": "q-017-ko",
@@ -534,7 +479,7 @@
           1,
           2
         ],
-        "runtime_seconds": 0.217
+        "runtime_seconds": 0.293
       },
       "review": {
         "question_id": "q-034-en",
@@ -567,7 +512,7 @@
         "selected_pages": [
           1
         ],
-        "runtime_seconds": 0.773
+        "runtime_seconds": 0.901
       },
       "review": {
         "question_id": "q-034-ko",
@@ -601,7 +546,7 @@
           6,
           7
         ],
-        "runtime_seconds": 0.328
+        "runtime_seconds": 0.388
       },
       "review": {
         "question_id": "q-041-en",
@@ -633,7 +578,7 @@
         "selected_pages": [
           6
         ],
-        "runtime_seconds": 0.751
+        "runtime_seconds": 0.799
       },
       "review": {
         "question_id": "q-041-ko",
@@ -667,7 +612,7 @@
           14,
           15
         ],
-        "runtime_seconds": 0.349
+        "runtime_seconds": 0.32
       },
       "review": {
         "question_id": "q-042-en",
@@ -700,7 +645,7 @@
         "selected_pages": [
           15
         ],
-        "runtime_seconds": 1.45
+        "runtime_seconds": 1.469
       },
       "review": {
         "question_id": "q-042-ko",
@@ -735,7 +680,7 @@
           19,
           2
         ],
-        "runtime_seconds": 0.181
+        "runtime_seconds": 0.196
       },
       "review": {
         "question_id": "q-043-en",
@@ -767,7 +712,7 @@
         "selected_pages": [
           19
         ],
-        "runtime_seconds": 1.105
+        "runtime_seconds": 1.108
       },
       "review": {
         "question_id": "q-043-ko",

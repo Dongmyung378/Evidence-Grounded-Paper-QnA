@@ -127,7 +127,7 @@ class PaperQnaClient:
         self,
         job_id: str,
         *,
-        timeout_seconds: float = 180.0,
+        timeout_seconds: float = 600.0,
         poll_interval: float = 0.5,
         on_update: Callable[[dict[str, Any]], None] | None = None,
     ) -> dict[str, Any]:

@@ -29,6 +29,8 @@ Open the following addresses:
 
 Both published ports bind to `127.0.0.1` by default, so the demo is not exposed to other devices on the network.
 
+The first analysis may include pinned model downloads and can take several minutes. The UI waits up to 600 seconds for the background analysis job. Later analyses reuse the named model-cache volume and are normally much faster.
+
 Stop the services while retaining uploaded-paper state and downloaded models:
 
 ```bash
@@ -79,6 +81,8 @@ python -B scripts/validate_container.py
 ```
 
 The saved machine-readable result is `data/evaluation/container_results.json`. This gate proves local container packaging and service connectivity. It does not prove answer quality; public server hosting is intentionally outside the project scope.
+
+![Backend and UI Docker images](../assets/screenshots/docker.png)
 
 ## Operational notes
 

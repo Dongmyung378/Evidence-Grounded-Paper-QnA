@@ -74,21 +74,15 @@ class ContainerContract(unittest.TestCase):
         self.assertNotIn("hf_", example.replace("hf_example", ""))
 
     def test_delivery_scope_is_local_portfolio_only(self):
-        scope = (ROOT / "docs" / "project" / "scope.md").read_text(
-            encoding="utf-8"
-        )
-        requirements = (ROOT / "docs" / "project" / "requirements.md").read_text(
-            encoding="utf-8"
-        )
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         readme_ko = (ROOT / "README_KO.md").read_text(encoding="utf-8")
+        docker = (ROOT / "docs" / "deployment" / "docker.md").read_text(
+            encoding="utf-8"
+        )
 
-        self.assertIn("로컬 포트폴리오 데모", scope)
-        self.assertIn("Docker Compose가 최종 제공 환경", scope)
-        self.assertIn("공개 서버 운영과 공개 URL은 완료 조건에 포함하지 않는다", requirements)
-        self.assertIn("local portfolio demo", readme)
-        self.assertIn("로컬 포트폴리오 데모", readme_ko)
-        self.assertNotIn("공개 URL 배포가 가능해야 한다", requirements)
+        self.assertIn("Docker Compose", readme)
+        self.assertIn("공개 배포", readme_ko)
+        self.assertIn("public server hosting is intentionally outside", docker)
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-"""Build the human-readable comparison for the evidence-first answer experiment."""
+"""Build the reviewed answer-quality artifact for the fixed evaluation set."""
 
 import hashlib
 import json
@@ -11,9 +11,7 @@ from retrieval_common import PROJECT_ROOT, configure_utf8_stdout
 EVALUATION = PROJECT_ROOT / "data" / "evaluation"
 OUTPUTS = EVALUATION / "grounded_generation_outputs.json"
 LABELS = EVALUATION / "grounded_generation_review_labels.jsonl"
-BASELINE = EVALUATION / "day32_manual_review.json"
-BASELINE_RUNTIME = EVALUATION / "answer_runtime_outputs.json"
-MANIFEST = EVALUATION / "day32_review_manifest.json"
+MANIFEST = EVALUATION / "answer_review_manifest.json"
 GOLD = EVALUATION / "gold_evidence.jsonl"
 REVIEW = EVALUATION / "grounded_generation_review.json"
 
@@ -30,29 +28,21 @@ def sha256(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def verdict_counts(records):
-    counts = Counter(record["review"]["verdict"] for record in records)
-    return {name: counts[name] for name in ("pass", "partial", "fail")}
-
-
 def main():
     configure_utf8_stdout()
     outputs = json.loads(OUTPUTS.read_text(encoding="utf-8"))
-    baseline = json.loads(BASELINE.read_text(encoding="utf-8"))
-    baseline_runtime = json.loads(BASELINE_RUNTIME.read_text(encoding="utf-8"))
     labels = {row["question_id"]: row for row in load_jsonl(LABELS)}
     gold = {row["question_id"]: row for row in load_jsonl(GOLD)}
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    categories = {
-        row["question_id"]: row["category"] for row in manifest["questions"]
-    }
+    categories = {row["question_id"]: row["category"] for row in manifest["questions"]}
     results = {row["question_id"]: row for row in outputs["results"]}
-    expected = set(categories)
+    ordered_ids = [row["question_id"] for row in manifest["questions"]]
+    expected = set(ordered_ids)
     if len(expected) != 20 or set(results) != expected or set(labels) != expected:
-        raise ValueError("review inputs must contain the same fixed 20 questions")
+        raise ValueError("Review inputs must contain the same fixed 20 questions")
 
     records = []
-    for question_id in [row["question_id"] for row in manifest["questions"]]:
+    for question_id in ordered_ids:
         result = results[question_id]
         reference = gold[question_id]
         label = labels[question_id]
@@ -73,8 +63,7 @@ def main():
                     "evidence_ids": result["response"]["evidence_ids"],
                     "selected_pages": list(
                         dict.fromkeys(
-                            sentence["page"]
-                            for sentence in result["selected_sentences"]
+                            sentence["page"] for sentence in result["selected_sentences"]
                         )
                     ),
                     "runtime_seconds": result["runtime_seconds"],
@@ -83,16 +72,9 @@ def main():
             }
         )
 
-    verdicts = verdict_counts(records)
-    citation_counts = Counter(
-        record["review"]["citation_support"] for record in records
-    )
-    baseline_verdicts = baseline["summary"]["verdicts"]
-    candidate_seconds = outputs["summary"]["runtime_seconds"]
-    baseline_seconds = round(
-        sum(row.get("seconds", 0.0) for row in baseline_runtime["results"]),
-        3,
-    )
+    verdict_counts = Counter(record["review"]["verdict"] for record in records)
+    verdicts = {name: verdict_counts[name] for name in ("pass", "partial", "fail")}
+    citation_counts = Counter(record["review"]["citation_support"] for record in records)
     summary = {
         "questions_reviewed": len(records),
         "languages": dict(Counter(row["question_language"] for row in records)),
@@ -103,94 +85,54 @@ def main():
             (verdicts["pass"] + verdicts["partial"]) / len(records), 4
         ),
         "citation_support": {
-            name: citation_counts[name]
-            for name in ("pass", "fail", "not_applicable")
+            name: citation_counts[name] for name in ("pass", "fail", "not_applicable")
         },
         "language_match": sum(row["review"]["language_match"] for row in records),
         "false_abstentions": sum(
-            "false_abstention" in row["review"]["failure_types"]
-            for row in records
+            "false_abstention" in row["review"]["failure_types"] for row in records
         ),
-        "fixed_evidence_runtime_seconds": candidate_seconds,
-        "fixed_evidence_generation_attempts": outputs["summary"][
-            "generation_attempts"
-        ],
-    }
-    comparison = {
-        "baseline": {
-            "verdicts": baseline_verdicts,
-            "strict_pass_rate": baseline["summary"]["strict_pass_rate"],
-            "pass_or_partial_rate": baseline["summary"]["pass_or_partial_rate"],
-            "false_abstentions": baseline["summary"]["false_abstentions"],
-            "fixed_evidence_runtime_seconds": baseline_seconds,
-        },
-        "candidate": summary,
-        "delta": {
-            "pass": verdicts["pass"] - baseline_verdicts["pass"],
-            "partial": verdicts["partial"] - baseline_verdicts["partial"],
-            "fail": verdicts["fail"] - baseline_verdicts["fail"],
-            "strict_pass_rate": round(
-                summary["strict_pass_rate"]
-                - baseline["summary"]["strict_pass_rate"],
-                4,
-            ),
-            "pass_or_partial_rate": round(
-                summary["pass_or_partial_rate"]
-                - baseline["summary"]["pass_or_partial_rate"],
-                4,
-            ),
-            "false_abstentions": summary["false_abstentions"]
-            - baseline["summary"]["false_abstentions"],
-            "fixed_evidence_runtime_seconds": round(
-                candidate_seconds - baseline_seconds,
-                3,
-            ),
-        },
+        "fixed_evidence_runtime_seconds": outputs["summary"]["runtime_seconds"],
+        "fixed_evidence_generation_attempts": outputs["summary"]["generation_attempts"],
     }
     payload = {
         "schema_version": 1,
         "evaluation": "evidence-first-answer-quality",
         "review_date": "2026-09-12",
-        "review_method": "Assistant-led semantic comparison against verified Gold; no independent human review was performed.",
+        "review_method": "Assistant-led semantic review against verified Gold; no independent human review was performed.",
         "gold_loaded_during_generation": False,
         "provenance": {
-            "candidate_outputs": str(OUTPUTS.relative_to(PROJECT_ROOT)).replace("\\", "/"),
-            "candidate_outputs_sha256": sha256(OUTPUTS),
+            "outputs": str(OUTPUTS.relative_to(PROJECT_ROOT)).replace("\\", "/"),
+            "outputs_sha256": sha256(OUTPUTS),
             "manual_labels": str(LABELS.relative_to(PROJECT_ROOT)).replace("\\", "/"),
             "manual_labels_sha256": sha256(LABELS),
-            "baseline_review": str(BASELINE.relative_to(PROJECT_ROOT)).replace("\\", "/"),
-            "baseline_review_sha256": sha256(BASELINE),
-            "fixed_question_manifest": str(MANIFEST.relative_to(PROJECT_ROOT)).replace("\\", "/"),
+            "question_manifest": str(MANIFEST.relative_to(PROJECT_ROOT)).replace("\\", "/"),
+            "question_manifest_sha256": sha256(MANIFEST),
             "verified_gold": str(GOLD.relative_to(PROJECT_ROOT)).replace("\\", "/"),
+            "verified_gold_sha256": sha256(GOLD),
         },
-        "rubric": baseline["rubric"],
+        "rubric": {
+            "pass": "The answer is materially correct and complete enough, uses the question language, and its citations support the claims.",
+            "partial": "The core answer is supported but a material detail, qualification, number, or comparison is missing.",
+            "fail": "The response falsely abstains, is incorrect or nonresponsive, omits the requested result, or makes an unsupported material claim.",
+            "citation_support": "Pass means the cited text supports the generated claims; not_applicable is used only when no answer or citation was returned.",
+        },
         "summary": summary,
-        "comparison": comparison,
-        "adoption": {
-            "decision": "adopt",
-            "reason": "The candidate improves strict and partial-or-better review rates, reduces false abstentions, preserves citation support, and reduces fixed-evidence answer time without accepting unsupported numeric claims.",
-            "known_limits": [
-                "The 20 records contain English/Korean pairs and represent 13 distinct question meanings.",
-                "The review was not performed by an independent human evaluator.",
-                "Two page-1 questions are still rejected by the pre-generation relevance gate.",
-                "Some answers remain partial because the fixed Top-5 evidence omits verified details.",
-                "The NLLB translation model is CC-BY-NC-4.0 and is used only in this local non-commercial portfolio demo.",
-            ],
-        },
+        "known_limits": [
+            "The 20 records represent 13 distinct question meanings because some questions are bilingual pairs.",
+            "The review was not performed by an independent human evaluator.",
+            "Two answerable page-1 questions are rejected by the pre-generation relevance gate.",
+            "Some answers remain partial because the fixed Top-5 evidence omits verified details.",
+            "The NLLB translation model license limits this demo to noncommercial use.",
+        ],
         "records": records,
     }
     REVIEW.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     print("Grounded generation review built")
     print(
-        f"pass={verdicts['pass']} partial={verdicts['partial']} "
-        f"fail={verdicts['fail']} pass_or_partial={summary['pass_or_partial_rate']:.2%}"
-    )
-    print(
-        f"false_abstentions={summary['false_abstentions']} "
-        f"fixed_evidence_seconds={candidate_seconds}"
+        f"pass={verdicts['pass']} partial={verdicts['partial']} fail={verdicts['fail']} "
+        f"pass_or_partial={summary['pass_or_partial_rate']:.2%}"
     )
 
 
