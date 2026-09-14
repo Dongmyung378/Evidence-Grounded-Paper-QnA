@@ -243,7 +243,7 @@
       "data/evaluation/split_manifest.json": "c0b62ef5299917f3c4c1ac99a08b1d0814cd3642541ff3be6c2bb96d2c99e8c5",
       "requirements-backend.txt": "8f1b2d550a8d62acdf484d1072519265fafe8b6bd7f6b8e244a91141b1d3cddd",
       "requirements-ui.txt": "f9c71d6827b1acfd0b6a349b70f8756ed84ab3479b01536d61b26a81e02be537",
-      "requirements.txt": "47adbebbd2663cc85f22cf7422b96a0ca970695d53c49e3627721a49e559912d",
+      "requirements.txt": "63f47e6fbcde0383541f0e76d8f1a0b10b1df20b8519a381a93ea4f00893ffea",
       "scripts/abstention_policy.py": "3d6ba225ea46e831ef74e7c2fc21e1fd3de18bad622c37e9e1a2f0288d00dbd5",
       "scripts/build_evaluation_freeze.py": "4bd27e31b1943ab48dfb78f832eb0eef295155208bae7f94460f86aa99e9b45a",
       "scripts/candidate_evidence_pipeline.py": "f73ac6c2e3743a5b0c340a70b4c1a7d167a9670df5fbc843b2ac6e3e7d5373c1",
@@ -259,7 +259,7 @@
       "scripts/qna_pipeline.py": "ca1bd0fee4f8877ac65af1f511bfda6e6ec2726a83f77d487fabcd089f4c31f0",
       "scripts/reranker.py": "c42ba00fa4eea8e609b1e06a8fbfbcacb0dd3a59f66e01deb857f5553034657d"
     },
-    "source_bundle_sha256": "ffdfd27ce848047b6331ac3a0bf935ff490a6776ec2537790260c0f9b1342d9b"
+    "source_bundle_sha256": "3c01a1406489eed3e7b266f9128350a8b49209ced8ed23358aa2b04d65fc73b3"
   },
   "known_limits": [
     "Only 10 of the 30 papers have manually verified questions and Gold evidence.",

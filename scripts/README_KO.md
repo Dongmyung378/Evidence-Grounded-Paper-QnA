@@ -22,3 +22,5 @@ python -B scripts/run_container_qna_benchmark.py
 ```
 
 빌더는 저장한 실행 결과와 검토 라벨을 최종 산출물로 만들고, 검증기는 모델을 내려받지 않고 산출물 일관성을 확인합니다.
+
+`verify_project.py`는 Git에 포함된 산출물만 있는 공개 저장소 복제본에서도 동작합니다. 비공개 논문 PDF 30편과 생성된 Dense 캐시가 로컬에 있으면 이를 감지해 원본 검증까지 자동으로 실행합니다.

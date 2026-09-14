@@ -22,3 +22,5 @@ python -B scripts/run_container_qna_benchmark.py
 ```
 
 Builders convert saved outputs and review labels into final reviewed artifacts. Validators check those artifacts without downloading models.
+
+`verify_project.py` works on a public clone with tracked artifacts alone. If the private 30-paper PDF corpus and generated dense cache are available locally, it detects them and runs the additional source checks automatically.

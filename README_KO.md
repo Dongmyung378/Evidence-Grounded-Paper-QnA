@@ -87,7 +87,7 @@ docker compose down
 python -B scripts/verify_project.py
 ```
 
-현재 회귀 테스트와 데이터 무결성, 원문 추적성, 검토 답변, Docker 증거와 최종 평가 매니페스트를 검증합니다. 모델을 내려받거나 긴 벤치마크를 반복하지 않습니다.
+현재 회귀 테스트와 Git에 포함된 데이터 무결성, 원문 추적성, 검토 답변, Docker 증거와 최종 평가 매니페스트를 검증합니다. 공개 저장소 복제본에는 비공개 PDF나 생성 모델 캐시가 없어도 됩니다. 로컬에 논문 PDF 30편과 Dense 캐시가 모두 있으면 원본 및 코퍼스 검증도 자동으로 추가합니다. 모델을 내려받거나 긴 벤치마크를 반복하지 않습니다.
 
 ## 저장소 구조
 
@@ -110,5 +110,6 @@ ui/             한영 Streamlit 화면
 - [문서 안내](docs/README_KO.md)
 - [아키텍처](docs/architecture_KO.md)
 - [평가](docs/evaluation_KO.md)
+- [실패 사례 분석](docs/failure_cases_KO.md)
 - [데이터와 라이선스](docs/data_KO.md)
 - [Docker 실행](docs/deployment/docker_KO.md)

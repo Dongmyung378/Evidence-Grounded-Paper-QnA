@@ -82,8 +82,11 @@ def main() -> None:
     config_papers = {paper["paper_id"]: paper for paper in config["papers"]}
     for paper in results["papers"]:
         source = PROJECT_ROOT / config_papers[paper["benchmark_paper_id"]]["pdf"]
-        assert paper["source_sha256"] == sha256(source)
-        assert paper["source_size_bytes"] == source.stat().st_size
+        assert len(paper["source_sha256"]) == 64
+        assert paper["source_size_bytes"] > 0
+        if source.is_file():
+            assert paper["source_sha256"] == sha256(source)
+            assert paper["source_size_bytes"] == source.stat().st_size
         assert paper["page_count"] > 0
         assert paper["text_page_count"] > 0
         assert paper["chunk_count"] > 0

@@ -87,7 +87,7 @@ Do not add `--volumes` unless uploaded data and the model cache should also be r
 python -B scripts/verify_project.py
 ```
 
-The verification command runs current regression tests and validates data integrity, traceability, reviewed answers, Docker evidence, and the evaluation manifest. It does not download models or repeat long benchmarks.
+The verification command runs current regression tests and validates tracked data integrity, traceability, reviewed answers, Docker evidence, and the evaluation manifest. A public clone does not need private PDFs or generated model caches. When all 30 local PDFs and the dense cache are present, their additional source and corpus checks run automatically. The command does not download models or repeat long benchmarks.
 
 ## Repository structure
 
@@ -110,5 +110,6 @@ This portfolio MVP excludes scanned PDFs and OCR, visual interpretation of table
 - [Documentation index](docs/README.md)
 - [Architecture](docs/architecture.md)
 - [Evaluation](docs/evaluation.md)
+- [Failure case analysis](docs/failure_cases.md)
 - [Data and licensing](docs/data.md)
 - [Docker setup](docs/deployment/docker.md)

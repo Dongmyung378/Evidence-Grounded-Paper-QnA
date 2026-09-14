@@ -20,6 +20,7 @@ def main():
         ("docs/README.md", "docs/README_KO.md"),
         ("docs/architecture.md", "docs/architecture_KO.md"),
         ("docs/evaluation.md", "docs/evaluation_KO.md"),
+        ("docs/failure_cases.md", "docs/failure_cases_KO.md"),
         ("docs/data.md", "docs/data_KO.md"),
         ("docs/deployment/docker.md", "docs/deployment/docker_KO.md"),
         ("data/README.md", "data/README_KO.md"),
@@ -41,6 +42,24 @@ def main():
     }
     assert {path.name for path in screenshots.glob("*.png")} == expected_screenshots
     assert all((screenshots / name).stat().st_size > 0 for name in expected_screenshots)
+
+    failure_en = read("docs/failure_cases.md")
+    failure_ko = read("docs/failure_cases_KO.md")
+    failure_ids = {
+        "q-001-en",
+        "q-001-ko",
+        "abs-test-006-ko",
+        "q-017-ko",
+        "q-015-en",
+        "q-042-en",
+        "q-042-ko",
+        "q-043-ko",
+        "q-041-ko",
+        "q-034-en",
+    }
+    assert all(case_id in failure_en and case_id in failure_ko for case_id in failure_ids)
+    assert "Citation support failures were 0" in failure_en
+    assert "인용 지지 실패는 0건" in failure_ko
 
     excluded = {".git", "local_notes", "data/raw", "data/runtime"}
     violations = []
