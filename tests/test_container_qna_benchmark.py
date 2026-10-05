@@ -4,6 +4,8 @@ import json
 import sys
 import unittest
 from pathlib import Path
+from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -18,9 +20,26 @@ from run_container_qna_benchmark import (
 
 
 class ContainerQNABenchmarkTests(unittest.TestCase):
+    def validate_with_fixture_pdfs(self, config, missing_pdf=False):
+        # Exercise the real manifest checks without redistributing research PDFs.
+        # PDF parsing itself is covered by the upload/analysis API tests.
+        with TemporaryDirectory() as directory:
+            fixture_root = Path(directory)
+            questions = fixture_root / "data/evaluation/questions.jsonl"
+            questions.parent.mkdir(parents=True)
+            questions.write_bytes((ROOT / "data/evaluation/questions.jsonl").read_bytes())
+            for index, paper in enumerate(config["papers"]):
+                if missing_pdf and index == 0:
+                    continue
+                pdf = fixture_root / paper["pdf"]
+                pdf.parent.mkdir(parents=True, exist_ok=True)
+                pdf.write_bytes(b"%PDF-1.4\n% manifest validation fixture\n")
+            with patch("run_container_qna_benchmark.ROOT", fixture_root):
+                validate_manifest(config)
+
     def test_manifest_is_three_papers_and_five_bilingual_pairs(self):
         config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
-        validate_manifest(config)
+        self.validate_with_fixture_pdfs(config)
         questions = [
             question
             for paper in config["papers"]
@@ -31,6 +50,11 @@ class ContainerQNABenchmarkTests(unittest.TestCase):
         self.assertEqual(sum(q["language"] == "en" for q in questions), 5)
         self.assertEqual(sum(q["language"] == "ko" for q in questions), 5)
         self.assertEqual(config["seed"], 378)
+
+    def test_benchmark_still_rejects_missing_pdf_inputs(self):
+        config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+        with self.assertRaisesRegex(ValueError, "PDF is missing or invalid"):
+            self.validate_with_fixture_pdfs(config, missing_pdf=True)
 
     def test_runner_cannot_load_gold_during_execution(self):
         source = (ROOT / "scripts" / "run_container_qna_benchmark.py").read_text(

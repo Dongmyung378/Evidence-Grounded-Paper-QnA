@@ -83,11 +83,16 @@ Do not add `--volumes` unless uploaded data and the model cache should also be r
 
 ## Verify
 
+For the public checks only, install the small test dependency set in a Python 3.12 virtual environment. The application dependencies are in `requirements.txt`.
+
 ```bash
+python -m pip install -r requirements-test.txt
 python -B scripts/verify_project.py
 ```
 
 The verification command runs current regression tests and validates tracked data integrity, traceability, reviewed answers, Docker evidence, and the evaluation manifest. A public clone does not need private PDFs or generated model caches. When all 30 local PDFs and the dense cache are present, their additional source and corpus checks run automatically. The command does not download models or repeat long benchmarks.
+
+Frozen evaluation artifacts retain their original bytes, including line endings; `.gitattributes` disables Git text conversion for `data/evaluation/` and fixes source/configuration text to LF. This keeps the original 47 SHA-256 digests valid in Windows and Linux clones and source ZIPs. The portability repair preserves the recorded results and their provenance; it is not a new benchmark run. Editing an artifact still invalidates its digest.
 
 ## Repository structure
 

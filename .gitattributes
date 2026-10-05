@@ -1,0 +1,6 @@
+# Source and configuration hashes were recorded with LF line endings.
+* text=auto eol=lf
+
+# Frozen evidence uses byte-exact SHA-256, including its original line endings.
+# Do not let Git rewrite these historical artifacts on add, checkout or archive.
+data/evaluation/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

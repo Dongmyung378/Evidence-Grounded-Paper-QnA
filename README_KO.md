@@ -83,11 +83,16 @@ docker compose down
 
 ## 검증
 
+공개 검증만 실행할 때는 Python 3.12 가상환경에 아래의 작은 테스트 의존성 묶음을 설치합니다. 실제 앱 실행용 의존성은 `requirements.txt`에 있습니다.
+
 ```bash
+python -m pip install -r requirements-test.txt
 python -B scripts/verify_project.py
 ```
 
 현재 회귀 테스트와 Git에 포함된 데이터 무결성, 원문 추적성, 검토 답변, Docker 증거와 최종 평가 매니페스트를 검증합니다. 공개 저장소 복제본에는 비공개 PDF나 생성 모델 캐시가 없어도 됩니다. 로컬에 논문 PDF 30편과 Dense 캐시가 모두 있으면 원본 및 코퍼스 검증도 자동으로 추가합니다. 모델을 내려받거나 긴 벤치마크를 반복하지 않습니다.
+
+확정된 평가 자료는 줄바꿈을 포함한 원래 바이트를 보존합니다. `.gitattributes`는 `data/evaluation/`의 Git 텍스트 변환을 끄고, 소스·설정 파일의 줄바꿈을 LF로 고정합니다. 따라서 Windows·Linux 복제본과 소스 ZIP에서도 기존 47개 SHA-256 해시가 유지됩니다. 이번 호환성 수정은 기존 결과와 출처를 보존하며, 성능 실험을 다시 수행한 것은 아닙니다. 자료의 내용이 바뀌면 해시 검증은 계속 실패합니다.
 
 ## 저장소 구조
 
