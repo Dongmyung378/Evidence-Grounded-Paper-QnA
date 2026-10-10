@@ -48,9 +48,9 @@ The default runtime uses extraction and translation. Generative model trials are
 
 All 30 source papers were evaluated with 180 English/Korean meaning groups and 360 outputs per version. Ten papers supplied DEV questions; twenty papers supplied the final comparison. A paired group passes only when both languages pass.
 
-The twenty evaluation papers contain 80 answerable, 20 unsupported and 20 false-premise groups. Both columns describe this project's own system implementation using pretrained retrieval and translation models. "Pre-study implementation" is the version before the expansion experiments; "Published implementation" is the version retained after evaluating those experiments.
+The twenty evaluation papers contain 80 answerable, 20 unsupported and 20 false-premise groups. Both columns describe this project's own system implementation using pretrained retrieval and translation models. "Initial development version" is the implementation at the start of this expansion study; "Final development version" is the implementation selected for publication after reviewing the experiments.
 
-| Automatic check | Pre-study implementation | Published implementation |
+| Automatic check | Initial development version | Final development version |
 | --- | ---: | ---: |
 | Valid response contract | 240/240 | 240/240 |
 | Answerable request receives an answer | 50/80 | 49/80 |

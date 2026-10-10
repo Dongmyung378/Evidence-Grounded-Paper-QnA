@@ -8,9 +8,9 @@ Inputs were frozen before the baseline DEV run. The ten previously labelled pape
 
 The DEV comparison contains 40 answerable, 10 unsupported and 10 false-premise paired groups:
 
-Both columns describe this project's own implementation using pretrained retrieval and translation models. "Pre-study implementation" predates the expansion experiments; "Published implementation" is the version retained after reviewing their results. The artifact identifiers `baseline` and `final` retain their original names for reproducibility.
+Both columns describe this project's own implementation using pretrained retrieval and translation models. "Initial development version" is the implementation at the start of this expansion study; "Final development version" is the implementation selected for publication after reviewing the experiments. The artifact identifiers `baseline` and `final` retain their original names for reproducibility.
 
-| Automatic check | Pre-study implementation | Published implementation |
+| Automatic check | Initial development version | Final development version |
 | --- | ---: | ---: |
 | Valid response contract | 120/120 | 120/120 |
 | Answerable request receives an answer | 23/40 | 23/40 |
@@ -22,7 +22,7 @@ Both columns describe this project's own implementation using pretrained retriev
 
 The final twenty-paper comparison contains 80 answerable, 20 unsupported and 20 false-premise groups:
 
-| Automatic check | Pre-study implementation | Published implementation |
+| Automatic check | Initial development version | Final development version |
 | --- | ---: | ---: |
 | Valid response contract | 240/240 | 240/240 |
 | Answerable request receives an answer | 50/80 | 49/80 |
@@ -40,7 +40,7 @@ The expanded final comparison does not establish an overall quality improvement:
 
 The final per-language alias diagnostics are 43/80 English and 15/80 Korean; both languages complete the same group in 11/80 cases. Different synonym and terminology coverage limits cross-language interpretation. All 708 exposed source-alignment units across the full 360-output run can be reconstructed from the stored evidence. [Separate Linux reproduction](../data/benchmarks/corpus30/results/reproduction/README.md) matched twelve preselected answer, alignment and citation outputs after rebuilding all corpus embeddings. The source/runtime comparison uses recorded files, while timing and reranker floating-point scores are excluded.
 
-Sources: [DEV pre-study implementation](../data/benchmarks/corpus30/results/baseline-dev-report.json), [DEV published implementation](../data/benchmarks/corpus30/results/final-dev-report.json), [evaluation pre-study implementation](../data/benchmarks/corpus30/results/baseline-holdout-report.json), [evaluation published implementation](../data/benchmarks/corpus30/results/final-holdout-report.json). [Raw outputs](../data/benchmarks/corpus30/results/) expose answers, original evidence, diagnostics and timings. [Development decisions](../data/benchmarks/corpus30/results/comparison.json) preserve rejected variants and the stop rule.
+Sources: [DEV initial development version](../data/benchmarks/corpus30/results/baseline-dev-report.json), [DEV final development version](../data/benchmarks/corpus30/results/final-dev-report.json), [evaluation initial development version](../data/benchmarks/corpus30/results/baseline-holdout-report.json), [evaluation final development version](../data/benchmarks/corpus30/results/final-holdout-report.json). [Raw outputs](../data/benchmarks/corpus30/results/) expose answers, original evidence, diagnostics and timings. [Development decisions](../data/benchmarks/corpus30/results/comparison.json) preserve rejected variants and the stop rule.
 
 Paired checks require both languages. Fact aliases are lexical diagnostics and can accept a word in an incorrect claim or miss a correct synonym. Acceptable pages are alternative source locations, rather than a requirement to cite every page. Refusal means the canonical insufficient response with no citations; a sufficient corrective answer to a false premise still does not count as a refusal. Semantic accuracy is not independently measured.
 

@@ -60,7 +60,7 @@ python -B scripts/validate_answer_experiment.py
 
 | 개발 전략 | 어휘 표지 모두 포함 / 40 | 기존에 답한 그룹의 손실 | 부정 질문의 응답 / 20 | 채택 |
 | --- | ---: | ---: | ---: | --- |
-| 실험 전 구현 | 8 | 0 | 10 | 비교 기준 |
+| 초기 개발 버전 | 8 | 0 | 10 | 비교 기준 |
 | `planner-context-v1` | 10 | 4 | 10 | 제외 |
 | `planner-context-v2` | 10 | 3 | 11 | 제외 |
 | `context-alignment-v3` | 9 | 3 | 11 | 제외 |

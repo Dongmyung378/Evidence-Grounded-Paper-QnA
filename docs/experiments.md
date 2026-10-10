@@ -60,7 +60,7 @@ The four engineering work areas were implemented: request tracking, adjacent sou
 
 | DEV strategy | Complete alias groups / 40 | Previously answered groups lost | Negative answers / 20 | Adoption |
 | --- | ---: | ---: | ---: | --- |
-| Pre-study implementation | 8 | 0 | 10 | Reference |
+| Initial development version | 8 | 0 | 10 | Reference |
 | `planner-context-v1` | 10 | 4 | 10 | Rejected |
 | `planner-context-v2` | 10 | 3 | 11 | Rejected |
 | `context-alignment-v3` | 9 | 3 | 11 | Rejected |

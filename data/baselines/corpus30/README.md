@@ -2,7 +2,7 @@
 
 [English](README.md) | [한국어](README_KO.md)
 
-The labels "Pre-study implementation" and "Published implementation" describe the project's own system before the expansion study and after publication decisions. The snapshot directory names remain `baseline/` and `final/` to preserve reproducibility.
+The labels "Initial development version" and "Final development version" describe this project's own system at the start of the expansion study and as selected for publication after reviewing the experiments. The snapshot directory names remain `baseline/` and `final/` to preserve reproducibility.
 
 `baseline/` preserves 75 source/configuration files from the original commit plus the frozen benchmark runner. `final/` preserves 80 measured files after the three strategy trials were rejected. `development-v3/` records the last rejected trial. Each `snapshot.json` lists the exact bytes; altering these files invalidates recorded outputs.
 

@@ -8,9 +8,9 @@
 
 개발 비교는 답변 가능 40개, 근거 부족 10개, 잘못된 전제 10개 그룹입니다.
 
-두 열은 사전학습 검색 및 번역 모델을 활용해 직접 개발한 같은 시스템의 구현입니다. '실험 전 구현'은 이번 확장 실험 이전 버전이며, '공개 확정 구현'은 실험 결과를 검토한 뒤 공개하기로 확정한 버전입니다. 재현용 자료와 명령의 식별자 `baseline` 및 `final`은 측정 당시 이름을 유지합니다.
+두 열은 사전학습 검색 및 번역 모델을 활용해 직접 개발한 같은 시스템의 구현입니다. '초기 개발 버전'은 이번 개선 실험을 시작할 당시의 구현이며, '최종 개발 버전'은 실험 결과를 검토한 뒤 공개하기로 확정한 버전입니다. 재현용 자료와 명령의 식별자 `baseline` 및 `final`은 측정 당시 이름을 유지합니다.
 
-| 검사 항목 | 실험 전 구현 | 공개 확정 구현 |
+| 검사 항목 | 초기 개발 버전 | 최종 개발 버전 |
 | --- | ---: | ---: |
 | 출력 형식 준수 | 120/120 | 120/120 |
 | 답변 가능한 질문에 응답 | 23/40 | 23/40 |
@@ -22,7 +22,7 @@
 
 최종 논문 20편의 비교는 답변 가능 80개, 근거 부족 20개, 잘못된 전제 20개 그룹입니다.
 
-| 검사 항목 | 실험 전 구현 | 공개 확정 구현 |
+| 검사 항목 | 초기 개발 버전 | 최종 개발 버전 |
 | --- | ---: | ---: |
 | 출력 형식 준수 | 240/240 | 240/240 |
 | 답변 가능한 질문에 응답 | 50/80 | 49/80 |
@@ -40,7 +40,7 @@
 
 언어별 필수 어휘 포함은 영어 43/80, 한국어 15/80이며 두 언어가 같은 그룹에서 모두 충족한 경우는 11/80입니다. 동의어와 전문 용어 표기의 차이가 언어 간 해석을 제한합니다. 전체 출력 360개에 노출된 원문 대응 단위 708개를 저장된 근거에서 재구성할 수 있습니다. [별도 Linux 재현](../data/benchmarks/corpus30/results/reproduction/README_KO.md)은 전체 코퍼스 임베딩을 새로 생성한 뒤 사전 선정한 답변과 원문 대응 및 인용 출력 12개를 재현했습니다. 시간과 재정렬 점수의 부동소수점 차이는 일치 비교에서 제외합니다.
 
-근거: [실험 전 구현의 개발 보고서](../data/benchmarks/corpus30/results/baseline-dev-report.json), [공개 확정 구현의 개발 보고서](../data/benchmarks/corpus30/results/final-dev-report.json), [실험 전 구현의 평가 보고서](../data/benchmarks/corpus30/results/baseline-holdout-report.json), [공개 확정 구현의 평가 보고서](../data/benchmarks/corpus30/results/final-holdout-report.json). [원시 출력](../data/benchmarks/corpus30/results/)에는 답변과 원문 근거, 진단 정보 및 실행시간이 있습니다. [개발 판단 기록](../data/benchmarks/corpus30/results/comparison.json)에 채택하지 않은 안과 중단 기준을 보관합니다.
+근거: [초기 개발 버전의 개발 보고서](../data/benchmarks/corpus30/results/baseline-dev-report.json), [최종 개발 버전의 개발 보고서](../data/benchmarks/corpus30/results/final-dev-report.json), [초기 개발 버전의 평가 보고서](../data/benchmarks/corpus30/results/baseline-holdout-report.json), [최종 개발 버전의 평가 보고서](../data/benchmarks/corpus30/results/final-holdout-report.json). [원시 출력](../data/benchmarks/corpus30/results/)에는 답변과 원문 근거, 진단 정보 및 실행시간이 있습니다. [개발 판단 기록](../data/benchmarks/corpus30/results/comparison.json)에 채택하지 않은 안과 중단 기준을 보관합니다.
 
 그룹 단위 검사는 두 언어가 모두 통과해야 인정합니다. 어휘 표지는 잘못된 문장에 등장해도 통과할 수 있고 올바른 동의어를 놓칠 수 있습니다. 근거 페이지 목록은 모두 인용해야 하는 목록이 아니라 정답이 있는 대체 위치입니다. 거절은 인용이 없는 정해진 근거 부족 응답을 뜻하므로, 잘못된 전제를 정정하는 충분 응답도 거절 점수에는 포함되지 않습니다. 의미상 정확도를 독립적으로 측정한 것은 아닙니다.
 
