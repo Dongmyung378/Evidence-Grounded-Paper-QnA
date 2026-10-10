@@ -17,4 +17,4 @@ Public documentation for the implementation, measured results and reproducible l
 - [Docker setup](deployment/docker.md)
 - [External review procedure](third_party_review.md)
 
-Work journals and intermediate experiments remain local-only. Final scientific evidence and calibration provenance remain public.
+Work journals, scratch code and temporary runs remain local-only. Frozen experiment outputs, adoption decisions and calibration provenance remain public for verification.

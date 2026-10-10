@@ -6,6 +6,8 @@ A local application that retrieves evidence from one English research paper and 
 
 The project demonstrates an end-to-end paper Q&A system and reproducible evaluation. Current answers still omit requested details, mistranslate technical terms and sometimes answer unsupported requests. The published measurements expose these limits.
 
+This portfolio version is finalized as a research prototype. Three development strategies failed the predefined adoption criteria, so experimental context expansion and retrieval retries remain disabled by default. Source-to-answer alignment and the measured evaluation artifacts are retained. See the [portfolio case study](https://park-dongmyung.com/projects/project-01/), [final results](docs/results.md) and [experiment decisions](docs/experiments.md).
+
 ## Demo
 
 | English answer and evidence | Korean answer and evidence |
