@@ -4,6 +4,8 @@
 
 구현 내용, 측정 결과와 재현 가능한 로컬 실행을 설명하는 공개 문서입니다.
 
+- [질문 항목 추적과 원문 대조](evidence_planning_KO.md)
+- [논문 30편의 영어와 한국어 평가](../data/benchmarks/corpus30/README_KO.md)
 - [평가 결과와 발견된 실패](results_KO.md)
 - [범위를 제한한 답변 모델 비교 실험](experiments_KO.md)
 - [아키텍처](architecture_KO.md)

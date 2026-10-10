@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-10-10T08:30:05.183417+00:00",
+  "formal_quality_execution": "Two independent model processes, baseline and final, overlap on the same 16-logical-processor host. Each uses eight Torch threads and a separate corpus embedding cache.",
+  "timing_scope": "Per-question wall times are diagnostic only. Formal run means are not a controlled latency comparison because the runs share CPU resources. The earlier three DEV core variants were measured separately.",
+  "selection": "Final production choices fixed before formal output inspection; no further score-guided tuning.",
+  "reproduction_overlap": "A preselected twelve-output Linux reproduction sample also runs with two Torch threads and a two-CPU container limit while the formal runs are in progress. All per-question wall times remain diagnostic, not a controlled latency comparison.",
+  "post_measurement_tooling_changes": {
+    "files": [
+      "scripts/replay_corpus_benchmark.py",
+      "scripts/validate_corpus_benchmark.py"
+    ],
+    "scope": "Snapshot preparation now copies measured files only; saved-alignment validation rebuilds existing PDF normalization instead of requiring raw substrings.",
+    "inference_sources_changed": false,
+    "measured_snapshots_changed": false,
+    "replay_scope": "Outer preparation uses the repaired tool; inference runs the exact preserved snapshot."
+  }
+}

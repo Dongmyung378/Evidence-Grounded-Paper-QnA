@@ -75,3 +75,17 @@ python -B scripts/check_deployment.py --base-url http://127.0.0.1:8000 --ui-url 
 [포함한 PDF와 검사 예시](../data/quality_benchmark/deployment/README.md)는 원본 PDF, 질문과 필요한 어휘 그룹을 제공하며 원본 바이트 해시를 확인합니다. 검사 자료는 Docker 이미지에 복사되지 않습니다. 검사는 PDF 업로드, 파싱과 HTTP 질의응답을 실행하며 UI는 상태 엔드포인트만 확인합니다. 브라우저 화면 조작은 검증하지 않습니다. 클라이언트 해시와 응답만으로 서버 코드와 패키지 버전을 확인할 수 없으므로 별도 기록이 필요합니다. 외부 검토 기록은 [제3자 검토 절차](../docs/third_party_review_KO.md)를 따릅니다.
 
 실행 성능의 `--translation-cache-mode disabled`는 각 요청 전에 번역 결과 캐시만 비우고 모델은 유지합니다. `enabled`와 같은 질문 및 반복 횟수로 비교하세요. 두 모드 모두 동일 질문의 반복 측정이므로 새로운 질문의 처리량으로 해석하지 않습니다.
+
+## 논문 30편 평가와 측정 당시 소스 재실행
+
+```bash
+python -B scripts/corpus_benchmark.py validate
+python -B scripts/corpus_benchmark.py run --split dev --variant current --offline --output outputs/current-dev.json
+python -B scripts/corpus_benchmark.py evaluate --predictions outputs/current-dev.json --output outputs/current-dev-report.json
+python -B scripts/validate_corpus_benchmark.py
+python -B scripts/replay_corpus_benchmark.py --variant final --split holdout --offline --output outputs/final-holdout-replay.json
+```
+
+`corpus_benchmark.py`는 새로운 실행 결과를 `outputs/` 아래에만 쓰고, 완료된 출력의 덮어쓰기를 거부합니다. 재실행 도구는 측정 당시 구현을 별도의 임시 소스 폴더에 복원하고 임베딩을 새로 생성합니다. `--variant baseline`으로 기존 구현도 재현할 수 있습니다. 추론에는 `requirements.txt`와 지정된 모델 캐시가 필요하며, 공개 검증은 `requirements-test.txt`로 수행합니다.
+
+별도의 `experiment_premise_verifier.py`는 정상 전제 대조군을 포함해 채택하지 않은 실험을 재실행합니다. 이 분류기는 기본 서비스의 의존성이나 채택한 전제 정책이 아닙니다. [실험 기록](../data/benchmarks/corpus30/experiments/premise-verifier/README_KO.md)에 판단 근거를 설명했습니다.

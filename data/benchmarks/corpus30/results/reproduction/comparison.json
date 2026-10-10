@@ -1,0 +1,94 @@
+{
+  "scope": "Agent-operated separate Linux runtime on the same physical host; not independent human review or full 360-output model reproduction.",
+  "language_outputs": 12,
+  "paired_meaning_groups": 6,
+  "papers": 4,
+  "embedding_cache_regenerated": true,
+  "embedding_cache_sha256": "79bb3540a3f6b66f9f88e57431d3f927b5dc80d199391df44f8e8419d0c35128",
+  "measured_runtime_hashes_match": true,
+  "windows_python": "3.12.7",
+  "windows_torch": "2.14.1+cpu",
+  "linux_python": "3.12.15",
+  "linux_torch": "2.5.1+cpu",
+  "linux_threads": 2,
+  "network_enabled": false,
+  "model_cache": "Read-only pinned model cache; same physical host, separate process and OS environment.",
+  "comparison_scope": "Answer payload, alignment and cited source identifiers/text/pages. Timing and floating-point reranker scores are excluded.",
+  "checks": [
+    {
+      "case_id": "paper-001-overlap-en",
+      "response_equal": true,
+      "alignment_equal": true,
+      "citation_sources_equal": true
+    },
+    {
+      "case_id": "paper-001-overlap-ko",
+      "response_equal": true,
+      "alignment_equal": true,
+      "citation_sources_equal": true
+    },
+    {
+      "case_id": "paper-004-workflow-en",
+      "response_equal": true,
+      "alignment_equal": true,
+      "citation_sources_equal": true
+    },
+    {
+      "case_id": "paper-004-workflow-ko",
+      "response_equal": true,
+      "alignment_equal": true,
+      "citation_sources_equal": true
+    },
+    {
+      "case_id": "paper-013-models-en",
+      "response_equal": true,
+      "alignment_equal": true,
+      "citation_sources_equal": true
+    },
+    {
+      "case_id": "paper-013-models-ko",
+      "response_equal": true,
+      "alignment_equal": true,
+      "citation_sources_equal": true
+    },
+    {
+      "case_id": "paper-023-encoding-en",
+      "response_equal": true,
+      "alignment_equal": true,
+      "citation_sources_equal": true
+    },
+    {
+      "case_id": "paper-023-encoding-ko",
+      "response_equal": true,
+      "alignment_equal": true,
+      "citation_sources_equal": true
+    },
+    {
+      "case_id": "paper-013-unsupported-en",
+      "response_equal": true,
+      "alignment_equal": true,
+      "citation_sources_equal": true
+    },
+    {
+      "case_id": "paper-013-unsupported-ko",
+      "response_equal": true,
+      "alignment_equal": true,
+      "citation_sources_equal": true
+    },
+    {
+      "case_id": "paper-013-false-premise-en",
+      "response_equal": true,
+      "alignment_equal": true,
+      "citation_sources_equal": true
+    },
+    {
+      "case_id": "paper-013-false-premise-ko",
+      "response_equal": true,
+      "alignment_equal": true,
+      "citation_sources_equal": true
+    }
+  ],
+  "response_equal_count": 12,
+  "alignment_equal_count": 12,
+  "citation_sources_equal_count": 12
+}

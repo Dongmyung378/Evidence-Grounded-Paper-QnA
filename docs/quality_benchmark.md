@@ -2,6 +2,8 @@
 
 [English](quality_benchmark.md) | [한국어](quality_benchmark_KO.md)
 
+The expanded [30-paper benchmark](../data/benchmarks/corpus30/README.md) evaluates 180 paired meaning groups across the existing corpus. The harness below preserves earlier synthetic and four-paper regression sets; these are separate measurements.
+
 This harness evaluates the final response returned after retrieval, refusal
 policy, answer construction, translation, validation and fallback. A retrieval
 threshold decision is not counted as a successful final refusal.

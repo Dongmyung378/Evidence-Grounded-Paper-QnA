@@ -70,6 +70,7 @@ class EvidenceLocator(BaseModel):
     page_label: str
     section: str | None = None
     chunk_id: str
+    source_chunk_ids: list[str] = Field(default_factory=list)
 
 
 class EvidenceResult(BaseModel):
@@ -96,6 +97,18 @@ class QuestionRuntime(BaseModel):
     stage_timings: dict[str, dict[str, float]] = Field(default_factory=dict)
 
 
+class AnswerSentenceAlignment(BaseModel):
+    sentence_id: str
+    evidence_id: str
+    page: int
+    section: str | None = None
+    source_text: str
+    answer_text: str
+    answer_language: Literal['en','ko']
+    translation_status: Literal['original_source','structural_checks_passed']
+    requested_facet_ids: list[str] = Field(default_factory=list)
+
+
 class QuestionResult(BaseModel):
     paper_id: str
     question: str
@@ -106,6 +119,7 @@ class QuestionResult(BaseModel):
     evidence: list[EvidenceResult]
     runtime_seconds: float
     runtime: QuestionRuntime
+    answer_alignment: list[AnswerSentenceAlignment] = Field(default_factory=list)
 
 
 class QueueHealth(BaseModel):

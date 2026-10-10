@@ -54,3 +54,13 @@ UI 검사는 상태 확인 엔드포인트를 대상으로 하며 브라우저 �
 모든 질문을 검토하지 않았다면 검토 범위와 제외한 질문을 공개합니다.
 표본만 확인한 결과를 전체 정확도로 환산하지 않습니다. 실제 검토자의
 실행 기록이 생기기 전에는 외부 사용자 검증을 완료로 표시하지 않습니다.
+
+확장된 전체 논문 평가는 고정된 입력과 기록된 지표를 검증한 뒤, 별도의 임시 소스 폴더에서 기존 또는 최종 구현을 재실행할 수 있습니다.
+
+```bash
+python -B scripts/validate_corpus_benchmark.py
+python -B scripts/replay_corpus_benchmark.py --variant final --split holdout --offline --output outputs/reviewer-final-holdout.json
+python -B scripts/replay_corpus_benchmark.py --variant baseline --split holdout --offline --output outputs/reviewer-baseline-holdout.json
+```
+
+[논문 30편의 평가 프로토콜](../data/benchmarks/corpus30/README_KO.md)과 [현재 결과](results_KO.md)에 레이블의 범위와 평가 이력이 기록되어 있습니다. UI나 `answer_alignment` 기록에서 답변 문장과 해당 원문을 대조합니다. 공개된 평가 질문은 이후 개발에서 회귀 자료로 사용합니다.

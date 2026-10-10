@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "abstention_config": "config/abstention.json",
+  "generation_config": "config/generation_runtime.json",
+  "answer_strategy": "evidence_first",
+  "answer_generation_config": "config/answer_generation.json",
+  "translation_config": "config/translation.json",
+  "devices": {
+    "embedding": "cpu",
+    "reranker": "cpu",
+    "generator": "auto"
+  },
+  "prepare_models_during_analysis": true,
+  "answer_guard": "deterministic_citations_numeric_validation_and_safe_fallback",
+  "seed": 378,
+  "decision": "Use evidence-first sentence compression. Return extractive English answers and translate only selected source sentences into Korean with the pinned NLLB model. Keep the verified -3.35 refusal threshold, deterministic citations, numeric validation, and safe fallback. The legacy 0.5B JSON generator remains available only for regression comparison."
+}

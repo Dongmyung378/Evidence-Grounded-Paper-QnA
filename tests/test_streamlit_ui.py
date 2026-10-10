@@ -159,6 +159,11 @@ class StreamlitShell(unittest.TestCase):
             "sufficiency": "sufficient",
             "abstention_reason": None,
             "runtime_seconds": 0.2,
+            "answer_alignment": [{
+                "sentence_id": "s-001", "evidence_id": "ev-01", "page": 2,
+                "source_text": "The source supports this specific statement.",
+                "answer_text": "The method is supported by the cited passage.",
+            }],
             "runtime": {
                 "retrieval_seconds": 0.05,
                 "generation_seconds": 0.15,
@@ -190,6 +195,8 @@ class StreamlitShell(unittest.TestCase):
         self.assertIn("Page 2 | Section: Methods", visible)
         self.assertIn("This exact sentence comes from the uploaded paper.", visible)
         self.assertIn(f"Chunk ID: {PAPER_ID}-p002-c001", visible)
+        self.assertIn("The source supports this specific statement.", visible)
+        self.assertTrue(any("answer sentence" in item.label for item in app.expander))
 
     def test_insufficient_answer_does_not_invent_evidence(self):
         app = AppTest.from_file(str(ROOT / "ui" / "app.py"), default_timeout=10)

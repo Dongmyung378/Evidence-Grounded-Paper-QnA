@@ -1,0 +1,13 @@
+{
+  "scope": "Previously disclosed CNN regression; no new held-out accuracy claim",
+  "en": {
+    "R_0_86_present": true,
+    "damping_0_01_present": true,
+    "non_convergence_present": true
+  },
+  "ko": {
+    "requested_scalar_details_present": false
+  },
+  "review": "Source-based operator inspection; not independently reviewed",
+  "adoption": "Retain measurement prose recognition without adopting wider context or retrieval changes"
+}

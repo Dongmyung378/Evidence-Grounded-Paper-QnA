@@ -39,3 +39,13 @@ Latency comparisons require the same paper, question, revisions, device and
 settings. Separate cold activation from warm inference, and distinguish exact
 sentence cache reuse from requests with cleared translation caches. Mark human
 external verification complete only after an actual reviewer's run is recorded.
+
+For the expanded corpus, validate the frozen inputs and recorded metrics, then replay either measured runtime in an isolated source directory:
+
+```bash
+python -B scripts/validate_corpus_benchmark.py
+python -B scripts/replay_corpus_benchmark.py --variant final --split holdout --offline --output outputs/reviewer-final-holdout.json
+python -B scripts/replay_corpus_benchmark.py --variant baseline --split holdout --offline --output outputs/reviewer-baseline-holdout.json
+```
+
+The [30-paper protocol](../data/benchmarks/corpus30/README.md) and [current results](results.md) explain the labels and known evaluation history. Compare each answer sentence with its original source using the UI or the `answer_alignment` records. Public evaluation questions are regression data for future development.

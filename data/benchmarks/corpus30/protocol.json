@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "development_papers": [
+    "paper-001",
+    "paper-002",
+    "paper-003",
+    "paper-004",
+    "paper-005",
+    "paper-006",
+    "paper-007",
+    "paper-008",
+    "paper-009",
+    "paper-010"
+  ],
+  "holdout_papers": [
+    "paper-011",
+    "paper-012",
+    "paper-013",
+    "paper-014",
+    "paper-015",
+    "paper-016",
+    "paper-017",
+    "paper-018",
+    "paper-019",
+    "paper-020",
+    "paper-021",
+    "paper-022",
+    "paper-023",
+    "paper-024",
+    "paper-025",
+    "paper-026",
+    "paper-027",
+    "paper-028",
+    "paper-029",
+    "paper-030"
+  ],
+  "question_policy": "Four source-grounded positive questions, one unsupported request and one source-contradicting premise per paper; paired English/Korean questions stay together.",
+  "evaluation_policy": "Freeze labels before baseline outputs. Tune only dev. Freeze candidate before evaluating held-out papers once. Opened holdout is regression data for subsequent changes.",
+  "scoring": "Fact-alias coverage is a lexical diagnostic, not semantic accuracy. Human or curator content review reported separately. Neither citation location nor output contract proves a correct answer.",
+  "selection_criteria": {
+    "minimum_additional_dev_paired_complete_groups": 2,
+    "maximum_extra_dev_negative_answers": 0,
+    "maximum_lost_dev_answerable_groups": 1,
+    "maximum_warm_mean_runtime_ratio": 2.5
+  },
+  "stop_rule": "At most three development variants of the core selection strategy. Stop variants when no admissible improvement; do not tune on holdout.",
+  "baseline_commit": "eeed0aaa61cd4f111f5a225d51a69e41871d34b8",
+  "independent_human_review": false
+}

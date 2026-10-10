@@ -7,6 +7,8 @@ from pathlib import Path
 from abstention_policy import CONFIG_PATH as ABSTENTION_CONFIG_PATH
 from abstention_policy import AbstentionPolicy
 from answer_quality import validate_informative_answer
+from answer_planner import question_facets
+from context_windows import expand_context_windows
 from grounded_generation import (
     CONFIG_PATH as ANSWER_GENERATION_CONFIG_PATH,
     generate_evidence_first_answer,
@@ -211,6 +213,15 @@ class GroundedQAPipeline:
             "answer_context_count": len(evidence),
             "supplement_origins": selection.get("answer_context_supplement_origins", []) if supplements else [],
         }
+        planning=(self.answer_generation_config or {}).get('evidence_planning',{})
+        if self.answer_strategy=='evidence_first' and planning.get('restore_context'):
+            source_chunks=getattr(getattr(self.retrieval,'pipeline',None),'grouped_chunks',{}).get(paper_id,[])
+            if source_chunks:
+                evidence,windows=expand_context_windows(evidence,source_chunks,paper_id,
+                    max_chars=planning.get('max_window_characters',3200))
+            else:
+                windows=[]
+            evidence_context['source_windows']=windows
 
         policy_decision = {
             "abstain": False,
@@ -240,6 +251,8 @@ class GroundedQAPipeline:
         }
         generator_newly_loaded = False
         answerability_decision = None
+        answer_alignment=[]
+        answer_plan=None
 
         if pre_generation_abstention:
             response = self.abstention_policy.refusal_payload(
@@ -269,6 +282,47 @@ class GroundedQAPipeline:
                 config=self.answer_generation_config,
                 translation_loader=self._get_llm if language == "ko" else None,
             )
+            # Retry exactly one missing request, staying in the selected paper.
+            # The retry receives question text only, never evaluation facts.
+            plan=generated.get('evidence_plan') or {}
+            if (planning.get('enabled') and planning.get('maximum_retrieval_retries',0)>0
+                and plan.get('missing_facet_ids')
+                and len(plan.get('facets',[]))>1):
+                missing=next(f for f in plan['facets'] if f['facet_id'] in plan['missing_facet_ids'])
+                retry_started=time.perf_counter()
+                retry_query=missing['query']
+                retry_result=self.retrieval.run(retry_query,paper_id)
+                known={e['chunk_id'] for e in evidence}
+                added=[]
+                for item in retry_result['evidence']:
+                    if item['paper_id']!=paper_id:
+                        raise ValueError('Retry evidence escaped the requested paper')
+                    if item['chunk_id'] not in known and len(added)<2:
+                        # Retrieval-local IDs are renumbered to avoid collisions.
+                        item={**item,'evidence_id':f"ev-{len(evidence)+len(added)+1:02d}-retry-{item['chunk_id']}"}
+                        added.append(item);known.add(item['chunk_id'])
+                evidence_context['bounded_retry']={'query':retry_query,'count':1,
+                    'added_evidence_ids':[i['evidence_id'] for i in added],
+                    'runtime_seconds':round(time.perf_counter()-retry_started,6)}
+                if added:
+                    evidence.extend(added)
+                    previous_timings=generated['stage_timings']
+                    recovered=generate_evidence_first_answer(answer_model,selector,query,evidence,
+                        question_language=language,config=self.answer_generation_config,
+                        translation_loader=self._get_llm if language=='ko' else None)
+                    previous_missing=len(plan['missing_facet_ids'])
+                    recovered_missing=len((recovered.get('evidence_plan') or {}).get('missing_facet_ids',plan['missing_facet_ids']))
+                    improved=(recovered['response']['sufficiency']=='sufficient'
+                              and recovered_missing<previous_missing)
+                    evidence_context['bounded_retry']['adopted']=improved
+                    if improved:
+                        generated=recovered
+                    combined={name:previous_timings.get(name,0)+recovered['stage_timings'].get(name,0)
+                              for name in set(previous_timings)|set(recovered['stage_timings'])}
+                    generated['stage_timings']=combined
+                    evidence_context['answer_context_count']=len(evidence)
+            answer_alignment=generated.get('answer_alignment',[])
+            answer_plan=generated.get('evidence_plan')
             generator_newly_loaded = language == "ko" and not generator_was_loaded and self.llm is not None
             llm_loaded = language == "ko" and self.llm is not None
             for key, value in generated.get("stage_timings", {}).items():
@@ -290,6 +344,7 @@ class GroundedQAPipeline:
             policy_sources = {
                 "unsupported_question_premise": "question_premise_policy",
                 "requested_aspect_not_supported": "question_aspect_policy",
+                "requested_facet_not_supported": "question_aspect_policy",
                 "requested_attribute_absent": "question_aspect_policy",
                 "no_aspect_evidence": "question_aspect_policy",
             }
@@ -424,9 +479,10 @@ class GroundedQAPipeline:
         # The answer contract still allows at most five cited sources. The
         # larger, bounded context pool is used only for sentence selection;
         # resolve validated citations against their original full objects.
-        citation_scope = ([item for item in evidence if item["evidence_id"] in response["evidence_ids"]]
-                          if supplements else evidence)
+        citation_scope = [item for item in evidence if item["evidence_id"] in response["evidence_ids"]]
         cited_evidence = resolve_answer_evidence(response, citation_scope)
+        if response['sufficiency']=='insufficient':
+            answer_alignment=[]
         stages = [
             "query",
             "production_retrieval",
@@ -457,6 +513,7 @@ class GroundedQAPipeline:
             "response": response,
             "cited_evidence": cited_evidence,
             "retrieved_evidence": evidence,
+            "answer_alignment": answer_alignment,
             "pipeline": {
                 "stages": stages,
                 "retrieval_config_fingerprint": retrieval_result["production"][
@@ -500,6 +557,7 @@ class GroundedQAPipeline:
                 },
                 "generator_newly_loaded": generator_newly_loaded,
                 "answerability": answerability_decision,
+                "evidence_plan":answer_plan,
             },
         }
         if include_debug:

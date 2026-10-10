@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "enabled": true,
+  "query_transform": "source_derived_topic_debias_v2",
+  "comparison": "accept_if_greater_than_or_equal",
+  "minimum_aspect_score": -3.405527949333191,
+  "calibration": {
+    "status": "dev_calibrated",
+    "split": "dev",
+    "execution_mode": "real_models",
+    "query_transform": "source_derived_topic_debias_v2",
+    "purpose": "synthetic_integration_only",
+    "independent_human_review": false,
+    "real_paper_accuracy_claim": false,
+    "benchmark_id": "quality-synthetic-v1",
+    "predictions_sha256": "2ee0f0e227625eb46de696b70275a57e53fac66d6ee0e1d5037ea52a24e9ae7f",
+    "implementation_sha256": "e8d552fe78f40d435789b57772f0dd5f9fff8b54e28aa24efc28983730b55a6b",
+    "retention_predictions_sha256": "c82c62340b14b07c7dbde0b69c9d22449dd2faf92d73523ae77a26cad5efaccc",
+    "additional_answerable_dev_constraints": 18,
+    "reranker": {
+      "name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+      "revision": "1427fd652930e4ba29e8149678df786c240d8825",
+      "runtime_role": "candidate_and_sentence_reranking"
+    },
+    "observed": {
+      "threshold": -3.405527949333191,
+      "answerable_group_retention": 1.0,
+      "unsupported_group_refusal_recall": 0.8,
+      "additional_dev_retention": true
+    },
+    "fully_separable_by_relevance_threshold": false,
+    "fully_separable_by_combined_policy": false,
+    "report": "data/quality_benchmark/runs/2026-10-10-v2/answerability-dev-calibration.json",
+    "retention_input": "data/quality_benchmark/runs/2026-10-10-v2/answerability-retention-dev-inputs.json",
+    "answerable_meaning_groups": 5,
+    "unsupported_or_false_premise_meaning_groups": 5,
+    "selection_priority": "maximum_grouped_refusal_then_strictest_threshold_within_declared_dev_retention",
+    "pre_retrieval_threshold_unchanged": -3.35,
+    "existing_real_dev_cases_excluded_by_pre_retrieval": 2,
+    "new_real_paper_holdout_read_or_used": false
+  },
+  "claim_boundary": "This additional gate requires development-only calibration and independent real-paper validation. A relevance score does not prove semantic support.",
+  "post_calibration_coverage_refinement": {
+    "revision": "contextual_presence_pdf_normalization_measurement_and_explicit_premise_v2",
+    "calibration_implementation_sha256_preserved": "e8d552fe78f40d435789b57772f0dd5f9fff8b54e28aa24efc28983730b55a6b",
+    "runtime_implementation_sha256": "ff67f9043fa8f4b15181d0d383d38f506207796ae5eb384c5cfad812d0838d74",
+    "score_queries_or_formula_changed": false,
+    "threshold_changed": false,
+    "model_execution": false,
+    "validation": "54 unit tests plus deterministic feature checks on saved development evidence; no model was executed for this refinement",
+    "synthetic_dev_missing_attribute_flags_changed": 0,
+    "existing_real_dev_presence_refusals": 0,
+    "new_real_paper_holdout_read_or_used": false,
+    "boundary": "These post-calibration rules were developed on disclosed DEV evidence. The saved calibrated score threshold, score queries and scoring formula are unchanged; the runtime source differs from the exact archived calibration source. Context permits possible answers to reach semantic checks and explicit premise checks are bounded heuristics, not general entailment. Deterministic feature counts do not establish end-to-end accuracy.",
+    "calibration_source_snapshot": "data/quality_benchmark/runs/2026-10-10-v2/calibration-sources/scripts/answerability_policy.py",
+    "calibration_source_snapshot_sha256": "e8d552fe78f40d435789b57772f0dd5f9fff8b54e28aa24efc28983730b55a6b",
+    "calibration_source_snapshot_status": "exact_bytes_hash_verified",
+    "existing_real_dev_premise_conflicts": 0,
+    "new_real_dev_used_for_rule_development": true,
+    "new_real_dev_answerable_feature_flags": 0,
+    "new_real_dev_negative_feature_flags": 10,
+    "new_real_dev_negative_records": 12,
+    "refinements": [
+      "PDF ligature and line-break normalization for presence and premise views only",
+      "Physical measurement dimensions distinguish units from iteration counts",
+      "Bilingual privacy concepts",
+      "Explicit positive component-use or improvement premises require a matching contradicted source relation; neutral and negative questions remain available"
+    ]
+  }
+}

@@ -61,6 +61,9 @@ COPY = {
             "the first question can still take longer."
         ),
         "answer": "Answer",
+        "alignment": "Compare each answer sentence with its source",
+        "aligned_answer": "Answer sentence",
+        "alignment_note": "Original text is provided for checking meaning and conditions.",
         "evidence_title": "Source evidence",
         "evidence_intro": "Only passages cited by the answer are shown.",
         "evidence_item": "Evidence {index}",
@@ -121,6 +124,9 @@ COPY = {
             "조금 더 오래 걸릴 수 있습니다."
         ),
         "answer": "답변",
+        "alignment": "문장별 답변과 원문 대조",
+        "aligned_answer": "답변 문장",
+        "alignment_note": "의미와 적용 조건을 확인할 수 있도록 원문을 함께 제공합니다.",
         "evidence_title": "원문 근거",
         "evidence_intro": "답변이 실제로 인용한 논문 원문만 표시합니다.",
         "evidence_item": "근거 {index}",
@@ -276,6 +282,16 @@ def render_answer_with_evidence(result: dict, text: dict[str, str]) -> None:
                         device=str(details.get("llm_device") or "N/A").upper(),
                     )
                 )
+        alignment=result.get('answer_alignment') or []
+        if alignment and result.get('sufficiency')=='sufficient':
+            with st.expander(text['alignment']):
+                st.caption(text['alignment_note'])
+                for sentence in alignment:
+                    st.caption(text['page'].format(page=sentence['page']))
+                    st.markdown(f"**{text['aligned_answer']}**")
+                    st.write(sentence['answer_text'])
+                    st.markdown(f"**{text['source_text']}**")
+                    st.write(sentence['source_text'])
 
     with evidence_column:
         st.markdown(f"#### {text['evidence_title']}")

@@ -8,3 +8,4 @@ data/evaluation/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,c
 # Versioned benchmark fixtures and measured source snapshots are byte-exact.
 data/quality_benchmark/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 data/baselines/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+data/benchmarks/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "sha256": {
+    "manifest.json": "a7b7c07af863eb9d603cc47299302ab3f541a189654d5303867ecf3b219580cb",
+    "questions.jsonl": "6f3d1ea2ff7947f9ffcfc6928cbf69585912811b155e720081c3ada28ca6cd84",
+    "protocol.json": "275139acefa6bff679aea4c97984e20fc78943b04b252ecd8127349105738a72"
+  }
+}

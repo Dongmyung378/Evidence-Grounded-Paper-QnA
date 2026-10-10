@@ -220,6 +220,7 @@ class Service:
                 for item in result["cited_evidence"]
             ],
             "runtime_seconds": pipeline["runtime_seconds"],
+            "answer_alignment": result.get('answer_alignment',[]),
             "runtime": {
                 "total_seconds": pipeline["runtime_seconds"],
                 "retrieval_seconds": pipeline.get("retrieval_seconds", 0.0),

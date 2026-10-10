@@ -49,6 +49,8 @@ def main():
         ("docs/results.md", "docs/results_KO.md"),
         ("docs/experiments.md", "docs/experiments_KO.md"),
         ("docs/answer_policy.md", "docs/answer_policy_KO.md"),
+        ("docs/evidence_planning.md", "docs/evidence_planning_KO.md"),
+        ("data/benchmarks/corpus30/README.md", "data/benchmarks/corpus30/README_KO.md"),
         ("docs/quality_benchmark.md", "docs/quality_benchmark_KO.md"),
         ("docs/third_party_review.md", "docs/third_party_review_KO.md"),
         ("data/quality_benchmark/README.md", "data/quality_benchmark/README_KO.md"),

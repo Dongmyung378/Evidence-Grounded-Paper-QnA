@@ -4,6 +4,8 @@
 
 Public documentation for the implementation, measured results and reproducible local execution.
 
+- [Request planning and source alignment](evidence_planning.md)
+- [Thirty paper bilingual benchmark](../data/benchmarks/corpus30/README.md)
 - [Results and observed failures](results.md)
 - [Bounded answer-model experiment](experiments.md)
 - [Architecture](architecture.md)

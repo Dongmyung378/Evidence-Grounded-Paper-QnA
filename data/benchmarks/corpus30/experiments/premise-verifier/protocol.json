@@ -1,0 +1,252 @@
+{
+  "inputs": [
+    {
+      "paper_id": "paper-001",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "Frequency-weighted SVD shifts the operational trade-off but does not eliminate the bias floor."
+    },
+    {
+      "paper_id": "paper-001",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "주파수 가중 SVD는 운영상 절충을 바꾸지만 편향 하한을 제거하지 않는다."
+    },
+    {
+      "paper_id": "paper-001",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "frequency-weighted SVD completely eliminates the bias floor"
+    },
+    {
+      "paper_id": "paper-001",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "주파수 가중 SVD가 편향 하한을 완전히 제거한다"
+    },
+    {
+      "paper_id": "paper-002",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "The framework focuses on learning rate transfer and excludes batch size."
+    },
+    {
+      "paper_id": "paper-002",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "프레임워크는 학습률 이전에 집중하고 배치 크기를 제외한다."
+    },
+    {
+      "paper_id": "paper-002",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "the framework transfers batch size together with learning rate"
+    },
+    {
+      "paper_id": "paper-002",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "프레임워크가 학습률과 함께 배치 크기도 이전한다"
+    },
+    {
+      "paper_id": "paper-003",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "BART was evaluated without additional fine-tuning due to computational constraints."
+    },
+    {
+      "paper_id": "paper-003",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "컴퓨팅 제약으로 BART를 추가 미세조정 없이 평가했다."
+    },
+    {
+      "paper_id": "paper-003",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "all compared models were fine-tuned under identical training conditions"
+    },
+    {
+      "paper_id": "paper-003",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "비교한 모든 모델을 동일한 학습 조건에서 미세조정했다"
+    },
+    {
+      "paper_id": "paper-004",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "The work optimizes INT8 inference in the native PyTorch stack for Intel Xeon CPUs."
+    },
+    {
+      "paper_id": "paper-004",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "이 연구는 Intel Xeon CPU의 네이티브 PyTorch 스택에서 INT8 추론을 최적화한다."
+    },
+    {
+      "paper_id": "paper-004",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "the reported acceleration requires leaving the native PyTorch stack"
+    },
+    {
+      "paper_id": "paper-004",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "보고된 가속에 네이티브 PyTorch 스택을 벗어나는 것이 필요하다"
+    },
+    {
+      "paper_id": "paper-005",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "ContCore maintains fixed memory with theoretical guarantees."
+    },
+    {
+      "paper_id": "paper-005",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "ContCore는 이론적 보장과 함께 고정 메모리를 유지한다."
+    },
+    {
+      "paper_id": "paper-005",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "ContCore requires memory that grows without bound as tasks accumulate"
+    },
+    {
+      "paper_id": "paper-005",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "ContCore는 과제가 쌓일수록 무제한으로 증가하는 메모리가 필요하다"
+    },
+    {
+      "paper_id": "paper-006",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "EOFM pretraining is dominated by reflected optical and active microwave data."
+    },
+    {
+      "paper_id": "paper-006",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "EOFM 사전학습은 반사 광학 데이터와 능동 마이크로파 데이터가 지배한다."
+    },
+    {
+      "paper_id": "paper-006",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "the review establishes direct physical process inference from every EOFM representation"
+    },
+    {
+      "paper_id": "paper-006",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "검토가 모든 EOFM 표현에서 직접적인 물리 과정 추론을 입증한다"
+    },
+    {
+      "paper_id": "paper-007",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "Logarithmic Voronoi boundaries of algebraic models need not be algebraic."
+    },
+    {
+      "paper_id": "paper-007",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "대수적 모델의 로그 보로노이 경계는 반드시 대수적일 필요가 없다."
+    },
+    {
+      "paper_id": "paper-007",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "all logarithmic Voronoi boundaries of algebraic models are algebraic"
+    },
+    {
+      "paper_id": "paper-007",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "대수적 모델의 모든 로그 보로노이 경계는 대수적이다"
+    },
+    {
+      "paper_id": "paper-008",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "GOAG does not rely on object-specific training data."
+    },
+    {
+      "paper_id": "paper-008",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "GOAG는 물체별 학습 데이터에 의존하지 않는다."
+    },
+    {
+      "paper_id": "paper-008",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "GOAG needs object-specific training data for every new object"
+    },
+    {
+      "paper_id": "paper-008",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "GOAG는 모든 새 물체에 대해 물체별 학습 데이터가 필요하다"
+    },
+    {
+      "paper_id": "paper-009",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "Asteroid crossings are a potential source of false positives in microlensing surveys."
+    },
+    {
+      "paper_id": "paper-009",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "소행성 통과는 마이크로렌즈 조사에서 위양성의 잠재적 원인이다."
+    },
+    {
+      "paper_id": "paper-009",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "every selected TESS candidate is confirmed as genuine microlensing"
+    },
+    {
+      "paper_id": "paper-009",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "선택된 모든 TESS 후보가 진짜 마이크로렌즈로 확정됐다"
+    },
+    {
+      "paper_id": "paper-010",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "MSWDRO fuses heterogeneous sources via their weighted Wasserstein barycenter."
+    },
+    {
+      "paper_id": "paper-010",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "MSWDRO는 가중 Wasserstein 무게중심으로 이질적인 소스를 결합한다."
+    },
+    {
+      "paper_id": "paper-010",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "Euclidean averaging preserves source geometry under arbitrary heterogeneity"
+    },
+    {
+      "paper_id": "paper-010",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "유클리드 평균이 임의의 이질성에서도 소스 기하를 보존한다"
+    }
+  ],
+  "acceptance": {
+    "minimum_paired_true_premise_support": 9,
+    "minimum_paired_false_premise_refusal": 8
+  },
+  "scope": "10 known development papers only; no holdout outputs inspected; no gold source selection",
+  "threshold": 0.8,
+  "max_chunks": 12,
+  "independent_human_review": false
+}

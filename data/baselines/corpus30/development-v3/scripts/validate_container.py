@@ -1,0 +1,69 @@
+"""Validate the saved Docker Compose acceptance record and packaging files."""
+
+import json
+
+from evaluate_container import OUTPUT, ROOT
+
+
+def main() -> None:
+    result = json.loads(OUTPUT.read_text(encoding="utf-8"))
+    assert result["schema_version"] == 1
+    assert result["seed"] == 378
+    assert result["requirement"] == (
+        "docker compose up runs the backend and UI local demo"
+    )
+    assert result["implementation_sha256"]
+    assert all(
+        isinstance(value, str) and len(value) == 64
+        for value in result["implementation_sha256"].values()
+    ), "Historical implementation hashes are malformed"
+    assert result["temporary_stack_removed"] is True
+    assert result["quality_claim"] == (
+        "local Docker packaging and service connectivity; "
+        "public hosting is intentionally out of scope"
+    )
+
+    delivery_scope = result["delivery_scope"]
+    assert delivery_scope == {
+        "mode": "local_portfolio_demo",
+        "public_server_required": False,
+        "public_url_required": False,
+    }
+
+    services = result["services"]
+    assert set(services) == {"backend", "ui"}
+    for service in services.values():
+        assert service["state"] == "running"
+        assert service["health"] == "healthy"
+
+    http = result["http"]
+    assert http["backend_health_status"] == 200
+    assert http["backend_service"] == "evidence-grounded-paper-qna"
+    assert http["ui_health_status"] == 200
+    assert http["ui_page_status"] == 200
+
+    configuration = result["configuration"]
+    assert configuration["ui_backend_url"] == "http://backend:8000"
+    assert configuration["runtime_volume"] == "/var/lib/paper-qna"
+    assert configuration["model_cache_volume"] == "/var/cache/huggingface"
+    assert configuration["host_bindings"] == {
+        "backend": ["127.0.0.1"],
+        "ui": ["127.0.0.1"],
+    }
+    assert configuration["secrets_recorded"] is False
+    assert all(result["security"].values())
+
+    gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
+    dockerignore = (ROOT / ".dockerignore").read_text(encoding="utf-8")
+    assert ".env\n" in gitignore
+    for private_path in (".env", "local_notes/", "data/"):
+        assert private_path in dockerignore
+
+    print("Docker Compose local demo gate passed")
+    print("services=backend:healthy ui:healthy HTTP=200+200 seed=378")
+    print("cleanup=containers+network+test-volumes removed")
+    print("scope=historical container snapshot; current packaging is tested separately")
+
+
+if __name__ == "__main__":
+    main()

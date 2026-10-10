@@ -17,6 +17,7 @@ PUBLIC_VALIDATORS = [
     "validate_quality_benchmark.py",
     "validate_answer_experiment.py",
     "validate_portfolio_scope.py",
+    "validate_corpus_benchmark.py",
 ]
 LOCAL_CORPUS_VALIDATORS = [
     "validate_gold_evidence.py",

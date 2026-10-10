@@ -22,6 +22,7 @@ Additional screens: [upload](docs/assets/screenshots/01-upload.png), [paper over
 - Apply bounded premise, requested-aspect and refusal checks; attach original text, page, section and chunk IDs to accepted citations.
 - Serve uploads and analysis jobs through FastAPI with a bilingual Streamlit interface and local Docker Compose deployment.
 - Evaluate bilingual meaning groups, separate development papers from frozen evaluation papers, preserve source hashes and report cold/warm stage timings.
+- Implement and evaluate compound-request tracking and source windows as experimental features; expose source-to-answer alignment in the default service.
 
 ## Architecture
 
@@ -43,20 +44,23 @@ The default runtime uses extraction and translation. Generative model trials are
 
 ## Measured results
 
-The current frozen real-paper evaluation covers two evaluation papers, 16 bilingual meaning groups and 32 outputs. A meaning group passes a check only when both languages pass.
+All 30 source papers were evaluated with 180 English/Korean meaning groups and 360 outputs per version. Ten papers supplied DEV questions; twenty papers supplied the final comparison. A paired group passes only when both languages pass.
 
-| Check | Current frozen result |
-| --- | ---: |
-| Valid output contract | 32/32 outputs |
-| Answer returned for an answerable request | 7/10 groups |
-| Unsupported request refused | 1/4 groups |
-| False-premise request refused | 0/2 groups |
-| All required source pages cited | 5/10 answerable groups |
-| Semantic answer accuracy | Not independently measured |
+The twenty evaluation papers contain 80 answerable, 20 unsupported and 20 false-premise groups:
 
-Returning an answer or citing the expected page does not establish correctness. These results do not support a production reliability claim. After disclosure, the evaluation set must be treated as regression data for future tuning. See [results and failures](docs/results.md) for outputs, scope, latency and reproduction commands.
+| Automatic check | Baseline | Final |
+| --- | ---: | ---: |
+| Valid response contract | 240/240 | 240/240 |
+| Answerable request receives an answer | 50/80 | 49/80 |
+| All required fact aliases present | 11/80 | 11/80 |
+| Acceptable source page cited | 32/80 | 31/80 |
+| Unsupported request refused | 18/20 | 18/20 |
+| False-premise request refused | 2/20 | 2/20 |
+| Semantic accuracy | Not independently measured | Not independently measured |
 
-The separate [historical retrieval benchmark](docs/evaluation.md) covers 40 questions on 10 papers: Recall@3 0.850, Recall@5 1.000 and MRR 0.5838. Those measurements belong to preserved source snapshots and do not measure current answer accuracy.
+Fact aliases are a lexical completeness diagnostic, not answer accuracy. Output retention and citation positions also do not prove correctness. Labels use AI-assisted source curation; independent human factual review remains pending. Pre-formal baseline and candidate executions were interrupted and excluded; their answers and scores were not inspected or used for tuning according to the operator record; progress counts and case IDs were read. Formal comparison followed the final source freeze. This history is disclosed in [results](docs/results.md).
+
+The [benchmark inputs and results](data/benchmarks/corpus30/README.md) and both measured source snapshots are public. The older four-paper and historical retrieval evaluations remain separate regression evidence.
 
 ## Run locally
 
@@ -88,7 +92,7 @@ python -m pip install -r requirements-test.txt
 python -B scripts/verify_project.py
 ```
 
-Model-backed evaluation requires `requirements.txt`; [results](docs/results.md), [scripts](scripts/README.md) and the [external review procedure](docs/third_party_review.md) explain the commands and what each check establishes. Fresh Linux execution reproduced all 32 previously recorded evaluation answers and seven HTTP cases. This was agent-operated environment reproduction; independent human factual review remains pending.
+Model-backed evaluation requires `requirements.txt`; [results](docs/results.md), [scripts](scripts/README.md) and the [external review procedure](docs/third_party_review.md) explain the commands and what each check establishes. The 382 regression tests pass. A separate Linux runtime regenerated embeddings from all thirty papers and reproduced twelve preselected answer, source-alignment and citation outputs. [Reproduction records](data/benchmarks/corpus30/results/reproduction/README.md) describe the sample on the same physical host. Independent human factual review remains pending.
 
 Frozen artifacts and historical snapshots retain their original bytes through `.gitattributes`. Changes invalidate their recorded hashes. Public verification skips private corpus checks unless the 30 original PDFs and dense cache are present.
 
@@ -104,7 +108,7 @@ data/      licensed fixtures, final measurements and measured source snapshots
 docs/      English documentation with Korean companion pages
 ```
 
-Work journals, personal notes, intermediate experiments, uploaded PDFs and model caches are excluded from publication. Final evaluation evidence remains public for verification. The boundary is checked against Git's tracked and eligible files.
+Daily work journals, personal notes, temporary outputs, uploaded PDFs and model caches are excluded from publication. Frozen experiment evidence supporting adoption and stopping decisions is public. Final evaluation evidence remains public for verification. The boundary is checked against Git's tracked and eligible files.
 
 ## Scope and documentation
 

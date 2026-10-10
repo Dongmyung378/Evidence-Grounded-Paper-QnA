@@ -75,3 +75,17 @@ python -B scripts/check_deployment.py --base-url http://127.0.0.1:8000 --ui-url 
 The [bundled licensed PDF and cases](../data/quality_benchmark/deployment/README.md) provide the original PDF, questions and required lexical groups with an expected byte hash. Fixture data is not copied into the Docker image. The check exercises PDF upload, parsing and HTTP Q&A; the UI check covers its health endpoint, not browser interaction. Client hashes and responses do not identify server source or package versions; record those separately. Use the [external review procedure](../docs/third_party_review.md) to record another person's verification.
 
 The runtime benchmark's `--translation-cache-mode disabled` clears sentence outputs before every request while retaining loaded models. Compare it with `enabled` using the same question and repetition count. Both modes repeat one question and do not measure throughput on new questions.
+
+## Thirty paper evaluation and measured-source replay
+
+```bash
+python -B scripts/corpus_benchmark.py validate
+python -B scripts/corpus_benchmark.py run --split dev --variant current --offline --output outputs/current-dev.json
+python -B scripts/corpus_benchmark.py evaluate --predictions outputs/current-dev.json --output outputs/current-dev-report.json
+python -B scripts/validate_corpus_benchmark.py
+python -B scripts/replay_corpus_benchmark.py --variant final --split holdout --offline --output outputs/final-holdout-replay.json
+```
+
+`corpus_benchmark.py` accepts only isolated `outputs/` paths for new runs and refuses overwriting completed outputs. The replay entry point copies the measured runtime into a temporary source directory and regenerates embeddings. Use `--variant baseline` to reproduce the earlier implementation. Inference requires `requirements.txt` and pinned model caches; public validators require only `requirements-test.txt`.
+
+The separate `experiment_premise_verifier.py` replays the rejected positive-control study. Its classifier is not a runtime dependency or an adopted premise policy. See the [experiment record](../data/benchmarks/corpus30/experiments/premise-verifier/README.md).

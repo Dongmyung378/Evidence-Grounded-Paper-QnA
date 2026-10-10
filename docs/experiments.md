@@ -53,3 +53,24 @@ python -B scripts/validate_answer_experiment.py
 The portable replay entry point writes new outputs under `outputs/`. The [measured runner snapshot](../data/quality_benchmark/runs/answer-builder-pilot/measured_runner.py) preserves the original source bytes for provenance. Its recorded `input_tokens=2` field mistakenly counted `BatchEncoding` keys. [Corrected token counts](../data/quality_benchmark/runs/answer-builder-pilot/token-counts.json) are computed from the frozen prompts without rerunning inference. The generation adapter itself checked actual token length, so the error is in telemetry. Raw measured outputs are preserved.
 
 The baseline's first Korean request includes deferred translator loading; both means exclude initial process model load. These single-run timings do not establish throughput or a service SLA. Eight outputs on two disclosed DEV papers do not establish unseen accuracy, model training disjointness or the performance of larger models. No larger model was downloaded or adopted as part of this trial. Further model selection would require a new bounded study and new evaluation papers.
+
+## Thirty paper development strategies
+
+The four engineering work areas were implemented: request tracking, adjacent source restoration with one bounded retry, source/translation alignment and an evaluation covering all thirty papers. Only DEV questions influenced strategy selection. The protocol required at least two additional paired groups with all fact aliases, no additional negative answers, at most one previously answered group lost and a runtime ratio no greater than 2.5. Alias coverage is not semantic accuracy.
+
+| DEV strategy | Complete alias groups / 40 | Previously answered groups lost | Negative answers / 20 | Adoption |
+| --- | ---: | ---: | ---: | --- |
+| Original baseline | 8 | 0 | 10 | Reference |
+| `planner-context-v1` | 10 | 4 | 10 | Rejected |
+| `planner-context-v2` | 10 | 3 | 11 | Rejected |
+| `context-alignment-v3` | 9 | 3 | 11 | Rejected |
+
+The first variant gained two complete groups but lost four previously answered groups. Later strategies still lost three and additionally answered an unsupported request. None was admissible. The final policy disables experimental context expansion, ordering, answer expansion and retry. Alignment remains active. These are combined strategy trials rather than causal ablations of each component. The recorded DEV means include a deferred first translation-model activation and do not establish a warm service latency claim.
+
+The [original selection baseline](../data/benchmarks/corpus30/results/selection-baseline-dev-report.json), [trial outputs and reports](../data/benchmarks/corpus30/results/) and [fixed criteria](../data/benchmarks/corpus30/protocol.json) are public. The final all-paper comparison and execution deviations are in [results](results.md).
+
+## Premise verifier pilot
+
+A separate frozen DEV pilot tested a pinned English SNLI/MultiNLI classifier on ten true and ten false premises in both languages. At an entailment threshold of 0.8, it refused all ten false-premise pairs but accepted only two of ten true-premise pairs. Adoption required at least nine true pairs accepted and eight false pairs refused. It was rejected because its refusal improvement came with a severe true-premise regression. Korean reverse translation and mismatch between short NLI training inputs and paper excerpts limit interpretation.
+
+[Protocol, labels, outputs and decision](../data/benchmarks/corpus30/experiments/premise-verifier/README.md) and the pinned-model replay script are public. The classifier is not part of default inference. Human factual review and a new reserved evaluation set would be required before trying a new strategy after this disclosed comparison.

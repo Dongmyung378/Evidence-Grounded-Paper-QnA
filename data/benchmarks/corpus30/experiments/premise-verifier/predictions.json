@@ -1,0 +1,1096 @@
+{
+  "protocol_sha256": "27457dcbeb911fbeb6dcc9cd199e49736fbee47e2e5e53eab8c9a53301e3f536",
+  "model": {
+    "model": "cross-encoder/nli-MiniLM2-L6-H768",
+    "revision": "b95119ce93d3e065de6214e38cd4a97b0f2f2c6d",
+    "purpose": "bounded premise verification experiment; not adopted"
+  },
+  "summary": {
+    "true_premise": 2,
+    "false_premise": 10
+  },
+  "records": [
+    {
+      "paper_id": "paper-001",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "Frequency-weighted SVD shifts the operational trade-off but does not eliminate the bias floor.",
+      "translated_claim": "Frequency-weighted SVD shifts the operational trade-off but does not eliminate the bias floor.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.8187519311904907,
+      "accepted": true,
+      "best_source": {
+        "chunk_id": "paper-001-p001-c003",
+        "paper_id": "paper-001",
+        "page": 1,
+        "source_page_id": "paper-001-p001",
+        "section": "ABSTRACT",
+        "section_index": 2,
+        "chunk_index": 2,
+        "text": "50–225 MHz, we show that truncated SVD can produce band-wide bias, while frequency-weighted SVD shifts the trade-off to safer operating points but does not remove the bias floor. Rather than proposing a new subtraction method, we provide compact diagnostics—mixedmode inspection, rank sweeps, and Pareto views—to assess single-epoch low-rank cleaning in real-world pipelines. Keywords:radio astronomy — radio frequency interference — reionization — data analysis",
+        "char_count": 462
+      },
+      "probabilities": [
+        0.00919263157993555,
+        0.8187519311904907,
+        0.1720554381608963
+      ],
+      "wall_seconds": 1.7031868999984
+    },
+    {
+      "paper_id": "paper-001",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "주파수 가중 SVD는 운영상 절충을 바꾸지만 편향 하한을 제거하지 않는다.",
+      "translated_claim": "Frequency-heavy SVDs change the operating decay but do not remove the biased boundary.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.761452317237854,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-001-p001-c003",
+        "paper_id": "paper-001",
+        "page": 1,
+        "source_page_id": "paper-001-p001",
+        "section": "ABSTRACT",
+        "section_index": 2,
+        "chunk_index": 2,
+        "text": "50–225 MHz, we show that truncated SVD can produce band-wide bias, while frequency-weighted SVD shifts the trade-off to safer operating points but does not remove the bias floor. Rather than proposing a new subtraction method, we provide compact diagnostics—mixedmode inspection, rank sweeps, and Pareto views—to assess single-epoch low-rank cleaning in real-world pipelines. Keywords:radio astronomy — radio frequency interference — reionization — data analysis",
+        "char_count": 462
+      },
+      "probabilities": [
+        0.03522288426756859,
+        0.761452317237854,
+        0.2033248245716095
+      ],
+      "wall_seconds": 3.246552900000097
+    },
+    {
+      "paper_id": "paper-001",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "frequency-weighted SVD completely eliminates the bias floor",
+      "translated_claim": "frequency-weighted SVD completely eliminates the bias floor",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.03755892068147659,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-001-p007-c001",
+        "paper_id": "paper-001",
+        "page": 7,
+        "source_page_id": "paper-001-p007",
+        "section": "6.APPLICATION TO HERA DATA",
+        "section_index": 1,
+        "chunk_index": 1,
+        "text": "Single-epoch Low-rank RFI Non-identifiability7 Figure 4. Bias–distortion trade-off in synthetic single-epoch experiments.(a) Standard SVD and (b) frequencyweighted SVD (FWSVD) under rank sweep. Each curve corresponds to one synthetic realization; each point is a rank choice. The knee of each curve (filled marker) is identified as the point of maximum curvature in the Bias+–|Bias−|plane. In both panels the trade-off curves are shallow rather than L-shaped: no rank choice simultaneously achieves low residual RFI contamination and low science distortion. This flatness arises because the available rank budget is insufficient to isolate the interference subspace—the leading singular modes mix foreground, RFI, and science-band structure, so each additional rank removed carries both RFI suppression and science loss in roughly equal measure (Section 5). Frequency weighting shifts the Pareto frontier toward lower distortion at matched contamination levels, but does not eliminate the underlying trade-off. normalization. The snapshots cover the 50–225 MHz band with uniform channel spacing ∆ν≈0.3418 MHz and time resolution ∆t= 1.0 s. For the HERA analysis, we define the science core as 140–160",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.5305056571960449,
+        0.03755892068147659,
+        0.4319353699684143
+      ],
+      "wall_seconds": 1.5540507000005164
+    },
+    {
+      "paper_id": "paper-001",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "주파수 가중 SVD가 편향 하한을 완전히 제거한다",
+      "translated_claim": "Frequency-heavy SVD completely eliminates the biased boundary.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.04960428550839424,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-001-p007-c001",
+        "paper_id": "paper-001",
+        "page": 7,
+        "source_page_id": "paper-001-p007",
+        "section": "6.APPLICATION TO HERA DATA",
+        "section_index": 1,
+        "chunk_index": 1,
+        "text": "Single-epoch Low-rank RFI Non-identifiability7 Figure 4. Bias–distortion trade-off in synthetic single-epoch experiments.(a) Standard SVD and (b) frequencyweighted SVD (FWSVD) under rank sweep. Each curve corresponds to one synthetic realization; each point is a rank choice. The knee of each curve (filled marker) is identified as the point of maximum curvature in the Bias+–|Bias−|plane. In both panels the trade-off curves are shallow rather than L-shaped: no rank choice simultaneously achieves low residual RFI contamination and low science distortion. This flatness arises because the available rank budget is insufficient to isolate the interference subspace—the leading singular modes mix foreground, RFI, and science-band structure, so each additional rank removed carries both RFI suppression and science loss in roughly equal measure (Section 5). Frequency weighting shifts the Pareto frontier toward lower distortion at matched contamination levels, but does not eliminate the underlying trade-off. normalization. The snapshots cover the 50–225 MHz band with uniform channel spacing ∆ν≈0.3418 MHz and time resolution ∆t= 1.0 s. For the HERA analysis, we define the science core as 140–160",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.4863113462924957,
+        0.04960428550839424,
+        0.4640844166278839
+      ],
+      "wall_seconds": 3.011339199998474
+    },
+    {
+      "paper_id": "paper-002",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "The framework focuses on learning rate transfer and excludes batch size.",
+      "translated_claim": "The framework focuses on learning rate transfer and excludes batch size.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.11329376697540283,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-002-p010-c003",
+        "paper_id": "paper-002",
+        "page": 10,
+        "source_page_id": "paper-002-p010",
+        "section": "5 Conclusion",
+        "section_index": 2,
+        "chunk_index": 1,
+        "text": "5 Conclusion We propose a compute-efficient two-step framework for hyperparameter transfer in largescale Mixture-of-Experts (MoE) pretraining, enabling accurate optimal learning rate estimation without exhaustive sweeps. By combining µP-based width transferability with a linear scaling law across token budgets, we show that optimal learning rates for trilliontoken large-scale MoE pretraining can be reliably predicted from small proxy experiments, thereby reducing unnecessary computation. We validate this methodology by pretraining our foundation model (155B total, 17B active parameters) from scratch. While conducting exhaustive full-scale sweeps to definitively verify the optimality of the predicted learning rate (3.85× 10−4) is computationally infeasible, the exceptionally stable loss trajectory (Figure 6) and highly competitive benchmark scores (Figure 7) provide strong empirical evidence that our extrapolated configuration is effective and reliable for extreme-scale pretraining. In this study, we focus on MoE architectures with Multi-head Latent Attention (MLA) (Liu et al., 2024a) and the Muon optimizer (Jordan et al., 2024). Extending this framework to diverse MoE structures an",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.4634230434894562,
+        0.11329376697540283,
+        0.4232831597328186
+      ],
+      "wall_seconds": 1.2349843000010878
+    },
+    {
+      "paper_id": "paper-002",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "프레임워크는 학습률 이전에 집중하고 배치 크기를 제외한다.",
+      "translated_claim": "The framework excludes concentration before learning rate and placement size.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.08662303537130356,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-002-p010-c003",
+        "paper_id": "paper-002",
+        "page": 10,
+        "source_page_id": "paper-002-p010",
+        "section": "5 Conclusion",
+        "section_index": 2,
+        "chunk_index": 1,
+        "text": "5 Conclusion We propose a compute-efficient two-step framework for hyperparameter transfer in largescale Mixture-of-Experts (MoE) pretraining, enabling accurate optimal learning rate estimation without exhaustive sweeps. By combining µP-based width transferability with a linear scaling law across token budgets, we show that optimal learning rates for trilliontoken large-scale MoE pretraining can be reliably predicted from small proxy experiments, thereby reducing unnecessary computation. We validate this methodology by pretraining our foundation model (155B total, 17B active parameters) from scratch. While conducting exhaustive full-scale sweeps to definitively verify the optimality of the predicted learning rate (3.85× 10−4) is computationally infeasible, the exceptionally stable loss trajectory (Figure 6) and highly competitive benchmark scores (Figure 7) provide strong empirical evidence that our extrapolated configuration is effective and reliable for extreme-scale pretraining. In this study, we focus on MoE architectures with Multi-head Latent Attention (MLA) (Liu et al., 2024a) and the Muon optimizer (Jordan et al., 2024). Extending this framework to diverse MoE structures an",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.3479118049144745,
+        0.08662303537130356,
+        0.5654651522636414
+      ],
+      "wall_seconds": 2.6675511000030383
+    },
+    {
+      "paper_id": "paper-002",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "the framework transfers batch size together with learning rate",
+      "translated_claim": "the framework transfers batch size together with learning rate",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.7401615381240845,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-002-p006-c002",
+        "paper_id": "paper-002",
+        "page": 6,
+        "source_page_id": "paper-002-p006",
+        "section": "2.2.2 Extrapolating Optimal Learning Rates Across Long T oken Horizons",
+        "section_index": 2,
+        "chunk_index": 1,
+        "text": "2.2.2 Extrapolating Optimal Learning Rates Across Long T oken Horizons We leverage the optimal learning rates estimated from short-token budget experiments via Equation (2) to extrapolate the optimal learning rate for the full target token horizon. Specifically, we perform a linear regression in log-log space between the estimated optimal learning rate (η∗) and the corresponding token budget (B): log(η∗) =β·log(B) +γ(3) where β and γ represent the regression coefficients. This regression model enables the extrapolation of the optimal learning rate to significantly larger token horizons (e.g., 10T tokens) without additional computational cost. In experiments that employ batch size scheduling—increasing the batch size after a predetermined number of steps—we restrict the regression to data points collected after the training dynamics have stabilized following the batch size increase. This ensures that the optimization regime is consistent across the fitted points and avoids artifacts arising from transient instabilities during the batch size transition.",
+        "char_count": 1067
+      },
+      "probabilities": [
+        0.12667039036750793,
+        0.7401615381240845,
+        0.1331680417060852
+      ],
+      "wall_seconds": 1.3866106000023137
+    },
+    {
+      "paper_id": "paper-002",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "프레임워크가 학습률과 함께 배치 크기도 이전한다",
+      "translated_claim": "The framework moves the size of the placement along with the learning rate.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.622279167175293,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-002-p006-c002",
+        "paper_id": "paper-002",
+        "page": 6,
+        "source_page_id": "paper-002-p006",
+        "section": "2.2.2 Extrapolating Optimal Learning Rates Across Long T oken Horizons",
+        "section_index": 2,
+        "chunk_index": 1,
+        "text": "2.2.2 Extrapolating Optimal Learning Rates Across Long T oken Horizons We leverage the optimal learning rates estimated from short-token budget experiments via Equation (2) to extrapolate the optimal learning rate for the full target token horizon. Specifically, we perform a linear regression in log-log space between the estimated optimal learning rate (η∗) and the corresponding token budget (B): log(η∗) =β·log(B) +γ(3) where β and γ represent the regression coefficients. This regression model enables the extrapolation of the optimal learning rate to significantly larger token horizons (e.g., 10T tokens) without additional computational cost. In experiments that employ batch size scheduling—increasing the batch size after a predetermined number of steps—we restrict the regression to data points collected after the training dynamics have stabilized following the batch size increase. This ensures that the optimization regime is consistent across the fitted points and avoids artifacts arising from transient instabilities during the batch size transition.",
+        "char_count": 1067
+      },
+      "probabilities": [
+        0.17553718388080597,
+        0.622279167175293,
+        0.20218363404273987
+      ],
+      "wall_seconds": 2.6997209999972256
+    },
+    {
+      "paper_id": "paper-003",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "BART was evaluated without additional fine-tuning due to computational constraints.",
+      "translated_claim": "BART was evaluated without additional fine-tuning due to computational constraints.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.9045183658599854,
+      "accepted": true,
+      "best_source": {
+        "chunk_id": "paper-003-p005-c001",
+        "paper_id": "paper-003",
+        "page": 5,
+        "source_page_id": "paper-003-p005",
+        "section": "4.4 TRAINING PIPELINES AND COMPATIBILITY",
+        "section_index": 1,
+        "chunk_index": 1,
+        "text": "5 BART was evaluated using a pretrained model without additional fine -tuning due to computational constraints. Therefore, the comparison reflects differences between fine-tuned encoder-only models and a pretrained encoder–decoder model designed for summarization, rather than a fully controlled training setup. While this introduces differences in training conditions, it reflects practical usage scenarios and is considered when interpreting results.",
+        "char_count": 452
+      },
+      "probabilities": [
+        0.003838912583887577,
+        0.9045183658599854,
+        0.09164272993803024
+      ],
+      "wall_seconds": 1.01915100000042
+    },
+    {
+      "paper_id": "paper-003",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "컴퓨팅 제약으로 BART를 추가 미세조정 없이 평가했다.",
+      "translated_claim": "BART was evaluated as a computing restriction without additional sub-requisites.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.7180506587028503,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-003-p005-c001",
+        "paper_id": "paper-003",
+        "page": 5,
+        "source_page_id": "paper-003-p005",
+        "section": "4.4 TRAINING PIPELINES AND COMPATIBILITY",
+        "section_index": 1,
+        "chunk_index": 1,
+        "text": "5 BART was evaluated using a pretrained model without additional fine -tuning due to computational constraints. Therefore, the comparison reflects differences between fine-tuned encoder-only models and a pretrained encoder–decoder model designed for summarization, rather than a fully controlled training setup. While this introduces differences in training conditions, it reflects practical usage scenarios and is considered when interpreting results.",
+        "char_count": 452
+      },
+      "probabilities": [
+        0.12841612100601196,
+        0.7180506587028503,
+        0.1535332351922989
+      ],
+      "wall_seconds": 2.8007362999996985
+    },
+    {
+      "paper_id": "paper-003",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "all compared models were fine-tuned under identical training conditions",
+      "translated_claim": "all compared models were fine-tuned under identical training conditions",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.33541497588157654,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-003-p006-c004",
+        "paper_id": "paper-003",
+        "page": 6,
+        "source_page_id": "paper-003-p006",
+        "section": "6. RESULTS AND DISCUSSION",
+        "section_index": 2,
+        "chunk_index": 2,
+        "text": "cution. 6.1 BERT vs. RoBERTa Across both ROUGE and BLEU evaluation metrics, RoBERTa consistently outperformed BERT under identical fine-tuning conditions. Although both models were trained using the same extractive summarization framework, RoBERTa benefited from improved pretraining strategies, including larger training corpora and optimized training procedures. These enhancements enabled RoBERTa to generate more contextually relevant sentence representations, leading to improved sentence selection for summarization tasks. This performance gap highlights the impact of pretraining scale and optimization even when downstream training setups are held constant.",
+        "char_count": 665
+      },
+      "probabilities": [
+        0.07232646644115448,
+        0.33541497588157654,
+        0.5922585725784302
+      ],
+      "wall_seconds": 1.0569728999980725
+    },
+    {
+      "paper_id": "paper-003",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "비교한 모든 모델을 동일한 학습 조건에서 미세조정했다",
+      "translated_claim": "All the models we compared were micro-adjusted under the same learning conditions.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.02539086528122425,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-003-p004-c004",
+        "paper_id": "paper-003",
+        "page": 4,
+        "source_page_id": "paper-003-p004",
+        "section": "4.4 TRAINING PIPELINES AND COMPATIBILITY",
+        "section_index": 4,
+        "chunk_index": 1,
+        "text": "4.4 TRAINING PIPELINES AND COMPATIBILITY All models were implemented using Python 3.12 with the Hugging Face Transformers library and PyTorch as the deep learning framework. Training and inference were conducted on a CPU-based system without GPU acceleration, reflecting a resource constrained experimental setup. For BERT and RoBERTa, training involved fine-tuning pretrained models on the selected dataset subset using standard training configurations. Due to computational limitations, reduced batch sizes and a limited number of training epochs were used.",
+        "char_count": 559
+      },
+      "probabilities": [
+        0.25619953870773315,
+        0.02539086528122425,
+        0.7184095978736877
+      ],
+      "wall_seconds": 2.861349300001166
+    },
+    {
+      "paper_id": "paper-004",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "The work optimizes INT8 inference in the native PyTorch stack for Intel Xeon CPUs.",
+      "translated_claim": "The work optimizes INT8 inference in the native PyTorch stack for Intel Xeon CPUs.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.7493053674697876,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-004-p002-c001",
+        "paper_id": "paper-004",
+        "page": 2,
+        "source_page_id": "paper-004-p002",
+        "section": "1 Introduction",
+        "section_index": 1,
+        "chunk_index": 1,
+        "text": "INT8 Inference of Small NLP Models on Xeon CPUsA PREPRINT • Comprehensive performance analysis with roofline models and benchmarks are conducted to show the effectiveness of the proposed workflow and optimizations. • Benchmarks are conducted on BERT, DistilBERT, and XLM-RoBERTa over SQuAD [Rajpurkar et al., 2016] and MultiNLI [Williams et al., 2018] showing negligible accuracy loss and substantial throughput gains compared to FP32 baselines. This work strengthens the PyTorch-native inference path for small NLP models on server CPUs, enabling users to deploy SmoothQuant-optimized INT8 inference with minimal effort and without leaving the PyTorch ecosystem or using third-party tools.",
+        "char_count": 690
+      },
+      "probabilities": [
+        0.006991077680140734,
+        0.7493053674697876,
+        0.24370357394218445
+      ],
+      "wall_seconds": 1.534136899997975
+    },
+    {
+      "paper_id": "paper-004",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "이 연구는 Intel Xeon CPU의 네이티브 PyTorch 스택에서 INT8 추론을 최적화한다.",
+      "translated_claim": "The research optimizes the INT8 inference from the native PyTorch stack of the Intel Xeon CPU.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.5391401052474976,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-004-p002-c001",
+        "paper_id": "paper-004",
+        "page": 2,
+        "source_page_id": "paper-004-p002",
+        "section": "1 Introduction",
+        "section_index": 1,
+        "chunk_index": 1,
+        "text": "INT8 Inference of Small NLP Models on Xeon CPUsA PREPRINT • Comprehensive performance analysis with roofline models and benchmarks are conducted to show the effectiveness of the proposed workflow and optimizations. • Benchmarks are conducted on BERT, DistilBERT, and XLM-RoBERTa over SQuAD [Rajpurkar et al., 2016] and MultiNLI [Williams et al., 2018] showing negligible accuracy loss and substantial throughput gains compared to FP32 baselines. This work strengthens the PyTorch-native inference path for small NLP models on server CPUs, enabling users to deploy SmoothQuant-optimized INT8 inference with minimal effort and without leaving the PyTorch ecosystem or using third-party tools.",
+        "char_count": 690
+      },
+      "probabilities": [
+        0.010199385695159435,
+        0.5391401052474976,
+        0.45066049695014954
+      ],
+      "wall_seconds": 3.625252300000284
+    },
+    {
+      "paper_id": "paper-004",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "the reported acceleration requires leaving the native PyTorch stack",
+      "translated_claim": "the reported acceleration requires leaving the native PyTorch stack",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.08362534642219543,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-004-p003-c001",
+        "paper_id": "paper-004",
+        "page": 3,
+        "source_page_id": "paper-004-p003",
+        "section": "3.2 PyTorch and TorchAO",
+        "section_index": 1,
+        "chunk_index": 1,
+        "text": "INT8 Inference of Small NLP Models on Xeon CPUsA PREPRINT server-class inference performance. Ahead-of-Time Inductor (AOTI) is a specialized version of TorchInductor that compiles the model into a shared binary, eliminating Python overhead and enabling easier integration into production systems. TorchAO is the PyTorch-native quantization library that provides user-friendly APIs for PTQ and QAT [Or et al., 2025]. It supports a range of low-precision data types and quantization methods through a modular design. 3.3 Challenges The integration of SmoothQuant is straightforward in terms of correctness, but achieving high performance on CPU requires additional engineering effort. TorchAO quantizes models in eager mode without backend-aware lowering or graph-level optimization. That makes the resulting model correct, but not necessarily fast enough for production CPU inference. To achieve peak performance with native PyTorch, the quantized model must be compiled with TorchInductor, which introduces several engineering challenges: • The SmoothQuant workflow shares common code with existing TorchAO quantization flows, which contain inefficient operations for high-performance inference. • Th",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.3011859357357025,
+        0.08362534642219543,
+        0.6151887774467468
+      ],
+      "wall_seconds": 1.0841220000002068
+    },
+    {
+      "paper_id": "paper-004",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "보고된 가속에 네이티브 PyTorch 스택을 벗어나는 것이 필요하다",
+      "translated_claim": "In the reported family, we need to get out of the native PyTorch stack.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.14772355556488037,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-004-p009-c001",
+        "paper_id": "paper-004",
+        "page": 9,
+        "source_page_id": "paper-004-p009",
+        "section": "6.1 Benchmark Setup",
+        "section_index": 1,
+        "chunk_index": 1,
+        "text": "INT8 Inference of Small NLP Models on Xeon CPUsA PREPRINT Table 8: Models used for the performance benchmark. Model Model ID BERT-largebert-large-uncased DistilBERTdistilbert-base-uncased XLM-RoBERTaxlm-roberta-base Table 9: Task-finetuned checkpoints used for accuracy evaluation. The model marked by * is finetuned on SQuAD 2.0 but still workable for the test on SQuAD 1.1. Dataset Model Model ID SQuAD 1.1 BERT-largegoogle-bert/bert-large-uncased-whole-word-masking-finetuned-squad SQuAD 1.1 DistilBERTdistilbert/distilbert-base-cased-distilled-squad SQuAD 1.1 XLM-RoBERTadeepset/xlm-roberta-base-squad2* MultiNLI BERT-largeyoshitomo-matsubara/bert-large-uncased-mnli MultiNLI DistilBERTtypeform/distilbert-base-uncased-mnli MultiNLI XLM-RoBERTasymanto/xlm-roberta-base-snli-mnli-anli-xnli We evaluate the approach in terms of both performance and accuracy using BERT-large [Devlin et al., 2019], DistilBERT [Sanh et al., 2019], and XLM-RoBERTa [Conneau et al., 2020]. Minimizing accuracy loss after quantization is not the main contribution of this work, but we include it to confirm that the native SmoothQuant workflow works out of the box with little loss in quality. We use SQuAD and MultiNLI",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.3815081715583801,
+        0.14772355556488037,
+        0.4707682430744171
+      ],
+      "wall_seconds": 3.4200177999991865
+    },
+    {
+      "paper_id": "paper-005",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "ContCore maintains fixed memory with theoretical guarantees.",
+      "translated_claim": "ContCore maintains fixed memory with theoretical guarantees.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.712135374546051,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-005-p001-c005",
+        "paper_id": "paper-005",
+        "page": 1,
+        "source_page_id": "paper-005-p001",
+        "section": "Abstract",
+        "section_index": 4,
+        "chunk_index": 2,
+        "text": "ate this principle in ContCore, which constructs a greedy-continued coreset through greedy expansion on new task features followed by greedy consolidation to enforce the memory budget. Unlike neural methods susceptible to catastrophic forgetting or naive coreset accumulation requiring unbounded memory, ContCore maintains fixed memory with theoretical guarantees. Empirically, ContCore achieves state-of-the-art performance across 11 task schedules on MVTecAD and VisA, and extends effectively to online continual AD settings where prior methods degrade significantly. Code:https://github.com/jungyg/ContCore.",
+        "char_count": 610
+      },
+      "probabilities": [
+        0.14640171825885773,
+        0.712135374546051,
+        0.14146290719509125
+      ],
+      "wall_seconds": 1.5465579999981856
+    },
+    {
+      "paper_id": "paper-005",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "ContCore는 이론적 보장과 함께 고정 메모리를 유지한다.",
+      "translated_claim": "ContCore maintains a fixed memory with theoretical guarantees.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.749587893486023,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-005-p003-c002",
+        "paper_id": "paper-005",
+        "page": 3,
+        "source_page_id": "paper-005-p003",
+        "section": "1 Introduction",
+        "section_index": 1,
+        "chunk_index": 2,
+        "text": "ion. Extending this property to the continual setting under fixed memory is non-trivial. We observe thatcontinued greedy sampling, which iteratively applies greedy selection over previously greedy-sampled sets, effectively preserves representativeness under strict memory limits. We call the resulting set agreedy-continued coresetand provide theoretical justification by showing it approximates the oracle coreset within a bounded gap. We implement this principle through ContCore, which constructs the greedy-continued coreset via two steps: greedy expansion samples features from the new task that are maximally distant from the current coreset, and greedy consolidation enforces the memory constraint while preserving representativeness. Our contributions are: • We observe that continued greedy sampling effectively preserves representativeness under strict memory limits, enabling continual AD without unbounded memory growth. We provide theoretical justification by showing the resulting greedy-continued coreset approximates the oracle coreset within a bounded gap. • We instantiate this principle in ContCore, which constructs agreedy-continued coreset that maintains representativeness of n",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.030562005937099457,
+        0.749587893486023,
+        0.21985013782978058
+      ],
+      "wall_seconds": 3.313938999999664
+    },
+    {
+      "paper_id": "paper-005",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "ContCore requires memory that grows without bound as tasks accumulate",
+      "translated_claim": "ContCore requires memory that grows without bound as tasks accumulate",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.31194260716438293,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-005-p012-c001",
+        "paper_id": "paper-005",
+        "page": 12,
+        "source_page_id": "paper-005-p012",
+        "section": "5.4 Ablation study",
+        "section_index": 1,
+        "chunk_index": 1,
+        "text": "12JUNG ET AL: MEMORY -BOUNDED CONTINUA TION OF GREEDY SAMPLING FOR CAD Backbone MVTecAD VisA AUROC (↑) FM (↓) AUROC (↑) FM (↓) DenseNet201 96.9 / 95.4 0.8 / 0.4 92.7 / 96.4 2.2 / 0.4 DINOv2 97.9 / 93.1 0.0 / 0.0 93.7 / 95.1 0.0 / 0.0 EfficientNet-b1 96.0 / 94.4 0.0 / 0.0 89.6 / 95.8 0.1 / 0.0 WideResNet101 98.5 / 97.2 0.4 / 0.3 94.4 / 97.3 1.2 / 0.5 Table 6: Ablation of ContCore using different backbones. T H(O,M T )ε o max1≤k≤T \u0010 εk + ∑T j=kbε j \u0011 Right hand side of Eq. (6) 2 4.87 2.28 4.37 6.65 3 4.72 2.22 5.99 8.21 4 4.59 2.13 7.54 9.67 5 4.50 2.04 9.02 11.06 6 4.44 2.08 10.66 12.74 7 4.35 2.08 12.27 14.35 8 4.35 2.21 13.95 16.16 9 4.31 2.07 15.22 17.29 10 4.36 2.19 16.85 19.04 Table 7: Theoretical tightness of bound shown for different number of tasks{2≤T≤10} on MVTecAD classes (tasks) with 12 images from each and the value of each of the terms. on sampling time. Please note that this experiment focuses on the difference in sampling time based on approximate ratio of ContCore regardless of the performance. Fig 3(d) shows that the sampling time drops down to half with largep,mvalues withq=0.75. Different backbonesWe validate the effect of varying the backbone and its effect on C",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.3158949911594391,
+        0.31194260716438293,
+        0.37216243147850037
+      ],
+      "wall_seconds": 1.8592644000018481
+    },
+    {
+      "paper_id": "paper-005",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "ContCore는 과제가 쌓일수록 무제한으로 증가하는 메모리가 필요하다",
+      "translated_claim": "ContCore needs an unlimited amount of memory as the tasks build up.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.04596570506691933,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-005-p003-c001",
+        "paper_id": "paper-005",
+        "page": 3,
+        "source_page_id": "paper-005-p003",
+        "section": "1 Introduction",
+        "section_index": 1,
+        "chunk_index": 1,
+        "text": "JUNG ET AL: MEMORY -BOUNDED CONTINUA TION OF GREEDY SAMPLING FOR CAD3 To mitigate these issues, dedicated solutions for CAD [18, 19, 20, 27] have been proposed. Memory-based methods such as DNE [18] and UCAD [20] handle multiple steps of simple tasks well, but struggle on complex ones (e.g., 10-class task in Fig. 1(a) bottom). Conversely, parameter regularization-based methods such as CDAD [19] and IUF [27] use iterative SVD to project the gradients of new tasks into the null space of parameters to minimize changes to previous task information, but still suffer from forgetting with a large number of tasks (Fig. 1(a) top). A natural question arises: can we design a bounded coreset that preserves the representational quality of an unbounded one? Greedy sampling selects maximally separated points, producing a compact yet representative summary of normal data [26]. Since anomaly detection relies on measuring distance from normality, a representative coreset is essential for reliable detection. Extending this property to the continual setting under fixed memory is non-trivial. We observe thatcontinued greedy sampling, which iteratively applies greedy selection over previously greedy-sam",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.06964670121669769,
+        0.04596570506691933,
+        0.8843875527381897
+      ],
+      "wall_seconds": 2.902630799999315
+    },
+    {
+      "paper_id": "paper-006",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "EOFM pretraining is dominated by reflected optical and active microwave data.",
+      "translated_claim": "EOFM pretraining is dominated by reflected optical and active microwave data.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.6149271130561829,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-006-p023-c003",
+        "paper_id": "paper-006",
+        "page": 23,
+        "source_page_id": "paper-006-p023",
+        "section": "VI. DISCUSSION ANDPROSPECTS",
+        "section_index": 1,
+        "chunk_index": 3,
+        "text": "optical observations dominate, SAR provides most microwave coverage, explicit thermal pre-training remains uncommon, and passivemicrowave emission and SIF are absent as explicit pretraining pathways in the eligible release set. This distribution leaves several observation pathways that are important for ecohydrological water, energy and carbon inference underrepresented, consistent with wider assessments of the sensor, scale and temporal capabilities required of Earth FMs [18], [21], [35]. Representation form further conditions scientific use: runnable checkpoints enable linear probing, parameterefficient adaptation or full fine-tuning but require accessible weights, executable code and sufficient compute; served Earth embeddings reduce downstream processing costs but retain only the information preserved by their pre-training objectives, spatial or temporal pooling and update schedules [175], [191]; and harmonised tensors provide broad environmental context while their common annual grid suppresses native support differences, local gradients and event dynamics [182]. The map itself is descriptive: related releases share training data, architectures, code and benchmarks, public do",
+        "char_count": 1199
+      },
+      "probabilities": [
+        0.15139168500900269,
+        0.6149271130561829,
+        0.23368123173713684
+      ],
+      "wall_seconds": 1.0211028999983682
+    },
+    {
+      "paper_id": "paper-006",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "EOFM 사전학습은 반사 광학 데이터와 능동 마이크로파 데이터가 지배한다.",
+      "translated_claim": "EOFM pre-learning dominates reflection optics data and active microwave data.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.4690379798412323,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-006-p001-c003",
+        "paper_id": "paper-006",
+        "page": 1,
+        "source_page_id": "paper-006-p001",
+        "section": "Abstract",
+        "section_index": 2,
+        "chunk_index": 2,
+        "text": "t pretraining is dominated by reflected optical and active-microwave data, with sparse thermal coverage and no explicit passive-microwaveemission or SIF sensing data sources. The heterogeneous targets and validation designs of EOFMs motivate an application-level assessment of demonstrated capabilities and evidentiary strength. Thirdly, we synthesise the EOFM application records for ecohydrology, and find the strongest support for spatial context, labelefficient adaptation and hybrid workflows; evidence weakens with inference depth, and independent validation of fluxes, coupled dynamics, event trajectories, calibrated uncertainty and decision benefit remains sparse. Fourthly, our audit of benchmark studies shows stronger coverage of fair adaptation and reproducibility in general EOFM suites and of process targets, direct reference evidence and distribution shifts in ecohydrological evaluations; physical consistency and uncertainty remain weakly covered. Taken together, these findings motivate a process-aware framework that aligns EOFM design and evaluation with the inferred ecohydrological variable, observation pathway and process timescale, supporting trustworthy monitoring and int",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.0616057813167572,
+        0.4690379798412323,
+        0.4693562984466553
+      ],
+      "wall_seconds": 2.7509924999976647
+    },
+    {
+      "paper_id": "paper-006",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "the review establishes direct physical process inference from every EOFM representation",
+      "translated_claim": "the review establishes direct physical process inference from every EOFM representation",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.0395168736577034,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-006-p013-c002",
+        "paper_id": "paper-006",
+        "page": 13,
+        "source_page_id": "paper-006-p013",
+        "section": "IV. CAPABILITIES OFEOFMS ACROSS",
+        "section_index": 2,
+        "chunk_index": 1,
+        "text": "IV. CAPABILITIES OFEOFMS ACROSS ECOHYDROLOGICALTASKS The preceding meta-analysis established the breadth of the EOFM design space and identified three releases with direct ecohydrological evaluations, while their heterogeneous targets and validation designs preclude a general ranking of model capability. We now move from model-level evidence to application-level evidence, asking what individual studies demonstrate under their stated reference data, adaptation regimes, baseline comparisons and distribution shifts. Following the ecohydrological inference hierarchy in Fig. 1, the synthesis is organised by inference level: T1 covers retrievals and indices, T2 encompasses estimated states and fluxes, and T3 addresses mechanisms, events and decision-relevant outcomes. We also distinguish model-release demonstrations, independent applications, comparative benchmarks and provisional grey literature because these study roles carry different risks of selective reporting and model-developer dependence. This structure establishes how far each application advances along the observation-to-inference pathway and the evidentiary conditions governing that advancement. A. Overview of EOFM Applicatio",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.35489240288734436,
+        0.0395168736577034,
+        0.6055906414985657
+      ],
+      "wall_seconds": 0.9335590000009688
+    },
+    {
+      "paper_id": "paper-006",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "검토가 모든 EOFM 표현에서 직접적인 물리 과정 추론을 입증한다",
+      "translated_claim": "The review proves the direct physical process inference from all EOFM expressions",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.10165347158908844,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-006-p019-c004",
+        "paper_id": "paper-006",
+        "page": 19,
+        "source_page_id": "paper-006-p019",
+        "section": "V. BENCHMARKINGEOFMS FORECOHYDROLOGY",
+        "section_index": 2,
+        "chunk_index": 1,
+        "text": "V. BENCHMARKINGEOFMS FORECOHYDROLOGY Rigorous benchmarking is essential for determining whether reported EOFM performance gains provide reliable, transferable and scientifically interpretable information for ecohydrology. This need follows directly from the preceding application 25 50 75 100 Fair adaptation Physical checks Process target Reference directness Reproducibility Temporal dynamics Transfer / shift Uncertainty / reliability General EOFM suites (n=10) Ecohydrological evaluation (n=10) Complete target profile Fig. 10. Mean study-level benchmark coverage across eight evaluation dimensions for general EOFM suites (n= 10) and ecohydrological evaluations (n= 10). Ordinal scores of 0, 1 and 2 denote absent, partial or indirect, and explicit coverage, respectively (see Tables III and IV), and are rescaled to 0– 100%. The dashed ring represents complete coverage across all dimensions. synthesis, which showed that the strength of current evidence varies with inference depth, reference quality, temporal support and evaluation under environmental and sensor shifts. A credible benchmark consequently aligns the target with its spatial and temporal support, traces reference uncertainty,",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.33242809772491455,
+        0.10165347158908844,
+        0.5659184455871582
+      ],
+      "wall_seconds": 3.05096709999998
+    },
+    {
+      "paper_id": "paper-007",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "Logarithmic Voronoi boundaries of algebraic models need not be algebraic.",
+      "translated_claim": "Logarithmic Voronoi boundaries of algebraic models need not be algebraic.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.9595147967338562,
+      "accepted": true,
+      "best_source": {
+        "chunk_id": "paper-007-p001-c002",
+        "paper_id": "paper-007",
+        "page": 1,
+        "source_page_id": "paper-007-p001",
+        "section": "Abstract",
+        "section_index": 2,
+        "chunk_index": 1,
+        "text": "Abstract We show that logarithmic Voronoi boundaries for one-dimensional algebraic models in the probability simplex need not be algebraic. We give two explicit examples. For a union of two lines, the logarithmic Voronoi cell at a specific smooth rational point has a transcendental boundary point. For a cuspidal curve, the cell at the singular point contains a non-algebraic real-analytic boundary branch.",
+        "char_count": 407
+      },
+      "probabilities": [
+        0.004612204618752003,
+        0.9595147967338562,
+        0.03587305173277855
+      ],
+      "wall_seconds": 2.0093502000017907
+    },
+    {
+      "paper_id": "paper-007",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "대수적 모델의 로그 보로노이 경계는 반드시 대수적일 필요가 없다.",
+      "translated_claim": "Log Boronoy's boundary of an algebraic model does not necessarily have to be algebraic.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.9510114789009094,
+      "accepted": true,
+      "best_source": {
+        "chunk_id": "paper-007-p001-c002",
+        "paper_id": "paper-007",
+        "page": 1,
+        "source_page_id": "paper-007-p001",
+        "section": "Abstract",
+        "section_index": 2,
+        "chunk_index": 1,
+        "text": "Abstract We show that logarithmic Voronoi boundaries for one-dimensional algebraic models in the probability simplex need not be algebraic. We give two explicit examples. For a union of two lines, the logarithmic Voronoi cell at a specific smooth rational point has a transcendental boundary point. For a cuspidal curve, the cell at the singular point contains a non-algebraic real-analytic boundary branch.",
+        "char_count": 407
+      },
+      "probabilities": [
+        0.0038404203951358795,
+        0.9510114789009094,
+        0.04514814540743828
+      ],
+      "wall_seconds": 4.12758649999887
+    },
+    {
+      "paper_id": "paper-007",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "all logarithmic Voronoi boundaries of algebraic models are algebraic",
+      "translated_claim": "all logarithmic Voronoi boundaries of algebraic models are algebraic",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.42845797538757324,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-007-p003-c003",
+        "paper_id": "paper-007",
+        "page": 3,
+        "source_page_id": "paper-007-p003",
+        "section": "3 The union of two lines",
+        "section_index": 2,
+        "chunk_index": 1,
+        "text": "3 The union of two lines In this section we give the first example: a rational point on a reducible linear model whose logarithmic Voronoi cell has a transcendental endpoint. Let L1 = \b\u0000 1 3 +t, 1 3, 1 3−t \u0001 :− 1 3≤t≤ 1 3 , L 2 = \b\u0000 1 3, 1 3 +s, 1 3−s \u0001 :− 1 3≤s≤ 1 3 , and letM=L 1∪L 2. We study the logarithmic Voronoi cell of the rational point q= \u0000 4 9, 1 3, 2 9 \u0001 ∈L 1, given by the parametert= 1 9. Theorem 3.1.The logarithmic Voronoi celllogVor M(q)has an endpoint of the form u= (2,β,1) 3 +β , whereβ∈(0,1)is transcendental. In particular,∂logVor M(q)contains a transcendental endpoint. We will use the following standard form of the Gelfond–Schneider theorem [13, Theorem 10.1]. Theorem 3.2(Gelfond–Schneider).Ifaandbare algebraic numbers witha /∈{0,1}andbirrational, then any value ofa b is transcendental. Proof of Theorem 3.1.We proceed in three steps. First we identify the data points whose MLE onL 1 is the fixed rational pointq. Second, we compare the log-likelihood atqwith the maximum onL 2. Third, we show that the resulting boundary point is transcendental. 3",
+        "char_count": 1079
+      },
+      "probabilities": [
+        0.137507364153862,
+        0.42845797538757324,
+        0.4340346157550812
+      ],
+      "wall_seconds": 1.4372636000007333
+    },
+    {
+      "paper_id": "paper-007",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "대수적 모델의 모든 로그 보로노이 경계는 대수적이다",
+      "translated_claim": "All log Boronoy lines in the algebraic model are algebraic.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.21029485762119293,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-007-p003-c001",
+        "paper_id": "paper-007",
+        "page": 3,
+        "source_page_id": "paper-007-p003",
+        "section": "1 Introduction",
+        "section_index": 1,
+        "chunk_index": 1,
+        "text": "Equivalently, logVorM(p) is the set of data vectors for whichpis a global maximum likelihood estimate onM. Letp∈ Mbe a smooth point with positive coordinates and letN pMdenote the Euclidean normal space toMatp. The pointp∈ Mis a critical point ofℓ u if and only if∇ℓ u(p) = (u1/p1,...,u n/pn)∈N pM. This condition defines thelog-normal spaceofMatp: logNpM={u∈R n :∇ℓ u(p)∈N pM}. The correspondinglog-normal polytopeis log Poly M(p) = logNpM∩∆ n−1. Thus, the log-normal polytope atpis the set of data points in the simplex for whichpis a likelihood critical point. Forp∈M, the notation∂logVor M(p) denotes the boundary of logVor M(p) relative to its affine span. We use the wordtranscendentalin two related senses. For isolated boundary points, this is an arithmetic notion: a pointu∈∆ n−1 is calledalgebraicif all of its coordinates are algebraic numbers, andtranscendentalotherwise. This is the sense used for the union of two lines. There, the logarithmic Voronoi cell is a line segment, so its boundary consists of endpoints, and we show that one endpoint is transcendental even though the fixed model point is rational. For positive-dimensional boundary pieces, we use transcendence in a geometri",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.44752073287963867,
+        0.21029485762119293,
+        0.342184454202652
+      ],
+      "wall_seconds": 3.4381022000015946
+    },
+    {
+      "paper_id": "paper-008",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "GOAG does not rely on object-specific training data.",
+      "translated_claim": "GOAG does not rely on object-specific training data.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.864011287689209,
+      "accepted": true,
+      "best_source": {
+        "chunk_id": "paper-008-p002-c006",
+        "paper_id": "paper-008",
+        "page": 2,
+        "source_page_id": "paper-008-p002",
+        "section": "II. RELATEDWORK",
+        "section_index": 2,
+        "chunk_index": 4,
+        "text": "adigm. By modeling the gripper’s contact capabilities entirely independently of object data, we achieve an object-agnostic training process that does not require pre-computed grasp examples, which are often costly to generate.",
+        "char_count": 226
+      },
+      "probabilities": [
+        0.05931098759174347,
+        0.864011287689209,
+        0.07667775452136993
+      ],
+      "wall_seconds": 1.1346163000016531
+    },
+    {
+      "paper_id": "paper-008",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "GOAG는 물체별 학습 데이터에 의존하지 않는다.",
+      "translated_claim": "GOAG does not rely on object-specific learning data.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.8510420918464661,
+      "accepted": true,
+      "best_source": {
+        "chunk_id": "paper-008-p002-c006",
+        "paper_id": "paper-008",
+        "page": 2,
+        "source_page_id": "paper-008-p002",
+        "section": "II. RELATEDWORK",
+        "section_index": 2,
+        "chunk_index": 4,
+        "text": "adigm. By modeling the gripper’s contact capabilities entirely independently of object data, we achieve an object-agnostic training process that does not require pre-computed grasp examples, which are often costly to generate.",
+        "char_count": 226
+      },
+      "probabilities": [
+        0.0504097118973732,
+        0.8510420918464661,
+        0.09854815900325775
+      ],
+      "wall_seconds": 2.5458914000009827
+    },
+    {
+      "paper_id": "paper-008",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "GOAG needs object-specific training data for every new object",
+      "translated_claim": "GOAG needs object-specific training data for every new object",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.08354871720075607,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-008-p004-c001",
+        "paper_id": "paper-008",
+        "page": 4,
+        "source_page_id": "paper-008-p004",
+        "section": "3. Contact Points",
+        "section_index": 1,
+        "chunk_index": 1,
+        "text": "configurations, which are then queried against object shapes only at inference time. B. Training GOAG fromC(H(Q)) We build on this observation to formulate our objectagnostic training procedure. The training process requires generating diverse gripper configurations, encoding them into a consistent spatial representation, and training two parallel networks to predict contact distributions and kinematic assignments. The following architecture has been explored further in [36]. Contact Data Generation.The training data is generated exclusively from the gripper’s kinematics and an adapted taxonomy, as illustrated in Figure 2. We first uniformly sample valid joint configurationsQwithin the gripper’s kinematic limits. For each configuration, we randomly select a grasp type from the taxonomy presented in [13], which defines specific admissible contact regions on the gripper surface. Finally, we generate the target contact mapC(H(Q)) by randomly sampling active contact points strictly within these admissible regions. While unconstrained random sampling could theoretically be used to populate the dataset, leveraging a taxonomy ensures that every generated sample is structurally valid. It a",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.056418973952531815,
+        0.08354871720075607,
+        0.860032320022583
+      ],
+      "wall_seconds": 1.1515770000005432
+    },
+    {
+      "paper_id": "paper-008",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "GOAG는 모든 새 물체에 대해 물체별 학습 데이터가 필요하다",
+      "translated_claim": "GOAG needs object-specific learning data for all new objects.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.06911727041006088,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-008-p001-c002",
+        "paper_id": "paper-008",
+        "page": 1,
+        "source_page_id": "paper-008-p001",
+        "section": "Abstract",
+        "section_index": 2,
+        "chunk_index": 1,
+        "text": "Abstract but current deep-learning grasp planners often struggle to generalize to new objects because they are trained on limited, object-specific datasets. We introduce a fundamentally different approach, grounded in the observation that the gripper and the object share identical surface geometry at their mutual contact points. We propose GOAG: Generative and ObjectAgnostic Grasp Planner for Dexterous Robotic Manipulation, a novel deep generative model that learns a compact latent representation of a specific gripper’s contact surface distribution, enabling the efficient sampling of valid grasp configurations without relying on object-specific training data. We show that by introducing object features only at inference time, our model can effectively retrieve admissible contact areas that are compatible with the gripper’s capabilities. We validate our approach through extensive experiments on established grasp protocols in both simulated and real-world scenarios, demonstrating its effectiveness with different grippers from the literature. Our method delivers state-of-the-art results on the objects from the MultiDex dataset, achieving an average success rate of86.93%. It offers sig",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.1388004571199417,
+        0.06911727041006088,
+        0.7920823097229004
+      ],
+      "wall_seconds": 2.8479718000016874
+    },
+    {
+      "paper_id": "paper-009",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "Asteroid crossings are a potential source of false positives in microlensing surveys.",
+      "translated_claim": "Asteroid crossings are a potential source of false positives in microlensing surveys.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.4791339635848999,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-009-p001-c003",
+        "paper_id": "paper-009",
+        "page": 1,
+        "source_page_id": "paper-009-p001",
+        "section": "ABSTRACT",
+        "section_index": 2,
+        "chunk_index": 2,
+        "text": "on metrics and cross-matching with SIMBAD, we obtained a final list of candidates and identified false positives including long–period variables, Mira variables, cataclysmic variables, red giants, and transients. We also found gaussian–like peaks caused by asteroid crossings, a potential source of false positives in highcadence microlensing surveys. The model also predicts event duration with an accuracy ofR2 = 0.97. The model was further tested on published events from different groundâĂŚ-based microlensing surveys, confirming 92.7% as microlensing, demonstrating its applicability across surveys with different cadences. Keywords:Gravitational microlensing, Time-domain astronomy, Machine learning, Transformers, Simulation, Transiting Exoplanet Survey Satellite (TESS)",
+        "char_count": 777
+      },
+      "probabilities": [
+        0.009584221988916397,
+        0.4791339635848999,
+        0.5112818479537964
+      ],
+      "wall_seconds": 1.2776873000002524
+    },
+    {
+      "paper_id": "paper-009",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "소행성 통과는 마이크로렌즈 조사에서 위양성의 잠재적 원인이다.",
+      "translated_claim": "Minor planetary passage is a potential cause of hysteresis in microrensing.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.05009092390537262,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-009-p005-c005",
+        "paper_id": "paper-009",
+        "page": 5,
+        "source_page_id": "paper-009-p005",
+        "section": "3.DATA",
+        "section_index": 1,
+        "chunk_index": 5,
+        "text": "ved data points with negative flux values. 3.2.Simulated Microlensing Light Curves for TESS To create a realistic set of TESS signals for our detection model, we simulate a large population of single-lens microlensingeventsbasedonthecharacteristicsofTESS Sector 12. This process involves generating a theoretical magnification model for each event using Monte Carlo simulations, which was performed in S25; we provide a summary here and refer the reader to that paper for a complete description. Next, we need to generate flattened TESS light curves to inject the theoretical model into them and also account for TESS-like photometric error. 3.2.1.Monte Carlo Simulations In this subsection, we explain how we set up priors on simulation parameters. The magnification of a singlelens event is defined by four key parameters:t0,t E,u 0 as given in Equation 2 and Equation 3, and the finite source sizeρ.t 0 is chosen uniformly from the TESS Sector 12 observation window of 27.4 days, accounting for its 1–2 day data gap and the lens impact parameter u0 is chosen smoothly from the range[0,1]. Fort E as",
+        "char_count": 1101
+      },
+      "probabilities": [
+        0.1717170923948288,
+        0.05009092390537262,
+        0.7781920433044434
+      ],
+      "wall_seconds": 3.175376499999402
+    },
+    {
+      "paper_id": "paper-009",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "every selected TESS candidate is confirmed as genuine microlensing",
+      "translated_claim": "every selected TESS candidate is confirmed as genuine microlensing",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.026719776913523674,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-009-p007-c001",
+        "paper_id": "paper-009",
+        "page": 7,
+        "source_page_id": "paper-009-p007",
+        "section": "3.DATA",
+        "section_index": 1,
+        "chunk_index": 1,
+        "text": "7 Figure 2.Relationship betweenlog 10(err/flux)and log10(flux)for all data points from the 12,000 selected light curves extracted with the Eleanor pipeline, shown as green dots. The pink dashed curve shows the fitted twodimensional polynomial function. light curves with a maximum–minimum magnitude difference greater than 2. For these light curves, we found an experimental relation between flux errors and fluxes. Figure 2 shows flux error to flux ratio versus fluxes for these selected TESS light curves along with a polynomial fit. We use this polynomial to change flux errors of magnified data points. 3.2.4.Injecting Theoretical Model into Flat Light Curve and Applying Error Function We simulate the microlensing light curve using the theoretical parameterstE,u 0,ρ, blending, andt0, where t0 corresponds to the TESS observing time for Sector 12, including its observational gap. Finite-source magnifications are computed with VBBINARYLENSING package for differentuandρvalues. We use the TESS baseline magnitude to generate the theoretical microlensing curve. We then inject that into the TESS light curves that we have selected for baseline creation. This way, we are able to preserve the ori",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.40503790974617004,
+        0.026719776913523674,
+        0.5682423114776611
+      ],
+      "wall_seconds": 1.3118355000005977
+    },
+    {
+      "paper_id": "paper-009",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "선택된 모든 TESS 후보가 진짜 마이크로렌즈로 확정됐다",
+      "translated_claim": "All of the TESS candidates selected are confirmed to be true microrens.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.046911805868148804,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-009-p006-c004",
+        "paper_id": "paper-009",
+        "page": 6,
+        "source_page_id": "paper-009-p006",
+        "section": "3.DATA",
+        "section_index": 1,
+        "chunk_index": 4,
+        "text": "seline magnitude. We then computed theχ2 of a linear fit to the Eleanor_PCA_Flux and selected light curves with the lowestχ 2 values to ensure flatness. To remove outliers in each light curve without changing the cadence, we replaced all data point with a Eleanor_PCA_Flux value deviating by more than 2 standard deviationsfrom the light curve’s mean withthe median Eleanor_PCA_Flux of that light curve simillar to sigma clipping but avoiding removal of the data points. For light curves with the brightest baseline magnitudes, where theχ2 values of linear fits are larger, we applied an additional method, which we call window repeating. We defined a window size of half, one-third, or one-quarter of the light curveâĂŹs length, selecting smaller windows for light curves with largerχ2 values. This window was slid across the light curve to identify the segment with the lowest standard deviation. We then repeated this low-variability segment to construct a flat baseline across the entire light curve. Finally, we removed outliers from the repeated light curve and selected those with the lowestχ2 values from the linear fit to ensure flatness. Next, we matched the baseline magnitude of flat ligh",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.09174120426177979,
+        0.046911805868148804,
+        0.861346960067749
+      ],
+      "wall_seconds": 2.9725813000004564
+    },
+    {
+      "paper_id": "paper-010",
+      "language": "en",
+      "kind": "true_premise",
+      "claim": "MSWDRO fuses heterogeneous sources via their weighted Wasserstein barycenter.",
+      "translated_claim": "MSWDRO fuses heterogeneous sources via their weighted Wasserstein barycenter.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.4125683605670929,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-010-p006-c005",
+        "paper_id": "paper-010",
+        "page": 6,
+        "source_page_id": "paper-010-p006",
+        "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+        "section_index": 1,
+        "chunk_index": 5,
+        "text": "which satisfies ∩M m=1Mm ⊆ ˜Mϵ,p for any λ∈△ M . The following theorem shows that the barycentric ambiguity set of (19) is, up to a dimensionindependent constant, equivalent to ˜Mϵ,p, and is therefore preferable on computational grounds since it is centered at a single distribution rather than requiring simultaneous control overM constraints. Theorem 3.1: For λ ∈ △M , suppose a λ-weighted pWasserstein barycenter of P1,..., PM exists. Then, for any ϵ≥ 0, ˜Mϵ,p(P1,..., PM; λ)⊆W 2p·ϵ,p(P1,..., PM; λ). (20) Proof. Let ¯Pλ,p denote the Wasserstein barycenter of P1,..., PM for λ ∈ △M . By the triangle inequality and the inequality (a +b)p ≤ 2p−1(ap +bp) for a,b ≥ 0 and p∈ [1,∞), for any P and m∈ [M], Wp p (P, ¯Pλ,p)≤ \u0000 Wp(P, Pm) +Wp( ¯Pλ,p, Pm) \u0001p ≤ 2p−1\u0000 Wp p (P, Pm) +Wp p ( ¯Pλ,p, Pm) \u0001 . Taking the λ-weighted average over m ∈ [M] and using the definition of the Wasserstein barycenter to boundPM m=1λmWp p ( ¯Pλ,p, Pm)≤PM m=1Wp p (P, Pm) yields Wp p (P, ¯Pλ,p) = MX m=1 λmWp p (P, ¯Pλ,p) ≤ 2p−1 MX m=1 λmWp p (P, Pk) + 2p−1 MX m=1 Wp p (P, Pm) = 2p MX m=1 λmWp p (P, Pm). Consequently, for any ϵ≥ 0, MX m=1 λmWp p (P, Pm)≤ϵ =⇒ Wp p (P, ¯Pλ,p)≤ 2p·ϵ,",
+        "char_count": 1158
+      },
+      "probabilities": [
+        0.2192486971616745,
+        0.4125683605670929,
+        0.3681829273700714
+      ],
+      "wall_seconds": 1.9266325999997207
+    },
+    {
+      "paper_id": "paper-010",
+      "language": "ko",
+      "kind": "true_premise",
+      "claim": "MSWDRO는 가중 Wasserstein 무게중심으로 이질적인 소스를 결합한다.",
+      "translated_claim": "MSWDRO combines a dual source with a heavy Wasserstein weight center.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.3574056327342987,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-010-p021-c001",
+        "paper_id": "paper-010",
+        "page": 21,
+        "source_page_id": "paper-010-p021",
+        "section": "5) Results and Analysis",
+        "section_index": 1,
+        "chunk_index": 1,
+        "text": "21 the ambiguity-set center; (iii) Naive-Pooled, which discards the multi-source structure entirely and pools all samples as in the baseline protocol; and (iv) Target-Only, which uses no source information whatsoever. Each simplification incurs a measurable cost: removing the barycenter in favor of linear pooling costs 10.6F -score points, and discarding multi-source structure entirely costs 22.9 points relative to the full model. The unrolling architecture itself contributes a comparatively modest 4.1-point accuracy gain over its cross-validated, nonunrolled counterpart, but converts a 850 ms per-instance hyperparameter search into a 4.2 ms forward pass, a two-ordersof-magnitude reduction in inference cost that is orthogonal to, and compounds with, the accuracy benefit of barycentric fusion. 1 2 3 4 5 6 7 8 9 10 Unrolling layer k 0.2 0.4 0.6 0.8 1.0 1.2 1.4 Ambiguity radius (k) 1 2 3 4 5 6 7 8 9 10 Unrolling layer k 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 Sparsity coeff. (k) 1 2 3 4 5 6 7 8 9 10 Unrolling layer k 0.4 0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0 ADMM penalty (k) 1 2 3 4 5 6 7 8 9 10 Unrolling layer k 0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40 Barycentric weight (k) m Source m = 1",
+        "char_count": 1199
+      },
+      "probabilities": [
+        0.3274655342102051,
+        0.3574056327342987,
+        0.315128892660141
+      ],
+      "wall_seconds": 3.5569833000008657
+    },
+    {
+      "paper_id": "paper-010",
+      "language": "en",
+      "kind": "false_premise",
+      "claim": "Euclidean averaging preserves source geometry under arbitrary heterogeneity",
+      "translated_claim": "Euclidean averaging preserves source geometry under arbitrary heterogeneity",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.3511456847190857,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-010-p011-c002",
+        "paper_id": "paper-010",
+        "page": 11,
+        "source_page_id": "paper-010-p011",
+        "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+        "section_index": 1,
+        "chunk_index": 2,
+        "text": "ator splitting to obtain (59). Step 1 (one-step inequality). Fix k≥ 0 and let (Ξ, C)∈ domf×C and Y∈ RN×N be arbitrary. By convexity of f and the first-order optimality condition (116) of the Ξ-update, f(Ξ(k+1))−f(Ξ)≤ ∇f(Ξ(k+1)), Ξ(k+1)− Ξ =− Y(k+1),T (Ξ(k+1))−T (Ξ) −ϱ C(k+1)− C(k),T (Ξ(k+1))−T (Ξ) . (62) By convexity of g and the optimality condition (117) of the C-update, g(C(k+1))−g(C)≤ Y(k+1), C(k+1)− C . (63) Adding (62)–(63), substitutingT (Ξ(k+1)) = C(k+1) +r(k+1), and adding the algebraic identity ⟨Y− Y(k+1), r(k+1)⟩ + ⟨Y(k+1),T (Ξ)− C⟩−⟨ Y,T (Ξ)− C⟩ = 0 to both sides yields, after simplification, θ(Ξ(k+1), C(k+1))−θ(Ξ, C) + Y,T (Ξ(k+1))− C(k+1) − Y(k+1),T (Ξ)− C ≤−ϱ C(k+1)− C(k),T (Ξ(k+1))−T (Ξ) + Y− Y(k+1), r(k+1) , (64) whereθ(Ξ, C)≜f(Ξ)+g(C). Using r(k+1) =ϱ−1(Y(k+1)− Y(k)) andT (Ξ(k+1))−T (Ξ) = (C(k+1)− C) +r(k+1), the right-hand side of (64) rearranges, exactly as in the standard splitting-based ergodic-rate argument for two-block ADMM (He & Yuan [51], proof of Thm. 4.1; see also [52], App. A), into the telescoping form ϱ 2 \u0000 ∥C− C(k)∥2 F−∥ C− C(k+1)∥2 F \u0001 + 1 2ϱ \u0000 ∥Y− Y(k)∥2 F−∥ Y− Y(k+1)∥2 F \u0001 . (65) Step 2 (telescoping and averaging). Summing (64) (with right-hand s",
+        "char_count": 1200
+      },
+      "probabilities": [
+        0.37208014726638794,
+        0.3511456847190857,
+        0.27677419781684875
+      ],
+      "wall_seconds": 1.8988375999979326
+    },
+    {
+      "paper_id": "paper-010",
+      "language": "ko",
+      "kind": "false_premise",
+      "claim": "유클리드 평균이 임의의 이질성에서도 소스 기하를 보존한다",
+      "translated_claim": "The Euclidean mean preserves the source gradient even at any discrete heterogeneity.",
+      "numeric_translation_preserved": true,
+      "maximum_entailment_probability": 0.2779387831687927,
+      "accepted": false,
+      "best_source": {
+        "chunk_id": "paper-010-p016-c004",
+        "paper_id": "paper-010",
+        "page": 16,
+        "source_page_id": "paper-010-p016",
+        "section": "IV. T HEORETICAL ANALYSIS",
+        "section_index": 1,
+        "chunk_index": 4,
+        "text": "k, ω≤W2(P∗, P∗ m) +W2(P∗ m,b∗ λ) ≤W2(P∗, P∗ m) +Hλ/λ1/2 m , (103) where W2(P∗, P∗ m) can be bounded using any available side information (e.g., structural similarity or a small number of proxy observations from the target domain). In contrast, the pooled-distribution approach requires ϵpool≥ ω +cH2 λ even with infinite data, because the mixing bias W2(P∗ λ,b∗ λ) does not vanish (Theorem 4.2).",
+        "char_count": 395
+      },
+      "probabilities": [
+        0.3433702886104584,
+        0.2779387831687927,
+        0.3786908984184265
+      ],
+      "wall_seconds": 3.765268899998773
+    }
+  ],
+  "decision": "rejected: paired true-premise acceptance 2/10 is below the predeclared minimum 9/10",
+  "metric_scope": "Premise-support status on 10 DEV papers, not complete-answer accuracy or independent factual review"
+}

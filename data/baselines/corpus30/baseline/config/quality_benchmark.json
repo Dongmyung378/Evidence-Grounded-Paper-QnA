@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "quality-synthetic-v1",
+  "manifest": "data/quality_benchmark/manifest.json",
+  "questions": "data/quality_benchmark/questions.jsonl",
+  "rubric": "data/quality_benchmark/rubric.json",
+  "freeze": "data/quality_benchmark/freeze.json",
+  "split_policy": "Papers, identical source hashes and bilingual meaning groups cannot cross dev and holdout.",
+  "real_paper_holdout": {
+    "status": "prepared_execution_recorded_separately",
+    "config": "data/quality_benchmark/real_paper_config.json",
+    "template": "data/quality_benchmark/real_holdout_template.json",
+    "automatic_accuracy_claims": false,
+    "independent_human_review": false,
+    "third_party_verification": "not_attested"
+  }
+}

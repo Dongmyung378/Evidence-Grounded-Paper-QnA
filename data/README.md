@@ -2,6 +2,7 @@
 
 [English](README.md) | [한국어](README_KO.md)
 
+- `benchmarks/corpus30/` contains the frozen 30-paper bilingual benchmark and current measurements.
 - `metadata/` contains the 30-paper source and license manifest.
 - `processed/` contains extracted pages, searchable chunks, and ingestion manifests.
 - `evaluation/` contains verified questions, reviewed evidence, final metrics, and provenance artifacts.

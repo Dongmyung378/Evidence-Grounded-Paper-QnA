@@ -10,6 +10,7 @@ from pathlib import Path
 from time import perf_counter
 
 from answer_quality import validate_informative_answer
+from answer_planner import align_answer_sentences, evidence_plan, question_facets, rank_facet_sources
 from answerability_policy import _scoring_texts, aspect_query, evaluate_answerability
 from evidence_selector import fact_tokens, question_kinds, technical_identifiers
 from grounded_answer_contract import (
@@ -194,6 +195,16 @@ def load_answer_generation_config(path=CONFIG_PATH):
         raise ValueError("translation fidelity verification must remain enabled")
     if answer.get("verify_question_premises", True) is not True:
         raise ValueError("question premise verification must remain enabled")
+    planning = config.get("evidence_planning", {})
+    for key in ("enabled", "restore_context", "require_all_facets", "prioritize_facets",
+                "expanded_answer_budget", "allow_unclassified_body"):
+        if key in planning and type(planning[key]) is not bool:
+            raise ValueError(f"evidence_planning.{key} must be boolean")
+    retries = planning.get("maximum_retrieval_retries", 1)
+    if type(retries) is not int or retries not in {0, 1}:
+        raise ValueError("Evidence planning permits at most one retrieval retry")
+    if type(planning.get("max_window_characters", 3200)) is not int or planning.get("max_window_characters", 3200) < 1:
+        raise ValueError("Context window budget must be a positive integer")
     return config
 
 
@@ -262,7 +273,7 @@ def _source_body(text, page, running_titles=()):
     return re.sub(r"\s*[•●▪]\s*", "\n- ", normalized)
 
 
-def _usable_sentence(sentence, section):
+def _usable_sentence(sentence, section, allow_unclassified_body=False):
     """Remove extraction fragments, references, equations and table rows."""
     words = re.findall(r"[A-Za-z가-힣][A-Za-z가-힣'-]*", sentence)
     if len(words) < 6:
@@ -307,7 +318,7 @@ def _usable_sentence(sentence, section):
         return False
     if section and any(
         label in section.casefold()
-        for label in ("reference", "front matter", "acknowledg")
+        for label in (("reference", "acknowledg") if allow_unclassified_body else ("reference", "front matter", "acknowledg"))
     ):
         return False
     leading_marker_removed = re.sub(r"^\([a-z]\)\s*", "", sentence, flags=re.I)
@@ -320,7 +331,7 @@ def _usable_sentence(sentence, section):
     terminal_tokens = re.findall(r"[A-Za-z]+|\d+", sentence)
     if terminal_tokens and terminal_tokens[-1].casefold() in INCOMPLETE_ENDINGS:
         return False
-    if (sentence.count("=") >= 1 or any(symbol in sentence for symbol in ("∈", "⊆", "∆", "∂", "†"))) and not _inline_math_prose(sentence):
+    if (sentence.count("=") >= 1 or any(symbol in sentence for symbol in ("∈", "⊆", "∆", "∂", "†"))) and not (_inline_math_prose(sentence) or _scalar_measurement_prose(sentence)):
         return False
     number_count = len(NUMBER.findall(sentence))
     if number_count >= 6 and re.search(
@@ -338,6 +349,18 @@ def _inline_math_prose(text):
             and re.search(r"\b(?:aims?|identif\w*|selects?|describes?|defines?)\b", text, re.I)
             and text.count("=") <= 1
             and not any(symbol in text for symbol in ("⊆", "∆", "∂", "†")))
+
+
+def _scalar_measurement_prose(text):
+    """Preserve reported scalar measurements, while excluding standalone equations."""
+    substantial=(len(re.findall(r'[A-Za-z]+',text))>=10 or len(re.findall(r'[가-힣]',text))>=16)
+    if not substantial or not re.search(
+        r'correlat\w*|coefficient|accuracy|damping|learning rate|slope|velocity|probability|precision|score|상관|계수|정확도|감쇠|학습률|기울기|속도|확률|점수',text,re.I):
+        return False
+    if any(s in text for s in ('∈','⊆','∆','∂','†')):
+        return False
+    relations=list(re.finditer(r'[A-Za-zα-ωΑ-Ω][A-Za-zα-ωΑ-Ω0-9_²^]*\s*=\s*[+-]?\d+(?:\.\d+)?(?:\s*±\s*\d+(?:\.\d+)?)?',text))
+    return bool(relations) and len(relations)==text.count('=')
 
 
 def _inline_math_relations(text):
@@ -518,7 +541,7 @@ def _intent_bonus(question, sentence):
     return bonus
 
 
-def split_evidence_sentences(evidence, minimum_chars=24, allow_list_items=False):
+def split_evidence_sentences(evidence, minimum_chars=24, allow_list_items=False, allow_unclassified_body=False):
     """Split retrieved chunks while retaining the exact source evidence ID."""
     records = []
     seen = set()
@@ -552,7 +575,8 @@ def split_evidence_sentences(evidence, minimum_chars=24, allow_list_items=False)
             )
             if len(sentence) < minimum_chars and not short_list_item:
                 continue
-            if not _usable_sentence(sentence, item.get("section")) and not short_list_item:
+            if not _usable_sentence(sentence, item.get("section"),
+                    allow_unclassified_body=allow_unclassified_body and item.get('page',1)>1) and not short_list_item:
                 continue
             normalized = sentence.casefold()
             if normalized in seen:
@@ -698,6 +722,7 @@ def select_grounded_sentences(question, evidence, selector_model, config):
         evidence,
         minimum_chars=selector["minimum_sentence_chars"],
         allow_list_items="list" in kinds,
+        allow_unclassified_body=config.get('evidence_planning',{}).get('allow_unclassified_body',False),
     )
     if not sentences:
         return []
@@ -735,6 +760,20 @@ def select_grounded_sentences(question, evidence, selector_model, config):
             item["sentence_id"],
         )
     )
+
+    planning=config.get('evidence_planning',{})
+    planned_ids=[]
+    if planning.get('enabled'):
+        facets,planned_ids,members=rank_facet_sources(question,scored,selector_model,
+            minimum_score=planning.get('minimum_facet_score',-3.0))
+        if len(facets)==1 or not planning.get('prioritize_facets',True):
+            planned_ids=[]
+        for item in scored:
+            item['requested_facet_ids']=members[item['sentence_id']]
+            item['facet_relevance_diagnostics']=facets
+        planned=set(planned_ids)
+        scored=[item for sid in planned_ids for item in scored if item['sentence_id']==sid]+[
+            item for item in scored if item['sentence_id'] not in planned]
 
     selected = []
     selected_ids = set()
@@ -810,9 +849,9 @@ def select_grounded_sentences(question, evidence, selector_model, config):
         # evaluation-bearing anchors are available, unrelated method details
         # cannot fill the remaining slots. Their adjacent conditions can still
         # be retained through a recognized grounded anchor bundle.
-        if targeted_anchors and item["sentence_id"] not in targeted_anchors:
+        if targeted_anchors and item["sentence_id"] not in targeted_anchors and item['sentence_id'] not in planned_ids:
             continue
-        if primary_patterns and item["sentence_id"] not in primary_anchors:
+        if primary_patterns and item["sentence_id"] not in primary_anchors and item['sentence_id'] not in planned_ids:
             continue
         bundle = _sentence_bundle(item, by_evidence, kinds, question)
         pending = [part for part in bundle if part["sentence_id"] not in selected_ids]
@@ -1079,7 +1118,7 @@ def _validate_translation_qualifiers(source, translated):
         raise AnswerValidationError("translation omitted explicit source negation")
     restriction = re.search(r"\b(?:only|solely|exclusively|limited to|restricted to)\b", source_without_idioms, re.I)
     korean_restriction = re.search(
-        r"오직|한정|제한|뿐|불과|유일|단지|(?<![가-힣])단(?=\s|[0-9]|하나|한\s|,)|"
+        r"오직|한정|제한|뿐|불과|유일|단지|전용|(?<![가-힣])단(?=\s|[0-9]|하나|한\s|,)|"
         r"(?:에|에서|에게|로|으로)만|(?<![0-9])만(?=\s|[.,!?]|이|을|은|도|가능|평가|검증|지원|사용)",
         translated,
     )
@@ -1194,6 +1233,15 @@ def _answer_source_limit(question, language, config):
     for kind in question_kinds(question):
         if kind in overrides:
             limits.append(overrides[kind][language])
+    if (config.get('evidence_planning',{}).get('enabled')
+        and config.get('evidence_planning',{}).get('expanded_answer_budget',True)):
+        # Keep a common bilingual fact budget; a translation must not silently
+        # discard information that was eligible for the English answer.
+        limits.extend(answer['source_sentences_by_language'].values())
+        for kind in question_kinds(question):
+            limits.extend(overrides.get(kind,{}).values())
+        if len(question_facets(question))>1:
+            limits.append(6)
     return min(max(limits), answer["maximum_sentences"])
 
 
@@ -1210,6 +1258,15 @@ def _answer_sources(question, selected, language, config):
         else:
             incomplete = {item.get("anchor_sentence_id") for item in additions}
             sources = [item for item in sources if item.get("anchor_sentence_id") not in incomplete]
+    if config.get('evidence_planning',{}).get('enabled'):
+        anchors=list(dict.fromkeys(s.get('anchor_sentence_id',s['sentence_id']) for s in sources))
+        bounded=[]
+        for anchor in anchors:
+            bundle=[s for s in sources if s.get('anchor_sentence_id',s['sentence_id'])==anchor]
+            proposal=bounded+bundle
+            if len(' '.join(_clean_extractive_sentence(s['text']) for s in proposal))<=config['answer']['maximum_characters']:
+                bounded=proposal
+        sources=bounded
     return sources
 
 
@@ -1347,15 +1404,17 @@ def validate_plain_answer(raw_response, question, selected_sentences, language, 
     if any(marker in answer for marker in ("```", "[s-", "[ev-", "\n-", "\n*")):
         raise AnswerValidationError("answer contains formatting or internal source labels")
     if "=" in answer or any(symbol in answer for symbol in ("∈", "⊆", "∆", "∂", "†")):
-        authorized = [item["text"] for item in selected_sentences if _inline_math_prose(item["text"])]
+        authorized = [item["text"] for item in selected_sentences
+                      if _inline_math_prose(item["text"]) or _scalar_measurement_prose(item['text'])]
         relations = _inline_math_relations(answer)
         expected = _inline_math_relations(" ".join(authorized))
         prose_parts = [part for part in _split_sentence_text(answer) if "=" in part or "∈" in part]
         if (not authorized or any(symbol in answer for symbol in ("⊆", "∆", "∂", "†"))
             or sum(relations.values()) != answer.count("=") + answer.count("∈")
             or not relations <= expected
-            or any(not (_inline_math_prose(part) if language == "en" else
+            or any(not (_scalar_measurement_prose(part) or (_inline_math_prose(part) if language == "en" else
                         len(re.findall(r"[가-힣]+", part)) >= 6 and re.search(r"식별|찾|선택|정의|설명", part))
+                       )
                    for part in prose_parts)):
             raise AnswerValidationError("answer contains a formula or equation")
     if language == "ko" and CJK_IDEOGRAPH.search(answer):
@@ -1507,6 +1566,15 @@ def generate_evidence_first_answer(
         "answer_construction_seconds",
         lambda: _answer_sources(question, selected, language, config),
     )
+    plan=evidence_plan(question,answer_sources,config.get('evidence_planning',{}).get('enabled',False))
+    if (config.get('evidence_planning',{}).get('require_all_facets')
+        and len(plan['facets'])>1 and plan['missing_facet_ids']):
+        return {'response':canonical_abstention_payload(language,
+                'Not all explicit question facets have a source candidate.' if language=='en' else '질문에서 요청한 항목 모두에 대한 근거 후보를 확보하지 못했습니다.'),
+            'selected_sentences':answer_sources,'attempts':[{'attempt':0,'status':'invalid',
+                'reason_code':'requested_facet_not_supported','error':'Incomplete source coverage','raw_response':''}],
+            'fallback_used':False,'stage_timings':stage_timings,'answerability':answerability,'evidence_plan':plan,
+            'answer_alignment':[]}
     mode = config["answer"]["mode_by_language"][language]
     if mode == "extractive":
         try:
@@ -1539,6 +1607,9 @@ def generate_evidence_first_answer(
             "fallback_used": False,
             "stage_timings": stage_timings,
             "answerability": answerability,
+            "evidence_plan":plan,
+            "answer_alignment":align_answer_sentences(answer_sources,
+                [_clean_extractive_sentence(s['text']) for s in answer_sources],language='en'),
         }
 
     if mode == "faithful_translation_model" and (
@@ -1587,6 +1658,8 @@ def generate_evidence_first_answer(
             "fallback_used": fallback_used,
             "stage_timings": stage_timings,
             "answerability": answerability,
+            "evidence_plan":plan,
+            "answer_alignment":align_answer_sentences(answer_sources,translations) if not fallback_used else [],
         }
 
     request = measured(

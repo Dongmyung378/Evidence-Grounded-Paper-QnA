@@ -45,7 +45,8 @@ IMPLEMENTATIONS = ["scripts/qna_pipeline.py", "scripts/production_retrieval.py",
                    "scripts/reranker.py", "scripts/answerability_policy.py", "scripts/quality_benchmark.py",
                    "scripts/bm25_retrieval.py", "scripts/hybrid_retrieval.py", "scripts/retrieval_common.py",
                    "scripts/grounded_answer_contract.py", "scripts/answer_quality.py", "scripts/local_llm.py",
-                   "app/question_engine.py", "scripts/ingest_papers.py"]
+                   "app/question_engine.py", "scripts/ingest_papers.py",
+                   "scripts/answer_planner.py", "scripts/context_windows.py"]
 
 
 def read_json(path: Path) -> dict:

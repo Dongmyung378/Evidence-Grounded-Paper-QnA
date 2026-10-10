@@ -2,6 +2,17 @@
   "schema_version": 1,
   "strategy": "evidence_first_plain_answer",
   "prompt_version": "evidence-first-v3-complete-context",
+  "evidence_planning": {
+    "enabled": false,
+    "restore_context": false,
+    "minimum_facet_score": -3.0,
+    "require_all_facets": false,
+    "max_window_characters": 3200,
+    "maximum_retrieval_retries": 0,
+    "prioritize_facets": false,
+    "expanded_answer_budget": false,
+    "allow_unclassified_body": false
+  },
   "sentence_selector": {
     "model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
     "max_length": 512,
@@ -19,11 +30,26 @@
       "ko": 2
     },
     "source_sentences_by_question_kind": {
-      "list": {"en": 8, "ko": 8},
-      "comparison": {"en": 4, "ko": 4},
-      "numeric": {"en": 3, "ko": 3},
-      "limitations": {"en": 4, "ko": 4},
-      "evaluation": {"en": 4, "ko": 4}
+      "list": {
+        "en": 8,
+        "ko": 8
+      },
+      "comparison": {
+        "en": 4,
+        "ko": 4
+      },
+      "numeric": {
+        "en": 3,
+        "ko": 3
+      },
+      "limitations": {
+        "en": 4,
+        "ko": 4
+      },
+      "evaluation": {
+        "en": 4,
+        "ko": 4
+      }
     },
     "mode_by_language": {
       "en": "extractive",
