@@ -6,6 +6,8 @@ This benchmark evaluates final answers across all 30 papers in the existing text
 
 Papers 001–010 are development data because they were already used for labelled retrieval and implementation work. Papers 011–030 previously supported ingestion/search smoke checks; project records do not show labelled answer tuning on them. This usage history is an operator attestation, not an independently audited contamination guarantee. Model pretraining exposure is unknown.
 
+The comparison labels "Pre-study implementation" and "Published implementation" refer to two versions of this project's own system using pretrained models. Their saved artifacts and replay commands retain the identifiers `baseline` and `final`.
+
 ## Frozen inputs
 
 - `manifest.json` records paper attribution, source links, licences, corpus hashes and split assignments.

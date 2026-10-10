@@ -8,13 +8,13 @@ The cached Qwen2.5-1.5B-Instruct candidate was not adopted. In a predeclared eig
 
 Four disclosed DEV question groups cover augmentation lists, projection-head comparisons, scalar temperature parameters and a calibration exception. Each has an English and Korean question. Both systems receive identical production chunks from the gold source page. This oracle-page selection deliberately removes retrieval failures from the feasibility check; it does not estimate full-pipeline accuracy.
 
-The baseline is the existing answer builder, including its refusal guards, sentence selector and Korean translator. The candidate is prompted directly with the same evidence, a requested language and a four-field output contract. This compares candidate builders; it is not an isolated decoder ablation. No reference answers or grading labels enter the candidate prompt.
+The reference is the answer builder developed for this project, including its refusal guards, sentence selector and Korean translator. The candidate is prompted directly with the same evidence, a requested language and a four-field output contract. This compares candidate builders; it is not an isolated decoder ablation. No reference answers or grading labels enter the candidate prompt.
 
 The [protocol](../data/quality_benchmark/runs/answer-builder-pilot/protocol.json), [review rubric](../data/quality_benchmark/runs/answer-builder-pilot/review-rubric.json), [input evidence](../data/quality_benchmark/runs/answer-builder-pilot/inputs.json) and [prompt receipt](../data/quality_benchmark/runs/answer-builder-pilot/prompt-receipt.json) were frozen before inference. Continuation required at least two additional complete outputs, no additional materially unsupported outputs and mean candidate time at most 60 seconds. One attempt was allowed per question, with no JSON repair, retry or prompt tuning.
 
 ## Observed result
 
-| Measure | Existing builder | Qwen candidate |
+| Measure | Project answer builder | Qwen candidate |
 | --- | ---: | ---: |
 | Complete outputs under the declared rubric and contract | 2/8 | 0/8 |
 | Valid output contract | 8/8 | 0/8 |
@@ -25,7 +25,7 @@ The [protocol](../data/quality_benchmark/runs/answer-builder-pilot/protocol.json
 
 The candidate wrapped every output in Markdown code fences. One omitted `abstention_reason`, and another used invalid JSON escapes around a formula. These failures count against the declared contract. A separate diagnostic inspection of the visible text still found no completeness gain, so the decision does not rest on formatting alone.
 
-| Question | Existing builder | Candidate's visible content |
+| Question | Project answer builder | Candidate's visible content |
 | --- | --- | --- |
 | Augmentation, EN | Refuses despite answerable page content. | Correct list with crop, resize and random flip; invalid output contract. |
 | Augmentation, KO | Discusses cropped views, omitting the requested families. | Announces a list without supplying its items. |
@@ -60,7 +60,7 @@ The four engineering work areas were implemented: request tracking, adjacent sou
 
 | DEV strategy | Complete alias groups / 40 | Previously answered groups lost | Negative answers / 20 | Adoption |
 | --- | ---: | ---: | ---: | --- |
-| Original baseline | 8 | 0 | 10 | Reference |
+| Pre-study implementation | 8 | 0 | 10 | Reference |
 | `planner-context-v1` | 10 | 4 | 10 | Rejected |
 | `planner-context-v2` | 10 | 3 | 11 | Rejected |
 | `context-alignment-v3` | 9 | 3 | 11 | Rejected |
