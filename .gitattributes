@@ -9,3 +9,7 @@ data/evaluation/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,c
 data/quality_benchmark/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 data/baselines/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 data/benchmarks/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Collapse generated evaluation records and copied source snapshots in GitHub diffs.
+data/baselines/** linguist-generated=true
+data/benchmarks/**/results/**/*.json linguist-generated=true
