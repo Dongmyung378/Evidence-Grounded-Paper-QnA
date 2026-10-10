@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "rubric_id": "quality-real-paper-rubric-v1",
+  "frozen": true,
+  "version_date": "2026-10-10",
+  "automatic_checks": {
+    "final_contract": "Complete final payload, identity, citations and language checks.",
+    "refusal": "Canonical final refusal with no citations. Neither retrieval abstention nor unrelated cited facts count as refusal.",
+    "meaning_group": "EN/KO are one paired meaning group. Both must pass. Groups are not assumed statistically independent.",
+    "citation_locator": "Supporting page coverage only; matching a page does not prove semantic support.",
+    "required_markers": "Each marker lists literal normalized alternatives for a requested item, value, qualification or negation. Markers are tested in final answer text. KO particles and whitespace/hyphens in fixed names are allowed. Missing/invalid/refused positive answers fail marker coverage.",
+    "marker_limit": "A text containing all markers can still be wrong, contradictory, irrelevant or poorly translated. This is an explicitly limited completeness signal, never automatic factual or semantic accuracy.",
+    "missing_outputs": "Failures stay in denominators."
+  },
+  "manual_review": {
+    "axes": [
+      "factual_correctness",
+      "completeness",
+      "citation_support",
+      "translation_fidelity"
+    ],
+    "status": "not_performed",
+    "independent_human_review": false,
+    "requirements": "Record reviewer identity, relationship, exact question/source/prediction hashes, timestamps, claim-level support and missing qualifications. AI review is AI review and not independent human review."
+  },
+  "claim_boundary": "New papers are disjoint from project development corpus, not guaranteed absent from pretrained model data. Source-based curator labels and automatic marker scores do not establish independent scientific correctness or external reproduction."
+}

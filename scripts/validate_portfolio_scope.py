@@ -1,6 +1,7 @@
 """Validate the public portfolio structure and local-only boundaries."""
 
 import re
+import subprocess
 from pathlib import Path
 
 
@@ -12,6 +13,25 @@ MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 
 def read(relative_path):
     return (ROOT / relative_path).read_text(encoding="utf-8")
+
+
+def public_files():
+    """Scan the Git publication boundary, including pending public additions."""
+    if (ROOT / ".git").exists():
+        output = subprocess.check_output(
+            ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+            cwd=ROOT,
+        )
+        names = sorted(set(output.decode("utf-8").split("\0")) - {""})
+        paths = [ROOT / name for name in names if (ROOT / name).is_file()]
+    else:
+        # A source export already contains only its reviewed public files.
+        paths = [path for path in ROOT.rglob("*") if path.is_file()]
+    private_roots = {"local_notes", "private_notes", "personal_notes", "work_logs", "outputs"}
+    leaked = [path.relative_to(ROOT).as_posix() for path in paths
+              if path.relative_to(ROOT).parts[0] in private_roots]
+    assert not leaked, f"Private files are in the publication boundary: {leaked}"
+    return paths
 
 
 def main():
@@ -26,6 +46,13 @@ def main():
         ("data/README.md", "data/README_KO.md"),
         ("data/evaluation/README.md", "data/evaluation/README_KO.md"),
         ("scripts/README.md", "scripts/README_KO.md"),
+        ("docs/results.md", "docs/results_KO.md"),
+        ("docs/experiments.md", "docs/experiments_KO.md"),
+        ("docs/answer_policy.md", "docs/answer_policy_KO.md"),
+        ("docs/quality_benchmark.md", "docs/quality_benchmark_KO.md"),
+        ("docs/third_party_review.md", "docs/third_party_review_KO.md"),
+        ("data/quality_benchmark/README.md", "data/quality_benchmark/README_KO.md"),
+        ("data/quality_benchmark/deployment/README.md", "data/quality_benchmark/deployment/README_KO.md"),
     ]
     for english, korean in required_pairs:
         assert (ROOT / english).is_file() and (ROOT / korean).is_file()
@@ -61,9 +88,10 @@ def main():
     assert "Citation support failures were 0" in failure_en
     assert "인용 지지 실패는 0건" in failure_ko
 
-    excluded = {".git", "local_notes", "data/raw", "data/runtime"}
+    public = public_files()
+    excluded = {".git", "data/raw", "data/runtime"}
     violations = []
-    for path in ROOT.rglob("*"):
+    for path in public:
         if not path.is_file():
             continue
         relative = path.relative_to(ROOT).as_posix()
@@ -79,7 +107,8 @@ def main():
     assert not violations, f"Milestone-only references remain: {sorted(set(violations))}"
 
     broken_links = []
-    for document in ROOT.rglob("*.md"):
+    public_names = {path.resolve() for path in public}
+    for document in (path for path in public if path.suffix.lower() == ".md"):
         relative = document.relative_to(ROOT).as_posix()
         if relative.startswith("local_notes/"):
             continue
@@ -87,7 +116,8 @@ def main():
             target = target.strip().strip("<>").split("#", 1)[0]
             if not target or "://" in target or target.startswith("mailto:"):
                 continue
-            if not (document.parent / target).resolve().exists():
+            linked = (document.parent / target).resolve()
+            if not linked.exists() or (linked.is_file() and linked not in public_names):
                 broken_links.append(f"{relative} -> {target}")
     assert not broken_links, f"Broken local documentation links: {broken_links}"
 

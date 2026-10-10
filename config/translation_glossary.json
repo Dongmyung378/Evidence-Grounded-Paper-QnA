@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "source_language": "eng_Latn",
+  "target_language": "kor_Hang",
+  "matching": "case_insensitive_word_boundary_longest_first",
+  "entries": [
+    {
+      "source": ["robot gripper", "robot grippers", "robotic gripper", "robotic grippers"],
+      "target": "로봇 그리퍼"
+    },
+    {
+      "source": ["gripper", "grippers"],
+      "target": "그리퍼"
+    },
+    {
+      "source": ["ground-truth label", "ground-truth labels", "ground truth label", "ground truth labels"],
+      "target": "정답 레이블"
+    },
+    {
+      "source": ["ground-truth data", "ground truth data"],
+      "target": "정답 데이터"
+    },
+    {
+      "source": ["ground truth", "ground-truth"],
+      "target": "참값"
+    },
+    {
+      "source": ["point cloud", "point clouds"],
+      "target": "포인트 클라우드"
+    },
+    {
+      "source": ["end effector", "end effectors", "end-effector", "end-effectors"],
+      "target": "엔드 이펙터"
+    },
+    {
+      "source": ["weight decay"],
+      "target": "가중치 감쇠"
+    },
+    {
+      "source": ["temperature scaling", "temperature-scaling"],
+      "target": "온도 보정"
+    },
+    {
+      "source": ["confidence calibration", "confidence-calibration"],
+      "target": "신뢰도 보정"
+    },
+    {
+      "source": ["self-supervised learning", "self supervised learning", "selfsupervised learning"],
+      "target": "자기지도 학습"
+    },
+    {
+      "source": ["self-supervised", "self supervised", "selfsupervised"],
+      "target": "자기지도"
+    },
+    {
+      "source": ["contrastive learning", "contrastive-learning"],
+      "target": "대조 학습"
+    },
+    {
+      "source": ["batch normalization", "batch-normalization"],
+      "target": "배치 정규화"
+    },
+    {
+      "source": ["projection head", "projection heads", "projection-head", "projection-heads"],
+      "target": "투영 헤드"
+    },
+    {
+      "source": ["nonlinear projection head", "nonlinear projection heads"],
+      "target": "비선형 투영 헤드"
+    },
+    {
+      "source": ["nonlinear projection"],
+      "target": "비선형 투영"
+    },
+    {
+      "source": ["linear projection"],
+      "target": "선형 투영"
+    },
+    {
+      "source": ["no projection"],
+      "target": "투영 없음"
+    },
+    {
+      "source": ["contrastive loss", "contrastive losses"],
+      "target": "대조 손실"
+    },
+    {
+      "source": ["data augmentation", "data augmentations", "data-augmentation", "data-augmentations"],
+      "target": "데이터 증강"
+    },
+    {
+      "source": ["knowledge distillation", "knowledge-distillation"],
+      "target": "지식 증류"
+    },
+    {
+      "source": ["contrastive prediction task", "contrastive prediction tasks"],
+      "target": "대조 예측 과제"
+    },
+    {
+      "source": ["pretext task", "pretext tasks", "pre-text task", "pre-text tasks"],
+      "target": "사전학습 과제"
+    },
+    {
+      "source": ["random cropping", "random crop", "random crops"],
+      "target": "무작위 자르기"
+    },
+    {
+      "source": ["color distortion", "color distortions", "colour distortion", "colour distortions"],
+      "target": "색상 왜곡"
+    },
+    {
+      "source": ["Gaussian blur", "Gaussian blurring"],
+      "target": "가우시안 블러"
+    },
+    {
+      "source": ["shortcut learning", "shortcut-learning"],
+      "target": "지름길 학습"
+    },
+    {
+      "source": ["shortcut", "shortcuts"],
+      "target": "지름길"
+    },
+    {
+      "source": ["calibration", "calibrate", "calibrates", "calibrating"],
+      "target": "보정"
+    },
+    {
+      "source": ["calibrated"],
+      "target": "보정된"
+    },
+    {
+      "source": ["well-calibrated", "well calibrated"],
+      "target": "잘 보정된"
+    },
+    {
+      "source": ["miscalibrated", "mis-calibrated", "poorly calibrated"],
+      "target": "보정이 부정확한"
+    },
+    {
+      "source": ["uncalibrated", "un-calibrated", "not calibrated"],
+      "target": "보정되지 않은"
+    },
+    {
+      "source": ["miscalibration", "mis-calibration"],
+      "target": "보정 부정확성"
+    },
+    {
+      "source": ["scalar parameter", "scalar parameters"],
+      "target": "스칼라 매개변수"
+    },
+    {
+      "source": ["single scalar parameter", "single scalar parameters"],
+      "target": "단일 스칼라 매개변수"
+    }
+  ]
+}

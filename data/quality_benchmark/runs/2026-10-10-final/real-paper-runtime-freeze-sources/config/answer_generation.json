@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "strategy": "evidence_first_plain_answer",
+  "prompt_version": "evidence-first-v3-complete-context",
+  "sentence_selector": {
+    "model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+    "max_length": 512,
+    "batch_size": 16,
+    "max_sentences": 8,
+    "max_sentences_per_evidence": 8,
+    "max_context_chars": 3200,
+    "minimum_sentence_chars": 24
+  },
+  "answer": {
+    "maximum_sentences": 8,
+    "maximum_characters": 2400,
+    "source_sentences_by_language": {
+      "en": 3,
+      "ko": 2
+    },
+    "source_sentences_by_question_kind": {
+      "list": {"en": 8, "ko": 8},
+      "comparison": {"en": 4, "ko": 4},
+      "numeric": {"en": 3, "ko": 3},
+      "limitations": {"en": 4, "ko": 4},
+      "evaluation": {"en": 4, "ko": 4}
+    },
+    "mode_by_language": {
+      "en": "extractive",
+      "ko": "faithful_translation_model"
+    },
+    "plain_text_attempts": 1,
+    "verify_numeric_claims": true,
+    "verify_translation_fidelity": true,
+    "verify_question_premises": true,
+    "safe_fallback_on_validation_error": true
+  }
+}

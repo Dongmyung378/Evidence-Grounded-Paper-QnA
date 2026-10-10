@@ -2,12 +2,17 @@
 
 [English](README.md) | [한국어](README_KO.md)
 
-이 디렉터리에는 프로젝트의 이해, 평가와 실행에 필요한 공개 문서만 정리했습니다.
+구현 내용, 측정 결과와 재현 가능한 로컬 실행을 설명하는 공개 문서입니다.
 
-- [아키텍처](architecture_KO.md) - 요청 흐름, 구성요소 역할과 신뢰 경계
-- [평가](evaluation_KO.md) - 벤치마크 설계, 결과와 한계
-- [실패 사례](failure_cases_KO.md) - 검토한 실패 및 준실패 10건과 개선안
-- [데이터와 라이선스](data_KO.md) - 코퍼스 범위, 추적성과 재배포 정책
-- [Docker Compose](deployment/docker_KO.md) - 로컬 빌드, 실행, 영속성과 문제 해결
+- [평가 결과와 발견된 실패](results_KO.md)
+- [범위를 제한한 답변 모델 비교 실험](experiments_KO.md)
+- [아키텍처](architecture_KO.md)
+- [답변 및 거절 정책](answer_policy_KO.md)
+- [품질 평가 설계](quality_benchmark_KO.md)
+- [과거 평가](evaluation_KO.md)
+- [과거 실패 분석](failure_cases_KO.md)
+- [데이터와 라이선스](data_KO.md)
+- [Docker 실행](deployment/docker_KO.md)
+- [외부 검증 절차](third_party_review_KO.md)
 
-최상단 [README](../README_KO.md)는 포트폴리오 개요입니다. 구현 일지는 로컬에만 보관하며 Git에서 제외합니다.
+작업 일지와 중간 실험은 로컬에만 보관합니다. 최종 평가 근거와 정책 보정의 출처는 공개 자료에 유지합니다.

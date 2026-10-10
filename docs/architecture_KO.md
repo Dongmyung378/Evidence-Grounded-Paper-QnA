@@ -8,10 +8,29 @@
 2. 수집 파이프라인이 페이지 텍스트와 절을 추출하고 `paper_id`, 페이지, 절과 `chunk_id`를 보존한 청크를 만듭니다.
 3. BM25와 다국어 E5가 선택한 논문에서 각각 후보를 검색합니다.
 4. Reciprocal Rank Fusion으로 두 순위를 합친 뒤 Cross-Encoder가 20개 후보를 재정렬합니다.
-5. 근거 선택기가 중복을 줄인 추적 가능한 근거를 최대 5개 반환합니다.
+5. 근거 선택기가 순위와 점수를 보존한 추적 가능한 기본 근거를 최대 5개 반환합니다.
 6. 결정론적 관련도 정책이 생성 전에 답변을 거절할 수 있습니다.
 7. 영어 답변은 근거 문장을 추출해 구성하고, 한국어 답변은 고정된 로컬 NLLB 모델로 선택 근거를 번역합니다.
-8. 인용은 답변 모델이 만들지 않고 선택된 원문 근거에서 결정론적으로 조립합니다.
+8. 인용은 답변 모델이 만들지 않고 검증한 원문 근거에서 최대 5개를 결정론적으로 조립합니다.
+
+근거 기반 답변 경로는 번역 추론 전에 질문의 명시적 전제와 요청 내용을
+확인합니다. 질문 유형에 따라 문맥을 배정해 목록과 인접 조건을 보존합니다.
+현재 처리 규칙과 보수적인 검증의 한계는 [답변 정책](answer_policy_KO.md)에
+설명했습니다.
+
+예측 과제를 명시적으로 묻는 질문에서는 같은 논문의 이미 재정렬한 후보
+20개 중 필요한 일반 서술문을 포함한 전체 청크 하나를 답변 문맥에 추가할
+수 있습니다. 기본 근거 객체, 순위와 점수는 유지하며 답변 문맥은 최대
+6개가 됩니다. 새로운 원문을 읽지 않으며 필요한 과제의 근거가 없으면
+답변을 거부합니다.
+
+`evidence_selection.answer_context_supplements`와
+`evidence_selection.answer_context_supplement_origins`에 추가 원문을 기록합니다.
+`pipeline.evidence_context`는 `primary_retrieval_count`,
+`primary_retrieval_evidence_ids`, `supplement_count`, `answer_context_count`와
+`supplement_origins`를 기록합니다. 파이프라인 출력의 `retrieved_evidence`는
+전체 답변 문맥이며 `cited_evidence`는 검증을 통과한 실제 인용만 포함합니다.
+HTTP `/question` 응답은 실제 인용을 `evidence`로 제공합니다.
 
 ```mermaid
 flowchart TD
@@ -25,8 +44,10 @@ flowchart TD
     Sparse --> Fusion[RRF]
     Dense --> Fusion
     Fusion --> Rerank[Cross-Encoder]
-    Rerank --> Evidence[근거 선택]
-    Evidence --> Guard[답변 거절 정책]
+    Rerank --> Evidence[기본 근거 최대 5개]
+    Evidence --> Context[답변 문맥 최대 6개]
+    Rerank -. 필요한 과제 근거 최대 1개 .-> Context
+    Context --> Guard[답변 거절 정책]
     Guard --> Compose[추출 또는 번역]
     Compose --> Response[답변과 인용]
 ```

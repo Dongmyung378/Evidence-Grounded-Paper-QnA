@@ -1,0 +1,1495 @@
+{
+  "created_at": "2026-10-10T05:34:03.777268+00:00",
+  "scope": "Replay of previously opened final HOLDOUT; not new unseen evaluation",
+  "case_count": 32,
+  "response_equal_count": 32,
+  "answer_equal_count": 32,
+  "sufficiency_equal_count": 32,
+  "cited_evidence_equal_without_scores_count": 32,
+  "retrieved_evidence_equal_without_scores_count": 32,
+  "context_metadata_equal_count": 32,
+  "baseline_recalculation_fields_equal": {
+    "counts": true,
+    "metrics": true,
+    "by_split": true,
+    "by_language": true,
+    "by_question_type": true,
+    "records": true
+  },
+  "replay_report_fields_equal": {
+    "counts": true,
+    "metrics": true,
+    "by_split": true,
+    "by_language": true,
+    "by_question_type": true,
+    "records": true
+  },
+  "retrieval_numeric_difference_count": 155,
+  "maximum_retrieval_numeric_absolute_difference": 8.940696716308594e-06,
+  "environment_difference": {
+    "baseline": {
+      "torch": "2.14.1",
+      "transformers": "5.16.1",
+      "sentence-transformers": "6.0.0",
+      "sentencepiece": "0.2.1",
+      "numpy": "1.26.4",
+      "rank-bm25": "0.2.2"
+    },
+    "replay": {
+      "torch": "2.5.1+cpu",
+      "transformers": "5.16.1",
+      "sentence-transformers": "6.0.0",
+      "sentencepiece": "0.2.1",
+      "numpy": "1.26.4",
+      "rank-bm25": "0.2.2"
+    },
+    "baseline_platform": "Windows-11-10.0.26300-SP0",
+    "replay_platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.41"
+  },
+  "baseline_predictions_sha256": "e9ef586f808dbf315d17f383939cde4dbb3cd43322b04c5716bc2129b2838db5",
+  "replay_predictions_sha256": "b5a3e84a2b87f73bd5f7135ed5ed2da3b0c32c7274bb81dd4337f611731d1462",
+  "per_case": [
+    {
+      "case_id": "real-holdout-a-classical-assumptions-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": -0.21427494287490845,
+          "replay": -0.2142716348171234,
+          "absolute_difference": 3.3080577850341797e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -1.604588270187378,
+          "replay": -1.6045877933502197,
+          "absolute_difference": 4.76837158203125e-07
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -2.3592073917388916,
+          "replay": -2.359206199645996,
+          "absolute_difference": 1.1920928955078125e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -2.658632755279541,
+          "replay": -2.658628225326538,
+          "absolute_difference": 4.5299530029296875e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -5.658375263214111,
+          "replay": -5.658376693725586,
+          "absolute_difference": 1.430511474609375e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-classical-assumptions-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 0.2708018720149994,
+          "replay": 0.27080628275871277,
+          "absolute_difference": 4.410743713378906e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -2.325352907180786,
+          "replay": -2.3253540992736816,
+          "absolute_difference": 1.1920928955078125e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -2.351882219314575,
+          "replay": -2.351888418197632,
+          "absolute_difference": 6.198883056640625e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -3.0318291187286377,
+          "replay": -3.0318315029144287,
+          "absolute_difference": 2.384185791015625e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -3.0570356845855713,
+          "replay": -3.057039499282837,
+          "absolute_difference": 3.814697265625e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-cnn-correlation-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 1.0239773988723755,
+          "replay": 1.0239739418029785,
+          "absolute_difference": 3.4570693969726562e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -3.07425856590271,
+          "replay": -3.07425594329834,
+          "absolute_difference": 2.6226043701171875e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -4.42422342300415,
+          "replay": -4.4242167472839355,
+          "absolute_difference": 6.67572021484375e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -5.839080810546875,
+          "replay": -5.83908748626709,
+          "absolute_difference": 6.67572021484375e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -5.996878147125244,
+          "replay": -5.996876239776611,
+          "absolute_difference": 1.9073486328125e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-cnn-correlation-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": -1.3041021823883057,
+          "replay": -1.3041019439697266,
+          "absolute_difference": 2.384185791015625e-07
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -1.363577127456665,
+          "replay": -1.3635776042938232,
+          "absolute_difference": 4.76837158203125e-07
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -2.396125078201294,
+          "replay": -2.3961257934570312,
+          "absolute_difference": 7.152557373046875e-07
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -2.9952552318573,
+          "replay": -2.995262622833252,
+          "absolute_difference": 7.3909759521484375e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -3.549086332321167,
+          "replay": -3.549088478088379,
+          "absolute_difference": 2.1457672119140625e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-credit-certification-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": -4.257698059082031,
+          "replay": -4.257697105407715,
+          "absolute_difference": 9.5367431640625e-07
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -5.064987659454346,
+          "replay": -5.0649895668029785,
+          "absolute_difference": 1.9073486328125e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -5.594789028167725,
+          "replay": -5.594794273376465,
+          "absolute_difference": 5.245208740234375e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -5.6334452629089355,
+          "replay": -5.633444786071777,
+          "absolute_difference": 4.76837158203125e-07
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-credit-certification-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": -2.6753647327423096,
+          "replay": -2.6753628253936768,
+          "absolute_difference": 1.9073486328125e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -4.1346845626831055,
+          "replay": -4.13468599319458,
+          "absolute_difference": 1.430511474609375e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -4.5233354568481445,
+          "replay": -4.523344039916992,
+          "absolute_difference": 8.58306884765625e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -4.553966045379639,
+          "replay": -4.553972244262695,
+          "absolute_difference": 6.198883056640625e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -4.745249271392822,
+          "replay": -4.7452473640441895,
+          "absolute_difference": 1.9073486328125e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-derivative-free-premise-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": -3.704976797103882,
+          "replay": -3.7049741744995117,
+          "absolute_difference": 2.6226043701171875e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -4.155239582061768,
+          "replay": -4.155240058898926,
+          "absolute_difference": 4.76837158203125e-07
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -4.855368137359619,
+          "replay": -4.855367183685303,
+          "absolute_difference": 9.5367431640625e-07
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -5.939820766448975,
+          "replay": -5.939821720123291,
+          "absolute_difference": 9.5367431640625e-07
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -6.9643778800964355,
+          "replay": -6.964380264282227,
+          "absolute_difference": 2.384185791015625e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-derivative-free-premise-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": -1.158233880996704,
+          "replay": -1.1582324504852295,
+          "absolute_difference": 1.430511474609375e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -2.475748300552368,
+          "replay": -2.4757511615753174,
+          "absolute_difference": 2.86102294921875e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -2.7520644664764404,
+          "replay": -2.7520625591278076,
+          "absolute_difference": 1.9073486328125e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -3.7122809886932373,
+          "replay": -3.7122812271118164,
+          "absolute_difference": 2.384185791015625e-07
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-oracle-access-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 2.169301748275757,
+          "replay": 2.1692986488342285,
+          "absolute_difference": 3.0994415283203125e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -2.276012897491455,
+          "replay": -2.276010751724243,
+          "absolute_difference": 2.1457672119140625e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -2.9576375484466553,
+          "replay": -2.95763897895813,
+          "absolute_difference": 1.430511474609375e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -3.737642288208008,
+          "replay": -3.737636089324951,
+          "absolute_difference": 6.198883056640625e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -4.281771183013916,
+          "replay": -4.281763553619385,
+          "absolute_difference": 7.62939453125e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-oracle-access-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 1.004725694656372,
+          "replay": 1.004728078842163,
+          "absolute_difference": 2.384185791015625e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": 0.3801964521408081,
+          "replay": 0.3801954984664917,
+          "absolute_difference": 9.5367431640625e-07
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -0.910259485244751,
+          "replay": -0.9102560877799988,
+          "absolute_difference": 3.3974647521972656e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -1.1441131830215454,
+          "replay": -1.1441105604171753,
+          "absolute_difference": 2.6226043701171875e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -1.206074833869934,
+          "replay": -1.2060773372650146,
+          "absolute_difference": 2.5033950805664062e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-production-latency-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": -5.934381484985352,
+          "replay": -5.934386730194092,
+          "absolute_difference": 5.245208740234375e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -7.686774730682373,
+          "replay": -7.68677282333374,
+          "absolute_difference": 1.9073486328125e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -8.132542610168457,
+          "replay": -8.13254451751709,
+          "absolute_difference": 1.9073486328125e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -8.491528511047363,
+          "replay": -8.491531372070312,
+          "absolute_difference": 2.86102294921875e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-production-latency-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": -2.350990056991577,
+          "replay": -2.350994110107422,
+          "absolute_difference": 4.0531158447265625e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -4.739771366119385,
+          "replay": -4.739776134490967,
+          "absolute_difference": 4.76837158203125e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -4.978003025054932,
+          "replay": -4.978000640869141,
+          "absolute_difference": 2.384185791015625e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -5.2315568923950195,
+          "replay": -5.231564521789551,
+          "absolute_difference": 7.62939453125e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -5.469109535217285,
+          "replay": -5.469107627868652,
+          "absolute_difference": 1.9073486328125e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-retraining-cost-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 5.304516792297363,
+          "replay": 5.304516315460205,
+          "absolute_difference": 4.76837158203125e-07
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": 4.737894535064697,
+          "replay": 4.737888336181641,
+          "absolute_difference": 6.198883056640625e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": 4.64139461517334,
+          "replay": 4.641392707824707,
+          "absolute_difference": 1.9073486328125e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": 4.591102123260498,
+          "replay": 4.59110689163208,
+          "absolute_difference": 4.76837158203125e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": 4.281136989593506,
+          "replay": 4.281134128570557,
+          "absolute_difference": 2.86102294921875e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-retraining-cost-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 1.7770516872406006,
+          "replay": 1.7770476341247559,
+          "absolute_difference": 4.0531158447265625e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": 1.7328581809997559,
+          "replay": 1.7328592538833618,
+          "absolute_difference": 1.0728836059570312e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": 1.5665315389633179,
+          "replay": 1.566531777381897,
+          "absolute_difference": 2.384185791015625e-07
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": 1.2934027910232544,
+          "replay": 1.293402075767517,
+          "absolute_difference": 7.152557373046875e-07
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": 1.1471223831176758,
+          "replay": 1.1471199989318848,
+          "absolute_difference": 2.384185791015625e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-training-influence-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 10.00047492980957,
+          "replay": 10.00047779083252,
+          "absolute_difference": 2.86102294921875e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": 3.419644594192505,
+          "replay": 3.4196460247039795,
+          "absolute_difference": 1.430511474609375e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": 1.4927160739898682,
+          "replay": 1.4927091598510742,
+          "absolute_difference": 6.9141387939453125e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": 0.3737328052520752,
+          "replay": 0.3737316131591797,
+          "absolute_difference": 1.1920928955078125e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": 0.34884029626846313,
+          "replay": 0.3488446772098541,
+          "absolute_difference": 4.380941390991211e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-a-training-influence-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 4.851192474365234,
+          "replay": 4.8511962890625,
+          "absolute_difference": 3.814697265625e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": 1.9920427799224854,
+          "replay": 1.9920406341552734,
+          "absolute_difference": 2.1457672119140625e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": 1.8175045251846313,
+          "replay": 1.8175023794174194,
+          "absolute_difference": 2.1457672119140625e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": 1.4352312088012695,
+          "replay": 1.435226559638977,
+          "absolute_difference": 4.649162292480469e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": 1.3200842142105103,
+          "replay": 1.3200881481170654,
+          "absolute_difference": 3.933906555175781e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-baselines-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": -0.5564811825752258,
+          "replay": -0.5564852952957153,
+          "absolute_difference": 4.112720489501953e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -1.0930436849594116,
+          "replay": -1.0930405855178833,
+          "absolute_difference": 3.0994415283203125e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -1.4736393690109253,
+          "replay": -1.4736403226852417,
+          "absolute_difference": 9.5367431640625e-07
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -1.6737812757492065,
+          "replay": -1.67377507686615,
+          "absolute_difference": 6.198883056640625e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -1.817190170288086,
+          "replay": -1.8171926736831665,
+          "absolute_difference": 2.5033950805664062e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-baselines-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 0.8327844738960266,
+          "replay": 0.8327798843383789,
+          "absolute_difference": 4.589557647705078e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": 0.5233986973762512,
+          "replay": 0.5233954787254333,
+          "absolute_difference": 3.2186508178710938e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -0.014150639995932579,
+          "replay": -0.014145411550998688,
+          "absolute_difference": 5.228444933891296e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -0.7888540625572205,
+          "replay": -0.7888550162315369,
+          "absolute_difference": 9.5367431640625e-07
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -2.705643892288208,
+          "replay": -2.7056407928466797,
+          "absolute_difference": 3.0994415283203125e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-clinical-trial-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": -0.362556517124176,
+          "replay": -0.3625601828098297,
+          "absolute_difference": 3.6656856536865234e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -0.9285184144973755,
+          "replay": -0.9285164475440979,
+          "absolute_difference": 1.9669532775878906e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -3.687229633331299,
+          "replay": -3.6872286796569824,
+          "absolute_difference": 9.5367431640625e-07
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -5.569393157958984,
+          "replay": -5.569389343261719,
+          "absolute_difference": 3.814697265625e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-clinical-trial-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 1.4732706546783447,
+          "replay": 1.4732719659805298,
+          "absolute_difference": 1.3113021850585938e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": 1.3234530687332153,
+          "replay": 1.323459506034851,
+          "absolute_difference": 6.4373016357421875e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -0.8153150677680969,
+          "replay": -0.8153240084648132,
+          "absolute_difference": 8.940696716308594e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -1.4527360200881958,
+          "replay": -1.4527312517166138,
+          "absolute_difference": 4.76837158203125e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -2.251640796661377,
+          "replay": -2.2516396045684814,
+          "absolute_difference": 1.1920928955078125e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-operator-contraction-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 9.731578826904297,
+          "replay": 9.731576919555664,
+          "absolute_difference": 1.9073486328125e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": 9.044748306274414,
+          "replay": 9.044750213623047,
+          "absolute_difference": 1.9073486328125e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": 4.472731113433838,
+          "replay": 4.472734451293945,
+          "absolute_difference": 3.337860107421875e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": 3.112464666366577,
+          "replay": 3.1124627590179443,
+          "absolute_difference": 1.9073486328125e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-operator-contraction-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 2.071474313735962,
+          "replay": 2.071470260620117,
+          "absolute_difference": 4.0531158447265625e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -0.3603883981704712,
+          "replay": -0.3603915274143219,
+          "absolute_difference": 3.129243850708008e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -0.5338653326034546,
+          "replay": -0.533862829208374,
+          "absolute_difference": 2.5033950805664062e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -0.6390340328216553,
+          "replay": -0.6390368938446045,
+          "absolute_difference": 2.86102294921875e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -1.1891130208969116,
+          "replay": -1.1891117095947266,
+          "absolute_difference": 1.3113021850585938e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-sample-loss-limitation-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 9.044123649597168,
+          "replay": 9.0441255569458,
+          "absolute_difference": 1.9073486328125e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": 2.9666569232940674,
+          "replay": 2.9666571617126465,
+          "absolute_difference": 2.384185791015625e-07
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": 1.9738878011703491,
+          "replay": 1.9738874435424805,
+          "absolute_difference": 3.5762786865234375e-07
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -1.7318766117095947,
+          "replay": -1.7318813800811768,
+          "absolute_difference": 4.76837158203125e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -3.009984016418457,
+          "replay": -3.0099875926971436,
+          "absolute_difference": 3.5762786865234375e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-sample-loss-limitation-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": -1.8917824029922485,
+          "replay": -1.891780972480774,
+          "absolute_difference": 1.430511474609375e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -3.5812628269195557,
+          "replay": -3.581263303756714,
+          "absolute_difference": 4.76837158203125e-07
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -1.9145097732543945,
+          "replay": -1.9145146608352661,
+          "absolute_difference": 4.887580871582031e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -2.250936269760132,
+          "replay": -2.250931978225708,
+          "absolute_difference": 4.291534423828125e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -2.894115686416626,
+          "replay": -2.894113063812256,
+          "absolute_difference": 2.6226043701171875e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-training-speed-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 9.105875968933105,
+          "replay": 9.105874061584473,
+          "absolute_difference": 1.9073486328125e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -1.3580069541931152,
+          "replay": -1.3580021858215332,
+          "absolute_difference": 4.76837158203125e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -2.5226898193359375,
+          "replay": -2.5226826667785645,
+          "absolute_difference": 7.152557373046875e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -7.680712699890137,
+          "replay": -7.680713176727295,
+          "absolute_difference": 4.76837158203125e-07
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -7.876095771789551,
+          "replay": -7.876091480255127,
+          "absolute_difference": 4.291534423828125e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-training-speed-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 7.5917229652404785,
+          "replay": 7.591726303100586,
+          "absolute_difference": 3.337860107421875e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -1.0474140644073486,
+          "replay": -1.0474108457565308,
+          "absolute_difference": 3.2186508178710938e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -1.0751686096191406,
+          "replay": -1.075162649154663,
+          "absolute_difference": 5.9604644775390625e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -1.663210153579712,
+          "replay": -1.6632161140441895,
+          "absolute_difference": 5.9604644775390625e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -1.7001668214797974,
+          "replay": -1.7001638412475586,
+          "absolute_difference": 2.9802322387695312e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-universal-contraction-premise-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 4.973276615142822,
+          "replay": 4.973271369934082,
+          "absolute_difference": 5.245208740234375e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": 3.6689178943634033,
+          "replay": 3.668919086456299,
+          "absolute_difference": 1.1920928955078125e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": 3.2414486408233643,
+          "replay": 3.241447687149048,
+          "absolute_difference": 9.5367431640625e-07
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -0.16623592376708984,
+          "replay": -0.16623947024345398,
+          "absolute_difference": 3.546476364135742e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -0.2299007773399353,
+          "replay": -0.2299051433801651,
+          "absolute_difference": 4.366040229797363e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-universal-contraction-premise-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": -0.3892555236816406,
+          "replay": -0.38925090432167053,
+          "absolute_difference": 4.6193599700927734e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -1.9845470190048218,
+          "replay": -1.9845441579818726,
+          "absolute_difference": 2.86102294921875e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -2.0846426486968994,
+          "replay": -2.084641933441162,
+          "absolute_difference": 7.152557373046875e-07
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -2.1590425968170166,
+          "replay": -2.159050941467285,
+          "absolute_difference": 8.344650268554688e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -2.5474531650543213,
+          "replay": -2.5474600791931152,
+          "absolute_difference": 6.9141387939453125e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-value-distribution-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 1.8695604801177979,
+          "replay": 1.8695608377456665,
+          "absolute_difference": 3.5762786865234375e-07
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -0.640152096748352,
+          "replay": -0.6401535868644714,
+          "absolute_difference": 1.4901161193847656e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -0.7184914946556091,
+          "replay": -0.7184928059577942,
+          "absolute_difference": 1.3113021850585938e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -1.026647686958313,
+          "replay": -1.0266518592834473,
+          "absolute_difference": 4.172325134277344e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -1.224960207939148,
+          "replay": -1.224956750869751,
+          "absolute_difference": 3.4570693969726562e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-value-distribution-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": 2.299570083618164,
+          "replay": 2.299569845199585,
+          "absolute_difference": 2.384185791015625e-07
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": 1.2159552574157715,
+          "replay": 1.2159591913223267,
+          "absolute_difference": 3.933906555175781e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": 0.42698973417282104,
+          "replay": 0.42699742317199707,
+          "absolute_difference": 7.68899917602539e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": 0.24550145864486694,
+          "replay": 0.24549943208694458,
+          "absolute_difference": 2.0265579223632812e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": 0.029624618589878082,
+          "replay": 0.029626570641994476,
+          "absolute_difference": 1.952052116394043e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-vehicle-safeguards-en",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": -3.8558437824249268,
+          "replay": -3.8558509349823,
+          "absolute_difference": 7.152557373046875e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -4.506046772003174,
+          "replay": -4.506047248840332,
+          "absolute_difference": 4.76837158203125e-07
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -6.665271282196045,
+          "replay": -6.665274620056152,
+          "absolute_difference": 3.337860107421875e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -8.183503150939941,
+          "replay": -8.183505058288574,
+          "absolute_difference": 1.9073486328125e-06
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -8.515400886535645,
+          "replay": -8.515398979187012,
+          "absolute_difference": 1.9073486328125e-06
+        }
+      ]
+    },
+    {
+      "case_id": "real-holdout-b-vehicle-safeguards-ko",
+      "response_equal": true,
+      "response_fields_equal": {
+        "answer": true,
+        "evidence_ids": true,
+        "sufficiency": true,
+        "abstention_reason": true
+      },
+      "cited_evidence_equal_without_scores": true,
+      "retrieved_evidence_equal_without_scores": true,
+      "context_metadata_equal": true,
+      "fallback_equal": true,
+      "retrieval_score_differences": [
+        {
+          "path": "/0/scores/reranker",
+          "baseline": -2.6006948947906494,
+          "replay": -2.6006884574890137,
+          "absolute_difference": 6.4373016357421875e-06
+        },
+        {
+          "path": "/1/scores/reranker",
+          "baseline": -3.1202895641326904,
+          "replay": -3.1202874183654785,
+          "absolute_difference": 2.1457672119140625e-06
+        },
+        {
+          "path": "/2/scores/reranker",
+          "baseline": -6.222036838531494,
+          "replay": -6.222038745880127,
+          "absolute_difference": 1.9073486328125e-06
+        },
+        {
+          "path": "/3/scores/reranker",
+          "baseline": -6.411885738372803,
+          "replay": -6.411884784698486,
+          "absolute_difference": 9.5367431640625e-07
+        },
+        {
+          "path": "/4/scores/reranker",
+          "baseline": -6.536861896514893,
+          "replay": -6.536867141723633,
+          "absolute_difference": 5.245208740234375e-06
+        }
+      ]
+    }
+  ]
+}

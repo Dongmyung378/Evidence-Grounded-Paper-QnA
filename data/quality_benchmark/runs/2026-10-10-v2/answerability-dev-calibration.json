@@ -1,0 +1,1356 @@
+{
+  "schema_version": 1,
+  "execution_mode": "real_models",
+  "split": "dev",
+  "benchmark_id": "quality-synthetic-v1",
+  "purpose": "synthetic_integration_only",
+  "gold_used_in_runtime": false,
+  "labels_used_for_threshold_fitting_only": true,
+  "independent_human_review": false,
+  "real_paper_accuracy_claim": false,
+  "predictions_sha256": "2ee0f0e227625eb46de696b70275a57e53fac66d6ee0e1d5037ea52a24e9ae7f",
+  "implementation_sha256": "e8d552fe78f40d435789b57772f0dd5f9fff8b54e28aa24efc28983730b55a6b",
+  "query_transform": "source_derived_topic_debias_v2",
+  "retention_predictions_sha256": "c82c62340b14b07c7dbde0b69c9d22449dd2faf92d73523ae77a26cad5efaccc",
+  "additional_retention_rows": [
+    {
+      "case_id": "q-005-en",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "How does the proposed two-step hyperparameter transfer framework work?",
+      "language": "en",
+      "signals": {
+        "query": "How does the proposed two-step hyperparameter transfer framework work",
+        "natural_query": "How does the proposed two-step hyperparameter transfer framework work?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 8.492997169494629,
+        "focused_request_max_score": 8.492997169494629,
+        "full_question_max_score": 8.534300804138184,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-045-ko",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "모델 폭이 달라질 때 학습률 전이와 관련된 주요 결과는 무엇인가?",
+      "language": "ko",
+      "signals": {
+        "query": "모델 폭이 달라질 때 학습률 전이와 관련된 주요 결과는 무엇인가",
+        "natural_query": "모델 폭이 달라질 때 학습률 전이와 관련된 주요 결과는 무엇인가?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 1.796010971069336,
+        "focused_request_max_score": 1.796010971069336,
+        "full_question_max_score": 1.9021170139312744,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-007-en",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "What is the main focus of this paper's review of text summarization?",
+      "language": "en",
+      "signals": {
+        "query": "What is the main focus of this paper's review of text summarization",
+        "natural_query": "What is the main focus of this paper's review of text summarization?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 9.80998706817627,
+        "focused_request_max_score": 9.84437084197998,
+        "full_question_max_score": 9.80998706817627,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-007-ko",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "이 논문이 텍스트 요약을 검토하면서 중점적으로 다루는 내용은 무엇인가?",
+      "language": "ko",
+      "signals": {
+        "query": "다루는 내용은 무엇인가",
+        "natural_query": "이 논문이 텍스트 요약을 검토하면서 중점적으로 다루는 내용은 무엇인가?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": -2.7925057411193848,
+        "focused_request_max_score": -2.7925057411193848,
+        "full_question_max_score": 0.6460643410682678,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-031-en",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "What trade-offs between inference speed, memory usage, and accuracy are discussed?",
+      "language": "en",
+      "signals": {
+        "query": "What trade-offs between inference speed, memory usage, and accuracy are discussed",
+        "natural_query": "What trade-offs between inference speed, memory usage, and accuracy are discussed?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [
+          "memory",
+          "latency"
+        ],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": -3.3457908630371094,
+        "focused_request_max_score": -3.3457908630371094,
+        "full_question_max_score": -3.3382585048675537,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-048-ko",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "서버 환경의 INT8 추론에 PyTorch 네이티브 스택을 사용하는 것에 대한 주요 결론은 무엇인가?",
+      "language": "ko",
+      "signals": {
+        "query": "서버 환경의 INT8 추론에 PyTorch 네이티브 스택을 사용하는 것에 대한 주요 결론은 무엇인가",
+        "natural_query": "서버 환경의 INT8 추론에 PyTorch 네이티브 스택을 사용하는 것에 대한 주요 결론은 무엇인가?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 5.528635501861572,
+        "focused_request_max_score": 5.528635501861572,
+        "full_question_max_score": 5.569747447967529,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-015-en",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "What evidence shows that the proposed approach improves continual anomaly detection?",
+      "language": "en",
+      "signals": {
+        "query": "What evidence shows that the proposed approach improves continual anomaly detection",
+        "natural_query": "What evidence shows that the proposed approach improves continual anomaly detection?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 0.5170202255249023,
+        "focused_request_max_score": 0.5170202255249023,
+        "full_question_max_score": 0.5528492331504822,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-049-ko",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 무엇인가?",
+      "language": "ko",
+      "signals": {
+        "query": "지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 무엇인가",
+        "natural_query": "지속적 이상 탐지에서 메모리 효율성에 대한 주요 결론은 무엇인가?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [
+          "memory"
+        ],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 0.9497097134590149,
+        "focused_request_max_score": 1.036306381225586,
+        "full_question_max_score": 0.9497097134590149,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-017-en",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "How does the paper connect representation learning with process inference?",
+      "language": "en",
+      "signals": {
+        "query": "How does the paper connect representation learning with process inference",
+        "natural_query": "How does the paper connect representation learning with process inference?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 0.5661693215370178,
+        "focused_request_max_score": 0.5661693215370178,
+        "full_question_max_score": 0.6152099967002869,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-017-ko",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "이 논문은 표현 학습과 과정 추론을 어떻게 연결하는가?",
+      "language": "ko",
+      "signals": {
+        "query": "이 논문은 표현 학습과 과정 추론을 어떻게 연결하는가",
+        "natural_query": "이 논문은 표현 학습과 과정 추론을 어떻게 연결하는가?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": -1.6265835762023926,
+        "focused_request_max_score": -1.6265835762023926,
+        "full_question_max_score": -1.5608394145965576,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-034-en",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "What assumptions are required for the main result about logarithmic Voronoi cells?",
+      "language": "en",
+      "signals": {
+        "query": "What assumptions are required for the main result about logarithmic Voronoi cells",
+        "natural_query": "What assumptions are required for the main result about logarithmic Voronoi cells?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 3.038745641708374,
+        "focused_request_max_score": 3.038745641708374,
+        "full_question_max_score": 3.1413373947143555,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-034-ko",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "로그 Voronoi cell에 대한 주요 결과를 위해 어떤 가정이 필요한가?",
+      "language": "ko",
+      "signals": {
+        "query": "로그 Voronoi cell에 대한 주요 결과를 위해 어떤 가정이 필요한가",
+        "natural_query": "로그 Voronoi cell에 대한 주요 결과를 위해 어떤 가정이 필요한가?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 1.3956197500228882,
+        "focused_request_max_score": 1.4758129119873047,
+        "full_question_max_score": 1.3956197500228882,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-041-en",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "How is the performance of GOAG evaluated?",
+      "language": "en",
+      "signals": {
+        "query": "How is the performance of GOAG evaluated",
+        "natural_query": "How is the performance of GOAG evaluated?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 5.785873889923096,
+        "focused_request_max_score": 5.785873889923096,
+        "full_question_max_score": 5.820481300354004,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-041-ko",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "GOAG의 성능은 어떻게 평가되는가?",
+      "language": "ko",
+      "signals": {
+        "query": "GOAG의 성능은 어떻게 평가되는가",
+        "natural_query": "GOAG의 성능은 어떻게 평가되는가?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 3.999051332473755,
+        "focused_request_max_score": 4.087998390197754,
+        "full_question_max_score": 3.999051332473755,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-042-en",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "How is the Microlensify classifier evaluated on TESS light curves?",
+      "language": "en",
+      "signals": {
+        "query": "How is the Microlensify classifier evaluated on TESS light curves",
+        "natural_query": "How is the Microlensify classifier evaluated on TESS light curves?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 9.703751564025879,
+        "focused_request_max_score": 9.769768714904785,
+        "full_question_max_score": 9.703751564025879,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-042-ko",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "Microlensify 분류기는 TESS 광도 곡선에서 어떻게 평가되는가?",
+      "language": "ko",
+      "signals": {
+        "query": "Microlensify 분류기는 TESS 광도 곡선에서 어떻게 평가되는가",
+        "natural_query": "Microlensify 분류기는 TESS 광도 곡선에서 어떻게 평가되는가?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 8.605332374572754,
+        "focused_request_max_score": 8.64069652557373,
+        "full_question_max_score": 8.605332374572754,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-043-en",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "What experiments are used to evaluate multi-source distributionally robust graph learning?",
+      "language": "en",
+      "signals": {
+        "query": "What experiments are used to evaluate multi-source distributionally robust graph learning",
+        "natural_query": "What experiments are used to evaluate multi-source distributionally robust graph learning?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 8.221104621887207,
+        "focused_request_max_score": 8.364980697631836,
+        "full_question_max_score": 8.221104621887207,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "q-043-ko",
+      "split": "dev",
+      "answerability": "answerable",
+      "question": "다중 소스 distributionally robust graph learning을 평가하기 위해 어떤 실험이 사용되는가?",
+      "language": "ko",
+      "signals": {
+        "query": "다중 소스 distributionally robust graph learning을 평가하기 위해 어떤 실험이 사용되는가",
+        "natural_query": "다중 소스 distributionally robust graph learning을 평가하기 위해 어떤 실험이 사용되는가?",
+        "removed_anchors": [],
+        "removed_title_phrases": [],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 4.279819965362549,
+        "focused_request_max_score": 4.404145240783691,
+        "full_question_max_score": 4.279819965362549,
+        "evidence_count": 5
+      }
+    }
+  ],
+  "reranker": {
+    "name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+    "revision": "1427fd652930e4ba29e8149678df786c240d8825",
+    "runtime_role": "candidate_and_sentence_reranking"
+  },
+  "threshold_fit": {
+    "selected": {
+      "threshold": -3.405527949333191,
+      "answerable_group_retention": 1.0,
+      "unsupported_group_refusal_recall": 0.8,
+      "additional_dev_retention": true
+    },
+    "minimum_answerable_group_retention": 0.95,
+    "selection_priority": "maximum_grouped_refusal_then_strictest_threshold_within_declared_dev_retention",
+    "fully_separable_by_relevance_threshold": false,
+    "fully_separable_by_combined_policy": false,
+    "additional_answerable_dev_constraints": 18,
+    "candidate_thresholds": [
+      {
+        "threshold": -6.192493008209229,
+        "answerable_group_retention": 1.0,
+        "unsupported_group_refusal_recall": 0.8,
+        "additional_dev_retention": true
+      },
+      {
+        "threshold": -6.169562816619873,
+        "answerable_group_retention": 1.0,
+        "unsupported_group_refusal_recall": 0.8,
+        "additional_dev_retention": true
+      },
+      {
+        "threshold": -6.120573043823242,
+        "answerable_group_retention": 1.0,
+        "unsupported_group_refusal_recall": 0.8,
+        "additional_dev_retention": true
+      },
+      {
+        "threshold": -6.010941028594971,
+        "answerable_group_retention": 1.0,
+        "unsupported_group_refusal_recall": 0.8,
+        "additional_dev_retention": true
+      },
+      {
+        "threshold": -5.629074573516846,
+        "answerable_group_retention": 1.0,
+        "unsupported_group_refusal_recall": 0.8,
+        "additional_dev_retention": true
+      },
+      {
+        "threshold": -4.602815866470337,
+        "answerable_group_retention": 1.0,
+        "unsupported_group_refusal_recall": 0.8,
+        "additional_dev_retention": true
+      },
+      {
+        "threshold": -3.6700586080551147,
+        "answerable_group_retention": 1.0,
+        "unsupported_group_refusal_recall": 0.8,
+        "additional_dev_retention": true
+      },
+      {
+        "threshold": -3.405527949333191,
+        "answerable_group_retention": 1.0,
+        "unsupported_group_refusal_recall": 0.8,
+        "additional_dev_retention": true
+      },
+      {
+        "threshold": -3.333142876625061,
+        "answerable_group_retention": 1.0,
+        "unsupported_group_refusal_recall": 0.8,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": -3.2073071002960205,
+        "answerable_group_retention": 1.0,
+        "unsupported_group_refusal_recall": 0.8,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": -2.9433125257492065,
+        "answerable_group_retention": 1.0,
+        "unsupported_group_refusal_recall": 0.8,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": -2.523260235786438,
+        "answerable_group_retention": 1.0,
+        "unsupported_group_refusal_recall": 0.8,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": -1.940299153327942,
+        "answerable_group_retention": 1.0,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": -1.553063988685608,
+        "answerable_group_retention": 1.0,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": -1.4534305334091187,
+        "answerable_group_retention": 0.8,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": -1.423911690711975,
+        "answerable_group_retention": 0.6,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": -1.2857180833816528,
+        "answerable_group_retention": 0.6,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": -0.6892311722040176,
+        "answerable_group_retention": 0.6,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 0.1447436660528183,
+        "answerable_group_retention": 0.4,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 0.5415947735309601,
+        "answerable_group_retention": 0.4,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 0.7579395174980164,
+        "answerable_group_retention": 0.4,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 1.1726647317409515,
+        "answerable_group_retention": 0.4,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 1.595815360546112,
+        "answerable_group_retention": 0.4,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 2.3684126138687134,
+        "answerable_group_retention": 0.4,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 2.9897799491882324,
+        "answerable_group_retention": 0.4,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 3.5188984870910645,
+        "answerable_group_retention": 0.4,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 4.139435648918152,
+        "answerable_group_retention": 0.4,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 4.9042277336120605,
+        "answerable_group_retention": 0.4,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 5.657254695892334,
+        "answerable_group_retention": 0.4,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 5.8233418464660645,
+        "answerable_group_retention": 0.4,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 6.483068943023682,
+        "answerable_group_retention": 0.2,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 7.6632163524627686,
+        "answerable_group_retention": 0.0,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 8.357050895690918,
+        "answerable_group_retention": 0.0,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 8.549164772033691,
+        "answerable_group_retention": 0.0,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 9.046675205230713,
+        "answerable_group_retention": 0.0,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 9.595884799957275,
+        "answerable_group_retention": 0.0,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 9.756869316101074,
+        "answerable_group_retention": 0.0,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 9.992069244384766,
+        "answerable_group_retention": 0.0,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      },
+      {
+        "threshold": 10.174152420593261,
+        "answerable_group_retention": 0.0,
+        "unsupported_group_refusal_recall": 1.0,
+        "additional_dev_retention": false
+      }
+    ],
+    "answerable_groups": 5,
+    "unsupported_or_false_premise_groups": 5
+  },
+  "rows": [
+    {
+      "case_id": "fixture-alder-fact-en",
+      "meaning_id": "fixture-alder-fact",
+      "split": "dev",
+      "language": "en",
+      "answerability": "answerable",
+      "question": "What method does the Alder sensor study use?",
+      "signals": {
+        "query": "What method does the study use",
+        "natural_query": "What method does the study use?",
+        "removed_anchors": [
+          "Alder"
+        ],
+        "removed_title_phrases": [
+          "Alder sensor study"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Alder"
+        ],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": -1.4205067157745361,
+        "focused_request_max_score": -1.4205067157745361,
+        "full_question_max_score": -1.176400899887085,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-alder-fact-ko",
+      "meaning_id": "fixture-alder-fact",
+      "split": "dev",
+      "language": "ko",
+      "answerability": "answerable",
+      "question": "Alder 센서 연구는 어떤 방법을 사용하나요?",
+      "signals": {
+        "query": "연구는 어떤 방법을 사용하나요",
+        "natural_query": "연구는 어떤 방법을 사용하나요?",
+        "removed_anchors": [
+          "Alder"
+        ],
+        "removed_title_phrases": [
+          "Alder 센서 연구는"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Alder"
+        ],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": -1.427316665649414,
+        "focused_request_max_score": -1.427316665649414,
+        "full_question_max_score": -1.3049722909927368,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-alder-numeric-en",
+      "meaning_id": "fixture-alder-numeric",
+      "split": "dev",
+      "language": "en",
+      "answerability": "answerable",
+      "question": "What classification accuracy did the proposed Alder method report?",
+      "signals": {
+        "query": "What classification accuracy did the proposed method report",
+        "natural_query": "What classification accuracy did the proposed method report?",
+        "removed_anchors": [
+          "Alder"
+        ],
+        "removed_title_phrases": [
+          "Alder method"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Alder"
+        ],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 10.174151420593262,
+        "focused_request_max_score": 10.174151420593262,
+        "full_question_max_score": 10.222294807434082,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-alder-numeric-ko",
+      "meaning_id": "fixture-alder-numeric",
+      "split": "dev",
+      "language": "ko",
+      "answerability": "answerable",
+      "question": "제안된 Alder 방법이 보고한 분류 정확도는 얼마인가요?",
+      "signals": {
+        "query": "제안된 방법이 보고한 분류 정확도는 얼마인가요",
+        "natural_query": "제안된 방법이 보고한 분류 정확도는 얼마인가요?",
+        "removed_anchors": [
+          "Alder"
+        ],
+        "removed_title_phrases": [
+          "Alder 방법이"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Alder"
+        ],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 7.10532808303833,
+        "focused_request_max_score": 7.10532808303833,
+        "full_question_max_score": 7.353854656219482,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-alder-list-en",
+      "meaning_id": "fixture-alder-list",
+      "split": "dev",
+      "language": "en",
+      "answerability": "answerable",
+      "question": "Which three inputs are used by the Alder model?",
+      "signals": {
+        "query": "Which three inputs are used",
+        "natural_query": "Which three inputs are used by the model?",
+        "removed_anchors": [
+          "Alder"
+        ],
+        "removed_title_phrases": [
+          "Alder model"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Alder"
+        ],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 5.860809803009033,
+        "focused_request_max_score": 5.860809803009033,
+        "full_question_max_score": 10.808064460754395,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-alder-list-ko",
+      "meaning_id": "fixture-alder-list",
+      "split": "dev",
+      "language": "ko",
+      "answerability": "answerable",
+      "question": "Alder 모델이 사용하는 세 가지 입력은 무엇인가요?",
+      "signals": {
+        "query": "모델이 사용하는 세 가지 입력은 무엇인가요",
+        "natural_query": "모델이 사용하는 세 가지 입력은 무엇인가요?",
+        "removed_anchors": [
+          "Alder"
+        ],
+        "removed_title_phrases": [
+          "Alder 모델이"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Alder"
+        ],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 9.488018035888672,
+        "focused_request_max_score": 9.50966739654541,
+        "full_question_max_score": 9.488018035888672,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-alder-comparison-en",
+      "meaning_id": "fixture-alder-comparison",
+      "split": "dev",
+      "language": "en",
+      "answerability": "answerable",
+      "question": "How does the Alder method compare with the evaluated baseline in accuracy?",
+      "signals": {
+        "query": "How does the method compare with the evaluated baseline in accuracy",
+        "natural_query": "How does the method compare with the evaluated baseline in accuracy?",
+        "removed_anchors": [
+          "Alder"
+        ],
+        "removed_title_phrases": [
+          "Alder method"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Alder"
+        ],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": 2.940814256668091,
+        "focused_request_max_score": 2.940814256668091,
+        "full_question_max_score": 3.060943365097046,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-alder-comparison-ko",
+      "meaning_id": "fixture-alder-comparison",
+      "split": "dev",
+      "language": "ko",
+      "answerability": "answerable",
+      "question": "Alder 방법과 평가된 기준 모델의 정확도는 어떻게 다른가요?",
+      "signals": {
+        "query": "방법과 평가된 기준 모델의 정확도는 어떻게 다른가요",
+        "natural_query": "방법과 평가된 기준 모델의 정확도는 어떻게 다른가요?",
+        "removed_anchors": [
+          "Alder"
+        ],
+        "removed_title_phrases": [
+          "Alder 방법과"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Alder"
+        ],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": -0.22753289341926575,
+        "focused_request_max_score": -0.22753289341926575,
+        "full_question_max_score": -0.06229207664728165,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-alder-limitation-en",
+      "meaning_id": "fixture-alder-limitation",
+      "split": "dev",
+      "language": "en",
+      "answerability": "answerable",
+      "question": "What generalization limitation does the Alder study report?",
+      "signals": {
+        "query": "What generalization limitation does the study report",
+        "natural_query": "What generalization limitation does the study report?",
+        "removed_anchors": [
+          "Alder"
+        ],
+        "removed_title_phrases": [
+          "Alder study"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Alder"
+        ],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": -1.1509294509887695,
+        "focused_request_max_score": -1.1509294509887695,
+        "full_question_max_score": -1.0361206531524658,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-alder-limitation-ko",
+      "meaning_id": "fixture-alder-limitation",
+      "split": "dev",
+      "language": "ko",
+      "answerability": "answerable",
+      "question": "Alder 연구가 보고한 일반화 한계는 무엇인가요?",
+      "signals": {
+        "query": "연구가 보고한 일반화 한계는 무엇인가요",
+        "natural_query": "연구가 보고한 일반화 한계는 무엇인가요?",
+        "removed_anchors": [
+          "Alder"
+        ],
+        "removed_title_phrases": [
+          "Alder 연구가"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Alder"
+        ],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": -1.4795444011688232,
+        "focused_request_max_score": -1.4795444011688232,
+        "full_question_max_score": -1.4700665473937988,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-birch-fact-en",
+      "meaning_id": "fixture-birch-fact",
+      "split": "dev",
+      "language": "en",
+      "answerability": "unsupported",
+      "question": "Which university funded the Birch sensor study?",
+      "signals": {
+        "query": "Which university funded the study",
+        "natural_query": "Which university funded the study?",
+        "removed_anchors": [
+          "Birch"
+        ],
+        "removed_title_phrases": [
+          "Birch sensor study"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Birch"
+        ],
+        "requested_attributes": [
+          "funding"
+        ],
+        "missing_requested_attributes": [
+          "funding"
+        ],
+        "requested_attribute_coverage": false,
+        "max_aspect_score": -6.1924920082092285,
+        "focused_request_max_score": -6.1924920082092285,
+        "full_question_max_score": -6.178464412689209,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-birch-fact-ko",
+      "meaning_id": "fixture-birch-fact",
+      "split": "dev",
+      "language": "ko",
+      "answerability": "unsupported",
+      "question": "Birch 센서 연구에 자금을 지원한 대학은 어디인가요?",
+      "signals": {
+        "query": "연구에 자금을 지원한 대학은 어디인가요",
+        "natural_query": "연구에 자금을 지원한 대학은 어디인가요?",
+        "removed_anchors": [
+          "Birch"
+        ],
+        "removed_title_phrases": [
+          "Birch 센서 연구에"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Birch"
+        ],
+        "requested_attributes": [
+          "funding"
+        ],
+        "missing_requested_attributes": [
+          "funding"
+        ],
+        "requested_attribute_coverage": false,
+        "max_aspect_score": -5.330779552459717,
+        "focused_request_max_score": -5.294998645782471,
+        "full_question_max_score": -5.330779552459717,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-birch-numeric-en",
+      "meaning_id": "fixture-birch-numeric",
+      "split": "dev",
+      "language": "en",
+      "answerability": "unsupported",
+      "question": "How many human participants were enrolled in the Birch sensor study?",
+      "signals": {
+        "query": "How many human participants were enrolled in the study",
+        "natural_query": "How many human participants were enrolled in the study?",
+        "removed_anchors": [
+          "Birch"
+        ],
+        "removed_title_phrases": [
+          "Birch sensor study"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Birch"
+        ],
+        "requested_attributes": [
+          "human_participants"
+        ],
+        "missing_requested_attributes": [
+          "human_participants"
+        ],
+        "requested_attribute_coverage": false,
+        "max_aspect_score": -6.146633625030518,
+        "focused_request_max_score": -6.146633625030518,
+        "full_question_max_score": -6.093411922454834,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-birch-numeric-ko",
+      "meaning_id": "fixture-birch-numeric",
+      "split": "dev",
+      "language": "ko",
+      "answerability": "unsupported",
+      "question": "Birch 센서 연구에 등록된 인간 참여자는 몇 명인가요?",
+      "signals": {
+        "query": "연구에 등록된 인간 참여자는 몇 명인가요",
+        "natural_query": "연구에 등록된 인간 참여자는 몇 명인가요?",
+        "removed_anchors": [
+          "Birch"
+        ],
+        "removed_title_phrases": [
+          "Birch 센서 연구에"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Birch"
+        ],
+        "requested_attributes": [
+          "human_participants"
+        ],
+        "missing_requested_attributes": [
+          "human_participants"
+        ],
+        "requested_attribute_coverage": false,
+        "max_aspect_score": -5.927369594573975,
+        "focused_request_max_score": -5.927369594573975,
+        "full_question_max_score": -5.71394681930542,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-birch-list-en",
+      "meaning_id": "fixture-birch-list",
+      "split": "dev",
+      "language": "en",
+      "answerability": "false_premise",
+      "question": "Which clinical symptoms were eliminated by the Birch model's proven cancer cure?",
+      "signals": {
+        "query": "Which clinical symptoms were eliminated",
+        "natural_query": "Which clinical symptoms were eliminated by the model's proven cancer cure?",
+        "removed_anchors": [
+          "Birch"
+        ],
+        "removed_title_phrases": [
+          "Birch model"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Birch"
+        ],
+        "requested_attributes": [
+          "symptoms"
+        ],
+        "missing_requested_attributes": [
+          "symptoms"
+        ],
+        "requested_attribute_coverage": false,
+        "max_aspect_score": -3.0941193103790283,
+        "focused_request_max_score": -2.6756513118743896,
+        "full_question_max_score": -3.0941193103790283,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-birch-list-ko",
+      "meaning_id": "fixture-birch-list",
+      "split": "dev",
+      "language": "ko",
+      "answerability": "false_premise",
+      "question": "Birch 모델의 입증된 암 치료로 없어진 임상 증상은 무엇인가요?",
+      "signals": {
+        "query": "없어진 임상 증상은 무엇인가요",
+        "natural_query": "모델의 입증된 암 치료로 없어진 임상 증상은 무엇인가요?",
+        "removed_anchors": [
+          "Birch"
+        ],
+        "removed_title_phrases": [
+          "Birch 모델의"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Birch"
+        ],
+        "requested_attributes": [
+          "symptoms"
+        ],
+        "missing_requested_attributes": [
+          "symptoms"
+        ],
+        "requested_attribute_coverage": false,
+        "max_aspect_score": -3.3204948902130127,
+        "focused_request_max_score": -3.3204948902130127,
+        "full_question_max_score": -2.8329899311065674,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-birch-comparison-en",
+      "meaning_id": "fixture-birch-comparison",
+      "split": "dev",
+      "language": "en",
+      "answerability": "false_premise",
+      "question": "How much better was the Birch method than every existing method worldwide?",
+      "signals": {
+        "query": "How much better was the method than every existing method worldwide",
+        "natural_query": "How much better was the method than every existing method worldwide?",
+        "removed_anchors": [
+          "Birch"
+        ],
+        "removed_title_phrases": [
+          "Birch method"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Birch"
+        ],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": -3.4652650356292725,
+        "focused_request_max_score": -3.465034008026123,
+        "full_question_max_score": -3.4652650356292725,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-birch-comparison-ko",
+      "meaning_id": "fixture-birch-comparison",
+      "split": "dev",
+      "language": "ko",
+      "answerability": "false_premise",
+      "question": "Birch 방법은 전 세계 모든 기존 방법보다 얼마나 뛰어났나요?",
+      "signals": {
+        "query": "방법은 전 세계 모든 기존 방법보다 얼마나 뛰어났나요",
+        "natural_query": "방법은 전 세계 모든 기존 방법보다 얼마나 뛰어났나요?",
+        "removed_anchors": [
+          "Birch"
+        ],
+        "removed_title_phrases": [
+          "Birch 방법은"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Birch"
+        ],
+        "requested_attributes": [],
+        "missing_requested_attributes": [],
+        "requested_attribute_coverage": true,
+        "max_aspect_score": -2.254014730453491,
+        "focused_request_max_score": -2.2321927547454834,
+        "full_question_max_score": -2.254014730453491,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-birch-limitation-en",
+      "meaning_id": "fixture-birch-limitation",
+      "split": "dev",
+      "language": "en",
+      "answerability": "unsupported",
+      "question": "What legal safeguards were deployed by the Birch sensor study?",
+      "signals": {
+        "query": "What legal safeguards were deployed",
+        "natural_query": "What legal safeguards were deployed by the study?",
+        "removed_anchors": [
+          "Birch"
+        ],
+        "removed_title_phrases": [
+          "Birch sensor study"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Birch"
+        ],
+        "requested_attributes": [
+          "legal_safeguards"
+        ],
+        "missing_requested_attributes": [
+          "legal_safeguards"
+        ],
+        "requested_attribute_coverage": false,
+        "max_aspect_score": -6.094512462615967,
+        "focused_request_max_score": -5.60781717300415,
+        "full_question_max_score": -6.094512462615967,
+        "evidence_count": 5
+      }
+    },
+    {
+      "case_id": "fixture-birch-limitation-ko",
+      "meaning_id": "fixture-birch-limitation",
+      "split": "dev",
+      "language": "ko",
+      "answerability": "unsupported",
+      "question": "Birch 센서 연구는 어떤 법적 보호 장치를 적용했나요?",
+      "signals": {
+        "query": "연구는 어떤 법적 보호 장치를 적용했나요",
+        "natural_query": "연구는 어떤 법적 보호 장치를 적용했나요?",
+        "removed_anchors": [
+          "Birch"
+        ],
+        "removed_title_phrases": [
+          "Birch 센서 연구는"
+        ],
+        "has_specific_aspect": true,
+        "score_policy": "minimum_of_full_and_focused_request",
+        "source_anchors_masked": [
+          "Birch"
+        ],
+        "requested_attributes": [
+          "legal_safeguards"
+        ],
+        "missing_requested_attributes": [
+          "legal_safeguards"
+        ],
+        "requested_attribute_coverage": false,
+        "max_aspect_score": -3.874852180480957,
+        "focused_request_max_score": -3.874852180480957,
+        "full_question_max_score": -3.7774722576141357,
+        "evidence_count": 5
+      }
+    }
+  ],
+  "retention_constraints_provenance": {
+    "role": "previously_declared_real_paper_development_retention_only",
+    "input": "data/quality_benchmark/runs/2026-10-10-v2/answerability-retention-dev-inputs.json",
+    "source": "data/evaluation/answer_evidence_inputs.json",
+    "source_sha256": "701cfe5ae09d9c9247b96b7a3b789a58165bafe9c842d68173b3fd1ff6a39ea0",
+    "source_cases": 20,
+    "retention_cases": 18,
+    "selection_policy": "retain every existing source-answerable DEV case accepted by the unchanged pre-retrieval threshold",
+    "minimum_top_reranker_score": -3.35,
+    "pre_retrieval_policy_sha256": "58b37d6f6a8f259cecd3bfef9441d6827858e7766027b493f8055c1ea6f12157",
+    "excluded_pre_retrieval_cases": [
+      {
+        "case_id": "q-001-en",
+        "top_reranker_score": -5.544944763183594,
+        "reason": "pre_retrieval_gate_rejects"
+      },
+      {
+        "case_id": "q-001-ko",
+        "top_reranker_score": -4.118329048156738,
+        "reason": "pre_retrieval_gate_rejects"
+      }
+    ],
+    "independent_holdout": false
+  },
+  "evaluation_boundary": {
+    "synthetic_holdout_used_for_fitting": false,
+    "new_real_paper_holdout_read_or_used": false,
+    "previously_observed_synthetic_holdout_is_development_material": true,
+    "relevance_and_attribute_presence_do_not_prove_answer_entailment": true
+  }
+}

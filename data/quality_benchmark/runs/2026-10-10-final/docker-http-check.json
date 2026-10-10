@@ -1,0 +1,516 @@
+{
+  "schema_version": 1,
+  "scope": "authored_synthetic_pdf_network_integration",
+  "created_at": "2026-10-10T04:55:13.775063+00:00",
+  "passed": true,
+  "execution_kind": "network_api",
+  "health": {
+    "status": "ok",
+    "service": "evidence-grounded-paper-qna",
+    "version": "0.41.0",
+    "seed": 378,
+    "storage": "ok",
+    "question_engine": "lazy",
+    "papers": 0,
+    "jobs": {
+      "queued": 0,
+      "running": 0,
+      "completed": 0,
+      "failed": 0
+    }
+  },
+  "analysis": {
+    "job_id": "job-50b572bdcd714921a2dd2cf4104050f1",
+    "paper_id": "paper-5c970ee6dc894cc4a59874f20fcb2aaa",
+    "status": "completed",
+    "stage": "parsing_and_chunking",
+    "seed": 378,
+    "created_at": "2026-10-10T04:54:14.272640+00:00",
+    "updated_at": "2026-10-10T04:54:14.298235+00:00",
+    "page_count": 6,
+    "text_page_count": 6,
+    "chunk_count": 6,
+    "warning_count": 3,
+    "error_code": null,
+    "error_message": null
+  },
+  "results": [
+    {
+      "case_id": "numeric-en",
+      "passed": true,
+      "http_wall_seconds": 14.760234,
+      "response": {
+        "paper_id": "paper-5c970ee6dc894cc4a59874f20fcb2aaa",
+        "question": "What classification accuracy did the proposed Alder method report?",
+        "question_language": "en",
+        "answer": "The proposed Alder method achieved 85% classification accuracy on a fixed test set of 240 sensor observations. This result concerns only the evaluated test set. The baseline achieved 80% accuracy on the same test set.",
+        "sufficiency": "sufficient",
+        "abstention_reason": null,
+        "evidence": [
+          {
+            "evidence_id": "ev-01-paper-5c970ee6dc894cc4a59874f20fcb2aaa-p003-c001",
+            "page": 3,
+            "section": "3 Results",
+            "text": "3 Results The proposed Alder method achieved 85% classification accuracy on a fixed test set of 240 sensor observations. This result concerns only the evaluated test set.",
+            "locator": {
+              "page_label": "p. 3",
+              "section": "3 Results",
+              "chunk_id": "paper-5c970ee6dc894cc4a59874f20fcb2aaa-p003-c001"
+            }
+          },
+          {
+            "evidence_id": "ev-02-paper-5c970ee6dc894cc4a59874f20fcb2aaa-p005-c001",
+            "page": 5,
+            "section": "3 Results",
+            "text": "5 Baseline The Alder study compared the proposed model with one baseline classifier. The baseline achieved 80% accuracy on the same test set. No worldwide comparison was performed.",
+            "locator": {
+              "page_label": "p. 5",
+              "section": "3 Results",
+              "chunk_id": "paper-5c970ee6dc894cc4a59874f20fcb2aaa-p005-c001"
+            }
+          }
+        ],
+        "runtime_seconds": 13.683225,
+        "runtime": {
+          "total_seconds": 13.683225,
+          "retrieval_seconds": 0.942053,
+          "generation_seconds": 0.195242,
+          "generation_attempts": 0,
+          "llm_device": null,
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": null,
+          "pipeline_seconds": 1.137486,
+          "activation_seconds": 11.332067,
+          "lock_wait_seconds": 2e-06,
+          "request_mode": "cold",
+          "stage_timings": {
+            "retrieval": {
+              "bm25_seconds": 0.000724,
+              "dense_query_encoding_seconds": 0.037495,
+              "dense_search_seconds": 5.2e-05,
+              "fusion_seconds": 3.5e-05,
+              "rerank_seconds": 0.899042,
+              "evidence_selection_seconds": 0.004499,
+              "total_seconds": 0.941892
+            },
+            "generation": {
+              "generator_activation_seconds": 0.0,
+              "sentence_selector_activation_seconds": 0.0,
+              "sentence_selection_seconds": 0.188081,
+              "answer_construction_seconds": 0.000329,
+              "translation_seconds": 0.0,
+              "generation_inference_seconds": 0.0,
+              "answer_validation_seconds": 0.006801
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "list-en",
+      "passed": true,
+      "http_wall_seconds": 0.274182,
+      "response": {
+        "paper_id": "paper-5c970ee6dc894cc4a59874f20fcb2aaa",
+        "question": "Which three inputs are used by the Alder model?",
+        "question_language": "en",
+        "answer": "4 Inputs The three inputs to the Alder model are temperature, pressure, and vibration. All three input channels are required for the reported evaluation.",
+        "sufficiency": "sufficient",
+        "abstention_reason": null,
+        "evidence": [
+          {
+            "evidence_id": "ev-01-paper-5c970ee6dc894cc4a59874f20fcb2aaa-p004-c001",
+            "page": 4,
+            "section": "3 Results",
+            "text": "4 Inputs The three inputs to the Alder model are temperature, pressure, and vibration. All three input channels are required for the reported evaluation.",
+            "locator": {
+              "page_label": "p. 4",
+              "section": "3 Results",
+              "chunk_id": "paper-5c970ee6dc894cc4a59874f20fcb2aaa-p004-c001"
+            }
+          }
+        ],
+        "runtime_seconds": 0.253286,
+        "runtime": {
+          "total_seconds": 0.253286,
+          "retrieval_seconds": 0.088091,
+          "generation_seconds": 0.163228,
+          "generation_attempts": 0,
+          "llm_device": null,
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": null,
+          "pipeline_seconds": 0.251523,
+          "activation_seconds": 0.0,
+          "lock_wait_seconds": 2e-06,
+          "request_mode": "warm",
+          "stage_timings": {
+            "retrieval": {
+              "bm25_seconds": 0.000213,
+              "dense_query_encoding_seconds": 0.026064,
+              "dense_search_seconds": 5.4e-05,
+              "fusion_seconds": 4.3e-05,
+              "rerank_seconds": 0.060755,
+              "evidence_selection_seconds": 0.000706,
+              "total_seconds": 0.087877
+            },
+            "generation": {
+              "generator_activation_seconds": 0.0,
+              "sentence_selector_activation_seconds": 0.0,
+              "sentence_selection_seconds": 0.161662,
+              "answer_construction_seconds": 8.9e-05,
+              "translation_seconds": 0.0,
+              "generation_inference_seconds": 0.0,
+              "answer_validation_seconds": 0.001438
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "numeric-ko",
+      "passed": true,
+      "http_wall_seconds": 23.483449,
+      "response": {
+        "paper_id": "paper-5c970ee6dc894cc4a59874f20fcb2aaa",
+        "question": "제안된 Alder 방법이 보고한 분류 정확도는 얼마인가요?",
+        "question_language": "ko",
+        "answer": "제안된 알더 방법은 240개의 센서 관측의 고정된 테스트 세트에서 85%의 분류 정확성을 달성했다. 이 결과는 평가된 시험 집합에만 해당한다. 기본 라인은 동일한 테스트 세트에서 80%의 정확성을 달성했습니다.",
+        "sufficiency": "sufficient",
+        "abstention_reason": null,
+        "evidence": [
+          {
+            "evidence_id": "ev-01-paper-5c970ee6dc894cc4a59874f20fcb2aaa-p003-c001",
+            "page": 3,
+            "section": "3 Results",
+            "text": "3 Results The proposed Alder method achieved 85% classification accuracy on a fixed test set of 240 sensor observations. This result concerns only the evaluated test set.",
+            "locator": {
+              "page_label": "p. 3",
+              "section": "3 Results",
+              "chunk_id": "paper-5c970ee6dc894cc4a59874f20fcb2aaa-p003-c001"
+            }
+          },
+          {
+            "evidence_id": "ev-02-paper-5c970ee6dc894cc4a59874f20fcb2aaa-p005-c001",
+            "page": 5,
+            "section": "3 Results",
+            "text": "5 Baseline The Alder study compared the proposed model with one baseline classifier. The baseline achieved 80% accuracy on the same test set. No worldwide comparison was performed.",
+            "locator": {
+              "page_label": "p. 5",
+              "section": "3 Results",
+              "chunk_id": "paper-5c970ee6dc894cc4a59874f20fcb2aaa-p005-c001"
+            }
+          }
+        ],
+        "runtime_seconds": 22.061946,
+        "runtime": {
+          "total_seconds": 22.061946,
+          "retrieval_seconds": 0.156665,
+          "generation_seconds": 21.904536,
+          "generation_attempts": 1,
+          "llm_device": "cpu",
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": null,
+          "pipeline_seconds": 22.061554,
+          "activation_seconds": 0.0,
+          "lock_wait_seconds": 2e-06,
+          "request_mode": "model_activation",
+          "stage_timings": {
+            "retrieval": {
+              "bm25_seconds": 0.000164,
+              "dense_query_encoding_seconds": 0.07672,
+              "dense_search_seconds": 3.9e-05,
+              "fusion_seconds": 3e-05,
+              "rerank_seconds": 0.078974,
+              "evidence_selection_seconds": 0.000539,
+              "total_seconds": 0.156505
+            },
+            "generation": {
+              "generator_activation_seconds": 4.157364,
+              "sentence_selector_activation_seconds": 0.0,
+              "sentence_selection_seconds": 0.196004,
+              "answer_construction_seconds": 0.001959,
+              "translation_seconds": 17.547811,
+              "generation_inference_seconds": 0.0,
+              "answer_validation_seconds": 0.001354
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "unsupported-en",
+      "passed": true,
+      "http_wall_seconds": 0.229452,
+      "response": {
+        "paper_id": "paper-5c970ee6dc894cc4a59874f20fcb2aaa",
+        "question": "Which university funded the Alder study?",
+        "question_language": "en",
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "sufficiency": "insufficient",
+        "abstention_reason": "The requested question aspect could not be verified from the retrieved evidence.",
+        "evidence": [],
+        "runtime_seconds": 0.208813,
+        "runtime": {
+          "total_seconds": 0.208813,
+          "retrieval_seconds": 0.123027,
+          "generation_seconds": 0.085033,
+          "generation_attempts": 0,
+          "llm_device": "cpu",
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": "question_aspect_policy",
+          "pipeline_seconds": 0.208375,
+          "activation_seconds": 0.0,
+          "lock_wait_seconds": 2e-06,
+          "request_mode": "warm",
+          "stage_timings": {
+            "retrieval": {
+              "bm25_seconds": 0.000721,
+              "dense_query_encoding_seconds": 0.02808,
+              "dense_search_seconds": 6e-05,
+              "fusion_seconds": 3.3e-05,
+              "rerank_seconds": 0.089765,
+              "evidence_selection_seconds": 0.004125,
+              "total_seconds": 0.122865
+            },
+            "generation": {
+              "generator_activation_seconds": 0.0,
+              "sentence_selector_activation_seconds": 0.0,
+              "sentence_selection_seconds": 0.081627,
+              "answer_construction_seconds": 0.0,
+              "translation_seconds": 0.0,
+              "generation_inference_seconds": 0.0,
+              "answer_validation_seconds": 0.003379
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "unsupported-ko",
+      "passed": true,
+      "http_wall_seconds": 0.207432,
+      "response": {
+        "paper_id": "paper-5c970ee6dc894cc4a59874f20fcb2aaa",
+        "question": "Alder 연구에 연구비를 지원한 대학은 어디인가요?",
+        "question_language": "ko",
+        "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+        "sufficiency": "insufficient",
+        "abstention_reason": "질문이 요구한 내용을 검색된 논문 근거에서 검증하지 못했습니다.",
+        "evidence": [],
+        "runtime_seconds": 0.188487,
+        "runtime": {
+          "total_seconds": 0.188487,
+          "retrieval_seconds": 0.106264,
+          "generation_seconds": 0.081517,
+          "generation_attempts": 0,
+          "llm_device": "cpu",
+          "device_fallback_reason": null,
+          "fallback_used": false,
+          "abstention_source": "question_aspect_policy",
+          "pipeline_seconds": 0.188117,
+          "activation_seconds": 0.0,
+          "lock_wait_seconds": 2e-06,
+          "request_mode": "warm",
+          "stage_timings": {
+            "retrieval": {
+              "bm25_seconds": 0.000163,
+              "dense_query_encoding_seconds": 0.042516,
+              "dense_search_seconds": 4.7e-05,
+              "fusion_seconds": 3.3e-05,
+              "rerank_seconds": 0.062796,
+              "evidence_selection_seconds": 0.000498,
+              "total_seconds": 0.10609
+            },
+            "generation": {
+              "generator_activation_seconds": 0.0,
+              "sentence_selector_activation_seconds": 0.0,
+              "sentence_selection_seconds": 0.081037,
+              "answer_construction_seconds": 0.0,
+              "translation_seconds": 0.0,
+              "generation_inference_seconds": 0.0,
+              "answer_validation_seconds": 0.000453
+            }
+          }
+        }
+      }
+    }
+  ],
+  "ui_healthy": true,
+  "real_pdf_check": {
+    "pdf_sha256": "cc620e511bafe8b4b11ca3415f6d7bcf127a05818087bfa49905de3a2e50bc2d",
+    "analysis": {
+      "job_id": "job-816d6ab0f39a453995210b0b2fe9dcba",
+      "paper_id": "paper-9c147c8b155e464986b12bac631ae786",
+      "status": "completed",
+      "stage": "parsing_and_chunking",
+      "seed": 378,
+      "created_at": "2026-10-10T04:54:53.073627+00:00",
+      "updated_at": "2026-10-10T04:54:54.532035+00:00",
+      "page_count": 11,
+      "text_page_count": 11,
+      "chunk_count": 63,
+      "warning_count": 33,
+      "error_code": null,
+      "error_message": null
+    },
+    "results": [
+      {
+        "question": "What ImageNet top-1 accuracy is reported for the linear classifier trained on SimCLR representations, and which evaluation setting does that number describe?",
+        "response": {
+          "paper_id": "paper-9c147c8b155e464986b12bac631ae786",
+          "question": "What ImageNet top-1 accuracy is reported for the linear classifier trained on SimCLR representations, and which evaluation setting does that number describe?",
+          "question_language": "en",
+          "answer": "Under the linear evaluation protocol, SimCLR achieves 76.5% top-1 accuracy, which is a 7% relative improvement over previous state-of-the-art (Hénaff et al., 2019). By combining these findings, we are able to considerably outperform previous methods for self-supervised and semi-supervised learning on ImageNet. A linear classifier trained on self-supervised representations learned by SimCLR achieves 76.5% top-1 accuracy, which is a 7% relative improvement over previous state-ofthe-art, matching the performance of a supervised ResNet-50.",
+          "sufficiency": "sufficient",
+          "abstention_reason": null,
+          "evidence": [
+            {
+              "evidence_id": "ev-01-paper-9c147c8b155e464986b12bac631ae786-p002-c002",
+              "page": 2,
+              "section": "1. Introduction",
+              "text": "(Russakovsky et al., 2015). Under the linear evaluation protocol, SimCLR achieves 76.5% top-1 accuracy, which is a 7% relative improvement over previous state-of-the-art (Hénaff et al., 2019). When ﬁne-tuned with only 1% of the ImageNet labels, SimCLR achieves 85.8% top-5 accuracy, a relative improvement of 10% (Hénaff et al., 2019). When ﬁne-tuned on other natural image classiﬁcation datasets, SimCLR performs on par with or better than a strong supervised baseline (Kornblith et al., 2019) on 10 out of 12 datasets.",
+              "locator": {
+                "page_label": "p. 2",
+                "section": "1. Introduction",
+                "chunk_id": "paper-9c147c8b155e464986b12bac631ae786-p002-c002"
+              }
+            },
+            {
+              "evidence_id": "ev-02-paper-9c147c8b155e464986b12bac631ae786-p001-c002",
+              "page": 1,
+              "section": "Abstract",
+              "text": "Abstract This paper presents SimCLR: a simple framework for contrastive learning of visual representations. We simplify recently proposed contrastive selfsupervised learning algorithms without requiring specialized architectures or a memory bank. In order to understand what enables the contrastive prediction tasks to learn useful representations, we systematically study the major components of our framework. We show that (1) composition of data augmentations plays a critical role in deﬁning effective predictive tasks, (2) introducing a learnable nonlinear transformation between the representation and the contrastive loss substantially improves the quality of the learned representations, and (3) contrastive learning beneﬁts from larger batch sizes and more training steps compared to supervised learning. By combining these ﬁndings, we are able to considerably outperform previous methods for self-supervised and semi-supervised learning on ImageNet. A linear classiﬁer trained on self-supervised representations learned by SimCLR achieves 76.5% top-1 accuracy, which is a 7% relative improvement over previous state-ofthe-art, matching the performance of a supervised ResNet-50.",
+              "locator": {
+                "page_label": "p. 1",
+                "section": "Abstract",
+                "chunk_id": "paper-9c147c8b155e464986b12bac631ae786-p001-c002"
+              }
+            }
+          ],
+          "runtime_seconds": 7.895409,
+          "runtime": {
+            "total_seconds": 7.895409,
+            "retrieval_seconds": 2.196826,
+            "generation_seconds": 1.103401,
+            "generation_attempts": 0,
+            "llm_device": "cpu",
+            "device_fallback_reason": null,
+            "fallback_used": false,
+            "abstention_source": null,
+            "pipeline_seconds": 3.300623,
+            "activation_seconds": 4.594338,
+            "lock_wait_seconds": 2e-06,
+            "request_mode": "paper_activation",
+            "stage_timings": {
+              "retrieval": {
+                "bm25_seconds": 0.000712,
+                "dense_query_encoding_seconds": 0.018032,
+                "dense_search_seconds": 0.006749,
+                "fusion_seconds": 0.000407,
+                "rerank_seconds": 2.168274,
+                "evidence_selection_seconds": 0.002387,
+                "total_seconds": 2.196652
+              },
+              "generation": {
+                "generator_activation_seconds": 0.0,
+                "sentence_selector_activation_seconds": 0.0,
+                "sentence_selection_seconds": 1.098358,
+                "answer_construction_seconds": 0.000182,
+                "translation_seconds": 0.0,
+                "generation_inference_seconds": 0.0,
+                "answer_validation_seconds": 0.004829
+              }
+            }
+          }
+        },
+        "passed": true
+      },
+      {
+        "question": "SimCLR 표현에 학습한 선형 분류기의 ImageNet top-1 정확도는 얼마이며 그 수치는 어떤 평가 설정을 의미하나요?",
+        "response": {
+          "paper_id": "paper-9c147c8b155e464986b12bac631ae786",
+          "question": "SimCLR 표현에 학습한 선형 분류기의 ImageNet top-1 정확도는 얼마이며 그 수치는 어떤 평가 설정을 의미하나요?",
+          "question_language": "ko",
+          "answer": "우리는 이러한 연구 결과를 결합하여 자기지도의 새로운 최신 기술과 ImageNet ILSVRC-2012에 대한 반감독 학습을 달성합니다 (Russakovsky et al., 2015). 선형 평가 프로토콜에 따라 SimCLR는 76.5%의 top-1 정확성을 달성하며, 이는 이전 최신 기술에 비해 7%의 상대적인 개선입니다 (Hénaff et al., 2019). 이러한 연구 결과를 결합함으로써 우리는 자기지도와 ImageNet에서 반감독 학습을 위한 이전 방법들을 상당히 능가할 수 있습니다. SimCLR에서 배운 자기지도 표현에 훈련된 선형 분류자는 76.5%의 top-1 정확성을 달성합니다. 이는 이전 최신 상태에 비해 7%의 상대적인 향상이며, 감독된 ResNet-50의 성과와 일치합니다.",
+          "sufficiency": "sufficient",
+          "abstention_reason": null,
+          "evidence": [
+            {
+              "evidence_id": "ev-02-paper-9c147c8b155e464986b12bac631ae786-p002-c001",
+              "page": 2,
+              "section": "1. Introduction",
+              "text": "A Simple Framework for Contrastive Learning of Visual Representations • Composition of multiple data augmentation operations is crucial in deﬁning the contrastive prediction tasks that yield effective representations. In addition, unsupervised contrastive learning beneﬁts from stronger data augmentation than supervised learning. • Introducing a learnable nonlinear transformation between the representation and the contrastive loss substantially improves the quality of the learned representations. • Representation learning with contrastive cross entropy loss beneﬁts from normalized embeddings and an appropriately adjusted temperature parameter. • Contrastive learning beneﬁts from larger batch sizes and longer training compared to its supervised counterpart. Like supervised learning, contrastive learning beneﬁts from deeper and wider networks. We combine these ﬁndings to achieve a new state-of-the-art in self-supervised and semi-supervised learning on ImageNet ILSVRC-2012 (Russakovsky et al., 2015). Under the linear evaluation protocol, SimCLR achieves 76.5% top-1 accuracy, which is a 7% relative improvement over previous state-of-the-art (Hénaff et al., 2019).",
+              "locator": {
+                "page_label": "p. 2",
+                "section": "1. Introduction",
+                "chunk_id": "paper-9c147c8b155e464986b12bac631ae786-p002-c001"
+              }
+            },
+            {
+              "evidence_id": "ev-01-paper-9c147c8b155e464986b12bac631ae786-p001-c002",
+              "page": 1,
+              "section": "Abstract",
+              "text": "Abstract This paper presents SimCLR: a simple framework for contrastive learning of visual representations. We simplify recently proposed contrastive selfsupervised learning algorithms without requiring specialized architectures or a memory bank. In order to understand what enables the contrastive prediction tasks to learn useful representations, we systematically study the major components of our framework. We show that (1) composition of data augmentations plays a critical role in deﬁning effective predictive tasks, (2) introducing a learnable nonlinear transformation between the representation and the contrastive loss substantially improves the quality of the learned representations, and (3) contrastive learning beneﬁts from larger batch sizes and more training steps compared to supervised learning. By combining these ﬁndings, we are able to considerably outperform previous methods for self-supervised and semi-supervised learning on ImageNet. A linear classiﬁer trained on self-supervised representations learned by SimCLR achieves 76.5% top-1 accuracy, which is a 7% relative improvement over previous state-ofthe-art, matching the performance of a supervised ResNet-50.",
+              "locator": {
+                "page_label": "p. 1",
+                "section": "Abstract",
+                "chunk_id": "paper-9c147c8b155e464986b12bac631ae786-p001-c002"
+              }
+            }
+          ],
+          "runtime_seconds": 10.208685,
+          "runtime": {
+            "total_seconds": 10.208685,
+            "retrieval_seconds": 1.966242,
+            "generation_seconds": 8.241593,
+            "generation_attempts": 1,
+            "llm_device": "cpu",
+            "device_fallback_reason": null,
+            "fallback_used": false,
+            "abstention_source": null,
+            "pipeline_seconds": 10.208114,
+            "activation_seconds": 0.0,
+            "lock_wait_seconds": 2e-06,
+            "request_mode": "warm",
+            "stage_timings": {
+              "retrieval": {
+                "bm25_seconds": 0.000497,
+                "dense_query_encoding_seconds": 0.042688,
+                "dense_search_seconds": 0.007965,
+                "fusion_seconds": 9.5e-05,
+                "rerank_seconds": 1.912077,
+                "evidence_selection_seconds": 0.002598,
+                "total_seconds": 1.966044
+              },
+              "generation": {
+                "generator_activation_seconds": 0.0,
+                "sentence_selector_activation_seconds": 0.0,
+                "sentence_selection_seconds": 1.075307,
+                "answer_construction_seconds": 0.000133,
+                "translation_seconds": 7.161587,
+                "generation_inference_seconds": 0.0,
+                "answer_validation_seconds": 0.004524
+              }
+            }
+          }
+        },
+        "passed": true
+      }
+    ],
+    "marker_coverage_is_not_semantic_accuracy": true
+  },
+  "pdf_sha256": "9d9af3dffaf4b055b5d3b54cace57ad988c3bcd13d526623b1012354b3a4247c",
+  "source_sha256": "6b4b4680002fbc2dca517493f5a1d5cad312bb289d36d1350bbbed06b6f05747",
+  "client_implementation_sha256": {
+    "scripts/check_deployment.py": "de5434f4ce54eb98c69917e228d42f05ab8d6511bfb82bc2f04a033e13fd0a5f",
+    "scripts/check_local_demo.py": "bf0bfeaaf19467f0f4b18fff765c079e34ea0a2e0edbcd0a9825671919842b30",
+    "scripts/quality_benchmark.py": "b010b23abaf0f0e3227b592cea364f01edbb3d5eeb7c09675d9871151fc1914f"
+  },
+  "real_cases_sha256": "f0e63d4b18fff2b6bfd04a2c0f904410794a9d2a1470d8e4caf39fdf41132b3b",
+  "independent_human_review": false,
+  "third_party_verification": "not_attested"
+}

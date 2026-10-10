@@ -10,6 +10,11 @@
 .ruff_cache/
 .tmp_*/
 local_notes/
+private_notes/
+personal_notes/
+work_logs/
+outputs/
+*.log
 data/
 docs/
 tests/

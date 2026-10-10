@@ -25,3 +25,23 @@ local_notes/
 
 # Private uploaded PDFs, per-paper artifacts, and local job metadata.
 data/runtime/
+
+# Local benchmark runs; only deliberately reviewed results are versioned.
+data/quality_benchmark/*.local.json
+outputs/
+
+# Private writing and scratch output. Published benchmark evidence is allowlisted.
+private_notes/
+personal_notes/
+work_logs/
+*.log
+data/quality_benchmark/runs/*
+!data/quality_benchmark/runs/2026-10-10/
+data/quality_benchmark/runs/2026-10-10/*
+!data/quality_benchmark/runs/2026-10-10/answerability-dev-calibration.json
+!data/quality_benchmark/runs/2026-10-10-v2/
+!data/quality_benchmark/runs/2026-10-10-final/
+data/quality_benchmark/runs/2026-10-10-final/docker-container-inspect.jsonl
+data/quality_benchmark/runs/2026-10-10-final/docker-backend-*.json
+data/quality_benchmark/runs/2026-10-10-final/docker-ui-*.json
+!data/quality_benchmark/runs/answer-builder-pilot/

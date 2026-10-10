@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "scope": "historical_evaluation_only",
+  "frozen_manifest": "data/evaluation/final_evaluation.json",
+  "frozen_manifest_sha256": "d89a34a885f25fc35abf02b1275244301764f79f958c323d6856622fca691714",
+  "source_commit": "fd72a49e5759361198e709cf573099665ee84c71",
+  "source_snapshots": {
+    "scripts/evidence_selector.py": "data/baselines/2026-09-14/scripts/evidence_selector.py",
+    "scripts/grounded_generation.py": "data/baselines/2026-09-14/scripts/grounded_generation.py",
+    "config/answer_generation.json": "data/baselines/2026-09-14/config/answer_generation.json",
+    "scripts/qna_pipeline.py": "data/baselines/2026-09-14/scripts/qna_pipeline.py",
+    "scripts/production_retrieval.py": "data/baselines/2026-09-14/scripts/production_retrieval.py",
+    "scripts/candidate_evidence_pipeline.py": "data/baselines/2026-09-14/scripts/candidate_evidence_pipeline.py",
+    "scripts/local_translation.py": "data/baselines/2026-09-14/scripts/local_translation.py",
+    "app/question_engine.py": "data/baselines/2026-09-14/app/question_engine.py",
+    "app/service.py": "data/baselines/2026-09-14/app/service.py",
+    "scripts/build_evaluation_freeze.py": "data/baselines/2026-09-14/scripts/build_evaluation_freeze.py",
+    "config/translation.json": "data/baselines/2026-09-14/config/translation.json"
+  },
+  "policy": "Snapshots verify the recorded historical implementation. They do not validate performance of the current runtime."
+}

@@ -2,12 +2,17 @@
 
 [English](README.md) | [한국어](README_KO.md)
 
-This directory contains the public documentation needed to understand, evaluate, and run the project.
+Public documentation for the implementation, measured results and reproducible local execution.
 
-- [Architecture](architecture.md) - request flow, component responsibilities, and trust boundaries
-- [Evaluation](evaluation.md) - benchmark design, results, and limitations
-- [Failure cases](failure_cases.md) - ten reviewed failures and near-misses with mitigations
-- [Data and licensing](data.md) - corpus boundary, traceability, and redistribution policy
-- [Docker Compose](deployment/docker.md) - local build, startup, persistence, and troubleshooting
+- [Results and observed failures](results.md)
+- [Bounded answer-model experiment](experiments.md)
+- [Architecture](architecture.md)
+- [Answer and refusal policy](answer_policy.md)
+- [Quality benchmark](quality_benchmark.md)
+- [Historical evaluation](evaluation.md)
+- [Historical failure analysis](failure_cases.md)
+- [Data and licensing](data.md)
+- [Docker setup](deployment/docker.md)
+- [External review procedure](third_party_review.md)
 
-The root [README](../README.md) is the portfolio overview. Implementation journals are local-only and intentionally excluded from Git.
+Work journals and intermediate experiments remain local-only. Final scientific evidence and calibration provenance remain public.

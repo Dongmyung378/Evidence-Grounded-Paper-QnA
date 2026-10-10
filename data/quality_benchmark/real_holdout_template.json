@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "not_prepared_not_run",
+  "independent_human_review": false,
+  "third_party_validation": "not_attested",
+  "preparation_checklist": [
+    "Select research papers absent from every existing corpus, calibration run and development experiment.",
+    "Assign each paper and its translations entirely to dev or holdout.",
+    "Verify licenses and record paper source URL, exact bytes SHA256 and all page numbers.",
+    "Author fact, numeric, list, comparison and limitation cases with answerable, unsupported and false-premise cases in each split.",
+    "Record gold pages and reference claims without exposing them to retrieval or generation.",
+    "Freeze the rubric and source hashes before evaluation. Tune settings using dev only.",
+    "Have a named or pseudonymous reviewer label factual correctness, completeness and citation support. Record whether this reviewer is independent.",
+    "Run the complete pipeline once on holdout and publish failures, raw outputs, runtime identity and exact code revision."
+  ],
+  "paper_record_template": {
+    "paper_id": "REPLACE",
+    "split": "holdout",
+    "source_url": "REPLACE",
+    "source_path": "REPLACE_WITH_PROJECT_RELATIVE_PATH",
+    "source_sha256": "REPLACE",
+    "pages": []
+  },
+  "question_record_template": {
+    "case_id": "REPLACE-en",
+    "meaning_id": "REPLACE",
+    "paper_id": "REPLACE",
+    "split": "holdout",
+    "language": "en",
+    "question_type": "fact",
+    "answerability": "answerable",
+    "question": "REPLACE",
+    "gold_pages": [],
+    "reference_answer": "REPLACE"
+  }
+}

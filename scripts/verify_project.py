@@ -14,6 +14,8 @@ PUBLIC_VALIDATORS = [
     "validate_container.py",
     "validate_container_qna.py",
     "validate_evaluation_freeze.py",
+    "validate_quality_benchmark.py",
+    "validate_answer_experiment.py",
     "validate_portfolio_scope.py",
 ]
 LOCAL_CORPUS_VALIDATORS = [

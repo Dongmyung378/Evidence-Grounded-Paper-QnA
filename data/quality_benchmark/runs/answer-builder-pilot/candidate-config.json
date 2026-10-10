@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "provider": "local_transformers",
+  "trust_remote_code": false,
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "device": "cpu",
+  "dtype": "float32",
+  "do_sample": false,
+  "cpu_threads": 8,
+  "max_input_tokens": 4096,
+  "max_new_tokens": 512,
+  "max_time_seconds": 60,
+  "validation_attempts": 1,
+  "cpu_validation_attempts": 1,
+  "safe_fallback_on_validation_error": true
+}

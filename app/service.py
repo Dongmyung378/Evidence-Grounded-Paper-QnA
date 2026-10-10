@@ -229,6 +229,11 @@ class Service:
                 "device_fallback_reason": llm.get("device_fallback_reason"),
                 "fallback_used": pipeline.get("fallback_used", False),
                 "abstention_source": pipeline.get("abstention_source"),
+                "pipeline_seconds": pipeline.get("pipeline_runtime_seconds"),
+                "activation_seconds": pipeline.get("activation_seconds", 0.0),
+                "lock_wait_seconds": pipeline.get("lock_wait_seconds", 0.0),
+                "request_mode": pipeline.get("request_mode"),
+                "stage_timings": pipeline.get("stage_timings", {}),
             },
         }
 

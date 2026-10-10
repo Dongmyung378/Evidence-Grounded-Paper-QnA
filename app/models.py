@@ -89,6 +89,11 @@ class QuestionRuntime(BaseModel):
     device_fallback_reason: str | None = None
     fallback_used: bool
     abstention_source: str | None = None
+    pipeline_seconds: float | None = None
+    activation_seconds: float = 0.0
+    lock_wait_seconds: float = 0.0
+    request_mode: Literal["cold", "paper_activation", "model_activation", "warm"] | None = None
+    stage_timings: dict[str, dict[str, float]] = Field(default_factory=dict)
 
 
 class QuestionResult(BaseModel):

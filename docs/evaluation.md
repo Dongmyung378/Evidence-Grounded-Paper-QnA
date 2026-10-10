@@ -4,6 +4,8 @@
 
 ## Evaluation boundary
 
+All scores on this page are preserved results of the 2026-09-14 implementation. Changed measured sources are retained under `data/baselines/2026-09-14/`; current implementation quality needs a separate run. See [the new quality benchmark](quality_benchmark.md) for independent split preparation and final-output scoring.
+
 The corpus contains 30 text-extractable English papers. Accuracy labels cover 40 verified questions on the first 10 papers: 20 English and 20 Korean. The additional 20 papers test parsing and retrieval runtime robustness only.
 
 | Area | Scope | Result |
@@ -24,6 +26,10 @@ The corpus contains 30 text-extractable English papers. Accuracy labels cover 40
 Retrieval succeeds at placing every verified Gold page within the first five unique candidate pages. MRR shows that the exact page is not always ranked first, especially for Korean questions. The answer review has high citation support but only a 15% strict pass rate; most usable responses are partial because selected evidence can omit a requested detail. This distinction is intentionally visible instead of being summarized as answer accuracy.
 
 The refusal threshold retains 38 of 40 answerable questions, rejects all 10 unsupported calibration questions, and rejects 9 of 10 unsupported holdout questions. One holdout miss is reported rather than hidden behind the earlier calibration result.
+
+Those refusal figures measure the retrieval score gate. They do not count a
+generated final response or verify its canonical refusal text. The separate
+[current evaluation](current_evaluation.md) scores final pipeline outputs.
 
 ## Artifacts
 

@@ -87,6 +87,16 @@ class RuntimeQuestionEngine:
     def status(self):
         return "ready" if self._pipeline is not None else "lazy"
 
+    def clear_translation_cache(self):
+        """Clear sentence translations for controlled inference measurements."""
+        with self._lock:
+            translator = getattr(self._pipeline, "llm", None)
+            clear = getattr(translator, "clear_cache", None)
+            if callable(clear):
+                clear()
+                return True
+            return False
+
     def _seed_runtime(self):
         random.seed(self.seed)
         try:
@@ -115,6 +125,8 @@ class RuntimeQuestionEngine:
         return ProductionRetrieval, GroundedQAPipeline
 
     def _activate(self, paper_id, directory):
+        started = time.perf_counter()
+        models_were_loaded = self._pipeline is not None
         ProductionRetrieval, GroundedQAPipeline = self._load_pipeline_classes()
         chunks = load_jsonl(directory / "chunks.jsonl")
         if not chunks or any(chunk.get("paper_id") != paper_id for chunk in chunks):
@@ -141,6 +153,11 @@ class RuntimeQuestionEngine:
         else:
             self._pipeline.retrieval = retrieval
         self._active_paper_id = paper_id
+        return {
+            "total_seconds": round(time.perf_counter() - started, 6),
+            "models_reused": models_were_loaded,
+            "retrieval": getattr(retrieval, "initialization_timings", {}),
+        }
 
     def prepare(self, paper_id, directory):
         """Build the paper index and optionally load the generator before questions."""
@@ -149,8 +166,10 @@ class RuntimeQuestionEngine:
         with self._lock:
             started = time.perf_counter()
             self._seed_runtime()
+            activation = {}
             if self._active_paper_id != paper_id:
-                self._activate(paper_id, Path(directory))
+                activation = self._activate(paper_id, Path(directory))
+            generator_started = time.perf_counter()
             llm = self._pipeline.prepare_generator()
             return {
                 "status": "ready",
@@ -159,11 +178,37 @@ class RuntimeQuestionEngine:
                 "reranker_device": self.reranker_device,
                 "embedding_cache_hit": self._pipeline.retrieval.embedding_cache_hit,
                 "generator": llm,
+                "activation": activation,
+                "generator_preparation_seconds": round(
+                    time.perf_counter() - generator_started, 6
+                ),
             }
 
     def ask(self, question, paper_id, directory):
+        request_started = time.perf_counter()
         with self._lock:
+            lock_acquired = time.perf_counter()
             self._seed_runtime()
+            activation = {}
+            activation_mode = "warm"
             if self._active_paper_id != paper_id:
-                self._activate(paper_id, Path(directory))
-            return self._pipeline.ask(question, paper_id, include_debug=False)
+                activation_mode = "cold" if self._pipeline is None else "paper_activation"
+                activation = self._activate(paper_id, Path(directory))
+            result = self._pipeline.ask(question, paper_id, include_debug=False)
+            # Keep injected engines and their test responses backward compatible.
+            pipeline = result.get("pipeline") if isinstance(result, dict) else None
+            if isinstance(pipeline, dict):
+                total_seconds = time.perf_counter() - request_started
+                pipeline["pipeline_runtime_seconds"] = pipeline["runtime_seconds"]
+                pipeline["runtime_seconds"] = round(total_seconds, 6)
+                pipeline["request_mode"] = (
+                    "model_activation"
+                    if activation_mode == "warm" and pipeline.get("generator_newly_loaded")
+                    else activation_mode
+                )
+                pipeline["lock_wait_seconds"] = round(
+                    lock_acquired - request_started, 6
+                )
+                pipeline["activation_seconds"] = activation.get("total_seconds", 0.0)
+                pipeline["activation"] = activation
+            return result

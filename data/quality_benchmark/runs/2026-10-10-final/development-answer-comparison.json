@@ -1,0 +1,742 @@
+{
+  "schema_version": 1,
+  "scope": "saved_development_evidence_answer_stage_only",
+  "independent_real_paper_holdout": false,
+  "human_review_completed": false,
+  "retrieval_repeated": false,
+  "execution_mode": "real_models",
+  "comparison_boundary": "Answer selectors/builders are compared using one shared current translation adapter; this is not a full historical-runtime or controlled latency comparison.",
+  "comparison_runner_sha256": "c209b73209620e816eacb3dc7a770c4345c1aab283f6b6ce492d42b46b1c20cf",
+  "measured_source_sha256": {
+    "scripts/compare_answer_versions.py": "c209b73209620e816eacb3dc7a770c4345c1aab283f6b6ce492d42b46b1c20cf",
+    "data/evaluation/answer_evidence_inputs.json": "701cfe5ae09d9c9247b96b7a3b789a58165bafe9c842d68173b3fd1ff6a39ea0",
+    "data/baselines/2026-09-14/scripts/grounded_generation.py": "89134a2b223752553fb6b28fd61822e18ce2c9e5fffcf98129bb92621ead7425",
+    "data/baselines/2026-09-14/config/answer_generation.json": "49a2e0d072098f4eb27dc270c8d6da1afc8877985b39f11279f2ae3d88dd1293",
+    "scripts/grounded_generation.py": "fab01135d3f213b6e4859a1e39ef4c7f7d15f0c0406cd6792a895bb202a256c3",
+    "scripts/evidence_selector.py": "fb28f53f85488fb43ff7634a4b2f0acecce1baf745717ac92e90b705ac86c682",
+    "scripts/answerability_policy.py": "ff67f9043fa8f4b15181d0d383d38f506207796ae5eb384c5cfad812d0838d74",
+    "config/answer_generation.json": "762bdf34a1d9fd607438aad203a7e84f8320ac710b1ec7b26f858a9f64dd5504",
+    "config/answerability_policy.json": "367d9c6ff09952ab1df4f9ecfffd919e1bb6d9b6927abc9440b124507118c175",
+    "scripts/local_translation.py": "157ee21b86323181748d389df657f4b22680a805b43a78c9bfaa79592a2e345f",
+    "config/translation.json": "70ecb986ae975f07135e0ddacb94aa589c9129c5234515f7209b241e8980b2c7",
+    "config/translation_glossary.json": "d03de4331dd7042b2568f150244d5439332f17d1627ed8628fa5339d3dcd6ae8",
+    "config/model_lock.json": "7cc5ba9ca615090de955ea9743fdc25bb95028fec872a3d05cfd362af72e3956",
+    "config/answer_output_schema.json": "caf2e7f123b4aead6e4991c2cca394c18cce37ceb8ef37750e59daf091ae8d2e",
+    "config/generation_runtime.json": "ae3c1910ae349cdf870462811e3e2a07a75eda3027feec568e326c30a6f37919",
+    "scripts/qna_pipeline.py": "1ea16644dda0b91853237a235d7169886f8ea1ad832b76ebb4b10b2b163165f7",
+    "scripts/production_retrieval.py": "eb06d321f2e947be95f226a47f01ddbaf25a8e93d2ef1168d93ff026cc6ccd24",
+    "scripts/candidate_evidence_pipeline.py": "20cac65e1db85fb453a6b66ba6b0b17a6f103424e2e1f0a94c15fe72b0c6e1fa",
+    "scripts/abstention_policy.py": "3d6ba225ea46e831ef74e7c2fc21e1fd3de18bad622c37e9e1a2f0288d00dbd5",
+    "scripts/model_lock.py": "b703225cf860c618f1af91cbdc4d2aeb0043127df3d857547580b6fe7d68b885",
+    "scripts/dense_retrieval.py": "7d4e62f2fe870de3142c1ab7ffd36b9aea19a369a210b14b05dd5fd0a84ec6d0",
+    "scripts/reranker.py": "c42ba00fa4eea8e609b1e06a8fbfbcacb0dd3a59f66e01deb857f5553034657d",
+    "scripts/quality_benchmark.py": "b010b23abaf0f0e3227b592cea364f01edbb3d5eeb7c09675d9871151fc1914f",
+    "scripts/bm25_retrieval.py": "3ac54cf1eece0679a596fde42748453c43aee264bd2e1a1e3b2011aba517214f",
+    "scripts/hybrid_retrieval.py": "7197ba9b016f05c495b1b670d4a1cbb9eb61ebefe2c583c90f6db91761de1570",
+    "scripts/retrieval_common.py": "e0c0c1d56fdac6ba70f31e9d86b21d2d2a1d1fe7a6ab908fae4b5f1b81ced37f",
+    "scripts/grounded_answer_contract.py": "aa1b01e66b163d24d8537c810ded928075bb47d3b58abc34b8a0963a73e0fc22",
+    "scripts/answer_quality.py": "17644705684de6630411cf50d3a9b8160d4236d786336f733b12c65919f416bc",
+    "scripts/local_llm.py": "d9a4f14562f666b93c630b49adb29128167d90014313461213ff529bc699b96f",
+    "app/question_engine.py": "ba72690057c976e022f28fc2c594580dc4657fc6a26c24ffe644f42abc3246f4",
+    "scripts/ingest_papers.py": "066b5fd38e6e01e07a5a4b9934fd040fdc9a7c080f5c57d4d4225f022415db1d"
+  },
+  "inputs_sha256": "701cfe5ae09d9c9247b96b7a3b789a58165bafe9c842d68173b3fd1ff6a39ea0",
+  "baseline_implementation_sha256": "89134a2b223752553fb6b28fd61822e18ce2c9e5fffcf98129bb92621ead7425",
+  "current_implementation_sha256": "fab01135d3f213b6e4859a1e39ef4c7f7d15f0c0406cd6792a895bb202a256c3",
+  "baseline_config_sha256": "49a2e0d072098f4eb27dc270c8d6da1afc8877985b39f11279f2ae3d88dd1293",
+  "current_config_sha256": "762bdf34a1d9fd607438aad203a7e84f8320ac710b1ec7b26f858a9f64dd5504",
+  "current_answerability_policy_sha256": "ff67f9043fa8f4b15181d0d383d38f506207796ae5eb384c5cfad812d0838d74",
+  "current_answerability_config_sha256": "367d9c6ff09952ab1df4f9ecfffd919e1bb6d9b6927abc9440b124507118c175",
+  "current_selector_sha256": "fb28f53f85488fb43ff7634a4b2f0acecce1baf745717ac92e90b705ac86c682",
+  "current_translation_sha256": "157ee21b86323181748d389df657f4b22680a805b43a78c9bfaa79592a2e345f",
+  "current_translation_config_sha256": "70ecb986ae975f07135e0ddacb94aa589c9129c5234515f7209b241e8980b2c7",
+  "current_translation_glossary_sha256": "d03de4331dd7042b2568f150244d5439332f17d1627ed8628fa5339d3dcd6ae8",
+  "reranker": {
+    "name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+    "revision": "1427fd652930e4ba29e8149678df786c240d8825",
+    "runtime_role": "candidate_and_sentence_reranking"
+  },
+  "translator": {
+    "provider": "local_nllb",
+    "model": "facebook/nllb-200-distilled-600M",
+    "revision": "38bd1c6a0f58097b26ef7c7cd73a0dcac034350a",
+    "license": "cc-by-nc-4.0",
+    "device": "cpu",
+    "dtype": "float32",
+    "device_fallback_reason": null,
+    "config_path": "config/translation.json",
+    "config_fingerprint": "ac077be6c20efc69ca026d8d6d579d9cc0f719a42eded4732e41b618b85bd97a",
+    "glossary_path": "config/translation_glossary.json",
+    "glossary_fingerprint": "6d289d0de3a4719f134831bda0192592b39affc82fdb924e216d399fda448b5e",
+    "protection_policy": "source_spans_alphabetic_markers_v6",
+    "cache": {
+      "enabled": true,
+      "capacity": 128,
+      "size": 8,
+      "hits": 4,
+      "misses": 8,
+      "evictions": 0,
+      "batch_duplicates": 0
+    },
+    "validation_retry": {
+      "enabled": true,
+      "num_beams": 2,
+      "maximum_retries_per_sentence": 1,
+      "attempts": 1,
+      "successes": 1,
+      "failures": 0,
+      "last_request": {
+        "effective_num_beams": [
+          1
+        ],
+        "retry_attempts": 0,
+        "retry_successes": 0
+      }
+    }
+  },
+  "results": [
+    {
+      "question_id": "q-041-en",
+      "paper_id": "paper-008",
+      "question": "How is the performance of GOAG evaluated?",
+      "language": "en",
+      "baseline": {
+        "response": {
+          "answer": "We extensively compare GOAG against the following baselines using the test set of the Multidex [8] dataset. Our evaluation involved 100 inference runs per method, using a batch size of 10 to manage GPU memory. While being trained in an object-agnostic manner, GOAG achieved a higher average success rate for generating accurate grasps across all three grippers compared to the baselines.",
+          "evidence_ids": [
+            "ev-02-paper-008-p006-c005",
+            "ev-01-paper-008-p007-c002"
+          ],
+          "sufficiency": "sufficient",
+          "abstention_reason": null
+        },
+        "selected_sentences": [
+          {
+            "sentence_id": "s-012",
+            "evidence_id": "ev-02-paper-008-p006-c005",
+            "page": 6,
+            "section": "IV. EXPERIMENTS",
+            "evidence_rank": 2,
+            "position": 7,
+            "text": "We extensively compare GOAG against the following baselines using the test set of the Multidex [8] dataset.",
+            "cross_encoder_score": -0.8671857714653015,
+            "intent_bonus": 15.0,
+            "selector_score": 14.132814228534698
+          },
+          {
+            "sentence_id": "s-011",
+            "evidence_id": "ev-02-paper-008-p006-c005",
+            "page": 6,
+            "section": "IV. EXPERIMENTS",
+            "evidence_rank": 2,
+            "position": 6,
+            "text": "Our evaluation involved 100 inference runs per method, using a batch size of 10 to manage GPU memory.",
+            "cross_encoder_score": -6.464139938354492,
+            "intent_bonus": 19.0,
+            "selector_score": 12.535860061645508
+          },
+          {
+            "sentence_id": "s-005",
+            "evidence_id": "ev-01-paper-008-p007-c002",
+            "page": 7,
+            "section": "IV. EXPERIMENTS",
+            "evidence_rank": 1,
+            "position": 8,
+            "text": "While being trained in an object-agnostic manner, GOAG achieved a higher average success rate for generating accurate grasps across all three grippers compared to the baselines.",
+            "cross_encoder_score": 1.8941071033477783,
+            "intent_bonus": 9.0,
+            "selector_score": 10.894107103347778
+          }
+        ],
+        "fallback_used": false,
+        "wall_seconds": 0.453614,
+        "stage_timings": null,
+        "answerability": null,
+        "attempts": []
+      },
+      "current": {
+        "response": {
+          "answer": "We extensively compare GOAG against the following baselines using the test set of the Multidex [8] dataset. Our evaluation involved 100 inference runs per method, using a batch size of 10 to manage GPU memory. We evaluated our method and several baselines on three distinct robotic grippers: the Barrett Hand [3], Allegro Hand [1], and Shadow Hand [2]. While being trained in an object-agnostic manner, GOAG achieved a higher average success rate for generating accurate grasps across all three grippers compared to the baselines.",
+          "evidence_ids": [
+            "ev-02-paper-008-p006-c005",
+            "ev-01-paper-008-p007-c002"
+          ],
+          "sufficiency": "sufficient",
+          "abstention_reason": null
+        },
+        "selected_sentences": [
+          {
+            "sentence_id": "s-011",
+            "evidence_id": "ev-02-paper-008-p006-c005",
+            "page": 6,
+            "section": "IV. EXPERIMENTS",
+            "evidence_rank": 2,
+            "position": 8,
+            "text": "We extensively compare GOAG against the following baselines using the test set of the Multidex [8] dataset.",
+            "cross_encoder_score": -1.5799425840377808,
+            "intent_bonus": 15.0,
+            "selector_score": 13.42005741596222,
+            "anchor_sentence_id": "s-011"
+          },
+          {
+            "sentence_id": "s-010",
+            "evidence_id": "ev-02-paper-008-p006-c005",
+            "page": 6,
+            "section": "IV. EXPERIMENTS",
+            "evidence_rank": 2,
+            "position": 7,
+            "text": "Our evaluation involved 100 inference runs per method, using a batch size of 10 to manage GPU memory.",
+            "cross_encoder_score": -6.738656520843506,
+            "intent_bonus": 19.0,
+            "selector_score": 12.261343479156494,
+            "anchor_sentence_id": "s-010"
+          },
+          {
+            "sentence_id": "s-009",
+            "evidence_id": "ev-02-paper-008-p006-c005",
+            "page": 6,
+            "section": "IV. EXPERIMENTS",
+            "evidence_rank": 2,
+            "position": 6,
+            "text": "We evaluated our method and several baselines on three distinct robotic grippers: the Barrett Hand [3], Allegro Hand [1], and Shadow Hand [2].",
+            "cross_encoder_score": -7.459874629974365,
+            "intent_bonus": 18.0,
+            "selector_score": 10.540125370025635,
+            "anchor_sentence_id": "s-009"
+          },
+          {
+            "sentence_id": "s-004",
+            "evidence_id": "ev-01-paper-008-p007-c002",
+            "page": 7,
+            "section": "IV. EXPERIMENTS",
+            "evidence_rank": 1,
+            "position": 8,
+            "text": "While being trained in an object-agnostic manner, GOAG achieved a higher average success rate for generating accurate grasps across all three grippers compared to the baselines.",
+            "cross_encoder_score": 1.0681246519088745,
+            "intent_bonus": 9.0,
+            "selector_score": 10.068124651908875,
+            "anchor_sentence_id": "s-004"
+          }
+        ],
+        "fallback_used": false,
+        "wall_seconds": 1.017876,
+        "stage_timings": {
+          "generator_activation_seconds": 0.0,
+          "sentence_selection_seconds": 1.008540200000425,
+          "answer_construction_seconds": 0.0005712000020139385,
+          "translation_seconds": 0.0,
+          "answer_validation_seconds": 0.008739100005186629
+        },
+        "answerability": {
+          "abstain": false,
+          "reason_code": null,
+          "enabled": true,
+          "signals": {
+            "query": "How is the performance of GOAG evaluated",
+            "natural_query": "How is the performance of GOAG evaluated?",
+            "removed_anchors": [],
+            "removed_title_phrases": [],
+            "has_specific_aspect": true,
+            "score_policy": "minimum_of_full_and_focused_request",
+            "source_anchors_masked": [],
+            "requested_attributes": [],
+            "missing_requested_attributes": [],
+            "requested_measurement_dimensions": [],
+            "missing_measurement_dimensions": [],
+            "contextual_requested_attributes": {},
+            "requested_attribute_coverage": true,
+            "max_aspect_score": 5.785873889923096,
+            "focused_request_max_score": 5.785873889923096,
+            "full_question_max_score": 5.820481300354004,
+            "evidence_count": 5
+          },
+          "minimum_aspect_score": -3.405527949333191,
+          "config_fingerprint": "06c512e55197a28ceb58d61f8738fdc4f0045aee8e2703e36996d6051984b00e"
+        },
+        "attempts": []
+      }
+    },
+    {
+      "question_id": "q-041-ko",
+      "paper_id": "paper-008",
+      "question": "GOAG의 성능은 어떻게 평가되는가?",
+      "language": "ko",
+      "baseline": {
+        "response": {
+          "answer": "우리는 Multidex [8] 데이터 세트의 테스트 세트를 사용하여 다음과 같은 기본 라인에 GOAG를 광범위하게 비교합니다. 우리의 평가에는 한 방법당 100개의 추론 실행이 포함되었고, GPU 메모리를 관리하기 위해 10개의 배치를 사용했습니다.",
+          "evidence_ids": [
+            "ev-02-paper-008-p006-c005"
+          ],
+          "sufficiency": "sufficient",
+          "abstention_reason": null
+        },
+        "selected_sentences": [
+          {
+            "sentence_id": "s-012",
+            "evidence_id": "ev-02-paper-008-p006-c005",
+            "page": 6,
+            "section": "IV. EXPERIMENTS",
+            "evidence_rank": 2,
+            "position": 7,
+            "text": "We extensively compare GOAG against the following baselines using the test set of the Multidex [8] dataset.",
+            "cross_encoder_score": -0.8062869906425476,
+            "intent_bonus": 15.0,
+            "selector_score": 14.193713009357452
+          },
+          {
+            "sentence_id": "s-011",
+            "evidence_id": "ev-02-paper-008-p006-c005",
+            "page": 6,
+            "section": "IV. EXPERIMENTS",
+            "evidence_rank": 2,
+            "position": 6,
+            "text": "Our evaluation involved 100 inference runs per method, using a batch size of 10 to manage GPU memory.",
+            "cross_encoder_score": -5.147825717926025,
+            "intent_bonus": 19.0,
+            "selector_score": 13.852174282073975
+          }
+        ],
+        "fallback_used": false,
+        "wall_seconds": 2.903986,
+        "stage_timings": null,
+        "answerability": null,
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "valid",
+            "raw_response": "우리는 Multidex [8] 데이터 세트의 테스트 세트를 사용하여 다음과 같은 기본 라인에 GOAG를 광범위하게 비교합니다. 우리의 평가에는 한 방법당 100개의 추론 실행이 포함되었고, GPU 메모리를 관리하기 위해 10개의 배치를 사용했습니다."
+          }
+        ]
+      },
+      "current": {
+        "response": {
+          "answer": "우리는 Multidex [8] 데이터 세트의 테스트 세트를 사용하여 다음과 같은 기본 라인에 GOAG를 광범위하게 비교합니다. 우리의 평가에는 한 방법당 100개의 추론 실행이 포함되었고, GPU 메모리를 관리하기 위해 10개의 배치를 사용했습니다. 우리는 Barrett Hand [3], Allegro Hand [1], Shadow Hand [2] 등 세 가지 다른 로봇 그리퍼에서 우리의 방법과 여러 기준을 평가했습니다. 우리는 DFC [5]를 CMapDataset의 포착에 따라 평가했습니다.",
+          "evidence_ids": [
+            "ev-02-paper-008-p006-c005"
+          ],
+          "sufficiency": "sufficient",
+          "abstention_reason": null
+        },
+        "selected_sentences": [
+          {
+            "sentence_id": "s-011",
+            "evidence_id": "ev-02-paper-008-p006-c005",
+            "page": 6,
+            "section": "IV. EXPERIMENTS",
+            "evidence_rank": 2,
+            "position": 8,
+            "text": "We extensively compare GOAG against the following baselines using the test set of the Multidex [8] dataset.",
+            "cross_encoder_score": -1.233019232749939,
+            "intent_bonus": 15.0,
+            "selector_score": 13.766980767250061,
+            "anchor_sentence_id": "s-011"
+          },
+          {
+            "sentence_id": "s-010",
+            "evidence_id": "ev-02-paper-008-p006-c005",
+            "page": 6,
+            "section": "IV. EXPERIMENTS",
+            "evidence_rank": 2,
+            "position": 7,
+            "text": "Our evaluation involved 100 inference runs per method, using a batch size of 10 to manage GPU memory.",
+            "cross_encoder_score": -5.306483745574951,
+            "intent_bonus": 19.0,
+            "selector_score": 13.693516254425049,
+            "anchor_sentence_id": "s-010"
+          },
+          {
+            "sentence_id": "s-009",
+            "evidence_id": "ev-02-paper-008-p006-c005",
+            "page": 6,
+            "section": "IV. EXPERIMENTS",
+            "evidence_rank": 2,
+            "position": 6,
+            "text": "We evaluated our method and several baselines on three distinct robotic grippers: the Barrett Hand [3], Allegro Hand [1], and Shadow Hand [2].",
+            "cross_encoder_score": -6.384725570678711,
+            "intent_bonus": 18.0,
+            "selector_score": 11.615274429321289,
+            "anchor_sentence_id": "s-009"
+          },
+          {
+            "sentence_id": "s-012",
+            "evidence_id": "ev-02-paper-008-p006-c005",
+            "page": 6,
+            "section": "IV. EXPERIMENTS",
+            "evidence_rank": 2,
+            "position": 10,
+            "text": "We evaluated DFC [5] on grasps from the CMapDataset.",
+            "cross_encoder_score": -7.637331008911133,
+            "intent_bonus": 18.0,
+            "selector_score": 10.362668991088867,
+            "anchor_sentence_id": "s-012"
+          }
+        ],
+        "fallback_used": false,
+        "wall_seconds": 5.040575,
+        "stage_timings": {
+          "generator_activation_seconds": 0.0,
+          "sentence_selection_seconds": 1.0728151000002981,
+          "answer_construction_seconds": 0.0003651999977591913,
+          "translation_seconds": 3.960090800002945,
+          "answer_validation_seconds": 0.00727559999722871
+        },
+        "answerability": {
+          "abstain": false,
+          "reason_code": null,
+          "enabled": true,
+          "signals": {
+            "query": "GOAG의 성능은 어떻게 평가되는가",
+            "natural_query": "GOAG의 성능은 어떻게 평가되는가?",
+            "removed_anchors": [],
+            "removed_title_phrases": [],
+            "has_specific_aspect": true,
+            "score_policy": "minimum_of_full_and_focused_request",
+            "source_anchors_masked": [],
+            "requested_attributes": [],
+            "missing_requested_attributes": [],
+            "requested_measurement_dimensions": [],
+            "missing_measurement_dimensions": [],
+            "contextual_requested_attributes": {},
+            "requested_attribute_coverage": true,
+            "max_aspect_score": 3.999051332473755,
+            "focused_request_max_score": 4.087998390197754,
+            "full_question_max_score": 3.999051332473755,
+            "evidence_count": 5
+          },
+          "minimum_aspect_score": -3.405527949333191,
+          "config_fingerprint": "06c512e55197a28ceb58d61f8738fdc4f0045aee8e2703e36996d6051984b00e"
+        },
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "valid",
+            "raw_response": "우리는 Multidex [8] 데이터 세트의 테스트 세트를 사용하여 다음과 같은 기본 라인에 GOAG를 광범위하게 비교합니다. 우리의 평가에는 한 방법당 100개의 추론 실행이 포함되었고, GPU 메모리를 관리하기 위해 10개의 배치를 사용했습니다. 우리는 Barrett Hand [3], Allegro Hand [1], Shadow Hand [2] 등 세 가지 다른 로봇 그리퍼에서 우리의 방법과 여러 기준을 평가했습니다. 우리는 DFC [5]를 CMapDataset의 포착에 따라 평가했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "question_id": "q-042-en",
+      "paper_id": "paper-009",
+      "question": "How is the Microlensify classifier evaluated on TESS light curves?",
+      "language": "en",
+      "baseline": {
+        "response": {
+          "answer": "A separate test set of 5500 fully cleaned light curves is used to evaluate the model’s ability to achieve zero false positives and zero false negatives in microlensing classification. 6.1.Microlensify Predictions on Sector 12 of Eleanor To evaluate the performance of our trained model, we applied it to approximately1.5million TESS light curves from Sector12(no simulations included), sourced from the Eleanor pipeline (the same pipeline used for the training data), to identify potential microlensing events and estimate their durations and enable their reconstruction. In this section, we explore Microlensify’s predictions of singleâĂŚ-lens microlensing events in TESS light curves extracted with different pipelines, as well as in light curves from other microlensing surveys, including OGLE, KMTNet, and MOA.",
+          "evidence_ids": [
+            "ev-04-paper-009-p014-c003",
+            "ev-02-paper-009-p015-c003"
+          ],
+          "sufficiency": "sufficient",
+          "abstention_reason": null
+        },
+        "selected_sentences": [
+          {
+            "sentence_id": "s-021",
+            "evidence_id": "ev-04-paper-009-p014-c003",
+            "page": 14,
+            "section": "5.MACHINE LEARNING MODEL",
+            "evidence_rank": 4,
+            "position": 6,
+            "text": "A separate test set of 5500 fully cleaned light curves is used to evaluate the model’s ability to achieve zero false positives and zero false negatives in microlensing classification.",
+            "cross_encoder_score": 2.1949212551116943,
+            "intent_bonus": 6.0,
+            "selector_score": 8.194921255111694
+          },
+          {
+            "sentence_id": "s-006",
+            "evidence_id": "ev-02-paper-009-p015-c003",
+            "page": 15,
+            "section": "6.RESULTS",
+            "evidence_rank": 2,
+            "position": 2,
+            "text": "6.1.Microlensify Predictions on Sector 12 of Eleanor To evaluate the performance of our trained model, we applied it to approximately1.5million TESS light curves from Sector12(no simulations included), sourced from the Eleanor pipeline (the same pipeline used for the training data), to identify potential microlensing events and estimate their durations and enable their reconstruction.",
+            "cross_encoder_score": 5.017196178436279,
+            "intent_bonus": 3.0,
+            "selector_score": 8.01719617843628
+          },
+          {
+            "sentence_id": "s-005",
+            "evidence_id": "ev-02-paper-009-p015-c003",
+            "page": 15,
+            "section": "6.RESULTS",
+            "evidence_rank": 2,
+            "position": 1,
+            "text": "6.RESULTS In this section, we explore Microlensify’s predictions of singleâĂŚ-lens microlensing events in TESS light curves extracted with different pipelines, as well as in light curves from other microlensing surveys, including OGLE, KMTNet, and MOA.",
+            "cross_encoder_score": 3.4011662006378174,
+            "intent_bonus": 3.0,
+            "selector_score": 6.401166200637817
+          }
+        ],
+        "fallback_used": false,
+        "wall_seconds": 0.489121,
+        "stage_timings": null,
+        "answerability": null,
+        "attempts": []
+      },
+      "current": {
+        "response": {
+          "answer": "A separate test set of 5500 fully cleaned light curves is used to evaluate the model’s ability to achieve zero false positives and zero false negatives in microlensing classification. However, our final evaluation is when we test on uncleaned TESS data to find high–probability microlensing candidates (see subsection 6.1). 6.1.Microlensify Predictions on Sector 12 of Eleanor To evaluate the performance of our trained model, we applied it to approximately1.5million TESS light curves from Sector12(no simulations included), sourced from the Eleanor pipeline (the same pipeline used for the training data), to identify potential microlensing events and estimate their durations and enable their reconstruction. To further check our microlensing candidate list, we also implement the KMTNet event-finding algorithm together with several traditional detection metrics to evaluate the results.",
+          "evidence_ids": [
+            "ev-04-paper-009-p014-c003",
+            "ev-02-paper-009-p015-c003",
+            "ev-03-paper-009-p004-c002"
+          ],
+          "sufficiency": "sufficient",
+          "abstention_reason": null
+        },
+        "selected_sentences": [
+          {
+            "sentence_id": "s-018",
+            "evidence_id": "ev-04-paper-009-p014-c003",
+            "page": 14,
+            "section": "5.MACHINE LEARNING MODEL",
+            "evidence_rank": 4,
+            "position": 5,
+            "text": "A separate test set of 5500 fully cleaned light curves is used to evaluate the model’s ability to achieve zero false positives and zero false negatives in microlensing classification.",
+            "cross_encoder_score": 1.6026437282562256,
+            "intent_bonus": 6.0,
+            "selector_score": 7.602643728256226,
+            "anchor_sentence_id": "s-018"
+          },
+          {
+            "sentence_id": "s-019",
+            "evidence_id": "ev-04-paper-009-p014-c003",
+            "page": 14,
+            "section": "5.MACHINE LEARNING MODEL",
+            "evidence_rank": 4,
+            "position": 6,
+            "text": "However, our final evaluation is when we test on uncleaned TESS data to find high–probability microlensing candidates (see subsection 6.1).",
+            "cross_encoder_score": 0.4491227865219116,
+            "intent_bonus": 0.0,
+            "selector_score": 0.4491227865219116,
+            "anchor_sentence_id": "s-018"
+          },
+          {
+            "sentence_id": "s-006",
+            "evidence_id": "ev-02-paper-009-p015-c003",
+            "page": 15,
+            "section": "6.RESULTS",
+            "evidence_rank": 2,
+            "position": 2,
+            "text": "6.1.Microlensify Predictions on Sector 12 of Eleanor To evaluate the performance of our trained model, we applied it to approximately1.5million TESS light curves from Sector12(no simulations included), sourced from the Eleanor pipeline (the same pipeline used for the training data), to identify potential microlensing events and estimate their durations and enable their reconstruction.",
+            "cross_encoder_score": 4.15551233291626,
+            "intent_bonus": 3.0,
+            "selector_score": 7.15551233291626,
+            "anchor_sentence_id": "s-006"
+          },
+          {
+            "sentence_id": "s-010",
+            "evidence_id": "ev-03-paper-009-p004-c002",
+            "page": 4,
+            "section": "1.INTRODUCTION",
+            "evidence_rank": 3,
+            "position": 2,
+            "text": "To further check our microlensing candidate list, we also implement the KMTNet event-finding algorithm together with several traditional detection metrics to evaluate the results.",
+            "cross_encoder_score": -2.9683380126953125,
+            "intent_bonus": 3.0,
+            "selector_score": 0.0316619873046875,
+            "anchor_sentence_id": "s-010"
+          }
+        ],
+        "fallback_used": false,
+        "wall_seconds": 1.251569,
+        "stage_timings": {
+          "generator_activation_seconds": 0.0,
+          "sentence_selection_seconds": 1.246870899998612,
+          "answer_construction_seconds": 0.0002289000003656838,
+          "translation_seconds": 0.0,
+          "answer_validation_seconds": 0.004442900000867667
+        },
+        "answerability": {
+          "abstain": false,
+          "reason_code": null,
+          "enabled": true,
+          "signals": {
+            "query": "How is the Microlensify classifier evaluated on TESS light curves",
+            "natural_query": "How is the Microlensify classifier evaluated on TESS light curves?",
+            "removed_anchors": [],
+            "removed_title_phrases": [],
+            "has_specific_aspect": true,
+            "score_policy": "minimum_of_full_and_focused_request",
+            "source_anchors_masked": [],
+            "requested_attributes": [],
+            "missing_requested_attributes": [],
+            "requested_measurement_dimensions": [],
+            "missing_measurement_dimensions": [],
+            "contextual_requested_attributes": {},
+            "requested_attribute_coverage": true,
+            "max_aspect_score": 9.703751564025879,
+            "focused_request_max_score": 9.769768714904785,
+            "full_question_max_score": 9.703751564025879,
+            "evidence_count": 5
+          },
+          "minimum_aspect_score": -3.405527949333191,
+          "config_fingerprint": "06c512e55197a28ceb58d61f8738fdc4f0045aee8e2703e36996d6051984b00e"
+        },
+        "attempts": []
+      }
+    },
+    {
+      "question_id": "q-043-ko",
+      "paper_id": "paper-010",
+      "question": "다중 소스 distributionally robust graph learning을 평가하기 위해 어떤 실험이 사용되는가?",
+      "language": "ko",
+      "baseline": {
+        "response": {
+          "answer": "VI-B 섹션은 실제 다시티 휴식 상태 fMRI 코호르트에 대한 프레임워크를 검증하고, 참값 연결 그래프가 사용할 수 없으며, 대신, 수행은 지연된 신호 재구성 및 하류 임상 분류 작업을 통해 평가되어야합니다. 섹션 VI-A는 참값에 의해 알려진 소스 도메인의 표본 부족, 소스-목적 이질성 및 사용 가능한 소스 도메인의 수를 분리하기 위해 설계된 합성 다원원 네트워크에 대한 통제된 실험을 보고합니다.",
+          "evidence_ids": [
+            "ev-01-paper-010-p019-c001"
+          ],
+          "sufficiency": "sufficient",
+          "abstention_reason": null
+        },
+        "selected_sentences": [
+          {
+            "sentence_id": "s-002",
+            "evidence_id": "ev-01-paper-010-p019-c001",
+            "page": 19,
+            "section": "VI. E XPERIMENTAL RESULTS",
+            "evidence_rank": 1,
+            "position": 3,
+            "text": "Section VI-B validates the framework on a real multi-site resting-state fMRI cohort, where no ground-truth connectivity graph is available and performance must instead be assessed through held-out signal reconstruction and a downstream clinical classification task.",
+            "cross_encoder_score": -0.10530586540699005,
+            "intent_bonus": 13.0,
+            "selector_score": 12.89469413459301
+          },
+          {
+            "sentence_id": "s-001",
+            "evidence_id": "ev-01-paper-010-p019-c001",
+            "page": 19,
+            "section": "VI. E XPERIMENTAL RESULTS",
+            "evidence_rank": 1,
+            "position": 2,
+            "text": "Section VI-A reports controlled experiments on synthetic multi-source networks, designed to isolate the effect of target-domain sample scarcity, source-target heterogeneity, and the number of available source domains under known ground truth.",
+            "cross_encoder_score": -4.167869567871094,
+            "intent_bonus": 13.0,
+            "selector_score": 8.832130432128906
+          }
+        ],
+        "fallback_used": false,
+        "wall_seconds": 4.623328,
+        "stage_timings": null,
+        "answerability": null,
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "valid",
+            "raw_response": "VI-B 섹션은 실제 다시티 휴식 상태 fMRI 코호르트에 대한 프레임워크를 검증하고, 참값 연결 그래프가 사용할 수 없으며, 대신, 수행은 지연된 신호 재구성 및 하류 임상 분류 작업을 통해 평가되어야합니다. 섹션 VI-A는 참값에 의해 알려진 소스 도메인의 표본 부족, 소스-목적 이질성 및 사용 가능한 소스 도메인의 수를 분리하기 위해 설계된 합성 다원원 네트워크에 대한 통제된 실험을 보고합니다."
+          }
+        ]
+      },
+      "current": {
+        "response": {
+          "answer": "VI-B 섹션은 실제 다시티 휴식 상태 fMRI 코호르트에 대한 프레임워크를 검증하고, 참값 연결 그래프가 사용할 수 없으며, 대신, 수행은 지연된 신호 재구성 및 하류 임상 분류 작업을 통해 평가되어야합니다. 섹션 VI-A는 참값에 의해 알려진 소스 도메인의 표본 부족, 소스-목적 이질성 및 사용 가능한 소스 도메인의 수를 분리하기 위해 설계된 합성 다원원 네트워크에 대한 통제된 실험을 보고합니다. 최근에는 Wasserstein DRO가 부드러운 신호에서 라플라시아 추정치를 그래프로 기술하는 데 전문화되어 있으며, [29] 이는 대상 영역 샘플이 제한되어 있을 때 분산 강도가 그래프 복구 정확성에 측정 가능한 향상을 가져오게 있음을 입증합니다. 우리는 다음이 단일 소스 구조를 이 논문을 동기화하는 이 heterogeneous 다원원 설정으로 확장하여, 미묘하게 pooled 경험적 분포를 Wasserstein의 barycentric 모호함 집합으로 대체하여 M 소스 분포를 합쳐 그들의 잔존 샘플링과 heterogeneity 오류를 명시적으로 설명합니다 (부문 III-B).",
+          "evidence_ids": [
+            "ev-01-paper-010-p019-c001",
+            "ev-02-paper-010-p002-c002",
+            "ev-05-paper-010-p005-c004"
+          ],
+          "sufficiency": "sufficient",
+          "abstention_reason": null
+        },
+        "selected_sentences": [
+          {
+            "sentence_id": "s-002",
+            "evidence_id": "ev-01-paper-010-p019-c001",
+            "page": 19,
+            "section": "VI. E XPERIMENTAL RESULTS",
+            "evidence_rank": 1,
+            "position": 3,
+            "text": "Section VI-B validates the framework on a real multi-site resting-state fMRI cohort, where no ground-truth connectivity graph is available and performance must instead be assessed through held-out signal reconstruction and a downstream clinical classification task.",
+            "cross_encoder_score": -0.10654149949550629,
+            "intent_bonus": 13.0,
+            "selector_score": 12.893458500504494,
+            "anchor_sentence_id": "s-002"
+          },
+          {
+            "sentence_id": "s-001",
+            "evidence_id": "ev-01-paper-010-p019-c001",
+            "page": 19,
+            "section": "VI. E XPERIMENTAL RESULTS",
+            "evidence_rank": 1,
+            "position": 2,
+            "text": "Section VI-A reports controlled experiments on synthetic multi-source networks, designed to isolate the effect of target-domain sample scarcity, source-target heterogeneity, and the number of available source domains under known ground truth.",
+            "cross_encoder_score": -4.633841037750244,
+            "intent_bonus": 13.0,
+            "selector_score": 8.366158962249756,
+            "anchor_sentence_id": "s-001"
+          },
+          {
+            "sentence_id": "s-005",
+            "evidence_id": "ev-02-paper-010-p002-c002",
+            "page": 2,
+            "section": "I. I NTRODUCTION",
+            "evidence_rank": 2,
+            "position": 3,
+            "text": "Most recently, Wasserstein DRO has been specialized to graph Laplacian estimation from smooth signals [29], demonstrating that distributional robustness yields measurable improvements in graph recovery accuracy when target-domain samples are limited.",
+            "cross_encoder_score": 1.0615782737731934,
+            "intent_bonus": 0.0,
+            "selector_score": 1.0615782737731934,
+            "anchor_sentence_id": "s-005"
+          },
+          {
+            "sentence_id": "s-013",
+            "evidence_id": "ev-05-paper-010-p005-c004",
+            "page": 5,
+            "section": "III. W ASSERSTEIN DISTRIBUTIONALLY ROBUST GRAPH",
+            "evidence_rank": 5,
+            "position": 4,
+            "text": "We then extend this single-source construction to the heterogeneous multi-source setting motivating this paper, replacing the naively pooled empirical distribution with a Wasserstein barycentric ambiguity set that fuses the M source distributions while explicitly accounting for their residual sampling and heterogeneity error (Section III-B).",
+            "cross_encoder_score": -3.3643248081207275,
+            "intent_bonus": 0.0,
+            "selector_score": -3.3643248081207275,
+            "anchor_sentence_id": "s-013"
+          }
+        ],
+        "fallback_used": false,
+        "wall_seconds": 6.140535,
+        "stage_timings": {
+          "generator_activation_seconds": 0.0,
+          "sentence_selection_seconds": 0.7012006000004476,
+          "answer_construction_seconds": 0.00021159999596420676,
+          "translation_seconds": 5.434133299997484,
+          "answer_validation_seconds": 0.004953499996190658
+        },
+        "answerability": {
+          "abstain": false,
+          "reason_code": null,
+          "enabled": true,
+          "signals": {
+            "query": "다중 소스 distributionally robust graph learning을 평가하기 위해 어떤 실험이 사용되는가",
+            "natural_query": "다중 소스 distributionally robust graph learning을 평가하기 위해 어떤 실험이 사용되는가?",
+            "removed_anchors": [],
+            "removed_title_phrases": [],
+            "has_specific_aspect": true,
+            "score_policy": "minimum_of_full_and_focused_request",
+            "source_anchors_masked": [],
+            "requested_attributes": [],
+            "missing_requested_attributes": [],
+            "requested_measurement_dimensions": [],
+            "missing_measurement_dimensions": [],
+            "contextual_requested_attributes": {},
+            "requested_attribute_coverage": true,
+            "max_aspect_score": 4.279820919036865,
+            "focused_request_max_score": 4.404144763946533,
+            "full_question_max_score": 4.279820919036865,
+            "evidence_count": 5
+          },
+          "minimum_aspect_score": -3.405527949333191,
+          "config_fingerprint": "06c512e55197a28ceb58d61f8738fdc4f0045aee8e2703e36996d6051984b00e"
+        },
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "valid",
+            "raw_response": "VI-B 섹션은 실제 다시티 휴식 상태 fMRI 코호르트에 대한 프레임워크를 검증하고, 참값 연결 그래프가 사용할 수 없으며, 대신, 수행은 지연된 신호 재구성 및 하류 임상 분류 작업을 통해 평가되어야합니다. 섹션 VI-A는 참값에 의해 알려진 소스 도메인의 표본 부족, 소스-목적 이질성 및 사용 가능한 소스 도메인의 수를 분리하기 위해 설계된 합성 다원원 네트워크에 대한 통제된 실험을 보고합니다. 최근에는 Wasserstein DRO가 부드러운 신호에서 라플라시아 추정치를 그래프로 기술하는 데 전문화되어 있으며, [29] 이는 대상 영역 샘플이 제한되어 있을 때 분산 강도가 그래프 복구 정확성에 측정 가능한 향상을 가져오게 있음을 입증합니다. 우리는 다음이 단일 소스 구조를 이 논문을 동기화하는 이 heterogeneous 다원원 설정으로 확장하여, 미묘하게 pooled 경험적 분포를 Wasserstein의 barycentric 모호함 집합으로 대체하여 M 소스 분포를 합쳐 그들의 잔존 샘플링과 heterogeneity 오류를 명시적으로 설명합니다 (부문 III-B)."
+          }
+        ]
+      }
+    }
+  ]
+}

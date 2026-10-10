@@ -1,0 +1,1100 @@
+{
+  "schema_version": 1,
+  "execution_mode": "real_models",
+  "translation_cache_mode": "enabled",
+  "created_at": "2026-10-10T04:52:28.257831+00:00",
+  "paper_id": "real-dev-b",
+  "question": "온도 보정은 전체 클래스에 몇 개의 학습된 스칼라 매개변수를 사용하며 T에 어떤 제약을 두나요?",
+  "question_language": "ko",
+  "cold_start": {
+    "wall_seconds": 25.860558,
+    "runtime_seconds": 25.860549,
+    "request_mode": "cold",
+    "activation": {
+      "total_seconds": 16.224061,
+      "models_reused": false,
+      "retrieval": {
+        "chunk_loading_seconds": 2.1e-05,
+        "bm25_index_seconds": 0.010153,
+        "embedding_model_load_seconds": 10.566341,
+        "embedding_index_seconds": 3.157138,
+        "reranker_model_load_seconds": 2.436684,
+        "total_seconds": 16.170357,
+        "embedding_model_reused": false,
+        "reranker_model_reused": false,
+        "embedding_cache_hit": false
+      }
+    },
+    "stage_timings": {
+      "retrieval": {
+        "bm25_seconds": 0.000949,
+        "dense_query_encoding_seconds": 0.018459,
+        "dense_search_seconds": 0.000263,
+        "fusion_seconds": 7.4e-05,
+        "rerank_seconds": 1.202125,
+        "evidence_selection_seconds": 0.007149,
+        "total_seconds": 1.229091
+      },
+      "generation": {
+        "generator_activation_seconds": 2.71141,
+        "sentence_selector_activation_seconds": 0.0,
+        "sentence_selection_seconds": 1.164299,
+        "answer_construction_seconds": 0.001931,
+        "translation_seconds": 2.354748,
+        "generation_inference_seconds": 0.0,
+        "answer_validation_seconds": 0.007471
+      }
+    },
+    "process_memory": {
+      "source": "Windows GetProcessMemoryInfo",
+      "rss_bytes": 3984740352,
+      "peak_rss_bytes": 5033598976,
+      "scope": "entire_process"
+    },
+    "translation_cache": {
+      "enabled": true,
+      "capacity": 128,
+      "size": 1,
+      "hits": 0,
+      "misses": 1,
+      "evictions": 0,
+      "batch_duplicates": 0
+    },
+    "translation_validation_retry": {
+      "enabled": true,
+      "num_beams": 2,
+      "maximum_retries_per_sentence": 1,
+      "attempts": 0,
+      "successes": 0,
+      "failures": 0,
+      "last_request": {
+        "effective_num_beams": [
+          1
+        ],
+        "retry_attempts": 0,
+        "retry_successes": 0
+      }
+    }
+  },
+  "warmup_requests": [
+    {
+      "wall_seconds": 2.272398,
+      "request_mode": "warm"
+    }
+  ],
+  "warm": {
+    "wall_latency": {
+      "count": 10,
+      "p50_seconds": 2.300939,
+      "p95_seconds": 2.379434,
+      "min_seconds": 2.26031,
+      "max_seconds": 2.42008
+    },
+    "request_runtime_latency": {
+      "count": 10,
+      "p50_seconds": 2.300933,
+      "p95_seconds": 2.379426,
+      "min_seconds": 2.2603,
+      "max_seconds": 2.420071
+    },
+    "pipeline_latency": {
+      "count": 10,
+      "p50_seconds": 2.298358,
+      "p95_seconds": 2.376829,
+      "min_seconds": 2.25832,
+      "max_seconds": 2.417277
+    },
+    "stages": {
+      "generation.answer_construction_seconds": {
+        "count": 10,
+        "p50_seconds": 7.7e-05,
+        "p95_seconds": 0.000102,
+        "min_seconds": 6e-05,
+        "max_seconds": 0.000102
+      },
+      "generation.answer_validation_seconds": {
+        "count": 10,
+        "p50_seconds": 0.004042,
+        "p95_seconds": 0.004621,
+        "min_seconds": 0.003266,
+        "max_seconds": 0.004912
+      },
+      "generation.generation_inference_seconds": {
+        "count": 10,
+        "p50_seconds": 0.0,
+        "p95_seconds": 0.0,
+        "min_seconds": 0.0,
+        "max_seconds": 0.0
+      },
+      "generation.generator_activation_seconds": {
+        "count": 10,
+        "p50_seconds": 0.0,
+        "p95_seconds": 0.0,
+        "min_seconds": 0.0,
+        "max_seconds": 0.0
+      },
+      "generation.sentence_selection_seconds": {
+        "count": 10,
+        "p50_seconds": 1.119741,
+        "p95_seconds": 1.201307,
+        "min_seconds": 1.05155,
+        "max_seconds": 1.227629
+      },
+      "generation.sentence_selector_activation_seconds": {
+        "count": 10,
+        "p50_seconds": 0.0,
+        "p95_seconds": 0.0,
+        "min_seconds": 0.0,
+        "max_seconds": 0.0
+      },
+      "generation.translation_seconds": {
+        "count": 10,
+        "p50_seconds": 0.000182,
+        "p95_seconds": 0.00023,
+        "min_seconds": 0.000146,
+        "max_seconds": 0.000231
+      },
+      "retrieval.bm25_seconds": {
+        "count": 10,
+        "p50_seconds": 0.000378,
+        "p95_seconds": 0.000566,
+        "min_seconds": 0.000346,
+        "max_seconds": 0.000577
+      },
+      "retrieval.dense_query_encoding_seconds": {
+        "count": 10,
+        "p50_seconds": 0.016719,
+        "p95_seconds": 0.019975,
+        "min_seconds": 0.015365,
+        "max_seconds": 0.020997
+      },
+      "retrieval.dense_search_seconds": {
+        "count": 10,
+        "p50_seconds": 0.000218,
+        "p95_seconds": 0.000336,
+        "min_seconds": 0.000186,
+        "max_seconds": 0.00042
+      },
+      "retrieval.evidence_selection_seconds": {
+        "count": 10,
+        "p50_seconds": 0.003176,
+        "p95_seconds": 0.003947,
+        "min_seconds": 0.00243,
+        "max_seconds": 0.004483
+      },
+      "retrieval.fusion_seconds": {
+        "count": 10,
+        "p50_seconds": 8.1e-05,
+        "p95_seconds": 0.000104,
+        "min_seconds": 6.6e-05,
+        "max_seconds": 0.00011
+      },
+      "retrieval.rerank_seconds": {
+        "count": 10,
+        "p50_seconds": 1.161052,
+        "p95_seconds": 1.192368,
+        "min_seconds": 1.115488,
+        "max_seconds": 1.207875
+      },
+      "retrieval.total_seconds": {
+        "count": 10,
+        "p50_seconds": 1.183445,
+        "p95_seconds": 1.214285,
+        "min_seconds": 1.135125,
+        "max_seconds": 1.226952
+      }
+    },
+    "samples": [
+      {
+        "iteration": 1,
+        "wall_seconds": 2.295476,
+        "request_mode": "warm",
+        "runtime_seconds": 2.29547,
+        "pipeline_seconds": 2.293109,
+        "stage_timings": {
+          "retrieval": {
+            "bm25_seconds": 0.00036,
+            "dense_query_encoding_seconds": 0.016632,
+            "dense_search_seconds": 0.000186,
+            "fusion_seconds": 6.7e-05,
+            "rerank_seconds": 1.138729,
+            "evidence_selection_seconds": 0.004483,
+            "total_seconds": 1.160609
+          },
+          "generation": {
+            "generator_activation_seconds": 0.0,
+            "sentence_selector_activation_seconds": 0.0,
+            "sentence_selection_seconds": 1.126574,
+            "answer_construction_seconds": 7.4e-05,
+            "translation_seconds": 0.000183,
+            "generation_inference_seconds": 0.0,
+            "answer_validation_seconds": 0.004912
+          }
+        },
+        "stage_values": {
+          "retrieval.bm25_seconds": 0.00036,
+          "retrieval.dense_query_encoding_seconds": 0.016632,
+          "retrieval.dense_search_seconds": 0.000186,
+          "retrieval.fusion_seconds": 6.7e-05,
+          "retrieval.rerank_seconds": 1.138729,
+          "retrieval.evidence_selection_seconds": 0.004483,
+          "retrieval.total_seconds": 1.160609,
+          "generation.generator_activation_seconds": 0.0,
+          "generation.sentence_selector_activation_seconds": 0.0,
+          "generation.sentence_selection_seconds": 1.126574,
+          "generation.answer_construction_seconds": 7.4e-05,
+          "generation.translation_seconds": 0.000183,
+          "generation.generation_inference_seconds": 0.0,
+          "generation.answer_validation_seconds": 0.004912
+        },
+        "sufficiency": "sufficient",
+        "fallback_used": false,
+        "response_sha256": "d29df2037bdc8e9b73fcbfba38d1b8e5ac4c63723cef586a7f8bfd1559432527",
+        "process_memory": {
+          "source": "Windows GetProcessMemoryInfo",
+          "rss_bytes": 4017127424,
+          "peak_rss_bytes": 5033598976,
+          "scope": "entire_process"
+        },
+        "translation_cache": {
+          "enabled": true,
+          "capacity": 128,
+          "size": 1,
+          "hits": 2,
+          "misses": 1,
+          "evictions": 0,
+          "batch_duplicates": 0
+        },
+        "translation_validation_retry": {
+          "enabled": true,
+          "num_beams": 2,
+          "maximum_retries_per_sentence": 1,
+          "attempts": 0,
+          "successes": 0,
+          "failures": 0,
+          "last_request": {
+            "effective_num_beams": [],
+            "retry_attempts": 0,
+            "retry_successes": 0
+          }
+        }
+      },
+      {
+        "iteration": 2,
+        "wall_seconds": 2.27838,
+        "request_mode": "warm",
+        "runtime_seconds": 2.278373,
+        "pipeline_seconds": 2.275938,
+        "stage_timings": {
+          "retrieval": {
+            "bm25_seconds": 0.00036,
+            "dense_query_encoding_seconds": 0.01577,
+            "dense_search_seconds": 0.000224,
+            "fusion_seconds": 9.6e-05,
+            "rerank_seconds": 1.115488,
+            "evidence_selection_seconds": 0.003117,
+            "total_seconds": 1.135125
+          },
+          "generation": {
+            "generator_activation_seconds": 0.0,
+            "sentence_selector_activation_seconds": 0.0,
+            "sentence_selection_seconds": 1.135404,
+            "answer_construction_seconds": 0.000101,
+            "translation_seconds": 0.000231,
+            "generation_inference_seconds": 0.0,
+            "answer_validation_seconds": 0.004251
+          }
+        },
+        "stage_values": {
+          "retrieval.bm25_seconds": 0.00036,
+          "retrieval.dense_query_encoding_seconds": 0.01577,
+          "retrieval.dense_search_seconds": 0.000224,
+          "retrieval.fusion_seconds": 9.6e-05,
+          "retrieval.rerank_seconds": 1.115488,
+          "retrieval.evidence_selection_seconds": 0.003117,
+          "retrieval.total_seconds": 1.135125,
+          "generation.generator_activation_seconds": 0.0,
+          "generation.sentence_selector_activation_seconds": 0.0,
+          "generation.sentence_selection_seconds": 1.135404,
+          "generation.answer_construction_seconds": 0.000101,
+          "generation.translation_seconds": 0.000231,
+          "generation.generation_inference_seconds": 0.0,
+          "generation.answer_validation_seconds": 0.004251
+        },
+        "sufficiency": "sufficient",
+        "fallback_used": false,
+        "response_sha256": "d29df2037bdc8e9b73fcbfba38d1b8e5ac4c63723cef586a7f8bfd1559432527",
+        "process_memory": {
+          "source": "Windows GetProcessMemoryInfo",
+          "rss_bytes": 3996737536,
+          "peak_rss_bytes": 5033598976,
+          "scope": "entire_process"
+        },
+        "translation_cache": {
+          "enabled": true,
+          "capacity": 128,
+          "size": 1,
+          "hits": 3,
+          "misses": 1,
+          "evictions": 0,
+          "batch_duplicates": 0
+        },
+        "translation_validation_retry": {
+          "enabled": true,
+          "num_beams": 2,
+          "maximum_retries_per_sentence": 1,
+          "attempts": 0,
+          "successes": 0,
+          "failures": 0,
+          "last_request": {
+            "effective_num_beams": [],
+            "retry_attempts": 0,
+            "retry_successes": 0
+          }
+        }
+      },
+      {
+        "iteration": 3,
+        "wall_seconds": 2.311441,
+        "request_mode": "warm",
+        "runtime_seconds": 2.311434,
+        "pipeline_seconds": 2.308581,
+        "stage_timings": {
+          "retrieval": {
+            "bm25_seconds": 0.000506,
+            "dense_query_encoding_seconds": 0.016807,
+            "dense_search_seconds": 0.000211,
+            "fusion_seconds": 8.6e-05,
+            "rerank_seconds": 1.165176,
+            "evidence_selection_seconds": 0.00305,
+            "total_seconds": 1.185893
+          },
+          "generation": {
+            "generator_activation_seconds": 0.0,
+            "sentence_selector_activation_seconds": 0.0,
+            "sentence_selection_seconds": 1.118012,
+            "answer_construction_seconds": 8.2e-05,
+            "translation_seconds": 0.00018,
+            "generation_inference_seconds": 0.0,
+            "answer_validation_seconds": 0.003746
+          }
+        },
+        "stage_values": {
+          "retrieval.bm25_seconds": 0.000506,
+          "retrieval.dense_query_encoding_seconds": 0.016807,
+          "retrieval.dense_search_seconds": 0.000211,
+          "retrieval.fusion_seconds": 8.6e-05,
+          "retrieval.rerank_seconds": 1.165176,
+          "retrieval.evidence_selection_seconds": 0.00305,
+          "retrieval.total_seconds": 1.185893,
+          "generation.generator_activation_seconds": 0.0,
+          "generation.sentence_selector_activation_seconds": 0.0,
+          "generation.sentence_selection_seconds": 1.118012,
+          "generation.answer_construction_seconds": 8.2e-05,
+          "generation.translation_seconds": 0.00018,
+          "generation.generation_inference_seconds": 0.0,
+          "generation.answer_validation_seconds": 0.003746
+        },
+        "sufficiency": "sufficient",
+        "fallback_used": false,
+        "response_sha256": "d29df2037bdc8e9b73fcbfba38d1b8e5ac4c63723cef586a7f8bfd1559432527",
+        "process_memory": {
+          "source": "Windows GetProcessMemoryInfo",
+          "rss_bytes": 4017659904,
+          "peak_rss_bytes": 5033598976,
+          "scope": "entire_process"
+        },
+        "translation_cache": {
+          "enabled": true,
+          "capacity": 128,
+          "size": 1,
+          "hits": 4,
+          "misses": 1,
+          "evictions": 0,
+          "batch_duplicates": 0
+        },
+        "translation_validation_retry": {
+          "enabled": true,
+          "num_beams": 2,
+          "maximum_retries_per_sentence": 1,
+          "attempts": 0,
+          "successes": 0,
+          "failures": 0,
+          "last_request": {
+            "effective_num_beams": [],
+            "retry_attempts": 0,
+            "retry_successes": 0
+          }
+        }
+      },
+      {
+        "iteration": 4,
+        "wall_seconds": 2.282397,
+        "request_mode": "warm",
+        "runtime_seconds": 2.282392,
+        "pipeline_seconds": 2.280216,
+        "stage_timings": {
+          "retrieval": {
+            "bm25_seconds": 0.000474,
+            "dense_query_encoding_seconds": 0.017788,
+            "dense_search_seconds": 0.00023,
+            "fusion_seconds": 8.2e-05,
+            "rerank_seconds": 1.160661,
+            "evidence_selection_seconds": 0.003291,
+            "total_seconds": 1.182593
+          },
+          "generation": {
+            "generator_activation_seconds": 0.0,
+            "sentence_selector_activation_seconds": 0.0,
+            "sentence_selection_seconds": 1.09303,
+            "answer_construction_seconds": 6.2e-05,
+            "translation_seconds": 0.000154,
+            "generation_inference_seconds": 0.0,
+            "answer_validation_seconds": 0.003786
+          }
+        },
+        "stage_values": {
+          "retrieval.bm25_seconds": 0.000474,
+          "retrieval.dense_query_encoding_seconds": 0.017788,
+          "retrieval.dense_search_seconds": 0.00023,
+          "retrieval.fusion_seconds": 8.2e-05,
+          "retrieval.rerank_seconds": 1.160661,
+          "retrieval.evidence_selection_seconds": 0.003291,
+          "retrieval.total_seconds": 1.182593,
+          "generation.generator_activation_seconds": 0.0,
+          "generation.sentence_selector_activation_seconds": 0.0,
+          "generation.sentence_selection_seconds": 1.09303,
+          "generation.answer_construction_seconds": 6.2e-05,
+          "generation.translation_seconds": 0.000154,
+          "generation.generation_inference_seconds": 0.0,
+          "generation.answer_validation_seconds": 0.003786
+        },
+        "sufficiency": "sufficient",
+        "fallback_used": false,
+        "response_sha256": "d29df2037bdc8e9b73fcbfba38d1b8e5ac4c63723cef586a7f8bfd1559432527",
+        "process_memory": {
+          "source": "Windows GetProcessMemoryInfo",
+          "rss_bytes": 4017487872,
+          "peak_rss_bytes": 5033598976,
+          "scope": "entire_process"
+        },
+        "translation_cache": {
+          "enabled": true,
+          "capacity": 128,
+          "size": 1,
+          "hits": 5,
+          "misses": 1,
+          "evictions": 0,
+          "batch_duplicates": 0
+        },
+        "translation_validation_retry": {
+          "enabled": true,
+          "num_beams": 2,
+          "maximum_retries_per_sentence": 1,
+          "attempts": 0,
+          "successes": 0,
+          "failures": 0,
+          "last_request": {
+            "effective_num_beams": [],
+            "retry_attempts": 0,
+            "retry_successes": 0
+          }
+        }
+      },
+      {
+        "iteration": 5,
+        "wall_seconds": 2.284823,
+        "request_mode": "warm",
+        "runtime_seconds": 2.284818,
+        "pipeline_seconds": 2.28253,
+        "stage_timings": {
+          "retrieval": {
+            "bm25_seconds": 0.000351,
+            "dense_query_encoding_seconds": 0.015903,
+            "dense_search_seconds": 0.00021,
+            "fusion_seconds": 7.6e-05,
+            "rerank_seconds": 1.207875,
+            "evidence_selection_seconds": 0.002472,
+            "total_seconds": 1.226952
+          },
+          "generation": {
+            "generator_activation_seconds": 0.0,
+            "sentence_selector_activation_seconds": 0.0,
+            "sentence_selection_seconds": 1.05155,
+            "answer_construction_seconds": 6e-05,
+            "translation_seconds": 0.000146,
+            "generation_inference_seconds": 0.0,
+            "answer_validation_seconds": 0.003266
+          }
+        },
+        "stage_values": {
+          "retrieval.bm25_seconds": 0.000351,
+          "retrieval.dense_query_encoding_seconds": 0.015903,
+          "retrieval.dense_search_seconds": 0.00021,
+          "retrieval.fusion_seconds": 7.6e-05,
+          "retrieval.rerank_seconds": 1.207875,
+          "retrieval.evidence_selection_seconds": 0.002472,
+          "retrieval.total_seconds": 1.226952,
+          "generation.generator_activation_seconds": 0.0,
+          "generation.sentence_selector_activation_seconds": 0.0,
+          "generation.sentence_selection_seconds": 1.05155,
+          "generation.answer_construction_seconds": 6e-05,
+          "generation.translation_seconds": 0.000146,
+          "generation.generation_inference_seconds": 0.0,
+          "generation.answer_validation_seconds": 0.003266
+        },
+        "sufficiency": "sufficient",
+        "fallback_used": false,
+        "response_sha256": "d29df2037bdc8e9b73fcbfba38d1b8e5ac4c63723cef586a7f8bfd1559432527",
+        "process_memory": {
+          "source": "Windows GetProcessMemoryInfo",
+          "rss_bytes": 4016922624,
+          "peak_rss_bytes": 5033598976,
+          "scope": "entire_process"
+        },
+        "translation_cache": {
+          "enabled": true,
+          "capacity": 128,
+          "size": 1,
+          "hits": 6,
+          "misses": 1,
+          "evictions": 0,
+          "batch_duplicates": 0
+        },
+        "translation_validation_retry": {
+          "enabled": true,
+          "num_beams": 2,
+          "maximum_retries_per_sentence": 1,
+          "attempts": 0,
+          "successes": 0,
+          "failures": 0,
+          "last_request": {
+            "effective_num_beams": [],
+            "retry_attempts": 0,
+            "retry_successes": 0
+          }
+        }
+      },
+      {
+        "iteration": 6,
+        "wall_seconds": 2.26031,
+        "request_mode": "warm",
+        "runtime_seconds": 2.2603,
+        "pipeline_seconds": 2.25832,
+        "stage_timings": {
+          "retrieval": {
+            "bm25_seconds": 0.000348,
+            "dense_query_encoding_seconds": 0.01708,
+            "dense_search_seconds": 0.000233,
+            "fusion_seconds": 0.00011,
+            "rerank_seconds": 1.171093,
+            "evidence_selection_seconds": 0.003262,
+            "total_seconds": 1.192203
+          },
+          "generation": {
+            "generator_activation_seconds": 0.0,
+            "sentence_selector_activation_seconds": 0.0,
+            "sentence_selection_seconds": 1.060692,
+            "answer_construction_seconds": 9.9e-05,
+            "translation_seconds": 0.000228,
+            "generation_inference_seconds": 0.0,
+            "answer_validation_seconds": 0.004265
+          }
+        },
+        "stage_values": {
+          "retrieval.bm25_seconds": 0.000348,
+          "retrieval.dense_query_encoding_seconds": 0.01708,
+          "retrieval.dense_search_seconds": 0.000233,
+          "retrieval.fusion_seconds": 0.00011,
+          "retrieval.rerank_seconds": 1.171093,
+          "retrieval.evidence_selection_seconds": 0.003262,
+          "retrieval.total_seconds": 1.192203,
+          "generation.generator_activation_seconds": 0.0,
+          "generation.sentence_selector_activation_seconds": 0.0,
+          "generation.sentence_selection_seconds": 1.060692,
+          "generation.answer_construction_seconds": 9.9e-05,
+          "generation.translation_seconds": 0.000228,
+          "generation.generation_inference_seconds": 0.0,
+          "generation.answer_validation_seconds": 0.004265
+        },
+        "sufficiency": "sufficient",
+        "fallback_used": false,
+        "response_sha256": "d29df2037bdc8e9b73fcbfba38d1b8e5ac4c63723cef586a7f8bfd1559432527",
+        "process_memory": {
+          "source": "Windows GetProcessMemoryInfo",
+          "rss_bytes": 4017127424,
+          "peak_rss_bytes": 5033598976,
+          "scope": "entire_process"
+        },
+        "translation_cache": {
+          "enabled": true,
+          "capacity": 128,
+          "size": 1,
+          "hits": 7,
+          "misses": 1,
+          "evictions": 0,
+          "batch_duplicates": 0
+        },
+        "translation_validation_retry": {
+          "enabled": true,
+          "num_beams": 2,
+          "maximum_retries_per_sentence": 1,
+          "attempts": 0,
+          "successes": 0,
+          "failures": 0,
+          "last_request": {
+            "effective_num_beams": [],
+            "retry_attempts": 0,
+            "retry_successes": 0
+          }
+        }
+      },
+      {
+        "iteration": 7,
+        "wall_seconds": 2.306402,
+        "request_mode": "warm",
+        "runtime_seconds": 2.306395,
+        "pipeline_seconds": 2.303608,
+        "stage_timings": {
+          "retrieval": {
+            "bm25_seconds": 0.000346,
+            "dense_query_encoding_seconds": 0.016575,
+            "dense_search_seconds": 0.000227,
+            "fusion_seconds": 7.9e-05,
+            "rerank_seconds": 1.157763,
+            "evidence_selection_seconds": 0.00243,
+            "total_seconds": 1.177475
+          },
+          "generation": {
+            "generator_activation_seconds": 0.0,
+            "sentence_selector_activation_seconds": 0.0,
+            "sentence_selection_seconds": 1.121469,
+            "answer_construction_seconds": 0.000102,
+            "translation_seconds": 0.000219,
+            "generation_inference_seconds": 0.0,
+            "answer_validation_seconds": 0.003542
+          }
+        },
+        "stage_values": {
+          "retrieval.bm25_seconds": 0.000346,
+          "retrieval.dense_query_encoding_seconds": 0.016575,
+          "retrieval.dense_search_seconds": 0.000227,
+          "retrieval.fusion_seconds": 7.9e-05,
+          "retrieval.rerank_seconds": 1.157763,
+          "retrieval.evidence_selection_seconds": 0.00243,
+          "retrieval.total_seconds": 1.177475,
+          "generation.generator_activation_seconds": 0.0,
+          "generation.sentence_selector_activation_seconds": 0.0,
+          "generation.sentence_selection_seconds": 1.121469,
+          "generation.answer_construction_seconds": 0.000102,
+          "generation.translation_seconds": 0.000219,
+          "generation.generation_inference_seconds": 0.0,
+          "generation.answer_validation_seconds": 0.003542
+        },
+        "sufficiency": "sufficient",
+        "fallback_used": false,
+        "response_sha256": "d29df2037bdc8e9b73fcbfba38d1b8e5ac4c63723cef586a7f8bfd1559432527",
+        "process_memory": {
+          "source": "Windows GetProcessMemoryInfo",
+          "rss_bytes": 4017360896,
+          "peak_rss_bytes": 5033598976,
+          "scope": "entire_process"
+        },
+        "translation_cache": {
+          "enabled": true,
+          "capacity": 128,
+          "size": 1,
+          "hits": 8,
+          "misses": 1,
+          "evictions": 0,
+          "batch_duplicates": 0
+        },
+        "translation_validation_retry": {
+          "enabled": true,
+          "num_beams": 2,
+          "maximum_retries_per_sentence": 1,
+          "attempts": 0,
+          "successes": 0,
+          "failures": 0,
+          "last_request": {
+            "effective_num_beams": [],
+            "retry_attempts": 0,
+            "retry_successes": 0
+          }
+        }
+      },
+      {
+        "iteration": 8,
+        "wall_seconds": 2.322364,
+        "request_mode": "warm",
+        "runtime_seconds": 2.322359,
+        "pipeline_seconds": 2.318992,
+        "stage_timings": {
+          "retrieval": {
+            "bm25_seconds": 0.000577,
+            "dense_query_encoding_seconds": 0.020997,
+            "dense_search_seconds": 0.00042,
+            "fusion_seconds": 8.5e-05,
+            "rerank_seconds": 1.173416,
+            "evidence_selection_seconds": 0.003235,
+            "total_seconds": 1.198804
+          },
+          "generation": {
+            "generator_activation_seconds": 0.0,
+            "sentence_selector_activation_seconds": 0.0,
+            "sentence_selection_seconds": 1.115395,
+            "answer_construction_seconds": 6.2e-05,
+            "translation_seconds": 0.00017,
+            "generation_inference_seconds": 0.0,
+            "answer_validation_seconds": 0.003943
+          }
+        },
+        "stage_values": {
+          "retrieval.bm25_seconds": 0.000577,
+          "retrieval.dense_query_encoding_seconds": 0.020997,
+          "retrieval.dense_search_seconds": 0.00042,
+          "retrieval.fusion_seconds": 8.5e-05,
+          "retrieval.rerank_seconds": 1.173416,
+          "retrieval.evidence_selection_seconds": 0.003235,
+          "retrieval.total_seconds": 1.198804,
+          "generation.generator_activation_seconds": 0.0,
+          "generation.sentence_selector_activation_seconds": 0.0,
+          "generation.sentence_selection_seconds": 1.115395,
+          "generation.answer_construction_seconds": 6.2e-05,
+          "generation.translation_seconds": 0.00017,
+          "generation.generation_inference_seconds": 0.0,
+          "generation.answer_validation_seconds": 0.003943
+        },
+        "sufficiency": "sufficient",
+        "fallback_used": false,
+        "response_sha256": "d29df2037bdc8e9b73fcbfba38d1b8e5ac4c63723cef586a7f8bfd1559432527",
+        "process_memory": {
+          "source": "Windows GetProcessMemoryInfo",
+          "rss_bytes": 4017655808,
+          "peak_rss_bytes": 5033598976,
+          "scope": "entire_process"
+        },
+        "translation_cache": {
+          "enabled": true,
+          "capacity": 128,
+          "size": 1,
+          "hits": 9,
+          "misses": 1,
+          "evictions": 0,
+          "batch_duplicates": 0
+        },
+        "translation_validation_retry": {
+          "enabled": true,
+          "num_beams": 2,
+          "maximum_retries_per_sentence": 1,
+          "attempts": 0,
+          "successes": 0,
+          "failures": 0,
+          "last_request": {
+            "effective_num_beams": [],
+            "retry_attempts": 0,
+            "retry_successes": 0
+          }
+        }
+      },
+      {
+        "iteration": 9,
+        "wall_seconds": 2.329755,
+        "request_mode": "warm",
+        "runtime_seconds": 2.329748,
+        "pipeline_seconds": 2.327392,
+        "stage_timings": {
+          "retrieval": {
+            "bm25_seconds": 0.000395,
+            "dense_query_encoding_seconds": 0.015365,
+            "dense_search_seconds": 0.000203,
+            "fusion_seconds": 7.7e-05,
+            "rerank_seconds": 1.133962,
+            "evidence_selection_seconds": 0.002793,
+            "total_seconds": 1.152866
+          },
+          "generation": {
+            "generator_activation_seconds": 0.0,
+            "sentence_selector_activation_seconds": 0.0,
+            "sentence_selection_seconds": 1.169135,
+            "answer_construction_seconds": 6.8e-05,
+            "translation_seconds": 0.000151,
+            "generation_inference_seconds": 0.0,
+            "answer_validation_seconds": 0.00415
+          }
+        },
+        "stage_values": {
+          "retrieval.bm25_seconds": 0.000395,
+          "retrieval.dense_query_encoding_seconds": 0.015365,
+          "retrieval.dense_search_seconds": 0.000203,
+          "retrieval.fusion_seconds": 7.7e-05,
+          "retrieval.rerank_seconds": 1.133962,
+          "retrieval.evidence_selection_seconds": 0.002793,
+          "retrieval.total_seconds": 1.152866,
+          "generation.generator_activation_seconds": 0.0,
+          "generation.sentence_selector_activation_seconds": 0.0,
+          "generation.sentence_selection_seconds": 1.169135,
+          "generation.answer_construction_seconds": 6.8e-05,
+          "generation.translation_seconds": 0.000151,
+          "generation.generation_inference_seconds": 0.0,
+          "generation.answer_validation_seconds": 0.00415
+        },
+        "sufficiency": "sufficient",
+        "fallback_used": false,
+        "response_sha256": "d29df2037bdc8e9b73fcbfba38d1b8e5ac4c63723cef586a7f8bfd1559432527",
+        "process_memory": {
+          "source": "Windows GetProcessMemoryInfo",
+          "rss_bytes": 4019261440,
+          "peak_rss_bytes": 5033598976,
+          "scope": "entire_process"
+        },
+        "translation_cache": {
+          "enabled": true,
+          "capacity": 128,
+          "size": 1,
+          "hits": 10,
+          "misses": 1,
+          "evictions": 0,
+          "batch_duplicates": 0
+        },
+        "translation_validation_retry": {
+          "enabled": true,
+          "num_beams": 2,
+          "maximum_retries_per_sentence": 1,
+          "attempts": 0,
+          "successes": 0,
+          "failures": 0,
+          "last_request": {
+            "effective_num_beams": [],
+            "retry_attempts": 0,
+            "retry_successes": 0
+          }
+        }
+      },
+      {
+        "iteration": 10,
+        "wall_seconds": 2.42008,
+        "request_mode": "warm",
+        "runtime_seconds": 2.420071,
+        "pipeline_seconds": 2.417277,
+        "stage_timings": {
+          "retrieval": {
+            "bm25_seconds": 0.000553,
+            "dense_query_encoding_seconds": 0.018725,
+            "dense_search_seconds": 0.000194,
+            "fusion_seconds": 6.6e-05,
+            "rerank_seconds": 1.161442,
+            "evidence_selection_seconds": 0.003249,
+            "total_seconds": 1.184297
+          },
+          "generation": {
+            "generator_activation_seconds": 0.0,
+            "sentence_selector_activation_seconds": 0.0,
+            "sentence_selection_seconds": 1.227629,
+            "answer_construction_seconds": 8.1e-05,
+            "translation_seconds": 0.000192,
+            "generation_inference_seconds": 0.0,
+            "answer_validation_seconds": 0.004141
+          }
+        },
+        "stage_values": {
+          "retrieval.bm25_seconds": 0.000553,
+          "retrieval.dense_query_encoding_seconds": 0.018725,
+          "retrieval.dense_search_seconds": 0.000194,
+          "retrieval.fusion_seconds": 6.6e-05,
+          "retrieval.rerank_seconds": 1.161442,
+          "retrieval.evidence_selection_seconds": 0.003249,
+          "retrieval.total_seconds": 1.184297,
+          "generation.generator_activation_seconds": 0.0,
+          "generation.sentence_selector_activation_seconds": 0.0,
+          "generation.sentence_selection_seconds": 1.227629,
+          "generation.answer_construction_seconds": 8.1e-05,
+          "generation.translation_seconds": 0.000192,
+          "generation.generation_inference_seconds": 0.0,
+          "generation.answer_validation_seconds": 0.004141
+        },
+        "sufficiency": "sufficient",
+        "fallback_used": false,
+        "response_sha256": "d29df2037bdc8e9b73fcbfba38d1b8e5ac4c63723cef586a7f8bfd1559432527",
+        "process_memory": {
+          "source": "Windows GetProcessMemoryInfo",
+          "rss_bytes": 4038823936,
+          "peak_rss_bytes": 5033598976,
+          "scope": "entire_process"
+        },
+        "translation_cache": {
+          "enabled": true,
+          "capacity": 128,
+          "size": 1,
+          "hits": 11,
+          "misses": 1,
+          "evictions": 0,
+          "batch_duplicates": 0
+        },
+        "translation_validation_retry": {
+          "enabled": true,
+          "num_beams": 2,
+          "maximum_retries_per_sentence": 1,
+          "attempts": 0,
+          "successes": 0,
+          "failures": 0,
+          "last_request": {
+            "effective_num_beams": [],
+            "retry_attempts": 0,
+            "retry_successes": 0
+          }
+        }
+      }
+    ],
+    "sufficient_count": 10,
+    "fallback_count": 0,
+    "responses_identical": true,
+    "peak_process_rss_bytes": 5033598976
+  },
+  "models": {
+    "provider": "local_nllb",
+    "model": "facebook/nllb-200-distilled-600M",
+    "revision": "38bd1c6a0f58097b26ef7c7cd73a0dcac034350a",
+    "license": "cc-by-nc-4.0",
+    "device": "cpu",
+    "dtype": "float32",
+    "device_fallback_reason": null,
+    "config_path": "config/translation.json",
+    "config_fingerprint": "ac077be6c20efc69ca026d8d6d579d9cc0f719a42eded4732e41b618b85bd97a",
+    "glossary_path": "config/translation_glossary.json",
+    "glossary_fingerprint": "6d289d0de3a4719f134831bda0192592b39affc82fdb924e216d399fda448b5e",
+    "protection_policy": "source_spans_alphabetic_markers_v6",
+    "cache": {
+      "enabled": true,
+      "capacity": 128,
+      "size": 1,
+      "hits": 0,
+      "misses": 1,
+      "evictions": 0,
+      "batch_duplicates": 0
+    },
+    "validation_retry": {
+      "enabled": true,
+      "num_beams": 2,
+      "maximum_retries_per_sentence": 1,
+      "attempts": 0,
+      "successes": 0,
+      "failures": 0,
+      "last_request": {
+        "effective_num_beams": [
+          1
+        ],
+        "retry_attempts": 0,
+        "retry_successes": 0
+      }
+    },
+    "loaded": true
+  },
+  "retrieval_config_fingerprint": "0c29b27950ba19aea6fd336db857f691b0fafcd82eada850c868d7ffe0d3579a",
+  "measurement_notes": [
+    "The first request includes activation and first inference; it is not a warm sample.",
+    "Fresh process means cold in-process models, not an emptied operating-system or model-file cache.",
+    "Warm-up requests are recorded but excluded from p50 and p95.",
+    "A request timer includes runtime lock waiting and activation. Stage timers are nested and must not be added twice.",
+    "p50 and p95 use linear interpolation. Small repeated samples do not establish a production service-level guarantee.",
+    "This report measures latency and output stability, not independent answer or translation correctness.",
+    "Memory readings cover the entire process. Native peak RSS includes model allocations and preceding initialization.",
+    "Enabled translation caching may reuse exact source sentences. Disabled mode clears sentence outputs before every request while keeping models loaded; it still repeats the same question."
+  ],
+  "engine_construction_seconds": 0.001195,
+  "input_chunks": {
+    "sha256": "bedb536774479cb9364437e30c83ad5bf6c78f5f7d5ab5e64a4475026e98e63b",
+    "selected_chunks_sha256": "bedb536774479cb9364437e30c83ad5bf6c78f5f7d5ab5e64a4475026e98e63b",
+    "source_chunk_count": 49,
+    "chunk_count": 49,
+    "embedding_disk_cache": "fresh_temporary_directory"
+  },
+  "environment": {
+    "python": "3.12.7",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+    "logical_cpu_count": 16,
+    "packages": {
+      "numpy": "1.26.4",
+      "torch": "2.14.1",
+      "transformers": "5.16.1",
+      "sentence-transformers": "6.0.0",
+      "rank-bm25": "0.2.2"
+    },
+    "cuda_available": false,
+    "cuda_version": null,
+    "torch_cpu_threads": 8
+  },
+  "seed": 378,
+  "model_lock": {
+    "schema_version": 1,
+    "status": "frozen",
+    "seed": 378,
+    "models": {
+      "embedding": {
+        "name": "intfloat/multilingual-e5-small",
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "runtime_role": "multilingual_dense_retrieval"
+      },
+      "reranker": {
+        "name": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+        "revision": "1427fd652930e4ba29e8149678df786c240d8825",
+        "runtime_role": "candidate_and_sentence_reranking"
+      },
+      "translation": {
+        "name": "facebook/nllb-200-distilled-600M",
+        "revision": "38bd1c6a0f58097b26ef7c7cd73a0dcac034350a",
+        "runtime_role": "english_to_korean_translation",
+        "license": "cc-by-nc-4.0",
+        "usage_scope": "local_noncommercial_portfolio_demo"
+      },
+      "legacy_generator": {
+        "name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+        "runtime_role": "historical_regression_only"
+      }
+    },
+    "observed_runtime": {
+      "retrieval_revisions": "Read from the model cache used by the successful Docker Compose benchmark.",
+      "translation_revision": "Matches config/translation.json and the successful Docker Compose benchmark.",
+      "legacy_generator_revision": "Matches the frozen historical generation configurations."
+    },
+    "change_policy": "Change a model or revision only through a saved regression run and a new evaluation freeze."
+  },
+  "config_sha256": {
+    "runtime_qna.json": "c4d6faa08419f2b1782b4635ea79ec9a12bf289be4df6fb89a0d903820c3c1ce",
+    "production_retrieval.json": "fd605b9c864777f9975c5eb8afde7a3ccc71e5d3066860dee4f5149c0b2415cb",
+    "abstention.json": "58b37d6f6a8f259cecd3bfef9441d6827858e7766027b493f8055c1ea6f12157",
+    "answer_generation.json": "762bdf34a1d9fd607438aad203a7e84f8320ac710b1ec7b26f858a9f64dd5504",
+    "answerability_policy.json": "367d9c6ff09952ab1df4f9ecfffd919e1bb6d9b6927abc9440b124507118c175",
+    "translation.json": "70ecb986ae975f07135e0ddacb94aa589c9129c5234515f7209b241e8980b2c7",
+    "translation_glossary.json": "d03de4331dd7042b2568f150244d5439332f17d1627ed8628fa5339d3dcd6ae8",
+    "model_lock.json": "7cc5ba9ca615090de955ea9743fdc25bb95028fec872a3d05cfd362af72e3956",
+    "answer_output_schema.json": "caf2e7f123b4aead6e4991c2cca394c18cce37ceb8ef37750e59daf091ae8d2e",
+    "generation_runtime.json": "ae3c1910ae349cdf870462811e3e2a07a75eda3027feec568e326c30a6f37919"
+  },
+  "implementation_sha256": {
+    "scripts/benchmark_runtime.py": "2cd70447fbdec0e120d571f9bef112f633adc5538c14e01a85c05fece1866074",
+    "app/question_engine.py": "ba72690057c976e022f28fc2c594580dc4657fc6a26c24ffe644f42abc3246f4",
+    "scripts/qna_pipeline.py": "1ea16644dda0b91853237a235d7169886f8ea1ad832b76ebb4b10b2b163165f7",
+    "scripts/production_retrieval.py": "eb06d321f2e947be95f226a47f01ddbaf25a8e93d2ef1168d93ff026cc6ccd24",
+    "scripts/candidate_evidence_pipeline.py": "20cac65e1db85fb453a6b66ba6b0b17a6f103424e2e1f0a94c15fe72b0c6e1fa",
+    "scripts/evidence_selector.py": "fb28f53f85488fb43ff7634a4b2f0acecce1baf745717ac92e90b705ac86c682",
+    "scripts/grounded_generation.py": "fab01135d3f213b6e4859a1e39ef4c7f7d15f0c0406cd6792a895bb202a256c3",
+    "scripts/abstention_policy.py": "3d6ba225ea46e831ef74e7c2fc21e1fd3de18bad622c37e9e1a2f0288d00dbd5",
+    "scripts/local_translation.py": "157ee21b86323181748d389df657f4b22680a805b43a78c9bfaa79592a2e345f",
+    "scripts/model_lock.py": "b703225cf860c618f1af91cbdc4d2aeb0043127df3d857547580b6fe7d68b885",
+    "scripts/dense_retrieval.py": "7d4e62f2fe870de3142c1ab7ffd36b9aea19a369a210b14b05dd5fd0a84ec6d0",
+    "scripts/reranker.py": "c42ba00fa4eea8e609b1e06a8fbfbcacb0dd3a59f66e01deb857f5553034657d",
+    "scripts/answerability_policy.py": "ff67f9043fa8f4b15181d0d383d38f506207796ae5eb384c5cfad812d0838d74",
+    "scripts/quality_benchmark.py": "b010b23abaf0f0e3227b592cea364f01edbb3d5eeb7c09675d9871151fc1914f",
+    "scripts/bm25_retrieval.py": "3ac54cf1eece0679a596fde42748453c43aee264bd2e1a1e3b2011aba517214f",
+    "scripts/hybrid_retrieval.py": "7197ba9b016f05c495b1b670d4a1cbb9eb61ebefe2c583c90f6db91761de1570",
+    "scripts/retrieval_common.py": "e0c0c1d56fdac6ba70f31e9d86b21d2d2a1d1fe7a6ab908fae4b5f1b81ced37f",
+    "scripts/grounded_answer_contract.py": "aa1b01e66b163d24d8537c810ded928075bb47d3b58abc34b8a0963a73e0fc22",
+    "scripts/answer_quality.py": "17644705684de6630411cf50d3a9b8160d4236d786336f733b12c65919f416bc",
+    "scripts/local_llm.py": "d9a4f14562f666b93c630b49adb29128167d90014313461213ff529bc699b96f",
+    "scripts/ingest_papers.py": "066b5fd38e6e01e07a5a4b9934fd040fdc9a7c080f5c57d4d4225f022415db1d"
+  }
+}

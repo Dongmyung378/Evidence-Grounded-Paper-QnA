@@ -7,10 +7,14 @@ import subprocess
 import tempfile
 import unittest
 import zipfile
+import sys
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT / "scripts") not in sys.path:
+    sys.path.insert(0, str(ROOT / "scripts"))
+from evaluation_provenance import verify_frozen_source
 
 
 class ArtifactPortabilityTests(unittest.TestCase):
@@ -20,7 +24,8 @@ class ArtifactPortabilityTests(unittest.TestCase):
         )
         for relative, expected in frozen["provenance"]["source_hashes"].items():
             with self.subTest(path=relative):
-                actual = hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()
+                verified = verify_frozen_source(relative, expected)
+                actual = hashlib.sha256(verified.read_bytes()).hexdigest()
                 self.assertEqual(actual, expected)
 
     @unittest.skipUnless(shutil.which("git"), "Git is required for checkout integration")
@@ -42,6 +47,15 @@ class ArtifactPortabilityTests(unittest.TestCase):
                 "scripts/source.py": (ROOT / "scripts/grounded_generation.py").read_bytes(),
                 "data/evaluation/questions.jsonl": (ROOT / "data/evaluation/questions.jsonl").read_bytes(),
                 "data/evaluation/final_evaluation.json": (ROOT / "data/evaluation/final_evaluation.json").read_bytes(),
+                "data/baselines/2026-09-14/scripts/grounded_generation.py": (
+                    ROOT / "data/baselines/2026-09-14/scripts/grounded_generation.py"
+                ).read_bytes(),
+                "data/quality_benchmark/questions.jsonl": (
+                    ROOT / "data/quality_benchmark/questions.jsonl"
+                ).read_bytes(),
+                "data/quality_benchmark/runs/2026-10-10/answerability-dev-calibration.json": (
+                    ROOT / "data/quality_benchmark/runs/2026-10-10/answerability-dev-calibration.json"
+                ).read_bytes(),
             }
             for relative, content in files.items():
                 path = origin / relative

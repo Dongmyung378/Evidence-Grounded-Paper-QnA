@@ -1,5 +1,7 @@
 """Hybrid candidate retrieval and UI evidence pipeline."""
 
+import time
+
 from bm25_retrieval import build_index, rank_chunks as rank_bm25_chunks
 from dense_retrieval import (
     CACHE_PATH,
@@ -35,6 +37,8 @@ class CandidateEvidencePipeline:
         embedding_device=None,
         reranker_device=None,
     ):
+        initialization_started = time.perf_counter()
+        initialization = {}
         self.embedding_model_name = embedding_model_name
         self.reranker_model_name = reranker_model_name
         self.embedding_model_revision = embedding_model_revision
@@ -44,6 +48,7 @@ class CandidateEvidencePipeline:
         self.max_length = max_length
         self.embedding_device = embedding_device
         self.reranker_device = reranker_device
+        stage_started = time.perf_counter()
         self.chunks = list(chunks) if chunks is not None else load_chunks()
         if not self.chunks:
             raise ValueError("Candidate evidence requires at least one chunk")
@@ -56,16 +61,24 @@ class CandidateEvidencePipeline:
             ]
             for paper_id in self.grouped_chunks
         }
+        initialization["chunk_loading_seconds"] = time.perf_counter() - stage_started
+        stage_started = time.perf_counter()
         self.bm25_indexes = {
             paper_id: build_index(paper_chunks)
             for paper_id, paper_chunks in self.grouped_chunks.items()
         }
+        initialization["bm25_index_seconds"] = time.perf_counter() - stage_started
+        stage_started = time.perf_counter()
         self.embedding_model = embedding_model or load_model(
             embedding_model_name,
             local_files_only=local_files_only,
             device=embedding_device,
             revision=embedding_model_revision,
         )
+        initialization["embedding_model_load_seconds"] = (
+            0.0 if embedding_model is not None else time.perf_counter() - stage_started
+        )
+        stage_started = time.perf_counter()
         all_embeddings, self.embedding_cache_hit = load_or_create_embeddings(
             self.embedding_model,
             self.chunks,
@@ -78,6 +91,8 @@ class CandidateEvidencePipeline:
             paper_id: all_embeddings[indices]
             for paper_id, indices in self.indices_by_paper.items()
         }
+        initialization["embedding_index_seconds"] = time.perf_counter() - stage_started
+        stage_started = time.perf_counter()
         self.reranker = reranker or load_reranker(
             reranker_model_name,
             max_length=max_length,
@@ -85,6 +100,16 @@ class CandidateEvidencePipeline:
             device=reranker_device,
             revision=reranker_model_revision,
         )
+        initialization["reranker_model_load_seconds"] = (
+            0.0 if reranker is not None else time.perf_counter() - stage_started
+        )
+        self.initialization_timings = {
+            **{key: round(value, 6) for key, value in initialization.items()},
+            "total_seconds": round(time.perf_counter() - initialization_started, 6),
+            "embedding_model_reused": embedding_model is not None,
+            "reranker_model_reused": reranker is not None,
+            "embedding_cache_hit": self.embedding_cache_hit,
+        }
 
     @staticmethod
     def _candidate_object(item):
@@ -118,6 +143,8 @@ class CandidateEvidencePipeline:
         near_duplicate_threshold=0.85,
         front_matter_page=1,
     ):
+        started = time.perf_counter()
+        timings = {}
         if paper_id not in self.grouped_chunks:
             raise ValueError(f"Unknown paper_id or no chunks: {paper_id}")
         if candidate_k < evidence_k:
@@ -126,15 +153,23 @@ class CandidateEvidencePipeline:
             raise ValueError("source_k must be greater than zero")
 
         paper_chunks = self.grouped_chunks[paper_id]
+        stage_started = time.perf_counter()
         bm25 = rank_bm25_chunks(
             self.bm25_indexes[paper_id], paper_chunks, query, source_k
         )
+        timings["bm25_seconds"] = time.perf_counter() - stage_started
+        stage_started = time.perf_counter()
+        query_embedding = encode_query(self.embedding_model, query)
+        timings["dense_query_encoding_seconds"] = time.perf_counter() - stage_started
+        stage_started = time.perf_counter()
         dense = rank_dense_chunks(
             paper_chunks,
             self.grouped_embeddings[paper_id],
-            encode_query(self.embedding_model, query),
+            query_embedding,
             source_k,
         )
+        timings["dense_search_seconds"] = time.perf_counter() - stage_started
+        stage_started = time.perf_counter()
         universe = build_rerank_pool(
             {"bm25": bm25, "dense": dense},
             rrf_k=rrf_k,
@@ -147,6 +182,8 @@ class CandidateEvidencePipeline:
             page=front_matter_page,
             top_k=candidate_k,
         )
+        timings["fusion_seconds"] = time.perf_counter() - stage_started
+        stage_started = time.perf_counter()
         reranked = rerank_chunks(
             self.reranker,
             query,
@@ -154,12 +191,16 @@ class CandidateEvidencePipeline:
             top_k=candidate_k,
             batch_size=self.reranker_batch_size,
         )
+        timings["rerank_seconds"] = time.perf_counter() - stage_started
+        stage_started = time.perf_counter()
         evidence, selection = select_evidence(
             reranked,
             top_k=evidence_k,
             max_per_page=max_per_page,
             near_duplicate_threshold=near_duplicate_threshold,
+            question=query,
         )
+        timings["evidence_selection_seconds"] = time.perf_counter() - stage_started
         return {
             "schema_version": 1,
             "query": query,
@@ -183,4 +224,8 @@ class CandidateEvidencePipeline:
             "candidates": [self._candidate_object(item) for item in reranked],
             "evidence_selection": selection,
             "evidence": evidence,
+            "timings": {
+                **{key: round(value, 6) for key, value in timings.items()},
+                "total_seconds": round(time.perf_counter() - started, 6),
+            },
         }

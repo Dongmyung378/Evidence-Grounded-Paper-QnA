@@ -106,6 +106,10 @@ class ProductionRetrieval:
     def embedding_cache_hit(self):
         return self.pipeline.embedding_cache_hit
 
+    @property
+    def initialization_timings(self):
+        return dict(self.pipeline.initialization_timings)
+
     def run(self, query, paper_id):
         retrieval = self.config["retrieval"]
         evidence = self.config["evidence"]

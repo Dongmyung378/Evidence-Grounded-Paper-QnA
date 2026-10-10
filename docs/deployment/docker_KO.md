@@ -73,14 +73,18 @@ Compose는 이름 있는 볼륨 두 개를 만듭니다.
 
 ## 검증
 
-수용 평가기는 사용하지 않는 호스트 포트를 선택하고 패키징 검증에서만 모델 사전 준비를 끕니다. 빠른 실행과 동일한 Compose 구성을 빌드하고 실행한 뒤 두 서비스의 상태, 백엔드와 UI HTTP 응답, 내부 서비스 주소, 시드 378과 비루트 사용자를 확인합니다. 마지막에는 임시 컨테이너, 네트워크와 테스트 볼륨을 제거합니다.
+Compose 서비스를 실행한 상태에서 공개 복제본의 호스트 저장소 최상단으로 이동합니다. 검사 클라이언트 의존성을 설치하고 보존된 평가 자료와 분리한 경로에 현재 결과를 저장합니다.
 
 ```bash
-python -B scripts/evaluate_container.py
-python -B scripts/validate_container.py
+python -m pip install -r requirements-test.txt
+python -B scripts/check_deployment.py --base-url http://127.0.0.1:8000 --ui-url http://127.0.0.1:8501 --real-cases data/quality_benchmark/deployment/real_pdf_cases.json --output outputs/deployment/current-check.json
 ```
 
-기계 판독 결과는 `data/evaluation/container_results.json`에 저장합니다. 이 검증은 로컬 컨테이너 패키징과 서비스 연결을 입증하며 답변 품질을 입증하지는 않습니다. 공개 서버 운영은 프로젝트 범위에서 의도적으로 제외합니다.
+검사는 직접 작성한 PDF와 [포함된 라이선스가 있는 원본 PDF](../../data/quality_benchmark/deployment/README.md)를 업로드하고 파싱한 뒤 HTTP로 정상 질문과 근거 없는 질문을 보냅니다. 인용이 업로드한 논문에 속하는지와 필요한 어휘 표지를 확인합니다. UI는 상태 엔드포인트만 확인하며 브라우저 화면 조작이나 답변의 완전한 정확성을 검증하지 않습니다. 보고서는 클라이언트 해시와 응답을 기록하며 서버 코드나 패키지 버전을 기록하지 않으므로 서버 이미지 식별자와 환경을 별도로 보존해야 합니다. 공개 서버 운영은 프로젝트 범위에 포함하지 않습니다.
+
+검사 자료는 두 이미지에 복사되지 않으므로 클라이언트는 호스트에서 실행합니다. 호스트 포트를 바꿨다면 두 URL도 수정합니다. 모델을 사용하는 첫 분석은 없는 고정 리비전을 내려받을 수 있습니다. `PAPER_QNA_MODEL_LOCAL_FILES_ONLY=true`는 정확한 리비전이 모델 캐시 볼륨에 있을 때만 사용하고 최초 다운로드에서는 false로 둡니다. 직접 Python으로 모델을 실행하려면 `requirements.txt`를 설치하며 `--offline`도 같은 캐시 조건을 요구합니다.
+
+`evaluate_container.py`는 `data/evaluation/container_results.json`에 고정해서 쓰는 과거 개발용 도구이며 `--output` 옵션이 없습니다. `validate_container.py`는 그 보존된 결과를 읽습니다. 과거 근거를 다시 생성하지 말고 원본 바이트를 유지하며 현재 검사는 위 명령을 사용합니다.
 
 ![백엔드와 UI Docker 이미지](../assets/screenshots/docker.png)
 

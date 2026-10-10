@@ -1,0 +1,14 @@
+{
+  "pdf_path": "data/quality_benchmark/deployment/chen20j.pdf",
+  "pdf_sha256": "cc620e511bafe8b4b11ca3415f6d7bcf127a05818087bfa49905de3a2e50bc2d",
+  "cases": [
+    {
+      "question": "What ImageNet top-1 accuracy is reported for the linear classifier trained on SimCLR representations, and which evaluation setting does that number describe?",
+      "required_term_groups": [["76.5%"], ["ImageNet"], ["linear"], ["top-1", "top 1"]]
+    },
+    {
+      "question": "SimCLR 표현에 학습한 선형 분류기의 ImageNet top-1 정확도는 얼마이며 그 수치는 어떤 평가 설정을 의미하나요?",
+      "required_term_groups": [["76.5%"], ["ImageNet"], ["선형"], ["top-1", "top 1", "상위 1"]]
+    }
+  ]
+}

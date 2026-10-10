@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "quality-synthetic-v1",
+  "purpose": "synthetic_integration_only",
+  "provenance": {
+    "author": "project_author",
+    "source_kind": "authored_fictional_research_text",
+    "independent_human_review": false,
+    "real_paper_holdout_run": false
+  },
+  "papers": [
+    {
+      "paper_id": "fixture-alder",
+      "split": "dev",
+      "source_path": "data/quality_benchmark/papers/fixture-alder.json",
+      "source_sha256": "6b4b4680002fbc2dca517493f5a1d5cad312bb289d36d1350bbbed06b6f05747",
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "paper_id": "fixture-birch",
+      "split": "dev",
+      "source_path": "data/quality_benchmark/papers/fixture-birch.json",
+      "source_sha256": "28538e2d6390093f666d0ed49bfd49b015ce3ea0c69c39ce036b88d874b78966",
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "paper_id": "fixture-cedar",
+      "split": "holdout",
+      "source_path": "data/quality_benchmark/papers/fixture-cedar.json",
+      "source_sha256": "645cb9f8fcf357261a366cdee7b285a6cb779305c32b8b70eaf8247cb8b21a53",
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "paper_id": "fixture-elm",
+      "split": "holdout",
+      "source_path": "data/quality_benchmark/papers/fixture-elm.json",
+      "source_sha256": "6d26bea3e1a30f62f4d86cc15db8d0e8c83058860cb2ca2fcaecb9272675f18f",
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  ]
+}

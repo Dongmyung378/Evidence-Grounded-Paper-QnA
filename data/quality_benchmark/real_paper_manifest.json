@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "quality-real-paper-v1",
+  "purpose": "real_paper_text_evaluation",
+  "provenance": {
+    "author": "AI-assisted project curator",
+    "source_kind": "publisher_pdf_extracted_text",
+    "independent_human_review": false,
+    "third_party_verification": "not_attested",
+    "paper_disjoint_with_existing_project_corpus": true,
+    "model_training_disjointness_verified": false,
+    "statistical_independence_assumed": false,
+    "evaluation_scope": "Full publisher PDF extracted text, source-only deterministic chunks; ingestion and visual figures excluded.",
+    "holdout_policy": "Do not inspect model outputs or tune on holdout before a runtime-freeze receipt. If inspected results guide changes, use new papers/questions for the next holdout."
+  },
+  "papers": [
+    {
+      "paper_id": "real-dev-a",
+      "split": "dev",
+      "arxiv_id": "2002.05709",
+      "domain": "vision / contrastive learning",
+      "source_path": "data/quality_benchmark/real_paper_sources/real-dev-a.json",
+      "source_sha256": "a59f68b04ce043a5c3a7f62c98738c93452affcf1c25010126884b7183e28b26",
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "paper_id": "real-dev-b",
+      "split": "dev",
+      "arxiv_id": "1706.04599",
+      "domain": "probability calibration",
+      "source_path": "data/quality_benchmark/real_paper_sources/real-dev-b.json",
+      "source_sha256": "2048dbe6290b9c0c3f8dc17aa72f2e94047bfcbecc86b91733202b3b6be23b83",
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "paper_id": "real-holdout-a",
+      "split": "holdout",
+      "arxiv_id": "1703.04730",
+      "domain": "model interpretability / robust statistics",
+      "source_path": "data/quality_benchmark/real_paper_sources/real-holdout-a.json",
+      "source_sha256": "fa20c04145f3e9011274ad853b0679dc94ffe01df62d1da5d72579f61e39d3a7",
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "paper_id": "real-holdout-b",
+      "split": "holdout",
+      "arxiv_id": "1707.06887",
+      "domain": "reinforcement learning / probability distributions",
+      "source_path": "data/quality_benchmark/real_paper_sources/real-holdout-b.json",
+      "source_sha256": "3f9c714ec4f022f7ec7996a67e4375f2097cf9724470b8124ea40f4b7a926003",
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  ]
+}

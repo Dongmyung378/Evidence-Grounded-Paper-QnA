@@ -1,0 +1,1135 @@
+{
+  "scope": "Disclosed DEV oracle evidence: identical source chunks for both answer builders",
+  "cases": [
+    {
+      "case_id": "real-dev-a-default-augmentation-en",
+      "meaning_id": "real-dev-a-default-augmentation",
+      "paper_id": "real-dev-a",
+      "language": "en",
+      "question_type": "list",
+      "question": "List the three default SimCLR augmentation families, including the resize and flip qualification attached to cropping.",
+      "evidence": [
+        {
+          "evidence_id": "ev-01-real-dev-a-p003-c001",
+          "rank": 1,
+          "paper_id": "real-dev-a",
+          "page": 3,
+          "chunk_id": "real-dev-a-p003-c001",
+          "source_page_id": "real-dev-a-p003",
+          "text": "A Simple Framework for Contrastive Learning of Visual Representations Algorithm 1 SimCLR’s main learning algorithm. input: batch sizeN, constantτ, structure off,g,T . for sampled minibatch{xk}N k=1 do for allk∈{ 1,...,N } do draw two augmentation functionst∼T ,t′∼T # the ﬁrst augmentation ˜x2k−1 =t(xk) h2k−1 =f ( ˜x2k−1) # representation z2k−1 =g(h2k−1) # projection # the second augmentation ˜x2k =t′(xk) h2k =f ( ˜x2k) # representation z2k =g(h2k) # projection end for for alli∈{ 1,..., 2N} andj∈{ 1,..., 2N} do si,j = z⊤ i zj/(∥zi∥∥zj∥) # pairwise similarity end for deﬁneℓ(i,j ) as ℓ(i,j ) =− log exp(si,j/τ )∑2N k=1 1[k̸=i] exp(si,k/τ ) L = 1 2N ∑N k=1 [ℓ(2k−1, 2k) +ℓ(2k, 2k−1)] update networksf andg to minimizeL end for return encoder networkf (·), and throw awayg(·) Algorithm 1 summarizes the proposed method. 2.2. Training with Large Batch Size To keep it simple, we do not train the model with a memory bank (Wu et al., 2018; He et al., 2019). Instead, we vary the training batch size N from 256 to 8192. A batch size of 8192 gives us 16382 negative examples per positive pair from both augmentation views.",
+          "section": "PDF page 3",
+          "char_count": 1120,
+          "section_index": 2,
+          "chunk_index": 0,
+          "locator": {
+            "page_label": "p. 3",
+            "section": "PDF page 3",
+            "chunk_id": "real-dev-a-p003-c001"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 0
+          }
+        },
+        {
+          "evidence_id": "ev-02-real-dev-a-p003-c002",
+          "rank": 2,
+          "paper_id": "real-dev-a",
+          "page": 3,
+          "chunk_id": "real-dev-a-p003-c002",
+          "source_page_id": "real-dev-a-p003",
+          "text": "(Wu et al., 2018; He et al., 2019). Instead, we vary the training batch size N from 256 to 8192. A batch size of 8192 gives us 16382 negative examples per positive pair from both augmentation views. Training with large batch size may be unstable when using standard SGD/Momentum with linear learning rate scaling (Goyal et al., 2017). To stabilize the training, we use the LARS optimizer (You et al., 2017) for all batch sizes. We train our model with Cloud TPUs, using 32 to 128 cores depending on the batch size.2 Global BN. Standard ResNets use batch normalization (Ioffe & Szegedy, 2015). In distributed training with data parallelism, the BN mean and variance are typically aggregated locally per device. In our contrastive learning, as positive pairs are computed in the same device, the model can exploit the local information leakage to improve prediction accuracy without improving representations. We address this issue by aggregating BN mean and variance over all devices during the training. Other approaches include shufﬂing data examples across devices (He et al., 2019), or replacing BN with layer norm (Hénaff et al., 2019).",
+          "section": "PDF page 3",
+          "char_count": 1140,
+          "section_index": 2,
+          "chunk_index": 1,
+          "locator": {
+            "page_label": "p. 3",
+            "section": "PDF page 3",
+            "chunk_id": "real-dev-a-p003-c002"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-03-real-dev-a-p003-c003",
+          "rank": 3,
+          "paper_id": "real-dev-a",
+          "page": 3,
+          "chunk_id": "real-dev-a-p003-c003",
+          "source_page_id": "real-dev-a-p003",
+          "text": "BN mean and variance over all devices during the training. Other approaches include shufﬂing data examples across devices (He et al., 2019), or replacing BN with layer norm (Hénaff et al., 2019). 2With 128 TPU v3 cores, it takes ∼1.5 hours to train our ResNet-50 with a batch size of 4096 for 100 epochs. A B (a) Global and local views. C D (b) Adjacent views. Figure 3. Solid rectangles are images, dashed rectangles are random crops. By randomly cropping images, we sample contrastive prediction tasks that include global to local view ( B → A) or adjacent view (D →C) prediction. 2.3. Evaluation Protocol Here we lay out the protocol for our empirical studies, which aim to understand different design choices in our framework. Dataset and Metrics. Most of our study for unsupervised pretraining (learning encoder network f without labels) is done using the ImageNet ILSVRC-2012 dataset (Russakovsky et al., 2015). Some additional pretraining experiments on CIFAR-10 (Krizhevsky & Hinton, 2009) can be found in Appendix B.9. We also test the pretrained results on a wide range of datasets for transfer learning.",
+          "section": "PDF page 3",
+          "char_count": 1114,
+          "section_index": 2,
+          "chunk_index": 2,
+          "locator": {
+            "page_label": "p. 3",
+            "section": "PDF page 3",
+            "chunk_id": "real-dev-a-p003-c003"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-04-real-dev-a-p003-c004",
+          "rank": 4,
+          "paper_id": "real-dev-a",
+          "page": 3,
+          "chunk_id": "real-dev-a-p003-c004",
+          "source_page_id": "real-dev-a-p003",
+          "text": "Some additional pretraining experiments on CIFAR-10 (Krizhevsky & Hinton, 2009) can be found in Appendix B.9. We also test the pretrained results on a wide range of datasets for transfer learning. To evaluate the learned representations, we follow the widely used linear evaluation protocol (Zhang et al., 2016; Oord et al., 2018; Bachman et al., 2019; Kolesnikov et al., 2019), where a linear classiﬁer is trained on top of the frozen base network, and test accuracy is used as a proxy for representation quality. Beyond linear evaluation, we also compare against state-of-the-art on semi-supervised and transfer learning. Default setting. Unless otherwise speciﬁed, for data augmentation we use random crop and resize (with random ﬂip), color distortions, and Gaussian blur (for details, see Appendix A). We use ResNet-50 as the base encoder network, and a 2-layer MLP projection head to project the representation to a 128-dimensional latent space. As the loss, we use NT-Xent, optimized using LARS with learning rate of 4.8 (= 0.3× BatchSize/256) and weight decay of 10−6. We train at batch size 4096 for 100 epochs.",
+          "section": "PDF page 3",
+          "char_count": 1120,
+          "section_index": 2,
+          "chunk_index": 3,
+          "locator": {
+            "page_label": "p. 3",
+            "section": "PDF page 3",
+            "chunk_id": "real-dev-a-p003-c004"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-05-real-dev-a-p003-c005",
+          "rank": 5,
+          "paper_id": "real-dev-a",
+          "page": 3,
+          "chunk_id": "real-dev-a-p003-c005",
+          "source_page_id": "real-dev-a-p003",
+          "text": "a 128-dimensional latent space. As the loss, we use NT-Xent, optimized using LARS with learning rate of 4.8 (= 0.3× BatchSize/256) and weight decay of 10−6. We train at batch size 4096 for 100 epochs. 3 Furthermore, we use linear warmup for the ﬁrst 10 epochs, and decay the learning rate with the cosine decay schedule without restarts (Loshchilov & Hutter, 2016). 3. Data Augmentation for Contrastive Representation Learning Data augmentation deﬁnes predictive tasks. While data augmentation has been widely used in both supervised and unsupervised representation learning (Krizhevsky et al., 3Although max performance is not reached in 100 epochs, reasonable results are achieved, allowing fair and efﬁcient ablations.",
+          "section": "PDF page 3",
+          "char_count": 721,
+          "section_index": 2,
+          "chunk_index": 4,
+          "locator": {
+            "page_label": "p. 3",
+            "section": "PDF page 3",
+            "chunk_id": "real-dev-a-p003-c005"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 4
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "real-dev-a-default-augmentation-ko",
+      "meaning_id": "real-dev-a-default-augmentation",
+      "paper_id": "real-dev-a",
+      "language": "ko",
+      "question_type": "list",
+      "question": "SimCLR의 기본 데이터 증강 세 가지를 나열하고 자르기에 붙은 크기 조정과 뒤집기 조건도 포함해 주세요.",
+      "evidence": [
+        {
+          "evidence_id": "ev-01-real-dev-a-p003-c001",
+          "rank": 1,
+          "paper_id": "real-dev-a",
+          "page": 3,
+          "chunk_id": "real-dev-a-p003-c001",
+          "source_page_id": "real-dev-a-p003",
+          "text": "A Simple Framework for Contrastive Learning of Visual Representations Algorithm 1 SimCLR’s main learning algorithm. input: batch sizeN, constantτ, structure off,g,T . for sampled minibatch{xk}N k=1 do for allk∈{ 1,...,N } do draw two augmentation functionst∼T ,t′∼T # the ﬁrst augmentation ˜x2k−1 =t(xk) h2k−1 =f ( ˜x2k−1) # representation z2k−1 =g(h2k−1) # projection # the second augmentation ˜x2k =t′(xk) h2k =f ( ˜x2k) # representation z2k =g(h2k) # projection end for for alli∈{ 1,..., 2N} andj∈{ 1,..., 2N} do si,j = z⊤ i zj/(∥zi∥∥zj∥) # pairwise similarity end for deﬁneℓ(i,j ) as ℓ(i,j ) =− log exp(si,j/τ )∑2N k=1 1[k̸=i] exp(si,k/τ ) L = 1 2N ∑N k=1 [ℓ(2k−1, 2k) +ℓ(2k, 2k−1)] update networksf andg to minimizeL end for return encoder networkf (·), and throw awayg(·) Algorithm 1 summarizes the proposed method. 2.2. Training with Large Batch Size To keep it simple, we do not train the model with a memory bank (Wu et al., 2018; He et al., 2019). Instead, we vary the training batch size N from 256 to 8192. A batch size of 8192 gives us 16382 negative examples per positive pair from both augmentation views.",
+          "section": "PDF page 3",
+          "char_count": 1120,
+          "section_index": 2,
+          "chunk_index": 0,
+          "locator": {
+            "page_label": "p. 3",
+            "section": "PDF page 3",
+            "chunk_id": "real-dev-a-p003-c001"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 0
+          }
+        },
+        {
+          "evidence_id": "ev-02-real-dev-a-p003-c002",
+          "rank": 2,
+          "paper_id": "real-dev-a",
+          "page": 3,
+          "chunk_id": "real-dev-a-p003-c002",
+          "source_page_id": "real-dev-a-p003",
+          "text": "(Wu et al., 2018; He et al., 2019). Instead, we vary the training batch size N from 256 to 8192. A batch size of 8192 gives us 16382 negative examples per positive pair from both augmentation views. Training with large batch size may be unstable when using standard SGD/Momentum with linear learning rate scaling (Goyal et al., 2017). To stabilize the training, we use the LARS optimizer (You et al., 2017) for all batch sizes. We train our model with Cloud TPUs, using 32 to 128 cores depending on the batch size.2 Global BN. Standard ResNets use batch normalization (Ioffe & Szegedy, 2015). In distributed training with data parallelism, the BN mean and variance are typically aggregated locally per device. In our contrastive learning, as positive pairs are computed in the same device, the model can exploit the local information leakage to improve prediction accuracy without improving representations. We address this issue by aggregating BN mean and variance over all devices during the training. Other approaches include shufﬂing data examples across devices (He et al., 2019), or replacing BN with layer norm (Hénaff et al., 2019).",
+          "section": "PDF page 3",
+          "char_count": 1140,
+          "section_index": 2,
+          "chunk_index": 1,
+          "locator": {
+            "page_label": "p. 3",
+            "section": "PDF page 3",
+            "chunk_id": "real-dev-a-p003-c002"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-03-real-dev-a-p003-c003",
+          "rank": 3,
+          "paper_id": "real-dev-a",
+          "page": 3,
+          "chunk_id": "real-dev-a-p003-c003",
+          "source_page_id": "real-dev-a-p003",
+          "text": "BN mean and variance over all devices during the training. Other approaches include shufﬂing data examples across devices (He et al., 2019), or replacing BN with layer norm (Hénaff et al., 2019). 2With 128 TPU v3 cores, it takes ∼1.5 hours to train our ResNet-50 with a batch size of 4096 for 100 epochs. A B (a) Global and local views. C D (b) Adjacent views. Figure 3. Solid rectangles are images, dashed rectangles are random crops. By randomly cropping images, we sample contrastive prediction tasks that include global to local view ( B → A) or adjacent view (D →C) prediction. 2.3. Evaluation Protocol Here we lay out the protocol for our empirical studies, which aim to understand different design choices in our framework. Dataset and Metrics. Most of our study for unsupervised pretraining (learning encoder network f without labels) is done using the ImageNet ILSVRC-2012 dataset (Russakovsky et al., 2015). Some additional pretraining experiments on CIFAR-10 (Krizhevsky & Hinton, 2009) can be found in Appendix B.9. We also test the pretrained results on a wide range of datasets for transfer learning.",
+          "section": "PDF page 3",
+          "char_count": 1114,
+          "section_index": 2,
+          "chunk_index": 2,
+          "locator": {
+            "page_label": "p. 3",
+            "section": "PDF page 3",
+            "chunk_id": "real-dev-a-p003-c003"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-04-real-dev-a-p003-c004",
+          "rank": 4,
+          "paper_id": "real-dev-a",
+          "page": 3,
+          "chunk_id": "real-dev-a-p003-c004",
+          "source_page_id": "real-dev-a-p003",
+          "text": "Some additional pretraining experiments on CIFAR-10 (Krizhevsky & Hinton, 2009) can be found in Appendix B.9. We also test the pretrained results on a wide range of datasets for transfer learning. To evaluate the learned representations, we follow the widely used linear evaluation protocol (Zhang et al., 2016; Oord et al., 2018; Bachman et al., 2019; Kolesnikov et al., 2019), where a linear classiﬁer is trained on top of the frozen base network, and test accuracy is used as a proxy for representation quality. Beyond linear evaluation, we also compare against state-of-the-art on semi-supervised and transfer learning. Default setting. Unless otherwise speciﬁed, for data augmentation we use random crop and resize (with random ﬂip), color distortions, and Gaussian blur (for details, see Appendix A). We use ResNet-50 as the base encoder network, and a 2-layer MLP projection head to project the representation to a 128-dimensional latent space. As the loss, we use NT-Xent, optimized using LARS with learning rate of 4.8 (= 0.3× BatchSize/256) and weight decay of 10−6. We train at batch size 4096 for 100 epochs.",
+          "section": "PDF page 3",
+          "char_count": 1120,
+          "section_index": 2,
+          "chunk_index": 3,
+          "locator": {
+            "page_label": "p. 3",
+            "section": "PDF page 3",
+            "chunk_id": "real-dev-a-p003-c004"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-05-real-dev-a-p003-c005",
+          "rank": 5,
+          "paper_id": "real-dev-a",
+          "page": 3,
+          "chunk_id": "real-dev-a-p003-c005",
+          "source_page_id": "real-dev-a-p003",
+          "text": "a 128-dimensional latent space. As the loss, we use NT-Xent, optimized using LARS with learning rate of 4.8 (= 0.3× BatchSize/256) and weight decay of 10−6. We train at batch size 4096 for 100 epochs. 3 Furthermore, we use linear warmup for the ﬁrst 10 epochs, and decay the learning rate with the cosine decay schedule without restarts (Loshchilov & Hutter, 2016). 3. Data Augmentation for Contrastive Representation Learning Data augmentation deﬁnes predictive tasks. While data augmentation has been widely used in both supervised and unsupervised representation learning (Krizhevsky et al., 3Although max performance is not reached in 100 epochs, reasonable results are achieved, allowing fair and efﬁcient ablations.",
+          "section": "PDF page 3",
+          "char_count": 721,
+          "section_index": 2,
+          "chunk_index": 4,
+          "locator": {
+            "page_label": "p. 3",
+            "section": "PDF page 3",
+            "chunk_id": "real-dev-a-p003-c005"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 2,
+            "chunk_index": 4
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "real-dev-a-projection-en",
+      "meaning_id": "real-dev-a-projection",
+      "paper_id": "real-dev-a",
+      "language": "en",
+      "question_type": "comparison",
+      "question": "How does a nonlinear SimCLR projection head compare with a linear head and with no projection in the reported ablation?",
+      "evidence": [
+        {
+          "evidence_id": "ev-01-real-dev-a-p006-c001",
+          "rank": 1,
+          "paper_id": "real-dev-a",
+          "page": 6,
+          "chunk_id": "real-dev-a-p006-c001",
+          "source_page_id": "real-dev-a-p006",
+          "text": "A Simple Framework for Contrastive Learning of Visual Representations Name Negative loss function Gradient w.r.t. u NT-Xent uT v+/τ − log ∑ v∈{v+,v−} exp(uT v/τ ) (1 − exp(uT v+/τ ) Z(u) )/τ v+ − ∑ v− exp(uT v−/τ ) Z(u) /τ v− NT-Logistic logσ(uT v+/τ ) + logσ(−uT v−/τ ) (σ(−uT v+/τ ))/τ v+ −σ(uT v−/τ )/τ v− Margin Triplet − max(uT v− − uT v+ +m, 0) v+ − v− if uT v+ − uT v− <m else 0 Table 2. Negative loss functions and their gradients. All input vectors, i.e. u, v+, v−, areℓ2 normalized. NT-Xent is an abbreviation for “Normalized Temperature-scaled Cross Entropy”. Different loss functions impose different weightings of positive and negative examples. 32 64 128 256 512 1024 2048 Projection output dimensionality 30 40 50 60 70Top 1 Projection Linear Non-linear None Figure 8. Linear evaluation of representations with different projection heads g(·) and various dimensions of z = g(h). The representation h (before projection) is 2048-dimensional here. 4.2. A nonlinear projection head improves the representation quality of the layer before it We then study the importance of including a projection head, i.e. g(h).",
+          "section": "PDF page 6",
+          "char_count": 1124,
+          "section_index": 5,
+          "chunk_index": 0,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-a-p006-c001"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 0
+          }
+        },
+        {
+          "evidence_id": "ev-02-real-dev-a-p006-c002",
+          "rank": 2,
+          "paper_id": "real-dev-a",
+          "page": 6,
+          "chunk_id": "real-dev-a-p006-c002",
+          "source_page_id": "real-dev-a-p006",
+          "text": "is 2048-dimensional here. 4.2. A nonlinear projection head improves the representation quality of the layer before it We then study the importance of including a projection head, i.e. g(h). Figure 8 shows linear evaluation results using three different architecture for the head: (1) identity mapping; (2) linear projection, as used by several previous approaches (Wu et al., 2018); and (3) the default nonlinear projection with one additional hidden layer (and ReLU activation), similar to Bachman et al. (2019). We observe that a nonlinear projection is better than a linear projection (+3%), and much better than no projection (>10%). When a projection head is used, similar results are observed regardless of output dimension. Furthermore, even when nonlinear projection is used, the layer before the projection head, h, is still much better (>10%) than the layer after, z =g(h), which shows that the hidden layer before the projection head is a better representation than the layer after. We conjecture that the importance of using the representation before the nonlinear projection is due to loss of information induced by the contrastive loss.",
+          "section": "PDF page 6",
+          "char_count": 1150,
+          "section_index": 5,
+          "chunk_index": 1,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-a-p006-c002"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-03-real-dev-a-p006-c003",
+          "rank": 3,
+          "paper_id": "real-dev-a",
+          "page": 6,
+          "chunk_id": "real-dev-a-p006-c003",
+          "source_page_id": "real-dev-a-p006",
+          "text": "better representation than the layer after. We conjecture that the importance of using the representation before the nonlinear projection is due to loss of information induced by the contrastive loss. In particular, z =g(h) is trained to be invariant to data transformation. Thus,g can remove information that may be useful for the downstream task, such as the color or orientation of objects. By leveraging the nonlinear transformationg(·), more information can be formed and maintained in h. To verify this hypothesis, we conduct experiments that use either h org(h) to learn to predict the transformation applied during the pretraining. Here we set g(h) = W (2)σ(W (1)h), with the same input and output dimensionality (i.e. 2048). Table 3 shows h contains much more information about the transformation applied, whileg(h) loses information. Further analysis can What to predict? Random guess Representation h g(h) Color vs grayscale 80 99.3 97.4 Rotation 25 67.6 25.6 Orig. vs corrupted 50 99.5 59.6 Orig. vs Sobel ﬁltered 50 96.6 56.3 Table 3. Accuracy of training additional MLPs on different representations to predict the transformation applied.",
+          "section": "PDF page 6",
+          "char_count": 1152,
+          "section_index": 5,
+          "chunk_index": 2,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-a-p006-c003"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-04-real-dev-a-p006-c004",
+          "rank": 4,
+          "paper_id": "real-dev-a",
+          "page": 6,
+          "chunk_id": "real-dev-a-p006-c004",
+          "source_page_id": "real-dev-a-p006",
+          "text": "25 67.6 25.6 Orig. vs corrupted 50 99.5 59.6 Orig. vs Sobel ﬁltered 50 96.6 56.3 Table 3. Accuracy of training additional MLPs on different representations to predict the transformation applied. Other than crop and color augmentation, we additionally and independently add rotation (one of {0◦, 90◦, 180◦, 270◦}), Gaussian noise, and Sobel ﬁltering transformation during the pretraining for the last three rows. Both h andg(h) are of the same dimensionality, i.e. 2048. be found in Appendix B.4. 5. Loss Functions and Batch Size 5.1. Normalized cross entropy loss with adjustable temperature works better than alternatives We compare the NT-Xent loss against other commonly used contrastive loss functions, such as logistic loss (Mikolov et al., 2013), and margin loss (Schroff et al., 2015). Table 2 shows the objective function as well as the gradient to the input of the loss function. Looking at the gradient, we observe 1)ℓ2 normalization (i.e.",
+          "section": "PDF page 6",
+          "char_count": 949,
+          "section_index": 5,
+          "chunk_index": 3,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-a-p006-c004"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-05-real-dev-a-p006-c005",
+          "rank": 5,
+          "paper_id": "real-dev-a",
+          "page": 6,
+          "chunk_id": "real-dev-a-p006-c005",
+          "source_page_id": "real-dev-a-p006",
+          "text": "and margin loss (Schroff et al., 2015). Table 2 shows the objective function as well as the gradient to the input of the loss function. Looking at the gradient, we observe 1)ℓ2 normalization (i.e. cosine similarity) along with temperature effectively weights different examples, and an appropriate temperature can help the model learn from hard negatives; and 2) unlike cross-entropy, other objective functions do not weigh the negatives by their relative hardness. As a result, one must apply semi-hard negative mining (Schroff et al., 2015) for these loss functions: instead of computing the gradient over all loss terms, one can compute the gradient using semi-hard negative terms (i.e., those that are within the loss margin and closest in distance, but farther than positive examples). To make the comparisons fair, we use the sameℓ2 normalization for all loss functions, and we tune the hyperparameters, and report their best results. 8 Table 4 shows that, while (semi-hard) negative mining helps, the best result is still much worse than our default NT-Xent loss. 8Details can be found in Appendix B.10. For simplicity, we only consider the negatives from one augmentation view.",
+          "section": "PDF page 6",
+          "char_count": 1185,
+          "section_index": 5,
+          "chunk_index": 4,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-a-p006-c005"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 4
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "real-dev-a-projection-ko",
+      "meaning_id": "real-dev-a-projection",
+      "paper_id": "real-dev-a",
+      "language": "ko",
+      "question_type": "comparison",
+      "question": "보고된 제거 실험에서 비선형 SimCLR 투영 헤드는 선형 헤드 및 투영 없는 경우와 비교해 어떤 성능 차이를 보였나요?",
+      "evidence": [
+        {
+          "evidence_id": "ev-01-real-dev-a-p006-c001",
+          "rank": 1,
+          "paper_id": "real-dev-a",
+          "page": 6,
+          "chunk_id": "real-dev-a-p006-c001",
+          "source_page_id": "real-dev-a-p006",
+          "text": "A Simple Framework for Contrastive Learning of Visual Representations Name Negative loss function Gradient w.r.t. u NT-Xent uT v+/τ − log ∑ v∈{v+,v−} exp(uT v/τ ) (1 − exp(uT v+/τ ) Z(u) )/τ v+ − ∑ v− exp(uT v−/τ ) Z(u) /τ v− NT-Logistic logσ(uT v+/τ ) + logσ(−uT v−/τ ) (σ(−uT v+/τ ))/τ v+ −σ(uT v−/τ )/τ v− Margin Triplet − max(uT v− − uT v+ +m, 0) v+ − v− if uT v+ − uT v− <m else 0 Table 2. Negative loss functions and their gradients. All input vectors, i.e. u, v+, v−, areℓ2 normalized. NT-Xent is an abbreviation for “Normalized Temperature-scaled Cross Entropy”. Different loss functions impose different weightings of positive and negative examples. 32 64 128 256 512 1024 2048 Projection output dimensionality 30 40 50 60 70Top 1 Projection Linear Non-linear None Figure 8. Linear evaluation of representations with different projection heads g(·) and various dimensions of z = g(h). The representation h (before projection) is 2048-dimensional here. 4.2. A nonlinear projection head improves the representation quality of the layer before it We then study the importance of including a projection head, i.e. g(h).",
+          "section": "PDF page 6",
+          "char_count": 1124,
+          "section_index": 5,
+          "chunk_index": 0,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-a-p006-c001"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 0
+          }
+        },
+        {
+          "evidence_id": "ev-02-real-dev-a-p006-c002",
+          "rank": 2,
+          "paper_id": "real-dev-a",
+          "page": 6,
+          "chunk_id": "real-dev-a-p006-c002",
+          "source_page_id": "real-dev-a-p006",
+          "text": "is 2048-dimensional here. 4.2. A nonlinear projection head improves the representation quality of the layer before it We then study the importance of including a projection head, i.e. g(h). Figure 8 shows linear evaluation results using three different architecture for the head: (1) identity mapping; (2) linear projection, as used by several previous approaches (Wu et al., 2018); and (3) the default nonlinear projection with one additional hidden layer (and ReLU activation), similar to Bachman et al. (2019). We observe that a nonlinear projection is better than a linear projection (+3%), and much better than no projection (>10%). When a projection head is used, similar results are observed regardless of output dimension. Furthermore, even when nonlinear projection is used, the layer before the projection head, h, is still much better (>10%) than the layer after, z =g(h), which shows that the hidden layer before the projection head is a better representation than the layer after. We conjecture that the importance of using the representation before the nonlinear projection is due to loss of information induced by the contrastive loss.",
+          "section": "PDF page 6",
+          "char_count": 1150,
+          "section_index": 5,
+          "chunk_index": 1,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-a-p006-c002"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-03-real-dev-a-p006-c003",
+          "rank": 3,
+          "paper_id": "real-dev-a",
+          "page": 6,
+          "chunk_id": "real-dev-a-p006-c003",
+          "source_page_id": "real-dev-a-p006",
+          "text": "better representation than the layer after. We conjecture that the importance of using the representation before the nonlinear projection is due to loss of information induced by the contrastive loss. In particular, z =g(h) is trained to be invariant to data transformation. Thus,g can remove information that may be useful for the downstream task, such as the color or orientation of objects. By leveraging the nonlinear transformationg(·), more information can be formed and maintained in h. To verify this hypothesis, we conduct experiments that use either h org(h) to learn to predict the transformation applied during the pretraining. Here we set g(h) = W (2)σ(W (1)h), with the same input and output dimensionality (i.e. 2048). Table 3 shows h contains much more information about the transformation applied, whileg(h) loses information. Further analysis can What to predict? Random guess Representation h g(h) Color vs grayscale 80 99.3 97.4 Rotation 25 67.6 25.6 Orig. vs corrupted 50 99.5 59.6 Orig. vs Sobel ﬁltered 50 96.6 56.3 Table 3. Accuracy of training additional MLPs on different representations to predict the transformation applied.",
+          "section": "PDF page 6",
+          "char_count": 1152,
+          "section_index": 5,
+          "chunk_index": 2,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-a-p006-c003"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-04-real-dev-a-p006-c004",
+          "rank": 4,
+          "paper_id": "real-dev-a",
+          "page": 6,
+          "chunk_id": "real-dev-a-p006-c004",
+          "source_page_id": "real-dev-a-p006",
+          "text": "25 67.6 25.6 Orig. vs corrupted 50 99.5 59.6 Orig. vs Sobel ﬁltered 50 96.6 56.3 Table 3. Accuracy of training additional MLPs on different representations to predict the transformation applied. Other than crop and color augmentation, we additionally and independently add rotation (one of {0◦, 90◦, 180◦, 270◦}), Gaussian noise, and Sobel ﬁltering transformation during the pretraining for the last three rows. Both h andg(h) are of the same dimensionality, i.e. 2048. be found in Appendix B.4. 5. Loss Functions and Batch Size 5.1. Normalized cross entropy loss with adjustable temperature works better than alternatives We compare the NT-Xent loss against other commonly used contrastive loss functions, such as logistic loss (Mikolov et al., 2013), and margin loss (Schroff et al., 2015). Table 2 shows the objective function as well as the gradient to the input of the loss function. Looking at the gradient, we observe 1)ℓ2 normalization (i.e.",
+          "section": "PDF page 6",
+          "char_count": 949,
+          "section_index": 5,
+          "chunk_index": 3,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-a-p006-c004"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-05-real-dev-a-p006-c005",
+          "rank": 5,
+          "paper_id": "real-dev-a",
+          "page": 6,
+          "chunk_id": "real-dev-a-p006-c005",
+          "source_page_id": "real-dev-a-p006",
+          "text": "and margin loss (Schroff et al., 2015). Table 2 shows the objective function as well as the gradient to the input of the loss function. Looking at the gradient, we observe 1)ℓ2 normalization (i.e. cosine similarity) along with temperature effectively weights different examples, and an appropriate temperature can help the model learn from hard negatives; and 2) unlike cross-entropy, other objective functions do not weigh the negatives by their relative hardness. As a result, one must apply semi-hard negative mining (Schroff et al., 2015) for these loss functions: instead of computing the gradient over all loss terms, one can compute the gradient using semi-hard negative terms (i.e., those that are within the loss margin and closest in distance, but farther than positive examples). To make the comparisons fair, we use the sameℓ2 normalization for all loss functions, and we tune the hyperparameters, and report their best results. 8 Table 4 shows that, while (semi-hard) negative mining helps, the best result is still much worse than our default NT-Xent loss. 8Details can be found in Appendix B.10. For simplicity, we only consider the negatives from one augmentation view.",
+          "section": "PDF page 6",
+          "char_count": 1185,
+          "section_index": 5,
+          "chunk_index": 4,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-a-p006-c005"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 4
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "real-dev-b-temperature-parameter-en",
+      "meaning_id": "real-dev-b-temperature-parameter",
+      "paper_id": "real-dev-b",
+      "language": "en",
+      "question_type": "numeric",
+      "question": "How many learned scalar parameters does temperature scaling use across the classes, and what constraint is imposed on T?",
+      "evidence": [
+        {
+          "evidence_id": "ev-01-real-dev-b-p006-c001",
+          "rank": 1,
+          "paper_id": "real-dev-b",
+          "page": 6,
+          "chunk_id": "real-dev-b-p006-c001",
+          "source_page_id": "real-dev-b-p006",
+          "text": "Dataset Model Uncalibrated Hist. Binning Isotonic BBQ Temp. Scaling Vector Scaling Matrix Scaling Birds ResNet 50 9.19% 4.34% 5.22% 4.12% 1.85% 3.0% 21.13% Cars ResNet 50 4.3% 1.74% 4.29% 1.84% 2.35% 2.37% 10.5% CIFAR-10 ResNet 110 4.6% 0.58% 0.81% 0.54% 0.83% 0.88% 1.0% CIFAR-10 ResNet 110 (SD) 4.12% 0.67% 1.11% 0.9% 0.6% 0.64% 0.72% CIFAR-10 Wide ResNet 32 4.52% 0.72% 1.08% 0.74% 0.54% 0.6% 0.72% CIFAR-10 DenseNet 40 3.28% 0.44% 0.61% 0.81% 0.33% 0.41% 0.41% CIFAR-10 LeNet 5 3.02% 1.56% 1.85% 1.59% 0.93% 1.15% 1.16% CIFAR-100 ResNet 110 16.53% 2.66% 4.99% 5.46% 1.26% 1.32% 25.49% CIFAR-100 ResNet 110 (SD) 12.67% 2.46% 4.16% 3.58% 0.96% 0.9% 20.09% CIFAR-100 Wide ResNet 32 15.0% 3.01% 5.85% 5.77% 2.32% 2.57% 24.44% CIFAR-100 DenseNet 40 10.37% 2.68% 4.51% 3.59% 1.18% 1.09% 21.87% CIFAR-100 LeNet 5 4.85% 6.48% 2.35% 3.77% 2.02% 2.09% 13.24% ImageNet DenseNet 161 6.28% 4.52% 5.18% 3.51% 1.99% 2.24% - ImageNet ResNet 152 5.48% 4.36% 4.77% 3.56% 1.86% 2.23% - SVHN ResNet 152 (SD) 0.44% 0.14% 0.28% 0.22% 0.17% 0.27% 0.17% 20 News DAN 3 8.02% 3.6% 5.52% 4.98% 4.11% 4.61% 9.1% Reuters DAN 3 0.85% 1.75% 1.15% 0.97% 0.91% 0.66% 1.58% SST Binary TreeLSTM 6.63% 1.93% 1.65% 2.27% 1.84% 1.84%",
+          "section": "PDF page 6",
+          "char_count": 1199,
+          "section_index": 5,
+          "chunk_index": 0,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-b-p006-c001"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 0
+          }
+        },
+        {
+          "evidence_id": "ev-02-real-dev-b-p006-c002",
+          "rank": 2,
+          "paper_id": "real-dev-b",
+          "page": 6,
+          "chunk_id": "real-dev-b-p006-c002",
+          "source_page_id": "real-dev-b-p006",
+          "text": "0.28% 0.22% 0.17% 0.27% 0.17% 20 News DAN 3 8.02% 3.6% 5.52% 4.98% 4.11% 4.61% 9.1% Reuters DAN 3 0.85% 1.75% 1.15% 0.97% 0.91% 0.66% 1.58% SST Binary TreeLSTM 6.63% 1.93% 1.65% 2.27% 1.84% 1.84% 1.84% SST Fine Grained TreeLSTM 6.71% 2.09% 1.65% 2.61% 2.56% 2.98% 2.39% Table 1. ECE (%) (with M = 15 bins) on standard vision and NLP datasets before calibration and with various calibration methods. The number following a model’s name denotes the network depth. Extension of binning methods. One common way of extending binary calibration methods to the multiclass setting is by treating the problem as K one-versus-all problems (Zadrozny & Elkan, 2002). For k = 1,...,K , we form a binary calibration problem where the label is 1(yi = k) and the predicted probability is σSM(zi)(k). This gives us K calibration models, each for a particular class. At test time, we obtain an unnormalized probability vector [ˆq(1) i ,..., ˆq(K) i ], where ˆq(k) i is the calibrated probability for class k. The new class prediction ˆy′ i is the argmax of the vector, and the new conﬁdence ˆq′ i is the max of the vector normalized by ∑K k=1 ˆq(k) i .",
+          "section": "PDF page 6",
+          "char_count": 1134,
+          "section_index": 5,
+          "chunk_index": 1,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-b-p006-c002"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-03-real-dev-b-p006-c003",
+          "rank": 3,
+          "paper_id": "real-dev-b",
+          "page": 6,
+          "chunk_id": "real-dev-b-p006-c003",
+          "source_page_id": "real-dev-b-p006",
+          "text": "where ˆq(k) i is the calibrated probability for class k. The new class prediction ˆy′ i is the argmax of the vector, and the new conﬁdence ˆq′ i is the max of the vector normalized by ∑K k=1 ˆq(k) i . This extension can be applied to histogram binning, isotonic regression, and BBQ. Matrix and vector scaling are two multi-class extensions of Platt scaling. Let zi be the logits vector produced before the softmax layer for input xi. Matrix scaling applies a linear transformation Wzi + b to the logits: ˆqi = max k σSM(Wzi + b)(k), ˆy′ i = argmax k (Wzi + b)(k). (8) The parameters W and b are optimized with respect to NLL on the validation set. As the number of parameters for matrix scaling grows quadratically with the number of classesK, we deﬁne vector scaling as a variant where W is restricted to be a diagonal matrix. Temperature scaling, the simplest extension of Platt scaling, uses a single scalar parameterT >0 for all classes. Given the logit vector zi, the new conﬁdence prediction is ˆqi = max k σSM(zi/T )(k). (9) T is called the temperature, and it “softens” the softmax (i.e. raises the output entropy) with T > 1.",
+          "section": "PDF page 6",
+          "char_count": 1134,
+          "section_index": 5,
+          "chunk_index": 2,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-b-p006-c003"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-04-real-dev-b-p006-c004",
+          "rank": 4,
+          "paper_id": "real-dev-b",
+          "page": 6,
+          "chunk_id": "real-dev-b-p006-c004",
+          "source_page_id": "real-dev-b-p006",
+          "text": "Given the logit vector zi, the new conﬁdence prediction is ˆqi = max k σSM(zi/T )(k). (9) T is called the temperature, and it “softens” the softmax (i.e. raises the output entropy) with T > 1. As T →∞, the probability ˆqi approaches 1/K, which represents maximum uncertainty. With T = 1 , we recover the original probability ˆpi. As T →0, the probability collapses to a point mass (i.e. ˆqi = 1 ). T is optimized with respect to NLL on the validation set. Because the parameter T does not change the maximum of the softmax function, the class prediction ˆy′ i remains unchanged. In other words, temperature scaling does not affect the model’s accuracy. Temperature scaling is commonly used in settings such as knowledge distillation (Hinton et al., 2015) and statistical mechanics (Jaynes, 1957). To the best of our knowledge, we are not aware of any prior use in the context of calibrating probabilistic models.3 The model is equivalent to maximizing the entropy of the output probability distribution subject to certain constraints on the logits (see Section S2). 4.3. Other Related Works Calibration and conﬁdence scores have been studied in various contexts in recent years.",
+          "section": "PDF page 6",
+          "char_count": 1178,
+          "section_index": 5,
+          "chunk_index": 3,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-b-p006-c004"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-05-real-dev-b-p006-c005",
+          "rank": 5,
+          "paper_id": "real-dev-b",
+          "page": 6,
+          "chunk_id": "real-dev-b-p006-c005",
+          "source_page_id": "real-dev-b-p006",
+          "text": "probability distribution subject to certain constraints on the logits (see Section S2). 4.3. Other Related Works Calibration and conﬁdence scores have been studied in various contexts in recent years. Kuleshov & Ermon (2016) study the problem of calibration in the online setting, where the inputs can come from a potentially adversarial source. Kuleshov & Liang (2015) investigate how to produce calibrated probabilities when the output space is a structured object. Lakshminarayanan et al. (2016) use ensembles of networks to obtain uncertainty estimates. Pereyra et al. (2017) penalize overconﬁdent predictions as a form of regularization. Hendrycks & Gimpel (2017) use conﬁdence 3To highlight the connection with prior works we deﬁne temperature scaling in terms of 1 T instead of a multiplicative scalar.",
+          "section": "PDF page 6",
+          "char_count": 809,
+          "section_index": 5,
+          "chunk_index": 4,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-b-p006-c005"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 4
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "real-dev-b-temperature-parameter-ko",
+      "meaning_id": "real-dev-b-temperature-parameter",
+      "paper_id": "real-dev-b",
+      "language": "ko",
+      "question_type": "numeric",
+      "question": "온도 보정은 전체 클래스에 몇 개의 학습된 스칼라 매개변수를 사용하며 T에 어떤 제약을 두나요?",
+      "evidence": [
+        {
+          "evidence_id": "ev-01-real-dev-b-p006-c001",
+          "rank": 1,
+          "paper_id": "real-dev-b",
+          "page": 6,
+          "chunk_id": "real-dev-b-p006-c001",
+          "source_page_id": "real-dev-b-p006",
+          "text": "Dataset Model Uncalibrated Hist. Binning Isotonic BBQ Temp. Scaling Vector Scaling Matrix Scaling Birds ResNet 50 9.19% 4.34% 5.22% 4.12% 1.85% 3.0% 21.13% Cars ResNet 50 4.3% 1.74% 4.29% 1.84% 2.35% 2.37% 10.5% CIFAR-10 ResNet 110 4.6% 0.58% 0.81% 0.54% 0.83% 0.88% 1.0% CIFAR-10 ResNet 110 (SD) 4.12% 0.67% 1.11% 0.9% 0.6% 0.64% 0.72% CIFAR-10 Wide ResNet 32 4.52% 0.72% 1.08% 0.74% 0.54% 0.6% 0.72% CIFAR-10 DenseNet 40 3.28% 0.44% 0.61% 0.81% 0.33% 0.41% 0.41% CIFAR-10 LeNet 5 3.02% 1.56% 1.85% 1.59% 0.93% 1.15% 1.16% CIFAR-100 ResNet 110 16.53% 2.66% 4.99% 5.46% 1.26% 1.32% 25.49% CIFAR-100 ResNet 110 (SD) 12.67% 2.46% 4.16% 3.58% 0.96% 0.9% 20.09% CIFAR-100 Wide ResNet 32 15.0% 3.01% 5.85% 5.77% 2.32% 2.57% 24.44% CIFAR-100 DenseNet 40 10.37% 2.68% 4.51% 3.59% 1.18% 1.09% 21.87% CIFAR-100 LeNet 5 4.85% 6.48% 2.35% 3.77% 2.02% 2.09% 13.24% ImageNet DenseNet 161 6.28% 4.52% 5.18% 3.51% 1.99% 2.24% - ImageNet ResNet 152 5.48% 4.36% 4.77% 3.56% 1.86% 2.23% - SVHN ResNet 152 (SD) 0.44% 0.14% 0.28% 0.22% 0.17% 0.27% 0.17% 20 News DAN 3 8.02% 3.6% 5.52% 4.98% 4.11% 4.61% 9.1% Reuters DAN 3 0.85% 1.75% 1.15% 0.97% 0.91% 0.66% 1.58% SST Binary TreeLSTM 6.63% 1.93% 1.65% 2.27% 1.84% 1.84%",
+          "section": "PDF page 6",
+          "char_count": 1199,
+          "section_index": 5,
+          "chunk_index": 0,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-b-p006-c001"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 0
+          }
+        },
+        {
+          "evidence_id": "ev-02-real-dev-b-p006-c002",
+          "rank": 2,
+          "paper_id": "real-dev-b",
+          "page": 6,
+          "chunk_id": "real-dev-b-p006-c002",
+          "source_page_id": "real-dev-b-p006",
+          "text": "0.28% 0.22% 0.17% 0.27% 0.17% 20 News DAN 3 8.02% 3.6% 5.52% 4.98% 4.11% 4.61% 9.1% Reuters DAN 3 0.85% 1.75% 1.15% 0.97% 0.91% 0.66% 1.58% SST Binary TreeLSTM 6.63% 1.93% 1.65% 2.27% 1.84% 1.84% 1.84% SST Fine Grained TreeLSTM 6.71% 2.09% 1.65% 2.61% 2.56% 2.98% 2.39% Table 1. ECE (%) (with M = 15 bins) on standard vision and NLP datasets before calibration and with various calibration methods. The number following a model’s name denotes the network depth. Extension of binning methods. One common way of extending binary calibration methods to the multiclass setting is by treating the problem as K one-versus-all problems (Zadrozny & Elkan, 2002). For k = 1,...,K , we form a binary calibration problem where the label is 1(yi = k) and the predicted probability is σSM(zi)(k). This gives us K calibration models, each for a particular class. At test time, we obtain an unnormalized probability vector [ˆq(1) i ,..., ˆq(K) i ], where ˆq(k) i is the calibrated probability for class k. The new class prediction ˆy′ i is the argmax of the vector, and the new conﬁdence ˆq′ i is the max of the vector normalized by ∑K k=1 ˆq(k) i .",
+          "section": "PDF page 6",
+          "char_count": 1134,
+          "section_index": 5,
+          "chunk_index": 1,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-b-p006-c002"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-03-real-dev-b-p006-c003",
+          "rank": 3,
+          "paper_id": "real-dev-b",
+          "page": 6,
+          "chunk_id": "real-dev-b-p006-c003",
+          "source_page_id": "real-dev-b-p006",
+          "text": "where ˆq(k) i is the calibrated probability for class k. The new class prediction ˆy′ i is the argmax of the vector, and the new conﬁdence ˆq′ i is the max of the vector normalized by ∑K k=1 ˆq(k) i . This extension can be applied to histogram binning, isotonic regression, and BBQ. Matrix and vector scaling are two multi-class extensions of Platt scaling. Let zi be the logits vector produced before the softmax layer for input xi. Matrix scaling applies a linear transformation Wzi + b to the logits: ˆqi = max k σSM(Wzi + b)(k), ˆy′ i = argmax k (Wzi + b)(k). (8) The parameters W and b are optimized with respect to NLL on the validation set. As the number of parameters for matrix scaling grows quadratically with the number of classesK, we deﬁne vector scaling as a variant where W is restricted to be a diagonal matrix. Temperature scaling, the simplest extension of Platt scaling, uses a single scalar parameterT >0 for all classes. Given the logit vector zi, the new conﬁdence prediction is ˆqi = max k σSM(zi/T )(k). (9) T is called the temperature, and it “softens” the softmax (i.e. raises the output entropy) with T > 1.",
+          "section": "PDF page 6",
+          "char_count": 1134,
+          "section_index": 5,
+          "chunk_index": 2,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-b-p006-c003"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-04-real-dev-b-p006-c004",
+          "rank": 4,
+          "paper_id": "real-dev-b",
+          "page": 6,
+          "chunk_id": "real-dev-b-p006-c004",
+          "source_page_id": "real-dev-b-p006",
+          "text": "Given the logit vector zi, the new conﬁdence prediction is ˆqi = max k σSM(zi/T )(k). (9) T is called the temperature, and it “softens” the softmax (i.e. raises the output entropy) with T > 1. As T →∞, the probability ˆqi approaches 1/K, which represents maximum uncertainty. With T = 1 , we recover the original probability ˆpi. As T →0, the probability collapses to a point mass (i.e. ˆqi = 1 ). T is optimized with respect to NLL on the validation set. Because the parameter T does not change the maximum of the softmax function, the class prediction ˆy′ i remains unchanged. In other words, temperature scaling does not affect the model’s accuracy. Temperature scaling is commonly used in settings such as knowledge distillation (Hinton et al., 2015) and statistical mechanics (Jaynes, 1957). To the best of our knowledge, we are not aware of any prior use in the context of calibrating probabilistic models.3 The model is equivalent to maximizing the entropy of the output probability distribution subject to certain constraints on the logits (see Section S2). 4.3. Other Related Works Calibration and conﬁdence scores have been studied in various contexts in recent years.",
+          "section": "PDF page 6",
+          "char_count": 1178,
+          "section_index": 5,
+          "chunk_index": 3,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-b-p006-c004"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-05-real-dev-b-p006-c005",
+          "rank": 5,
+          "paper_id": "real-dev-b",
+          "page": 6,
+          "chunk_id": "real-dev-b-p006-c005",
+          "source_page_id": "real-dev-b-p006",
+          "text": "probability distribution subject to certain constraints on the logits (see Section S2). 4.3. Other Related Works Calibration and conﬁdence scores have been studied in various contexts in recent years. Kuleshov & Ermon (2016) study the problem of calibration in the online setting, where the inputs can come from a potentially adversarial source. Kuleshov & Liang (2015) investigate how to produce calibrated probabilities when the output space is a structured object. Lakshminarayanan et al. (2016) use ensembles of networks to obtain uncertainty estimates. Pereyra et al. (2017) penalize overconﬁdent predictions as a form of regularization. Hendrycks & Gimpel (2017) use conﬁdence 3To highlight the connection with prior works we deﬁne temperature scaling in terms of 1 T instead of a multiplicative scalar.",
+          "section": "PDF page 6",
+          "char_count": 809,
+          "section_index": 5,
+          "chunk_index": 4,
+          "locator": {
+            "page_label": "p. 6",
+            "section": "PDF page 6",
+            "chunk_id": "real-dev-b-p006-c005"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 5,
+            "chunk_index": 4
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "real-dev-b-reuters-exception-en",
+      "meaning_id": "real-dev-b-reuters-exception",
+      "paper_id": "real-dev-b",
+      "language": "en",
+      "question_type": "limitation",
+      "question": "Which dataset is the reported exception to temperature scaling's calibration improvement, and what low initial error limits improvement?",
+      "evidence": [
+        {
+          "evidence_id": "ev-01-real-dev-b-p007-c001",
+          "rank": 1,
+          "paper_id": "real-dev-b",
+          "page": 7,
+          "chunk_id": "real-dev-b-p007-c001",
+          "source_page_id": "real-dev-b-p007",
+          "text": "scores to determine if samples are out-of-distribution. Bayesian neural networks (Denker & Lecun, 1990; MacKay, 1992) return a probability distribution over outputs as an alternative way to represent model uncertainty. Gal & Ghahramani (2016) draw a connection between Dropout (Srivastava et al., 2014) and model uncertainty, claiming that sampling models with dropped nodes is a way to estimate the probability distribution over all possible models for a given sample. Kendall & Gal (2017) combine this approach with a model that outputs a predictive mean and variance for each data point. This notion of uncertainty is not restricted to classiﬁcation problems. In contrast, our framework, which does not require model sampling, returns a conﬁdence for a given output rather than returning a distribution of possible outputs. 5. Results We apply the calibration methods in Section 4 to image classiﬁcation and document classiﬁcation neural networks. For image classiﬁcation we use 6 datasets: 1. Caltech-UCSD Birds (Welinder et al., 2010): 200 bird species. 5994/2897/2897 images for train/validation/test sets. 2. Stanford Cars (Krause et al., 2013): 196 classes of cars by make, model, and year.",
+          "section": "PDF page 7",
+          "char_count": 1198,
+          "section_index": 6,
+          "chunk_index": 0,
+          "locator": {
+            "page_label": "p. 7",
+            "section": "PDF page 7",
+            "chunk_id": "real-dev-b-p007-c001"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 6,
+            "chunk_index": 0
+          }
+        },
+        {
+          "evidence_id": "ev-02-real-dev-b-p007-c002",
+          "rank": 2,
+          "paper_id": "real-dev-b",
+          "page": 7,
+          "chunk_id": "real-dev-b-p007-c002",
+          "source_page_id": "real-dev-b-p007",
+          "text": "Birds (Welinder et al., 2010): 200 bird species. 5994/2897/2897 images for train/validation/test sets. 2. Stanford Cars (Krause et al., 2013): 196 classes of cars by make, model, and year. 8041/4020/4020 images for train/validation/test. 3. ImageNet 2012 (Deng et al., 2009): Natural scene images from 1000 classes. 1.3 million/25,000/25,000 images for train/validation/test. 4. CIFAR-10/CIFAR-100 (Krizhevsky & Hinton, 2009): Color images ( 32 ×32) from 10/100 classes. 45,000/5,000/10,000 images for train/validation/test. 5. Street View House Numbers (SVHN) (Netzer et al., 2011): 32 ×32 colored images of cropped out house numbers from Google Street View. 604,388/6,000/26,032 images for train/validation/test. We train state-of-the-art convolutional networks: ResNets (He et al., 2016), ResNets with stochastic depth (SD) (Huang et al., 2016), Wide ResNets (Zagoruyko & Komodakis, 2016), and DenseNets (Huang et al., 2017). We use the data preprocessing, training procedures, and hyperparameters as described in each paper. For Birds and Cars, we ﬁne-tune networks pretrained on ImageNet. For document classiﬁcation we experiment with 4 datasets: 1.",
+          "section": "PDF page 7",
+          "char_count": 1154,
+          "section_index": 6,
+          "chunk_index": 1,
+          "locator": {
+            "page_label": "p. 7",
+            "section": "PDF page 7",
+            "chunk_id": "real-dev-b-p007-c002"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 6,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-03-real-dev-b-p007-c003",
+          "rank": 3,
+          "paper_id": "real-dev-b",
+          "page": 7,
+          "chunk_id": "real-dev-b-p007-c003",
+          "source_page_id": "real-dev-b-p007",
+          "text": "training procedures, and hyperparameters as described in each paper. For Birds and Cars, we ﬁne-tune networks pretrained on ImageNet. For document classiﬁcation we experiment with 4 datasets: 1. 20 News: News articles, partitioned into 20 categories by content. 9034/2259/7528 documents for train/validation/test. 2. Reuters: News articles, partitioned into 8 categories by topic. 4388/1097/2189 documents for train/validation/test. 3. Stanford Sentiment Treebank (SST) (Socher et al., 2013): Movie reviews, represented as sentence parse trees that are annotated by sentiment. Each sample includes a coarse binary label and a ﬁne grained 5-class label. As described in (Tai et al., 2015), the training/validation/test sets contain 6920/872/1821 documents for binary, and 544/1101/2210 for ﬁne-grained. On 20 News and Reuters, we train Deep Averaging Networks (DANs) (Iyyer et al., 2015) with 3 feed-forward layers and Batch Normalization. These networks obtain competitive accuracy using the optimization hyperparameters suggested by the original paper. On SST, we train TreeLSTMs (Long Short Term Memory) (Tai et al., 2015) using the default settings in the authors’ code. Calibration Results.",
+          "section": "PDF page 7",
+          "char_count": 1194,
+          "section_index": 6,
+          "chunk_index": 2,
+          "locator": {
+            "page_label": "p. 7",
+            "section": "PDF page 7",
+            "chunk_id": "real-dev-b-p007-c003"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 6,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-04-real-dev-b-p007-c004",
+          "rank": 4,
+          "paper_id": "real-dev-b",
+          "page": 7,
+          "chunk_id": "real-dev-b-p007-c004",
+          "source_page_id": "real-dev-b-p007",
+          "text": "hyperparameters suggested by the original paper. On SST, we train TreeLSTMs (Long Short Term Memory) (Tai et al., 2015) using the default settings in the authors’ code. Calibration Results. Table 1 displays model calibration, as measured by ECE (with M = 15 bins), before and after applying the various methods (see Section S3 for MCE, NLL, and error tables). It is worth noting that most datasets and models experience some degree of miscalibration, with ECE typically between 4 to 10%. This is not architecture speciﬁc: we observe miscalibration on convolutional networks (with and without skip connections), recurrent networks, and deep averaging networks. The two notable exceptions are SVHN and Reuters, both of which experience ECE values below 1%. Both of these datasets have very low error ( 1.98% and 2.97%, respectively); and therefore the ratio of ECE to error is comparable to other datasets. Our most important discovery is the surprising effectiveness of temperature scaling despite its remarkable simplicity. Temperature scaling outperforms all other methods on the vision tasks, and performs comparably to other methods on the NLP datasets.",
+          "section": "PDF page 7",
+          "char_count": 1156,
+          "section_index": 6,
+          "chunk_index": 3,
+          "locator": {
+            "page_label": "p. 7",
+            "section": "PDF page 7",
+            "chunk_id": "real-dev-b-p007-c004"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 6,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-05-real-dev-b-p007-c005",
+          "rank": 5,
+          "paper_id": "real-dev-b",
+          "page": 7,
+          "chunk_id": "real-dev-b-p007-c005",
+          "source_page_id": "real-dev-b-p007",
+          "text": "of temperature scaling despite its remarkable simplicity. Temperature scaling outperforms all other methods on the vision tasks, and performs comparably to other methods on the NLP datasets. What is perhaps even more surprising is that temperature scaling outperforms the vector and matrix Platt scaling variants, which are strictly more general methods. In fact, vector scaling recovers essentially the same solution as temperature scaling – the learned vector has nearly constant entries, and therefore is no different than a scalar transformation. In other words, network miscalibration is intrinsically low dimensional. The only dataset that temperature scaling does not calibrate is the Reuters dataset. In this instance, only one of the above methods is able to improve calibration. Because this dataset is well-calibrated to begin with (ECE≤1%), there is not much room for improvement with any method, and post-processing may not even be necessary to begin with. It is also possible that our measurements are affected by dataset split or by the particular binning scheme. Matrix scaling performs poorly on datasets with hundreds of classes (i.e.",
+          "section": "PDF page 7",
+          "char_count": 1152,
+          "section_index": 6,
+          "chunk_index": 4,
+          "locator": {
+            "page_label": "p. 7",
+            "section": "PDF page 7",
+            "chunk_id": "real-dev-b-p007-c005"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 6,
+            "chunk_index": 4
+          }
+        },
+        {
+          "evidence_id": "ev-06-real-dev-b-p007-c006",
+          "rank": 6,
+          "paper_id": "real-dev-b",
+          "page": 7,
+          "chunk_id": "real-dev-b-p007-c006",
+          "source_page_id": "real-dev-b-p007",
+          "text": "to begin with. It is also possible that our measurements are affected by dataset split or by the particular binning scheme. Matrix scaling performs poorly on datasets with hundreds of classes (i.e. Birds, Cars, and CIFAR-100), and fails to converge on the 1000-class ImageNet dataset. This is expected, since the number of parameters scales quadrat-",
+          "section": "PDF page 7",
+          "char_count": 349,
+          "section_index": 6,
+          "chunk_index": 5,
+          "locator": {
+            "page_label": "p. 7",
+            "section": "PDF page 7",
+            "chunk_id": "real-dev-b-p007-c006"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 6,
+            "chunk_index": 5
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "real-dev-b-reuters-exception-ko",
+      "meaning_id": "real-dev-b-reuters-exception",
+      "paper_id": "real-dev-b",
+      "language": "ko",
+      "question_type": "limitation",
+      "question": "온도 보정의 개선에서 보고된 예외 데이터셋은 무엇이며 어떤 낮은 초기 오차 때문에 개선 여지가 적었나요?",
+      "evidence": [
+        {
+          "evidence_id": "ev-01-real-dev-b-p007-c001",
+          "rank": 1,
+          "paper_id": "real-dev-b",
+          "page": 7,
+          "chunk_id": "real-dev-b-p007-c001",
+          "source_page_id": "real-dev-b-p007",
+          "text": "scores to determine if samples are out-of-distribution. Bayesian neural networks (Denker & Lecun, 1990; MacKay, 1992) return a probability distribution over outputs as an alternative way to represent model uncertainty. Gal & Ghahramani (2016) draw a connection between Dropout (Srivastava et al., 2014) and model uncertainty, claiming that sampling models with dropped nodes is a way to estimate the probability distribution over all possible models for a given sample. Kendall & Gal (2017) combine this approach with a model that outputs a predictive mean and variance for each data point. This notion of uncertainty is not restricted to classiﬁcation problems. In contrast, our framework, which does not require model sampling, returns a conﬁdence for a given output rather than returning a distribution of possible outputs. 5. Results We apply the calibration methods in Section 4 to image classiﬁcation and document classiﬁcation neural networks. For image classiﬁcation we use 6 datasets: 1. Caltech-UCSD Birds (Welinder et al., 2010): 200 bird species. 5994/2897/2897 images for train/validation/test sets. 2. Stanford Cars (Krause et al., 2013): 196 classes of cars by make, model, and year.",
+          "section": "PDF page 7",
+          "char_count": 1198,
+          "section_index": 6,
+          "chunk_index": 0,
+          "locator": {
+            "page_label": "p. 7",
+            "section": "PDF page 7",
+            "chunk_id": "real-dev-b-p007-c001"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 6,
+            "chunk_index": 0
+          }
+        },
+        {
+          "evidence_id": "ev-02-real-dev-b-p007-c002",
+          "rank": 2,
+          "paper_id": "real-dev-b",
+          "page": 7,
+          "chunk_id": "real-dev-b-p007-c002",
+          "source_page_id": "real-dev-b-p007",
+          "text": "Birds (Welinder et al., 2010): 200 bird species. 5994/2897/2897 images for train/validation/test sets. 2. Stanford Cars (Krause et al., 2013): 196 classes of cars by make, model, and year. 8041/4020/4020 images for train/validation/test. 3. ImageNet 2012 (Deng et al., 2009): Natural scene images from 1000 classes. 1.3 million/25,000/25,000 images for train/validation/test. 4. CIFAR-10/CIFAR-100 (Krizhevsky & Hinton, 2009): Color images ( 32 ×32) from 10/100 classes. 45,000/5,000/10,000 images for train/validation/test. 5. Street View House Numbers (SVHN) (Netzer et al., 2011): 32 ×32 colored images of cropped out house numbers from Google Street View. 604,388/6,000/26,032 images for train/validation/test. We train state-of-the-art convolutional networks: ResNets (He et al., 2016), ResNets with stochastic depth (SD) (Huang et al., 2016), Wide ResNets (Zagoruyko & Komodakis, 2016), and DenseNets (Huang et al., 2017). We use the data preprocessing, training procedures, and hyperparameters as described in each paper. For Birds and Cars, we ﬁne-tune networks pretrained on ImageNet. For document classiﬁcation we experiment with 4 datasets: 1.",
+          "section": "PDF page 7",
+          "char_count": 1154,
+          "section_index": 6,
+          "chunk_index": 1,
+          "locator": {
+            "page_label": "p. 7",
+            "section": "PDF page 7",
+            "chunk_id": "real-dev-b-p007-c002"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 6,
+            "chunk_index": 1
+          }
+        },
+        {
+          "evidence_id": "ev-03-real-dev-b-p007-c003",
+          "rank": 3,
+          "paper_id": "real-dev-b",
+          "page": 7,
+          "chunk_id": "real-dev-b-p007-c003",
+          "source_page_id": "real-dev-b-p007",
+          "text": "training procedures, and hyperparameters as described in each paper. For Birds and Cars, we ﬁne-tune networks pretrained on ImageNet. For document classiﬁcation we experiment with 4 datasets: 1. 20 News: News articles, partitioned into 20 categories by content. 9034/2259/7528 documents for train/validation/test. 2. Reuters: News articles, partitioned into 8 categories by topic. 4388/1097/2189 documents for train/validation/test. 3. Stanford Sentiment Treebank (SST) (Socher et al., 2013): Movie reviews, represented as sentence parse trees that are annotated by sentiment. Each sample includes a coarse binary label and a ﬁne grained 5-class label. As described in (Tai et al., 2015), the training/validation/test sets contain 6920/872/1821 documents for binary, and 544/1101/2210 for ﬁne-grained. On 20 News and Reuters, we train Deep Averaging Networks (DANs) (Iyyer et al., 2015) with 3 feed-forward layers and Batch Normalization. These networks obtain competitive accuracy using the optimization hyperparameters suggested by the original paper. On SST, we train TreeLSTMs (Long Short Term Memory) (Tai et al., 2015) using the default settings in the authors’ code. Calibration Results.",
+          "section": "PDF page 7",
+          "char_count": 1194,
+          "section_index": 6,
+          "chunk_index": 2,
+          "locator": {
+            "page_label": "p. 7",
+            "section": "PDF page 7",
+            "chunk_id": "real-dev-b-p007-c003"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 6,
+            "chunk_index": 2
+          }
+        },
+        {
+          "evidence_id": "ev-04-real-dev-b-p007-c004",
+          "rank": 4,
+          "paper_id": "real-dev-b",
+          "page": 7,
+          "chunk_id": "real-dev-b-p007-c004",
+          "source_page_id": "real-dev-b-p007",
+          "text": "hyperparameters suggested by the original paper. On SST, we train TreeLSTMs (Long Short Term Memory) (Tai et al., 2015) using the default settings in the authors’ code. Calibration Results. Table 1 displays model calibration, as measured by ECE (with M = 15 bins), before and after applying the various methods (see Section S3 for MCE, NLL, and error tables). It is worth noting that most datasets and models experience some degree of miscalibration, with ECE typically between 4 to 10%. This is not architecture speciﬁc: we observe miscalibration on convolutional networks (with and without skip connections), recurrent networks, and deep averaging networks. The two notable exceptions are SVHN and Reuters, both of which experience ECE values below 1%. Both of these datasets have very low error ( 1.98% and 2.97%, respectively); and therefore the ratio of ECE to error is comparable to other datasets. Our most important discovery is the surprising effectiveness of temperature scaling despite its remarkable simplicity. Temperature scaling outperforms all other methods on the vision tasks, and performs comparably to other methods on the NLP datasets.",
+          "section": "PDF page 7",
+          "char_count": 1156,
+          "section_index": 6,
+          "chunk_index": 3,
+          "locator": {
+            "page_label": "p. 7",
+            "section": "PDF page 7",
+            "chunk_id": "real-dev-b-p007-c004"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 6,
+            "chunk_index": 3
+          }
+        },
+        {
+          "evidence_id": "ev-05-real-dev-b-p007-c005",
+          "rank": 5,
+          "paper_id": "real-dev-b",
+          "page": 7,
+          "chunk_id": "real-dev-b-p007-c005",
+          "source_page_id": "real-dev-b-p007",
+          "text": "of temperature scaling despite its remarkable simplicity. Temperature scaling outperforms all other methods on the vision tasks, and performs comparably to other methods on the NLP datasets. What is perhaps even more surprising is that temperature scaling outperforms the vector and matrix Platt scaling variants, which are strictly more general methods. In fact, vector scaling recovers essentially the same solution as temperature scaling – the learned vector has nearly constant entries, and therefore is no different than a scalar transformation. In other words, network miscalibration is intrinsically low dimensional. The only dataset that temperature scaling does not calibrate is the Reuters dataset. In this instance, only one of the above methods is able to improve calibration. Because this dataset is well-calibrated to begin with (ECE≤1%), there is not much room for improvement with any method, and post-processing may not even be necessary to begin with. It is also possible that our measurements are affected by dataset split or by the particular binning scheme. Matrix scaling performs poorly on datasets with hundreds of classes (i.e.",
+          "section": "PDF page 7",
+          "char_count": 1152,
+          "section_index": 6,
+          "chunk_index": 4,
+          "locator": {
+            "page_label": "p. 7",
+            "section": "PDF page 7",
+            "chunk_id": "real-dev-b-p007-c005"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 6,
+            "chunk_index": 4
+          }
+        },
+        {
+          "evidence_id": "ev-06-real-dev-b-p007-c006",
+          "rank": 6,
+          "paper_id": "real-dev-b",
+          "page": 7,
+          "chunk_id": "real-dev-b-p007-c006",
+          "source_page_id": "real-dev-b-p007",
+          "text": "to begin with. It is also possible that our measurements are affected by dataset split or by the particular binning scheme. Matrix scaling performs poorly on datasets with hundreds of classes (i.e. Birds, Cars, and CIFAR-100), and fails to converge on the 1000-class ImageNet dataset. This is expected, since the number of parameters scales quadrat-",
+          "section": "PDF page 7",
+          "char_count": 349,
+          "section_index": 6,
+          "chunk_index": 5,
+          "locator": {
+            "page_label": "p. 7",
+            "section": "PDF page 7",
+            "chunk_id": "real-dev-b-p007-c006"
+          },
+          "scores": {
+            "reranker": 0.0
+          },
+          "source": {
+            "section_index": 6,
+            "chunk_index": 5
+          }
+        }
+      ]
+    }
+  ]
+}

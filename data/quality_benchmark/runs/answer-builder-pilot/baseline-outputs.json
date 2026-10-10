@@ -1,0 +1,728 @@
+{
+  "mode": "baseline",
+  "scope": "Answer-builder feasibility, not full-pipeline or unseen accuracy",
+  "python": "3.12.7 (main, Oct 16 2024, 00:21:24) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "packages": {
+    "torch": "2.14.1",
+    "transformers": "5.16.1",
+    "sentence-transformers": "6.0.0",
+    "numpy": "1.26.4"
+  },
+  "runner_sha256": "7daee8383dcf363f27bbeed6c434a993cd0ad3addba79f7e048b049b84062914",
+  "prompt_sha256": "a7202ac8e168fc048874dcae5396bdee77f66c6ba453d3cdd0e2dbde84a89191",
+  "input_sha256": "61576bf953d1d84d1e1bdb18fcd96a829dec8c2861ba4485c02078819098e190",
+  "outputs": [
+    {
+      "case_id": "real-dev-a-default-augmentation-en",
+      "language": "en",
+      "question": "List the three default SimCLR augmentation families, including the resize and flip qualification attached to cropping.",
+      "builder_result": {
+        "response": {
+          "answer": "The answer cannot be verified from the provided paper evidence.",
+          "evidence_ids": [],
+          "sufficiency": "insufficient",
+          "abstention_reason": "The requested question aspect could not be verified from the retrieved evidence."
+        },
+        "selected_sentences": [],
+        "attempts": [
+          {
+            "attempt": 0,
+            "status": "invalid",
+            "reason_code": "requested_aspect_not_supported",
+            "error": "Question-aspect relevance did not pass the configured development threshold.",
+            "raw_response": ""
+          }
+        ],
+        "fallback_used": false,
+        "stage_timings": {
+          "generator_activation_seconds": 0.0,
+          "sentence_selection_seconds": 0.6461649000011676,
+          "answer_construction_seconds": 0.0,
+          "translation_seconds": 0.0,
+          "answer_validation_seconds": 0.006627899998420617
+        },
+        "answerability": {
+          "abstain": true,
+          "reason_code": "requested_aspect_not_supported",
+          "enabled": true,
+          "signals": {
+            "query": "List the three default SimCLR augmentation families, including the resize and flip qualification attached to cropping",
+            "natural_query": "List the three default SimCLR augmentation families, including the resize and flip qualification attached to cropping.",
+            "removed_anchors": [],
+            "removed_title_phrases": [],
+            "has_specific_aspect": true,
+            "score_policy": "minimum_of_full_and_focused_request",
+            "source_anchors_masked": [],
+            "requested_attributes": [],
+            "missing_requested_attributes": [],
+            "requested_measurement_dimensions": [],
+            "missing_measurement_dimensions": [],
+            "contextual_requested_attributes": {},
+            "requested_attribute_coverage": true,
+            "max_aspect_score": -4.958012104034424,
+            "focused_request_max_score": -4.958012104034424,
+            "full_question_max_score": -4.952902317047119,
+            "evidence_count": 5
+          },
+          "minimum_aspect_score": -3.405527949333191,
+          "config_fingerprint": "06c512e55197a28ceb58d61f8738fdc4f0045aee8e2703e36996d6051984b00e"
+        }
+      },
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "The requested question aspect could not be verified from the retrieved evidence."
+      },
+      "raw_response": "{\"answer\": \"The answer cannot be verified from the provided paper evidence.\", \"evidence_ids\": [], \"sufficiency\": \"insufficient\", \"abstention_reason\": \"The requested question aspect could not be verified from the retrieved evidence.\"}",
+      "valid_contract": true,
+      "seconds": 0.6532656999988831
+    },
+    {
+      "case_id": "real-dev-a-default-augmentation-ko",
+      "language": "ko",
+      "question": "SimCLR의 기본 데이터 증강 세 가지를 나열하고 자르기에 붙은 크기 조정과 뒤집기 조건도 포함해 주세요.",
+      "builder_result": {
+        "response": {
+          "answer": "무작위로 절단된 이미지를 통해, 우리는 글로벌에서 로컬 뷰 (B → A) 또는 인접 뷰 (D → C) 예측을 포함하는 대조 예측 과제 샘플을 사용합니다.",
+          "evidence_ids": [
+            "ev-03-real-dev-a-p003-c003"
+          ],
+          "sufficiency": "sufficient",
+          "abstention_reason": null
+        },
+        "selected_sentences": [
+          {
+            "sentence_id": "s-014",
+            "evidence_id": "ev-03-real-dev-a-p003-c003",
+            "page": 3,
+            "section": "PDF page 3",
+            "evidence_rank": 3,
+            "position": 8,
+            "text": "By randomly cropping images, we sample contrastive prediction tasks that include global to local view ( B → A) or adjacent view (D →C) prediction.",
+            "cross_encoder_score": -4.626045227050781,
+            "intent_bonus": 4.0,
+            "selector_score": -0.6260452270507812,
+            "anchor_sentence_id": "s-014"
+          }
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "valid",
+            "raw_response": "무작위로 절단된 이미지를 통해, 우리는 글로벌에서 로컬 뷰 (B → A) 또는 인접 뷰 (D → C) 예측을 포함하는 대조 예측 과제 샘플을 사용합니다."
+          }
+        ],
+        "fallback_used": false,
+        "stage_timings": {
+          "generator_activation_seconds": 2.346323100002337,
+          "sentence_selection_seconds": 0.9841881000029389,
+          "answer_construction_seconds": 0.0018455000026733615,
+          "translation_seconds": 2.990248599999177,
+          "answer_validation_seconds": 0.003366700002516154
+        },
+        "answerability": {
+          "abstain": false,
+          "reason_code": null,
+          "enabled": true,
+          "signals": {
+            "query": "SimCLR의 기본 데이터 증강 세 가지를 나열하고 자르기에 붙은 크기 조정과 뒤집기 조건도 포함해 주세요",
+            "natural_query": "SimCLR의 기본 데이터 증강 세 가지를 나열하고 자르기에 붙은 크기 조정과 뒤집기 조건도 포함해 주세요.",
+            "removed_anchors": [],
+            "removed_title_phrases": [],
+            "has_specific_aspect": true,
+            "score_policy": "minimum_of_full_and_focused_request",
+            "source_anchors_masked": [],
+            "requested_attributes": [],
+            "missing_requested_attributes": [],
+            "requested_measurement_dimensions": [],
+            "missing_measurement_dimensions": [],
+            "contextual_requested_attributes": {},
+            "requested_attribute_coverage": true,
+            "max_aspect_score": -0.9241817593574524,
+            "focused_request_max_score": -0.9241817593574524,
+            "full_question_max_score": -0.8930441737174988,
+            "evidence_count": 5
+          },
+          "minimum_aspect_score": -3.405527949333191,
+          "config_fingerprint": "06c512e55197a28ceb58d61f8738fdc4f0045aee8e2703e36996d6051984b00e"
+        }
+      },
+      "response": {
+        "answer": "무작위로 절단된 이미지를 통해, 우리는 글로벌에서 로컬 뷰 (B → A) 또는 인접 뷰 (D → C) 예측을 포함하는 대조 예측 과제 샘플을 사용합니다.",
+        "evidence_ids": [
+          "ev-03-real-dev-a-p003-c003"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "raw_response": "{\"answer\": \"무작위로 절단된 이미지를 통해, 우리는 글로벌에서 로컬 뷰 (B → A) 또는 인접 뷰 (D → C) 예측을 포함하는 대조 예측 과제 샘플을 사용합니다.\", \"evidence_ids\": [\"ev-03-real-dev-a-p003-c003\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}",
+      "valid_contract": true,
+      "seconds": 6.326422300000559
+    },
+    {
+      "case_id": "real-dev-a-projection-en",
+      "language": "en",
+      "question": "How does a nonlinear SimCLR projection head compare with a linear head and with no projection in the reported ablation?",
+      "builder_result": {
+        "response": {
+          "answer": "The answer cannot be verified from the provided paper evidence.",
+          "evidence_ids": [],
+          "sufficiency": "insufficient",
+          "abstention_reason": "An explicit question premise is not established by the retrieved evidence."
+        },
+        "selected_sentences": [],
+        "attempts": [
+          {
+            "attempt": 0,
+            "status": "invalid",
+            "reason_code": "unsupported_question_premise",
+            "error": "unsupported subject identifier: SimCLR",
+            "raw_response": ""
+          }
+        ],
+        "fallback_used": false,
+        "stage_timings": {
+          "generator_activation_seconds": 0.0,
+          "sentence_selection_seconds": 0.0,
+          "answer_construction_seconds": 0.0,
+          "translation_seconds": 0.0,
+          "answer_validation_seconds": 0.0060345999991113786
+        }
+      },
+      "response": {
+        "answer": "The answer cannot be verified from the provided paper evidence.",
+        "evidence_ids": [],
+        "sufficiency": "insufficient",
+        "abstention_reason": "An explicit question premise is not established by the retrieved evidence."
+      },
+      "raw_response": "{\"answer\": \"The answer cannot be verified from the provided paper evidence.\", \"evidence_ids\": [], \"sufficiency\": \"insufficient\", \"abstention_reason\": \"An explicit question premise is not established by the retrieved evidence.\"}",
+      "valid_contract": true,
+      "seconds": 0.006396799999492941
+    },
+    {
+      "case_id": "real-dev-a-projection-ko",
+      "language": "ko",
+      "question": "보고된 제거 실험에서 비선형 SimCLR 투영 헤드는 선형 헤드 및 투영 없는 경우와 비교해 어떤 성능 차이를 보였나요?",
+      "builder_result": {
+        "response": {
+          "answer": "비선형 투영 헤드는 그 이전의 층의 표현 품질을 향상시킵니다. 우리는 비선형 투영이 선형 투영 (+3%), 그리고 투영 없음 (>10%) 보다 훨씬 낫다는 것을 관찰합니다. 우리는 비선형 투영에 대한 표현을 사용하는 것의 중요성은 대조 손실에 의해 유발된 정보 손실로 인해 있다고 추측합니다. 투영 헤드를 사용했을 때 출력 차원을 상관없이 유사한 결과가 관찰됩니다.",
+          "evidence_ids": [
+            "ev-01-real-dev-a-p006-c001",
+            "ev-02-real-dev-a-p006-c002"
+          ],
+          "sufficiency": "sufficient",
+          "abstention_reason": null
+        },
+        "selected_sentences": [
+          {
+            "sentence_id": "s-003",
+            "evidence_id": "ev-01-real-dev-a-p006-c001",
+            "page": 6,
+            "section": "PDF page 6",
+            "evidence_rank": 1,
+            "position": 10,
+            "text": "A nonlinear projection head improves the representation quality of the layer before it.",
+            "cross_encoder_score": -5.20367956161499,
+            "intent_bonus": 8.0,
+            "selector_score": 2.7963204383850098,
+            "anchor_sentence_id": "s-003"
+          },
+          {
+            "sentence_id": "s-005",
+            "evidence_id": "ev-02-real-dev-a-p006-c002",
+            "page": 6,
+            "section": "PDF page 6",
+            "evidence_rank": 2,
+            "position": 6,
+            "text": "We observe that a nonlinear projection is better than a linear projection (+3%), and much better than no projection (>10%).",
+            "cross_encoder_score": -5.7249627113342285,
+            "intent_bonus": 6.0,
+            "selector_score": 0.2750372886657715,
+            "anchor_sentence_id": "s-005"
+          },
+          {
+            "sentence_id": "s-007",
+            "evidence_id": "ev-02-real-dev-a-p006-c002",
+            "page": 6,
+            "section": "PDF page 6",
+            "evidence_rank": 2,
+            "position": 9,
+            "text": "We conjecture that the importance of using the representation before the nonlinear projection is due to loss of information induced by the contrastive loss.",
+            "cross_encoder_score": -6.813464641571045,
+            "intent_bonus": 6.0,
+            "selector_score": -0.8134646415710449,
+            "anchor_sentence_id": "s-007"
+          },
+          {
+            "sentence_id": "s-006",
+            "evidence_id": "ev-02-real-dev-a-p006-c002",
+            "page": 6,
+            "section": "PDF page 6",
+            "evidence_rank": 2,
+            "position": 7,
+            "text": "When a projection head is used, similar results are observed regardless of output dimension.",
+            "cross_encoder_score": -6.24551248550415,
+            "intent_bonus": 4.0,
+            "selector_score": -2.2455124855041504,
+            "anchor_sentence_id": "s-006"
+          }
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "valid",
+            "raw_response": "비선형 투영 헤드는 그 이전의 층의 표현 품질을 향상시킵니다. 우리는 비선형 투영이 선형 투영 (+3%), 그리고 투영 없음 (>10%) 보다 훨씬 낫다는 것을 관찰합니다. 우리는 비선형 투영에 대한 표현을 사용하는 것의 중요성은 대조 손실에 의해 유발된 정보 손실로 인해 있다고 추측합니다. 투영 헤드를 사용했을 때 출력 차원을 상관없이 유사한 결과가 관찰됩니다."
+          }
+        ],
+        "fallback_used": false,
+        "stage_timings": {
+          "generator_activation_seconds": 1.7999991541728377e-06,
+          "sentence_selection_seconds": 1.078155200000765,
+          "answer_construction_seconds": 0.0001373999948555138,
+          "translation_seconds": 5.5192384999973,
+          "answer_validation_seconds": 0.004132999998546438
+        },
+        "answerability": {
+          "abstain": false,
+          "reason_code": null,
+          "enabled": true,
+          "signals": {
+            "query": "보고된 제거 실험에서 비선형 SimCLR 투영 헤드는 선형 헤드 및 투영 없는 경우와 비교해 어떤 성능 차이를 보였나요",
+            "natural_query": "보고된 제거 실험에서 비선형 SimCLR 투영 헤드는 선형 헤드 및 투영 없는 경우와 비교해 어떤 성능 차이를 보였나요?",
+            "removed_anchors": [],
+            "removed_title_phrases": [],
+            "has_specific_aspect": true,
+            "score_policy": "minimum_of_full_and_focused_request",
+            "source_anchors_masked": [],
+            "requested_attributes": [],
+            "missing_requested_attributes": [],
+            "requested_measurement_dimensions": [],
+            "missing_measurement_dimensions": [],
+            "contextual_requested_attributes": {},
+            "requested_attribute_coverage": true,
+            "max_aspect_score": -1.7971261739730835,
+            "focused_request_max_score": -1.7971261739730835,
+            "full_question_max_score": -1.7845783233642578,
+            "evidence_count": 5
+          },
+          "minimum_aspect_score": -3.405527949333191,
+          "config_fingerprint": "06c512e55197a28ceb58d61f8738fdc4f0045aee8e2703e36996d6051984b00e"
+        }
+      },
+      "response": {
+        "answer": "비선형 투영 헤드는 그 이전의 층의 표현 품질을 향상시킵니다. 우리는 비선형 투영이 선형 투영 (+3%), 그리고 투영 없음 (>10%) 보다 훨씬 낫다는 것을 관찰합니다. 우리는 비선형 투영에 대한 표현을 사용하는 것의 중요성은 대조 손실에 의해 유발된 정보 손실로 인해 있다고 추측합니다. 투영 헤드를 사용했을 때 출력 차원을 상관없이 유사한 결과가 관찰됩니다.",
+        "evidence_ids": [
+          "ev-01-real-dev-a-p006-c001",
+          "ev-02-real-dev-a-p006-c002"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "raw_response": "{\"answer\": \"비선형 투영 헤드는 그 이전의 층의 표현 품질을 향상시킵니다. 우리는 비선형 투영이 선형 투영 (+3%), 그리고 투영 없음 (>10%) 보다 훨씬 낫다는 것을 관찰합니다. 우리는 비선형 투영에 대한 표현을 사용하는 것의 중요성은 대조 손실에 의해 유발된 정보 손실로 인해 있다고 추측합니다. 투영 헤드를 사용했을 때 출력 차원을 상관없이 유사한 결과가 관찰됩니다.\", \"evidence_ids\": [\"ev-01-real-dev-a-p006-c001\", \"ev-02-real-dev-a-p006-c002\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}",
+      "valid_contract": true,
+      "seconds": 6.602018500001577
+    },
+    {
+      "case_id": "real-dev-b-temperature-parameter-en",
+      "language": "en",
+      "question": "How many learned scalar parameters does temperature scaling use across the classes, and what constraint is imposed on T?",
+      "builder_result": {
+        "response": {
+          "answer": "Temperature scaling, the simplest extension of Platt scaling, uses a single scalar parameter T > 0 for all classes.",
+          "evidence_ids": [
+            "ev-03-real-dev-b-p006-c003"
+          ],
+          "sufficiency": "sufficient",
+          "abstention_reason": null
+        },
+        "selected_sentences": [
+          {
+            "sentence_id": "s-007",
+            "evidence_id": "ev-03-real-dev-b-p006-c003",
+            "page": 6,
+            "section": "PDF page 6",
+            "evidence_rank": 3,
+            "position": 9,
+            "text": "Temperature scaling, the simplest extension of Platt scaling, uses a single scalar parameter T > 0 for all classes.",
+            "cross_encoder_score": 6.096633434295654,
+            "intent_bonus": 2.0,
+            "selector_score": 8.096633434295654,
+            "anchor_sentence_id": "s-007"
+          }
+        ],
+        "attempts": [],
+        "fallback_used": false,
+        "stage_timings": {
+          "generator_activation_seconds": 0.0,
+          "sentence_selection_seconds": 0.8287522999962675,
+          "answer_construction_seconds": 7.529999857069924e-05,
+          "translation_seconds": 0.0,
+          "answer_validation_seconds": 0.0040413999995507766
+        },
+        "answerability": {
+          "abstain": false,
+          "reason_code": null,
+          "enabled": true,
+          "signals": {
+            "query": "How many learned scalar parameters does temperature scaling use across the classes, and what constraint is imposed on T",
+            "natural_query": "How many learned scalar parameters does temperature scaling use across the classes, and what constraint is imposed on T?",
+            "removed_anchors": [],
+            "removed_title_phrases": [],
+            "has_specific_aspect": true,
+            "score_policy": "minimum_of_full_and_focused_request",
+            "source_anchors_masked": [],
+            "requested_attributes": [],
+            "missing_requested_attributes": [],
+            "requested_measurement_dimensions": [],
+            "missing_measurement_dimensions": [],
+            "contextual_requested_attributes": {},
+            "requested_attribute_coverage": true,
+            "max_aspect_score": 3.253005266189575,
+            "focused_request_max_score": 3.3282742500305176,
+            "full_question_max_score": 3.253005266189575,
+            "evidence_count": 5
+          },
+          "minimum_aspect_score": -3.405527949333191,
+          "config_fingerprint": "06c512e55197a28ceb58d61f8738fdc4f0045aee8e2703e36996d6051984b00e"
+        }
+      },
+      "response": {
+        "answer": "Temperature scaling, the simplest extension of Platt scaling, uses a single scalar parameter T > 0 for all classes.",
+        "evidence_ids": [
+          "ev-03-real-dev-b-p006-c003"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "raw_response": "{\"answer\": \"Temperature scaling, the simplest extension of Platt scaling, uses a single scalar parameter T > 0 for all classes.\", \"evidence_ids\": [\"ev-03-real-dev-b-p006-c003\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}",
+      "valid_contract": true,
+      "seconds": 0.8332633999998507
+    },
+    {
+      "case_id": "real-dev-b-temperature-parameter-ko",
+      "language": "ko",
+      "question": "온도 보정은 전체 클래스에 몇 개의 학습된 스칼라 매개변수를 사용하며 T에 어떤 제약을 두나요?",
+      "builder_result": {
+        "response": {
+          "answer": "플래트 스케일링의 가장 간단한 확장인 온도 보정은 모든 클래스에 대해 단일 스칼라 매개변수 T > 0을 사용합니다.",
+          "evidence_ids": [
+            "ev-03-real-dev-b-p006-c003"
+          ],
+          "sufficiency": "sufficient",
+          "abstention_reason": null
+        },
+        "selected_sentences": [
+          {
+            "sentence_id": "s-007",
+            "evidence_id": "ev-03-real-dev-b-p006-c003",
+            "page": 6,
+            "section": "PDF page 6",
+            "evidence_rank": 3,
+            "position": 9,
+            "text": "Temperature scaling, the simplest extension of Platt scaling, uses a single scalar parameter T > 0 for all classes.",
+            "cross_encoder_score": 5.758208751678467,
+            "intent_bonus": 6.0,
+            "selector_score": 11.758208751678467,
+            "anchor_sentence_id": "s-007"
+          }
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "valid",
+            "raw_response": "플래트 스케일링의 가장 간단한 확장인 온도 보정은 모든 클래스에 대해 단일 스칼라 매개변수 T > 0을 사용합니다."
+          }
+        ],
+        "fallback_used": false,
+        "stage_timings": {
+          "generator_activation_seconds": 8.999995770864189e-07,
+          "sentence_selection_seconds": 0.8914019999974698,
+          "answer_construction_seconds": 5.850000161444768e-05,
+          "translation_seconds": 1.9312381999989157,
+          "answer_validation_seconds": 0.004473599998163991
+        },
+        "answerability": {
+          "abstain": false,
+          "reason_code": null,
+          "enabled": true,
+          "signals": {
+            "query": "온도 보정은 전체 클래스에 몇 개의 학습된 스칼라 매개변수를 사용하며 T에 어떤 제약을 두나요",
+            "natural_query": "온도 보정은 전체 클래스에 몇 개의 학습된 스칼라 매개변수를 사용하며 T에 어떤 제약을 두나요?",
+            "removed_anchors": [],
+            "removed_title_phrases": [],
+            "has_specific_aspect": true,
+            "score_policy": "minimum_of_full_and_focused_request",
+            "source_anchors_masked": [],
+            "requested_attributes": [],
+            "missing_requested_attributes": [],
+            "requested_measurement_dimensions": [],
+            "missing_measurement_dimensions": [],
+            "contextual_requested_attributes": {},
+            "requested_attribute_coverage": true,
+            "max_aspect_score": 0.5931006073951721,
+            "focused_request_max_score": 0.6530466675758362,
+            "full_question_max_score": 0.5931006073951721,
+            "evidence_count": 5
+          },
+          "minimum_aspect_score": -3.405527949333191,
+          "config_fingerprint": "06c512e55197a28ceb58d61f8738fdc4f0045aee8e2703e36996d6051984b00e"
+        }
+      },
+      "response": {
+        "answer": "플래트 스케일링의 가장 간단한 확장인 온도 보정은 모든 클래스에 대해 단일 스칼라 매개변수 T > 0을 사용합니다.",
+        "evidence_ids": [
+          "ev-03-real-dev-b-p006-c003"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "raw_response": "{\"answer\": \"플래트 스케일링의 가장 간단한 확장인 온도 보정은 모든 클래스에 대해 단일 스칼라 매개변수 T > 0을 사용합니다.\", \"evidence_ids\": [\"ev-03-real-dev-b-p006-c003\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}",
+      "valid_contract": true,
+      "seconds": 2.8275775000001886
+    },
+    {
+      "case_id": "real-dev-b-reuters-exception-en",
+      "language": "en",
+      "question": "Which dataset is the reported exception to temperature scaling's calibration improvement, and what low initial error limits improvement?",
+      "builder_result": {
+        "response": {
+          "answer": "The only dataset that temperature scaling does not calibrate is the Reuters dataset. In this instance, only one of the above methods is able to improve calibration. The two notable exceptions are SVHN and Reuters, both of which experience ECE values below 1%. Both of these datasets have very low error ( 1.98% and 2.97%, respectively); and therefore the ratio of ECE to error is comparable to other datasets.",
+          "evidence_ids": [
+            "ev-05-real-dev-b-p007-c005",
+            "ev-04-real-dev-b-p007-c004"
+          ],
+          "sufficiency": "sufficient",
+          "abstention_reason": null
+        },
+        "selected_sentences": [
+          {
+            "sentence_id": "s-026",
+            "evidence_id": "ev-05-real-dev-b-p007-c005",
+            "page": 7,
+            "section": "PDF page 7",
+            "evidence_rank": 5,
+            "position": 6,
+            "text": "The only dataset that temperature scaling does not calibrate is the Reuters dataset.",
+            "cross_encoder_score": 4.522753715515137,
+            "intent_bonus": 6.0,
+            "selector_score": 10.522753715515137,
+            "anchor_sentence_id": "s-026"
+          },
+          {
+            "sentence_id": "s-027",
+            "evidence_id": "ev-05-real-dev-b-p007-c005",
+            "page": 7,
+            "section": "PDF page 7",
+            "evidence_rank": 5,
+            "position": 7,
+            "text": "In this instance, only one of the above methods is able to improve calibration.",
+            "cross_encoder_score": -4.056139945983887,
+            "intent_bonus": 3.0,
+            "selector_score": -1.0561399459838867,
+            "anchor_sentence_id": "s-026"
+          },
+          {
+            "sentence_id": "s-019",
+            "evidence_id": "ev-04-real-dev-b-p007-c004",
+            "page": 7,
+            "section": "PDF page 7",
+            "evidence_rank": 4,
+            "position": 7,
+            "text": "The two notable exceptions are SVHN and Reuters, both of which experience ECE values below 1%.",
+            "cross_encoder_score": -0.31610676646232605,
+            "intent_bonus": 3.0,
+            "selector_score": 2.683893233537674,
+            "anchor_sentence_id": "s-019"
+          },
+          {
+            "sentence_id": "s-020",
+            "evidence_id": "ev-04-real-dev-b-p007-c004",
+            "page": 7,
+            "section": "PDF page 7",
+            "evidence_rank": 4,
+            "position": 8,
+            "text": "Both of these datasets have very low error ( 1.98% and 2.97%, respectively); and therefore the ratio of ECE to error is comparable to other datasets.",
+            "cross_encoder_score": -2.069828748703003,
+            "intent_bonus": 0.0,
+            "selector_score": -2.069828748703003,
+            "anchor_sentence_id": "s-019"
+          }
+        ],
+        "attempts": [],
+        "fallback_used": false,
+        "stage_timings": {
+          "generator_activation_seconds": 0.0,
+          "sentence_selection_seconds": 1.01644590000069,
+          "answer_construction_seconds": 0.00015190000340226106,
+          "translation_seconds": 0.0,
+          "answer_validation_seconds": 0.0047288000023399945
+        },
+        "answerability": {
+          "abstain": false,
+          "reason_code": null,
+          "enabled": true,
+          "signals": {
+            "query": "Which dataset is the reported exception to temperature scaling's calibration improvement, and what low initial error limits improvement",
+            "natural_query": "Which dataset is the reported exception to temperature scaling's calibration improvement, and what low initial error limits improvement?",
+            "removed_anchors": [],
+            "removed_title_phrases": [],
+            "has_specific_aspect": true,
+            "score_policy": "minimum_of_full_and_focused_request",
+            "source_anchors_masked": [],
+            "requested_attributes": [],
+            "missing_requested_attributes": [],
+            "requested_measurement_dimensions": [],
+            "missing_measurement_dimensions": [],
+            "contextual_requested_attributes": {},
+            "requested_attribute_coverage": true,
+            "max_aspect_score": 5.515010356903076,
+            "focused_request_max_score": 5.515010356903076,
+            "full_question_max_score": 5.707552433013916,
+            "evidence_count": 6
+          },
+          "minimum_aspect_score": -3.405527949333191,
+          "config_fingerprint": "06c512e55197a28ceb58d61f8738fdc4f0045aee8e2703e36996d6051984b00e"
+        }
+      },
+      "response": {
+        "answer": "The only dataset that temperature scaling does not calibrate is the Reuters dataset. In this instance, only one of the above methods is able to improve calibration. The two notable exceptions are SVHN and Reuters, both of which experience ECE values below 1%. Both of these datasets have very low error ( 1.98% and 2.97%, respectively); and therefore the ratio of ECE to error is comparable to other datasets.",
+        "evidence_ids": [
+          "ev-05-real-dev-b-p007-c005",
+          "ev-04-real-dev-b-p007-c004"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "raw_response": "{\"answer\": \"The only dataset that temperature scaling does not calibrate is the Reuters dataset. In this instance, only one of the above methods is able to improve calibration. The two notable exceptions are SVHN and Reuters, both of which experience ECE values below 1%. Both of these datasets have very low error ( 1.98% and 2.97%, respectively); and therefore the ratio of ECE to error is comparable to other datasets.\", \"evidence_ids\": [\"ev-05-real-dev-b-p007-c005\", \"ev-04-real-dev-b-p007-c004\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}",
+      "valid_contract": true,
+      "seconds": 1.0218122000005678
+    },
+    {
+      "case_id": "real-dev-b-reuters-exception-ko",
+      "language": "ko",
+      "question": "온도 보정의 개선에서 보고된 예외 데이터셋은 무엇이며 어떤 낮은 초기 오차 때문에 개선 여지가 적었나요?",
+      "builder_result": {
+        "response": {
+          "answer": "온도 보정이 보정을 하지 않는 유일한 데이터 세트는 Reuters 데이터 세트입니다. 이 경우, 위의 방법 중 하나만이 보정을 개선할 수 있다. 두 가지 주목할 만한 예외는 SVHN와 Reuters이며, 둘 다 ECE의 1% 미만의 가치를 경험합니다. 이 두 데이터 집합 모두 매우 낮은 오류 (제별로 1.98%와 2.97%) 를 가지고 있으며, 따라서 ECE의 오류 비율은 다른 데이터 집합과 비교될 수 있습니다.",
+          "evidence_ids": [
+            "ev-05-real-dev-b-p007-c005",
+            "ev-04-real-dev-b-p007-c004"
+          ],
+          "sufficiency": "sufficient",
+          "abstention_reason": null
+        },
+        "selected_sentences": [
+          {
+            "sentence_id": "s-026",
+            "evidence_id": "ev-05-real-dev-b-p007-c005",
+            "page": 7,
+            "section": "PDF page 7",
+            "evidence_rank": 5,
+            "position": 6,
+            "text": "The only dataset that temperature scaling does not calibrate is the Reuters dataset.",
+            "cross_encoder_score": 1.3426593542099,
+            "intent_bonus": 8.0,
+            "selector_score": 9.3426593542099,
+            "anchor_sentence_id": "s-026"
+          },
+          {
+            "sentence_id": "s-027",
+            "evidence_id": "ev-05-real-dev-b-p007-c005",
+            "page": 7,
+            "section": "PDF page 7",
+            "evidence_rank": 5,
+            "position": 7,
+            "text": "In this instance, only one of the above methods is able to improve calibration.",
+            "cross_encoder_score": -3.019571542739868,
+            "intent_bonus": 5.0,
+            "selector_score": 1.9804284572601318,
+            "anchor_sentence_id": "s-026"
+          },
+          {
+            "sentence_id": "s-019",
+            "evidence_id": "ev-04-real-dev-b-p007-c004",
+            "page": 7,
+            "section": "PDF page 7",
+            "evidence_rank": 4,
+            "position": 7,
+            "text": "The two notable exceptions are SVHN and Reuters, both of which experience ECE values below 1%.",
+            "cross_encoder_score": -1.5267513990402222,
+            "intent_bonus": 3.0,
+            "selector_score": 1.4732486009597778,
+            "anchor_sentence_id": "s-019"
+          },
+          {
+            "sentence_id": "s-020",
+            "evidence_id": "ev-04-real-dev-b-p007-c004",
+            "page": 7,
+            "section": "PDF page 7",
+            "evidence_rank": 4,
+            "position": 8,
+            "text": "Both of these datasets have very low error ( 1.98% and 2.97%, respectively); and therefore the ratio of ECE to error is comparable to other datasets.",
+            "cross_encoder_score": -2.047919988632202,
+            "intent_bonus": 2.0,
+            "selector_score": -0.04791998863220215,
+            "anchor_sentence_id": "s-019"
+          }
+        ],
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "valid",
+            "raw_response": "온도 보정이 보정을 하지 않는 유일한 데이터 세트는 Reuters 데이터 세트입니다. 이 경우, 위의 방법 중 하나만이 보정을 개선할 수 있다. 두 가지 주목할 만한 예외는 SVHN와 Reuters이며, 둘 다 ECE의 1% 미만의 가치를 경험합니다. 이 두 데이터 집합 모두 매우 낮은 오류 (제별로 1.98%와 2.97%) 를 가지고 있으며, 따라서 ECE의 오류 비율은 다른 데이터 집합과 비교될 수 있습니다."
+          }
+        ],
+        "fallback_used": false,
+        "stage_timings": {
+          "generator_activation_seconds": 1.5999976312741637e-06,
+          "sentence_selection_seconds": 1.0741806999976689,
+          "answer_construction_seconds": 0.0001658000037423335,
+          "translation_seconds": 4.472667099998944,
+          "answer_validation_seconds": 0.005515799999557203
+        },
+        "answerability": {
+          "abstain": false,
+          "reason_code": null,
+          "enabled": true,
+          "signals": {
+            "query": "온도 보정의 개선에서 보고된 예외 데이터셋은 무엇이며 어떤 낮은 초기 오차 때문에 개선 여지가 적었나요",
+            "natural_query": "온도 보정의 개선에서 보고된 예외 데이터셋은 무엇이며 어떤 낮은 초기 오차 때문에 개선 여지가 적었나요?",
+            "removed_anchors": [],
+            "removed_title_phrases": [],
+            "has_specific_aspect": true,
+            "score_policy": "minimum_of_full_and_focused_request",
+            "source_anchors_masked": [],
+            "requested_attributes": [],
+            "missing_requested_attributes": [],
+            "requested_measurement_dimensions": [],
+            "missing_measurement_dimensions": [],
+            "contextual_requested_attributes": {},
+            "requested_attribute_coverage": true,
+            "max_aspect_score": 0.1741073727607727,
+            "focused_request_max_score": 0.1741073727607727,
+            "full_question_max_score": 0.23931443691253662,
+            "evidence_count": 6
+          },
+          "minimum_aspect_score": -3.405527949333191,
+          "config_fingerprint": "06c512e55197a28ceb58d61f8738fdc4f0045aee8e2703e36996d6051984b00e"
+        }
+      },
+      "response": {
+        "answer": "온도 보정이 보정을 하지 않는 유일한 데이터 세트는 Reuters 데이터 세트입니다. 이 경우, 위의 방법 중 하나만이 보정을 개선할 수 있다. 두 가지 주목할 만한 예외는 SVHN와 Reuters이며, 둘 다 ECE의 1% 미만의 가치를 경험합니다. 이 두 데이터 집합 모두 매우 낮은 오류 (제별로 1.98%와 2.97%) 를 가지고 있으며, 따라서 ECE의 오류 비율은 다른 데이터 집합과 비교될 수 있습니다.",
+        "evidence_ids": [
+          "ev-05-real-dev-b-p007-c005",
+          "ev-04-real-dev-b-p007-c004"
+        ],
+        "sufficiency": "sufficient",
+        "abstention_reason": null
+      },
+      "raw_response": "{\"answer\": \"온도 보정이 보정을 하지 않는 유일한 데이터 세트는 Reuters 데이터 세트입니다. 이 경우, 위의 방법 중 하나만이 보정을 개선할 수 있다. 두 가지 주목할 만한 예외는 SVHN와 Reuters이며, 둘 다 ECE의 1% 미만의 가치를 경험합니다. 이 두 데이터 집합 모두 매우 낮은 오류 (제별로 1.98%와 2.97%) 를 가지고 있으며, 따라서 ECE의 오류 비율은 다른 데이터 집합과 비교될 수 있습니다.\", \"evidence_ids\": [\"ev-05-real-dev-b-p007-c005\", \"ev-04-real-dev-b-p007-c004\"], \"sufficiency\": \"sufficient\", \"abstention_reason\": null}",
+      "valid_contract": true,
+      "seconds": 5.552953300000809
+    }
+  ],
+  "initialization_seconds": 14.607841900000494,
+  "runtime_unchanged": true
+}

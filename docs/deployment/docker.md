@@ -73,14 +73,18 @@ The repository corpus, evaluation data, local implementation journal, and host `
 
 ## Verification
 
-The acceptance evaluator selects unused host ports, disables model preparation only for the packaging gate, builds both images, and runs the same Compose stack used by the quick start. It verifies both health checks, backend and UI HTTP responses, internal service discovery, seed 378, and non-root users. It then removes the temporary containers, network, and test volumes.
+Keep the Compose services running. From the repository root in the host's public clone, install the client dependencies and save a current check outside the preserved evaluation data:
 
 ```bash
-python -B scripts/evaluate_container.py
-python -B scripts/validate_container.py
+python -m pip install -r requirements-test.txt
+python -B scripts/check_deployment.py --base-url http://127.0.0.1:8000 --ui-url http://127.0.0.1:8501 --real-cases data/quality_benchmark/deployment/real_pdf_cases.json --output outputs/deployment/current-check.json
 ```
 
-The saved machine-readable result is `data/evaluation/container_results.json`. This gate proves local container packaging and service connectivity. It does not prove answer quality; public server hosting is intentionally outside the project scope.
+The check uploads an authored PDF and the [bundled licensed original PDF](../../data/quality_benchmark/deployment/README.md), parses them and sends supported and unsupported questions over HTTP. It checks paper-scoped citations and lexical output markers. The UI check covers its health endpoint, not browser interaction or complete answer correctness. The report records client hashes and responses, not server source or package versions; retain the server image identity and environment separately. This check verifies local deployment; public server hosting is intentionally outside the project scope.
+
+Run this client on the host: the fixture data is not copied into either image. If custom host ports are configured, update both URLs. A first model-backed analysis can download missing pinned revisions. `PAPER_QNA_MODEL_LOCAL_FILES_ONLY=true` requires those exact revisions in the model-cache volume; leave it false for the first download. Direct Python model runs use `requirements.txt`, and their `--offline` option has the same cache requirement.
+
+`evaluate_container.py` is a historical developer tool with the fixed output `data/evaluation/container_results.json`; it has no `--output` option. `validate_container.py` reads that preserved result. Keep its original bytes and use the current check above instead of regenerating historical evidence.
 
 ![Backend and UI Docker images](../assets/screenshots/docker.png)
 

@@ -1,10 +1,11 @@
-"""Validate the final evaluation freeze against the current repository state."""
+"""Validate preserved historical results and their measured source snapshots."""
 
 import hashlib
 import json
 
 from build_evaluation_freeze import CONFIG_PATH, OUTPUT_PATH, TABLE_PATH, build_outputs, sha256
 from model_lock import load_model_lock
+from evaluation_provenance import verify_frozen_source
 from retrieval_common import PROJECT_ROOT, configure_utf8_stdout
 
 
@@ -14,7 +15,11 @@ def main():
     saved_csv = TABLE_PATH.read_text(encoding="utf-8")
     expected_csv, expected = build_outputs()
     assert saved_csv == expected_csv
-    assert saved == expected
+    # Metrics still come from the unchanged recorded artifacts. New runtime
+    # source hashes must never be substituted into the historical manifest.
+    assert {key: value for key, value in saved.items() if key != "provenance"} == {
+        key: value for key, value in expected.items() if key != "provenance"
+    }
     assert saved["status"] == "frozen"
     assert saved["seed"] == 378
     assert all(saved["checks"].values())
@@ -38,29 +43,36 @@ def main():
         saved_csv.encode("utf-8")
     ).hexdigest()
     assert saved["performance_table"]["rows"] == 29
-    for path, digest in saved["provenance"]["source_hashes"].items():
-        assert sha256(PROJECT_ROOT / path) == digest
+    historical_sources = []
+    bundle = hashlib.sha256()
+    for path, digest in sorted(saved["provenance"]["source_hashes"].items()):
+        verified = verify_frozen_source(path, digest)
+        if verified != (PROJECT_ROOT / path).resolve():
+            historical_sources.append(path)
+        bundle.update(path.encode("utf-8") + b"\0" + digest.encode("ascii") + b"\0")
+    assert bundle.hexdigest() == saved["provenance"]["source_bundle_sha256"]
     assert sha256(CONFIG_PATH) == saved["provenance"]["source_hashes"][
         "config/evaluation_freeze.json"
     ]
 
-    readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
-    readme_ko = (PROJECT_ROOT / "README_KO.md").read_text(encoding="utf-8")
-    assert "0.5838 / 0.6308 / 0.5367" in readme
-    assert "0.5838 / 0.6308 / 0.5367" in readme_ko
+    # Historical measurements belong to their dedicated documentation.
+    # The portfolio overview may summarize current behavior independently.
     for path in (
         PROJECT_ROOT / "docs" / "evaluation.md",
         PROJECT_ROOT / "docs" / "evaluation_KO.md",
     ):
         assert path.is_file()
+        documented = path.read_text(encoding="utf-8")
+        assert all(value in documented for value in ("0.5838", "0.6308", "0.5367"))
 
-    print("Final evaluation freeze validation passed")
+    print("Historical evaluation freeze validation passed")
     print(
         f"sources={len(saved['provenance']['source_hashes'])} "
         f"performance_rows={saved['performance_table']['rows']} seed=378"
     )
-    print("current_retrieval=Recall@5:1.000 Recall@10:1.000 MRR:0.5838")
-    print("gates=retrieval+corpus+abstention+answer+container passed")
+    print("historical_retrieval=Recall@5:1.000 Recall@10:1.000 MRR:0.5838")
+    print(f"preserved_source_snapshots={len(historical_sources)} current_runtime_benchmark=not_claimed")
+    print("historical_gates=retrieval+corpus+abstention+answer+container passed")
 
 
 if __name__ == "__main__":

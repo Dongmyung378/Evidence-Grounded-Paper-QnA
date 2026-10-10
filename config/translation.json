@@ -12,7 +12,9 @@
   "dtype": "auto",
   "max_input_tokens": 512,
   "max_output_tokens": 256,
-  "num_beams": 4,
+  "num_beams": 1,
+  "retry_on_validation_failure": true,
+  "retry_num_beams": 2,
   "do_sample": false,
   "cpu_threads": 8
 }

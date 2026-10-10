@@ -1,0 +1,17 @@
+{
+  "source": "Recomputed from frozen messages and pinned tokenizer without model generation",
+  "original_telemetry_field": "input_tokens=2 mistakenly counted BatchEncoding keys",
+  "prompt_receipt_sha256": "a7202ac8e168fc048874dcae5396bdee77f66c6ba453d3cdd0e2dbde84a89191",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "input_tokens": {
+    "real-dev-a-default-augmentation-en": 1869,
+    "real-dev-a-default-augmentation-ko": 1888,
+    "real-dev-a-projection-en": 1797,
+    "real-dev-a-projection-ko": 1823,
+    "real-dev-b-temperature-parameter-en": 2536,
+    "real-dev-b-temperature-parameter-ko": 2551,
+    "real-dev-b-reuters-exception-en": 2034,
+    "real-dev-b-reuters-exception-ko": 2049
+  }
+}

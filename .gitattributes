@@ -4,3 +4,7 @@
 # Frozen evidence uses byte-exact SHA-256, including its original line endings.
 # Do not let Git rewrite these historical artifacts on add, checkout or archive.
 data/evaluation/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Versioned benchmark fixtures and measured source snapshots are byte-exact.
+data/quality_benchmark/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+data/baselines/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

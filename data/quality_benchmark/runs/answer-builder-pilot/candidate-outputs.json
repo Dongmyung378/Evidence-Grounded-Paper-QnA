@@ -1,0 +1,119 @@
+{
+  "mode": "candidate",
+  "scope": "Answer-builder feasibility, not full-pipeline or unseen accuracy",
+  "python": "3.12.7 (main, Oct 16 2024, 00:21:24) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "packages": {
+    "torch": "2.14.1",
+    "transformers": "5.16.1",
+    "sentence-transformers": "6.0.0",
+    "numpy": "1.26.4"
+  },
+  "runner_sha256": "7daee8383dcf363f27bbeed6c434a993cd0ad3addba79f7e048b049b84062914",
+  "prompt_sha256": "a7202ac8e168fc048874dcae5396bdee77f66c6ba453d3cdd0e2dbde84a89191",
+  "input_sha256": "61576bf953d1d84d1e1bdb18fcd96a829dec8c2861ba4485c02078819098e190",
+  "outputs": [
+    {
+      "case_id": "real-dev-a-default-augmentation-en",
+      "language": "en",
+      "question": "List the three default SimCLR augmentation families, including the resize and flip qualification attached to cropping.",
+      "input_tokens": 2,
+      "raw_response": "```json\n{\n  \"answer\": \"The three default SimCLR augmentation families are:\\n\\n1. Random crop and resize (with random flip)\\n2. Color distortions\\n3. Gaussian blur\",\n  \"evidence_ids\": [\"ev-04-real-dev-a-p003-c004\"],\n  \"sufficiency\": \"sufficient\"\n}\n```",
+      "output_tokens": 78,
+      "valid_contract": false,
+      "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "seconds": 27.162924600001134
+    },
+    {
+      "case_id": "real-dev-a-default-augmentation-ko",
+      "language": "ko",
+      "question": "SimCLR의 기본 데이터 증강 세 가지를 나열하고 자르기에 붙은 크기 조정과 뒤집기 조건도 포함해 주세요.",
+      "input_tokens": 2,
+      "raw_response": "```json\n{\n  \"answer\": \"SimCLR의 기본 데이터 증강 세 가지는 다음과 같습니다:\",\n  \"evidence_ids\": [\"ev-01-real-dev-a-p003-c001\", \"ev-02-real-dev-a-p003-c002\", \"ev-03-real-dev-a-p003-c003\", \"ev-04-real-dev-a-p003-c004\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+      "output_tokens": 118,
+      "valid_contract": false,
+      "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "seconds": 36.5123851999997
+    },
+    {
+      "case_id": "real-dev-a-projection-en",
+      "language": "en",
+      "question": "How does a nonlinear SimCLR projection head compare with a linear head and with no projection in the reported ablation?",
+      "input_tokens": 2,
+      "raw_response": "```json\n{\n  \"answer\": \"The nonlinear SimCLR projection head outperforms both the linear head and no projection in the reported ablation studies.\",\n  \"evidence_ids\": [\"ev-02-real-dev-a-p006-c002\", \"ev-03-real-dev-a-p006-c003\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+      "output_tokens": 93,
+      "valid_contract": false,
+      "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "seconds": 29.371136400000978
+    },
+    {
+      "case_id": "real-dev-a-projection-ko",
+      "language": "ko",
+      "question": "보고된 제거 실험에서 비선형 SimCLR 투영 헤드는 선형 헤드 및 투영 없는 경우와 비교해 어떤 성능 차이를 보였나요?",
+      "input_tokens": 2,
+      "raw_response": "```json\n{\n  \"answer\": \"The non-linear SimCLR projection head improved the representation quality compared to both the linear projection and the projection without any additional layers.\",\n  \"evidence_ids\": [\"ev-02-real-dev-a-p006-c002\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+      "output_tokens": 78,
+      "valid_contract": false,
+      "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "seconds": 26.637734200001432
+    },
+    {
+      "case_id": "real-dev-b-temperature-parameter-en",
+      "language": "en",
+      "question": "How many learned scalar parameters does temperature scaling use across the classes, and what constraint is imposed on T?",
+      "input_tokens": 2,
+      "raw_response": "```json\n{\n  \"answer\": \"Temperature scaling uses a single scalar parameter \\( T > 0 \\) for all classes.\",\n  \"evidence_ids\": [\"ev-03-real-dev-b-p006-c003\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+      "output_tokens": 71,
+      "valid_contract": false,
+      "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "seconds": 29.99511150000035
+    },
+    {
+      "case_id": "real-dev-b-temperature-parameter-ko",
+      "language": "ko",
+      "question": "온도 보정은 전체 클래스에 몇 개의 학습된 스칼라 매개변수를 사용하며 T에 어떤 제약을 두나요?",
+      "input_tokens": 2,
+      "raw_response": "```json\n{\n  \"answer\": \"온도 보정은 전체 클래스에 4개의 학습된 스칼라 매개변수를 사용하며, T에 다음과 같은 제약을 두는 것으로 나타납니다:\",\n  \"evidence_ids\": [\"ev-01-real-dev-b-p006-c001\", \"ev-02-real-dev-b-p006-c002\", \"ev-03-real-dev-b-p006-c003\", \"ev-04-real-dev-b-p006-c004\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+      "output_tokens": 145,
+      "valid_contract": false,
+      "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "seconds": 46.956257099998766
+    },
+    {
+      "case_id": "real-dev-b-reuters-exception-en",
+      "language": "en",
+      "question": "Which dataset is the reported exception to temperature scaling's calibration improvement, and what low initial error limits improvement?",
+      "input_tokens": 2,
+      "raw_response": "```json\n{\n  \"answer\": \"The Reuters dataset\",\n  \"evidence_ids\": [\"ev-04-real-dev-b-p007-c004\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+      "output_tokens": 57,
+      "valid_contract": false,
+      "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "seconds": 23.51491160000296
+    },
+    {
+      "case_id": "real-dev-b-reuters-exception-ko",
+      "language": "ko",
+      "question": "온도 보정의 개선에서 보고된 예외 데이터셋은 무엇이며 어떤 낮은 초기 오차 때문에 개선 여지가 적었나요?",
+      "input_tokens": 2,
+      "raw_response": "```json\n{\n  \"answer\": \"The exception dataset mentioned in the report is the Stanford Cars dataset.\",\n  \"evidence_ids\": [\"ev-02-real-dev-b-p007-c002\"],\n  \"sufficiency\": \"sufficient\",\n  \"abstention_reason\": null\n}\n```",
+      "output_tokens": 66,
+      "valid_contract": false,
+      "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "seconds": 26.73388839999825
+    }
+  ],
+  "model": {
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "device": "cpu",
+    "dtype": "float32",
+    "do_sample": false,
+    "seed": 378,
+    "cpu_threads": 8,
+    "max_input_tokens": 4096,
+    "max_new_tokens": 512,
+    "max_time_seconds": 60
+  },
+  "initialization_seconds": 12.040005999999266,
+  "runtime_unchanged": true
+}

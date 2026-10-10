@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "quality-real-paper-v1",
+  "frozen_at": "2026-10-10",
+  "sha256": {
+    "data/quality_benchmark/real_paper_manifest.json": "b03f29776e2930664c984a5f6c452260f6f640a715f0b1bd1c7dbd7d452b88fb",
+    "data/quality_benchmark/real_paper_questions.jsonl": "69159c90617bee1debf0861ab648c015d7864d5b28dc03db37ee749a20fb71d6",
+    "data/quality_benchmark/real_paper_rubric.json": "d5c53530f5531c95c4a7c9ea54013c7a9def428913676be2499a6b1c9343ae28",
+    "data/metadata/paper_manifest.csv": "d286fb3fde6d0cd839c6441222facd3cb0c351cacdae882e4832383f919f8ebc"
+  },
+  "status": "inputs_prepared_execution_recorded_separately",
+  "independent_human_review": false
+}

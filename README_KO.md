@@ -2,67 +2,65 @@
 
 [English](README.md) | [한국어](README_KO.md)
 
-Evidence-Grounded Paper Q&A는 텍스트 추출이 가능한 영어 논문 한 편에 대해 영어 또는 한국어로 질문하는 로컬 애플리케이션입니다. 답변에는 실제로 사용한 논문 원문, 페이지, 절과 청크 식별자가 함께 제공됩니다.
+영문 연구 논문 한 편에서 근거를 검색하고 영어와 한국어 질문에 답하는 로컬 애플리케이션입니다. 하이브리드 검색, 교차 인코더 재정렬, 추출형 답변, 한국어 번역과 출처 추적을 FastAPI와 Streamlit 서비스로 연결했습니다.
 
-## 실행 화면
+논문 질의응답 시스템의 전체 구현과 재현 가능한 평가를 보여주는 프로젝트입니다. 현재 답변에는 요청한 내용의 누락, 전문 용어 오역과 근거가 부족한 질문에 대한 응답 문제가 남아 있으며, 공개한 측정 결과에서 이러한 한계를 확인할 수 있습니다.
 
-| 영어 답변 | 한국어 답변 |
-|---|---|
-| ![영어 답변과 논문 근거](docs/assets/screenshots/03-english-answer-evidence.png) | ![한국어 답변과 논문 근거](docs/assets/screenshots/04-korean-answer-evidence.png) |
+## 데모
 
-추가 화면: [PDF 업로드](docs/assets/screenshots/01-upload.png), [논문 개요](docs/assets/screenshots/02-analysis-complete.png), [Docker 이미지](docs/assets/screenshots/docker.png).
+| 영어 답변과 근거 | 한국어 답변과 근거 |
+| --- | --- |
+| ![영어 답변과 논문 원문](docs/assets/screenshots/03-english-answer-evidence.png) | ![한국어 답변과 논문 원문](docs/assets/screenshots/04-korean-answer-evidence.png) |
 
-## 주요 기능
+추가 화면: [업로드](docs/assets/screenshots/01-upload.png), [논문 개요](docs/assets/screenshots/02-analysis-complete.png), [Docker 이미지](docs/assets/screenshots/docker.png). 화면 예시는 인터페이스를 설명하며 답변 정확성을 보증하지 않습니다.
 
-- 최대 20 MiB의 텍스트 기반 영어 PDF 한 편 업로드
-- 페이지, 절, 초록과 추적 가능한 텍스트 청크 추출
-- BM25와 다국어 E5 검색 결과를 결합한 뒤 Cross-Encoder로 재정렬
-- 질문 언어와 같은 언어로 답변
-- 실제 인용한 근거의 페이지, 절, 원문과 청크 ID 표시
-- 논문 근거가 부족한 질문은 명시적으로 답변 거절
-- FastAPI, Streamlit과 Docker Compose 로컬 실행
+## 구현한 내용
 
-## 시스템 구조
+- 텍스트형 PDF에서 페이지와 섹션을 추출하고 출처 식별자를 보존한 중첩 청크를 생성했습니다.
+- BM25와 다국어 E5 검색 결과를 상호 순위 융합으로 통합하고 다국어 교차 인코더로 재정렬했습니다.
+- 선택한 원문 문장으로 영어 답변을 구성하고, 버전을 고정한 NLLB 모델과 용어 보호 및 수치 검증을 적용해 한국어로 번역했습니다.
+- 명시적 전제와 요청 내용에 대한 제한적인 검증 및 답변 거절 정책을 적용하고, 인용에 원문과 페이지, 섹션 및 청크 식별자를 연결했습니다.
+- FastAPI 업로드 및 분석 작업을 이중 언어 Streamlit 인터페이스와 연결하고 Docker Compose로 로컬 실행 환경을 구성했습니다.
+- 이중 언어 의미 그룹을 평가 단위로 삼고 개발 논문과 평가 논문을 분리했으며, 실행 전 구현 동결과 해시 보존 및 초기 실행과 반복 실행의 단계별 시간 측정을 도입했습니다.
+
+## 구조
 
 ```mermaid
 flowchart LR
-    PDF[영어 PDF] --> Parse[페이지와 절 추출]
-    Parse --> Chunk[추적 가능한 청크]
-    Question[영어 또는 한국어 질문] --> BM25[BM25]
-    Question --> Dense[다국어 E5]
-    Chunk --> BM25
-    Chunk --> Dense
-    BM25 --> RRF[순위 결합]
-    Dense --> RRF
-    RRF --> Rank[Cross-Encoder 재정렬]
-    Rank --> Guard[근거 및 답변 거절 정책]
-    Guard --> Answer[영어 추출 답변 또는 한국어 번역]
-    Answer --> Cite[답변과 원문 근거]
+    PDF[영문 PDF] --> Parse[페이지와 섹션]
+    Parse --> Chunks[출처를 보존한 중첩 청크]
+    Question[영어 또는 한국어 질문] --> Hybrid[BM25 + 다국어 E5]
+    Chunks --> Hybrid
+    Hybrid --> RRF[상호 순위 융합]
+    RRF --> Rank[교차 인코더 재정렬]
+    Rank --> Policy[근거 및 거절 검증]
+    Policy --> Select[원문 문장 선택]
+    Select --> Answer[영어 추출 또는 한국어 번역]
+    Answer --> Cite[답변과 출처 위치]
 ```
 
-구성요소와 신뢰 경계는 [아키텍처 문서](docs/architecture_KO.md)에 정리했습니다.
+기본 실행 경로는 추출과 번역을 사용합니다. 생성 모델의 비교 실험은 [실험 기록](docs/experiments_KO.md)에 별도로 정리했습니다. 상세 구현은 [아키텍처](docs/architecture_KO.md)와 [답변 정책](docs/answer_policy_KO.md)을 참고할 수 있습니다.
 
-## 평가 결과
+## 측정 결과
 
-| 범위 | 결과 |
-|---|---:|
-| 코퍼스 강건성 | 논문 30편, 563페이지, 2,463청크 |
-| 검증 검색 벤치마크 | 논문 10편의 40문항, 영어 20 + 한국어 20 |
-| Recall@1 / Recall@3 | 0.300 / 0.850 |
-| Recall@5 / Recall@10 | 1.000 / 1.000 |
-| 전체 / 영어 / 한국어 MRR | 0.5838 / 0.6308 / 0.5367 |
-| 답변 가능 문항 유지 / 비근거 홀드아웃 거절 | 95% / 90% |
-| 검토 답변 | 통과 3, 부분 통과 14, 실패 3 |
-| 통과 또는 부분 통과 | 85% |
-| 인용 지지 실패 | 0건 |
-| Docker 질의응답 검토 | 통과 4, 부분 통과 6, 실패 0 |
-| Docker API 평균 | 영어 1.47초, 한국어 11.95초 |
+현재 구현을 고정한 실논문 평가의 범위는 평가 논문 2편, 이중 언어 의미 그룹 16개와 출력 32개입니다. 의미 그룹 단위의 통과는 두 언어 모두 해당 조건을 만족해야 인정합니다.
 
-검색 정확도는 첫 10편에서만 측정했습니다. 추가 20편은 수동 Gold 근거가 없는 파서 및 실행 강건성 자료입니다. 답변 판정은 독립적인 사람 평가가 아닌 어시스턴트 주도 검토입니다. 자세한 범위와 산출물은 [평가 문서](docs/evaluation_KO.md)에 있습니다.
+| 검사 항목 | 현재 고정 구현의 결과 |
+| --- | ---: |
+| 출력 형식 준수 | 출력 32/32개 |
+| 답변 가능한 질문에 응답 | 그룹 7/10개 |
+| 근거가 부족한 질문을 거절 | 그룹 1/4개 |
+| 잘못된 전제의 질문을 거절 | 그룹 0/2개 |
+| 필요한 원문 페이지를 모두 인용 | 답변 가능 그룹 5/10개 |
+| 의미상 답변 정확도 | 독립적으로 측정하지 않음 |
+
+답변을 반환하거나 예상 페이지를 인용했다는 사실만으로 정확성을 판단할 수 없습니다. 이 결과로 운영 수준의 신뢰성을 주장할 수 없으며, 공개 이후 같은 평가 자료를 활용한 개선에서는 해당 자료를 회귀 검증용으로 취급해야 합니다. 원출력, 측정 범위, 지연시간과 재현 명령은 [평가 결과와 실패 분석](docs/results_KO.md)에 정리했습니다.
+
+별도의 [과거 검색 평가](docs/evaluation_KO.md)는 논문 10편의 질문 40개에서 Recall@3 0.850, Recall@5 1.000과 MRR 0.5838을 기록했습니다. 이 수치는 보존한 당시 구현의 결과이며 현재 답변 정확도를 뜻하지 않습니다.
 
 ## 로컬 실행
 
-권장 실행에는 Docker Desktop이 필요합니다.
+Docker Desktop을 설치하고 저장소 루트에서 실행합니다.
 
 ```bash
 docker compose up --build -d
@@ -73,48 +71,49 @@ docker compose ps
 - API 문서: `http://127.0.0.1:8000/docs`
 - 상태 확인: `http://127.0.0.1:8000/health`
 
-첫 분석은 고정 모델을 내려받는 동안 몇 분이 걸릴 수 있으며 UI는 최대 600초를 기다립니다. 일반 종료 후에도 모델과 업로드 자료는 Docker 볼륨에 남습니다.
+첫 분석은 고정된 모델을 내려받느라 수 분 걸릴 수 있으며 UI는 최대 600초 기다립니다. 최대 20 MiB의 텍스트형 영문 PDF 한 편을 올린 뒤 영어 또는 한국어로 질문하고 인용 원문을 확인합니다.
 
 ```bash
 docker compose down
 ```
 
-업로드 자료와 모델 캐시까지 삭제할 때만 `--volumes`를 사용하세요. 설정과 문제 해결은 [Docker 실행 문서](docs/deployment/docker_KO.md)를 참고하세요.
+명명된 볼륨에는 업로드 자료와 모델이 유지됩니다. 이 자료까지 삭제하려는 경우에만 `--volumes`를 추가합니다. 의존성, 모델 라이선스와 문제 해결 방법은 [Docker 안내](docs/deployment/docker_KO.md)에 있습니다. 기본 한국어 번역 모델에는 비상업적 이용 라이선스가 적용됩니다.
 
-## 검증
+## 검증과 재현
 
-공개 검증만 실행할 때는 Python 3.12 가상환경에 아래의 작은 테스트 의존성 묶음을 설치합니다. 실제 앱 실행용 의존성은 `requirements.txt`에 있습니다.
+Python 3.12에서 모델 다운로드나 비공개 PDF 없이 공개 산출물을 검사할 수 있습니다.
 
 ```bash
 python -m pip install -r requirements-test.txt
 python -B scripts/verify_project.py
 ```
 
-현재 회귀 테스트와 Git에 포함된 데이터 무결성, 원문 추적성, 검토 답변, Docker 증거와 최종 평가 매니페스트를 검증합니다. 공개 저장소 복제본에는 비공개 PDF나 생성 모델 캐시가 없어도 됩니다. 로컬에 논문 PDF 30편과 Dense 캐시가 모두 있으면 원본 및 코퍼스 검증도 자동으로 추가합니다. 모델을 내려받거나 긴 벤치마크를 반복하지 않습니다.
+실제 모델 평가에는 `requirements.txt`가 필요합니다. [평가 결과](docs/results_KO.md), [스크립트 안내](scripts/README_KO.md)와 [외부 검증 절차](docs/third_party_review_KO.md)에서 명령과 검증 범위를 설명합니다. 새 Linux 환경에서는 기존 평가 출력 32개와 HTTP 사례 7개가 재현됐습니다. 이는 에이전트가 수행한 환경 재현이며, 독립적인 사람의 사실 검토는 아직 수행하지 않았습니다.
 
-확정된 평가 자료는 줄바꿈을 포함한 원래 바이트를 보존합니다. `.gitattributes`는 `data/evaluation/`의 Git 텍스트 변환을 끄고, 소스·설정 파일의 줄바꿈을 LF로 고정합니다. 따라서 Windows·Linux 복제본과 소스 ZIP에서도 기존 47개 SHA-256 해시가 유지됩니다. 이번 호환성 수정은 기존 결과와 출처를 보존하며, 성능 실험을 다시 수행한 것은 아닙니다. 자료의 내용이 바뀌면 해시 검증은 계속 실패합니다.
+고정한 산출물과 과거 원본은 `.gitattributes`로 바이트를 보존합니다. 변경하면 기록된 해시와 일치하지 않습니다. 공개 검증은 원본 PDF 30편과 검색 캐시가 없으면 비공개 코퍼스 검사를 건너뜁니다.
 
-## 저장소 구조
+## 저장소 구성
 
 ```text
-app/            FastAPI 엔드포인트, 작업, 저장소와 질의응답 서비스
-config/         고정 모델과 실행 설정
-data/           메타데이터, 처리 코퍼스와 최종 평가 자료
-docs/           아키텍처, 평가, 데이터와 Docker 문서
-scripts/        현재 사용하는 수집, 평가와 검증 명령
-tests/          제품 및 회귀 테스트
-ui/             한영 Streamlit 화면
+app/       API, 분석 작업, 저장소와 질의응답 서비스
+ui/        이중 언어 Streamlit 인터페이스
+config/    모델 버전과 실행 정책
+scripts/   수집, 평가와 검증 명령
+tests/     회귀 및 산출물 무결성 테스트
+data/      이용 허가된 자료, 최종 측정 결과와 당시 구현 원본
+docs/      영어 기본 문서와 한국어 문서
 ```
 
-## 범위
+작업 일지, 개인 메모, 중간 실험, 업로드 PDF와 모델 캐시는 공개 대상에서 제외했습니다. 최종 평가 근거는 다른 사용자가 확인할 수 있도록 공개하며, Git 추적 파일과 추가 가능한 파일을 기준으로 공개 범위를 검사합니다.
 
-이 포트폴리오 MVP는 스캔 PDF와 OCR, 표·그림의 시각적 해석, 신뢰할 수 있는 수식 해석, 여러 논문 비교, 계정과 공개 배포를 제외합니다. 재배포가 명시적으로 허용되지 않은 원본 PDF와 사용자 업로드는 Git에 포함하지 않습니다.
+## 지원 범위와 문서
 
-## 문서
+텍스트형 영문 PDF를 지원합니다. OCR, 표와 그림의 시각적 추론, 신뢰할 수 있는 수식 해석, 여러 논문 비교, 계정과 공개 배포는 현재 구현 범위에 포함되지 않습니다. 인용은 검토 가능한 근거이며 과학적 정확성을 보증하지 않습니다.
 
-- [문서 안내](docs/README_KO.md)
+- [문서 목차](docs/README_KO.md)
+- [현재 평가 결과와 실패 분석](docs/results_KO.md)
+- [범위를 제한한 모델 비교 실험](docs/experiments_KO.md)
 - [아키텍처](docs/architecture_KO.md)
-- [평가](docs/evaluation_KO.md)
-- [실패 사례 분석](docs/failure_cases_KO.md)
+- [품질 평가](docs/quality_benchmark_KO.md)
+- [과거 실패 사례](docs/failure_cases_KO.md)
 - [데이터와 라이선스](docs/data_KO.md)
-- [Docker 실행](docs/deployment/docker_KO.md)

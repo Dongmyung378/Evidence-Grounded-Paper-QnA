@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "quality-synthetic-v1",
+  "status": "frozen_synthetic_harness_inputs",
+  "sha256": {
+    "data/quality_benchmark/manifest.json": "f7de185f1a2324c835ec779a4e0967eb4af0969c71b80dad6b4bafc7f0ee1ee0",
+    "data/quality_benchmark/questions.jsonl": "72f2d819731489ecfeb2a698f766863a541c8ed4254a8aa26d71a6462bc5c531",
+    "data/quality_benchmark/rubric.json": "1420fe773dc098b8c4f7c4f46e712756993693c0bcb414be52f45c28151d4264"
+  },
+  "change_policy": "Change benchmark ID and review rubric or gold changes before calculating new scores. Original historical evaluation artifacts remain untouched."
+}

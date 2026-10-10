@@ -1,0 +1,43 @@
+{
+  "reviewer": "AI-assisted project curator; no independent human review",
+  "labels": {
+    "complete": "All required question aspects correctly answered with source support, no material contradiction",
+    "partial": "At least one required aspect missing or materially mistranslated, but some supported answer",
+    "fail": "Refusal of an answerable case, invalid output, wrong requested fact, or material unsupported claim"
+  },
+  "required_aspects": {
+    "real-dev-a-default-augmentation": [
+      "random cropping",
+      "resizing",
+      "random horizontal flip qualification",
+      "color distortions",
+      "Gaussian blur"
+    ],
+    "real-dev-a-projection": [
+      "learned nonlinear projection compared with a linear projection",
+      "approximately 3% improvement over linear projection",
+      "more than 10% improvement over no projection head",
+      "evaluation uses the representation before the projection head"
+    ],
+    "real-dev-b-temperature-parameter": [
+      "one learned scalar parameter shared across all classes",
+      "T must be positive"
+    ],
+    "real-dev-b-reuters-exception": [
+      "Reuters dataset",
+      "low initial calibration error or already well-calibrated predictions",
+      "little room for calibration improvement"
+    ]
+  },
+  "grading": "Inspect the full answer and cited source content; lexical markers alone are insufficient. Reference labels are development-only.",
+  "references": {
+    "real-dev-a-default-augmentation-en": "The defaults are random crop and resize with random flip, color distortions, and Gaussian blur.",
+    "real-dev-a-default-augmentation-ko": "기본 증강은 무작위 자르기와 크기 조정 및 무작위 뒤집기, 색상 왜곡, 가우시안 블러입니다.",
+    "real-dev-a-projection-en": "Nonlinear projection performs about 3% better than linear projection and more than 10% better than no projection in this ablation.",
+    "real-dev-a-projection-ko": "이 제거 실험에서 비선형 투영은 선형 투영보다 약 3% 높고 투영 없는 경우보다 10% 넘게 높았습니다.",
+    "real-dev-b-temperature-parameter-en": "Temperature scaling uses one shared scalar parameter T for all classes, with T greater than zero.",
+    "real-dev-b-temperature-parameter-ko": "온도 보정은 모든 클래스가 공유하는 스칼라 매개변수 T 하나를 사용하며 T는 0보다 커야 합니다.",
+    "real-dev-b-reuters-exception-en": "Reuters is the exception. It is already well calibrated with ECE at or below 1%, leaving little room for improvement.",
+    "real-dev-b-reuters-exception-ko": "예외는 Reuters이며 이미 ECE가 1% 이하로 잘 보정되어 있어 개선 여지가 적었습니다."
+  }
+}

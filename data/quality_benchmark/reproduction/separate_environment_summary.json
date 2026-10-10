@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "completed_at": "2026-10-10T05:35:30.814930+00:00",
+  "operator": "Codex agent",
+  "verification_kind": "agent_operated_separate_environment_reproduction",
+  "separate_environment_reproduction_passed": true,
+  "independent_human_review": false,
+  "general_answer_quality_approved": false,
+  "source_zip_sha256": "a6cf6559d7805f36241696af8686c2ec0a7973893e5ca325c783526687c19a2e",
+  "source_files_verified_unchanged": 447,
+  "frozen_runtime_files_verified_unchanged": 30,
+  "runtime_freeze_sha256": "41eed4f3b01eda41d29dbd0d18d1364201664a4bc2b604a02b90dc4063c0e21c",
+  "image_id": "sha256:d9474a3b4dab94fcb09fe3067c8ac707a2e1085268aefc4b46c5dd50e8186745",
+  "base_image": "python:3.12-slim@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1",
+  "environment": {
+    "python": "3.12.15",
+    "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.41",
+    "machine": "x86_64",
+    "uid": 1000,
+    "torch_cuda_available": false
+  },
+  "torch": "2.5.1+cpu",
+  "pip_check_passed": true,
+  "runtime_imports_passed": [
+    "torch",
+    "numpy",
+    "transformers",
+    "sentence_transformers",
+    "sentencepiece",
+    "pypdf",
+    "fastapi",
+    "streamlit"
+  ],
+  "public_tests": {
+    "tests_passed": 367,
+    "validators_passed": 9,
+    "validators": [
+      "validate_questions.py",
+      "validate_ingestion.py",
+      "validate_pipeline.py",
+      "validate_grounded_generation.py",
+      "validate_container.py",
+      "validate_container_qna.py",
+      "validate_evaluation_freeze.py",
+      "validate_quality_benchmark.py",
+      "validate_portfolio_scope.py"
+    ],
+    "private_30_pdf_corpus_checks_exercised": false
+  },
+  "actual_model_replay": {
+    "outputs": 32,
+    "papers": 2,
+    "meaning_groups": 16,
+    "responses_equal_to_windows_baseline": 32,
+    "cited_evidence_equal_excluding_scores": 32,
+    "all_report_metrics_equal": true,
+    "retrieval_score_differences": 155,
+    "maximum_score_difference": 8.940696716308594e-06,
+    "new_unseen_holdout": false,
+    "dense_embeddings_generated_fresh": true
+  },
+  "network_api": {
+    "case_count": 7,
+    "response_equal_count": 7,
+    "all_cases_passed": true,
+    "ui_health_passed": true,
+    "original_pdf_sha256": "cc620e511bafe8b4b11ca3415f6d7bcf127a05818087bfa49905de3a2e50bc2d",
+    "original_pdf_analysis": {
+      "page_count": 11,
+      "text_page_count": 11,
+      "chunk_count": 63,
+      "warning_count": 33,
+      "seed": 378
+    },
+    "excluded_fields": [
+      "Only measurement fields whose names end in _seconds; runtime fallback, mode, attempts and device are retained"
+    ],
+    "normalization": "Only paper_id identity, chunk_id prefix, and evidence_id with exact ev-rank-paper_id-page-chunk pattern; preserves rank/page/chunk suffix and all answer/question/source text",
+    "per_case": [
+      {
+        "case_id": "numeric-en",
+        "response_equal_after_id_normalization": true,
+        "answer_equal": true,
+        "sufficiency_equal": true,
+        "citation_equal_after_id_normalization": true
+      },
+      {
+        "case_id": "list-en",
+        "response_equal_after_id_normalization": true,
+        "answer_equal": true,
+        "sufficiency_equal": true,
+        "citation_equal_after_id_normalization": true
+      },
+      {
+        "case_id": "numeric-ko",
+        "response_equal_after_id_normalization": true,
+        "answer_equal": true,
+        "sufficiency_equal": true,
+        "citation_equal_after_id_normalization": true
+      },
+      {
+        "case_id": "unsupported-en",
+        "response_equal_after_id_normalization": true,
+        "answer_equal": true,
+        "sufficiency_equal": true,
+        "citation_equal_after_id_normalization": true
+      },
+      {
+        "case_id": "unsupported-ko",
+        "response_equal_after_id_normalization": true,
+        "answer_equal": true,
+        "sufficiency_equal": true,
+        "citation_equal_after_id_normalization": true
+      },
+      {
+        "case_id": "original-pdf-1",
+        "response_equal_after_id_normalization": true,
+        "answer_equal": true,
+        "sufficiency_equal": true,
+        "citation_equal_after_id_normalization": true
+      },
+      {
+        "case_id": "original-pdf-2",
+        "response_equal_after_id_normalization": true,
+        "answer_equal": true,
+        "sufficiency_equal": true,
+        "citation_equal_after_id_normalization": true
+      }
+    ]
+  },
+  "quality_metrics_reproduced": {
+    "units": 16,
+    "unit": "meaning_group",
+    "valid_final_contract_rate": 1.0,
+    "answerable_groups_or_outputs": 10,
+    "answerable_retention": 0.7,
+    "false_refusal_rate": 0.3,
+    "unsupported_groups_or_outputs": 4,
+    "unsupported_final_refusal_rate": 0.25,
+    "false_premise_groups_or_outputs": 2,
+    "false_premise_final_refusal_rate": 0.0,
+    "unsupported_answer_rate": 0.8333,
+    "all_required_pages_cited_rate": 0.5,
+    "invalid_outputs": 0,
+    "fallback_outputs": 4,
+    "marker_checked_groups_or_outputs": 10,
+    "all_required_markers_present_rate": 0.1
+  },
+  "server_packages_and_sources_unchanged": true,
+  "server_container_identity_and_mounts_unchanged": true,
+  "temporary_services_stopped_after_verification": true,
+  "claim_limits": [
+    "Shared physical host and WSL2 kernel with new Linux container/userland/Python installation",
+    "Pinned model files shared read-only; initial model downloading not exercised",
+    "UI health endpoint checked; no interactive browser session",
+    "Previously opened final HOLDOUT replay; no new independent accuracy estimate",
+    "No independent human evaluation; marker/page/status metrics are not semantic accuracy"
+  ],
+  "raw_execution_logs": "Kept locally; omitted from public source to exclude host and container details"
+}

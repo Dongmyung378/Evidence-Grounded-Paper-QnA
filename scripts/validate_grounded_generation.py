@@ -6,6 +6,7 @@ from pathlib import Path
 
 from grounded_generation import load_answer_generation_config
 from local_translation import load_translation_config
+from evaluation_provenance import verify_frozen_source
 from retrieval_common import PROJECT_ROOT, configure_utf8_stdout
 
 
@@ -33,8 +34,8 @@ def main():
         ("answer_config", "answer_config_sha256"),
         ("translation_config", "translation_config_sha256"),
     ):
-        assert sha256(PROJECT_ROOT / provenance[path_key]) == provenance[hash_key]
-    assert sha256(PROJECT_ROOT / "scripts" / "grounded_generation.py") == provenance["implementation_sha256"]
+        verify_frozen_source(provenance[path_key], provenance[hash_key])
+    verify_frozen_source("scripts/grounded_generation.py", provenance["implementation_sha256"])
     assert outputs["seed"] == 378
     assert outputs["gold_loaded_during_generation"] is False
     assert outputs["summary"]["questions"] == 20
@@ -62,7 +63,7 @@ def main():
     assert translation_config["model"] == "facebook/nllb-200-distilled-600M"
     assert translation_config["license"] == "cc-by-nc-4.0"
     assert translation_config["use_safetensors"] is True
-    print("Evidence-first answer validation passed")
+    print("Historical evidence-first answer validation passed")
     print("fixed20=pass:3 partial:14 fail:3 pass_or_partial=85%")
     print("false_abstentions=2 validation_fallbacks=0")
 

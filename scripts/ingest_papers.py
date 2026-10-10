@@ -43,17 +43,41 @@ def clean_text(text):
 
 
 def split_text(text, chunk_size, overlap):
-    """Split text while keeping a deterministic character overlap."""
+    """Prefer complete sentences and words while preserving source coverage.
+
+    Overlap is a bounded character window adjusted to the next word boundary.
+    A sentence longer than the budget is split at a word boundary instead.
+    """
+    if not isinstance(text, str):
+        raise ValueError("text must be a string")
+    if type(chunk_size) is not int or type(overlap) is not int or chunk_size <= 0 or not 0 <= overlap < chunk_size:
+        raise ValueError("Require chunk_size > 0 and 0 <= overlap < chunk_size")
     chunks = []
     start = 0
     while start < len(text):
-        end = start + chunk_size
+        end = min(start + chunk_size, len(text))
+        if end < len(text):
+            minimum = start + max(1, chunk_size // 2)
+            boundaries = [match.end() for match in re.finditer(
+                r"[.!?](?:[\"”')\]]?)(?=\s|$)", text[start:end]
+            ) if start + match.end() >= minimum]
+            if boundaries:
+                end = start + boundaries[-1]
+            else:
+                boundary = text.rfind(" ", minimum, end)
+                if boundary > minimum:
+                    end = boundary
         chunk = text[start:end].strip()
         if chunk:
             chunks.append(chunk)
         if end >= len(text):
             break
-        start = end - overlap
+        next_start = max(start + 1, end - overlap)
+        if overlap and next_start < end and next_start > 0 and not text[next_start - 1].isspace():
+            boundary = next((index for index in range(next_start, end) if text[index].isspace()), None)
+            if boundary is not None:
+                next_start = boundary + 1
+        start = min(next_start, end)
     return chunks
 
 
@@ -286,10 +310,13 @@ def display_path(path):
 
 def run_pipeline(papers_dir, chunks_output, pages_output, report_path, chunk_size, overlap):
     """Run the complete PDF → pages JSONL → chunks JSONL batch pipeline."""
+    pdf_paths = sorted(papers_dir.glob("paper-*.pdf"))
+    if not pdf_paths:
+        raise ValueError("No paper-*.pdf inputs found; existing outputs were not written.")
     chunks = []
     pages = []
     papers = []
-    for pdf_path in sorted(papers_dir.glob("paper-*.pdf")):
+    for pdf_path in pdf_paths:
         paper_chunks, paper_pages, paper_report = process_paper(pdf_path, chunk_size, overlap)
         chunks.extend(paper_chunks)
         pages.extend(paper_pages)

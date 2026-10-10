@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "decision": "stop_model_expansion_keep_default_runtime",
+  "production_runtime_changed": false,
+  "predeclared_gate_passed": false,
+  "baseline": {
+    "complete": 2,
+    "partial": 4,
+    "fail": 2,
+    "valid_contract": 8,
+    "material_unsupported_outputs": 0,
+    "mean_seconds": 2.977963712500241,
+    "initialization_seconds": 14.607841900000494
+  },
+  "candidate": {
+    "complete": 0,
+    "partial": 0,
+    "fail": 8,
+    "valid_contract": 0,
+    "material_unsupported_outputs": 2,
+    "mean_seconds": 30.860543625000446,
+    "initialization_seconds": 12.040005999999266,
+    "content_only_complete": 2,
+    "content_only_partial": 3,
+    "content_only_fail": 3
+  },
+  "gate": {
+    "additional_complete": -2,
+    "minimum_additional_complete": 2,
+    "additional_material_unsupported": 2,
+    "maximum_additional_material_unsupported": 0,
+    "latency_limit_mean_seconds": 60
+  },
+  "interpretation": "No completeness gain even when visible content is inspected separately from contract failures; additional wrong numerical and dataset claims. Stop without larger-model downloads or runtime adoption.",
+  "limitations": [
+    "Disclosed development questions, four meaning groups on two papers, not unseen accuracy",
+    "Oracle source pages, not retrieved context or full-pipeline performance",
+    "The baseline includes its existing refusal guards; the candidate is prompted directly. This is a builder feasibility comparison, not an isolated decoder or parameter-count ablation",
+    "AI curator labels, no independent human review",
+    "Single attempt per case; no retry, prompt retuning or JSON repair",
+    "Mean baseline time includes deferred translator loading on the first Korean case, excludes initial reranker load; candidate excludes initial model load",
+    "Pretrained model training disjointness is unknown"
+  ],
+  "artifact_sha256": {
+    "protocol.json": "fc21827f3c4926b699c0f3f7c755f5e92ba8c87bf5061d56cdf8eecb21f44417",
+    "inputs.json": "61576bf953d1d84d1e1bdb18fcd96a829dec8c2861ba4485c02078819098e190",
+    "review-rubric.json": "1ddc4c80348826cff5a370eada01da033f9b6300d2e0a8ec03847b36ffddd31e",
+    "candidate-config.json": "a7d049ac2e6fa3a14c076f9889e674f799d09fd6ed2b02b942a9baf1ff59f07b",
+    "prompt-receipt.json": "a7202ac8e168fc048874dcae5396bdee77f66c6ba453d3cdd0e2dbde84a89191",
+    "baseline-outputs.json": "ba105b086ea4fe79b2c3c4796487373937e955223a404d1cf0e7219e359d0ec3",
+    "candidate-outputs.json": "0461b7f8a580b552cbca9f08facfc92a205681a48f731a36cab3285d092b5d24",
+    "review.json": "7004f9755a1b465f5f4d4e8dc861e6125f8da2cdd3eb25dc0dd82f603be49f0f",
+    "measured_runner.py": "7daee8383dcf363f27bbeed6c434a993cd0ad3addba79f7e048b049b84062914",
+    "token-counts.json": "de0ba569c4cd15737cb0e07e59595bb65a6d104af6b4d7f5745a1da1feb9e8ac"
+  },
+  "telemetry_erratum": "Candidate input_tokens incorrectly records len(BatchEncoding)=2; actual counts are recomputed in token-counts.json. Generation adapter itself enforced the correct input length. Raw recorded outputs remain unchanged."
+}

@@ -1,0 +1,55 @@
+# 범위를 제한한 답변 모델 비교 실험
+
+[English](experiments.md) | [한국어](experiments_KO.md)
+
+캐시에 있는 Qwen2.5-1.5B-Instruct를 시험했지만 도입하지 않았습니다. 미리 기준을 정한 개발 출력 8개 비교에서 내용을 완전하게 담은 답변이 늘지 않았고, 핵심 사실을 잘못 답한 사례가 2개 추가됐습니다. 모델 확장은 중단했으며 기본 추출 및 번역 경로를 유지했습니다.
+
+## 비교 설계
+
+이미 공개한 개발 질문 그룹 4개로 증강 목록, 투영 헤드 비교, 온도 보정의 스칼라 매개변수와 보정 예외를 확인했습니다. 각 그룹에는 영어와 한국어 질문이 있습니다. 두 방식에는 정답의 출처 페이지에 있는 동일한 운영 청크를 제공했습니다. 이는 검색 실패를 제외한 가능성 확인을 위한 근거 제공 방식이며, 전체 파이프라인 정확도를 추정하지 않습니다.
+
+기존 방식은 거절 검증과 문장 선택 및 한국어 번역을 포함한 현재 답변 구성기입니다. 후보 모델에는 동일 근거와 요청 언어 및 필드 4개의 출력 형식을 직접 제시했습니다. 답변 구성 방식 전체를 비교한 실험으로 생성기만 분리한 제거 실험은 아닙니다. 정답 문장이나 채점 표지는 후보 모델의 입력에 포함하지 않았습니다.
+
+[실험 규칙](../data/quality_benchmark/runs/answer-builder-pilot/protocol.json), [검토 기준](../data/quality_benchmark/runs/answer-builder-pilot/review-rubric.json), [입력 근거](../data/quality_benchmark/runs/answer-builder-pilot/inputs.json)와 [프롬프트 기록](../data/quality_benchmark/runs/answer-builder-pilot/prompt-receipt.json)을 추론 전에 고정했습니다. 실험 확대 조건은 완전한 출력 최소 2개 증가, 근거 없는 핵심 주장 증가 없음과 후보 모델의 평균 응답시간 60초 이내였습니다. 질문마다 한 번만 실행했으며 JSON 보정이나 재시도 및 프롬프트 조정은 수행하지 않았습니다.
+
+## 관찰 결과
+
+| 항목 | 기존 답변 구성기 | Qwen 후보 모델 |
+| --- | ---: | ---: |
+| 사전 기준과 출력 형식을 충족한 완전한 출력 | 2/8개 | 0/8개 |
+| 출력 형식 준수 | 8/8개 | 0/8개 |
+| 형식 오류를 별도로 제외한 답변 내용의 완전성 | 2/8개 | 2/8개 |
+| 틀리거나 근거 없는 핵심 주장 | 0/8개 | 2/8개 |
+| 초기 모델 로딩을 제외한 질문별 평균 시간 | 2.978초 | 30.861초 |
+| 초기 모델 로딩 | 14.608초 | 12.040초 |
+
+후보 모델은 모든 출력에 Markdown 코드 블록을 붙였습니다. 한 출력에서는 `abstention_reason`을 빠뜨렸고 다른 출력에서는 수식에 JSON이 허용하지 않는 이스케이프를 사용했습니다. 사전에 정한 규칙에서는 실패로 처리합니다. 답변 본문만 별도로 검토해도 완전성이 개선되지 않았으므로 중단 판단이 형식 오류만으로 결정된 것은 아닙니다.
+
+| 질문 | 기존 답변 구성기 | 후보 모델의 답변 본문 |
+| --- | --- | --- |
+| 증강, 영어 | 답할 수 있는 근거가 있어도 거절합니다. | 자르기와 크기 조정 및 무작위 뒤집기를 포함한 목록은 정확하지만 출력 형식을 위반했습니다. |
+| 증강, 한국어 | 요청한 증강 종류 대신 잘린 이미지의 뷰를 설명합니다. | 목록을 제시한다는 문장만 있고 항목은 없습니다. |
+| 투영, 영어 | 해당 페이지에 SimCLR 식별자가 없다는 이유로 거절합니다. | +3%, >10%와 투영 헤드 이전 표현이라는 조건을 누락했습니다. |
+| 투영, 한국어 | 수치는 보존하지만 뒤쪽 설명에서 헤드 이전 표현이라는 조건이 빠집니다. | 영어로 답하며 수치도 누락했습니다. |
+| 온도, 영어 | 모든 클래스가 공유하는 스칼라 하나와 T > 0을 보존합니다. | 같은 사실을 보존하지만 출력 형식을 위반했습니다. |
+| 온도, 한국어 | 모든 클래스가 공유하는 스칼라 하나와 T > 0을 보존합니다. | 스칼라 하나를 4개로 잘못 답했습니다. |
+| 보정 예외, 영어 | Reuters와 낮은 ECE는 있지만 개선 여지가 적은 이유가 없습니다. | Reuters만 답하고 초기 오차와 제한된 개선 여지를 누락했습니다. |
+| 보정 예외, 한국어 | Reuters와 낮은 ECE는 있지만 개선 여지가 적은 이유가 없습니다. | Reuters 대신 Stanford Cars를 답했으며 답변 언어도 영어였습니다. |
+
+근거: [기존 출력](../data/quality_benchmark/runs/answer-builder-pilot/baseline-outputs.json), [후보 원출력](../data/quality_benchmark/runs/answer-builder-pilot/candidate-outputs.json), [원문에 따른 검토](../data/quality_benchmark/runs/answer-builder-pilot/review.json), [중단 판단](../data/quality_benchmark/runs/answer-builder-pilot/summary.json). 채점은 에이전트가 보조한 작성자 판단이며 독립적인 사람의 평가가 아닙니다.
+
+## 재현과 한계
+
+후보 모델은 [Qwen2.5-1.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct)의 `989aa7980e4cf806f80c7fef2b1adb7bc71aa306` 버전을 사용했습니다. CPU float32, 스레드 8개, 시드 378과 탐욕적 디코딩을 적용했습니다. 제한은 입력 토큰 4,096개, 새 토큰 512개와 생성당 60초입니다. 출력 자료에 패키지 버전과 해시를 함께 기록했습니다.
+
+`requirements.txt`를 설치하고 고정된 모델을 캐시에 준비한 뒤 저장소 루트에서 실행합니다.
+
+```bash
+python -B scripts/experiment_answer_builder.py baseline --output-dir outputs/answer-builder-replay
+python -B scripts/experiment_answer_builder.py candidate --output-dir outputs/answer-builder-replay
+python -B scripts/validate_answer_experiment.py
+```
+
+재현용 진입점은 새 출력을 `outputs/`에 저장합니다. [측정 당시 실행기](../data/quality_benchmark/runs/answer-builder-pilot/measured_runner.py)는 출처 검증을 위해 원본 바이트를 보존했습니다. 당시 `input_tokens=2`는 `BatchEncoding`의 키 개수를 센 기록 오류입니다. [올바른 토큰 수](../data/quality_benchmark/runs/answer-builder-pilot/token-counts.json)는 고정한 프롬프트에서 추론을 다시 실행하지 않고 계산했습니다. 실제 생성 어댑터는 정확한 토큰 길이를 검사했으므로 오류 범위는 측정 기록입니다. 원래 출력 자료는 수정하지 않았습니다.
+
+기존 방식의 첫 한국어 요청에는 지연된 번역 모델 로딩이 포함되고, 두 평균 모두 초기 프로세스 모델 로딩은 제외합니다. 단일 실행 시간으로 처리량이나 SLA를 판단할 수 없습니다. 개발 논문 2편의 공개 출력 8개만으로 새로운 논문의 정확도나 사전 학습 자료의 분리 및 더 큰 모델의 성능을 판단할 수 없습니다. 이번 실험에서는 더 큰 모델을 내려받거나 도입하지 않았습니다. 추가 모델 선택에는 새로운 범위 제한 실험과 새로운 평가 논문이 필요합니다.

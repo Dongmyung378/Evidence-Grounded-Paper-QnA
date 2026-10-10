@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-10T04:55:39.349574+00:00",
+  "scope": "assistant-operated Windows and fresh Linux public-source verification plus live Docker HTTP checks",
+  "verifiers": {
+    "windows": {
+      "passed": true,
+      "unit_tests": 367,
+      "test_seconds": 5.335,
+      "log": "data/quality_benchmark/runs/2026-10-10-final/verification-windows.log",
+      "log_sha256": "957d16a8730666b2b28d3bab8694a85bc40a67761c035872f0d8bc773a22141d",
+      "private_corpus_checks": "skipped: original 30 private PDFs and dense cache not present"
+    },
+    "linux": {
+      "passed": true,
+      "unit_tests": 367,
+      "test_seconds": 19.107,
+      "log": "data/quality_benchmark/runs/2026-10-10-final/verification-linux.log",
+      "log_sha256": "a088cd7233a0ebf1effb0c893c35ba6c483d1f115e25e5e9984438f9c361f825",
+      "private_corpus_checks": "skipped: original 30 private PDFs and dense cache not present"
+    }
+  },
+  "containers": {
+    "backend": {
+      "unchanged_during_http_checks": true,
+      "host_source_hashes_match": true,
+      "checked_files": 73,
+      "python": "3.11.16",
+      "package_versions": {
+        "torch": "2.5.1+cpu",
+        "transformers": "5.16.1",
+        "sentence-transformers": "6.0.0",
+        "sentencepiece": "0.2.1",
+        "numpy": "1.26.4",
+        "pypdf": "6.16.2",
+        "fastapi": "0.139.0",
+        "uvicorn": "0.50.0",
+        "rank-bm25": "0.2.2"
+      }
+    },
+    "ui": {
+      "unchanged_during_http_checks": true,
+      "host_source_hashes_match": true,
+      "checked_files": 6,
+      "python": "3.11.16",
+      "package_versions": {
+        "numpy": "2.4.6",
+        "streamlit": "1.37.1",
+        "requests": "2.34.2"
+      }
+    }
+  },
+  "network_cases_passed": 7,
+  "synthetic_network_cases": 5,
+  "original_pdf_network_cases": 2,
+  "ui_health_endpoint_passed": true,
+  "interactive_browser_behavior_tested": false,
+  "runtime_freeze_sha256": "41eed4f3b01eda41d29dbd0d18d1364201664a4bc2b604a02b90dc4063c0e21c",
+  "independent_human_review": false,
+  "third_party_validation": "not_attested"
+}

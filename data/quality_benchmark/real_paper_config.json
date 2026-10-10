@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "quality-real-paper-v1",
+  "manifest": "data/quality_benchmark/real_paper_manifest.json",
+  "questions": "data/quality_benchmark/real_paper_questions.jsonl",
+  "rubric": "data/quality_benchmark/real_paper_rubric.json",
+  "freeze": "data/quality_benchmark/real_paper_freeze.json",
+  "corpus_exclusion_manifest": "data/metadata/paper_manifest.csv",
+  "extra_frozen_inputs": [
+    "data/metadata/paper_manifest.csv"
+  ],
+  "split_policy": "Distinct version-independent arXiv identities, project-corpus exclusion, original source hashes and bilingual meaning groups.",
+  "real_paper_holdout": {
+    "status": "prepared_execution_recorded_separately",
+    "require_runtime_freeze": true,
+    "automatic_accuracy_claims": false,
+    "independent_human_review": false
+  }
+}

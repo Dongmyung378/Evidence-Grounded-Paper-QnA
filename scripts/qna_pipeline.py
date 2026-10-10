@@ -190,7 +190,27 @@ class GroundedQAPipeline:
         retrieval_started = time.perf_counter()
         retrieval_result = self.retrieval.run(query, paper_id)
         retrieval_seconds = time.perf_counter() - retrieval_started
-        evidence = retrieval_result["evidence"]
+        primary_evidence = retrieval_result["evidence"]
+        evidence = list(primary_evidence)
+        selection = retrieval_result.get("evidence_selection", {})
+        supplements = selection.get("answer_context_supplements", []) if self.answer_strategy == "evidence_first" else []
+        if len(supplements) > 1:
+            raise ValueError("Answer context exceeds the bounded supplemental source limit")
+        pool_ids = {item.get("chunk_id") for item in retrieval_result.get("candidates", [])} if supplements else set()
+        known_ids = {item.get("chunk_id") for item in evidence}
+        for item in supplements:
+            if item["paper_id"] != paper_id or item["chunk_id"] not in pool_ids:
+                raise ValueError("Supplemental answer source is outside the requested paper's reranked pool")
+            if item["chunk_id"] not in known_ids:
+                evidence.append(item)
+                known_ids.add(item["chunk_id"])
+        evidence_context = {
+            "primary_retrieval_count": len(primary_evidence),
+            "primary_retrieval_evidence_ids": [item["evidence_id"] for item in primary_evidence],
+            "supplement_count": len(evidence) - len(primary_evidence),
+            "answer_context_count": len(evidence),
+            "supplement_origins": selection.get("answer_context_supplement_origins", []) if supplements else [],
+        }
 
         policy_decision = {
             "abstain": False,
@@ -209,6 +229,17 @@ class GroundedQAPipeline:
         abstention_source = None
         llm_loaded = False
         generation_seconds = 0.0
+        stage_timings = {
+            "generator_activation_seconds": 0.0,
+            "sentence_selector_activation_seconds": 0.0,
+            "sentence_selection_seconds": 0.0,
+            "answer_construction_seconds": 0.0,
+            "translation_seconds": 0.0,
+            "generation_inference_seconds": 0.0,
+            "answer_validation_seconds": 0.0,
+        }
+        generator_newly_loaded = False
+        answerability_decision = None
 
         if pre_generation_abstention:
             response = self.abstention_policy.refusal_payload(
@@ -218,16 +249,32 @@ class GroundedQAPipeline:
             abstention_source = "pre_generation_policy"
         elif self.answer_strategy == "evidence_first":
             generation_started = time.perf_counter()
-            answer_model = self._get_llm() if language == "ko" else None
-            llm_loaded = language == "ko"
+            generator_was_loaded = self.llm is not None
+            answer_model = self.llm if language == "ko" else None
+            selector_was_loaded = self.sentence_selector is not None or getattr(
+                getattr(self.retrieval, "pipeline", None), "reranker", None
+            ) is not None
+            activation_started = time.perf_counter()
+            selector = self._get_sentence_selector()
+            if not selector_was_loaded:
+                stage_timings["sentence_selector_activation_seconds"] = (
+                    time.perf_counter() - activation_started
+                )
             generated = generate_evidence_first_answer(
                 answer_model,
-                self._get_sentence_selector(),
+                selector,
                 query,
                 evidence,
                 question_language=language,
                 config=self.answer_generation_config,
+                translation_loader=self._get_llm if language == "ko" else None,
             )
+            generator_newly_loaded = language == "ko" and not generator_was_loaded and self.llm is not None
+            llm_loaded = language == "ko" and self.llm is not None
+            for key, value in generated.get("stage_timings", {}).items():
+                if key in stage_timings:
+                    stage_timings[key] = float(value)
+            answerability_decision = generated.get("answerability")
             generation_seconds = time.perf_counter() - generation_started
             response = generated["response"]
             attempts = [
@@ -240,7 +287,20 @@ class GroundedQAPipeline:
                 for attempt in generated["attempts"]
             ]
             fallback_used = generated["fallback_used"]
-            if fallback_used:
+            policy_sources = {
+                "unsupported_question_premise": "question_premise_policy",
+                "requested_aspect_not_supported": "question_aspect_policy",
+                "requested_attribute_absent": "question_aspect_policy",
+                "no_aspect_evidence": "question_aspect_policy",
+            }
+            policy_source = next(
+                (policy_sources[attempt["reason_code"]] for attempt in attempts
+                 if attempt.get("reason_code") in policy_sources),
+                None,
+            )
+            if policy_source:
+                abstention_source = policy_source
+            elif fallback_used:
                 abstention_source = "validation_fallback"
             elif response["sufficiency"] == "insufficient":
                 abstention_source = "model"
@@ -249,6 +309,7 @@ class GroundedQAPipeline:
                     response, language
                 )
         else:
+            construction_started = time.perf_counter()
             request = build_grounded_answer_request(
                 query,
                 evidence,
@@ -257,9 +318,16 @@ class GroundedQAPipeline:
             base_messages = request["messages"]
             messages = list(base_messages)
             max_attempts = self.generation_config["validation_attempts"]
+            stage_timings["answer_construction_seconds"] = (
+                time.perf_counter() - construction_started
+            )
             llm_load_started = time.perf_counter()
+            generator_newly_loaded = self.llm is None
             llm = self._get_llm()
-            generation_seconds += time.perf_counter() - llm_load_started
+            load_seconds = time.perf_counter() - llm_load_started
+            generation_seconds += load_seconds
+            if generator_newly_loaded:
+                stage_timings["generator_activation_seconds"] = load_seconds
             if getattr(llm, "device", None) == "cpu":
                 max_attempts = min(
                     max_attempts,
@@ -272,17 +340,29 @@ class GroundedQAPipeline:
                 raw_response = ""
                 attempt_started = time.perf_counter()
                 try:
-                    raw_response = llm.generate(
-                        messages,
-                        response_schema=request["response_schema"],
-                    )
-                    response = parse_and_validate_answer(
-                        raw_response,
-                        evidence,
-                        language,
-                    )
-                    if self.enable_abstention:
-                        validate_informative_answer(response, query)
+                    inference_started = time.perf_counter()
+                    try:
+                        raw_response = llm.generate(
+                            messages,
+                            response_schema=request["response_schema"],
+                        )
+                    finally:
+                        stage_timings["generation_inference_seconds"] += (
+                            time.perf_counter() - inference_started
+                        )
+                    validation_started = time.perf_counter()
+                    try:
+                        response = parse_and_validate_answer(
+                            raw_response,
+                            evidence,
+                            language,
+                        )
+                        if self.enable_abstention:
+                            validate_informative_answer(response, query)
+                    finally:
+                        stage_timings["answer_validation_seconds"] += (
+                            time.perf_counter() - validation_started
+                        )
                     attempts.append(
                         {
                             "attempt": attempt_number,
@@ -341,7 +421,12 @@ class GroundedQAPipeline:
                 if response["sufficiency"] == "insufficient":
                     abstention_source = "model"
 
-        cited_evidence = resolve_answer_evidence(response, evidence)
+        # The answer contract still allows at most five cited sources. The
+        # larger, bounded context pool is used only for sentence selection;
+        # resolve validated citations against their original full objects.
+        citation_scope = ([item for item in evidence if item["evidence_id"] in response["evidence_ids"]]
+                          if supplements else evidence)
+        cited_evidence = resolve_answer_evidence(response, citation_scope)
         stages = [
             "query",
             "production_retrieval",
@@ -350,7 +435,9 @@ class GroundedQAPipeline:
         ]
         if self.enable_abstention:
             stages.append("abstention_policy")
-        if not pre_generation_abstention:
+        if abstention_source in {"question_premise_policy", "question_aspect_policy"}:
+            stages.append(abstention_source)
+        elif not pre_generation_abstention:
             if self.answer_strategy == "evidence_first":
                 stages.extend(["sentence_selection"])
                 stages.append(
@@ -377,6 +464,7 @@ class GroundedQAPipeline:
                 ],
                 "llm": self._llm_metadata(llm_loaded),
                 "answer_strategy": self.answer_strategy,
+                "evidence_context": evidence_context,
                 "answer_generation_config": (
                     str(
                         self.answer_generation_config_path.relative_to(PROJECT_ROOT)
@@ -384,8 +472,12 @@ class GroundedQAPipeline:
                     if self.answer_generation_config_path
                     else None
                 ),
-                "llm_skipped": pre_generation_abstention,
-                "generation_attempts": len(attempts),
+                "llm_skipped": pre_generation_abstention or abstention_source in {
+                    "question_premise_policy", "question_aspect_policy"
+                },
+                "generation_attempts": sum(
+                    attempt.get("attempt", 0) > 0 for attempt in attempts
+                ),
                 "fallback_used": fallback_used,
                 "abstention_source": abstention_source,
                 "abstention": {
@@ -397,9 +489,17 @@ class GroundedQAPipeline:
                         else None
                     ),
                 },
-                "retrieval_seconds": round(retrieval_seconds, 3),
-                "generation_seconds": round(generation_seconds, 3),
-                "runtime_seconds": round(time.perf_counter() - started, 3),
+                "retrieval_seconds": round(retrieval_seconds, 6),
+                "generation_seconds": round(generation_seconds, 6),
+                "runtime_seconds": round(time.perf_counter() - started, 6),
+                "stage_timings": {
+                    "retrieval": retrieval_result.get("timings", {}),
+                    "generation": {
+                        key: round(value, 6) for key, value in stage_timings.items()
+                    },
+                },
+                "generator_newly_loaded": generator_newly_loaded,
+                "answerability": answerability_decision,
             },
         }
         if include_debug:

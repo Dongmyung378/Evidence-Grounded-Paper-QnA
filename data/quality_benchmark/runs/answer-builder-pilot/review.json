@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "reviewer": "AI-assisted project curator",
+  "independent_human_review": false,
+  "review_scope": "Eight disclosed DEV oracle-evidence outputs; inspect supplied and cited source text",
+  "strict_labels_follow_declared_rubric": true,
+  "content_only_review": "Secondary diagnostic inspection of visible answer text, ignoring wrappers and missing schema keys; no repaired output was served or rescored as a valid answer",
+  "cases": [
+    {
+      "case_id": "real-dev-a-default-augmentation-en",
+      "baseline": {
+        "label": "fail",
+        "material_unsupported_claim": false,
+        "reason": "Refuses an answerable default augmentation request through the aspect threshold."
+      },
+      "candidate": {
+        "label": "fail",
+        "material_unsupported_claim": false,
+        "reason": "Content names all three families with crop, resize and random flip. Contract fails: fenced JSON and omitted abstention_reason."
+      },
+      "candidate_content_only_label": "complete"
+    },
+    {
+      "case_id": "real-dev-a-default-augmentation-ko",
+      "baseline": {
+        "label": "partial",
+        "material_unsupported_claim": false,
+        "reason": "Only discusses cropped view prediction; omits the requested three families, resize and flip."
+      },
+      "candidate": {
+        "label": "fail",
+        "material_unsupported_claim": false,
+        "reason": "Only announces that three augmentations follow; none is listed."
+      },
+      "candidate_content_only_label": "fail"
+    },
+    {
+      "case_id": "real-dev-a-projection-en",
+      "baseline": {
+        "label": "fail",
+        "material_unsupported_claim": false,
+        "reason": "Refuses because the SimCLR subject identifier is absent on this page, although the question and page concern the correct paper."
+      },
+      "candidate": {
+        "label": "fail",
+        "material_unsupported_claim": false,
+        "reason": "States direction of comparison but omits both +3% and >10% and the before-head representation qualifier."
+      },
+      "candidate_content_only_label": "partial"
+    },
+    {
+      "case_id": "real-dev-a-projection-ko",
+      "baseline": {
+        "label": "partial",
+        "material_unsupported_claim": false,
+        "reason": "Retains +3% and >10% and an opening before-layer statement, but the later explanation loses the representation-before-head qualifier required by the declared rubric."
+      },
+      "candidate": {
+        "label": "fail",
+        "material_unsupported_claim": false,
+        "reason": "Responds in English to Korean; omits both quantities and the before-head qualifier. 'Without any additional layers' also blurs the no-projection comparison."
+      },
+      "candidate_content_only_label": "partial"
+    },
+    {
+      "case_id": "real-dev-b-temperature-parameter-en",
+      "baseline": {
+        "label": "complete",
+        "material_unsupported_claim": false,
+        "reason": "One scalar shared across all classes and T > 0 are retained."
+      },
+      "candidate": {
+        "label": "fail",
+        "material_unsupported_claim": false,
+        "reason": "Content preserves one scalar for all classes and T > 0. Contract additionally contains invalid JSON backslash escapes around the formula."
+      },
+      "candidate_content_only_label": "complete"
+    },
+    {
+      "case_id": "real-dev-b-temperature-parameter-ko",
+      "baseline": {
+        "label": "complete",
+        "material_unsupported_claim": false,
+        "reason": "One scalar shared across all classes and T > 0 are retained in Korean."
+      },
+      "candidate": {
+        "label": "fail",
+        "material_unsupported_claim": true,
+        "reason": "Claims four learned scalar parameters despite the source saying a single scalar; T's constraint is not supplied."
+      },
+      "candidate_content_only_label": "fail"
+    },
+    {
+      "case_id": "real-dev-b-reuters-exception-en",
+      "baseline": {
+        "label": "partial",
+        "material_unsupported_claim": false,
+        "reason": "Reuters and ECE below 1% retained; the already-calibrated/little-room explanation is absent."
+      },
+      "candidate": {
+        "label": "fail",
+        "material_unsupported_claim": false,
+        "reason": "Names Reuters but omits low initial calibration error and limited improvement. The cited chunk mentions Reuters as an ECE exception but not the temperature-scaling-only exception, which is in the next chunk."
+      },
+      "candidate_content_only_label": "partial"
+    },
+    {
+      "case_id": "real-dev-b-reuters-exception-ko",
+      "baseline": {
+        "label": "partial",
+        "material_unsupported_claim": false,
+        "reason": "Reuters and ECE below 1% retained; the already-calibrated/little-room explanation is absent. Awkward Korean does not change the quoted quantities."
+      },
+      "candidate": {
+        "label": "fail",
+        "material_unsupported_claim": true,
+        "reason": "Names Stanford Cars as the exception instead of Reuters and responds in English. The cited Cars description does not support the claim."
+      },
+      "candidate_content_only_label": "fail"
+    }
+  ]
+}

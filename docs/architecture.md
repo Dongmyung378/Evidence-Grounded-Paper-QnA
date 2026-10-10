@@ -8,10 +8,29 @@
 2. The ingestion pipeline extracts page text, detects sections, and creates chunks that preserve `paper_id`, page, section, and `chunk_id`.
 3. BM25 and multilingual E5 independently retrieve candidates from the selected paper.
 4. Reciprocal rank fusion combines both rankings. A Cross-Encoder reranks the 20-candidate pool.
-5. The evidence selector returns up to five diverse, traceable passages.
+5. The evidence selector returns up to five primary, traceable passages with their ranks and scores.
 6. A deterministic relevance policy may refuse the question before generation.
 7. English answers are composed extractively. Korean answers translate selected evidence with the pinned local NLLB model.
-8. Citations are assembled from selected evidence, not invented by the answer model.
+8. At most five citations are assembled from validated source evidence, not invented by the answer model.
+
+The evidence-first path also checks observable question premises and requested
+aspects before translation inference. Question-specific context budgets preserve
+lists and adjacent qualifications. See [answer policy](answer_policy.md) for
+the current processing rules and conservative validation limits.
+
+For an explicit prediction-task request, answer context may include one additional
+full chunk containing the required plain prose from the same paper's existing
+reranked 20-candidate pool. This leaves the primary evidence objects, ranks and
+scores intact and raises the answer-context limit to six. No new source is
+fetched; if the required task support is unavailable, the answer is refused.
+
+`evidence_selection.answer_context_supplements` and
+`evidence_selection.answer_context_supplement_origins` disclose the extra source.
+`pipeline.evidence_context` records `primary_retrieval_count`,
+`primary_retrieval_evidence_ids`, `supplement_count`, `answer_context_count` and
+`supplement_origins`. The pipeline output's `retrieved_evidence` contains the full
+answer context; `cited_evidence` contains only citations that passed validation.
+The HTTP `/question` response exposes those actual citations as `evidence`.
 
 ```mermaid
 flowchart TD
@@ -25,8 +44,10 @@ flowchart TD
     Sparse --> Fusion[RRF]
     Dense --> Fusion
     Fusion --> Rerank[Cross-Encoder]
-    Rerank --> Evidence[Evidence selector]
-    Evidence --> Guard[Refusal policy]
+    Rerank --> Evidence[Primary evidence up to 5]
+    Evidence --> Context[Answer context up to 6]
+    Rerank -. At most 1 required task source .-> Context
+    Context --> Guard[Refusal policy]
     Guard --> Compose[Extract or translate]
     Compose --> Response[Answer and citations]
 ```

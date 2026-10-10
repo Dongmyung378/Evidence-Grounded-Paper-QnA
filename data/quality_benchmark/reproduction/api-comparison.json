@@ -1,0 +1,69 @@
+{
+  "case_count": 7,
+  "response_equal_count": 7,
+  "all_cases_passed": true,
+  "ui_health_passed": true,
+  "original_pdf_sha256": "cc620e511bafe8b4b11ca3415f6d7bcf127a05818087bfa49905de3a2e50bc2d",
+  "original_pdf_analysis": {
+    "page_count": 11,
+    "text_page_count": 11,
+    "chunk_count": 63,
+    "warning_count": 33,
+    "seed": 378
+  },
+  "excluded_fields": [
+    "Only measurement fields whose names end in _seconds; runtime fallback, mode, attempts and device are retained"
+  ],
+  "normalization": "Only paper_id identity, chunk_id prefix, and evidence_id with exact ev-rank-paper_id-page-chunk pattern; preserves rank/page/chunk suffix and all answer/question/source text",
+  "per_case": [
+    {
+      "case_id": "numeric-en",
+      "response_equal_after_id_normalization": true,
+      "answer_equal": true,
+      "sufficiency_equal": true,
+      "citation_equal_after_id_normalization": true
+    },
+    {
+      "case_id": "list-en",
+      "response_equal_after_id_normalization": true,
+      "answer_equal": true,
+      "sufficiency_equal": true,
+      "citation_equal_after_id_normalization": true
+    },
+    {
+      "case_id": "numeric-ko",
+      "response_equal_after_id_normalization": true,
+      "answer_equal": true,
+      "sufficiency_equal": true,
+      "citation_equal_after_id_normalization": true
+    },
+    {
+      "case_id": "unsupported-en",
+      "response_equal_after_id_normalization": true,
+      "answer_equal": true,
+      "sufficiency_equal": true,
+      "citation_equal_after_id_normalization": true
+    },
+    {
+      "case_id": "unsupported-ko",
+      "response_equal_after_id_normalization": true,
+      "answer_equal": true,
+      "sufficiency_equal": true,
+      "citation_equal_after_id_normalization": true
+    },
+    {
+      "case_id": "original-pdf-1",
+      "response_equal_after_id_normalization": true,
+      "answer_equal": true,
+      "sufficiency_equal": true,
+      "citation_equal_after_id_normalization": true
+    },
+    {
+      "case_id": "original-pdf-2",
+      "response_equal_after_id_normalization": true,
+      "answer_equal": true,
+      "sufficiency_equal": true,
+      "citation_equal_after_id_normalization": true
+    }
+  ]
+}

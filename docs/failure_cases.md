@@ -4,6 +4,9 @@
 
 This analysis examines ten representative failures or near-misses from the frozen portfolio evaluation. It separates retrieval rank, evidence selection, refusal policy, answer completeness, and Korean translation so that a strong retrieval score is not mistaken for complete answer quality.
 
+These records belong to the preserved 2026-09-14 implementation. Current changes
+and separate measurements are documented in the [current evaluation](current_evaluation.md).
+
 ## Findings
 
 - No verified citation hallucination was observed in the fixed 20-answer review. Citation support failures were 0.

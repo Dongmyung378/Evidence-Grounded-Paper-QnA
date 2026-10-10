@@ -170,6 +170,12 @@ def build_outputs():
 
 def main():
     configure_utf8_stdout()
+    if (PROJECT_ROOT / "config/historical_evaluation.json").is_file():
+        raise SystemExit(
+            "The historical evaluation freeze is preserved. Do not attach its "
+            "saved metrics to current source hashes. Run quality_benchmark.py "
+            "and save current evaluation results to a new output path instead."
+        )
     csv_text, payload = build_outputs()
     TABLE_PATH.write_text(csv_text, encoding="utf-8")
     OUTPUT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

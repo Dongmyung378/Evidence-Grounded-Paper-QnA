@@ -2,67 +2,65 @@
 
 [English](README.md) | [한국어](README_KO.md)
 
-Evidence-Grounded Paper Q&A is a local application for asking English or Korean questions about one text-based English research paper. Every supported answer is paired with the original sentence, page, section, and chunk identifier used as evidence.
+A local application that retrieves evidence from one English research paper and answers questions in English or Korean. It combines hybrid retrieval, cross-encoder reranking, extractive answers, Korean translation and source tracing in a FastAPI and Streamlit service.
+
+The project demonstrates an end-to-end paper Q&A system and reproducible evaluation. Current answers still omit requested details, mistranslate technical terms and sometimes answer unsupported requests. The published measurements expose these limits.
 
 ## Demo
 
-| English answer | Korean answer |
-|---|---|
-| ![English answer with cited paper evidence](docs/assets/screenshots/03-english-answer-evidence.png) | ![Korean answer with cited paper evidence](docs/assets/screenshots/04-korean-answer-evidence.png) |
+| English answer and evidence | Korean answer and evidence |
+| --- | --- |
+| ![English answer with source text](docs/assets/screenshots/03-english-answer-evidence.png) | ![Korean answer with source text](docs/assets/screenshots/04-korean-answer-evidence.png) |
 
-Additional screens: [PDF upload](docs/assets/screenshots/01-upload.png), [paper overview](docs/assets/screenshots/02-analysis-complete.png), and [Docker images](docs/assets/screenshots/docker.png).
+Additional screens: [upload](docs/assets/screenshots/01-upload.png), [paper overview](docs/assets/screenshots/02-analysis-complete.png), [Docker images](docs/assets/screenshots/docker.png). Screenshots illustrate the interface; they do not certify answer quality.
 
-## What it does
+## Engineering work
 
-- Uploads one text-based English PDF up to 20 MiB
-- Extracts pages, sections, an abstract, and traceable text chunks
-- Retrieves evidence with BM25 and multilingual E5, then fuses and reranks candidates
-- Answers in the language of the question
-- Shows only cited evidence with page, section, original text, and chunk ID
-- Refuses questions when the retrieved paper text is not sufficient
-- Runs locally with FastAPI, Streamlit, and Docker Compose
+- Parse a text-based PDF into page-aware sections and overlapping chunks, preserving source identifiers.
+- Fuse BM25 and multilingual E5 retrieval with reciprocal rank fusion, then rerank candidates with a multilingual cross-encoder.
+- Construct English answers from selected source sentences and translate them into Korean with a pinned NLLB model, protected terminology and numerical checks.
+- Apply bounded premise, requested-aspect and refusal checks; attach original text, page, section and chunk IDs to accepted citations.
+- Serve uploads and analysis jobs through FastAPI with a bilingual Streamlit interface and local Docker Compose deployment.
+- Evaluate bilingual meaning groups, separate development papers from frozen evaluation papers, preserve source hashes and report cold/warm stage timings.
 
-## System
+## Architecture
 
 ```mermaid
 flowchart LR
-    PDF[English PDF] --> Parse[Page and section extraction]
-    Parse --> Chunk[Traceable chunks]
-    Question[English or Korean question] --> BM25[BM25]
-    Question --> Dense[Multilingual E5]
-    Chunk --> BM25
-    Chunk --> Dense
-    BM25 --> RRF[Reciprocal rank fusion]
-    Dense --> RRF
-    RRF --> Rank[Cross-encoder reranker]
-    Rank --> Guard[Evidence and refusal policy]
-    Guard --> Answer[Extractive answer or Korean translation]
-    Answer --> Cite[Answer with source evidence]
+    PDF[English PDF] --> Parse[Pages and sections]
+    Parse --> Chunks[Traceable overlapping chunks]
+    Question[English or Korean question] --> Hybrid[BM25 + multilingual E5]
+    Chunks --> Hybrid
+    Hybrid --> RRF[Reciprocal rank fusion]
+    RRF --> Rank[Cross-encoder reranking]
+    Rank --> Policy[Evidence and refusal checks]
+    Policy --> Select[Source sentence selection]
+    Select --> Answer[English extraction or Korean translation]
+    Answer --> Cite[Answer with source locations]
 ```
 
-See [architecture](docs/architecture.md) for component responsibilities and trust boundaries.
+The default runtime uses extraction and translation. Generative model trials are documented separately in [experiments](docs/experiments.md). See [architecture](docs/architecture.md) and [answer policy](docs/answer_policy.md) for implementation details.
 
-## Evaluation
+## Measured results
 
-| Scope | Result |
-|---|---:|
-| Corpus robustness | 30 papers, 563 pages, 2,463 chunks |
-| Verified retrieval benchmark | 40 questions on 10 papers, 20 EN and 20 KO |
-| Recall@1 / Recall@3 | 0.300 / 0.850 |
-| Recall@5 / Recall@10 | 1.000 / 1.000 |
-| MRR overall / EN / KO | 0.5838 / 0.6308 / 0.5367 |
-| Answerable retention / unsupported holdout refusal | 95% / 90% |
-| Reviewed answers | 3 pass, 14 partial, 3 fail |
-| Pass or partial | 85% |
-| Citation support failures | 0 |
-| Docker Q&A review | 4 pass, 6 partial, 0 fail |
-| Docker API mean | EN 1.47 s, KO 11.95 s |
+The current frozen real-paper evaluation covers two evaluation papers, 16 bilingual meaning groups and 32 outputs. A meaning group passes a check only when both languages pass.
 
-Retrieval accuracy is measured only on the first 10 papers. The other 20 papers are parser and runtime robustness cases without manually verified Gold evidence. Answer labels are assistant-led, not an independent human evaluation. Details and artifact links are in [evaluation](docs/evaluation.md).
+| Check | Current frozen result |
+| --- | ---: |
+| Valid output contract | 32/32 outputs |
+| Answer returned for an answerable request | 7/10 groups |
+| Unsupported request refused | 1/4 groups |
+| False-premise request refused | 0/2 groups |
+| All required source pages cited | 5/10 answerable groups |
+| Semantic answer accuracy | Not independently measured |
+
+Returning an answer or citing the expected page does not establish correctness. These results do not support a production reliability claim. After disclosure, the evaluation set must be treated as regression data for future tuning. See [results and failures](docs/results.md) for outputs, scope, latency and reproduction commands.
+
+The separate [historical retrieval benchmark](docs/evaluation.md) covers 40 questions on 10 papers: Recall@3 0.850, Recall@5 1.000 and MRR 0.5838. Those measurements belong to preserved source snapshots and do not measure current answer accuracy.
 
 ## Run locally
 
-Docker Desktop is required for the recommended path.
+Install Docker Desktop, then run from the repository root:
 
 ```bash
 docker compose up --build -d
@@ -71,50 +69,51 @@ docker compose ps
 
 - UI: `http://127.0.0.1:8501`
 - API documentation: `http://127.0.0.1:8000/docs`
-- Health check: `http://127.0.0.1:8000/health`
+- Health: `http://127.0.0.1:8000/health`
 
-The first analysis can take several minutes while pinned models are downloaded. The UI waits up to 600 seconds. Model files and uploaded papers remain in named Docker volumes after a normal shutdown.
+The first analysis can take several minutes while pinned models download. The UI waits up to 600 seconds. Upload one text-based English PDF, up to 20 MiB, then ask an English or Korean question and inspect the cited original text.
 
 ```bash
 docker compose down
 ```
 
-Do not add `--volumes` unless uploaded data and the model cache should also be removed. See [Docker setup](docs/deployment/docker.md) for configuration and troubleshooting.
+Named volumes retain uploads and models. Add `--volumes` only if those data should also be removed. See [Docker setup](docs/deployment/docker.md) for dependencies, model licensing and troubleshooting. The default Korean translation model has a noncommercial license.
 
-## Verify
+## Verify and reproduce
 
-For the public checks only, install the small test dependency set in a Python 3.12 virtual environment. The application dependencies are in `requirements.txt`.
+Public artifact checks run without model downloads or private PDFs in Python 3.12:
 
 ```bash
 python -m pip install -r requirements-test.txt
 python -B scripts/verify_project.py
 ```
 
-The verification command runs current regression tests and validates tracked data integrity, traceability, reviewed answers, Docker evidence, and the evaluation manifest. A public clone does not need private PDFs or generated model caches. When all 30 local PDFs and the dense cache are present, their additional source and corpus checks run automatically. The command does not download models or repeat long benchmarks.
+Model-backed evaluation requires `requirements.txt`; [results](docs/results.md), [scripts](scripts/README.md) and the [external review procedure](docs/third_party_review.md) explain the commands and what each check establishes. Fresh Linux execution reproduced all 32 previously recorded evaluation answers and seven HTTP cases. This was agent-operated environment reproduction; independent human factual review remains pending.
 
-Frozen evaluation artifacts retain their original bytes, including line endings; `.gitattributes` disables Git text conversion for `data/evaluation/` and fixes source/configuration text to LF. This keeps the original 47 SHA-256 digests valid in Windows and Linux clones and source ZIPs. The portability repair preserves the recorded results and their provenance; it is not a new benchmark run. Editing an artifact still invalidates its digest.
+Frozen artifacts and historical snapshots retain their original bytes through `.gitattributes`. Changes invalidate their recorded hashes. Public verification skips private corpus checks unless the 30 original PDFs and dense cache are present.
 
-## Repository structure
+## Repository
 
 ```text
-app/            FastAPI endpoints, jobs, storage, and Q&A service
-config/         pinned model and runtime configuration
-data/           metadata, processed corpus, and final evaluation evidence
-docs/           architecture, evaluation, data, and Docker documentation
-scripts/        current ingestion, evaluation, and validation commands
-tests/          product and regression tests
-ui/             bilingual Streamlit interface
+app/       API, analysis jobs, storage and Q&A service
+ui/        bilingual Streamlit interface
+config/    model revisions and runtime policies
+scripts/   ingestion, evaluation and verification commands
+tests/     regression and artifact integrity tests
+data/      licensed fixtures, final measurements and measured source snapshots
+docs/      English documentation with Korean companion pages
 ```
 
-## Scope
+Work journals, personal notes, intermediate experiments, uploaded PDFs and model caches are excluded from publication. Final evaluation evidence remains public for verification. The boundary is checked against Git's tracked and eligible files.
 
-This portfolio MVP excludes scanned PDFs and OCR, visual interpretation of tables or figures, reliable formula interpretation, multi-paper comparison, accounts, and public hosting. Raw PDFs and user uploads are excluded from Git unless redistribution is explicitly permitted.
+## Scope and documentation
 
-## Documentation
+Text-based English PDFs only. OCR, visual table/figure reasoning, reliable formula interpretation, multi-paper comparison, accounts and public hosting are outside the current implementation. Retrieved citations are inspectable evidence, not a guarantee of scientific correctness.
 
 - [Documentation index](docs/README.md)
+- [Current results and failure analysis](docs/results.md)
+- [Bounded model experiments](docs/experiments.md)
 - [Architecture](docs/architecture.md)
-- [Evaluation](docs/evaluation.md)
-- [Failure case analysis](docs/failure_cases.md)
+- [Quality benchmark](docs/quality_benchmark.md)
+- [Historical failure cases](docs/failure_cases.md)
 - [Data and licensing](docs/data.md)
-- [Docker setup](docs/deployment/docker.md)

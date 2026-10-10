@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "strategy": "evidence_first_plain_answer",
+  "prompt_version": "evidence-first-v2",
+  "sentence_selector": {
+    "model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+    "max_length": 512,
+    "batch_size": 16,
+    "max_sentences": 5,
+    "max_sentences_per_evidence": 2,
+    "max_context_chars": 1800,
+    "minimum_sentence_chars": 24
+  },
+  "answer": {
+    "maximum_sentences": 4,
+    "maximum_characters": 1500,
+    "source_sentences_by_language": {
+      "en": 3,
+      "ko": 2
+    },
+    "mode_by_language": {
+      "en": "extractive",
+      "ko": "faithful_translation_model"
+    },
+    "plain_text_attempts": 1,
+    "verify_numeric_claims": true,
+    "safe_fallback_on_validation_error": true
+  }
+}

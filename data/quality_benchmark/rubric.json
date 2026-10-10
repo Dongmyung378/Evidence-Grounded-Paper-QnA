@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "rubric_id": "quality-rubric-v1",
+  "frozen": true,
+  "version_date": "2026-10-10",
+  "automatic_checks": {
+    "final_contract": "Validate final answer, citation resolution, language, and consistent sufficiency fields.",
+    "refusal": "Require final canonical refusal text, no citations and a non-empty reason. A retrieval decision alone is not a refusal.",
+    "bilingual_unit": "One EN/KO pair is one meaning group. Both languages must pass for group-level retention or refusal success.",
+    "citation_locator": "Required page coverage only. A matching page does not prove semantic support.",
+    "missing_or_failed_outputs": "Remain in denominators as invalid outputs."
+  },
+  "manual_review": {
+    "axes": [
+      "factual_correctness",
+      "completeness",
+      "citation_support"
+    ],
+    "labels": {
+      "pass": "Requested claims are correct, complete and supported by cited text.",
+      "partial": "Core answer is supported but a requested detail or qualification is missing.",
+      "fail": "Any central claim is unsupported, wrong or contradicted, or the question is not answered."
+    },
+    "reviewer_requirements": "Record reviewer identity or stable pseudonym, relationship to project author, label timestamps, exact input and prediction hashes. Mark self-review as self-review.",
+    "independent_human_review": false
+  },
+  "claim_boundary": "Synthetic integration fixtures and self-authored labels cannot establish independent real-paper accuracy or third-party verification."
+}
