@@ -2,6 +2,8 @@
 
 [English](README.md) | [한국어](README_KO.md)
 
+![Evidence-grounded paper Q&A pipeline](docs/assets/paper-evidence.svg)
+
 A local application that retrieves evidence from one English research paper and answers questions in English or Korean. It combines hybrid retrieval, cross-encoder reranking, extractive answers, Korean translation and source tracing in a FastAPI and Streamlit service.
 
 The project demonstrates an end-to-end paper Q&A system and reproducible evaluation. Current answers still omit requested details, mistranslate technical terms and sometimes answer unsupported requests. The published measurements expose these limits.
