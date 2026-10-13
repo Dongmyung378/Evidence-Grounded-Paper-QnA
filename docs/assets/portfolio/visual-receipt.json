@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "status": "generated_from_published_measurements",
+  "visual_data_sha256": "552db69fb714a8f101eec98166efd94521b3e5d5de9199c6253a7b96ace4245b",
+  "project_ids": [
+    "project-01"
+  ],
+  "files": [
+    {
+      "filename": "paper-qna-thumbnail.svg",
+      "project_id": "project-01",
+      "bytes": 3801,
+      "sha256": "3e51323a1a622c9b0876dc5414495dbdfd9d9f7fd6bee91767b31dd140e78cc9"
+    },
+    {
+      "filename": "paper-qna-results.svg",
+      "project_id": "project-01",
+      "bytes": 6566,
+      "sha256": "58e0b85591116a55947197a6222ef43c03f227eca17e5fa0031365dd3bba5f6a"
+    }
+  ],
+  "network_or_model_execution_performed": false,
+  "source_paths_read": false
+}

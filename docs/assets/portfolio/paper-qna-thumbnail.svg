@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+<title id="title">근거 기반 논문 질의응답</title>
+<desc id="desc">논문 원문을 검색하고 답변 문장과 근거 위치를 연결하는 구현 흐름입니다. 논문 30편을 평가했으며 답변 정확도를 뜻하는 그림은 아닙니다.</desc>
+<style>text{font-family:'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;font-variant-numeric:tabular-nums} .axis{fill:#64696B}</style>
+<rect x="0" y="0" width="1200" height="760" fill="#F8F4EB" rx="0" stroke-width="1"/>
+<text x="56" y="80" fill="#243A40" font-size="48" font-weight="750" text-anchor="start">논문 질의응답과 원문 근거 추적</text>
+<text x="56" y="131" fill="#64696B" font-size="32" font-weight="400" text-anchor="start">논문 질의응답과 원문 추적</text>
+<rect x="57" y="185" width="330" height="390" fill="#FFFFFF" rx="20" stroke="#DDDDE0" stroke-width="1"/>
+<rect x="86" y="211" width="268" height="338" fill="#FBFAF5" rx="8" stroke="#B8854F" stroke-width="2"/>
+<text x="112" y="259" fill="#243A40" font-size="35" font-weight="750" text-anchor="start">논문 원문</text>
+<line x1="111" y1="295" x2="311" y2="295" stroke="#C3C9C3" stroke-width="4"/>
+<line x1="111" y1="321" x2="297" y2="321" stroke="#C3C9C3" stroke-width="4"/>
+<line x1="111" y1="347" x2="313" y2="347" stroke="#C3C9C3" stroke-width="4"/>
+<line x1="111" y1="412" x2="303" y2="412" stroke="#C3C9C3" stroke-width="4"/>
+<line x1="111" y1="438" x2="315" y2="438" stroke="#C3C9C3" stroke-width="4"/>
+<line x1="111" y1="464" x2="271" y2="464" stroke="#C3C9C3" stroke-width="4"/>
+<line x1="111" y1="500" x2="294" y2="500" stroke="#C3C9C3" stroke-width="4"/>
+<rect x="105" y="363" width="217" height="27" fill="#D2E5DC" rx="4" stroke-width="1"/>
+<text x="114" y="385" fill="#246A62" font-size="22" font-weight="700" text-anchor="start">문장과 페이지</text>
+<line x1="386" y1="350" x2="511" y2="350" stroke="#246A62" stroke-width="6"/>
+<path d="M495.692,357.394 L511.000,350.000 L495.692,342.606" fill="none" stroke="#246A62" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="451" y="316" fill="#243A40" font-size="32" font-weight="700" text-anchor="middle">검색</text>
+<rect x="532" y="208" width="606" height="168" fill="#FFFFFF" rx="20" stroke="#DDDDE0" stroke-width="1"/>
+<text x="562" y="260" fill="#246A62" font-size="37" font-weight="750" text-anchor="start">찾은 근거</text>
+<text x="562" y="309" fill="#243A40" font-size="32" font-weight="400" text-anchor="start">문장  →  페이지  →  출처</text>
+<line x1="829" y1="387" x2="829" y2="425" stroke="#B8854F" stroke-width="5"/>
+<path d="M821.606,409.692 L829.000,425.000 L836.394,409.692" fill="none" stroke="#B8854F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="532" y="445" width="606" height="154" fill="#FFFFFF" rx="20" stroke="#DDDDE0" stroke-width="1"/>
+<text x="562" y="496" fill="#243A40" font-size="37" font-weight="750" text-anchor="start">답변과 원문 대조</text>
+<text x="562" y="547" fill="#64696B" font-size="31" font-weight="400" text-anchor="start">한국어 질문과 영어 논문을 연결</text>
+<rect x="55" y="635" width="1088" height="75" fill="#243A40" rx="16" stroke-width="1"/>
+<text x="84" y="685" fill="#FFFFFF" font-size="38" font-weight="750" text-anchor="start">30편 평가</text>
+<text x="391" y="683" fill="#FFFFFF" font-size="32" font-weight="400" text-anchor="start">원문 문장과 답변을 함께 확인</text>
+<metadata>{"project_id": "project-01", "visual_data_sha256": "552db69fb714a8f101eec98166efd94521b3e5d5de9199c6253a7b96ace4245b", "generated_from_published_measurements": true}</metadata>
+</svg>

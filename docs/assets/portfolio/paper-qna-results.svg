@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+<title id="title">논문 질의응답의 자동 진단 결과</title>
+<desc id="desc">평가 논문 20편에서 같은 의미 그룹을 초기 및 최종 구현으로 비교했습니다. 응답 여부와 어휘 표지, 인용 위치 진단이며 답변 정확도가 아닙니다.</desc>
+<style>text{font-family:'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;font-variant-numeric:tabular-nums} .axis{fill:#64696B}</style>
+<rect x="0" y="0" width="1200" height="900" fill="#F8F4EB" rx="0" stroke-width="1"/>
+<text x="48" y="64" fill="#243A40" font-size="36" font-weight="750" text-anchor="start">답변과 원문의 자동 대조 결과</text>
+<text x="48" y="104" fill="#64696B" font-size="22" font-weight="400" text-anchor="start">평가 논문 20편의 같은 질문 비교. 아래 수치는 답변 정확도가 아닌 자동 진단입니다.</text>
+<rect x="50" y="135" width="18" height="18" fill="#9BADA5" rx="4" stroke-width="1"/>
+<text x="79" y="151" fill="#243A40" font-size="23" font-weight="400" text-anchor="start">초기 개발 버전</text>
+<rect x="300" y="135" width="18" height="18" fill="#246A62" rx="4" stroke-width="1"/>
+<text x="329" y="151" fill="#243A40" font-size="23" font-weight="400" text-anchor="start">최종 개발 버전</text>
+<rect x="811" y="123" width="340" height="44" fill="#243A40" rx="12" stroke-width="1"/>
+<text x="981.0" y="154" fill="#FFFFFF" font-size="21" font-weight="700" text-anchor="middle">출력 형식 준수 240 / 240</text>
+<line x1="385.0" y1="193" x2="385.0" y2="755" stroke="#DDDDE0" stroke-width="1"/>
+<text x="385.0" y="788" fill="#64696B" font-size="21" font-weight="400" text-anchor="middle">0</text>
+<line x1="507.0" y1="193" x2="507.0" y2="755" stroke="#DDDDE0" stroke-width="1"/>
+<text x="507.0" y="788" fill="#64696B" font-size="21" font-weight="400" text-anchor="middle">20</text>
+<line x1="629.0" y1="193" x2="629.0" y2="755" stroke="#DDDDE0" stroke-width="1"/>
+<text x="629.0" y="788" fill="#64696B" font-size="21" font-weight="400" text-anchor="middle">40</text>
+<line x1="751.0" y1="193" x2="751.0" y2="755" stroke="#DDDDE0" stroke-width="1"/>
+<text x="751.0" y="788" fill="#64696B" font-size="21" font-weight="400" text-anchor="middle">60</text>
+<line x1="873.0" y1="193" x2="873.0" y2="755" stroke="#DDDDE0" stroke-width="1"/>
+<text x="873.0" y="788" fill="#64696B" font-size="21" font-weight="400" text-anchor="middle">80</text>
+<line x1="995.0" y1="193" x2="995.0" y2="755" stroke="#DDDDE0" stroke-width="1"/>
+<text x="995.0" y="788" fill="#64696B" font-size="21" font-weight="400" text-anchor="middle">100</text>
+<text x="48" y="232" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">답변 가능한 질문에</text>
+<text x="48" y="266" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">응답</text>
+<rect x="385" y="198" width="381.25" height="27" fill="#9BADA5" rx="5" stroke-width="1"/>
+<text x="1038" y="221" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">50 / 80</text>
+<rect x="385" y="237" width="373.625" height="27" fill="#246A62" rx="5" stroke-width="1"/>
+<text x="1038" y="260" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">49 / 80</text>
+<text x="48" y="340" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">필수 정보의 어휘 표지를</text>
+<text x="48" y="374" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">모두 포함</text>
+<rect x="385" y="306" width="83.875" height="27" fill="#9BADA5" rx="5" stroke-width="1"/>
+<text x="1038" y="329" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">11 / 80</text>
+<rect x="385" y="345" width="83.875" height="27" fill="#246A62" rx="5" stroke-width="1"/>
+<text x="1038" y="368" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">11 / 80</text>
+<text x="48" y="448" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">정답 근거 위치 중</text>
+<text x="48" y="482" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">하나를 인용</text>
+<rect x="385" y="414" width="244.0" height="27" fill="#9BADA5" rx="5" stroke-width="1"/>
+<text x="1038" y="437" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">32 / 80</text>
+<rect x="385" y="453" width="236.375" height="27" fill="#246A62" rx="5" stroke-width="1"/>
+<text x="1038" y="476" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">31 / 80</text>
+<text x="48" y="556" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">근거가 없는 요청을</text>
+<text x="48" y="590" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">거절</text>
+<rect x="385" y="522" width="549.0" height="27" fill="#9BADA5" rx="5" stroke-width="1"/>
+<text x="1038" y="545" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">18 / 20</text>
+<rect x="385" y="561" width="549.0" height="27" fill="#246A62" rx="5" stroke-width="1"/>
+<text x="1038" y="584" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">18 / 20</text>
+<text x="48" y="664" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">잘못된 전제의 요청을</text>
+<text x="48" y="698" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">거절</text>
+<rect x="385" y="630" width="61.0" height="27" fill="#9BADA5" rx="5" stroke-width="1"/>
+<text x="1038" y="653" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">2 / 20</text>
+<rect x="385" y="669" width="61.0" height="27" fill="#246A62" rx="5" stroke-width="1"/>
+<text x="1038" y="692" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">2 / 20</text>
+<text x="1120" y="789" fill="#64696B" font-size="21" font-weight="400" text-anchor="end">비율 (%)</text>
+<text x="48" y="840" fill="#64696B" font-size="20" font-weight="400" text-anchor="start">영어와 한국어가 모두 조건을 만족해야 의미 그룹이 통과합니다.</text>
+<text x="48" y="869" fill="#64696B" font-size="20" font-weight="400" text-anchor="start">어휘 표지와 인용 위치는 사실 정확성을 보증하지 않습니다. 전체 답변 품질 향상은 확인하지 못했습니다.</text>
+<metadata>{"project_id": "project-01", "visual_data_sha256": "552db69fb714a8f101eec98166efd94521b3e5d5de9199c6253a7b96ace4245b", "generated_from_published_measurements": true}</metadata>
+</svg>
