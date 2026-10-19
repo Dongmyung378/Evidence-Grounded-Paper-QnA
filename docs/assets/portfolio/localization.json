@@ -1,0 +1,87 @@
+{
+  "figures": [
+    {
+      "source": "docs/assets/portfolio/paper-qna-thumbnail.svg",
+      "target": "docs/assets/portfolio/paper-qna-thumbnail.en.svg",
+      "language": "en",
+      "translations": {
+        "근거 기반 논문 질의응답": "Evidence-grounded paper Q&A",
+        "논문 원문을 검색하고 답변 문장과 근거 위치를 연결하는 구현 흐름입니다. 논문 30편을 평가했으며 답변 정확도를 뜻하는 그림은 아닙니다.": "Retrieve paper passages and align answer sentences with source locations. The 30-paper evaluation count is not answer accuracy.",
+        "논문 질의응답과 원문 근거 추적": {"text": "Paper Q&A with source tracing", "font-size": 48},
+        "논문 질의응답과 원문 추적": "Questions, answers and original passages",
+        "논문 원문": "Paper text",
+        "문장과 페이지": "Sentence / page",
+        "검색": {"text": "Search", "font-size": 28},
+        "찾은 근거": "Retrieved evidence",
+        "문장  →  페이지  →  출처": {"text": "Sentence  →  page  →  source", "font-size": 29},
+        "답변과 원문 대조": {"text": "Answer / source alignment", "font-size": 35},
+        "한국어 질문과 영어 논문을 연결": {"text": "Korean queries, English papers", "font-size": 29},
+        "30편 평가": "30 papers evaluated",
+        "원문 문장과 답변을 함께 확인": {"text": "Inspect answers beside source text", "font-size": 29, "x": 485}
+      }
+    },
+    {
+      "source": "docs/assets/portfolio/paper-qna-results.svg",
+      "target": "docs/assets/portfolio/paper-qna-results.en.svg",
+      "language": "en",
+      "translations": {
+        "논문 질의응답의 자동 진단 결과": "Automated paper Q&A diagnostics",
+        "평가 논문 20편에서 같은 의미 그룹을 초기 및 최종 구현으로 비교했습니다. 응답 여부와 어휘 표지, 인용 위치 진단이며 답변 정확도가 아닙니다.": "Matched bilingual groups from 20 evaluation papers, compared across reference and final implementations. These response, keyword and citation checks are not answer accuracy.",
+        "답변과 원문의 자동 대조 결과": "Automated answer and source checks",
+        "평가 논문 20편의 같은 질문 비교. 아래 수치는 답변 정확도가 아닌 자동 진단입니다.": {"text": "Matched questions from 20 papers. Automated diagnostics, not answer accuracy.", "font-size": 22},
+        "초기 개발 버전": "Reference",
+        "최종 개발 버전": "Final",
+        "출력 형식 준수 240 / 240": {"text": "Output format: 240 / 240", "font-size": 21},
+        "답변 가능한 질문에": "Answerable questions",
+        "응답": "answered",
+        "필수 정보의 어휘 표지를": "All required keyword",
+        "모두 포함": "markers present",
+        "정답 근거 위치 중": "An allowed evidence",
+        "하나를 인용": "page cited",
+        "근거가 없는 요청을": "Unsupported requests",
+        "거절": "refused",
+        "잘못된 전제의 요청을": "False-premise requests",
+        "비율 (%)": "Rate (%)",
+        "영어와 한국어가 모두 조건을 만족해야 의미 그룹이 통과합니다.": "A group passes only when its English and Korean outputs both meet the condition.",
+        "어휘 표지와 인용 위치는 사실 정확성을 보증하지 않습니다. 전체 답변 품질 향상은 확인하지 못했습니다.": {"text": "Keywords and citation locations do not establish factual accuracy. Overall answer quality did not improve.", "font-size": 19}
+      }
+    },
+    {
+      "source": "docs/assets/paper-evidence.svg",
+      "target": "docs/assets/paper-evidence.ko.svg",
+      "language": "ko",
+      "translations": {
+        "Evidence-grounded paper Q&A pipeline": "근거 기반 논문 질의응답 처리 흐름",
+        "A text-based English PDF is divided into page-aware chunks. BM25 and multilingual E5 retrieval are combined by reciprocal rank fusion, followed by multilingual cross-encoder reranking, evidence checks, extractive answers or Korean translation, and traceable citations. This diagram describes the implemented pipeline and makes no performance claim.": "텍스트형 영어 PDF를 페이지 정보를 보존한 청크로 나눕니다. BM25와 다국어 E5 검색을 RRF로 결합한 뒤 다국어 교차 인코더 재정렬, 근거 검사, 원문 추출 또는 한국어 번역과 인용 추적을 수행합니다. 구현 흐름을 설명하는 개념도이며 성능을 주장하지 않습니다.",
+        "RESEARCH PAPER Q&A": "연구 논문 질의응답",
+        "Evidence-grounded paper Q&A": "근거 기반 논문 질의응답",
+        "From one English PDF to answers with inspectable source locations": "영어 PDF 한 편에서 답변과 확인 가능한 원문 위치까지",
+        "English or Korean question": "영어 또는 한국어 질문",
+        "SOURCE": "원문",
+        "PDF & chunks": "PDF와 청크",
+        "Pages and sections": "페이지와 절",
+        "Overlapping passages": "문맥을 겹친 청크",
+        "Source identifiers": "출처 식별자",
+        "RETRIEVE": "검색",
+        "Hybrid retrieval": "하이브리드 검색",
+        "BM25 + multilingual E5": "BM25 + 다국어 E5",
+        "Reciprocal rank fusion": "순위 결합",
+        "Fused candidates (RRF)": "결합한 검색 후보 (RRF)",
+        "RANK": "재정렬",
+        "Reranking": "후보 재정렬",
+        "Multilingual": "다국어",
+        "cross-encoder": "교차 인코더",
+        "Ranked source passages": "순위를 조정한 원문 근거",
+        "ANSWER": "답변",
+        "Grounded answers": "근거 기반 답변",
+        "+ citations": "+ 출처 인용",
+        "Evidence and refusal checks": "근거와 응답 보류 검사",
+        "Extract or translate": "원문 추출 또는 번역",
+        "Page, section and chunk IDs": "페이지, 절과 청크 식별자",
+        "SOURCE TRACING": "원문 추적",
+        "Original passages remain attached to the answer": "답변에서 대응하는 원문 근거를 함께 확인",
+        "Text-based English PDFs. English extraction and Korean translation with source tracing.": "텍스트형 영어 PDF 대상. 영어 원문 추출과 한국어 번역에 출처 추적을 연결합니다."
+      }
+    }
+  ]
+}

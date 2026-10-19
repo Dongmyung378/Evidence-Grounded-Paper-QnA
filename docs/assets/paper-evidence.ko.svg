@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" role="img" aria-labelledby="title description">
+  <title id="title">근거 기반 논문 질의응답 처리 흐름</title>
+  <desc id="description">텍스트형 영어 PDF를 페이지 정보를 보존한 청크로 나눕니다. BM25와 다국어 E5 검색을 RRF로 결합한 뒤 다국어 교차 인코더 재정렬, 근거 검사, 원문 추출 또는 한국어 번역과 인용 추적을 수행합니다. 구현 흐름을 설명하는 개념도이며 성능을 주장하지 않습니다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1L8 5L1 9" fill="none" stroke="#243F58" stroke-width="1.6" />
+    </marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; }
+      .ink { fill: #243F58; }
+      .quiet { fill: #666862; }
+      .copper { fill: #AE7446; }
+      .stage { fill: #FFFFFF; stroke: #D5D4CD; stroke-width: 1.5; }
+      .detail { fill: #565D61; font-size: 18px; }
+      .stage-title { fill: #243F58; font-size: 27px; font-weight: 700; }
+      .flow { fill: none; stroke: #243F58; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1400" height="800" fill="#F7F6F2" />
+  <rect x="80" y="70" width="56" height="4" fill="#AE7446" />
+  <text x="152" y="79" class="copper" font-size="17" letter-spacing="2.5">연구 논문 질의응답</text>
+  <text x="80" y="150" class="ink" font-size="49" font-weight="700">근거 기반 논문 질의응답</text>
+  <text x="80" y="193" class="quiet" font-size="23">영어 PDF 한 편에서 답변과 확인 가능한 원문 위치까지</text>
+  <path d="M80 224H1320" stroke="#D5D4CD" stroke-width="1" />
+
+  <rect x="412" y="259" width="256" height="58" fill="#ECEFEF" stroke="#C7CDD0" stroke-width="1.2" />
+  <text x="540" y="294" text-anchor="middle" class="ink" font-size="18">영어 또는 한국어 질문</text>
+  <path class="flow" d="M540 317V369" />
+
+  <rect x="80" y="379" width="280" height="245" class="stage" />
+  <rect x="80" y="379" width="280" height="5" fill="#243F58" />
+  <text x="104" y="423" class="copper" font-size="16" letter-spacing="2">원문</text>
+  <text x="104" y="468" class="stage-title">PDF와 청크</text>
+  <text x="104" y="511" class="detail">페이지와 절</text>
+  <text x="104" y="543" class="detail">문맥을 겹친 청크</text>
+  <text x="104" y="575" class="detail">출처 식별자</text>
+
+  <path class="flow" d="M368 501H388" />
+  <rect x="400" y="379" width="280" height="245" class="stage" />
+  <rect x="400" y="379" width="280" height="5" fill="#243F58" />
+  <text x="424" y="423" class="copper" font-size="16" letter-spacing="2">검색</text>
+  <text x="424" y="468" class="stage-title">하이브리드 검색</text>
+  <text x="424" y="511" class="detail">BM25 + 다국어 E5</text>
+  <text x="424" y="543" class="detail">순위 결합</text>
+  <text x="424" y="575" class="detail">결합한 검색 후보 (RRF)</text>
+
+  <path class="flow" d="M688 501H708" />
+  <rect x="720" y="379" width="280" height="245" class="stage" />
+  <rect x="720" y="379" width="280" height="5" fill="#243F58" />
+  <text x="744" y="423" class="copper" font-size="16" letter-spacing="2">재정렬</text>
+  <text x="744" y="468" class="stage-title">후보 재정렬</text>
+  <text x="744" y="511" class="detail">다국어</text>
+  <text x="744" y="543" class="detail">교차 인코더</text>
+  <text x="744" y="575" class="detail">순위를 조정한 원문 근거</text>
+
+  <path class="flow" d="M1008 501H1028" />
+  <rect x="1040" y="379" width="280" height="245" class="stage" />
+  <rect x="1040" y="379" width="280" height="5" fill="#AE7446" />
+  <text x="1064" y="423" class="copper" font-size="16" letter-spacing="2">답변</text>
+  <text x="1064" y="464" class="ink" font-size="26" font-weight="700">근거 기반 답변</text>
+  <text x="1064" y="496" class="ink" font-size="26" font-weight="700">+ 출처 인용</text>
+  <text x="1064" y="538" class="detail">근거와 응답 보류 검사</text>
+  <text x="1064" y="570" class="detail">원문 추출 또는 번역</text>
+  <text x="1064" y="602" class="detail">페이지, 절과 청크 식별자</text>
+
+  <path d="M80 669H1320" stroke="#D5D4CD" stroke-width="1" />
+  <text x="80" y="710" class="ink" font-size="18">원문 추적</text>
+  <text x="298" y="710" class="quiet" font-size="18">답변에서 대응하는 원문 근거를 함께 확인</text>
+  <text x="80" y="753" class="quiet" font-size="16">텍스트형 영어 PDF 대상. 영어 원문 추출과 한국어 번역에 출처 추적을 연결합니다.</text>
+<metadata>{"localization": {"language": "ko", "measurement_values_changed": false, "source_sha256": "dde2e8c2051fbc26ffd0da1f47edbca01c08a734587a68325d412b2632b14dd4", "source_svg": "docs/assets/paper-evidence.svg"}}</metadata></svg>

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "presentation_only": true,
+  "models_or_evaluation_run": false,
+  "files": [
+    {
+      "source": "docs/assets/portfolio/paper-qna-thumbnail.svg",
+      "target": "docs/assets/portfolio/paper-qna-thumbnail.en.svg",
+      "language": "en",
+      "source_sha256": "3e51323a1a622c9b0876dc5414495dbdfd9d9f7fd6bee91767b31dd140e78cc9",
+      "sha256": "6d11ea65c5e2b35cf61a080ef98a752df4bcac94b43ab669c8d6eea40fe42d78",
+      "translated_elements": 13
+    },
+    {
+      "source": "docs/assets/portfolio/paper-qna-results.svg",
+      "target": "docs/assets/portfolio/paper-qna-results.en.svg",
+      "language": "en",
+      "source_sha256": "58e0b85591116a55947197a6222ef43c03f227eca17e5fa0031365dd3bba5f6a",
+      "sha256": "197755be651fb95a06c7c6aa11bb2a3069138b9974e44f2a20a104bde39a75e9",
+      "translated_elements": 20
+    },
+    {
+      "source": "docs/assets/paper-evidence.svg",
+      "target": "docs/assets/paper-evidence.ko.svg",
+      "language": "ko",
+      "source_sha256": "dde2e8c2051fbc26ffd0da1f47edbca01c08a734587a68325d412b2632b14dd4",
+      "sha256": "eddefe729674a10c91fc0c69eefa332f2d83877a273214f8ea80fd03f5ad5dae",
+      "translated_elements": 30
+    }
+  ]
+}

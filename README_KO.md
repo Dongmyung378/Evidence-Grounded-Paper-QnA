@@ -2,7 +2,7 @@
 
 [English](README.md) | [한국어](README_KO.md)
 
-![근거 기반 논문 질의응답 처리 흐름](docs/assets/paper-evidence.svg)
+![근거 기반 논문 질의응답 처리 흐름](docs/assets/paper-evidence.ko.svg)
 
 영문 연구 논문 한 편에서 근거를 검색하고 영어와 한국어 질문에 답하는 로컬 애플리케이션입니다. 하이브리드 검색, 교차 인코더 재정렬, 추출형 답변, 한국어 번역과 출처 추적을 FastAPI와 Streamlit 서비스로 연결했습니다.
 
@@ -17,6 +17,8 @@
 | ![영어 답변과 논문 원문](docs/assets/screenshots/03-english-answer-evidence.png) | ![한국어 답변과 논문 원문](docs/assets/screenshots/04-korean-answer-evidence.png) |
 
 추가 화면: [업로드](docs/assets/screenshots/01-upload.png), [논문 개요](docs/assets/screenshots/02-analysis-complete.png), [Docker 이미지](docs/assets/screenshots/docker.png). 화면 예시는 인터페이스를 설명하며 답변 정확성을 보증하지 않습니다.
+
+실제 실행 화면은 영문 UI를 그대로 보존했습니다. 한국어 예시는 한국어 질문과 번역 답변을 영어 논문의 원문 근거와 함께 보여주며, 화면의 언어를 편집한 이미지가 아닙니다.
 
 ## 구현한 내용
 

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+<title id="title">Automated paper Q&amp;A diagnostics</title>
+<desc id="desc">Matched bilingual groups from 20 evaluation papers, compared across reference and final implementations. These response, keyword and citation checks are not answer accuracy.</desc>
+<style>text{font-family:'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;font-variant-numeric:tabular-nums} .axis{fill:#64696B}</style>
+<rect x="0" y="0" width="1200" height="900" fill="#F8F4EB" rx="0" stroke-width="1" />
+<text x="48" y="64" fill="#243A40" font-size="36" font-weight="750" text-anchor="start">Automated answer and source checks</text>
+<text x="48" y="104" fill="#64696B" font-size="22" font-weight="400" text-anchor="start">Matched questions from 20 papers. Automated diagnostics, not answer accuracy.</text>
+<rect x="50" y="135" width="18" height="18" fill="#9BADA5" rx="4" stroke-width="1" />
+<text x="79" y="151" fill="#243A40" font-size="23" font-weight="400" text-anchor="start">Reference</text>
+<rect x="300" y="135" width="18" height="18" fill="#246A62" rx="4" stroke-width="1" />
+<text x="329" y="151" fill="#243A40" font-size="23" font-weight="400" text-anchor="start">Final</text>
+<rect x="811" y="123" width="340" height="44" fill="#243A40" rx="12" stroke-width="1" />
+<text x="981.0" y="154" fill="#FFFFFF" font-size="21" font-weight="700" text-anchor="middle">Output format: 240 / 240</text>
+<line x1="385.0" y1="193" x2="385.0" y2="755" stroke="#DDDDE0" stroke-width="1" />
+<text x="385.0" y="788" fill="#64696B" font-size="21" font-weight="400" text-anchor="middle">0</text>
+<line x1="507.0" y1="193" x2="507.0" y2="755" stroke="#DDDDE0" stroke-width="1" />
+<text x="507.0" y="788" fill="#64696B" font-size="21" font-weight="400" text-anchor="middle">20</text>
+<line x1="629.0" y1="193" x2="629.0" y2="755" stroke="#DDDDE0" stroke-width="1" />
+<text x="629.0" y="788" fill="#64696B" font-size="21" font-weight="400" text-anchor="middle">40</text>
+<line x1="751.0" y1="193" x2="751.0" y2="755" stroke="#DDDDE0" stroke-width="1" />
+<text x="751.0" y="788" fill="#64696B" font-size="21" font-weight="400" text-anchor="middle">60</text>
+<line x1="873.0" y1="193" x2="873.0" y2="755" stroke="#DDDDE0" stroke-width="1" />
+<text x="873.0" y="788" fill="#64696B" font-size="21" font-weight="400" text-anchor="middle">80</text>
+<line x1="995.0" y1="193" x2="995.0" y2="755" stroke="#DDDDE0" stroke-width="1" />
+<text x="995.0" y="788" fill="#64696B" font-size="21" font-weight="400" text-anchor="middle">100</text>
+<text x="48" y="232" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">Answerable questions</text>
+<text x="48" y="266" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">answered</text>
+<rect x="385" y="198" width="381.25" height="27" fill="#9BADA5" rx="5" stroke-width="1" />
+<text x="1038" y="221" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">50 / 80</text>
+<rect x="385" y="237" width="373.625" height="27" fill="#246A62" rx="5" stroke-width="1" />
+<text x="1038" y="260" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">49 / 80</text>
+<text x="48" y="340" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">All required keyword</text>
+<text x="48" y="374" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">markers present</text>
+<rect x="385" y="306" width="83.875" height="27" fill="#9BADA5" rx="5" stroke-width="1" />
+<text x="1038" y="329" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">11 / 80</text>
+<rect x="385" y="345" width="83.875" height="27" fill="#246A62" rx="5" stroke-width="1" />
+<text x="1038" y="368" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">11 / 80</text>
+<text x="48" y="448" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">An allowed evidence</text>
+<text x="48" y="482" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">page cited</text>
+<rect x="385" y="414" width="244.0" height="27" fill="#9BADA5" rx="5" stroke-width="1" />
+<text x="1038" y="437" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">32 / 80</text>
+<rect x="385" y="453" width="236.375" height="27" fill="#246A62" rx="5" stroke-width="1" />
+<text x="1038" y="476" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">31 / 80</text>
+<text x="48" y="556" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">Unsupported requests</text>
+<text x="48" y="590" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">refused</text>
+<rect x="385" y="522" width="549.0" height="27" fill="#9BADA5" rx="5" stroke-width="1" />
+<text x="1038" y="545" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">18 / 20</text>
+<rect x="385" y="561" width="549.0" height="27" fill="#246A62" rx="5" stroke-width="1" />
+<text x="1038" y="584" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">18 / 20</text>
+<text x="48" y="664" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">False-premise requests</text>
+<text x="48" y="698" fill="#243A40" font-size="24" font-weight="400" text-anchor="start">refused</text>
+<rect x="385" y="630" width="61.0" height="27" fill="#9BADA5" rx="5" stroke-width="1" />
+<text x="1038" y="653" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">2 / 20</text>
+<rect x="385" y="669" width="61.0" height="27" fill="#246A62" rx="5" stroke-width="1" />
+<text x="1038" y="692" fill="#243A40" font-size="25" font-weight="700" text-anchor="start">2 / 20</text>
+<text x="1120" y="789" fill="#64696B" font-size="21" font-weight="400" text-anchor="end">Rate (%)</text>
+<text x="48" y="840" fill="#64696B" font-size="20" font-weight="400" text-anchor="start">A group passes only when its English and Korean outputs both meet the condition.</text>
+<text x="48" y="869" fill="#64696B" font-size="19" font-weight="400" text-anchor="start">Keywords and citation locations do not establish factual accuracy. Overall answer quality did not improve.</text>
+<metadata>{"generated_from_published_measurements": true, "localization": {"language": "en", "measurement_values_changed": false, "source_sha256": "58e0b85591116a55947197a6222ef43c03f227eca17e5fa0031365dd3bba5f6a", "source_svg": "docs/assets/portfolio/paper-qna-results.svg"}, "project_id": "project-01", "visual_data_sha256": "552db69fb714a8f101eec98166efd94521b3e5d5de9199c6253a7b96ace4245b"}</metadata>
+</svg>

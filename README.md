@@ -18,6 +18,8 @@ This portfolio version is finalized as a research prototype. Three development s
 
 Additional screens: [upload](docs/assets/screenshots/01-upload.png), [paper overview](docs/assets/screenshots/02-analysis-complete.png), [Docker images](docs/assets/screenshots/docker.png). Screenshots illustrate the interface; they do not certify answer quality.
 
+These are unedited captures of the English UI. The Korean example intentionally shows a real Korean question and translated answer beside English paper evidence; its language is part of the demonstrated task.
+
 ## Engineering work
 
 - Parse a text-based PDF into page-aware sections and overlapping chunks, preserving source identifiers.
