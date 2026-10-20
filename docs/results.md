@@ -2,6 +2,12 @@
 
 [English](results.md) | [한국어](results_KO.md)
 
+## Reading this report
+
+This report asks whether the system returns an answer when it should, cites an acceptable source location and includes requested information. These are separate checks, not a single accuracy score. A bilingual meaning group pairs questions that ask for the same information in English and Korean. Group-level success requires both languages, whereas the response-contract row counts individual outputs and checks their required format.
+
+DEV denotes the development questions used to decide whether a change should be adopted. Holdout denotes questions reserved from that decision process, with the earlier exposure limits recorded below. Freezing saves the chosen implementation and file hashes before evaluation so that later checks can identify the exact version. An unsupported request has no supplied evidence; a false-premise request assumes something the source does not support. Fact aliases are expected words or synonyms, so alias presence and citation location cannot replace a factual review of the answer.
+
 ## Thirty paper comparison
 
 Inputs were frozen before the baseline DEV run. The ten previously labelled papers are DEV; the twenty others previously had ingestion/search smoke usage. Their evaluation history is operator-attested, not independently audited. Model pretraining exposure is unknown. The pipeline receives the question and paper ID without scoring labels.

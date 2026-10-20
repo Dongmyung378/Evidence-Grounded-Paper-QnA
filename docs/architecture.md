@@ -1,5 +1,7 @@
 # Architecture
 
+The user supplies a paper and a question; the output is selected source text, optional Korean translation and traceable citations. Read the diagram as three stages: prepare searchable text, find and check evidence, then return an answer with its source. Chunks are overlapping text pieces, embeddings are numerical representations used for meaning-based search, and reranking revisits the shortlist with a question-and-passage model. The implementation details below explain how these stages connect.
+
 [English](architecture.md) | [한국어](architecture_KO.md)
 
 ## Request flow

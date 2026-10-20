@@ -2,6 +2,8 @@
 
 [English](README.md) | [한국어](README_KO.md)
 
+Upload an English paper and ask a question about it. The application looks for relevant passages, returns selected source sentences or their Korean translation, and shows where each cited passage came from. This lets the reader inspect an answer against the paper instead of receiving an answer without a traceable source.
+
 ![Evidence-grounded paper Q&A pipeline](docs/assets/paper-evidence.svg)
 
 A local application that retrieves evidence from one English research paper and answers questions in English or Korean. It combines hybrid retrieval, cross-encoder reranking, extractive answers, Korean translation and source tracing in a FastAPI and Streamlit service.
@@ -19,6 +21,21 @@ This portfolio version is finalized as a research prototype. Three development s
 Additional screens: [upload](docs/assets/screenshots/01-upload.png), [paper overview](docs/assets/screenshots/02-analysis-complete.png), [Docker images](docs/assets/screenshots/docker.png). Screenshots illustrate the interface; they do not certify answer quality.
 
 These are unedited captures of the English UI. The Korean example intentionally shows a real Korean question and translated answer beside English paper evidence; its language is part of the demonstrated task.
+
+## How the pieces work together
+
+The system first finds likely evidence, then selects answer sentences and checks whether it can return them. It can refuse when its checks find insufficient support, although those checks do not reliably detect every unsupported request.
+
+| Term used below | Meaning in this project |
+| --- | --- |
+| Chunk | A short, overlapping piece of paper text that retains its page and section, so a retrieved passage can be traced back to the PDF. |
+| BM25 and multilingual E5 | Complementary search methods: BM25 matches words, while E5 converts questions and passages into numerical vectors to compare meaning across languages. Using both is called hybrid retrieval. |
+| Reciprocal rank fusion | A way to combine the two search lists using their ranked positions rather than treating their differently scaled scores as directly comparable. |
+| Cross-encoder reranking | A model reads the question and each candidate passage together to reorder the shortlist before answer selection. |
+| Extractive answer and NLLB | The English answer uses selected source sentences. NLLB translates that content for Korean output; the default path does not freely generate a new explanation. |
+| FastAPI and Streamlit | FastAPI handles analysis requests; Streamlit provides the browser interface for uploads, questions and evidence inspection. |
+
+Search quality, answer completeness and translation quality are separate concerns. Finding a relevant page is useful, but the answer can still omit a requested detail or mistranslate it.
 
 ## Engineering work
 
@@ -49,6 +66,8 @@ flowchart LR
 The default runtime uses extraction and translation. Generative model trials are documented separately in [experiments](docs/experiments.md). See [architecture](docs/architecture.md) and [answer policy](docs/answer_policy.md) for implementation details.
 
 ## Measured results
+
+Read the following table as separate checks of system behavior. A **meaning group** contains English and Korean questions asking for the same information; group-level checks pass only when both answers satisfy the criterion. **DEV** is the development set used to compare changes, while the final comparison is run after the implementation is fixed. An **unsupported** question asks for information the paper does not supply; a **false-premise** question starts from an incorrect assumption about the paper. A **fact alias** is an expected wording or synonym used by the automatic completeness check.
 
 All 30 source papers were evaluated with 180 English/Korean meaning groups and 360 outputs per version. Ten papers supplied DEV questions; twenty papers supplied the final comparison. A paired group passes only when both languages pass.
 
