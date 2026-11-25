@@ -1,0 +1,72 @@
+{
+  "schema_version": 2,
+  "calibration_method": "paper_grouped_5fold_oof_split_conformal",
+  "winner_model": "Qwen/Qwen3-4B-Instruct-2507",
+  "nli_contra_threshold": 0.95,
+  "nli_post_entail_min": null,
+  "feature_names": [
+    "top_reranker_score",
+    "score_margin_1_5",
+    "is_ko",
+    "nli_max_entailment",
+    "nli_max_contradiction",
+    "quote_verified_ratio",
+    "numeric_verified_ratio"
+  ],
+  "scaler_mean": [
+    0.6644429175949578,
+    0.30456546113091465,
+    0.5,
+    0.05583916666666671,
+    0.2398316666666666,
+    0.7007,
+    0.6916666666666667
+  ],
+  "scaler_scale": [
+    0.37048712548487023,
+    0.25116050230810094,
+    0.5,
+    0.20971297221672341,
+    0.413959277784529,
+    0.45216718147163176,
+    0.4618050334165802
+  ],
+  "coef": [
+    0.8736387309836836,
+    0.5215553402159331,
+    0.2334914613405784,
+    -0.5125242516859381,
+    -1.0928214935110252,
+    1.166168335261501,
+    0.8836801308152041
+  ],
+  "intercept": 1.425618033080958,
+  "conformal_thresholds_by_alpha": {
+    "0.02": 0.8992802689537455,
+    "0.05": 0.8727277063209673,
+    "0.10": 0.4195762490533362
+  },
+  "recommended_alpha": 0.05,
+  "conformal_threshold": 0.8727277063209673,
+  "oof_aurc": 0.0669,
+  "oof_risk_coverage": [
+    {
+      "alpha": 0.02,
+      "oof_threshold": 0.8993,
+      "answerable_coverage": 0.863,
+      "negative_leak_rate": 0.025
+    },
+    {
+      "alpha": 0.05,
+      "oof_threshold": 0.8727,
+      "answerable_coverage": 0.887,
+      "negative_leak_rate": 0.05
+    },
+    {
+      "alpha": 0.1,
+      "oof_threshold": 0.4196,
+      "answerable_coverage": 0.988,
+      "negative_leak_rate": 0.1
+    }
+  ]
+}

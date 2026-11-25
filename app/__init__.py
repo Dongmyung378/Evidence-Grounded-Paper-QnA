@@ -1,1 +1,0 @@
-"""Single-paper HTTP service."""

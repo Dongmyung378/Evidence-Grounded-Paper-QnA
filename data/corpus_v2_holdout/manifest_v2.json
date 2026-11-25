@@ -1,0 +1,216 @@
+{
+  "schema_version": 2,
+  "source": "ccdv/arxiv-summarization:validation",
+  "papers": [
+    {
+      "paper_id": "v2-paper-001",
+      "arxiv_id": "hf-ccdv-val-0",
+      "title": "we study the phase behavior of a nematic liquid crystal confined between a flat substrate with strong anchoring and a pa",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-002",
+      "arxiv_id": "hf-ccdv-val-1",
+      "title": "determining the scaling relations between galaxy cluster observables requires large samples of uniformly observed cluste",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-003",
+      "arxiv_id": "hf-ccdv-val-2",
+      "title": "we show how to control spatial quantum correlations in a multimode degenerate optical parametric oscillator type i below",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-004",
+      "arxiv_id": "hf-ccdv-val-3",
+      "title": "class i methanol masers are believed to be produced in the shock - excited environment around star - forming regions . m",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-005",
+      "arxiv_id": "hf-ccdv-val-4",
+      "title": "nowadays , scientific challenges usually require approaches that cross traditional boundaries between academic disciplin",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-006",
+      "arxiv_id": "hf-ccdv-val-5",
+      "title": "we present a theoretical study of the infrared magneto - optical properties of ferromagnetic ( iii , mn)v semiconductors",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-007",
+      "arxiv_id": "hf-ccdv-val-6",
+      "title": "two questions that naturally arise in @xmath0-body simulations of stellar systems are : 1 . how can we compare experimen",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-008",
+      "arxiv_id": "hf-ccdv-val-7",
+      "title": "we study a holomorphic representation for spinfoams . the representation is obtained via the ashtekar - lewandowski - ma",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-009",
+      "arxiv_id": "hf-ccdv-val-8",
+      "title": "in this paper , we study a two - lane totally asymmetric simple exclusion process ( tasep ) coupled with random attachme",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-010",
+      "arxiv_id": "hf-ccdv-val-9",
+      "title": "we consider evaluation of matrix elements with the coupled - cluster method . such calculations formally involve infinit",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-011",
+      "arxiv_id": "hf-ccdv-val-10",
+      "title": "we investigate an attractive bose - einstein condensate in two coupled one dimensional channels . in this system a stabl",
+      "page_count": 11,
+      "chunk_count": 21
+    },
+    {
+      "paper_id": "v2-paper-012",
+      "arxiv_id": "hf-ccdv-val-11",
+      "title": "the effect of high pressures to 40 gpa on the crystal structure and lattice dynamics of alb@xmath0 was studied by synchr",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-013",
+      "arxiv_id": "hf-ccdv-val-12",
+      "title": "we study the geometry of billiard orbits on rectangular billiards . a truncated billiard orbit induces a partition of th",
+      "page_count": 9,
+      "chunk_count": 18
+    },
+    {
+      "paper_id": "v2-paper-014",
+      "arxiv_id": "hf-ccdv-val-13",
+      "title": "this article describes calculations and measurements of space charge effects due to high rate irradiation in high resolu",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-015",
+      "arxiv_id": "hf-ccdv-val-14",
+      "title": "charged current dis charm production measures the strange - quark pdf . a complete analysis requires both a fully differ",
+      "page_count": 7,
+      "chunk_count": 14
+    },
+    {
+      "paper_id": "v2-paper-016",
+      "arxiv_id": "hf-ccdv-val-15",
+      "title": "plasma energization through magnetic reconnection in the magnetically - dominated regime featured by low plasma beta ( @",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-017",
+      "arxiv_id": "hf-ccdv-val-16",
+      "title": "in this paper , we report high - precision absolute distance and vibration measurements performed with frequency scanned",
+      "page_count": 9,
+      "chunk_count": 18
+    },
+    {
+      "paper_id": "v2-paper-018",
+      "arxiv_id": "hf-ccdv-val-17",
+      "title": "we propose an algorithm for the efficient parallel implementation of elastoplastic problems with hardening based on the ",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-019",
+      "arxiv_id": "hf-ccdv-val-18",
+      "title": "spin - dependent transport through an interacting single - level quantum dot coupled to ferromagnetic leads with non - c",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-020",
+      "arxiv_id": "hf-ccdv-val-19",
+      "title": "soft slender structures are ubiquitous in natural and artificial systems and can be observed at scales that range from t",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-021",
+      "arxiv_id": "hf-ccdv-val-20",
+      "title": "dipolar bose - einstein condensates are systems well - suited for the investigation of effects caused by the non - local",
+      "page_count": 10,
+      "chunk_count": 20
+    },
+    {
+      "paper_id": "v2-paper-022",
+      "arxiv_id": "hf-ccdv-val-21",
+      "title": "selected results on hadronic decays of the tau lepton from the tau98 workshop are reviewed . a comprehensive picture eme",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-023",
+      "arxiv_id": "hf-ccdv-val-22",
+      "title": "this article introduces a highly parallel algorithm for molecular dynamics simulations with short - range forces on sing",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-024",
+      "arxiv_id": "hf-ccdv-val-23",
+      "title": "the formation of the first generations of stars at redshifts @xmath0 signaled the transition from the simple initial sta",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-025",
+      "arxiv_id": "hf-ccdv-val-24",
+      "title": "we derive a semiclassical time evolution kernel and a trace formula for the dirac equation . the classical trajectories ",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-026",
+      "arxiv_id": "hf-ccdv-val-25",
+      "title": "radiatively - driven transfer flow perpendicular to a luminous disk is examined in the relativistic regime of @xmath0 , ",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-027",
+      "arxiv_id": "hf-ccdv-val-26",
+      "title": "circumplanetary disks can be found around forming giant planets , regardless of whether core accretion or gravitational ",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-028",
+      "arxiv_id": "hf-ccdv-val-27",
+      "title": "to understand the role of local sublattice imbalance in low energy spectra of @xmath0 quantum antiferromagnets , we stud",
+      "page_count": 6,
+      "chunk_count": 12
+    },
+    {
+      "paper_id": "v2-paper-029",
+      "arxiv_id": "hf-ccdv-val-28",
+      "title": "it is shown that the causal structure associated to string - like solutions of the fadeev - niemi ( fn ) model is descri",
+      "page_count": 12,
+      "chunk_count": 24
+    },
+    {
+      "paper_id": "v2-paper-030",
+      "arxiv_id": "hf-ccdv-val-29",
+      "title": "while having a comet - like appearance , ( gibbs ) has an orbit native to the main asteroid belt , and physically is a k",
+      "page_count": 11,
+      "chunk_count": 22
+    }
+  ]
+}

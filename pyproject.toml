@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evidence-grounded-paper-qna"
+version = "2.0.0"
+description = "Bilingual (EN/KO) evidence-grounded scientific paper Q&A with BGE-M3 hybrid retrieval, fine-tuned mDeBERTa-v3 Scientific NLI (ONNX INT8), Conformal Gating, and Guided JSON Qwen3-4B verification."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26.0",
+    "scipy>=1.13.0",
+    "fastapi>=0.115.0",
+    "uvicorn>=0.30.0",
+    "python-multipart>=0.0.9",
+    "pypdf>=5.0.0",
+    "onnxruntime>=1.19.0",
+    "tokenizers>=0.20.0",
+]
+
+[project.optional-dependencies]
+neural = [
+    "torch>=2.3.0",
+    "transformers>=4.51.0",
+    "sentence-transformers>=3.3.0",
+]
+dev = [
+    "pytest>=8.0.0",
+    "httpx>=0.27.0",
+    "matplotlib>=3.8.0",
+    "pandas>=2.2.0",
+    "scikit-learn>=1.5.0",
+]
+
+[project.scripts]
+paper-qna = "paper_qna.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["paper_qna*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

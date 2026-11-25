@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "created_at": "2026-11-25T14:57:30.925417+00:00",
+  "excluded_corpus30_count": 29,
+  "excluded_train_count": 150,
+  "sha256": {
+    "chunks.jsonl": "ff0060419730f7a7164467478e8a35aab550edc40c86c59060a02e2ab965237e",
+    "manifest_v2.json": "22223080fd5059e434693fbea95f803b391ca825e09edbca987cf51c822981c8"
+  }
+}

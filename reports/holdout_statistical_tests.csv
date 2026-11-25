@@ -1,0 +1,6 @@
+metric,n_outputs,v1_rate,v2_rate,delta,ci95_low,ci95_high,v2_only_gain_n01,v1_only_loss_n10,exact_mcnemar_p
+answerable_retained,160,0.775,0.8875,0.1125,0.0,0.2438,34,16,0.0153467
+all_fact_aliases,160,0.3625,0.5938,0.2313,0.125,0.35,58,21,3.76151e-05
+acceptable_source_page_hit,160,0.6125,0.7688,0.1562,0.0375,0.2875,43,18,0.0018681
+unsupported_refused,40,0.95,1.0,0.05,0.0,0.125,2,0,0.5
+false_premise_refused,40,0.475,0.975,0.5,0.3994,0.625,21,1,1.09673e-05

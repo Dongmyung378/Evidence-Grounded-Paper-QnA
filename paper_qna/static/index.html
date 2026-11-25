@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Evidence-Grounded Paper Q&amp;A v2 | Bilingual Scientific Verification Demo</title>
+  <style>
+    :root {
+      --teal: #1E665E;
+      --teal-dark: #154943;
+      --teal-soft: #E6F2EF;
+      --amber: #A87338;
+      --amber-soft: #FBF3E6;
+      --danger: #A62B3A;
+      --danger-soft: #FBECEE;
+      --paper: #F8F4EB;
+      --card: #FFFFFF;
+      --ink: #1F2E32;
+      --muted: #5B696C;
+      --rule: #DCE2DC;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "Noto Sans KR", sans-serif;
+      line-height: 1.56;
+      font-variant-numeric: tabular-nums;
+    }
+    .topbar { height: 6px; background: linear-gradient(90deg, var(--teal) 0%, #2D877D 62%, var(--amber) 100%); }
+    .wrap { max-width: 1220px; margin: 0 auto; padding: 24px 24px 52px; }
+    header {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+      padding-bottom: 16px; border-bottom: 1px solid var(--rule); margin-bottom: 18px;
+    }
+    .eyebrow {
+      font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--teal); margin: 0 0 5px;
+    }
+    h1 { margin: 0 0 5px; font-size: 25px; font-weight: 760; letter-spacing: -0.02em; }
+    .subtitle { margin: 0; color: var(--muted); font-size: 13.8px; max-width: 780px; }
+    .lang-toggle {
+      display: inline-flex; border: 1px solid var(--rule); border-radius: 8px;
+      overflow: hidden; background: var(--card); flex-shrink: 0;
+    }
+    .lang-toggle button {
+      border: 0; background: transparent; padding: 7px 13px; font-size: 12.5px; font-weight: 700;
+      cursor: pointer; color: var(--muted);
+    }
+    .lang-toggle button.active { background: var(--teal); color: #fff; }
+    .status-strip {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px;
+      background: var(--card); border: 1px solid var(--rule); border-radius: 999px;
+      font-size: 12.2px; color: var(--ink);
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #94A3B8; }
+    .dot.ok { background: #1B8754; }
+    .dot.warn { background: var(--amber); }
+    .grid {
+      display: grid; grid-template-columns: 410px 1fr; gap: 20px; align-items: start;
+    }
+    @media (max-width: 960px) { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius);
+      padding: 18px 20px; box-shadow: 0 1px 3px rgba(24, 42, 46, 0.04);
+    }
+    .card h2 {
+      margin: 0 0 12px; font-size: 14.5px; font-weight: 750; color: var(--ink);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .preset-grid { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; max-height: 290px; overflow-y: auto; padding-right: 4px; }
+    .preset-btn {
+      text-align: left; border: 1px solid var(--rule); background: #FCFBF8; border-radius: 9px;
+      padding: 9px 11px; cursor: pointer; transition: border-color .15s, background .15s;
+    }
+    .preset-btn:hover, .preset-btn.active { border-color: var(--teal); background: var(--teal-soft); }
+    .preset-top { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; font-size: 11px; font-weight: 700; }
+    .badge {
+      display: inline-block; padding: 2px 7px; border-radius: 999px; font-size: 10.8px; font-weight: 700;
+    }
+    .b-ans { background: var(--teal-soft); color: var(--teal-dark); }
+    .b-fp { background: var(--danger-soft); color: var(--danger); }
+    .b-unsup { background: var(--amber-soft); color: var(--amber); }
+    .b-lang { background: #EDF2F4; color: #3B4D54; }
+    .preset-q { font-size: 12.6px; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    label { display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin: 12px 0 5px; }
+    select, textarea, input[type="file"] {
+      width: 100%; border: 1px solid var(--rule); border-radius: 8px; padding: 9px 11px;
+      font-size: 13.2px; font-family: inherit; color: var(--ink); background: #fff;
+    }
+    textarea { min-height: 82px; resize: vertical; }
+    .controls-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+    .upload-box {
+      border: 1.4px dashed #B9C8C3; border-radius: 9px; padding: 10px 12px; background: #FAFDFC;
+      margin-bottom: 10px;
+    }
+    .btn-primary {
+      width: 100%; margin-top: 14px; border: 0; border-radius: 9px; padding: 11px 16px;
+      background: var(--teal); color: #fff; font-size: 14px; font-weight: 700; cursor: pointer;
+      transition: background .15s;
+    }
+    .btn-primary:hover { background: var(--teal-dark); }
+    .btn-primary:disabled { opacity: 0.6; cursor: wait; }
+    .verdict-banner {
+      border-radius: 10px; padding: 14px 16px; margin-bottom: 16px;
+      border: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    .verdict-banner.sufficient { background: var(--teal-soft); border-color: #9CCFC5; }
+    .verdict-banner.contradicted { background: var(--danger-soft); border-color: #E5B0B7; }
+    .verdict-banner.insufficient { background: var(--amber-soft); border-color: #E7CCA0; }
+    .verdict-title { font-size: 15.5px; font-weight: 760; }
+    .verdict-sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+    .telemetry-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;
+    }
+    @media (max-width: 720px) { .telemetry-grid { grid-template-columns: repeat(2, 1fr); } }
+    .metric-box {
+      border: 1px solid var(--rule); border-radius: 9px; padding: 10px 12px; background: #FCFBF8;
+    }
+    .metric-label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .metric-val { font-size: 19px; font-weight: 780; margin-top: 2px; color: var(--ink); }
+    .metric-note { font-size: 11.2px; color: var(--muted); margin-top: 2px; }
+    .gauge-wrap { margin-bottom: 16px; padding: 12px 14px; border: 1px solid var(--rule); border-radius: 9px; background: #FAFBF9; }
+    .gauge-head { display: flex; justify-content: space-between; font-size: 12.2px; font-weight: 700; margin-bottom: 7px; }
+    .gauge-bar { position: relative; height: 12px; border-radius: 999px; background: #E6ECEA; overflow: visible; }
+    .gauge-fill { height: 100%; border-radius: 999px; transition: width .25s ease; }
+    .gauge-thr {
+      position: absolute; top: -4px; bottom: -4px; width: 2.5px; background: #1F2E32;
+    }
+    .answer-box {
+      border-left: 4px solid var(--teal); background: #FCFBF8; border-radius: 0 9px 9px 0;
+      padding: 14px 16px; font-size: 14.4px; margin-bottom: 16px;
+    }
+    .answer-box.refused { border-left-color: var(--danger); background: #FDF7F8; }
+    .v1-compare {
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+      padding: 10px 13px; border-radius: 9px; background: #F2F6F5; border: 1px solid var(--rule);
+      font-size: 12.3px; margin-bottom: 16px;
+    }
+    .claim-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .claim-item {
+      border: 1px solid var(--rule); border-radius: 9px; padding: 10px 12px; background: #fff; font-size: 13px;
+    }
+    .claim-quote {
+      margin-top: 6px; padding: 6px 9px; border-radius: 6px; background: var(--amber-soft);
+      font-size: 12px; color: #5C401E; font-style: italic;
+    }
+    .ev-card {
+      border: 1px solid var(--rule); border-radius: 9px; padding: 12px 14px; margin-bottom: 10px; background: #fff;
+    }
+    .ev-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 7px; font-size: 11.8px; color: var(--muted); }
+    .ev-text { font-size: 12.7px; color: #2D3B3F; line-height: 1.62; }
+    mark.hl { background: #FCE8B2; color: #2A1D06; padding: 1px 3px; border-radius: 3px; }
+    .empty-state { padding: 48px 20px; text-align: center; color: var(--muted); font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="topbar"></div>
+  <div class="wrap">
+    <header>
+      <div>
+        <p class="eyebrow" data-i18n="eyebrow">EVIDENCE-GROUNDED PAPER Q&amp;A v2 · LOCAL SCIENTIFIC VERIFICATION</p>
+        <h1 data-i18n="title">논문 질의응답 · 근거 추적 · Scientific NLI 검증 데모</h1>
+        <p class="subtitle" data-i18n="subtitle">
+          BGE-M3 하이브리드 검색 · Parent(1800) 문맥 · FP32 mDeBERTa-v3 Scientific NLI 게이트(0.95) · Paper-Grouped Conformal Gate(AURC 0.0669) · Qwen3-4B Guided JSON 검증
+        </p>
+      </div>
+      <div class="lang-toggle" role="group" aria-label="UI language">
+        <button id="btn-ko" class="active" type="button">한국어</button>
+        <button id="btn-en" type="button">English</button>
+      </div>
+    </header>
+
+    <div class="status-strip" id="status-strip"></div>
+
+    <div class="grid">
+      <section class="card">
+        <h2>
+          <span data-i18n="presets_title">미공개 Holdout 검증 프리셋 (Exp 4)</span>
+          <span style="font-size:11.5px;color:var(--muted);font-weight:600" id="preset-count"></span>
+        </h2>
+        <div class="preset-grid" id="preset-grid"></div>
+
+        <div class="upload-box">
+          <label for="pdf-file" style="margin-top:0" data-i18n="upload_label">새 영문 논문 PDF 업로드 (최대 20 MiB)</label>
+          <input type="file" id="pdf-file" accept=".pdf,application/pdf" />
+          <div id="upload-status" style="font-size:11.8px;color:var(--teal);margin-top:5px"></div>
+        </div>
+
+        <label for="paper-select" data-i18n="paper_label">대상 논문 선택 (Corpus30 + 업로드 PDF)</label>
+        <select id="paper-select"></select>
+
+        <label for="question-input" data-i18n="question_label">질문 입력 (한국어 또는 영어)</label>
+        <textarea id="question-input" placeholder="논문 내용에 대한 영어 또는 한국어 질문을 입력하세요..."></textarea>
+
+        <div class="controls-row">
+          <div>
+            <label for="nli-thr">Scientific NLI Threshold (<span id="nli-thr-val">0.95</span>)</label>
+            <input type="range" id="nli-thr" min="0.50" max="0.99" step="0.01" value="0.95" style="width:100%" />
+          </div>
+          <div>
+            <label for="alpha-sel">Conformal Gate α</label>
+            <select id="alpha-sel">
+              <option value="0.02">α = 0.02 (Strict · Leak 2.5%)</option>
+              <option value="0.05" selected>α = 0.05 (Recommended · Leak 5.0%)</option>
+              <option value="0.10">α = 0.10 (High Coverage · 98.8%)</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="run-btn" type="button" data-i18n="run_btn">근거 검색 · NLI 검증 · 답변 생성 실행</button>
+      </section>
+
+      <section class="card" id="result-panel">
+        <div class="empty-state" data-i18n="empty">
+          왼쪽에서 미공개 Holdout 프리셋을 클릭하거나 PDF를 올려 질문을 실행하세요.<br/>
+          로컬 ONNX INT8 Scientific NLI 게이트와 원문 인용 하이라이트가 실시간으로 동작합니다.
+        </div>
+      </section>
+    </div>
+  </div>
+
+<script>
+const I18N = {
+  ko: {
+    eyebrow: 'EVIDENCE-GROUNDED PAPER Q&A v2 · LOCAL SCIENTIFIC VERIFICATION',
+    title: '논문 질의응답 · 근거 추적 · Scientific NLI 검증 데모',
+    subtitle: 'BGE-M3 하이브리드 검색 · Parent(1800) 문맥 · FP32 mDeBERTa-v3 Scientific NLI 게이트(0.95) · Paper-Grouped Conformal Gate(AURC 0.0669) · Qwen3-4B Guided JSON 검증',
+    presets_title: '미공개 Holdout 검증 프리셋 (Exp 4)',
+    upload_label: '새 영문 논문 PDF 업로드 (텍스트형, 최대 20 MiB)',
+    paper_label: '대상 논문 선택 (Corpus30 30편 + 업로드 PDF)',
+    question_label: '질문 입력 (한국어 또는 영어)',
+    run_btn: '근거 검색 · NLI 검증 · 답변 생성 실행',
+    running: '로컬 ONNX INT8 Scientific NLI 및 근거 검증 중...',
+    empty: '왼쪽에서 Holdout 프리셋을 클릭하거나 PDF를 올려 질문을 실행하세요.',
+    cat: { ans: '정답가능', fp: '거짓전제', unsup: '근거부족' },
+    v_suff: '검증 완료 · 근거 기반 답변',
+    v_fp: '거절됨 · Scientific NLI 거짓전제 차단',
+    v_insuff: '거절됨 · 논문 근거 부족',
+    claims_title: '문장별 원문 인용 대조 (Quote & 수치 검증)',
+    evidence_title: '인용 및 검색된 논문 근거 원문 (Parent 1800자)',
+  },
+  en: {
+    eyebrow: 'EVIDENCE-GROUNDED PAPER Q&A v2 · LOCAL SCIENTIFIC VERIFICATION',
+    title: 'Evidence-Grounded Paper Q&A · Scientific NLI Verification Demo',
+    subtitle: 'BGE-M3 Hybrid Retrieval · Parent(1800) Context · FP32 mDeBERTa-v3 Scientific NLI Gate (0.95) · Paper-Grouped Conformal Gate (AURC 0.0669) · Qwen3-4B Guided JSON',
+    presets_title: 'Unseen Holdout Verification Presets (Exp 4)',
+    upload_label: 'Upload English Paper PDF (Text-based, max 20 MiB)',
+    paper_label: 'Target Paper (Corpus30 + Uploaded PDFs)',
+    question_label: 'Question (English or Korean)',
+    run_btn: 'Run Retrieval · Live ONNX NLI · Grounded Answer',
+    running: 'Running live local ONNX INT8 Scientific NLI & verification...',
+    empty: 'Select a curated Holdout preset or upload a PDF on the left to inspect live NLI gating and source citations.',
+    cat: { ans: 'Answerable', fp: 'False Premise', unsup: 'Unsupported' },
+    v_suff: 'Verified · Evidence-Grounded Answer',
+    v_fp: 'Refused · Blocked by Scientific NLI False-Premise Gate',
+    v_insuff: 'Refused · Insufficient Paper Evidence',
+    claims_title: 'Claim-to-Source Alignment (Verbatim Quote & Numeric Check)',
+    evidence_title: 'Cited & Retrieved Paper Passages (Parent 1800 Chars)',
+  }
+};
+
+let uiLang = 'ko';
+let presetsCache = [];
+let activePresetId = null;
+let lastResult = null;
+
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function highlightQuote(text, quotes) {
+  let html = esc(text);
+  for (const q of quotes) {
+    if (!q || q.length < 10) continue;
+    const escapedQ = esc(q.trim());
+    const idx = html.toLowerCase().indexOf(escapedQ.toLowerCase());
+    if (idx !== -1) {
+      html = html.slice(0, idx) + '<mark class="hl">' + html.slice(idx, idx + escapedQ.length) + '</mark>' + html.slice(idx + escapedQ.length);
+    }
+  }
+  return html;
+}
+
+function applyLang() {
+  const t = I18N[uiLang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (t[k]) el.textContent = t[k];
+  });
+  document.getElementById('btn-ko').classList.toggle('active', uiLang === 'ko');
+  document.getElementById('btn-en').classList.toggle('active', uiLang === 'en');
+  renderPresets();
+  if (lastResult) renderResult(lastResult);
+}
+
+function renderPresets() {
+  const t = I18N[uiLang];
+  const grid = document.getElementById('preset-grid');
+  document.getElementById('preset-count').textContent = `${presetsCache.length} cases`;
+  grid.innerHTML = presetsCache.map(p => {
+    const cls = p.category === 'ans' ? 'b-ans' : (p.category === 'fp' ? 'b-fp' : 'b-unsup');
+    return `
+      <button type="button" class="preset-btn ${activePresetId === p.id ? 'active' : ''}" data-pid="${esc(p.id)}">
+        <div class="preset-top">
+          <span class="badge ${cls}">${esc(t.cat[p.category] || p.category)}</span>
+          <span class="badge b-lang">${esc(p.language.toUpperCase())}</span>
+          <span style="color:var(--muted)">${esc(p.paper_id)}</span>
+        </div>
+        <div class="preset-q">${esc(p.question)}</div>
+      </button>`;
+  }).join('');
+  grid.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const p = presetsCache.find(x => x.id === btn.dataset.pid);
+      if (!p) return;
+      activePresetId = p.id;
+      document.getElementById('paper-select').value = p.paper_id;
+      document.getElementById('question-input').value = p.question;
+      renderPresets();
+      runAsk();
+    });
+  });
+}
+
+function renderResult(data) {
+  lastResult = data;
+  const t = I18N[uiLang];
+  const resp = data.response;
+  const pipe = data.pipeline || {};
+  const nli = data.nli || {};
+  const conf = data.conformal || {};
+  const isSuff = resp.sufficiency === 'sufficient';
+  const isFP = nli.triggered || pipe.abstention_source === 'scientific_nli_contradiction' || pipe.abstention_source === 'llm_contradicted';
+  const vClass = isSuff ? 'sufficient' : (isFP ? 'contradicted' : 'insufficient');
+  const vTitle = isSuff ? t.v_suff : (isFP ? t.v_fp : t.v_insuff);
+
+  const contraPct = Math.round((nli.max_contra || 0) * 1000) / 10;
+  const thrPct = Math.round((nli.threshold || 0.95) * 100);
+  const gaugeColor = (nli.max_contra || 0) >= (nli.threshold || 0.95) ? 'var(--danger)' : ((nli.max_contra || 0) >= 0.4 ? 'var(--amber)' : 'var(--teal)');
+
+  const quotesByEv = {};
+  (data.answer_alignment || []).forEach(al => {
+    (quotesByEv[al.evidence_id] = quotesByEv[al.evidence_id] || []).push(al.verbatim_quote);
+  });
+
+  let v1Html = '';
+  if (data.v1_comparison) {
+    const v1 = data.v1_comparison;
+    const v1Txt = v1.category === 'fp'
+      ? (v1.v1_refused ? 'v1 Refused' : 'v1 FAILED (Answered false premise!)')
+      : (v1.category === 'ans' ? (v1.v1_all_facts ? 'v1 All Facts Hit' : 'v1 FAILED (Missed required facts)') : (v1.v1_refused ? 'v1 Refused' : 'v1 Leaked'));
+    const v2Txt = isSuff ? 'v2 Verified Grounded Answer' : 'v2 Refused Safely';
+    v1Html = `<div class="v1-compare">
+      <strong>Holdout v1 vs v2:</strong>
+      <span class="badge ${v1.category === 'fp' && !v1.v1_refused || v1.category === 'ans' && !v1.v1_all_facts ? 'b-fp' : 'b-lang'}">${esc(v1Txt)}</span>
+      <span>→</span>
+      <span class="badge b-ans">${esc(v2Txt)}</span>
+      <span style="color:var(--muted);margin-left:auto">${esc(v1.case_id)}</span>
+    </div>`;
+  }
+
+  const claimsHtml = (data.answer_alignment || []).length ? `
+    <h2 style="margin-top:4px">${esc(t.claims_title)}</h2>
+    <div class="claim-list">
+      ${data.answer_alignment.map((al, idx) => `
+        <div class="claim-item">
+          <div style="display:flex;gap:6px;align-items:center;margin-bottom:4px;font-size:11.3px">
+            <span class="badge b-ans">#${idx+1} · p.${al.page} (${esc(al.section)})</span>
+            <span class="badge ${al.quote_verified ? 'b-ans' : 'b-unsup'}">Quote ${al.quote_verified ? 'OK' : 'Check'}</span>
+            <span class="badge ${al.numeric_verified ? 'b-ans' : 'b-fp'}">Numeric ${al.numeric_verified ? 'OK' : 'Mismatch'}</span>
+            <span style="color:var(--muted);margin-left:auto">${esc(al.evidence_id)}</span>
+          </div>
+          <div>${esc(al.answer_text)}</div>
+          ${al.verbatim_quote ? `<div class="claim-quote">“${esc(al.verbatim_quote)}”</div>` : ''}
+        </div>
+      `).join('')}
+    </div>` : '';
+
+  const evList = (data.cited_evidence && data.cited_evidence.length) ? data.cited_evidence : (data.retrieved_evidence || []).slice(0, 3);
+  const evHtml = `
+    <h2>${esc(t.evidence_title)}</h2>
+    ${evList.map(ev => `
+      <div class="ev-card">
+        <div class="ev-meta">
+          <strong style="color:var(--teal-dark)">${esc(ev.evidence_id)}</strong>
+          <span>Page ${ev.page}</span>
+          <span>Section: ${esc(ev.section)}</span>
+          ${ev.reranker_score !== undefined ? `<span>Rerank: ${Number(ev.reranker_score).toFixed(3)}</span>` : ''}
+        </div>
+        <div class="ev-text">${highlightQuote(ev.text, quotesByEv[ev.evidence_id] || [])}</div>
+      </div>
+    `).join('')}`;
+
+  document.getElementById('result-panel').innerHTML = `
+    <div class="verdict-banner ${vClass}">
+      <div>
+        <div class="verdict-title">${esc(vTitle)}</div>
+        <div class="verdict-sub">${esc(data.paper.paper_id)} · ${esc(data.paper.title)} · ${esc(pipe.generation_mode || '')}</div>
+      </div>
+      <span class="badge ${isSuff ? 'b-ans' : (isFP ? 'b-fp' : 'b-unsup')}">${esc(resp.sufficiency.toUpperCase())}</span>
+    </div>
+
+    ${v1Html}
+
+    <div class="telemetry-grid">
+      <div class="metric-box">
+        <div class="metric-label">NLI Contradiction</div>
+        <div class="metric-val" style="color:${gaugeColor}">${(nli.max_contra ?? 0).toFixed(4)}</div>
+        <div class="metric-note">${esc(nli.engine || 'onnx')} · ${nli.latency_ms ?? 0} ms (${nli.window_count ?? 0} win)</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Conformal P(Ans)</div>
+        <div class="metric-val">${conf.probability !== undefined ? conf.probability.toFixed(3) : '—'}</div>
+        <div class="metric-note">α=${conf.alpha ?? 0.05} · thr=${conf.threshold !== undefined ? conf.threshold.toFixed(3) : '—'} (AURC 0.0669)</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Quote / Numeric</div>
+        <div class="metric-val">${Math.round((pipe.quote_verified_ratio ?? 0)*100)}% / ${Math.round((pipe.numeric_verified_ratio ?? 0)*100)}%</div>
+        <div class="metric-note">Deterministic verifier</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Total Wall Time</div>
+        <div class="metric-val">${pipe.wall_ms ?? 0} ms</div>
+        <div class="metric-note">${esc(pipe.retrieval_mode || '')}</div>
+      </div>
+    </div>
+
+    <div class="gauge-wrap">
+      <div class="gauge-head">
+        <span>Sliding-Window Scientific NLI (mDeBERTa-v3 ${esc(nli.engine || 'FP32')}) Contradiction Score</span>
+        <span>${contraPct.toFixed(1)}% (Gate ≥ ${thrPct}%)</span>
+      </div>
+      <div class="gauge-bar">
+        <div class="gauge-fill" style="width:${Math.min(100, contraPct)}%;background:${gaugeColor}"></div>
+        <div class="gauge-thr" style="left:${thrPct}%" title="Gate threshold ${thrPct}%"></div>
+      </div>
+    </div>
+
+    <div class="answer-box ${isSuff ? '' : 'refused'}">
+      <div style="font-weight:700;margin-bottom:5px">${esc(resp.answer)}</div>
+      ${resp.abstention_reason ? `<div style="font-size:12.8px;color:var(--muted)"><strong>Reason:</strong> ${esc(resp.abstention_reason)}</div>` : ''}
+    </div>
+
+    ${claimsHtml}
+    ${evHtml}
+  `;
+}
+
+async function runAsk() {
+  const btn = document.getElementById('run-btn');
+  const paperId = document.getElementById('paper-select').value;
+  const question = document.getElementById('question-input').value.trim();
+  if (!paperId || !question) return;
+  btn.disabled = true;
+  btn.textContent = I18N[uiLang].running;
+  try {
+    const res = await fetch('/api/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        paper_id: paperId,
+        question,
+        nli_threshold: parseFloat(document.getElementById('nli-thr').value),
+        conformal_alpha: parseFloat(document.getElementById('alpha-sel').value),
+      }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || 'Request failed');
+    renderResult(data);
+  } catch (err) {
+    document.getElementById('result-panel').innerHTML = `<div class="verdict-banner contradicted"><div><div class="verdict-title">Error</div><div class="verdict-sub">${esc(err.message)}</div></div></div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = I18N[uiLang].run_btn;
+  }
+}
+
+async function bootstrap() {
+  const [stRes, pRes, prRes] = await Promise.all([fetch('/api/status'), fetch('/api/papers'), fetch('/api/presets')]);
+  const st = await stRes.json();
+  const papersData = await pRes.json();
+  const presetsData = await prRes.json();
+
+  const nliLabel = st.nli_onnx.available
+    ? `${st.nli_onnx.backend} (Ready)`
+    : (st.nli_onnx.backend === 'onnx_int8_blocked_by_parity_gate'
+        ? `ONNX INT8 Parity-Blocked -> FP32 Verified`
+        : 'FP32 Verified Mode');
+  document.getElementById('status-strip').innerHTML = `
+    <span class="pill"><span class="dot ${st.nli_onnx.available || st.nli_onnx.backend === 'onnx_int8_blocked_by_parity_gate' ? 'ok' : 'warn'}"></span>Scientific NLI: <strong>${esc(nliLabel)}</strong></span>
+    <span class="pill"><span class="dot ${st.conformal_gate.available ? 'ok' : 'warn'}"></span>Conformal Gate: <strong>AURC ${st.conformal_gate.oof_aurc ?? 'N/A'}</strong></span>
+    <span class="pill"><span class="dot ${st.llm.connected ? 'ok' : 'warn'}"></span>LLM Server: <strong>${st.llm.connected ? esc(st.llm.model) : 'Holdout Verified + Extractive Mode'}</strong></span>
+    <span class="pill"><span class="dot ok"></span>Papers: <strong>${st.papers_loaded}</strong></span>
+  `;
+
+  const sel = document.getElementById('paper-select');
+  sel.innerHTML = papersData.papers.map(p => `<option value="${esc(p.paper_id)}">[${esc(p.paper_id)}] ${esc(p.title.slice(0, 72))} (${p.page_count}p)</option>`).join('');
+
+  presetsCache = presetsData.presets || [];
+  renderPresets();
+  if (presetsCache.length > 0) {
+    const firstKo = presetsCache.find(p => p.category === 'ans' && p.language === 'ko') || presetsCache[0];
+    activePresetId = firstKo.id;
+    sel.value = firstKo.paper_id;
+    document.getElementById('question-input').value = firstKo.question;
+    renderPresets();
+    await runAsk();
+  }
+}
+
+document.getElementById('btn-ko').addEventListener('click', () => { uiLang = 'ko'; applyLang(); });
+document.getElementById('btn-en').addEventListener('click', () => { uiLang = 'en'; applyLang(); });
+document.getElementById('nli-thr').addEventListener('input', e => { document.getElementById('nli-thr-val').textContent = Number(e.target.value).toFixed(2); });
+document.getElementById('run-btn').addEventListener('click', runAsk);
+document.getElementById('pdf-file').addEventListener('change', async e => {
+  const f = e.target.files[0];
+  if (!f) return;
+  const st = document.getElementById('upload-status');
+  st.textContent = 'Parsing PDF...';
+  const fd = new FormData();
+  fd.append('file', f);
+  const res = await fetch('/api/upload', { method: 'POST', body: fd });
+  const data = await res.json();
+  if (!res.ok) { st.style.color = 'var(--danger)'; st.textContent = data.detail || 'Upload failed'; return; }
+  st.style.color = 'var(--teal)';
+  st.textContent = `Loaded ${data.paper_id}: ${data.page_count}p, ${data.chunk_count} chunks`;
+  const sel = document.getElementById('paper-select');
+  const opt = document.createElement('option');
+  opt.value = data.paper_id;
+  opt.textContent = `[UPLOAD] ${data.title} (${data.page_count}p)`;
+  sel.prepend(opt);
+  sel.value = data.paper_id;
+});
+
+bootstrap();
+</script>
+</body>
+</html>

@@ -1,153 +1,81 @@
-# Results and observed limits
+# Results & Verification · Evidence-Grounded Paper Q&A v2
 
-[English](results.md) | [한국어](results_KO.md)
+[한국어](results.ko.md) · [README](../README.md) · [Architecture](architecture.md) · [Methodology & Decisions](methodology-and-decisions.md) · [Reproduction & Demo](reproduction.md)
 
-## Reading this report
+## 1. Locked Unseen Holdout Comparison (`corpus30`, 20 Papers · 240 Outputs)
 
-This report asks whether the system returns an answer when it should, cites an acceptable source location and includes requested information. These are separate checks, not a single accuracy score. A bilingual meaning group pairs questions that ask for the same information in English and Korean. Group-level success requires both languages, whereas the response-contract row counts individual outputs and checks their required format.
+All modeling choices, ablations, thresholds (`nli_contra_threshold = 0.95`, `post_nli = None`), and the 5-fold paper-grouped Conformal Gate were fixed on DEV (`10` papers, `120` outputs) before a single locked pass on Holdout (`20` papers, `80` answerable + `20` unsupported + `20` false-premise bilingual meaning groups = `240` outputs).
 
-DEV denotes the development questions used to decide whether a change should be adopted. Holdout denotes questions reserved from that decision process, with the earlier exposure limits recorded below. Freezing saves the chosen implementation and file hashes before evaluation so that later checks can identify the exact version. An unsupported request has no supplied evidence; a false-premise request assumes something the source does not support. Fact aliases are expected words or synonyms, so alias presence and citation location cannot replace a factual review of the answer.
+| Metric (Unseen Holdout) | v1 Final (Baseline) | **v2 Final (`Exp 4`)** | Delta & Significance |
+| :--- | ---: | ---: | :--- |
+| Valid response contract (`240` outputs) | `240/240` (100.0%) | **`240/240` (100.0%)** | Preserved |
+| Paired answerable retained (`80` groups) | `49/80` (61.3%) | **`68/80` (85.0%)** | **`+19` pairs** (`+11.25%p` all, `p = 0.0153`) |
+| Korean answerable retained (`80` outputs) | `50/80` (62.5%) | **`68/80` (85.0%)** | **`+18` outputs** (`+22.5%p`) |
+| Paired all required fact aliases (`80` groups) | `11/80` (13.8%) | **`33/80` (41.3%)** | **`3.0×` jump** (`+23.13%p` all, `p = 3.76e-05`) |
+| English / Korean all fact aliases (`80` each) | `43 / 15` | **`54 / 41`** | **Korean `2.73×`** (`15 → 41`) |
+| Acceptable source page hit (`160` outputs) | `61.3%` | **`76.9%`** | **`+15.62%p`** (`p = 0.0019`) |
+| Paired unsupported refused (`20` groups) | `18/20` (90.0%) | **`20/20` (100.0%)** | **`+2` pairs** (100% refusal) |
+| **False-premise refused (`EN / KO / Paired`)** | `2 / 17 / 2` (10.0%) | **`20 / 19 / 19` (95.0%)** | **`+50.0%p` all** (`p = 1.10e-05`), **EN `2/20 → 20/20`** |
+| Quote / numeric deterministic verification | Extractive | **`0.88 / 0.95`** | 95% numeric fidelity |
+| Semantic Judge completeness (`EN / KO / Paired`) | Not measured | **`0.849 / 0.711 / 0.690`** | **Mean faithfulness `0.888`** (`Qwen3-14B-AWQ`) |
+| Mean wall latency (`sec/q`) | `6.76 s/q` | **`1.77 s/q`** | **`3.8×` faster** (vLLM L4) |
 
-## Thirty paper comparison
+![Unseen Holdout v1 vs v2 Comparison](figures/paper-qna-holdout-comparison.png)
 
-Inputs were frozen before the baseline DEV run. The ten previously labelled papers are DEV; the twenty others previously had ingestion/search smoke usage. Their evaluation history is operator-attested, not independently audited. Model pretraining exposure is unknown. The pipeline receives the question and paper ID without scoring labels.
+### Exact Two-Sided McNemar & 2,000-Iteration Paper-Cluster Bootstrap 95% CI
 
-The DEV comparison contains 40 answerable, 10 unsupported and 10 false-premise paired groups:
+Source CSV: [`reports/holdout_statistical_tests.csv`](../reports/holdout_statistical_tests.csv)
 
-Both columns describe this project's own implementation using pretrained retrieval and translation models. "Initial development version" is the implementation at the start of this expansion study; "Final development version" is the implementation selected for publication after reviewing the experiments. The artifact identifiers `baseline` and `final` retain their original names for reproducibility.
+| Metric (`n` outputs) | v1 Rate | v2 Rate | Delta | 95% Cluster CI | v2-Only Gain (`n01`) | v1-Only Loss (`n10`) | Exact McNemar `p` |
+| :--- | ---: | ---: | ---: | :---: | ---: | ---: | ---: |
+| `answerable_retained` (`160`) | `0.7750` | **`0.8875`** | `+0.1125` | `[+0.0000, +0.2438]` | `34` | `16` | `0.01535` |
+| `all_fact_aliases` (`160`) | `0.3625` | **`0.5938`** | **`+0.2313`** | `[+0.1250, +0.3500]` | `58` | `21` | **`3.76e-05`** |
+| `acceptable_source_page_hit` (`160`) | `0.6125` | **`0.7688`** | **`+0.1562`** | `[+0.0375, +0.2875]` | `43` | `18` | **`0.00187`** |
+| `unsupported_refused` (`40`) | `0.9500` | **`1.0000`** | `+0.0500` | `[+0.0000, +0.1250]` | `2` | `0` | `0.50000` |
+| `false_premise_refused` (`40`) | `0.4750` | **`0.9750`** | **`+0.5000`** | `[+0.3994, +0.6250]` | `21` | `1` | **`1.10e-05`** |
 
-| Automatic check | Initial development version | Final development version |
-| --- | ---: | ---: |
-| Valid response contract | 120/120 | 120/120 |
-| Answerable request receives an answer | 23/40 | 23/40 |
-| All required fact aliases present | 8/40 | 8/40 |
-| Acceptable source page cited | 12/40 | 12/40 |
-| Unsupported request refused | 10/10 | 10/10 |
-| False-premise request refused | 0/10 | 0/10 |
-| Semantic accuracy | Not independently measured | Not independently measured |
+---
 
-The final twenty-paper comparison contains 80 answerable, 20 unsupported and 20 false-premise groups:
+## 2. DEV Ablation Progression (`10` Papers · `120` Outputs)
 
-| Automatic check | Initial development version | Final development version |
-| --- | ---: | ---: |
-| Valid response contract | 240/240 | 240/240 |
-| Answerable request receives an answer | 50/80 | 49/80 |
-| All required fact aliases present | 11/80 | 11/80 |
-| Acceptable source page cited | 32/80 | 31/80 |
-| Unsupported request refused | 18/20 | 18/20 |
-| False-premise request refused | 2/20 | 2/20 |
-| Semantic accuracy | Not independently measured | Not independently measured |
+Source CSV: [`reports/ablation_dev_summary.csv`](../reports/ablation_dev_summary.csv)
 
-All three DEV retrieval/selection variants were rejected under the frozen adoption criteria. The final default keeps the original retrieval and selection policy, adds source-to-answer alignment, and fixes recognition of scalar measurements in prose. Adjacent context, facet prioritization and bounded retry remain available as disabled experimental code. This is a measured stopping decision for this study, not proof that the task has reached its maximum possible quality.
+| Experiment (DEV 120 outputs) | `pair_ans` | `ko_ans` | `pair_facts` | `en / ko` | `unsup` | `fp (en/ko/pair)` | `quote/num` | `sec/q` | Decision |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | :---: |
+| `v1_final_dev` (Baseline) | `23/40` | `23/40` | `8/40` | `29 / 9` | `10/10` | `0 / 9 / 0` | extractive | `5.34` | Baseline |
+| `Exp 1C`: Base `Qwen3-4B-2507` + Guided JSON | **`40/40`** | **`40/40`** | **`25/40`** | **`35 / 27`** | `10/10` | `8 / 7 / 7` | `0.96/0.98` | `2.06` | Adopted LLM |
+| `Exp 1C-T`: Teacher `Qwen3-14B-AWQ` | `39/40` | `40/40` | `24/40` | `35 / 26` | `10/10` | `6 / 4 / 4` | `0.93/0.98` | `3.73` | Ceiling Check |
+| `Exp 2A`: Base 4B + FP32 Pre-NLI (`0.70`) | `35/40` | `36/40` | `21/40` | `32 / 25` | `10/10` | `10 / 10 / 10` | `0.96/0.97` | `1.72` | Threshold Low |
+| `Exp 2B`: Pre-NLI + Focused Post-NLI (`0.25`) | `31/40` | `32/40` | `20/40` | `32 / 22` | `10/10` | `10 / 10 / 10` | `0.97/0.96` | `1.73` | **Rejected** |
+| `Exp 3A`: 5-Chunk LoRA SFT + Pre-NLI (`0.70`) | `32/40` | `33/40` | `21/40` | `34 / 22` | `10/10` | `10 / 10 / 10` | `0.93/0.97` | `1.83` | **Rejected** |
+| **`Exp 2C`: Base 4B + FP32 Pre-NLI (`0.95`)** | **`37/40`** | **`37/40`** | **`24/40`** | **`35 / 26`** | **`10/10`** | **`10 / 10 / 10`** | **`0.99/0.97`** | **`2.06`** | **DEV Winner** |
 
-On the previously published CNN regression, the English answer now preserves the reported Pearson coefficient 0.86, damping 0.01 and non-convergence condition. The Korean answer still misses these facts. [Source and outputs](../data/benchmarks/corpus30/results/scalar-regression.json) and [curator review](../data/benchmarks/corpus30/results/scalar-regression-review.json) record this narrow improvement separately from corpus30. It is not a successful bilingual group or a general accuracy claim.
+![DEV Ablation Progression](figures/paper-qna-dev-ablation.png)
 
-The expanded final comparison does not establish an overall quality improvement: paired alias completeness remains 11/80 and response retention moves from 50/80 to 49/80. The lost response group is `paper-019-slope`. Its final Korean translation omitted the Greek identifier in the newly eligible scalar measurement and failed equation validation; the earlier Korean answer lacked the requested slope estimate. This is an observed response-state difference and a source-based operator inspection, not an independent semantic-quality judgment. Holdout results were not used to adjust the final policy.
+---
 
-The final per-language alias diagnostics are 43/80 English and 15/80 Korean; both languages complete the same group in 11/80 cases. Different synonym and terminology coverage limits cross-language interpretation. All 708 exposed source-alignment units across the full 360-output run can be reconstructed from the stored evidence. [Separate Linux reproduction](../data/benchmarks/corpus30/results/reproduction/README.md) matched twelve preselected answer, alignment and citation outputs after rebuilding all corpus embeddings. The source/runtime comparison uses recorded files, while timing and reranker floating-point scores are excluded.
+## 3. Scientific NLI Separation & Paper-Grouped Conformal Gate
 
-Sources: [DEV initial development version](../data/benchmarks/corpus30/results/baseline-dev-report.json), [DEV final development version](../data/benchmarks/corpus30/results/final-dev-report.json), [evaluation initial development version](../data/benchmarks/corpus30/results/baseline-holdout-report.json), [evaluation final development version](../data/benchmarks/corpus30/results/final-holdout-report.json). [Raw outputs](../data/benchmarks/corpus30/results/) expose answers, original evidence, diagnostics and timings. [Development decisions](../data/benchmarks/corpus30/results/comparison.json) preserve rejected variants and the stop rule.
+- **FP32 Scientific NLI (`mDeBERTa-v3`) DEV separation**: Answerable contradiction median = **`0.001`** vs. False-Premise minimum = **`0.999`** (`20/20 >= 0.999`). Raising the gate threshold from `0.70` into the flat `0.90–0.99` plateau (`0.95`) recovered `+2` answerable pairs (`35 → 37/40`) and `+3` paired fact-alias groups (`21 → 24/40`) with zero loss in false-premise defense (`10/10/10`).
+- **Paper-Grouped 5-Fold OOF Conformal Gate (`reports/calibrated_gate.json`)**:
+  - **OOF AURC = `0.0669`**
+  - `alpha = 0.02` (`thr = 0.8993`): `86.3%` answerable coverage, `2.5%` negative leak
+  - `alpha = 0.05` (`thr = 0.8727`, recommended): **`88.7%` answerable coverage**, **`5.0%` negative leak**
+  - `alpha = 0.10` (`thr = 0.4196`): `98.8%` answerable coverage, `10.0%` negative leak
 
-Paired checks require both languages. Fact aliases are lexical diagnostics and can accept a word in an incorrect claim or miss a correct synonym. Acceptable pages are alternative source locations, rather than a requirement to cite every page. Refusal means the canonical insufficient response with no citations; a sufficient corrective answer to a false premise still does not count as a refusal. Semantic accuracy is not independently measured.
+![Scientific NLI & Conformal Risk-Coverage](figures/paper-qna-nli-conformal.png)
 
-An early baseline job produced three outputs and was terminated before final selection. A later candidate execution produced 169 outputs before a scalar-prose bug was found by reading the previously disclosed CNN paper; it was stopped and excluded. The correction used that known source, not corpus30 outputs. The answers and scores from neither interrupted execution were inspected or used for score-guided tuning according to the operator record. Case IDs and progress counts were read. Formal all-paper executions followed the final source freeze. This procedural deviation is disclosed; the non-use assertion is not independently attested. Disclosed evaluation questions are now regression data for future work.
+---
 
-The formal quality executions overlap in two independent processes on the same CPU host, with eight Torch threads each and separate embedding caches. Per-question wall times are preserved for diagnostics but cannot support a controlled latency comparison. See [execution conditions](../data/benchmarks/corpus30/results/execution_context.json). The three development strategy trials ran separately; their recorded times do not measure the final service under load.
+## 4. Local Hardware Verification (`Windows 11 · RTX 3060 Laptop GPU 6 GB`)
 
-Reproduce from the repository root with inference dependencies and cached pinned models:
+Source JSON: [`reports/local_verification.json`](../reports/local_verification.json)
 
-```bash
-python -B scripts/validate_corpus_benchmark.py
-python -B scripts/replay_corpus_benchmark.py --variant final --split holdout --offline --output outputs/final-replay.json
-python -B scripts/replay_corpus_benchmark.py --variant baseline --split holdout --offline --output outputs/baseline-replay.json
-python -B scripts/corpus_benchmark.py evaluate --predictions outputs/final-replay.json --output outputs/final-replay-report.json
-```
+| Local Runtime Check | Configuration | Measured Result | Gate |
+| :--- | :--- | :--- | :---: |
+| **ONNX INT8 Deployment Gate** | `model_quantized.onnx` (`322.67 MiB`, CPU 4T, TorchScript `opset 17`) | Padding drift `abs_diff = 0.0373` (`0.0616 → 0.0989`); caught only `2/20` Holdout false premises at `0.95` (`288.0 ms/window`) | **BLOCKED** |
+| **RTX 3060 FP32 PyTorch NLI** | `mDeBERTa-v3-base` FP32 on NVIDIA RTX 3060 Laptop (`6,144 MiB`) | **`1.048 GiB` VRAM** (`1.610 GiB` peak), padding invariance **`abs_diff = 0.000000`**, **`27.79 ms/window`** (`10.4×` faster than CPU ONNX), sample false-premise `0.9986` | **PASS** |
+| **FastAPI Web Demo & API** | `uvicorn` on `127.0.0.1:18080`, `30` papers + `10` Holdout presets | `8/8` `pytest` passing, live browser check with `0` console/HTTP errors, live preset switching & Conformal telemetry verified | **PASS** |
+| **Frozen `corpus-v2-holdout`** | `30` unseen arXiv validation papers (`677` chunks) | `chunks.jsonl` & `manifest_v2.json` SHA-256 checksums `2/2` verified | **PASS** |
 
-The replay command uses [measured source snapshots](../data/baselines/corpus30/) in isolated temporary folders and regenerates dense embeddings. Public validation recalculates recorded metrics without models or private PDFs. Parsing and visual reasoning are outside this answer benchmark; API and upload tests cover those interfaces separately. [Request planning and alignment](evidence_planning.md) describes the implementation.
-
-## Previous four-paper evaluation and reproduction
-
-The following measurements belong to the preserved earlier runtime. They are separate historical regression evidence and do not describe the expanded current benchmark.
-
-### Earlier real-paper evaluation
-
-Each split contains two papers, 16 bilingual meaning groups and 32 language outputs. Ten groups are answerable, four unsupported and two have false premises. A group passes only when both English and Korean pass. DEV informed development; the evaluation papers were executed after freezing the final runtime. Their results are now disclosed and must be treated as regression evidence during future tuning.
-
-| Automatic check | DEV | Frozen evaluation papers |
-| --- | ---: | ---: |
-| Valid response contract | 32/32 outputs | 32/32 outputs |
-| Answerable request receives an answer | 8/10 groups | 7/10 groups |
-| Unsupported request refused | 4/4 groups | 1/4 groups |
-| False-premise request refused | 2/2 groups | 0/2 groups |
-| Answer returned for a negative request | 0/6 groups | 5/6 groups |
-| All required pages cited | 7/10 answerable groups | 5/10 answerable groups |
-| All required lexical markers present | 4/10 answerable groups | 1/10 answerable groups |
-| Semantic accuracy | Not independently measured | Not independently measured |
-
-Sources: [DEV report](../data/quality_benchmark/runs/2026-10-10-final/real-dev-completion-report.json), [evaluation report](../data/quality_benchmark/runs/2026-10-10-final/real-holdout-report.json), [DEV outputs](../data/quality_benchmark/runs/2026-10-10-final/real-dev-completion-predictions.json), [evaluation outputs](../data/quality_benchmark/runs/2026-10-10-final/real-holdout-predictions.json).
-
-English retained 10/10 answerable outputs and Korean 7/10 on the evaluation papers. Unsupported refusal was 3/4 in English and 2/4 in Korean; false-premise refusal was 1/2 and 0/2 respectively. Status, lexical coverage and page coverage are distinct from factual correctness. Source-backed facts can still be irrelevant to the question, and an expected page can be cited while its requested facts are omitted.
-
-The [freeze receipt](../data/quality_benchmark/runs/2026-10-10-final/real-paper-runtime-freeze.json) and [measured source snapshot](../data/quality_benchmark/runs/2026-10-10-final/real-paper-runtime-freeze-sources/) preserve 20 implementation files and 10 configurations. Hash checks run before and after evaluation. An earlier candidate run existed but was excluded from the primary comparison; its outputs were not used for subsequent DEV changes according to the operator's record. That non-use is not independently attested. A new accuracy estimate requires new evaluation papers and independent factual review.
-
-### Failures observed in source review
-
-The following observations come from agent inspection of saved answers and source text. They are not independently scored semantic accuracy.
-
-| Area | Observed failure | Practical implication |
-| --- | --- | --- |
-| Numerical results | A cited chunk contains CNN correlation R = 0.86, damping 0.01 and non-convergence, but the answer omits all three. | Correct page retrieval does not establish answer completeness. |
-| Lists | Korean augmentation omits horizontal flipping; baseline lists can lose an item at chunk boundaries. | Review every requested item and its qualifiers. |
-| Comparisons | Retraining answers omit the approximation/cost comparison; operator answers omit the fixed-policy condition. | Retain both comparison targets and scope. |
-| Technical translation | Hessian-vector products becomes “제품”; metric and differentiability terminology is mistranslated. | Protected terms and numerical checks do not establish semantic fidelity. |
-| Unsupported requests | A clinical-trial question receives Atari results; banking and credit requests receive unrelated optimization facts. | Valid source references do not establish question relevance. |
-| False premises | Universal contraction is explicitly denied, but the answer is still marked sufficient without the requested universal rate. | A negative answer return is not necessarily a fabricated affirmative claim; refusal/status also needs review. |
-
-The default path remains extraction plus translation. The [bounded generative model trial](experiments.md) records its adoption decision separately.
-
-### Runtime measurements
-
-Windows CPU measurements use the same [49-chunk calibration paper](../data/quality_benchmark/runs/2026-10-10-final/runtime-calibration-chunks.jsonl), one excluded warm-up and ten repetitions of the same temperature question. The models use eight Torch threads. Initial activation and deferred Korean model loading are included in cold wall time.
-
-| Condition | Cold wall | Warm p50 | Warm p95 | Peak process RSS |
-| --- | ---: | ---: | ---: | ---: |
-| [English](../data/quality_benchmark/runs/2026-10-10-final/runtime-en-enabled.json) | 19.912 s | 2.134 s | 2.201 s | 1.31 GiB |
-| [Korean, repeated sentence cache](../data/quality_benchmark/runs/2026-10-10-final/runtime-ko-enabled.json) | 25.861 s | 2.301 s | 2.379 s | 4.69 GiB |
-| [Korean, sentence cache cleared per request](../data/quality_benchmark/runs/2026-10-10-final/runtime-ko-disabled.json) | 26.756 s | 4.337 s | 4.730 s | 4.69 GiB |
-
-These are repeated-question measurements, not diverse-query latency, throughput, concurrency or an SLA. Clearing sentence outputs retains loaded models. A fresh process does not clear OS file caches. Nested stage timings must not be added twice. The environment is Python 3.12.7, CPU Torch 2.14.1, Transformers 5.16.1, Sentence Transformers 6.0.0 and NumPy 1.26.4.
-
-### Environment and HTTP reproduction
-
-A fresh Linux container with Python 3.12.15 and CPU Torch 2.5.1 reproduced all 32 saved evaluation answers, cited content and report metrics. Dense embeddings were regenerated. Reranker scores differed by at most 8.94e-6. Seven HTTP cases passed: five authored PDFs and two English/Korean questions on the bundled original PDF. The original paper produced 11 text pages and 63 chunks. The UI health endpoint passed.
-
-See the [environment summary](../data/quality_benchmark/reproduction/separate_environment_summary.json), [answer comparison](../data/quality_benchmark/reproduction/holdout-comparison.json) and [HTTP comparison](../data/quality_benchmark/reproduction/api-comparison.json). The reproduction ran 367 tests and nine public validators. This describes the measured snapshot, not every future source change.
-
-The Linux environment shared the physical host through WSL2 and pinned model files through a read-only cache. First model downloading and interactive browser behavior were not tested. Private corpus checks were skipped. The runs were agent-operated and do not establish independent human evaluation. Host-specific execution logs remain local; public summaries and comparisons retain the measured conclusions.
-
-### Reproduce
-
-For public integrity and regression checks:
-
-```bash
-python -m pip install -r requirements-test.txt
-python -B scripts/verify_project.py
-```
-
-For actual models, install `requirements.txt`. `--offline` requires all pinned models to be cached; omit it for first download. Generate current DEV outputs and a report without overwriting published artifacts:
-
-```bash
-python -B scripts/quality_benchmark.py --config data/quality_benchmark/real_paper_config.json validate
-python -B scripts/quality_benchmark.py --config data/quality_benchmark/real_paper_config.json run --split dev --offline --device cpu --embedding-cache outputs/real-dev-embeddings.npz --output outputs/real-dev-predictions.json
-python -B scripts/quality_benchmark.py --config data/quality_benchmark/real_paper_config.json evaluate --predictions outputs/real-dev-predictions.json --output outputs/real-dev-report.json
-```
-
-The disclosed evaluation set can be replayed for regression using the freeze/run commands in [scripts](../scripts/README.md). Replay does not provide a new unseen estimate. The [quality benchmark](quality_benchmark.md) explains split and scoring rules.
-
-For the upload and HTTP path, run Compose, then execute on the host:
-
-```bash
-python -B scripts/check_deployment.py --base-url http://127.0.0.1:8000 --ui-url http://127.0.0.1:8501 --real-cases data/quality_benchmark/deployment/real_pdf_cases.json --output outputs/deployment/reproduction.json
-```
-
-The [licensed PDF and cases](../data/quality_benchmark/deployment/README.md) are included in the public source. Follow the [external review procedure](third_party_review.md) for another person's factual review. Historical retrieval scores and historical answer reviews remain in [historical evaluation](evaluation.md), attached to their original implementation snapshots.
+> **Key Deployment Finding**: Just as `mDeBERTa-v3` disentangled attention collapsed under `BF16` training, legacy TorchScript `torch.onnx.export` + dynamic `INT8` quantization broke sequence-padding invariance on `DebertaV2SelfAttention`. Our local parity gate caught and blocked the degraded ONNX artifact automatically, confirming that **FP32 PyTorch on RTX 3060 (`1.05 GiB` VRAM, `27.8 ms/window`, `0.000000` padding drift)** is both cleaner and `10.4×` faster while leaving `~4.4 GiB` VRAM for `Qwen3-4B-Instruct-2507 Q4_K_M` (`~2.7 GiB`).

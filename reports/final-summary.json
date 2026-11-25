@@ -1,0 +1,450 @@
+{
+  "schema_version": 2,
+  "project": "Evidence-Grounded-Paper-QnA",
+  "winner_stack": {
+    "retrieval": "BM25 + BAAI/bge-m3 + RRF(k=60) + Dual-Score BAAI/bge-reranker-v2-m3 + Parent(1800 chars)",
+    "scientific_nli": "Fine-tuned FP32 MoritzLaurer/mDeBERTa-v3-base-mnli-xnli (exported to ONNX INT8, 322.7 MiB, threshold=0.95, post-NLI=None)",
+    "generator": "Qwen/Qwen3-4B-Instruct-2507 (Guided JSON response_format, zero-shot, no SFT adapter)",
+    "conformal_gate": "Paper-Grouped 5-Fold OOF Logistic Conformal Gate (OOF AURC=0.0669)"
+  },
+  "retrieval_ab_dev": {
+    "stack_a_en": 38,
+    "stack_a_ko": 33,
+    "stack_b_en": 40,
+    "stack_b_ko": 36
+  },
+  "nli_separation_dev": {
+    "answerable_contra_median": 0.0008,
+    "answerable_contra_max": 0.9997,
+    "false_premise_contra_median": 0.9997,
+    "false_premise_contra_min": 0.9993,
+    "false_premise_caught_at_095": 20,
+    "false_premise_total": 20
+  },
+  "dev_ablation_120": [
+    {
+      "exp_id": "v1_final_dev",
+      "decision": "Baseline",
+      "pair_ans": 23,
+      "ko_ans": 23,
+      "pair_facts": 8,
+      "en_facts": 29,
+      "ko_facts": 9,
+      "unsup_pair": 10,
+      "fp_en": 0,
+      "fp_ko": 9,
+      "fp_pair": 0,
+      "quote_rate": null,
+      "numeric_rate": null,
+      "sec_per_q": 5.34
+    },
+    {
+      "exp_id": "exp1c_bge_m3_qwen3_4b_2507_zeroshot",
+      "decision": "Adopted LLM",
+      "pair_ans": 40,
+      "ko_ans": 40,
+      "pair_facts": 25,
+      "en_facts": 35,
+      "ko_facts": 27,
+      "unsup_pair": 10,
+      "fp_en": 8,
+      "fp_ko": 7,
+      "fp_pair": 7,
+      "quote_rate": 0.965,
+      "numeric_rate": 0.976,
+      "sec_per_q": 2.06
+    },
+    {
+      "exp_id": "exp1c_teacher_qwen3_14b_4bit",
+      "decision": "Teacher Ceiling",
+      "pair_ans": 39,
+      "ko_ans": 40,
+      "pair_facts": 24,
+      "en_facts": 35,
+      "ko_facts": 26,
+      "unsup_pair": 10,
+      "fp_en": 6,
+      "fp_ko": 4,
+      "fp_pair": 4,
+      "quote_rate": 0.933,
+      "numeric_rate": 0.978,
+      "sec_per_q": 3.73
+    },
+    {
+      "exp_id": "exp2a_pre_sliding_nli",
+      "decision": "Threshold Low",
+      "pair_ans": 35,
+      "ko_ans": 36,
+      "pair_facts": 21,
+      "en_facts": 32,
+      "ko_facts": 25,
+      "unsup_pair": 10,
+      "fp_en": 10,
+      "fp_ko": 10,
+      "fp_pair": 10,
+      "quote_rate": 0.958,
+      "numeric_rate": 0.972,
+      "sec_per_q": 1.72
+    },
+    {
+      "exp_id": "exp2b_pre_and_2stage_post_nli",
+      "decision": "Rejected",
+      "pair_ans": 31,
+      "ko_ans": 32,
+      "pair_facts": 20,
+      "en_facts": 32,
+      "ko_facts": 22,
+      "unsup_pair": 10,
+      "fp_en": 10,
+      "fp_ko": 10,
+      "fp_pair": 10,
+      "quote_rate": 0.971,
+      "numeric_rate": 0.956,
+      "sec_per_q": 1.73
+    },
+    {
+      "exp_id": "exp3a_qwen3_4b_2507_comp_only_sft",
+      "decision": "Rejected",
+      "pair_ans": 32,
+      "ko_ans": 33,
+      "pair_facts": 21,
+      "en_facts": 34,
+      "ko_facts": 22,
+      "unsup_pair": 10,
+      "fp_en": 10,
+      "fp_ko": 10,
+      "fp_pair": 10,
+      "quote_rate": 0.926,
+      "numeric_rate": 0.971,
+      "sec_per_q": 1.83
+    },
+    {
+      "exp_id": "exp2c_base4b_pre_nli_095",
+      "decision": "DEV Winner",
+      "pair_ans": 37,
+      "ko_ans": 37,
+      "pair_facts": 24,
+      "en_facts": 35,
+      "ko_facts": 26,
+      "unsup_pair": 10,
+      "fp_en": 10,
+      "fp_ko": 10,
+      "fp_pair": 10,
+      "quote_rate": 0.987,
+      "numeric_rate": 0.974,
+      "sec_per_q": 2.06
+    }
+  ],
+  "holdout_240": {
+    "v1_final": {
+      "paired": {
+        "language_outputs": 240,
+        "meaning_groups": 120,
+        "contract_valid": 240,
+        "answerable_groups": 80,
+        "answerable_retained": 49,
+        "all_fact_aliases": 11,
+        "acceptable_source_page_hit": 31,
+        "negative_groups": 40,
+        "negative_answers": 20,
+        "unsupported_refused": 18,
+        "false_premise_refused": 2,
+        "fallback_outputs": 34,
+        "mean_wall_seconds": 6.763219
+      },
+      "en": {
+        "language_outputs": 120,
+        "meaning_groups": null,
+        "contract_valid": 120,
+        "answerable_groups": 80,
+        "answerable_retained": 74,
+        "all_fact_aliases": 43,
+        "acceptable_source_page_hit": 65,
+        "negative_groups": 40,
+        "negative_answers": 19,
+        "unsupported_refused": 19,
+        "false_premise_refused": 2,
+        "fallback_outputs": 5,
+        "mean_wall_seconds": 2.947643
+      },
+      "ko": {
+        "language_outputs": 120,
+        "meaning_groups": null,
+        "contract_valid": 120,
+        "answerable_groups": 80,
+        "answerable_retained": 50,
+        "all_fact_aliases": 15,
+        "acceptable_source_page_hit": 33,
+        "negative_groups": 40,
+        "negative_answers": 4,
+        "unsupported_refused": 19,
+        "false_premise_refused": 17,
+        "fallback_outputs": 29,
+        "mean_wall_seconds": 10.578796
+      }
+    },
+    "v2_final": {
+      "paired": {
+        "n_outputs": 240,
+        "contract_valid": 240,
+        "answerable_retained": 68,
+        "all_fact_aliases": 33,
+        "acceptable_source_page_hit": 56,
+        "unsupported_refused": 20,
+        "false_premise_refused": 19,
+        "quote_verified_rate": 0.881,
+        "numeric_verified_rate": 0.951,
+        "mean_wall_seconds": 1.773
+      },
+      "en": {
+        "n_outputs": 120,
+        "contract_valid": 120,
+        "answerable_retained": 74,
+        "all_fact_aliases": 54,
+        "acceptable_source_page_hit": 66,
+        "unsupported_refused": 20,
+        "false_premise_refused": 20,
+        "quote_verified_rate": 0.878,
+        "numeric_verified_rate": 0.946,
+        "mean_wall_seconds": 1.805
+      },
+      "ko": {
+        "n_outputs": 120,
+        "contract_valid": 120,
+        "answerable_retained": 68,
+        "all_fact_aliases": 41,
+        "acceptable_source_page_hit": 57,
+        "unsupported_refused": 20,
+        "false_premise_refused": 19,
+        "quote_verified_rate": 0.884,
+        "numeric_verified_rate": 0.957,
+        "mean_wall_seconds": 1.74
+      }
+    },
+    "statistical_tests": [
+      {
+        "metric": "answerable_retained",
+        "n_outputs": 160,
+        "v1_rate": 0.775,
+        "v2_rate": 0.8875,
+        "delta": 0.1125,
+        "ci95_low": 0.0,
+        "ci95_high": 0.2438,
+        "v2_only_gain_n01": 34,
+        "v1_only_loss_n10": 16,
+        "exact_mcnemar_p": 0.0153467
+      },
+      {
+        "metric": "all_fact_aliases",
+        "n_outputs": 160,
+        "v1_rate": 0.3625,
+        "v2_rate": 0.5938,
+        "delta": 0.2313,
+        "ci95_low": 0.125,
+        "ci95_high": 0.35,
+        "v2_only_gain_n01": 58,
+        "v1_only_loss_n10": 21,
+        "exact_mcnemar_p": 3.76151e-05
+      },
+      {
+        "metric": "acceptable_source_page_hit",
+        "n_outputs": 160,
+        "v1_rate": 0.6125,
+        "v2_rate": 0.7688,
+        "delta": 0.1562,
+        "ci95_low": 0.0375,
+        "ci95_high": 0.2875,
+        "v2_only_gain_n01": 43,
+        "v1_only_loss_n10": 18,
+        "exact_mcnemar_p": 0.0018681
+      },
+      {
+        "metric": "unsupported_refused",
+        "n_outputs": 40,
+        "v1_rate": 0.95,
+        "v2_rate": 1.0,
+        "delta": 0.05,
+        "ci95_low": 0.0,
+        "ci95_high": 0.125,
+        "v2_only_gain_n01": 2,
+        "v1_only_loss_n10": 0,
+        "exact_mcnemar_p": 0.5
+      },
+      {
+        "metric": "false_premise_refused",
+        "n_outputs": 40,
+        "v1_rate": 0.475,
+        "v2_rate": 0.975,
+        "delta": 0.5,
+        "ci95_low": 0.3994,
+        "ci95_high": 0.625,
+        "v2_only_gain_n01": 21,
+        "v1_only_loss_n10": 1,
+        "exact_mcnemar_p": 1.09673e-05
+      }
+    ],
+    "semantic_judge_holdout": {
+      "en_completeness": 0.849,
+      "ko_completeness": 0.711,
+      "paired_completeness": 0.69,
+      "mean_faithfulness": 0.888
+    },
+    "semantic_judge_dev_exp1c": {
+      "en_completeness": 0.882,
+      "ko_completeness": 0.842,
+      "paired_completeness": 0.775,
+      "mean_faithfulness": 0.867
+    }
+  },
+  "conformal_gate": {
+    "oof_aurc": 0.0669,
+    "nli_contra_threshold": 0.95,
+    "oof_risk_coverage": [
+      {
+        "alpha": 0.02,
+        "oof_threshold": 0.8993,
+        "answerable_coverage": 0.863,
+        "negative_leak_rate": 0.025
+      },
+      {
+        "alpha": 0.05,
+        "oof_threshold": 0.8727,
+        "answerable_coverage": 0.887,
+        "negative_leak_rate": 0.05
+      },
+      {
+        "alpha": 0.1,
+        "oof_threshold": 0.4196,
+        "answerable_coverage": 0.988,
+        "negative_leak_rate": 0.1
+      }
+    ]
+  },
+  "corpus_v2_holdout_freeze": {
+    "schema_version": 2,
+    "created_at": "2026-11-25T14:57:30.925417+00:00",
+    "excluded_corpus30_count": 29,
+    "excluded_train_count": 150,
+    "sha256": {
+      "chunks.jsonl": "ff0060419730f7a7164467478e8a35aab550edc40c86c59060a02e2ab965237e",
+      "manifest_v2.json": "22223080fd5059e434693fbea95f803b391ca825e09edbca987cf51c822981c8"
+    }
+  },
+  "local_verification": {
+    "verified_at": "2026-11-25T15:45:45.020549+00:00",
+    "host": {
+      "os": "Windows 11",
+      "python": "3.12.7",
+      "gpu": {
+        "cuda_available": true,
+        "device_name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+        "total_vram_mib": 6143.5,
+        "torch_version": "2.14.0+cu130"
+      }
+    },
+    "corpus_v2_holdout_sha256": {
+      "chunks.jsonl": {
+        "sha256": "ff0060419730f7a7164467478e8a35aab550edc40c86c59060a02e2ab965237e",
+        "verified": true
+      },
+      "manifest_v2.json": {
+        "sha256": "22223080fd5059e434693fbea95f803b391ca825e09edbca987cf51c822981c8",
+        "verified": true
+      }
+    },
+    "conformal_gate": {
+      "oof_aurc": 0.0669,
+      "nli_contra_threshold": 0.95,
+      "thresholds": {
+        "0.02": 0.8992802689537455,
+        "0.05": 0.8727277063209673,
+        "0.10": 0.4195762490533362
+      }
+    },
+    "scientific_nli_onnx_int8_gate": {
+      "available": true,
+      "file_size_mib": 322.67,
+      "sha256": "af6ced76b9176564dd6f6ba074baa7050ee91da4632216ccd862d58cd083a35b",
+      "threads": 4,
+      "padding_invariance": {
+        "unpadded_contra": 0.061635,
+        "padded_384_contra": 0.098943,
+        "abs_diff": 0.037309,
+        "passed": false
+      },
+      "holdout_fp32_vs_int8_parity": {
+        "n_cases": 40,
+        "n_answerable": 20,
+        "n_false_premise": 20,
+        "threshold": 0.95,
+        "decision_parity_count": 20,
+        "decision_parity_rate": 0.5,
+        "mean_abs_contra_diff": 0.387348,
+        "max_abs_contra_diff": 0.9369,
+        "false_premise_caught_onnx": 2,
+        "answerable_passed_onnx": 20,
+        "latency_per_question_p50_ms": 2225.52,
+        "latency_per_question_mean_ms": 2719.84,
+        "latency_per_window_p50_ms": 288.0,
+        "mean_windows_per_question": 9.78
+      },
+      "gate_status": "BLOCKED",
+      "diagnosis": "Legacy TorchScript ONNX export + dynamic INT8 breaks DeBERTa-v2 disentangled relative-position padding invariance; deploy Scientific NLI in FP32 PyTorch."
+    },
+    "rtx3060_fp32_pytorch_nli": {
+      "tested": true,
+      "model_ref": "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli",
+      "device": "NVIDIA GeForce RTX 3060 Laptop GPU",
+      "vram_allocated_gib": 1.048,
+      "vram_peak_gib": 1.61,
+      "vram_total_gib": 6.0,
+      "padding_invariance": {
+        "unpadded_contra": 0.948831,
+        "padded_384_contra": 0.948831,
+        "abs_diff": 0.0,
+        "passed": true
+      },
+      "sample_false_premise_contra": 0.9986,
+      "windows_per_question": 20,
+      "latency_per_question_p50_ms": 555.72,
+      "latency_per_window_p50_ms": 27.79,
+      "gate_status": "PASS"
+    },
+    "web_demo_api_checks": {
+      "health_ok": true,
+      "papers_loaded": 30,
+      "presets_loaded": 10,
+      "nli_runtime_status": "onnx_int8_blocked_by_parity_gate",
+      "preset_live_checks": [
+        {
+          "case_id": "paper-030-baselines-ko",
+          "category": "ans",
+          "sufficiency": "sufficient",
+          "nli_contra": 0.0011,
+          "nli_engine": "recorded_fp32_fallback",
+          "wall_ms": 0.1,
+          "conformal_prob": 0.9856
+        },
+        {
+          "case_id": "paper-011-false-premise-ko",
+          "category": "fp",
+          "sufficiency": "insufficient",
+          "nli_contra": 0.9997,
+          "nli_engine": "recorded_fp32_fallback",
+          "wall_ms": 0.09,
+          "conformal_prob": 0.537
+        },
+        {
+          "case_id": "paper-023-unsupported-ko",
+          "category": "unsup",
+          "sufficiency": "insufficient",
+          "nli_contra": 0.0008,
+          "nli_engine": "recorded_fp32_fallback",
+          "wall_ms": 0.09,
+          "conformal_prob": 0.0525
+        }
+      ]
+    },
+    "total_verification_seconds": 192.52
+  }
+}

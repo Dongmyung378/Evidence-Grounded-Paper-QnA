@@ -1,47 +1,21 @@
-# Local source data; redistribute only after checking each paper's license.
-data/raw/qasper/
-data/raw/papers/*.pdf
-data/processed/reranker_pairs_*.jsonl
-
-# Generated model/index artifacts.
-data/processed/*.npy
-data/processed/*.npz
-
-# Python cache.
+# Local caches, runtime uploads, large model weights, and scratch outputs
 __pycache__/
 *.py[cod]
 .pytest_cache/
-
-# Local task and document-review scratch directories.
+.venv/
 .tmp_*/
-
-# Local environment overrides and secrets. Commit only the example file.
+*.log
 .env
 .env.*
-!.env.example
 
-# Private implementation journal. Keep day-by-day notes off GitHub.
-local_notes/
-
-# Private uploaded PDFs, per-paper artifacts, and local job metadata.
-data/runtime/
-
-# Local benchmark runs; only deliberately reviewed results are versioned.
-data/quality_benchmark/*.local.json
+# Large binary weights (downloaded/extracted locally, never pushed to GitHub)
+models/
 outputs/
-
-# Private writing and scratch output. Published benchmark evidence is allowlisted.
+data/raw/
+data/runtime/
+data/processed/*.npy
+data/processed/*.npz
+local_notes/
 private_notes/
 personal_notes/
 work_logs/
-*.log
-data/quality_benchmark/runs/*
-!data/quality_benchmark/runs/2026-10-10/
-data/quality_benchmark/runs/2026-10-10/*
-!data/quality_benchmark/runs/2026-10-10/answerability-dev-calibration.json
-!data/quality_benchmark/runs/2026-10-10-v2/
-!data/quality_benchmark/runs/2026-10-10-final/
-data/quality_benchmark/runs/2026-10-10-final/docker-container-inspect.jsonl
-data/quality_benchmark/runs/2026-10-10-final/docker-backend-*.json
-data/quality_benchmark/runs/2026-10-10-final/docker-ui-*.json
-!data/quality_benchmark/runs/answer-builder-pilot/

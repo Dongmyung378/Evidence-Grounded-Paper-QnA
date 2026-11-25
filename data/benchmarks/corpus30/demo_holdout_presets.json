@@ -1,0 +1,1083 @@
+[
+  {
+    "id": "paper-030-baselines-en",
+    "category": "ans",
+    "language": "en",
+    "paper_id": "paper-030",
+    "paper_title": "Predicting Quantifiability from Primary Screens to Prioritize Dose-Response Profiling",
+    "question": "Which three screening heuristics or ranking baselines are compared with the multivariable predictor?",
+    "en_query": null,
+    "v1_answered": true,
+    "v1_all_facts": true,
+    "v1_refused": false,
+    "v2_response": {
+      "answer": "Mean three-point activity is the principal screening heuristic, and maximum three-point activity and random ranking are additional baselines compared with the multivariable predictor. Logistic regression with class balancing, trained on standardized values of the full screening stage feature set, provides a linear comparator used in comparative analyses. Isolated random forests trained on the 16 three-point features alone or on Morgan fingerprints alone are also used as baselines for comparison.",
+      "evidence_ids": [
+        "ev-01-paper-030-p004-c002"
+      ],
+      "sufficiency": "sufficient",
+      "abstention_reason": null
+    },
+    "v2_cited_evidence": [
+      {
+        "evidence_id": "ev-01-paper-030-p004-c002",
+        "paper_id": "paper-030",
+        "chunk_id": "paper-030-p004-c002",
+        "page": 4,
+        "section": "2.3 Predictive models and comparative analyses",
+        "text": "status as dummy variables. Together these blocks formed the 1,074-feature full representation, denotedx i. In random-split analyses, the nine compound- and assay-level historical features were computed from the full screening matrix. In chronological evaluation they were recomputed as described below. 2.3 Predictive models and comparative analyses The principal multivariable predictor was a class-balanced random forest (500 trees) trained ony i. Mean three-point activity was the principal screening heuristic; maximum three-point activity and random ranking were additional baselines. Logistic regression with class balancing, trained on standardized values of the full screeningstage feature set, provided a linear comparator. Isolated random forests were also trained on the 16 three-point features alone or on Morgan fingerprints alone. To rank the contribution of successive information sources, feature groups were added nestedly, starting from the three-point block and then adding fingerprints, historical compound and assay profiles, and assay metadata. For that ablation, and for scaffold-disjoint evaluation, random forests used 300 trees with class balancing; isolated blocks were evaluated by five-fold stratified cross-validation and nested models by three-fold stratified cross-validation. Target-class and screening-category subgroup analyses used a gradient-boosted tree on a held-out fold. Molecular weight, LogP, hydrogen-bond donor and acceptor counts, rotatable-bond count, and",
+        "core_text": "2.3 Predictive models and comparative analyses The principal multivariable predictor was a class-balanced random forest (500 trees) trained ony i. Mean three-point activity was the principal screening heuristic; maximum three-point activity and random ranking were additional baselines. Logistic regression with class balancing, trained on standardized values of the full screeningstage feature set, provided a linear comparator. Isolated random forests were also trained on the 16 three-point features alone or on Morgan fingerprints alone. To rank the contribution of successive information sources, feature groups were added nestedly, starting from the three-point block and then adding fingerprints, historical compound and assay profiles, and assay metadata. For that ablation, and for scaffold-disjoint evaluation, random forests used 300 trees with class balancing; isolated blocks were evaluated by five-fold stratified cross-validation and nested models by three-fold stratified cross-validation. Target-class and screening-category subgroup analyses used a gradient-boosted tree on a held-out fold. Molecular weight, LogP, hydrogen-bond donor and acceptor counts, rotatable-bond count, and",
+        "reranker_score": 0.87353515625,
+        "retrieval_score": 0.03278688524590164
+      }
+    ],
+    "v2_retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-030-p004-c002",
+        "paper_id": "paper-030",
+        "chunk_id": "paper-030-p004-c002",
+        "page": 4,
+        "section": "2.3 Predictive models and comparative analyses",
+        "text": "status as dummy variables. Together these blocks formed the 1,074-feature full representation, denotedx i. In random-split analyses, the nine compound- and assay-level historical features were computed from the full screening matrix. In chronological evaluation they were recomputed as described below. 2.3 Predictive models and comparative analyses The principal multivariable predictor was a class-balanced random forest (500 trees) trained ony i. Mean three-point activity was the principal screening heuristic; maximum three-point activity and random ranking were additional baselines. Logistic regression with class balancing, trained on standardized values of the full screeningstage feature set, provided a linear comparator. Isolated random forests were also trained on the 16 three-point features alone or on Morgan fingerprints alone. To rank the contribution of successive information sources, feature groups were added nestedly, starting from the three-point block and then adding fingerprints, historical compound and assay profiles, and assay metadata. For that ablation, and for scaffold-disjoint evaluation, random forests used 300 trees with class balancing; isolated blocks were evaluated by five-fold stratified cross-validation and nested models by three-fold stratified cross-validation. Target-class and screening-category subgroup analyses used a gradient-boosted tree on a held-out fold. Molecular weight, LogP, hydrogen-bond donor and acceptor counts, rotatable-bond count, and",
+        "core_text": "2.3 Predictive models and comparative analyses The principal multivariable predictor was a class-balanced random forest (500 trees) trained ony i. Mean three-point activity was the principal screening heuristic; maximum three-point activity and random ranking were additional baselines. Logistic regression with class balancing, trained on standardized values of the full screeningstage feature set, provided a linear comparator. Isolated random forests were also trained on the 16 three-point features alone or on Morgan fingerprints alone. To rank the contribution of successive information sources, feature groups were added nestedly, starting from the three-point block and then adding fingerprints, historical compound and assay profiles, and assay metadata. For that ablation, and for scaffold-disjoint evaluation, random forests used 300 trees with class balancing; isolated blocks were evaluated by five-fold stratified cross-validation and nested models by three-fold stratified cross-validation. Target-class and screening-category subgroup analyses used a gradient-boosted tree on a held-out fold. Molecular weight, LogP, hydrogen-bond donor and acceptor counts, rotatable-bond count, and",
+        "reranker_score": 0.87353515625,
+        "retrieval_score": 0.03278688524590164
+      },
+      {
+        "evidence_id": "ev-02-paper-030-p006-c005",
+        "paper_id": "paper-030",
+        "chunk_id": "paper-030-p006-c005",
+        "page": 6,
+        "section": "3.1 Quantifiability and potency can be predicted from the",
+        "text": "already informative: ranking pairs by maximum three-point activity achieved an AUROC of 0.848±0.003, while mean three-point activity achieved 0.863±0.002. We used the latter as the principal screening baseline. We extracted 16 features from the three-point screen, all available before 11-point profiling: amplitude statistics (mean, median, maximum, minimum, range, and standard deviation), activity at the lowest and highest screening concentrations, a slope proxy, replicate-noise summaries, the number of measurements and unique concentrations, binary flags for strong activity, and the reported screening maximum. We 6",
+        "core_text": "already informative: ranking pairs by maximum three-point activity achieved an AUROC of 0.848±0.003, while mean three-point activity achieved 0.863±0.002. We used the latter as the principal screening baseline. We extracted 16 features from the three-point screen, all available before 11-point profiling: amplitude statistics (mean, median, maximum, minimum, range, and standard deviation), activity at the lowest and highest screening concentrations, a slope proxy, replicate-noise summaries, the number of measurements and unique concentrations, binary flags for strong activity, and the reported screening maximum. We 6",
+        "reranker_score": 0.2333984375,
+        "retrieval_score": 0.028531243721117136
+      },
+      {
+        "evidence_id": "ev-03-paper-030-p002-c004",
+        "paper_id": "paper-030",
+        "chunk_id": "paper-030-p002-c004",
+        "page": 2,
+        "section": "1 Introduction",
+        "text": "ate quantifiability as the triage target and test whether it can be predicted from screening data before dose–response profiling. We evaluate this formulation on 32,971 promoted compound–assay pairs spanning successive releases and five assay-mechanism families of the EvE Bio compound–assay matrix. Three results follow. First, quantifiability is predictable, and the prediction comes primarily from the screening curve rather than the molecule. Sixteen simple features derived from the three-point response outperformed every traditional screening heuristic. Morgan fingerprints also rank below them and lose most of their apparent predictive signal under a scaffold-disjoint holdout. Second, quantifiability is driven primarily by signal 2",
+        "core_text": "ate quantifiability as the triage target and test whether it can be predicted from screening data before dose–response profiling. We evaluate this formulation on 32,971 promoted compound–assay pairs spanning successive releases and five assay-mechanism families of the EvE Bio compound–assay matrix. Three results follow. First, quantifiability is predictable, and the prediction comes primarily from the screening curve rather than the molecule. Sixteen simple features derived from the three-point response outperformed every traditional screening heuristic. Morgan fingerprints also rank below them and lose most of their apparent predictive signal under a scaffold-disjoint holdout. Second, quantifiability is driven primarily by signal 2",
+        "reranker_score": 0.1044921875,
+        "retrieval_score": 0.016129032258064516
+      },
+      {
+        "evidence_id": "ev-04-paper-030-p016-c002",
+        "paper_id": "paper-030",
+        "chunk_id": "paper-030-p016-c002",
+        "page": 16,
+        "section": "4 Discussion",
+        "text": "on the much larger population of non-promoted pairs is unknown. Quantifiability is also defined by the reporting rules, concentration ranges, normalization procedures, and curve-fitting practices of the experimental workflow; established guidance likewise makes clear that whether an IC50/EC50 estimate is considered reportable depends on properties of the experimental concentration range and the resulting fitted response [9]. A model transferred to another laboratory would therefore require local validation and potentially recalibration. Finally, retrospective ranking cannot establish realized experimental savings or determine whether model-guided selection systematically changes the chemical or biological diversity of retained hits. A prospective evaluation in which ranking is performed before profiling is the appropriate next test. More broadly, the results identify a distinction that is easy to overlook in screening cascades: biological activity and experimental measurability are different properties. An experiment can fail to return the desired parameter even when the underlying effect is real. Because the early screen already contains information about that downstream measurab",
+        "core_text": "on the much larger population of non-promoted pairs is unknown. Quantifiability is also defined by the reporting rules, concentration ranges, normalization procedures, and curve-fitting practices of the experimental workflow; established guidance likewise makes clear that whether an IC50/EC50 estimate is considered reportable depends on properties of the experimental concentration range and the resulting fitted response [9]. A model transferred to another laboratory would therefore require local validation and potentially recalibration. Finally, retrospective ranking cannot establish realized experimental savings or determine whether model-guided selection systematically changes the chemical or biological diversity of retained hits. A prospective evaluation in which ranking is performed before profiling is the appropriate next test. More broadly, the results identify a distinction that is easy to overlook in screening cascades: biological activity and experimental measurability are different properties. An experiment can fail to return the desired parameter even when the underlying effect is real. Because the early screen already contains information about that downstream measurab",
+        "reranker_score": 0.0260009765625,
+        "retrieval_score": 0.030834914611005692
+      },
+      {
+        "evidence_id": "ev-05-paper-030-p012-c002",
+        "paper_id": "paper-030",
+        "chunk_id": "paper-030-p012-c002",
+        "page": 12,
+        "section": "3.4 Chronological evaluation quantifies the profiling-budget",
+        "text": "the prevalence of quantifiable pairs. Release 9, in which 58.2% of promoted pairs were quantifiable, had an AUROC of 0.885 but recovered 74.8% of quantifiable pairs at a 50% budget. Release 11 contained only 11.0% quantifiable pairs and had a lower AUROC of 0.827, but recovered 91.9% of quantifiable pairs at the same budget. For this reason, fixed-budget recall was interpreted within each release relative to the corresponding screening policy rather than compared directly across releases. The retrospective budget–retention curves showed that, across the eight chronological test releases, 90% of the potencies obtained by exhaustive profiling could be recovered while profiling 55.4% of promoted pairs (Fig. 3). This corresponds to 13,429 fewer 11-point experiments across the 30,120 chronologically evaluated pairs, or 44.6% of the profiling experiments. At the same 90% retention target, the model required a smaller profiling budget than the screening heuristic on seven of eight releases and tied it on the remaining release. The chronological results also showed substantial variation in achievable savings across releases. Release 11 was the most imbalanced test window, with only 258 qua",
+        "core_text": "the prevalence of quantifiable pairs. Release 9, in which 58.2% of promoted pairs were quantifiable, had an AUROC of 0.885 but recovered 74.8% of quantifiable pairs at a 50% budget. Release 11 contained only 11.0% quantifiable pairs and had a lower AUROC of 0.827, but recovered 91.9% of quantifiable pairs at the same budget. For this reason, fixed-budget recall was interpreted within each release relative to the corresponding screening policy rather than compared directly across releases. The retrospective budget–retention curves showed that, across the eight chronological test releases, 90% of the potencies obtained by exhaustive profiling could be recovered while profiling 55.4% of promoted pairs (Fig. 3). This corresponds to 13,429 fewer 11-point experiments across the 30,120 chronologically evaluated pairs, or 44.6% of the profiling experiments. At the same 90% retention target, the model required a smaller profiling budget than the screening heuristic on seven of eight releases and tied it on the remaining release. The chronological results also showed substantial variation in achievable savings across releases. Release 11 was the most imbalanced test window, with only 258 qua",
+        "reranker_score": 0.0202484130859375,
+        "retrieval_score": 0.028125
+      }
+    ],
+    "v2_answer_alignment": [
+      {
+        "answer_text": "Mean three-point activity is the principal screening heuristic, and maximum three-point activity and random ranking are additional baselines compared with the multivariable predictor.",
+        "evidence_id": "ev-01-paper-030-p004-c002",
+        "page": 4,
+        "section": "2.3 Predictive models and comparative analyses",
+        "verbatim_quote": "Mean three-point activity was the principal screening heuristic; maximum three-point activity and random ranking were additional baselines.",
+        "quote_verified": true,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "Logistic regression with class balancing, trained on standardized values of the full screening stage feature set, provides a linear comparator used in comparative analyses.",
+        "evidence_id": "ev-01-paper-030-p004-c002",
+        "page": 4,
+        "section": "2.3 Predictive models and comparative analyses",
+        "verbatim_quote": "Logistic regression with class balancing, trained on standardized values of the full screening stage feature set, provided a linear comparator.",
+        "quote_verified": true,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "Isolated random forests trained on the 16 three-point features alone or on Morgan fingerprints alone are also used as baselines for comparison.",
+        "evidence_id": "ev-01-paper-030-p004-c002",
+        "page": 4,
+        "section": "2.3 Predictive models and comparative analyses",
+        "verbatim_quote": "Isolated random forests were also trained on the 16 three-point features alone or on Morgan fingerprints alone.",
+        "quote_verified": true,
+        "numeric_verified": true
+      }
+    ],
+    "v2_pipeline": {
+      "abstention_source": null,
+      "fallback_used": false,
+      "raw_verdict": "supported",
+      "quote_verified": true,
+      "quote_verified_ratio": 1.0,
+      "numeric_verified": true,
+      "numeric_verified_ratio": 1.0,
+      "top_reranker_score": 0.87353515625,
+      "score_margin_1_5": 0.8532867431640625,
+      "en_query": null,
+      "nli_max_entailment": 0.0002,
+      "nli_max_contradiction": 0.0044
+    }
+  },
+  {
+    "id": "paper-030-baselines-ko",
+    "category": "ans",
+    "language": "ko",
+    "paper_id": "paper-030",
+    "paper_title": "Predicting Quantifiability from Primary Screens to Prioritize Dose-Response Profiling",
+    "question": "다변량 예측기와 비교한 세 스크리닝 휴리스틱 또는 순위 기준선은 무엇인가요?",
+    "en_query": "What are the three screening heuristics or ranking cutoffs that outperform multivariate predictors?",
+    "v1_answered": false,
+    "v1_all_facts": false,
+    "v1_refused": true,
+    "v2_response": {
+      "answer": "평균 세 점 활성은 주요 스크리닝 휴리스틱으로, 최대 세 점 활성과 무작위 순위가 추가적인 기준선으로 사용되었다. 세 점 반응에서 도출한 16개의 특성은 11점 프로파일링 전에 사용 가능하며, 평균 세 점 활성은 주요 스크리닝 기준선으로 사용되었다. 세 점 반응에서 도출된 16개의 특성은 신호의 진폭, 형태 및 변이를 요약하며, 평균, 중앙값, 최대, 최소, 범위, 표준편차, 최저 및 최고 농도에서의 활성, 기울기 대신, 반복 표준편차 평균 및 최대, 측정 횟수 및 고유 농도 수, 최대 활성 30% 또는 50%를 초과하는 이진 플래그, 그리고 보고된 스크리닝 최대값을 포함한다.",
+      "evidence_ids": [
+        "ev-01-paper-030-p004-c002",
+        "ev-03-paper-030-p006-c005",
+        "ev-04-paper-030-p003-c004"
+      ],
+      "sufficiency": "sufficient",
+      "abstention_reason": null
+    },
+    "v2_cited_evidence": [
+      {
+        "evidence_id": "ev-01-paper-030-p004-c002",
+        "paper_id": "paper-030",
+        "chunk_id": "paper-030-p004-c002",
+        "page": 4,
+        "section": "2.3 Predictive models and comparative analyses",
+        "text": "status as dummy variables. Together these blocks formed the 1,074-feature full representation, denotedx i. In random-split analyses, the nine compound- and assay-level historical features were computed from the full screening matrix. In chronological evaluation they were recomputed as described below. 2.3 Predictive models and comparative analyses The principal multivariable predictor was a class-balanced random forest (500 trees) trained ony i. Mean three-point activity was the principal screening heuristic; maximum three-point activity and random ranking were additional baselines. Logistic regression with class balancing, trained on standardized values of the full screeningstage feature set, provided a linear comparator. Isolated random forests were also trained on the 16 three-point features alone or on Morgan fingerprints alone. To rank the contribution of successive information sources, feature groups were added nestedly, starting from the three-point block and then adding fingerprints, historical compound and assay profiles, and assay metadata. For that ablation, and for scaffold-disjoint evaluation, random forests used 300 trees with class balancing; isolated blocks were evaluated by five-fold stratified cross-validation and nested models by three-fold stratified cross-validation. Target-class and screening-category subgroup analyses used a gradient-boosted tree on a held-out fold. Molecular weight, LogP, hydrogen-bond donor and acceptor counts, rotatable-bond count, and",
+        "core_text": "2.3 Predictive models and comparative analyses The principal multivariable predictor was a class-balanced random forest (500 trees) trained ony i. Mean three-point activity was the principal screening heuristic; maximum three-point activity and random ranking were additional baselines. Logistic regression with class balancing, trained on standardized values of the full screeningstage feature set, provided a linear comparator. Isolated random forests were also trained on the 16 three-point features alone or on Morgan fingerprints alone. To rank the contribution of successive information sources, feature groups were added nestedly, starting from the three-point block and then adding fingerprints, historical compound and assay profiles, and assay metadata. For that ablation, and for scaffold-disjoint evaluation, random forests used 300 trees with class balancing; isolated blocks were evaluated by five-fold stratified cross-validation and nested models by three-fold stratified cross-validation. Target-class and screening-category subgroup analyses used a gradient-boosted tree on a held-out fold. Molecular weight, LogP, hydrogen-bond donor and acceptor counts, rotatable-bond count, and",
+        "reranker_score": 0.6073974370956421,
+        "retrieval_score": 0.06048585436242138
+      },
+      {
+        "evidence_id": "ev-03-paper-030-p006-c005",
+        "paper_id": "paper-030",
+        "chunk_id": "paper-030-p006-c005",
+        "page": 6,
+        "section": "3.1 Quantifiability and potency can be predicted from the",
+        "text": "already informative: ranking pairs by maximum three-point activity achieved an AUROC of 0.848±0.003, while mean three-point activity achieved 0.863±0.002. We used the latter as the principal screening baseline. We extracted 16 features from the three-point screen, all available before 11-point profiling: amplitude statistics (mean, median, maximum, minimum, range, and standard deviation), activity at the lowest and highest screening concentrations, a slope proxy, replicate-noise summaries, the number of measurements and unique concentrations, binary flags for strong activity, and the reported screening maximum. We 6",
+        "core_text": "already informative: ranking pairs by maximum three-point activity achieved an AUROC of 0.848±0.003, while mean three-point activity achieved 0.863±0.002. We used the latter as the principal screening baseline. We extracted 16 features from the three-point screen, all available before 11-point profiling: amplitude statistics (mean, median, maximum, minimum, range, and standard deviation), activity at the lowest and highest screening concentrations, a slope proxy, replicate-noise summaries, the number of measurements and unique concentrations, binary flags for strong activity, and the reported screening maximum. We 6",
+        "reranker_score": 0.08393554389476776,
+        "retrieval_score": 0.043699102829537616
+      },
+      {
+        "evidence_id": "ev-04-paper-030-p003-c004",
+        "paper_id": "paper-030",
+        "chunk_id": "paper-030-p003-c004",
+        "page": 3,
+        "section": "2.2 Screening-stage feature representation",
+        "text": "2.2 Screening-stage feature representation From the three-point screen, we derived 16 response features summarizing signal amplitude, response shape, and variability: mean, median, maximum, minimum, range, and standard deviation of activity; mean activity at the lowest and highest screening concentrations, ̄a(cmin) and ̄a(cmax); a slope proxy ̄a(cmax)− ̄a(cmin); mean and maximum replicate standard deviation; number of measurements and unique concentrations; binary indicators that maximum activity exceeded 30% or 50%; and the reported screening maximum. Molecular structure was represented by 1,024-bit Morgan fingerprints (radius 2). Historical screening context comprised six compound-level statistics (activity count and fraction, mean and maximum observed screening amplitude, and the number of distinct target classes and mechanism families in which the compound had been screened) and three assay-level statistics (activity count, activity fraction, and mean observed amplitude). Assay metadata encoded mechanism family, target class, mode, technology, screening category, promotion reason, and mutant 3",
+        "core_text": "2.2 Screening-stage feature representation From the three-point screen, we derived 16 response features summarizing signal amplitude, response shape, and variability: mean, median, maximum, minimum, range, and standard deviation of activity; mean activity at the lowest and highest screening concentrations, ̄a(cmin) and ̄a(cmax); a slope proxy ̄a(cmax)− ̄a(cmin); mean and maximum replicate standard deviation; number of measurements and unique concentrations; binary indicators that maximum activity exceeded 30% or 50%; and the reported screening maximum. Molecular structure was represented by 1,024-bit Morgan fingerprints (radius 2). Historical screening context comprised six compound-level statistics (activity count and fraction, mean and maximum observed screening amplitude, and the number of distinct target classes and mechanism families in which the compound had been screened) and three assay-level statistics (activity count, activity fraction, and mean observed amplitude). Assay metadata encoded mechanism family, target class, mode, technology, screening category, promotion reason, and mutant 3",
+        "reranker_score": 0.032469939440488815,
+        "retrieval_score": 0.05416666666666667
+      }
+    ],
+    "v2_retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-030-p004-c002",
+        "paper_id": "paper-030",
+        "chunk_id": "paper-030-p004-c002",
+        "page": 4,
+        "section": "2.3 Predictive models and comparative analyses",
+        "text": "status as dummy variables. Together these blocks formed the 1,074-feature full representation, denotedx i. In random-split analyses, the nine compound- and assay-level historical features were computed from the full screening matrix. In chronological evaluation they were recomputed as described below. 2.3 Predictive models and comparative analyses The principal multivariable predictor was a class-balanced random forest (500 trees) trained ony i. Mean three-point activity was the principal screening heuristic; maximum three-point activity and random ranking were additional baselines. Logistic regression with class balancing, trained on standardized values of the full screeningstage feature set, provided a linear comparator. Isolated random forests were also trained on the 16 three-point features alone or on Morgan fingerprints alone. To rank the contribution of successive information sources, feature groups were added nestedly, starting from the three-point block and then adding fingerprints, historical compound and assay profiles, and assay metadata. For that ablation, and for scaffold-disjoint evaluation, random forests used 300 trees with class balancing; isolated blocks were evaluated by five-fold stratified cross-validation and nested models by three-fold stratified cross-validation. Target-class and screening-category subgroup analyses used a gradient-boosted tree on a held-out fold. Molecular weight, LogP, hydrogen-bond donor and acceptor counts, rotatable-bond count, and",
+        "core_text": "2.3 Predictive models and comparative analyses The principal multivariable predictor was a class-balanced random forest (500 trees) trained ony i. Mean three-point activity was the principal screening heuristic; maximum three-point activity and random ranking were additional baselines. Logistic regression with class balancing, trained on standardized values of the full screeningstage feature set, provided a linear comparator. Isolated random forests were also trained on the 16 three-point features alone or on Morgan fingerprints alone. To rank the contribution of successive information sources, feature groups were added nestedly, starting from the three-point block and then adding fingerprints, historical compound and assay profiles, and assay metadata. For that ablation, and for scaffold-disjoint evaluation, random forests used 300 trees with class balancing; isolated blocks were evaluated by five-fold stratified cross-validation and nested models by three-fold stratified cross-validation. Target-class and screening-category subgroup analyses used a gradient-boosted tree on a held-out fold. Molecular weight, LogP, hydrogen-bond donor and acceptor counts, rotatable-bond count, and",
+        "reranker_score": 0.6073974370956421,
+        "retrieval_score": 0.06048585436242138
+      },
+      {
+        "evidence_id": "ev-02-paper-030-p002-c004",
+        "paper_id": "paper-030",
+        "chunk_id": "paper-030-p002-c004",
+        "page": 2,
+        "section": "1 Introduction",
+        "text": "ate quantifiability as the triage target and test whether it can be predicted from screening data before dose–response profiling. We evaluate this formulation on 32,971 promoted compound–assay pairs spanning successive releases and five assay-mechanism families of the EvE Bio compound–assay matrix. Three results follow. First, quantifiability is predictable, and the prediction comes primarily from the screening curve rather than the molecule. Sixteen simple features derived from the three-point response outperformed every traditional screening heuristic. Morgan fingerprints also rank below them and lose most of their apparent predictive signal under a scaffold-disjoint holdout. Second, quantifiability is driven primarily by signal 2",
+        "core_text": "ate quantifiability as the triage target and test whether it can be predicted from screening data before dose–response profiling. We evaluate this formulation on 32,971 promoted compound–assay pairs spanning successive releases and five assay-mechanism families of the EvE Bio compound–assay matrix. Three results follow. First, quantifiability is predictable, and the prediction comes primarily from the screening curve rather than the molecule. Sixteen simple features derived from the three-point response outperformed every traditional screening heuristic. Morgan fingerprints also rank below them and lose most of their apparent predictive signal under a scaffold-disjoint holdout. Second, quantifiability is driven primarily by signal 2",
+        "reranker_score": 0.25324705243110657,
+        "retrieval_score": 0.046724324975892
+      },
+      {
+        "evidence_id": "ev-03-paper-030-p006-c005",
+        "paper_id": "paper-030",
+        "chunk_id": "paper-030-p006-c005",
+        "page": 6,
+        "section": "3.1 Quantifiability and potency can be predicted from the",
+        "text": "already informative: ranking pairs by maximum three-point activity achieved an AUROC of 0.848±0.003, while mean three-point activity achieved 0.863±0.002. We used the latter as the principal screening baseline. We extracted 16 features from the three-point screen, all available before 11-point profiling: amplitude statistics (mean, median, maximum, minimum, range, and standard deviation), activity at the lowest and highest screening concentrations, a slope proxy, replicate-noise summaries, the number of measurements and unique concentrations, binary flags for strong activity, and the reported screening maximum. We 6",
+        "core_text": "already informative: ranking pairs by maximum three-point activity achieved an AUROC of 0.848±0.003, while mean three-point activity achieved 0.863±0.002. We used the latter as the principal screening baseline. We extracted 16 features from the three-point screen, all available before 11-point profiling: amplitude statistics (mean, median, maximum, minimum, range, and standard deviation), activity at the lowest and highest screening concentrations, a slope proxy, replicate-noise summaries, the number of measurements and unique concentrations, binary flags for strong activity, and the reported screening maximum. We 6",
+        "reranker_score": 0.08393554389476776,
+        "retrieval_score": 0.043699102829537616
+      },
+      {
+        "evidence_id": "ev-04-paper-030-p003-c004",
+        "paper_id": "paper-030",
+        "chunk_id": "paper-030-p003-c004",
+        "page": 3,
+        "section": "2.2 Screening-stage feature representation",
+        "text": "2.2 Screening-stage feature representation From the three-point screen, we derived 16 response features summarizing signal amplitude, response shape, and variability: mean, median, maximum, minimum, range, and standard deviation of activity; mean activity at the lowest and highest screening concentrations, ̄a(cmin) and ̄a(cmax); a slope proxy ̄a(cmax)− ̄a(cmin); mean and maximum replicate standard deviation; number of measurements and unique concentrations; binary indicators that maximum activity exceeded 30% or 50%; and the reported screening maximum. Molecular structure was represented by 1,024-bit Morgan fingerprints (radius 2). Historical screening context comprised six compound-level statistics (activity count and fraction, mean and maximum observed screening amplitude, and the number of distinct target classes and mechanism families in which the compound had been screened) and three assay-level statistics (activity count, activity fraction, and mean observed amplitude). Assay metadata encoded mechanism family, target class, mode, technology, screening category, promotion reason, and mutant 3",
+        "core_text": "2.2 Screening-stage feature representation From the three-point screen, we derived 16 response features summarizing signal amplitude, response shape, and variability: mean, median, maximum, minimum, range, and standard deviation of activity; mean activity at the lowest and highest screening concentrations, ̄a(cmin) and ̄a(cmax); a slope proxy ̄a(cmax)− ̄a(cmin); mean and maximum replicate standard deviation; number of measurements and unique concentrations; binary indicators that maximum activity exceeded 30% or 50%; and the reported screening maximum. Molecular structure was represented by 1,024-bit Morgan fingerprints (radius 2). Historical screening context comprised six compound-level statistics (activity count and fraction, mean and maximum observed screening amplitude, and the number of distinct target classes and mechanism families in which the compound had been screened) and three assay-level statistics (activity count, activity fraction, and mean observed amplitude). Assay metadata encoded mechanism family, target class, mode, technology, screening category, promotion reason, and mutant 3",
+        "reranker_score": 0.032469939440488815,
+        "retrieval_score": 0.05416666666666667
+      },
+      {
+        "evidence_id": "ev-05-paper-030-p016-c002",
+        "paper_id": "paper-030",
+        "chunk_id": "paper-030-p016-c002",
+        "page": 16,
+        "section": "4 Discussion",
+        "text": "on the much larger population of non-promoted pairs is unknown. Quantifiability is also defined by the reporting rules, concentration ranges, normalization procedures, and curve-fitting practices of the experimental workflow; established guidance likewise makes clear that whether an IC50/EC50 estimate is considered reportable depends on properties of the experimental concentration range and the resulting fitted response [9]. A model transferred to another laboratory would therefore require local validation and potentially recalibration. Finally, retrospective ranking cannot establish realized experimental savings or determine whether model-guided selection systematically changes the chemical or biological diversity of retained hits. A prospective evaluation in which ranking is performed before profiling is the appropriate next test. More broadly, the results identify a distinction that is easy to overlook in screening cascades: biological activity and experimental measurability are different properties. An experiment can fail to return the desired parameter even when the underlying effect is real. Because the early screen already contains information about that downstream measurab",
+        "core_text": "on the much larger population of non-promoted pairs is unknown. Quantifiability is also defined by the reporting rules, concentration ranges, normalization procedures, and curve-fitting practices of the experimental workflow; established guidance likewise makes clear that whether an IC50/EC50 estimate is considered reportable depends on properties of the experimental concentration range and the resulting fitted response [9]. A model transferred to another laboratory would therefore require local validation and potentially recalibration. Finally, retrospective ranking cannot establish realized experimental savings or determine whether model-guided selection systematically changes the chemical or biological diversity of retained hits. A prospective evaluation in which ranking is performed before profiling is the appropriate next test. More broadly, the results identify a distinction that is easy to overlook in screening cascades: biological activity and experimental measurability are different properties. An experiment can fail to return the desired parameter even when the underlying effect is real. Because the early screen already contains information about that downstream measurab",
+        "reranker_score": 0.026775360107421875,
+        "retrieval_score": 0.041945154843007884
+      }
+    ],
+    "v2_answer_alignment": [
+      {
+        "answer_text": "평균 세 점 활성은 주요 스크리닝 휴리스틱으로, 최대 세 점 활성과 무작위 순위가 추가적인 기준선으로 사용되었다.",
+        "evidence_id": "ev-01-paper-030-p004-c002",
+        "page": 4,
+        "section": "2.3 Predictive models and comparative analyses",
+        "verbatim_quote": "Mean three-point activity was the principal screening heuristic; maximum three-point activity and random ranking were additional baselines.",
+        "quote_verified": true,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "세 점 반응에서 도출한 16개의 특성은 11점 프로파일링 전에 사용 가능하며, 평균 세 점 활성은 주요 스크리닝 기준선으로 사용되었다.",
+        "evidence_id": "ev-03-paper-030-p006-c005",
+        "page": 6,
+        "section": "3.1 Quantifiability and potency can be predicted from the",
+        "verbatim_quote": "We used the latter as the principal screening baseline.",
+        "quote_verified": true,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "세 점 반응에서 도출된 16개의 특성은 신호의 진폭, 형태 및 변이를 요약하며, 평균, 중앙값, 최대, 최소, 범위, 표준편차, 최저 및 최고 농도에서의 활성, 기울기 대신, 반복 표준편차 평균 및 최대, 측정 횟수 및 고유 농도 수, 최대 활성 30% 또는 50%를 초과하는 이진 플래그, 그리고 보고된 스크리닝 최대값을 포함한다.",
+        "evidence_id": "ev-04-paper-030-p003-c004",
+        "page": 3,
+        "section": "2.2 Screening-stage feature representation",
+        "verbatim_quote": "From the three-point screen, we derived 16 response features summarizing signal amplitude, response shape, and variability: mean, median, maximum, minimum, range, and standard deviation of activity; mean activity at the lowest and highest screening concentrations, ̄a(cmin) and ̄a(cmax); a slope proxy ̄a(cmax)− ̄a(cmin); mean and maximum replicate standard deviation; number of measurements and unique concentrations; binary indicators that maximum activity exceeded 30% or 50%; and the reported screening maximum.",
+        "quote_verified": true,
+        "numeric_verified": true
+      }
+    ],
+    "v2_pipeline": {
+      "abstention_source": null,
+      "fallback_used": false,
+      "raw_verdict": "supported",
+      "quote_verified": true,
+      "quote_verified_ratio": 1.0,
+      "numeric_verified": true,
+      "numeric_verified_ratio": 1.0,
+      "top_reranker_score": 0.6073974370956421,
+      "score_margin_1_5": 0.5806220769882202,
+      "en_query": "What are the three screening heuristics or ranking cutoffs that outperform multivariate predictors?",
+      "nli_max_entailment": 0.0003,
+      "nli_max_contradiction": 0.0011
+    }
+  },
+  {
+    "id": "paper-028-boundary-en",
+    "category": "ans",
+    "language": "en",
+    "paper_id": "paper-028",
+    "paper_title": "Hydrodynamic theories of chemotaxis-driven invasion in proliferating cell populations",
+    "question": "What boundary condition is imposed at the origin and what far-field reservoir assumption is made?",
+    "en_query": null,
+    "v1_answered": true,
+    "v1_all_facts": false,
+    "v1_refused": false,
+    "v2_response": {
+      "answer": "At the origin ξ = 0, a no-flux boundary condition is imposed for all species: ∂ξA = ∂ξB = ρ(U + ε̃U) = 0, ξ = 0, t > 0. In the far-field, it is assumed that all species converge to a constant: lim ξ→∞ A = lim ξ→∞ B = 1, lim ξ→∞ ρ = 0. The far-field reservoir assumption implies that cells have an infinite reservoir of chemoattractant and that the total cell density remains finite.",
+      "evidence_ids": [
+        "ev-01-paper-028-p013-c001"
+      ],
+      "sufficiency": "sufficient",
+      "abstention_reason": null
+    },
+    "v2_cited_evidence": [
+      {
+        "evidence_id": "ev-01-paper-028-p013-c001",
+        "paper_id": "paper-028",
+        "chunk_id": "paper-028-p013-c001",
+        "page": 13,
+        "section": "3.1 Summary of the model",
+        "text": "We close (46) by imposing appropriate boundary and initial conditions. At the boundaryξ= 0, we assume a no-flux boundary condition for all species: ∂ξA=∂ ξB=ρ(U+ε ̃U) = 0, ξ= 0, t>0,(49) while in the far-field we assume that all species converge to a constant: lim ξ→∞ A= lim ξ→∞ B= 1,lim ξ→∞ ρ= 0.(50) Note that (50) implies that cells have an infinite reservoir of chemoattractant and that the total cell density remains finite. We choose initial conditions that are consistent with (49)-(50); specifically: ρ(ξ,0) =N 0 r 2 πσ2 exp \u0012 − ξ2 2σ2 \u0013 ,A(ξ,0)≡1,B(ξ,0)≡1,(51) whereσcaptures the initial spread of the population, whileN 0 corresponds to the total initial rescaled density of cells in the domain.",
+        "core_text": "We close (46) by imposing appropriate boundary and initial conditions. At the boundaryξ= 0, we assume a no-flux boundary condition for all species: ∂ξA=∂ ξB=ρ(U+ε ̃U) = 0, ξ= 0, t>0,(49) while in the far-field we assume that all species converge to a constant: lim ξ→∞ A= lim ξ→∞ B= 1,lim ξ→∞ ρ= 0.(50) Note that (50) implies that cells have an infinite reservoir of chemoattractant and that the total cell density remains finite. We choose initial conditions that are consistent with (49)-(50); specifically: ρ(ξ,0) =N 0 r 2 πσ2 exp \u0012 − ξ2 2σ2 \u0013 ,A(ξ,0)≡1,B(ξ,0)≡1,(51) whereσcaptures the initial spread of the population, whileN 0 corresponds to the total initial rescaled density of cells in the domain.",
+        "reranker_score": 0.94775390625,
+        "retrieval_score": 0.03278688524590164
+      }
+    ],
+    "v2_retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-028-p013-c001",
+        "paper_id": "paper-028",
+        "chunk_id": "paper-028-p013-c001",
+        "page": 13,
+        "section": "3.1 Summary of the model",
+        "text": "We close (46) by imposing appropriate boundary and initial conditions. At the boundaryξ= 0, we assume a no-flux boundary condition for all species: ∂ξA=∂ ξB=ρ(U+ε ̃U) = 0, ξ= 0, t>0,(49) while in the far-field we assume that all species converge to a constant: lim ξ→∞ A= lim ξ→∞ B= 1,lim ξ→∞ ρ= 0.(50) Note that (50) implies that cells have an infinite reservoir of chemoattractant and that the total cell density remains finite. We choose initial conditions that are consistent with (49)-(50); specifically: ρ(ξ,0) =N 0 r 2 πσ2 exp \u0012 − ξ2 2σ2 \u0013 ,A(ξ,0)≡1,B(ξ,0)≡1,(51) whereσcaptures the initial spread of the population, whileN 0 corresponds to the total initial rescaled density of cells in the domain.",
+        "core_text": "We close (46) by imposing appropriate boundary and initial conditions. At the boundaryξ= 0, we assume a no-flux boundary condition for all species: ∂ξA=∂ ξB=ρ(U+ε ̃U) = 0, ξ= 0, t>0,(49) while in the far-field we assume that all species converge to a constant: lim ξ→∞ A= lim ξ→∞ B= 1,lim ξ→∞ ρ= 0.(50) Note that (50) implies that cells have an infinite reservoir of chemoattractant and that the total cell density remains finite. We choose initial conditions that are consistent with (49)-(50); specifically: ρ(ξ,0) =N 0 r 2 πσ2 exp \u0012 − ξ2 2σ2 \u0013 ,A(ξ,0)≡1,B(ξ,0)≡1,(51) whereσcaptures the initial spread of the population, whileN 0 corresponds to the total initial rescaled density of cells in the domain.",
+        "reranker_score": 0.94775390625,
+        "retrieval_score": 0.03278688524590164
+      },
+      {
+        "evidence_id": "ev-02-paper-028-p004-c003",
+        "paper_id": "paper-028",
+        "chunk_id": "paper-028-p004-c003",
+        "page": 4,
+        "section": "1 Kinetic description of active chemotacting particles",
+        "text": "or the external chemical signalA. Since we assume that cell number increases only due to proliferation, we couple (1) with mass-conservative boundary conditions by requiring the total normal flux across the boundary∂Ω to vanish, namely Z Sn−1 (vˆv+λW)f(t,x, ˆv)·ˆn(x)dˆv= 0,∀x∈∂Ω, t>0 whereˆndenotes the outward unit normal vector on∂Ω. This ensures conservation of the total cell mass in the absence of proliferation. For the chemoattractant fieldA, we assume that gradients are generated by the cells via consumption and describe the time evolution of the chemoattractant fieldAvia the following reaction-diffusion equation ∂A ∂t =DA∇2A− ̄ββA[ρ,A]A.(7) In Eq. (7),D A >0 is the diffusion coefficient of the chemical, ̄β >0 is the characteristic per-cell chemoattractant consumption rate, and the functionβ A captures how consumption depends on the local cell densityρand the chemoattractant concentration itselfA. A macroscopic description of the cell population can be formally derived from the kinetic framework by taking suitable moments of the distribution function [19, 29]. In particular, integrating (1) over the orientation spaceS n−1 and using the normalisation condition (4), we obtain th",
+        "core_text": "or the external chemical signalA. Since we assume that cell number increases only due to proliferation, we couple (1) with mass-conservative boundary conditions by requiring the total normal flux across the boundary∂Ω to vanish, namely Z Sn−1 (vˆv+λW)f(t,x, ˆv)·ˆn(x)dˆv= 0,∀x∈∂Ω, t>0 whereˆndenotes the outward unit normal vector on∂Ω. This ensures conservation of the total cell mass in the absence of proliferation. For the chemoattractant fieldA, we assume that gradients are generated by the cells via consumption and describe the time evolution of the chemoattractant fieldAvia the following reaction-diffusion equation ∂A ∂t =DA∇2A− ̄ββA[ρ,A]A.(7) In Eq. (7),D A >0 is the diffusion coefficient of the chemical, ̄β >0 is the characteristic per-cell chemoattractant consumption rate, and the functionβ A captures how consumption depends on the local cell densityρand the chemoattractant concentration itselfA. A macroscopic description of the cell population can be formally derived from the kinetic framework by taking suitable moments of the distribution function [19, 29]. In particular, integrating (1) over the orientation spaceS n−1 and using the normalisation condition (4), we obtain th",
+        "reranker_score": 0.0633544921875,
+        "retrieval_score": 0.0315136476426799
+      },
+      {
+        "evidence_id": "ev-03-paper-028-p004-c002",
+        "paper_id": "paper-028",
+        "chunk_id": "paper-028-p004-c002",
+        "page": 4,
+        "section": "1 Kinetic description of active chemotacting particles",
+        "text": "ameter controlling the sharpness of the distribution, with variance scaling asO(α −2). We notice that, in the limit of shallow gradients α|∇S|≪1, a first-order expansion of (5) yields a linear dependence on the signal gradient, recovering the classical weakly biased turning kernel introduced in [36], in which the directional bias appears as a perturbation of the random diffusive motion (see Section B.1 for detailed discussion of this regime). Finally, the operatorPfon the right-hand side of (1) incorporates changes in the distribution function due to cell proliferation, which occurs at a characteristic rateg≥0. We assume that proliferation is independent of cell orientation and that daughter cells inherit the polarisation of the mother cell. Under these assumptions, the action ofPreduces to a scaling of the local distribution, namely Pf(t,x, ˆv) =G[ρ,A]f(t,x, ˆv),(6) where the functionGcaptures how the cell proliferation rate is affected by the local cell density via cell crowding and/or the external chemical signalA. Since we assume that cell number increases only due to proliferation, we couple (1) with mass-conservative boundary conditions by requiring the total normal flux acro",
+        "core_text": "ameter controlling the sharpness of the distribution, with variance scaling asO(α −2). We notice that, in the limit of shallow gradients α|∇S|≪1, a first-order expansion of (5) yields a linear dependence on the signal gradient, recovering the classical weakly biased turning kernel introduced in [36], in which the directional bias appears as a perturbation of the random diffusive motion (see Section B.1 for detailed discussion of this regime). Finally, the operatorPfon the right-hand side of (1) incorporates changes in the distribution function due to cell proliferation, which occurs at a characteristic rateg≥0. We assume that proliferation is independent of cell orientation and that daughter cells inherit the polarisation of the mother cell. Under these assumptions, the action ofPreduces to a scaling of the local distribution, namely Pf(t,x, ˆv) =G[ρ,A]f(t,x, ˆv),(6) where the functionGcaptures how the cell proliferation rate is affected by the local cell density via cell crowding and/or the external chemical signalA. Since we assume that cell number increases only due to proliferation, we couple (1) with mass-conservative boundary conditions by requiring the total normal flux acro",
+        "reranker_score": 0.046295166015625,
+        "retrieval_score": 0.02694394213381555
+      },
+      {
+        "evidence_id": "ev-04-paper-028-p013-c002",
+        "paper_id": "paper-028",
+        "chunk_id": "paper-028-p013-c002",
+        "page": 13,
+        "section": "3.2 Numerical Results",
+        "text": "3.2 Numerical Results We solve (46)-(51) numerically. Details on the numerical scheme used and boundary and initial conditions are given in Section C. The predicted invasion dynamics for increasing values of the proliferation rate Φ are shown in Figure 2. As we sweep Φ across different asymptotic regimes, we find that the dynamics of invasion substantially change. For Φ∼O(ε), we find that cells migrate as a clump that slowly increases in size. Changes in the size of the clump are coupled to its migration speed, which slowly increases over time. In contrast, once Φ≳O(1), the cells invade the space as a continuous stream. In this regime, the migration speed of the invading front quickly converges to a constant value, and the cell distribution relaxes to a travelling-wave profile that spreads from the inlet, where the concentration of cells is below saturation as a result of the no-flux boundary conditions. The numerical results presented in Figure 2 support the use of different asymptotic regimes to describe clump vs stream invasion, as identified in Section 2. We now aim to apply the theory developed in Sections 2 to understand the pattern of invasion observed in Figures 2a and 2c.",
+        "core_text": "3.2 Numerical Results We solve (46)-(51) numerically. Details on the numerical scheme used and boundary and initial conditions are given in Section C. The predicted invasion dynamics for increasing values of the proliferation rate Φ are shown in Figure 2. As we sweep Φ across different asymptotic regimes, we find that the dynamics of invasion substantially change. For Φ∼O(ε), we find that cells migrate as a clump that slowly increases in size. Changes in the size of the clump are coupled to its migration speed, which slowly increases over time. In contrast, once Φ≳O(1), the cells invade the space as a continuous stream. In this regime, the migration speed of the invading front quickly converges to a constant value, and the cell distribution relaxes to a travelling-wave profile that spreads from the inlet, where the concentration of cells is below saturation as a result of the no-flux boundary conditions. The numerical results presented in Figure 2 support the use of different asymptotic regimes to describe clump vs stream invasion, as identified in Section 2. We now aim to apply the theory developed in Sections 2 to understand the pattern of invasion observed in Figures 2a and 2c.",
+        "reranker_score": 0.015777587890625,
+        "retrieval_score": 0.013333333333333334
+      },
+      {
+        "evidence_id": "ev-05-paper-028-p009-c002",
+        "paper_id": "paper-028",
+        "chunk_id": "paper-028-p009-c002",
+        "page": 9,
+        "section": "2.3.1 Method of multiple scales",
+        "text": "0(τ,ξ;σ) andA 0 =A 0(τ,ξ;σ). Assuming the no flux boundary conditions (28) on ∂Ω, we can integrate (34a) on Ω finding that the mass N0 := Z Ω ρ0(τ,ξ;σ)dξ(35) is conserved on the fast timescale, but its evolution is determined by the slow time scaleσ,i.e., N0 =N 0(σ), which is yet to be determined. As mentioned above, we are interested in the regime where (34) converges to a travelling-wave solution of the form (25). Unlike in the drift-proliferation balance case, where the leading-order dynamics converged to the same solution independent of the initial conditions, the long-term behaviour of (30) may depend on the initial condition via the conservation of the total mass. As a result, the migration speedc 0 and the travelling-wave profile of the solution could depend on the slow timescaleσvia the total massN 0: lim τ→∞ φ0(τ,ξ;σ) = ̄φ0(ξ−c 0(N0)τ;N 0), φ 0 =ρ 0,A 0.(36) Hence, in this regime, proliferation does not directly drive migration, but rather, it mediates it by shaping the speed and spatial structure of the migrating front. Dynamics of the total cell number.To obtain a closed-form solution to the problem (34) and determine the evolution ofN 0, we have to study the dynamics of",
+        "core_text": "0(τ,ξ;σ) andA 0 =A 0(τ,ξ;σ). Assuming the no flux boundary conditions (28) on ∂Ω, we can integrate (34a) on Ω finding that the mass N0 := Z Ω ρ0(τ,ξ;σ)dξ(35) is conserved on the fast timescale, but its evolution is determined by the slow time scaleσ,i.e., N0 =N 0(σ), which is yet to be determined. As mentioned above, we are interested in the regime where (34) converges to a travelling-wave solution of the form (25). Unlike in the drift-proliferation balance case, where the leading-order dynamics converged to the same solution independent of the initial conditions, the long-term behaviour of (30) may depend on the initial condition via the conservation of the total mass. As a result, the migration speedc 0 and the travelling-wave profile of the solution could depend on the slow timescaleσvia the total massN 0: lim τ→∞ φ0(τ,ξ;σ) = ̄φ0(ξ−c 0(N0)τ;N 0), φ 0 =ρ 0,A 0.(36) Hence, in this regime, proliferation does not directly drive migration, but rather, it mediates it by shaping the speed and spatial structure of the migrating front. Dynamics of the total cell number.To obtain a closed-form solution to the problem (34) and determine the evolution ofN 0, we have to study the dynamics of",
+        "reranker_score": 0.015716552734375,
+        "retrieval_score": 0.014492753623188406
+      }
+    ],
+    "v2_answer_alignment": [
+      {
+        "answer_text": "At the origin ξ = 0, a no-flux boundary condition is imposed for all species: ∂ξA = ∂ξB = ρ(U + ε̃U) = 0, ξ = 0, t > 0.",
+        "evidence_id": "ev-01-paper-028-p013-c001",
+        "page": 13,
+        "section": "3.1 Summary of the model",
+        "verbatim_quote": "At the boundaryξ= 0, we assume a no-flux boundary condition for all species: ∂ξA=∂ ξB=ρ(U+ε ̃U) = 0, ξ= 0, t>0,(49)",
+        "quote_verified": true,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "In the far-field, it is assumed that all species converge to a constant: lim ξ→∞ A = lim ξ→∞ B = 1, lim ξ→∞ ρ = 0.",
+        "evidence_id": "ev-01-paper-028-p013-c001",
+        "page": 13,
+        "section": "3.1 Summary of the model",
+        "verbatim_quote": "in the far-field we assume that all species converge to a constant: lim ξ→∞ A= lim ξ→∞ B= 1,lim ξ→∞ ρ= 0.(50)",
+        "quote_verified": true,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "The far-field reservoir assumption implies that cells have an infinite reservoir of chemoattractant and that the total cell density remains finite.",
+        "evidence_id": "ev-01-paper-028-p013-c001",
+        "page": 13,
+        "section": "3.1 Summary of the model",
+        "verbatim_quote": "Note that (50) implies that cells have an infinite reservoir of chemoattractant and that the total cell density remains finite.",
+        "quote_verified": true,
+        "numeric_verified": true
+      }
+    ],
+    "v2_pipeline": {
+      "abstention_source": null,
+      "fallback_used": false,
+      "raw_verdict": "supported",
+      "quote_verified": true,
+      "quote_verified_ratio": 1.0,
+      "numeric_verified": true,
+      "numeric_verified_ratio": 1.0,
+      "top_reranker_score": 0.94775390625,
+      "score_margin_1_5": 0.932037353515625,
+      "en_query": null,
+      "nli_max_entailment": 0.0004,
+      "nli_max_contradiction": 0.0009
+    }
+  },
+  {
+    "id": "paper-028-boundary-ko",
+    "category": "ans",
+    "language": "ko",
+    "paper_id": "paper-028",
+    "paper_title": "Hydrodynamic theories of chemotaxis-driven invasion in proliferating cell populations",
+    "question": "원점에 부과한 경계 조건과 원거리 저장소 가정은 무엇인가요?",
+    "en_query": "What are the boundary conditions imposed at the origin and the distant reservoir assumption?",
+    "v1_answered": true,
+    "v1_all_facts": false,
+    "v1_refused": false,
+    "v2_response": {
+      "answer": "원점(ξ=0)에서의 경계 조건은 모든 종에 대해 무유속 조건을 가정하며, ∂ξA=∂ξB=ρ(U+ε̃U)=0, ξ=0, t>0이다. 원거리(ξ→∞)에서는 모든 종이 상수값으로 수렴하며, limξ→∞ A = limξ→∞ B = 1, limξ→∞ ρ = 0이다.",
+      "evidence_ids": [
+        "ev-01-paper-028-p013-c001"
+      ],
+      "sufficiency": "sufficient",
+      "abstention_reason": null
+    },
+    "v2_cited_evidence": [
+      {
+        "evidence_id": "ev-01-paper-028-p013-c001",
+        "paper_id": "paper-028",
+        "chunk_id": "paper-028-p013-c001",
+        "page": 13,
+        "section": "3.1 Summary of the model",
+        "text": "We close (46) by imposing appropriate boundary and initial conditions. At the boundaryξ= 0, we assume a no-flux boundary condition for all species: ∂ξA=∂ ξB=ρ(U+ε ̃U) = 0, ξ= 0, t>0,(49) while in the far-field we assume that all species converge to a constant: lim ξ→∞ A= lim ξ→∞ B= 1,lim ξ→∞ ρ= 0.(50) Note that (50) implies that cells have an infinite reservoir of chemoattractant and that the total cell density remains finite. We choose initial conditions that are consistent with (49)-(50); specifically: ρ(ξ,0) =N 0 r 2 πσ2 exp \u0012 − ξ2 2σ2 \u0013 ,A(ξ,0)≡1,B(ξ,0)≡1,(51) whereσcaptures the initial spread of the population, whileN 0 corresponds to the total initial rescaled density of cells in the domain.",
+        "core_text": "We close (46) by imposing appropriate boundary and initial conditions. At the boundaryξ= 0, we assume a no-flux boundary condition for all species: ∂ξA=∂ ξB=ρ(U+ε ̃U) = 0, ξ= 0, t>0,(49) while in the far-field we assume that all species converge to a constant: lim ξ→∞ A= lim ξ→∞ B= 1,lim ξ→∞ ρ= 0.(50) Note that (50) implies that cells have an infinite reservoir of chemoattractant and that the total cell density remains finite. We choose initial conditions that are consistent with (49)-(50); specifically: ρ(ξ,0) =N 0 r 2 πσ2 exp \u0012 − ξ2 2σ2 \u0013 ,A(ξ,0)≡1,B(ξ,0)≡1,(51) whereσcaptures the initial spread of the population, whileN 0 corresponds to the total initial rescaled density of cells in the domain.",
+        "reranker_score": 0.587634265422821,
+        "retrieval_score": 0.04918032786885246
+      }
+    ],
+    "v2_retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-028-p013-c001",
+        "paper_id": "paper-028",
+        "chunk_id": "paper-028-p013-c001",
+        "page": 13,
+        "section": "3.1 Summary of the model",
+        "text": "We close (46) by imposing appropriate boundary and initial conditions. At the boundaryξ= 0, we assume a no-flux boundary condition for all species: ∂ξA=∂ ξB=ρ(U+ε ̃U) = 0, ξ= 0, t>0,(49) while in the far-field we assume that all species converge to a constant: lim ξ→∞ A= lim ξ→∞ B= 1,lim ξ→∞ ρ= 0.(50) Note that (50) implies that cells have an infinite reservoir of chemoattractant and that the total cell density remains finite. We choose initial conditions that are consistent with (49)-(50); specifically: ρ(ξ,0) =N 0 r 2 πσ2 exp \u0012 − ξ2 2σ2 \u0013 ,A(ξ,0)≡1,B(ξ,0)≡1,(51) whereσcaptures the initial spread of the population, whileN 0 corresponds to the total initial rescaled density of cells in the domain.",
+        "core_text": "We close (46) by imposing appropriate boundary and initial conditions. At the boundaryξ= 0, we assume a no-flux boundary condition for all species: ∂ξA=∂ ξB=ρ(U+ε ̃U) = 0, ξ= 0, t>0,(49) while in the far-field we assume that all species converge to a constant: lim ξ→∞ A= lim ξ→∞ B= 1,lim ξ→∞ ρ= 0.(50) Note that (50) implies that cells have an infinite reservoir of chemoattractant and that the total cell density remains finite. We choose initial conditions that are consistent with (49)-(50); specifically: ρ(ξ,0) =N 0 r 2 πσ2 exp \u0012 − ξ2 2σ2 \u0013 ,A(ξ,0)≡1,B(ξ,0)≡1,(51) whereσcaptures the initial spread of the population, whileN 0 corresponds to the total initial rescaled density of cells in the domain.",
+        "reranker_score": 0.587634265422821,
+        "retrieval_score": 0.04918032786885246
+      },
+      {
+        "evidence_id": "ev-02-paper-028-p004-c003",
+        "paper_id": "paper-028",
+        "chunk_id": "paper-028-p004-c003",
+        "page": 4,
+        "section": "1 Kinetic description of active chemotacting particles",
+        "text": "or the external chemical signalA. Since we assume that cell number increases only due to proliferation, we couple (1) with mass-conservative boundary conditions by requiring the total normal flux across the boundary∂Ω to vanish, namely Z Sn−1 (vˆv+λW)f(t,x, ˆv)·ˆn(x)dˆv= 0,∀x∈∂Ω, t>0 whereˆndenotes the outward unit normal vector on∂Ω. This ensures conservation of the total cell mass in the absence of proliferation. For the chemoattractant fieldA, we assume that gradients are generated by the cells via consumption and describe the time evolution of the chemoattractant fieldAvia the following reaction-diffusion equation ∂A ∂t =DA∇2A− ̄ββA[ρ,A]A.(7) In Eq. (7),D A >0 is the diffusion coefficient of the chemical, ̄β >0 is the characteristic per-cell chemoattractant consumption rate, and the functionβ A captures how consumption depends on the local cell densityρand the chemoattractant concentration itselfA. A macroscopic description of the cell population can be formally derived from the kinetic framework by taking suitable moments of the distribution function [19, 29]. In particular, integrating (1) over the orientation spaceS n−1 and using the normalisation condition (4), we obtain th",
+        "core_text": "or the external chemical signalA. Since we assume that cell number increases only due to proliferation, we couple (1) with mass-conservative boundary conditions by requiring the total normal flux across the boundary∂Ω to vanish, namely Z Sn−1 (vˆv+λW)f(t,x, ˆv)·ˆn(x)dˆv= 0,∀x∈∂Ω, t>0 whereˆndenotes the outward unit normal vector on∂Ω. This ensures conservation of the total cell mass in the absence of proliferation. For the chemoattractant fieldA, we assume that gradients are generated by the cells via consumption and describe the time evolution of the chemoattractant fieldAvia the following reaction-diffusion equation ∂A ∂t =DA∇2A− ̄ββA[ρ,A]A.(7) In Eq. (7),D A >0 is the diffusion coefficient of the chemical, ̄β >0 is the characteristic per-cell chemoattractant consumption rate, and the functionβ A captures how consumption depends on the local cell densityρand the chemoattractant concentration itselfA. A macroscopic description of the cell population can be formally derived from the kinetic framework by taking suitable moments of the distribution function [19, 29]. In particular, integrating (1) over the orientation spaceS n−1 and using the normalisation condition (4), we obtain th",
+        "reranker_score": 0.05108794942498207,
+        "retrieval_score": 0.058659052120830855
+      },
+      {
+        "evidence_id": "ev-03-paper-028-p004-c002",
+        "paper_id": "paper-028",
+        "chunk_id": "paper-028-p004-c002",
+        "page": 4,
+        "section": "1 Kinetic description of active chemotacting particles",
+        "text": "ameter controlling the sharpness of the distribution, with variance scaling asO(α −2). We notice that, in the limit of shallow gradients α|∇S|≪1, a first-order expansion of (5) yields a linear dependence on the signal gradient, recovering the classical weakly biased turning kernel introduced in [36], in which the directional bias appears as a perturbation of the random diffusive motion (see Section B.1 for detailed discussion of this regime). Finally, the operatorPfon the right-hand side of (1) incorporates changes in the distribution function due to cell proliferation, which occurs at a characteristic rateg≥0. We assume that proliferation is independent of cell orientation and that daughter cells inherit the polarisation of the mother cell. Under these assumptions, the action ofPreduces to a scaling of the local distribution, namely Pf(t,x, ˆv) =G[ρ,A]f(t,x, ˆv),(6) where the functionGcaptures how the cell proliferation rate is affected by the local cell density via cell crowding and/or the external chemical signalA. Since we assume that cell number increases only due to proliferation, we couple (1) with mass-conservative boundary conditions by requiring the total normal flux acro",
+        "core_text": "ameter controlling the sharpness of the distribution, with variance scaling asO(α −2). We notice that, in the limit of shallow gradients α|∇S|≪1, a first-order expansion of (5) yields a linear dependence on the signal gradient, recovering the classical weakly biased turning kernel introduced in [36], in which the directional bias appears as a perturbation of the random diffusive motion (see Section B.1 for detailed discussion of this regime). Finally, the operatorPfon the right-hand side of (1) incorporates changes in the distribution function due to cell proliferation, which occurs at a characteristic rateg≥0. We assume that proliferation is independent of cell orientation and that daughter cells inherit the polarisation of the mother cell. Under these assumptions, the action ofPreduces to a scaling of the local distribution, namely Pf(t,x, ˆv) =G[ρ,A]f(t,x, ˆv),(6) where the functionGcaptures how the cell proliferation rate is affected by the local cell density via cell crowding and/or the external chemical signalA. Since we assume that cell number increases only due to proliferation, we couple (1) with mass-conservative boundary conditions by requiring the total normal flux acro",
+        "reranker_score": 0.04995002597570419,
+        "retrieval_score": 0.04057453201288817
+      },
+      {
+        "evidence_id": "ev-04-paper-028-p013-c002",
+        "paper_id": "paper-028",
+        "chunk_id": "paper-028-p013-c002",
+        "page": 13,
+        "section": "3.2 Numerical Results",
+        "text": "3.2 Numerical Results We solve (46)-(51) numerically. Details on the numerical scheme used and boundary and initial conditions are given in Section C. The predicted invasion dynamics for increasing values of the proliferation rate Φ are shown in Figure 2. As we sweep Φ across different asymptotic regimes, we find that the dynamics of invasion substantially change. For Φ∼O(ε), we find that cells migrate as a clump that slowly increases in size. Changes in the size of the clump are coupled to its migration speed, which slowly increases over time. In contrast, once Φ≳O(1), the cells invade the space as a continuous stream. In this regime, the migration speed of the invading front quickly converges to a constant value, and the cell distribution relaxes to a travelling-wave profile that spreads from the inlet, where the concentration of cells is below saturation as a result of the no-flux boundary conditions. The numerical results presented in Figure 2 support the use of different asymptotic regimes to describe clump vs stream invasion, as identified in Section 2. We now aim to apply the theory developed in Sections 2 to understand the pattern of invasion observed in Figures 2a and 2c.",
+        "core_text": "3.2 Numerical Results We solve (46)-(51) numerically. Details on the numerical scheme used and boundary and initial conditions are given in Section C. The predicted invasion dynamics for increasing values of the proliferation rate Φ are shown in Figure 2. As we sweep Φ across different asymptotic regimes, we find that the dynamics of invasion substantially change. For Φ∼O(ε), we find that cells migrate as a clump that slowly increases in size. Changes in the size of the clump are coupled to its migration speed, which slowly increases over time. In contrast, once Φ≳O(1), the cells invade the space as a continuous stream. In this regime, the migration speed of the invading front quickly converges to a constant value, and the cell distribution relaxes to a travelling-wave profile that spreads from the inlet, where the concentration of cells is below saturation as a result of the no-flux boundary conditions. The numerical results presented in Figure 2 support the use of different asymptotic regimes to describe clump vs stream invasion, as identified in Section 2. We now aim to apply the theory developed in Sections 2 to understand the pattern of invasion observed in Figures 2a and 2c.",
+        "reranker_score": 0.012630653567612171,
+        "retrieval_score": 0.029030910609857977
+      },
+      {
+        "evidence_id": "ev-05-paper-028-p010-c001",
+        "paper_id": "paper-028",
+        "chunk_id": "paper-028-p010-c001",
+        "page": 10,
+        "section": "2.3.1 Method of multiple scales",
+        "text": "where the flux terms in (37) vanish once we integrate in space due to the no-flux boundary conditions. We can integrate (38) explicitly with respect to the fast timeτto find N1(τ;σ) =N 1(0;σ)− Z τ 0 \u0014dN0 dσ −φ 1 Z Ω G[ρ0(τ′,ξ;σ),A 0(τ′,ξ;σ)]ρ 0(τ′,ξ;σ)dξ \u0015 dτ′.(39) As detailed in Appendix A.3, formalising the convergence of the solution to the leading-order problem (34) to a travelling wave of the form (36), and under additional assumptions on the properties of the proliferation rate functionG(6), we can show that there exists a timeτ 1∈(0,∞) and two constants b,λ>0, independent ofτ, such that N1(τ;σ) =n 1(τ;σ)− \u0014dN0 dσ − ̄r(σ) \u0015 (τ−τ 1),∀τ≥τ 1,(40) where ̄r(σ) :=φ1 Z Ω G[ ̄ρ0, ̄A0] ̄ρ0dξ and the functionn 1(τ;σ) satisfies |n1|≤Γ +φ 1 Z τ1 0 Z Ω |G[ρ0(τ′,ξ;σ),A 0(τ′,ξ;σ)]ρ 0(τ′,ξ;σ)|dξdτ ′ +b(1−e −λ(τ−τ 1)),∀τ≥τ 1,(41) where Γ :=|N 1(0,σ)|+ τ1dN0 dσ . We note that while the constantsbandλare independent of timeτ, they may depend on the slow timescaleσ. Given (41), we can conclude that the functionn 1 is bounded inτ. Therefore, to preventN 1 (40) to grow unboundedly asτ→∞, we must ensure that the secular term, which is linear inτ, vanishes. This yields the following solvability condit",
+        "core_text": "where the flux terms in (37) vanish once we integrate in space due to the no-flux boundary conditions. We can integrate (38) explicitly with respect to the fast timeτto find N1(τ;σ) =N 1(0;σ)− Z τ 0 \u0014dN0 dσ −φ 1 Z Ω G[ρ0(τ′,ξ;σ),A 0(τ′,ξ;σ)]ρ 0(τ′,ξ;σ)dξ \u0015 dτ′.(39) As detailed in Appendix A.3, formalising the convergence of the solution to the leading-order problem (34) to a travelling wave of the form (36), and under additional assumptions on the properties of the proliferation rate functionG(6), we can show that there exists a timeτ 1∈(0,∞) and two constants b,λ>0, independent ofτ, such that N1(τ;σ) =n 1(τ;σ)− \u0014dN0 dσ − ̄r(σ) \u0015 (τ−τ 1),∀τ≥τ 1,(40) where ̄r(σ) :=φ1 Z Ω G[ ̄ρ0, ̄A0] ̄ρ0dξ and the functionn 1(τ;σ) satisfies |n1|≤Γ +φ 1 Z τ1 0 Z Ω |G[ρ0(τ′,ξ;σ),A 0(τ′,ξ;σ)]ρ 0(τ′,ξ;σ)|dξdτ ′ +b(1−e −λ(τ−τ 1)),∀τ≥τ 1,(41) where Γ :=|N 1(0,σ)|+ τ1dN0 dσ . We note that while the constantsbandλare independent of timeτ, they may depend on the slow timescaleσ. Given (41), we can conclude that the functionn 1 is bounded inτ. Therefore, to preventN 1 (40) to grow unboundedly asτ→∞, we must ensure that the secular term, which is linear inτ, vanishes. This yields the following solvability condit",
+        "reranker_score": 0.010959053412079811,
+        "retrieval_score": 0.026171741361614778
+      }
+    ],
+    "v2_answer_alignment": [
+      {
+        "answer_text": "원점(ξ=0)에서의 경계 조건은 모든 종에 대해 무유속 조건을 가정하며, ∂ξA=∂ξB=ρ(U+ε̃U)=0, ξ=0, t>0이다.",
+        "evidence_id": "ev-01-paper-028-p013-c001",
+        "page": 13,
+        "section": "3.1 Summary of the model",
+        "verbatim_quote": "At the boundaryξ= 0, we assume a no-flux boundary condition for all species: ∂ξA=∂ ξB=ρ(U+ε ̃U) = 0, ξ= 0, t>0,(49) while in the far-field we assume that all species converge to a constant: lim ξ→∞ A= lim ξ→∞ B= 1,lim ξ→∞ ρ= 0.(50) Note that (50) implies that cells have an infinite reservoir of chemoattractant and that the total cell density remains finite.",
+        "quote_verified": true,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "원거리(ξ→∞)에서는 모든 종이 상수값으로 수렴하며, limξ→∞ A = limξ→∞ B = 1, limξ→∞ ρ = 0이다.",
+        "evidence_id": "ev-01-paper-028-p013-c001",
+        "page": 13,
+        "section": "3.1 Summary of the model",
+        "verbatim_quote": "while in the far-field we assume that all species converge to a constant: lim ξ→∞ A= lim ξ→∞ B= 1,lim ξ→∞ ρ= 0.(50) Note that (50) implies that cells have an infinite reservoir of chemoattractant and that the total cell density remains finite.",
+        "quote_verified": true,
+        "numeric_verified": true
+      }
+    ],
+    "v2_pipeline": {
+      "abstention_source": null,
+      "fallback_used": false,
+      "raw_verdict": "supported",
+      "quote_verified": true,
+      "quote_verified_ratio": 1.0,
+      "numeric_verified": true,
+      "numeric_verified_ratio": 1.0,
+      "top_reranker_score": 0.587634265422821,
+      "score_margin_1_5": 0.5766752120107412,
+      "en_query": "What are the boundary conditions imposed at the origin and the distant reservoir assumption?",
+      "nli_max_entailment": 0.0001,
+      "nli_max_contradiction": 0.0013
+    }
+  },
+  {
+    "id": "paper-011-false-premise-en",
+    "category": "fp",
+    "language": "en",
+    "paper_id": "paper-011",
+    "paper_title": "Conformal Uncertainty Quantification Guarantees for Neural Operators",
+    "question": "Since the paper establishes that the coverage guarantee permits no spatial failures anywhere, what evidence supports that conclusion?",
+    "en_query": null,
+    "v1_answered": true,
+    "v1_all_facts": false,
+    "v1_refused": false,
+    "v2_response": {
+      "answer": "The answer cannot be verified from the provided paper evidence.",
+      "evidence_ids": [],
+      "sufficiency": "insufficient",
+      "abstention_reason": "The question premise contradicts the retrieved paper evidence (NLI contradiction=1.00)."
+    },
+    "v2_cited_evidence": [],
+    "v2_retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-011-p008-c002",
+        "paper_id": "paper-011",
+        "chunk_id": "paper-011-p008-c002",
+        "page": 8,
+        "section": "5 Conclusion",
+        "text": "5 Conclusion In this paper, we developed a split conformal framework to provide theoretically justified uncertainty quantification guarantees for neural operators. The calibration procedure constructs prediction bands based on a held-out calibration sets that are guaranteed to contain the true solution with a tolerance probability, while allowing for a controlled fraction of spatial failure over the domain. The construction reduces a measurable residual field to a spatial quantile and calibrates a single scaling factor, yielding finite-sample marginal coverage under exchangeability. The proof strategy applies to both continuum domains and fixed grids, with a discrete guarantee that does not rely on random spatial sampling or concentration corrections, and we characterized calibration-set variability via an exact Beta law under i.i.d. sampling and atomless scores. Empirically, on Darcy flow and Navier–Stokes equations, coverage matches the predicted behavior while achieving systematically tighter bands than (Ma et al., 2024), whose corrections are more conservative. The approach is model-agnostic and applies to any neural operator architecture, provided that an appropriate error est",
+        "core_text": "5 Conclusion In this paper, we developed a split conformal framework to provide theoretically justified uncertainty quantification guarantees for neural operators. The calibration procedure constructs prediction bands based on a held-out calibration sets that are guaranteed to contain the true solution with a tolerance probability, while allowing for a controlled fraction of spatial failure over the domain. The construction reduces a measurable residual field to a spatial quantile and calibrates a single scaling factor, yielding finite-sample marginal coverage under exchangeability. The proof strategy applies to both continuum domains and fixed grids, with a discrete guarantee that does not rely on random spatial sampling or concentration corrections, and we characterized calibration-set variability via an exact Beta law under i.i.d. sampling and atomless scores. Empirically, on Darcy flow and Navier–Stokes equations, coverage matches the predicted behavior while achieving systematically tighter bands than (Ma et al., 2024), whose corrections are more conservative. The approach is model-agnostic and applies to any neural operator architecture, provided that an appropriate error est",
+        "reranker_score": 0.22509765625,
+        "retrieval_score": 0.03177805800756621
+      },
+      {
+        "evidence_id": "ev-02-paper-011-p007-c003",
+        "paper_id": "paper-011",
+        "chunk_id": "paper-011-p007-c003",
+        "page": 7,
+        "section": "4 Numerical Experiments",
+        "text": "ical coverage 0 20 40 60 80 100 Density Beta-binomial (exact) Ours Ma et al. 1−α Figure 1: 2D Darcy flow dataset. Left: median calibrated scaling factor ˆλ with respect to the spatial resolutionN over 3000 random disjoint re-splits (ncal = 500,ntest = 1000) along with empirical 5th–95th percentiles; smaller ˆλ indicates tighter bands. Right: empirical distribution of resampled coverage at resolutionN= 60 compared with the exact Beta-Binomial law predicted by Theorem 2.5 at the target level 1−α= 0.9 . Our distribution aligns with the predicted law, while (Ma et al., 2024) is shifted right with more conservative and wider bands. The violin plots in Fig. 3 display the same behavior across all spatial resolutionsN considered, with complete conservativeness (point mass near 1) at coarse resolutions. Finally, Fig. 4 in Section B.2 evaluates transfer of the coverage guarantees to the fine grid. Under zero-shot super-resolution, we note that the coverage is zero at all calibration resolutions for both methods, while under spectral interpolation, coverage is near zero forN≤42 and increases with the spatial resolution. While the correction of (Ma et al., 2024) is designed to provide exactly",
+        "core_text": "ical coverage 0 20 40 60 80 100 Density Beta-binomial (exact) Ours Ma et al. 1−α Figure 1: 2D Darcy flow dataset. Left: median calibrated scaling factor ˆλ with respect to the spatial resolutionN over 3000 random disjoint re-splits (ncal = 500,ntest = 1000) along with empirical 5th–95th percentiles; smaller ˆλ indicates tighter bands. Right: empirical distribution of resampled coverage at resolutionN= 60 compared with the exact Beta-Binomial law predicted by Theorem 2.5 at the target level 1−α= 0.9 . Our distribution aligns with the predicted law, while (Ma et al., 2024) is shifted right with more conservative and wider bands. The violin plots in Fig. 3 display the same behavior across all spatial resolutionsN considered, with complete conservativeness (point mass near 1) at coarse resolutions. Finally, Fig. 4 in Section B.2 evaluates transfer of the coverage guarantees to the fine grid. Under zero-shot super-resolution, we note that the coverage is zero at all calibration resolutions for both methods, while under spectral interpolation, coverage is near zero forN≤42 and increases with the spatial resolution. While the correction of (Ma et al., 2024) is designed to provide exactly",
+        "reranker_score": 0.059967041015625,
+        "retrieval_score": 0.015151515151515152
+      },
+      {
+        "evidence_id": "ev-03-paper-011-p004-c001",
+        "paper_id": "paper-011",
+        "chunk_id": "paper-011-p004-c001",
+        "page": 4,
+        "section": "2.2 Continuum coverage guarantee",
+        "text": "2.2 Continuum coverage guarantee We first consider the idealized setting in which the truth, prediction, and error estimator can be evaluated at every pointx∈D , instead of at a finite set of points. To define the scaling factor λ associated with the prediction band Cλ from Definition 2.1, we introduce the continuum residual fieldρ:A×D→[0,∞]as pointwise prediction error normalized by the error estimator: ρ(a,x) = ∥G†(a)(x)− ˆG(a)(x)∥2 ˆE(a)(x) ∈[0,∞], a∈A, x∈D,(3) whereρ(a,x) = 0 if ˆE(a)(x) = 0 andG†(a)(x) = ˆG(a)(x), andρ(a,x) =∞ if ˆE(a)(x) = 0 and G†(a)(x)̸= ˆG(a)(x). Since the operatorsG†, ˆG, and ˆE are Borel measurable, the residual fieldρ is jointly measurable with respect to the product sigma algebraB(A)⊗B(D) . Then, for everya∈A andx∈D ,G†(a)(x)∈C λ(a)(x) if and only ifρ(a,x)≤λ , that is{x∈D:ρ(a,x)≤λ}={x∈ D:G †(a)(x)∈C λ(a)(x)} so that one can apply the results from Section A.2 to obtain a marginal coverage guarantee for the continuum problem. Choice of scaling factor.Given a∈A , we respectively define the “containment fraction”wλ(a) of the domain for which the residual is smaller thanλ and the corresponding scalar nonconformity scores(a), measuring the spatial(1−γ)-quant",
+        "core_text": "2.2 Continuum coverage guarantee We first consider the idealized setting in which the truth, prediction, and error estimator can be evaluated at every pointx∈D , instead of at a finite set of points. To define the scaling factor λ associated with the prediction band Cλ from Definition 2.1, we introduce the continuum residual fieldρ:A×D→[0,∞]as pointwise prediction error normalized by the error estimator: ρ(a,x) = ∥G†(a)(x)− ˆG(a)(x)∥2 ˆE(a)(x) ∈[0,∞], a∈A, x∈D,(3) whereρ(a,x) = 0 if ˆE(a)(x) = 0 andG†(a)(x) = ˆG(a)(x), andρ(a,x) =∞ if ˆE(a)(x) = 0 and G†(a)(x)̸= ˆG(a)(x). Since the operatorsG†, ˆG, and ˆE are Borel measurable, the residual fieldρ is jointly measurable with respect to the product sigma algebraB(A)⊗B(D) . Then, for everya∈A andx∈D ,G†(a)(x)∈C λ(a)(x) if and only ifρ(a,x)≤λ , that is{x∈D:ρ(a,x)≤λ}={x∈ D:G †(a)(x)∈C λ(a)(x)} so that one can apply the results from Section A.2 to obtain a marginal coverage guarantee for the continuum problem. Choice of scaling factor.Given a∈A , we respectively define the “containment fraction”wλ(a) of the domain for which the residual is smaller thanλ and the corresponding scalar nonconformity scores(a), measuring the spatial(1−γ)-quant",
+        "reranker_score": 0.049591064453125,
+        "retrieval_score": 0.029857397504456328
+      },
+      {
+        "evidence_id": "ev-04-paper-011-p013-c001",
+        "paper_id": "paper-011",
+        "chunk_id": "paper-011-p013-c001",
+        "page": 13,
+        "section": "References",
+        "text": "Proof. Ifwr λ(a)≥1−γ , thensr(a)≤λ by definition (and trivially when λ=∞ ). Conversely, supposesr(a)≤λ . If sr(a) =∞ , then λ=∞ andwr λ(a) = 1 . Otherwise choose tm↓s r(a) with wr tm(a)≥1−γ . Following Lemma A.2, the right-continuity of λ7→w r λ(a) implies that wr sr(a)(a) = limmwr tm(a)≥1−γ ; in particular the infimum is attained. Monotonicity then gives wr λ(a)≥w r sr(a)(a)≥1−γ. Setk=⌈(1−α)(n+ 1)⌉ and for ann-tuplev∈[0,∞] n, denote byTk(v) itskth smallest entry. Split conformal calibration applies this order statistic to the calibration scores. Definition A.4(Calibrated scaling factor).The calibration map ˆλr :A n→[0,∞] is defined for (a1,...,a n)∈A n as ˆλr(a1,...,a n) =T k \u0000 sr(a1),...,s r(an) \u0001 ifk≤n , and ˆλr(a1,...,a n) =∞ otherwise. We abbreviate ˆλr := ˆλr(A1,...,A n) when no confusion arises, and first connect the geometric containment construction to the scalar conformal calibration. Definition A.4 determines the scaling factor provided by the calibration procedure. In the rest of the section, we show that it provides the desired coverage guarantee, i.e., that the residual field is contained on at least a 1−γ fraction of X with probability at least 1−α . The convention ˆ",
+        "core_text": "Proof. Ifwr λ(a)≥1−γ , thensr(a)≤λ by definition (and trivially when λ=∞ ). Conversely, supposesr(a)≤λ . If sr(a) =∞ , then λ=∞ andwr λ(a) = 1 . Otherwise choose tm↓s r(a) with wr tm(a)≥1−γ . Following Lemma A.2, the right-continuity of λ7→w r λ(a) implies that wr sr(a)(a) = limmwr tm(a)≥1−γ ; in particular the infimum is attained. Monotonicity then gives wr λ(a)≥w r sr(a)(a)≥1−γ. Setk=⌈(1−α)(n+ 1)⌉ and for ann-tuplev∈[0,∞] n, denote byTk(v) itskth smallest entry. Split conformal calibration applies this order statistic to the calibration scores. Definition A.4(Calibrated scaling factor).The calibration map ˆλr :A n→[0,∞] is defined for (a1,...,a n)∈A n as ˆλr(a1,...,a n) =T k \u0000 sr(a1),...,s r(an) \u0001 ifk≤n , and ˆλr(a1,...,a n) =∞ otherwise. We abbreviate ˆλr := ˆλr(A1,...,A n) when no confusion arises, and first connect the geometric containment construction to the scalar conformal calibration. Definition A.4 determines the scaling factor provided by the calibration procedure. In the rest of the section, we show that it provides the desired coverage guarantee, i.e., that the residual field is contained on at least a 1−γ fraction of X with probability at least 1−α . The convention ˆ",
+        "reranker_score": 0.04534912109375,
+        "retrieval_score": 0.014705882352941176
+      },
+      {
+        "evidence_id": "ev-05-paper-011-p002-c002",
+        "paper_id": "paper-011",
+        "chunk_id": "paper-011-p002-c002",
+        "page": 2,
+        "section": "1 Introduction",
+        "text": "conformity scores across pairs of calibration sample and grid location and calibrating a single quantile (Gopakumar et al., 2024, 2025, 2026; Moya et al., 2025; Yu et al., 2026). One limitation of this approach is that the guarantee is marginal over both test solutions and spatial locations, hence controlling the average fraction of covered solution-location pairs, instead of the fraction of the domain covered for each individual solution. Gray et al. (2025); Wang et al. (2026b) construct simultaneous prediction sets for function-valued surrogate outputs to obtain strong spatial guarantees. However, the coverage band must accommodate the worst location on the grid, which may result in uninformative estimates for difficult problems. Then, Millard et al. (2025) extend split conformal prediction to neural operators by calibrating in a discretized function space and lifting the guarantee to the underlying function space, assuming that the discretization map is bilipschitz. Closer to this work is the UQNO framework introduced in (Ma et al., 2024), which trains two neural operators: a predictor for the solution and an estimator for the error field, then calibrates a single scaling factor",
+        "core_text": "conformity scores across pairs of calibration sample and grid location and calibrating a single quantile (Gopakumar et al., 2024, 2025, 2026; Moya et al., 2025; Yu et al., 2026). One limitation of this approach is that the guarantee is marginal over both test solutions and spatial locations, hence controlling the average fraction of covered solution-location pairs, instead of the fraction of the domain covered for each individual solution. Gray et al. (2025); Wang et al. (2026b) construct simultaneous prediction sets for function-valued surrogate outputs to obtain strong spatial guarantees. However, the coverage band must accommodate the worst location on the grid, which may result in uninformative estimates for difficult problems. Then, Millard et al. (2025) extend split conformal prediction to neural operators by calibrating in a discretized function space and lifting the guarantee to the underlying function space, assuming that the discretization map is bilipschitz. Closer to this work is the UQNO framework introduced in (Ma et al., 2024), which trains two neural operators: a predictor for the solution and an estimator for the error field, then calibrates a single scaling factor",
+        "reranker_score": 0.035736083984375,
+        "retrieval_score": 0.027650648360030512
+      }
+    ],
+    "v2_answer_alignment": [],
+    "v2_pipeline": {
+      "abstention_source": "scientific_nli_contradiction",
+      "fallback_used": false,
+      "quote_verified": true,
+      "numeric_verified": true,
+      "raw_verdict": "pre_abstain",
+      "top_reranker_score": 0.22509765625,
+      "score_margin_1_5": 0.189361572265625,
+      "en_query": null,
+      "nli_max_entailment": 0.0166,
+      "nli_max_contradiction": 0.9997
+    }
+  },
+  {
+    "id": "paper-011-false-premise-ko",
+    "category": "fp",
+    "language": "ko",
+    "paper_id": "paper-011",
+    "paper_title": "Conformal Uncertainty Quantification Guarantees for Neural Operators",
+    "question": "논문이 포함 확률 보장이 어느 지점에서도 공간적 실패를 허용하지 않는다고 입증했으므로 그 결론을 뒷받침하는 근거는 무엇인가요?",
+    "en_query": "What are the grounds that support the conclusion that the paper proves spatial failures are not allowed at any point in the probability guarantee?",
+    "v1_answered": false,
+    "v1_all_facts": false,
+    "v1_refused": true,
+    "v2_response": {
+      "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+      "evidence_ids": [],
+      "sufficiency": "insufficient",
+      "abstention_reason": "질문의 전제가 논문 원문 근거와 모순됩니다 (Scientific NLI 모순 확률=1.00)."
+    },
+    "v2_cited_evidence": [],
+    "v2_retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-011-p008-c002",
+        "paper_id": "paper-011",
+        "chunk_id": "paper-011-p008-c002",
+        "page": 8,
+        "section": "5 Conclusion",
+        "text": "5 Conclusion In this paper, we developed a split conformal framework to provide theoretically justified uncertainty quantification guarantees for neural operators. The calibration procedure constructs prediction bands based on a held-out calibration sets that are guaranteed to contain the true solution with a tolerance probability, while allowing for a controlled fraction of spatial failure over the domain. The construction reduces a measurable residual field to a spatial quantile and calibrates a single scaling factor, yielding finite-sample marginal coverage under exchangeability. The proof strategy applies to both continuum domains and fixed grids, with a discrete guarantee that does not rely on random spatial sampling or concentration corrections, and we characterized calibration-set variability via an exact Beta law under i.i.d. sampling and atomless scores. Empirically, on Darcy flow and Navier–Stokes equations, coverage matches the predicted behavior while achieving systematically tighter bands than (Ma et al., 2024), whose corrections are more conservative. The approach is model-agnostic and applies to any neural operator architecture, provided that an appropriate error est",
+        "core_text": "5 Conclusion In this paper, we developed a split conformal framework to provide theoretically justified uncertainty quantification guarantees for neural operators. The calibration procedure constructs prediction bands based on a held-out calibration sets that are guaranteed to contain the true solution with a tolerance probability, while allowing for a controlled fraction of spatial failure over the domain. The construction reduces a measurable residual field to a spatial quantile and calibrates a single scaling factor, yielding finite-sample marginal coverage under exchangeability. The proof strategy applies to both continuum domains and fixed grids, with a discrete guarantee that does not rely on random spatial sampling or concentration corrections, and we characterized calibration-set variability via an exact Beta law under i.i.d. sampling and atomless scores. Empirically, on Darcy flow and Navier–Stokes equations, coverage matches the predicted behavior while achieving systematically tighter bands than (Ma et al., 2024), whose corrections are more conservative. The approach is model-agnostic and applies to any neural operator architecture, provided that an appropriate error est",
+        "reranker_score": 0.28065794706344604,
+        "retrieval_score": 0.045811569380467584
+      },
+      {
+        "evidence_id": "ev-02-paper-011-p003-c003",
+        "paper_id": "paper-011",
+        "chunk_id": "paper-011-p003-c003",
+        "page": 3,
+        "section": "2.1 Calibration set and scaling factor",
+        "text": "λ(a)(x)⊂R du around the prediction ˆG(a)(x)as Cλ(a)(x) := \b y∈R du :∥y− ˆG(a)(x)∥2≤λ ˆE(a)(x) = ̄B( ˆG(a)(x),λ ˆE(a)(x)), with the convention thatC∞(a)(x) :=R du. The constantλ∈[0,∞] is a “scaling factor”, which uniformly scales the error estimator ˆE(a)(x). Lemma A.1 shows that the containment fraction of the domain, i.e., ν({x∈D:G †(a)(x)∈ Cλ(a)(x)}), is independent of the choice of representatives for the operators, so that one can drop the representative notation and writeG†, ˆG, ˆE for any fixed choice of product-measurable representatives. Letμ be a probability measure on (A,B(A)) , and fix aspatial tolerance γ∈(0,1) , the fraction of the domain on which containment may fail for a given input, and aprobability tolerance α∈(0,1) , the maximum probability that this spatial requirement may fail. LetA1,...,A n+1 be exchangeable input functions with common marginal lawμ, and denote the calibration set byDcal = (A1,...,A n). We aim to choose a scaling factor ˆλ= ˆλ(Dcal)such that PA1,...,An+1 \u0000 ν \u0000 {x∈D:G †(An+1)(x)∈C ˆλ(An+1)(x)} \u0001 ≥1−γ \u0001 ≥1−α,(1) i.e., the true output for the test input is contained on at least a fraction 1−γ ofD with probability at least 1−α . This is a marginal",
+        "core_text": "λ(a)(x)⊂R du around the prediction ˆG(a)(x)as Cλ(a)(x) := \b y∈R du :∥y− ˆG(a)(x)∥2≤λ ˆE(a)(x) = ̄B( ˆG(a)(x),λ ˆE(a)(x)), with the convention thatC∞(a)(x) :=R du. The constantλ∈[0,∞] is a “scaling factor”, which uniformly scales the error estimator ˆE(a)(x). Lemma A.1 shows that the containment fraction of the domain, i.e., ν({x∈D:G †(a)(x)∈ Cλ(a)(x)}), is independent of the choice of representatives for the operators, so that one can drop the representative notation and writeG†, ˆG, ˆE for any fixed choice of product-measurable representatives. Letμ be a probability measure on (A,B(A)) , and fix aspatial tolerance γ∈(0,1) , the fraction of the domain on which containment may fail for a given input, and aprobability tolerance α∈(0,1) , the maximum probability that this spatial requirement may fail. LetA1,...,A n+1 be exchangeable input functions with common marginal lawμ, and denote the calibration set byDcal = (A1,...,A n). We aim to choose a scaling factor ˆλ= ˆλ(Dcal)such that PA1,...,An+1 \u0000 ν \u0000 {x∈D:G †(An+1)(x)∈C ˆλ(An+1)(x)} \u0001 ≥1−γ \u0001 ≥1−α,(1) i.e., the true output for the test input is contained on at least a fraction 1−γ ofD with probability at least 1−α . This is a marginal",
+        "reranker_score": 0.05053100734949112,
+        "retrieval_score": 0.027212143650499815
+      },
+      {
+        "evidence_id": "ev-03-paper-011-p014-c003",
+        "paper_id": "paper-011",
+        "chunk_id": "paper-011-p014-c003",
+        "page": 14,
+        "section": "References",
+        "text": "a monotone class argument; Durrett 2019, Ex. 4.1.7) implies that the following equality holds almost surely, E \u0002 h(V,An+1)|V \u0003 = Z A h(V,w)μ(dw) =μ \u0000 {w:s r(w)≤ ˆλr(V)} \u0001 =F( ˆλr). The second identity is the tower property of conditional expectation P(Esr) =E \u0002 E[1Esr | A1,...,A n] \u0003 , whereEsr ={s r(An+1)≤ ˆλr}is the event defined in Lemma A.6. We can now apply an exchangeable-rank argument to the scalar scores and translate the result back to the containment score using Lemma A.3. Theorem A.8(Marginal coverage guarantee).Let r:A×X→[0,∞] be a residual field over (X,X,π), selectγ,α∈(0,1)as the spatial and probability tolerances, and supposeA 1,...,A n+1 are exchangeable. Letk=⌈(n+ 1)(1−α)⌉ and consider the scaling factor ˆλr defined as thekth smallest value among the scoressr(A1),...,s r(An)ifk≤n, and ˆλr =∞otherwise. Then, P \u0000 wr ˆλr(An+1)≥1−γ \u0001 ≥ k n+ 1 ≥1−α, that is the coverage is greater than 1−α . Moreover, if the Ai are i.i.d. and the law of sr(A1) is atomless, then the random variable P \u0000 wr ˆλr(An+1)≥1−γ A1,...,A n \u0001 follows a Beta(k, n+ 1−k)distribution, in particular P \u0000 wr ˆλr(An+1)≥1−γ \u0001 =E[P \u0000 wr ˆλr(An+1)≥1−γ A1,...,A n \u0001 ] = k n+ 1 ≤1−α+ 1 n+ 1. 14",
+        "core_text": "a monotone class argument; Durrett 2019, Ex. 4.1.7) implies that the following equality holds almost surely, E \u0002 h(V,An+1)|V \u0003 = Z A h(V,w)μ(dw) =μ \u0000 {w:s r(w)≤ ˆλr(V)} \u0001 =F( ˆλr). The second identity is the tower property of conditional expectation P(Esr) =E \u0002 E[1Esr | A1,...,A n] \u0003 , whereEsr ={s r(An+1)≤ ˆλr}is the event defined in Lemma A.6. We can now apply an exchangeable-rank argument to the scalar scores and translate the result back to the containment score using Lemma A.3. Theorem A.8(Marginal coverage guarantee).Let r:A×X→[0,∞] be a residual field over (X,X,π), selectγ,α∈(0,1)as the spatial and probability tolerances, and supposeA 1,...,A n+1 are exchangeable. Letk=⌈(n+ 1)(1−α)⌉ and consider the scaling factor ˆλr defined as thekth smallest value among the scoressr(A1),...,s r(An)ifk≤n, and ˆλr =∞otherwise. Then, P \u0000 wr ˆλr(An+1)≥1−γ \u0001 ≥ k n+ 1 ≥1−α, that is the coverage is greater than 1−α . Moreover, if the Ai are i.i.d. and the law of sr(A1) is atomless, then the random variable P \u0000 wr ˆλr(An+1)≥1−γ A1,...,A n \u0001 follows a Beta(k, n+ 1−k)distribution, in particular P \u0000 wr ˆλr(An+1)≥1−γ \u0001 =E[P \u0000 wr ˆλr(An+1)≥1−γ A1,...,A n \u0001 ] = k n+ 1 ≤1−α+ 1 n+ 1. 14",
+        "reranker_score": 0.04745330661535263,
+        "retrieval_score": 0.026334026334026334
+      },
+      {
+        "evidence_id": "ev-04-paper-011-p003-c004",
+        "paper_id": "paper-011",
+        "chunk_id": "paper-011-p003-c004",
+        "page": 3,
+        "section": "2.1 Calibration set and scaling factor",
+        "text": "..,An+1 \u0000 ν \u0000 {x∈D:G †(An+1)(x)∈C ˆλ(An+1)(x)} \u0001 ≥1−γ \u0001 ≥1−α,(1) i.e., the true output for the test input is contained on at least a fraction 1−γ ofD with probability at least 1−α . This is a marginal guarantee over the joint draw of the calibration set and test input, and exchangeability alone is sufficient. Under the assumption that A1,...,A n+1 are independent and identically distributed (i.i.d.), the calibration set is independent of the test input and the marginal probability in Eq. (1) decomposes as EDcal h PAn+1 \u0000 ν({x:G †(An+1)(x)∈C ˆλ(An+1)(x)})≥1−γ Dcal \u0001i ,(2) an average over calibration sets of the conditional probability of sufficient containment. The marginal guarantee controls this average, not the conditional probability for every realized calibration set. Coverage for arbitrary residual fields.Before specializing to neural operators, Section A.2 establishes the conformal argument in a general setting: given a measurable residual field r: A×X→[0,∞] on a probability space (X,X,π) , we define a scalar score as the smallest threshold that contains at least a 1−γ fraction of the evaluation spaceX and calibrate an order statistic of these scores to obtain marginal covera e (X,X,π) , we define a scalar score as the smallest threshold that contains at least a 1−γ fraction of the evaluation spaceX and calibrate an order statistic of these scores to obtain marginal coverage at least 1−α . Here, the argument only depends on measurability of the field and nothing else, not the model, the PDE, or even that X be a subset of the domain D. The sections that follow apply Theorem A.8 by specifying the evaluation space, its probability measure, and the relevant residual fields: first for the idealized continuum problem, then for discrete observations. 3",
+        "core_text": "..,An+1 \u0000 ν \u0000 {x∈D:G †(An+1)(x)∈C ˆλ(An+1)(x)} \u0001 ≥1−γ \u0001 ≥1−α,(1) i.e., the true output for the test input is contained on at least a fraction 1−γ ofD with probability at least 1−α . This is a marginal guarantee over the joint draw of the calibration set and test input, and exchangeability alone is sufficient. Under the assumption that A1,...,A n+1 are independent and identically distributed (i.i.d.), the calibration set is independent of the test input and the marginal probability in Eq. (1) decomposes as EDcal h PAn+1 \u0000 ν({x:G †(An+1)(x)∈C ˆλ(An+1)(x)})≥1−γ Dcal \u0001i ,(2) an average over calibration sets of the conditional probability of sufficient containment. The marginal guarantee controls this average, not the conditional probability for every realized calibration set. Coverage for arbitrary residual fields.Before specializing to neural operators, Section A.2 establishes the conformal argument in a general setting: given a measurable residual field r: A×X→[0,∞] on a probability space (X,X,π) , we define a scalar score as the smallest threshold that contains at least a 1−γ fraction of the evaluation spaceX and calibrate an order statistic of these scores to obtain marginal covera",
+        "reranker_score": 0.033337779343128204,
+        "retrieval_score": 0.05683404274953571
+      },
+      {
+        "evidence_id": "ev-05-paper-011-p005-c002",
+        "paper_id": "paper-011",
+        "chunk_id": "paper-011-p005-c002",
+        "page": 5,
+        "section": "2.3 Discrete coverage guarantee",
+        "text": "able for everyj, and that ˆEM(a)(xj)>0 . Since DM is finite, ρM is jointly measurable with respect toB(A)⊗2 DM . Then, for every a∈A andxj∈D M ,G†(a)(xj)∈C M λ (a)(xj) if and only if ρM(a,xj)≤λ, so the results of Section A.2 also apply to the discrete problem. We define the fraction of grid points for which the residual is smaller thanλ and the corresponding scalar nonconformity score similarly to Section 2.2 aswM λ (a) = 1 M PM j=1 1{ρM(a,xj)≤λ} and sM(a) = inf{λ≥0 :w M λ (a)≥1−γ} . Unlike the continuum case, this spatial quantile can be computed exactly from finitely many evaluations: ifq=⌈(1−γ)M⌉ , thensM(a) is theqth smallest value amongρM(a,x 1),...,ρ M(a,xM). Letk=⌈(1−α)(n+ 1)⌉ , given calibration inputsA1,...,A n, the scaling factor ˆλM is chosen as thekth smallest value of the scoressM(A1),...,s M(An) ifk≤n and∞ otherwise. The following result is a corollary of the generic split-conformal guarantee proved in Theorem A.8 with(X,X,π) = (D M,2DM,νM)andr=ρ M . Theorem 2.5(Discrete marginal coverage).Suppose that A1,...,A n+1∼μ are exchangeable, then P \u0010 νM \u0000 {xj∈D M :G†(An+1)(xj)∈C M ˆλM (An+1)(xj)} \u0001 ≥1−γ \u0011 ≥ k n+ 1 ≥1−α. Moreover, if theAi are i.i.d. and the distribution ofsM",
+        "core_text": "able for everyj, and that ˆEM(a)(xj)>0 . Since DM is finite, ρM is jointly measurable with respect toB(A)⊗2 DM . Then, for every a∈A andxj∈D M ,G†(a)(xj)∈C M λ (a)(xj) if and only if ρM(a,xj)≤λ, so the results of Section A.2 also apply to the discrete problem. We define the fraction of grid points for which the residual is smaller thanλ and the corresponding scalar nonconformity score similarly to Section 2.2 aswM λ (a) = 1 M PM j=1 1{ρM(a,xj)≤λ} and sM(a) = inf{λ≥0 :w M λ (a)≥1−γ} . Unlike the continuum case, this spatial quantile can be computed exactly from finitely many evaluations: ifq=⌈(1−γ)M⌉ , thensM(a) is theqth smallest value amongρM(a,x 1),...,ρ M(a,xM). Letk=⌈(1−α)(n+ 1)⌉ , given calibration inputsA1,...,A n, the scaling factor ˆλM is chosen as thekth smallest value of the scoressM(A1),...,s M(An) ifk≤n and∞ otherwise. The following result is a corollary of the generic split-conformal guarantee proved in Theorem A.8 with(X,X,π) = (D M,2DM,νM)andr=ρ M . Theorem 2.5(Discrete marginal coverage).Suppose that A1,...,A n+1∼μ are exchangeable, then P \u0010 νM \u0000 {xj∈D M :G†(An+1)(xj)∈C M ˆλM (An+1)(xj)} \u0001 ≥1−γ \u0011 ≥ k n+ 1 ≥1−α. Moreover, if theAi are i.i.d. and the distribution ofsM",
+        "reranker_score": 0.022957609966397285,
+        "retrieval_score": 0.02581612258494337
+      }
+    ],
+    "v2_answer_alignment": [],
+    "v2_pipeline": {
+      "abstention_source": "scientific_nli_contradiction",
+      "fallback_used": false,
+      "quote_verified": true,
+      "numeric_verified": true,
+      "raw_verdict": "pre_abstain",
+      "top_reranker_score": 0.28065794706344604,
+      "score_margin_1_5": 0.25770033709704876,
+      "en_query": "What are the grounds that support the conclusion that the paper proves spatial failures are not allowed at any point in the probability guarantee?",
+      "nli_max_entailment": 0.0003,
+      "nli_max_contradiction": 0.9997
+    }
+  },
+  {
+    "id": "paper-012-false-premise-en",
+    "category": "fp",
+    "language": "en",
+    "paper_id": "paper-012",
+    "paper_title": "Metric Distortion of Social Welfare Functions",
+    "question": "Since the paper establishes that Recursive Copeland is proved to have distortion five, what evidence supports that conclusion?",
+    "en_query": null,
+    "v1_answered": true,
+    "v1_all_facts": false,
+    "v1_refused": false,
+    "v2_response": {
+      "answer": "The answer cannot be verified from the provided paper evidence.",
+      "evidence_ids": [],
+      "sufficiency": "insufficient",
+      "abstention_reason": "The question premise contradicts the retrieved paper evidence (NLI contradiction=1.00)."
+    },
+    "v2_cited_evidence": [],
+    "v2_retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-012-p002-c004",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p002-c004",
+        "page": 2,
+        "section": "1 Introduction",
+        "text": "singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundof5canbeachieved. Weight Regime Recursive rule Distortion Known Weightedf≤3β KnownFractionalVeto3(optimal) Known WeightedCopeland5≤Dist.≤7 Identicalf≤1 + (β−1) range(w) Normalized (unit-sum)PluralityVetoΘ(m): \u0002 m 2,8m+ 3 \u0003 Normalized (unit-top)PluralityVetoΘ(m): \u0002 m 4,4m+ 1 \u0003 Table 1: The summary of our results. Here,βdenotes the distortion of the underlying social choice functionf, andrange(w) = (w 1−wm)/w1 is the normalized range of the common weight vectorw. 2) Identical Weights.Second, we study theidentical weightssetting,inwhichthepositionalweightsareunknown but all voters share the same weight vector. We show that recursively applying any single-winner rule with distortion βachieves distortion at most1 + (β−1) range(w), where range(w) = (w 1−wm)/w1 denotes the normalized range of the common weight vectorw. Thus, the distortion interpolates continuously between1, when all positions are valued equally, andβ, when only the first position matters. This strictly generalizes previous re",
+        "core_text": "singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundof5canbeachieved. Weight Regime Recursive rule Distortion Known Weightedf≤3β KnownFractionalVeto3(optimal) Known WeightedCopeland5≤Dist.≤7 Identicalf≤1 + (β−1) range(w) Normalized (unit-sum)PluralityVetoΘ(m): \u0002 m 2,8m+ 3 \u0003 Normalized (unit-top)PluralityVetoΘ(m): \u0002 m 4,4m+ 1 \u0003 Table 1: The summary of our results. Here,βdenotes the distortion of the underlying social choice functionf, andrange(w) = (w 1−wm)/w1 is the normalized range of the common weight vectorw. 2) Identical Weights.Second, we study theidentical weightssetting,inwhichthepositionalweightsareunknown but all voters share the same weight vector. We show that recursively applying any single-winner rule with distortion βachieves distortion at most1 + (β−1) range(w), where range(w) = (w 1−wm)/w1 denotes the normalized range of the common weight vectorw. Thus, the distortion interpolates continuously between1, when all positions are valued equally, andβ, when only the first position matters. This strictly generalizes previous re",
+        "reranker_score": 0.57177734375,
+        "retrieval_score": 0.015873015873015872
+      },
+      {
+        "evidence_id": "ev-02-paper-012-p002-c003",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p002-c003",
+        "page": 2,
+        "section": "1 Introduction",
+        "text": "ursively, filling the positions one by one by repeatedly applying a single-winner rule to the remaining candidates. However, the distortion guarantee of the underlying single-winner rule does not automatically carry over to its recursive extension. In particular, the best generic guarantee that we obtain for recursively applying an arbitrary distortion-βrule is a distortion of3β, while we exhibit instancesin which a local distortion ofβat every recursive step results in an overall distortion of2β. Surprisingly,ourmainresultshowsthatthisapparentloss isnotinherent.WeprovethatrecursivelyapplyingFractionalVeto,ageneralizationoftheoptimaldeterministicsinglewinner rulePluralityVeto(Kizilkaya and Kempe 2023), yields a social welfare function with the optimal distortion of3for every monotone weight profile. Thus, constructing an entire ranking incurs no additional distortion over the classical single-winner setting. Our proof exploits structural properties specific toFractionalVeto, beyond its singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundo",
+        "core_text": "ursively, filling the positions one by one by repeatedly applying a single-winner rule to the remaining candidates. However, the distortion guarantee of the underlying single-winner rule does not automatically carry over to its recursive extension. In particular, the best generic guarantee that we obtain for recursively applying an arbitrary distortion-βrule is a distortion of3β, while we exhibit instancesin which a local distortion ofβat every recursive step results in an overall distortion of2β. Surprisingly,ourmainresultshowsthatthisapparentloss isnotinherent.WeprovethatrecursivelyapplyingFractionalVeto,ageneralizationoftheoptimaldeterministicsinglewinner rulePluralityVeto(Kizilkaya and Kempe 2023), yields a social welfare function with the optimal distortion of3for every monotone weight profile. Thus, constructing an entire ranking incurs no additional distortion over the classical single-winner setting. Our proof exploits structural properties specific toFractionalVeto, beyond its singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundo",
+        "reranker_score": 0.568359375,
+        "retrieval_score": 0.029211087420042643
+      },
+      {
+        "evidence_id": "ev-03-paper-012-p007-c004",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p007-c004",
+        "page": 7,
+        "section": "3.3 Weighted RecursiveCopeland",
+        "text": "immediate whenWj = 0. Since Lemma 4 is independent of the rule used to select the candidates, summing over all positions yields SC(σ)≤6 SC(σ ∗) + mX j=1 X v∈V wvjd(v,topj(v)) ≤7 SC(σ∗). Since the election, metric, and weight profile fixed above were arbitrary, this completes the proof. Whenw v = (1,0,...,0)for every voterv∈V, only the first position contributes to the objective and Weighted RecursiveCopelandreduces to ordinaryCopeland. Thesingle-winnerlowerboundof5(Anshelevichetal.2018) therefore continues to apply. Thus, we currently only know thatthedistortionofWeightedRecursiveCopelandliesbetween5and7. 7",
+        "core_text": "immediate whenWj = 0. Since Lemma 4 is independent of the rule used to select the candidates, summing over all positions yields SC(σ)≤6 SC(σ ∗) + mX j=1 X v∈V wvjd(v,topj(v)) ≤7 SC(σ∗). Since the election, metric, and weight profile fixed above were arbitrary, this completes the proof. Whenw v = (1,0,...,0)for every voterv∈V, only the first position contributes to the objective and Weighted RecursiveCopelandreduces to ordinaryCopeland. Thesingle-winnerlowerboundof5(Anshelevichetal.2018) therefore continues to apply. Thus, we currently only know thatthedistortionofWeightedRecursiveCopelandliesbetween5and7. 7",
+        "reranker_score": 0.479248046875,
+        "retrieval_score": 0.015625
+      },
+      {
+        "evidence_id": "ev-04-paper-012-p010-c003",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p010-c003",
+        "page": 10,
+        "section": "6 Conclusion",
+        "text": "∈V d \u0000 c∗ 1,M−1 j (v) \u0001 = 2mSC(c∗ 1), wherethelastequalityfollowsbecauseM −1 j isapermutation ofVforeveryj.Finally,sincew v1 = 1foreveryvoterv,we have SC(σ∗)≥SC(c ∗ 1). Hence,D≤2mSC(σ ∗), and consequently SC(σ)≤(4m+ 1) SC(σ ∗), completing the proof. Together with Theorem 15, these bounds determine the optimal distortion up to constant factors: it isΘ(m)under either normalization. 6 Conclusion We initiated the study of metric distortion for social welfare functions, extending the metric distortion framework from selecting a single winner to constructing complete rankings under position-weighted objectives. Our results show that theamountofinformationavailableaboutthepositional weightsfundamentallydeterminestheachievabledistortion: knowingtheweightsallowsoptimalconstantdistortion,identicalhiddenweightsstilladmitstrongguarantees,whileheterogeneous hidden weights inevitably lead to linear distortion, even under natural normalizations. These results leave several interesting directions for future work. In particular, can the distortion of Recursive Copelandbe improved from the current upper bound of7 to the conjectured bound of5? More generally, it would be interesting to understand which single-winner distortion guarantees extend to recursive ranking rules, and to study metric distortion for social welfare functions under richer preference models, such as limited cardinal information or randomized social welfare functions. AcknowledgmentsThisworkwassupportedinpartbythe Ministry of National Education of the Republic of Türkiye. OpenAI’s GPT-5.5 and GPT-5.6 Sol we",
+        "core_text": "6 Conclusion We initiated the study of metric distortion for social welfare functions, extending the metric distortion framework from selecting a single winner to constructing complete rankings under position-weighted objectives. Our results show that theamountofinformationavailableaboutthepositional weightsfundamentallydeterminestheachievabledistortion: knowingtheweightsallowsoptimalconstantdistortion,identicalhiddenweightsstilladmitstrongguarantees,whileheterogeneous hidden weights inevitably lead to linear distortion, even under natural normalizations. These results leave several interesting directions for future work. In particular, can the distortion of Recursive Copelandbe improved from the current upper bound of7 to the conjectured bound of5? More generally, it would be interesting to understand which single-winner distortion guarantees extend to recursive ranking rules, and to study metric distortion for social welfare functions under richer preference models, such as limited cardinal information or randomized social welfare functions. AcknowledgmentsThisworkwassupportedinpartbythe Ministry of National Education of the Republic of Türkiye. OpenAI’s GPT-5.5 and GPT-5.6 Sol we",
+        "reranker_score": 0.447265625,
+        "retrieval_score": 0.03252247488101534
+      },
+      {
+        "evidence_id": "ev-05-paper-012-p007-c002",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p007-c002",
+        "page": 7,
+        "section": "3.3 Weighted RecursiveCopeland",
+        "text": "Averaging this inequality overu∈V− with weightswuj/t, multiplying bywvj, and summing overv∈V + gives SCj(a)−SC j(b) = X v∈V wvjδ(v) ≤ X v∈V + wvjδ(v) ≤2 X v∈V + wvjd(v,x) + 2s t X u∈V − wujd(u,x) ≤2 SC j(x), where the last inequality follows froms≤t. Acandidatebelongstotheuncoveredsetif,foreveryother candidateb,iteitherdefeatsbdirectlyordefeatssomecandidatethatdefeatsb.ItiswellknownthateveryCopelandwinnerbelongstotheuncoveredset(see,forexample,(Anshelevich et al. 2018)). Combining this property with Lemma 9 gives the following corollary. Corollary 10.For every positionjwithW j >0, every candidateb∈A j, and every metric pointx, SCj(cj)≤SC j(b) + 4 SCj(x). Takingx=bin Corollary 10 recovers the usual factor-5 comparison for a singleCopelandwinner. At positionj of the recursive rule, however, the candidate occupying that position in an optimal ranking may no longer be available. We therefore use it as the metric pointxand average the available comparison candidatebover voters’ top choices. Theorem 11.For every monotone weight profile, Weighted RecursiveCopelandhas distortion at most7. Proof.Letσ ∗ = (c∗ 1,...,c ∗ m)∈S C be an optimal ranking underdandw. Fix a positionjwithW j >0and a v",
+        "core_text": "Averaging this inequality overu∈V− with weightswuj/t, multiplying bywvj, and summing overv∈V + gives SCj(a)−SC j(b) = X v∈V wvjδ(v) ≤ X v∈V + wvjδ(v) ≤2 X v∈V + wvjd(v,x) + 2s t X u∈V − wujd(u,x) ≤2 SC j(x), where the last inequality follows froms≤t. Acandidatebelongstotheuncoveredsetif,foreveryother candidateb,iteitherdefeatsbdirectlyordefeatssomecandidatethatdefeatsb.ItiswellknownthateveryCopelandwinnerbelongstotheuncoveredset(see,forexample,(Anshelevich et al. 2018)). Combining this property with Lemma 9 gives the following corollary. Corollary 10.For every positionjwithW j >0, every candidateb∈A j, and every metric pointx, SCj(cj)≤SC j(b) + 4 SCj(x). Takingx=bin Corollary 10 recovers the usual factor-5 comparison for a singleCopelandwinner. At positionj of the recursive rule, however, the candidate occupying that position in an optimal ranking may no longer be available. We therefore use it as the metric pointxand average the available comparison candidatebover voters’ top choices. Theorem 11.For every monotone weight profile, Weighted RecursiveCopelandhas distortion at most7. Proof.Letσ ∗ = (c∗ 1,...,c ∗ m)∈S C be an optimal ranking underdandw. Fix a positionjwithW j >0and a v",
+        "reranker_score": 0.398681640625,
+        "retrieval_score": 0.014285714285714285
+      }
+    ],
+    "v2_answer_alignment": [],
+    "v2_pipeline": {
+      "abstention_source": "scientific_nli_contradiction",
+      "fallback_used": false,
+      "quote_verified": true,
+      "numeric_verified": true,
+      "raw_verdict": "pre_abstain",
+      "top_reranker_score": 0.57177734375,
+      "score_margin_1_5": 0.173095703125,
+      "en_query": null,
+      "nli_max_entailment": 0.3328,
+      "nli_max_contradiction": 0.9996
+    }
+  },
+  {
+    "id": "paper-012-false-premise-ko",
+    "category": "fp",
+    "language": "ko",
+    "paper_id": "paper-012",
+    "paper_title": "Metric Distortion of Social Welfare Functions",
+    "question": "논문이 재귀적 Copeland의 왜곡이 5임을 증명했다고 입증했으므로 그 결론을 뒷받침하는 근거는 무엇인가요?",
+    "en_query": "What are the grounds supporting the conclusion that the recursive Copeland distortion is 5?",
+    "v1_answered": false,
+    "v1_all_facts": false,
+    "v1_refused": true,
+    "v2_response": {
+      "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+      "evidence_ids": [],
+      "sufficiency": "insufficient",
+      "abstention_reason": "질문의 전제가 논문 원문 근거와 모순됩니다 (Scientific NLI 모순 확률=1.00)."
+    },
+    "v2_cited_evidence": [],
+    "v2_retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-012-p002-c003",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p002-c003",
+        "page": 2,
+        "section": "1 Introduction",
+        "text": "ursively, filling the positions one by one by repeatedly applying a single-winner rule to the remaining candidates. However, the distortion guarantee of the underlying single-winner rule does not automatically carry over to its recursive extension. In particular, the best generic guarantee that we obtain for recursively applying an arbitrary distortion-βrule is a distortion of3β, while we exhibit instancesin which a local distortion ofβat every recursive step results in an overall distortion of2β. Surprisingly,ourmainresultshowsthatthisapparentloss isnotinherent.WeprovethatrecursivelyapplyingFractionalVeto,ageneralizationoftheoptimaldeterministicsinglewinner rulePluralityVeto(Kizilkaya and Kempe 2023), yields a social welfare function with the optimal distortion of3for every monotone weight profile. Thus, constructing an entire ranking incurs no additional distortion over the classical single-winner setting. Our proof exploits structural properties specific toFractionalVeto, beyond its singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundo",
+        "core_text": "ursively, filling the positions one by one by repeatedly applying a single-winner rule to the remaining candidates. However, the distortion guarantee of the underlying single-winner rule does not automatically carry over to its recursive extension. In particular, the best generic guarantee that we obtain for recursively applying an arbitrary distortion-βrule is a distortion of3β, while we exhibit instancesin which a local distortion ofβat every recursive step results in an overall distortion of2β. Surprisingly,ourmainresultshowsthatthisapparentloss isnotinherent.WeprovethatrecursivelyapplyingFractionalVeto,ageneralizationoftheoptimaldeterministicsinglewinner rulePluralityVeto(Kizilkaya and Kempe 2023), yields a social welfare function with the optimal distortion of3for every monotone weight profile. Thus, constructing an entire ranking incurs no additional distortion over the classical single-winner setting. Our proof exploits structural properties specific toFractionalVeto, beyond its singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundo",
+        "reranker_score": 0.678393542766571,
+        "retrieval_score": 0.05749503257705282
+      },
+      {
+        "evidence_id": "ev-02-paper-012-p002-c004",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p002-c004",
+        "page": 2,
+        "section": "1 Introduction",
+        "text": "singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundof5canbeachieved. Weight Regime Recursive rule Distortion Known Weightedf≤3β KnownFractionalVeto3(optimal) Known WeightedCopeland5≤Dist.≤7 Identicalf≤1 + (β−1) range(w) Normalized (unit-sum)PluralityVetoΘ(m): \u0002 m 2,8m+ 3 \u0003 Normalized (unit-top)PluralityVetoΘ(m): \u0002 m 4,4m+ 1 \u0003 Table 1: The summary of our results. Here,βdenotes the distortion of the underlying social choice functionf, andrange(w) = (w 1−wm)/w1 is the normalized range of the common weight vectorw. 2) Identical Weights.Second, we study theidentical weightssetting,inwhichthepositionalweightsareunknown but all voters share the same weight vector. We show that recursively applying any single-winner rule with distortion βachieves distortion at most1 + (β−1) range(w), where range(w) = (w 1−wm)/w1 denotes the normalized range of the common weight vectorw. Thus, the distortion interpolates continuously between1, when all positions are valued equally, andβ, when only the first position matters. This strictly generalizes previous re",
+        "core_text": "singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundof5canbeachieved. Weight Regime Recursive rule Distortion Known Weightedf≤3β KnownFractionalVeto3(optimal) Known WeightedCopeland5≤Dist.≤7 Identicalf≤1 + (β−1) range(w) Normalized (unit-sum)PluralityVetoΘ(m): \u0002 m 2,8m+ 3 \u0003 Normalized (unit-top)PluralityVetoΘ(m): \u0002 m 4,4m+ 1 \u0003 Table 1: The summary of our results. Here,βdenotes the distortion of the underlying social choice functionf, andrange(w) = (w 1−wm)/w1 is the normalized range of the common weight vectorw. 2) Identical Weights.Second, we study theidentical weightssetting,inwhichthepositionalweightsareunknown but all voters share the same weight vector. We show that recursively applying any single-winner rule with distortion βachieves distortion at most1 + (β−1) range(w), where range(w) = (w 1−wm)/w1 denotes the normalized range of the common weight vectorw. Thus, the distortion interpolates continuously between1, when all positions are valued equally, andβ, when only the first position matters. This strictly generalizes previous re",
+        "reranker_score": 0.65057373046875,
+        "retrieval_score": 0.061118093376157895
+      },
+      {
+        "evidence_id": "ev-03-paper-012-p010-c003",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p010-c003",
+        "page": 10,
+        "section": "6 Conclusion",
+        "text": "∈V d \u0000 c∗ 1,M−1 j (v) \u0001 = 2mSC(c∗ 1), wherethelastequalityfollowsbecauseM −1 j isapermutation ofVforeveryj.Finally,sincew v1 = 1foreveryvoterv,we have SC(σ∗)≥SC(c ∗ 1). Hence,D≤2mSC(σ ∗), and consequently SC(σ)≤(4m+ 1) SC(σ ∗), completing the proof. Together with Theorem 15, these bounds determine the optimal distortion up to constant factors: it isΘ(m)under either normalization. 6 Conclusion We initiated the study of metric distortion for social welfare functions, extending the metric distortion framework from selecting a single winner to constructing complete rankings under position-weighted objectives. Our results show that theamountofinformationavailableaboutthepositional weightsfundamentallydeterminestheachievabledistortion: knowingtheweightsallowsoptimalconstantdistortion,identicalhiddenweightsstilladmitstrongguarantees,whileheterogeneous hidden weights inevitably lead to linear distortion, even under natural normalizations. These results leave several interesting directions for future work. In particular, can the distortion of Recursive Copelandbe improved from the current upper bound of7 to the conjectured bound of5? More generally, it would be interesting to understand which single-winner distortion guarantees extend to recursive ranking rules, and to study metric distortion for social welfare functions under richer preference models, such as limited cardinal information or randomized social welfare functions. AcknowledgmentsThisworkwassupportedinpartbythe Ministry of National Education of the Republic of Türkiye. OpenAI’s GPT-5.5 and GPT-5.6 Sol we",
+        "core_text": "6 Conclusion We initiated the study of metric distortion for social welfare functions, extending the metric distortion framework from selecting a single winner to constructing complete rankings under position-weighted objectives. Our results show that theamountofinformationavailableaboutthepositional weightsfundamentallydeterminestheachievabledistortion: knowingtheweightsallowsoptimalconstantdistortion,identicalhiddenweightsstilladmitstrongguarantees,whileheterogeneous hidden weights inevitably lead to linear distortion, even under natural normalizations. These results leave several interesting directions for future work. In particular, can the distortion of Recursive Copelandbe improved from the current upper bound of7 to the conjectured bound of5? More generally, it would be interesting to understand which single-winner distortion guarantees extend to recursive ranking rules, and to study metric distortion for social welfare functions under richer preference models, such as limited cardinal information or randomized social welfare functions. AcknowledgmentsThisworkwassupportedinpartbythe Ministry of National Education of the Republic of Türkiye. OpenAI’s GPT-5.5 and GPT-5.6 Sol we",
+        "reranker_score": 0.56536865234375,
+        "retrieval_score": 0.06305860541714588
+      },
+      {
+        "evidence_id": "ev-04-paper-012-p007-c004",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p007-c004",
+        "page": 7,
+        "section": "3.3 Weighted RecursiveCopeland",
+        "text": "immediate whenWj = 0. Since Lemma 4 is independent of the rule used to select the candidates, summing over all positions yields SC(σ)≤6 SC(σ ∗) + mX j=1 X v∈V wvjd(v,topj(v)) ≤7 SC(σ∗). Since the election, metric, and weight profile fixed above were arbitrary, this completes the proof. Whenw v = (1,0,...,0)for every voterv∈V, only the first position contributes to the objective and Weighted RecursiveCopelandreduces to ordinaryCopeland. Thesingle-winnerlowerboundof5(Anshelevichetal.2018) therefore continues to apply. Thus, we currently only know thatthedistortionofWeightedRecursiveCopelandliesbetween5and7. 7",
+        "core_text": "immediate whenWj = 0. Since Lemma 4 is independent of the rule used to select the candidates, summing over all positions yields SC(σ)≤6 SC(σ ∗) + mX j=1 X v∈V wvjd(v,topj(v)) ≤7 SC(σ∗). Since the election, metric, and weight profile fixed above were arbitrary, this completes the proof. Whenw v = (1,0,...,0)for every voterv∈V, only the first position contributes to the objective and Weighted RecursiveCopelandreduces to ordinaryCopeland. Thesingle-winnerlowerboundof5(Anshelevichetal.2018) therefore continues to apply. Thus, we currently only know thatthedistortionofWeightedRecursiveCopelandliesbetween5and7. 7",
+        "reranker_score": 0.5466552376747131,
+        "retrieval_score": 0.03149801587301587
+      },
+      {
+        "evidence_id": "ev-05-paper-012-p004-c005",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p004-c005",
+        "page": 4,
+        "section": "3 Known Weights",
+        "text": "hose cost is2βtimes optimal. This naturally raises the question whether producing an entire ranking requires distortion higher than3which is the optimal single-winner bound.2 It does not: exploiting the matching certificates underlyingFractionalVeto, we show that RecursiveFractionalVetoachieves the optimal distortion of3. Moreover, by operating directly on normalized masses, the rule runs in polynomial time, whereas the black-box extension may require exponential timebecauseitsexplicitclonepopulationcanbeexponential in the bit length of the weights. Finally, we study the analogous question forCopeland. While its single-winner distortion is5,Weighted Recursive Copelandrequires a substantially different analysis, for which we obtain a distortion bound of 7. However, whether aboundof5isactuallyachievable,remainsanopenquestion.",
+        "core_text": "hose cost is2βtimes optimal. This naturally raises the question whether producing an entire ranking requires distortion higher than3which is the optimal single-winner bound.2 It does not: exploiting the matching certificates underlyingFractionalVeto, we show that RecursiveFractionalVetoachieves the optimal distortion of3. Moreover, by operating directly on normalized masses, the rule runs in polynomial time, whereas the black-box extension may require exponential timebecauseitsexplicitclonepopulationcanbeexponential in the bit length of the weights. Finally, we study the analogous question forCopeland. While its single-winner distortion is5,Weighted Recursive Copelandrequires a substantially different analysis, for which we obtain a distortion bound of 7. However, whether aboundof5isactuallyachievable,remainsanopenquestion.",
+        "reranker_score": 0.41600340604782104,
+        "retrieval_score": 0.047712258380229994
+      }
+    ],
+    "v2_answer_alignment": [],
+    "v2_pipeline": {
+      "abstention_source": "scientific_nli_contradiction",
+      "fallback_used": false,
+      "quote_verified": true,
+      "numeric_verified": true,
+      "raw_verdict": "pre_abstain",
+      "top_reranker_score": 0.678393542766571,
+      "score_margin_1_5": 0.26239013671875,
+      "en_query": "What are the grounds supporting the conclusion that the recursive Copeland distortion is 5?",
+      "nli_max_entailment": 0.0227,
+      "nli_max_contradiction": 0.9995
+    }
+  },
+  {
+    "id": "paper-023-unsupported-en",
+    "category": "unsup",
+    "language": "en",
+    "paper_id": "paper-023",
+    "paper_title": "Generalised simultaneous transmission of arbitrary quantum states and classical information",
+    "question": "What randomized human clinical-trial sample size and treatment effect are reported?",
+    "en_query": null,
+    "v1_answered": false,
+    "v1_all_facts": false,
+    "v1_refused": true,
+    "v2_response": {
+      "answer": "The answer cannot be verified from the provided paper evidence.",
+      "evidence_ids": [],
+      "sufficiency": "insufficient",
+      "abstention_reason": "The provided evidence does not contain any information about randomized human clinical-trial sample sizes or treatment effects. All evidence references are related to physics, quantum optics, and experimental protocols, not medical or clinical trials."
+    },
+    "v2_cited_evidence": [],
+    "v2_retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-023-p017-c003",
+        "paper_id": "paper-023",
+        "chunk_id": "paper-023-p017-c003",
+        "page": 17,
+        "section": "ACKNOWLEDGMENTS",
+        "text": "ssical Optics 1, 483 (1999). [17] S. Pirandola and S. Mancini, Laser Physics16, 1418 (2006). [18] S. P. Neumann, A. Buchner, L. Bulla, M. Bohmann, and R. Ursin, Nature Communications13, 6134 (2022). [19] J. Yin, Y. Cao, Y.-H. Li, S.-K. Liao, L. Zhang, J.-G. Ren, W.-Q. Cai, W.-Y. Liu, B. Li, H. Dai, G.-B. Li, Q.-M. Lu, Y.-H. Gong, Y. Xu, S.-L. Li, F.-Z. Li, Y.-Y. Yin, Z.-Q. Jiang, M. Li, J.-J. Jia, G. Ren, D. He, Y.-L. Zhou, X.-X. Zhang, N. Wang, X. Chang, Z.-C. Zhu, N.-L. Liu, Y.-A. Chen, C.-Y. Lu, R. Shu, C.-Z. Peng, J.-Y. Wang, and J.-W. Pan, Science356, 1140 (2017). [20] N. Brunner, D. Cavalcanti, S. Pironio, V. Scarani, and S. Wehner, Reviews of Modern Physics86, 419 (2014). [21] K. Azuma, S. E. Economou, D. Elkouss, P. Hilaire, L. Jiang, H.-K. Lo, and I. Tzitrin, Reviews of Modern Physics95, 045006 (2023). [22] Postselected Bell tests are not loophole-free and so do not strictly exclude local models [33, 34], but since this is not our aim here they are nevertheless a suitable metric for evaluating the protocol. [23] C. Branciard, Physical Review A83, 032123 (2011). [24] J. S. Bell, Physics Physique Fizika1, 195 (1964). [25] J. F. Clauser, M. A. Horne, A. Shimony, and R. A. Hol",
+        "core_text": "ssical Optics 1, 483 (1999). [17] S. Pirandola and S. Mancini, Laser Physics16, 1418 (2006). [18] S. P. Neumann, A. Buchner, L. Bulla, M. Bohmann, and R. Ursin, Nature Communications13, 6134 (2022). [19] J. Yin, Y. Cao, Y.-H. Li, S.-K. Liao, L. Zhang, J.-G. Ren, W.-Q. Cai, W.-Y. Liu, B. Li, H. Dai, G.-B. Li, Q.-M. Lu, Y.-H. Gong, Y. Xu, S.-L. Li, F.-Z. Li, Y.-Y. Yin, Z.-Q. Jiang, M. Li, J.-J. Jia, G. Ren, D. He, Y.-L. Zhou, X.-X. Zhang, N. Wang, X. Chang, Z.-C. Zhu, N.-L. Liu, Y.-A. Chen, C.-Y. Lu, R. Shu, C.-Z. Peng, J.-Y. Wang, and J.-W. Pan, Science356, 1140 (2017). [20] N. Brunner, D. Cavalcanti, S. Pironio, V. Scarani, and S. Wehner, Reviews of Modern Physics86, 419 (2014). [21] K. Azuma, S. E. Economou, D. Elkouss, P. Hilaire, L. Jiang, H.-K. Lo, and I. Tzitrin, Reviews of Modern Physics95, 045006 (2023). [22] Postselected Bell tests are not loophole-free and so do not strictly exclude local models [33, 34], but since this is not our aim here they are nevertheless a suitable metric for evaluating the protocol. [23] C. Branciard, Physical Review A83, 032123 (2011). [24] J. S. Bell, Physics Physique Fizika1, 195 (1964). [25] J. F. Clauser, M. A. Horne, A. Shimony, and R. A. Hol",
+        "reranker_score": 0.002704620361328125,
+        "retrieval_score": 0.029726775956284153
+      },
+      {
+        "evidence_id": "ev-02-paper-023-p018-c001",
+        "paper_id": "paper-023",
+        "chunk_id": "paper-023-p018-c001",
+        "page": 18,
+        "section": "ACKNOWLEDGMENTS",
+        "text": "18 munications337, 27 (2015). [50] H. Vahlbruch, M. Mehmet, K. Danzmann, and R. Schnabel, Physical Review Letters117, 110801 (2016). [51] A. Garg and N. D. Mermin, Physical Review D35, 3831 (1987). [52] M. Giustina, A. Mech, S. Ramelow, B. Wittmann, J. Kofler, J. Beyer, A. Lita, B. Calkins, T. Gerrits, S. W. Nam, R. Ursin, and A. Zeilinger, Nature497, 227 (2013). [53] P. H. Eberhard, Physical Review A47, R747 (1993).",
+        "core_text": "18 munications337, 27 (2015). [50] H. Vahlbruch, M. Mehmet, K. Danzmann, and R. Schnabel, Physical Review Letters117, 110801 (2016). [51] A. Garg and N. D. Mermin, Physical Review D35, 3831 (1987). [52] M. Giustina, A. Mech, S. Ramelow, B. Wittmann, J. Kofler, J. Beyer, A. Lita, B. Calkins, T. Gerrits, S. W. Nam, R. Ursin, and A. Zeilinger, Nature497, 227 (2013). [53] P. H. Eberhard, Physical Review A47, R747 (1993).",
+        "reranker_score": 0.0022258758544921875,
+        "retrieval_score": 0.015625
+      },
+      {
+        "evidence_id": "ev-03-paper-023-p011-c003",
+        "paper_id": "paper-023",
+        "chunk_id": "paper-023-p011-c003",
+        "page": 11,
+        "section": "ACKNOWLEDGMENTS",
+        "text": "0,0,0,−g αα,0,0,g αα)T ]x 1≥0,y 1 <0 Wtele[q−(0,0,0,0,g αα,0,0,−g αα)T ]x 1 <0,y 1≥0 Wtele[q−(0,0,0,0,g αα,0,0,g αα)T ]x 1 <0,y 1 <0. (A50) It is important to remember that ˆρens depends both implicitly and explicitly on the measurement outcomex, since we consider only a shot at a time and that the state is not purified on a shot-by-shot basis. It is thus more useful when analysing the protocol to cast Bob’s output in terms of the ensemble state, ˆρ ens, which is obtained by Bob after asymptotically many rounds of the protocol. In this scenario, the output state is a stochastic mixture of ˆρ out distributing according to the probability density functionP(x): ˆρens = Z d4xP(x)ˆρout.(A51) The analytic expression for Wigner function of the ensemble state is thus Wens(q) = Z dx2dy1 Z ∞ 0 dx1 Z ∞ 0 dy2 P(x) ˆWtele[q−(0,0,0,0,−g αα,0,0,−g αα)T ] (A52) + Z dx2dy1 Z ∞ 0 dx1 Z 0 −∞ dy2 P(x) ˆWtele[q−(0,0,0,0,−g αα,0,0,g αα)T ] (A53) + Z dx2dy1 Z 0 −∞ dx1 Z ∞ 0 dy2 P(x) ˆWtele[q−(0,0,0,0,g αα,0,0,−g αα)T ] (A54) + Z dx2dy1 Z 0 −∞ dx1 Z 0 −∞ dy2 P(x) ˆWtele[q−(0,0,0,0,g αα,0,0,g αα)T ].(A55)",
+        "core_text": "0,0,0,−g αα,0,0,g αα)T ]x 1≥0,y 1 <0 Wtele[q−(0,0,0,0,g αα,0,0,−g αα)T ]x 1 <0,y 1≥0 Wtele[q−(0,0,0,0,g αα,0,0,g αα)T ]x 1 <0,y 1 <0. (A50) It is important to remember that ˆρens depends both implicitly and explicitly on the measurement outcomex, since we consider only a shot at a time and that the state is not purified on a shot-by-shot basis. It is thus more useful when analysing the protocol to cast Bob’s output in terms of the ensemble state, ˆρ ens, which is obtained by Bob after asymptotically many rounds of the protocol. In this scenario, the output state is a stochastic mixture of ˆρ out distributing according to the probability density functionP(x): ˆρens = Z d4xP(x)ˆρout.(A51) The analytic expression for Wigner function of the ensemble state is thus Wens(q) = Z dx2dy1 Z ∞ 0 dx1 Z ∞ 0 dy2 P(x) ˆWtele[q−(0,0,0,0,−g αα,0,0,−g αα)T ] (A52) + Z dx2dy1 Z ∞ 0 dx1 Z 0 −∞ dy2 P(x) ˆWtele[q−(0,0,0,0,−g αα,0,0,g αα)T ] (A53) + Z dx2dy1 Z 0 −∞ dx1 Z ∞ 0 dy2 P(x) ˆWtele[q−(0,0,0,0,g αα,0,0,−g αα)T ] (A54) + Z dx2dy1 Z 0 −∞ dx1 Z 0 −∞ dy2 P(x) ˆWtele[q−(0,0,0,0,g αα,0,0,g αα)T ].(A55)",
+        "reranker_score": 0.0018529891967773438,
+        "retrieval_score": 0.014084507042253521
+      },
+      {
+        "evidence_id": "ev-04-paper-023-p014-c001",
+        "paper_id": "paper-023",
+        "chunk_id": "paper-023-p014-c001",
+        "page": 14,
+        "section": "ACKNOWLEDGMENTS",
+        "text": "14 1 0.9 0.8 0.7 Transmissivity η 1 2 3Expectation value S 8 dB 10 dB 12 dB 15 dB Sη = 2 √ 2η S, α = 10 S, α = 1 1 0.9 0.8 0.7 Transmissivity η 10−20 10−10 100 Bit-error rate eC 8 dB 10 dB 12 dB 15 dB S, α = 10 S, α = 1 Figure 4. (a) Numerical evaluation of the CHSH criterionSfor an instance of the CMQC protocol where the resource state is the dual-rail Bell state ˆρ= φ− φ− and the channels are identical pure-loss channels of transmissivityη.Sis plotted as a function of the lossηfor the case where the classical signal strengthα= 1 (dash-dotted lines) andα= 10 (solid lines). The squeezingrof the teleporter resource EPR state is varied between multiple values representing feasible experimental parameters (e.g. [45–50]. For sufficiently high signal strength, as teleporter squeezing increasesSbegins to approach the upper bound Sη = 2 √ 2η, which describes the CHSH criterion for the asymmetric transmission of a Bell state through a pure-loss channel; in contrast, for low signal strength the protocol does not benefit from improved squeezing, withSdecreasing above approximately r= 12 dB. (b) Bit-error rate of the protocols shown in Fig. 4.a. For high classical signal (α= 10), the error ra",
+        "core_text": "14 1 0.9 0.8 0.7 Transmissivity η 1 2 3Expectation value S 8 dB 10 dB 12 dB 15 dB Sη = 2 √ 2η S, α = 10 S, α = 1 1 0.9 0.8 0.7 Transmissivity η 10−20 10−10 100 Bit-error rate eC 8 dB 10 dB 12 dB 15 dB S, α = 10 S, α = 1 Figure 4. (a) Numerical evaluation of the CHSH criterionSfor an instance of the CMQC protocol where the resource state is the dual-rail Bell state ˆρ= φ− φ− and the channels are identical pure-loss channels of transmissivityη.Sis plotted as a function of the lossηfor the case where the classical signal strengthα= 1 (dash-dotted lines) andα= 10 (solid lines). The squeezingrof the teleporter resource EPR state is varied between multiple values representing feasible experimental parameters (e.g. [45–50]. For sufficiently high signal strength, as teleporter squeezing increasesSbegins to approach the upper bound Sη = 2 √ 2η, which describes the CHSH criterion for the asymmetric transmission of a Bell state through a pure-loss channel; in contrast, for low signal strength the protocol does not benefit from improved squeezing, withSdecreasing above approximately r= 12 dB. (b) Bit-error rate of the protocols shown in Fig. 4.a. For high classical signal (α= 10), the error ra",
+        "reranker_score": 0.0013666152954101562,
+        "retrieval_score": 0.014705882352941176
+      },
+      {
+        "evidence_id": "ev-05-paper-023-p016-c001",
+        "paper_id": "paper-023",
+        "chunk_id": "paper-023-p016-c001",
+        "page": 16,
+        "section": "ACKNOWLEDGMENTS",
+        "text": "16 0 5 10 15 20 25 30 Transmissivity η (dB) 10−8 10−6 10−4 10−2 100 ps α = 1 α = 5 α = 20 0 5 10 15 20 25 30 Transmissivity η (dB) 0.0 0.5 1.0 1.5 2.0 Optimal EPR squeezing ropt α = 1 α = 5 α = 20 Figure 5. Success probabilities (left) and optimal rates (right) for the postselected protocols shown in Fig. 2 of the main text. The rate at which Bob obtains the correct measurement results with which to evaluateSis given trivially by the probability of successp s. For each lossη, the postselected quantityS p =S/p s is optimised over the two-mode squeezing of Bob’s EPR resourcerbetweenr= 0 and 20 dB (r∈[0,2.3]). The optimal strategy for protocols with a high classical signalαand so high classical SNR is the obvious one, i.e.r−→∞. This helps minimise the errors arising from imperfect teleportation so long as classical errors remain low. On the other hand, for low classical signal (such as whenα= 1 or in the higher-loss regime) classical errors dominate and so it becomes advantageous to reduce the level of squeezing such that the SNR of the protocol is increased. ThusS pure−loss p = 2 √ 2. Since the rateRat which Bob obtains conclusive events is equal to the probability of success, i.e.R=",
+        "core_text": "16 0 5 10 15 20 25 30 Transmissivity η (dB) 10−8 10−6 10−4 10−2 100 ps α = 1 α = 5 α = 20 0 5 10 15 20 25 30 Transmissivity η (dB) 0.0 0.5 1.0 1.5 2.0 Optimal EPR squeezing ropt α = 1 α = 5 α = 20 Figure 5. Success probabilities (left) and optimal rates (right) for the postselected protocols shown in Fig. 2 of the main text. The rate at which Bob obtains the correct measurement results with which to evaluateSis given trivially by the probability of successp s. For each lossη, the postselected quantityS p =S/p s is optimised over the two-mode squeezing of Bob’s EPR resourcerbetweenr= 0 and 20 dB (r∈[0,2.3]). The optimal strategy for protocols with a high classical signalαand so high classical SNR is the obvious one, i.e.r−→∞. This helps minimise the errors arising from imperfect teleportation so long as classical errors remain low. On the other hand, for low classical signal (such as whenα= 1 or in the higher-loss regime) classical errors dominate and so it becomes advantageous to reduce the level of squeezing such that the SNR of the protocol is increased. ThusS pure−loss p = 2 √ 2. Since the rateRat which Bob obtains conclusive events is equal to the probability of success, i.e.R=",
+        "reranker_score": 0.0011377334594726562,
+        "retrieval_score": 0.015151515151515152
+      }
+    ],
+    "v2_answer_alignment": [],
+    "v2_pipeline": {
+      "abstention_source": "llm_unsupported",
+      "fallback_used": false,
+      "quote_verified": true,
+      "numeric_verified": true,
+      "raw_verdict": "unsupported",
+      "top_reranker_score": 0.002704620361328125,
+      "score_margin_1_5": 0.0015668869018554688,
+      "en_query": null,
+      "nli_max_entailment": 0.0011,
+      "nli_max_contradiction": 0.0052
+    }
+  },
+  {
+    "id": "paper-023-unsupported-ko",
+    "category": "unsup",
+    "language": "ko",
+    "paper_id": "paper-023",
+    "paper_title": "Generalised simultaneous transmission of arbitrary quantum states and classical information",
+    "question": "보고된 무작위 인간 임상시험의 표본 크기와 치료 효과는 무엇인가요?",
+    "en_query": "What are the sample sizes and treatment effects reported in the randomized human clinical trials?",
+    "v1_answered": false,
+    "v1_all_facts": false,
+    "v1_refused": true,
+    "v2_response": {
+      "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
+      "evidence_ids": [],
+      "sufficiency": "insufficient",
+      "abstention_reason": "보고된 무작위 인간 임상시험에 대한 정보가 제공되지 않았습니다. 모든 증거는 양자 통신 또는 양자 텔레포테이션과 관련된 이론적 분석을 다루며, 인간 임상시험의 표본 크기나 치료 효과에 대한 언급이 없습니다."
+    },
+    "v2_cited_evidence": [],
+    "v2_retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-023-p011-c003",
+        "paper_id": "paper-023",
+        "chunk_id": "paper-023-p011-c003",
+        "page": 11,
+        "section": "ACKNOWLEDGMENTS",
+        "text": "0,0,0,−g αα,0,0,g αα)T ]x 1≥0,y 1 <0 Wtele[q−(0,0,0,0,g αα,0,0,−g αα)T ]x 1 <0,y 1≥0 Wtele[q−(0,0,0,0,g αα,0,0,g αα)T ]x 1 <0,y 1 <0. (A50) It is important to remember that ˆρens depends both implicitly and explicitly on the measurement outcomex, since we consider only a shot at a time and that the state is not purified on a shot-by-shot basis. It is thus more useful when analysing the protocol to cast Bob’s output in terms of the ensemble state, ˆρ ens, which is obtained by Bob after asymptotically many rounds of the protocol. In this scenario, the output state is a stochastic mixture of ˆρ out distributing according to the probability density functionP(x): ˆρens = Z d4xP(x)ˆρout.(A51) The analytic expression for Wigner function of the ensemble state is thus Wens(q) = Z dx2dy1 Z ∞ 0 dx1 Z ∞ 0 dy2 P(x) ˆWtele[q−(0,0,0,0,−g αα,0,0,−g αα)T ] (A52) + Z dx2dy1 Z ∞ 0 dx1 Z 0 −∞ dy2 P(x) ˆWtele[q−(0,0,0,0,−g αα,0,0,g αα)T ] (A53) + Z dx2dy1 Z 0 −∞ dx1 Z ∞ 0 dy2 P(x) ˆWtele[q−(0,0,0,0,g αα,0,0,−g αα)T ] (A54) + Z dx2dy1 Z 0 −∞ dx1 Z 0 −∞ dy2 P(x) ˆWtele[q−(0,0,0,0,g αα,0,0,g αα)T ].(A55)",
+        "core_text": "0,0,0,−g αα,0,0,g αα)T ]x 1≥0,y 1 <0 Wtele[q−(0,0,0,0,g αα,0,0,−g αα)T ]x 1 <0,y 1≥0 Wtele[q−(0,0,0,0,g αα,0,0,g αα)T ]x 1 <0,y 1 <0. (A50) It is important to remember that ˆρens depends both implicitly and explicitly on the measurement outcomex, since we consider only a shot at a time and that the state is not purified on a shot-by-shot basis. It is thus more useful when analysing the protocol to cast Bob’s output in terms of the ensemble state, ˆρ ens, which is obtained by Bob after asymptotically many rounds of the protocol. In this scenario, the output state is a stochastic mixture of ˆρ out distributing according to the probability density functionP(x): ˆρens = Z d4xP(x)ˆρout.(A51) The analytic expression for Wigner function of the ensemble state is thus Wens(q) = Z dx2dy1 Z ∞ 0 dx1 Z ∞ 0 dy2 P(x) ˆWtele[q−(0,0,0,0,−g αα,0,0,−g αα)T ] (A52) + Z dx2dy1 Z ∞ 0 dx1 Z 0 −∞ dy2 P(x) ˆWtele[q−(0,0,0,0,−g αα,0,0,g αα)T ] (A53) + Z dx2dy1 Z 0 −∞ dx1 Z ∞ 0 dy2 P(x) ˆWtele[q−(0,0,0,0,g αα,0,0,−g αα)T ] (A54) + Z dx2dy1 Z 0 −∞ dx1 Z 0 −∞ dy2 P(x) ˆWtele[q−(0,0,0,0,g αα,0,0,g αα)T ].(A55)",
+        "reranker_score": 0.0032874820753932,
+        "retrieval_score": 0.028381642512077296
+      },
+      {
+        "evidence_id": "ev-02-paper-023-p017-c003",
+        "paper_id": "paper-023",
+        "chunk_id": "paper-023-p017-c003",
+        "page": 17,
+        "section": "ACKNOWLEDGMENTS",
+        "text": "ssical Optics 1, 483 (1999). [17] S. Pirandola and S. Mancini, Laser Physics16, 1418 (2006). [18] S. P. Neumann, A. Buchner, L. Bulla, M. Bohmann, and R. Ursin, Nature Communications13, 6134 (2022). [19] J. Yin, Y. Cao, Y.-H. Li, S.-K. Liao, L. Zhang, J.-G. Ren, W.-Q. Cai, W.-Y. Liu, B. Li, H. Dai, G.-B. Li, Q.-M. Lu, Y.-H. Gong, Y. Xu, S.-L. Li, F.-Z. Li, Y.-Y. Yin, Z.-Q. Jiang, M. Li, J.-J. Jia, G. Ren, D. He, Y.-L. Zhou, X.-X. Zhang, N. Wang, X. Chang, Z.-C. Zhu, N.-L. Liu, Y.-A. Chen, C.-Y. Lu, R. Shu, C.-Z. Peng, J.-Y. Wang, and J.-W. Pan, Science356, 1140 (2017). [20] N. Brunner, D. Cavalcanti, S. Pironio, V. Scarani, and S. Wehner, Reviews of Modern Physics86, 419 (2014). [21] K. Azuma, S. E. Economou, D. Elkouss, P. Hilaire, L. Jiang, H.-K. Lo, and I. Tzitrin, Reviews of Modern Physics95, 045006 (2023). [22] Postselected Bell tests are not loophole-free and so do not strictly exclude local models [33, 34], but since this is not our aim here they are nevertheless a suitable metric for evaluating the protocol. [23] C. Branciard, Physical Review A83, 032123 (2011). [24] J. S. Bell, Physics Physique Fizika1, 195 (1964). [25] J. F. Clauser, M. A. Horne, A. Shimony, and R. A. Hol",
+        "core_text": "ssical Optics 1, 483 (1999). [17] S. Pirandola and S. Mancini, Laser Physics16, 1418 (2006). [18] S. P. Neumann, A. Buchner, L. Bulla, M. Bohmann, and R. Ursin, Nature Communications13, 6134 (2022). [19] J. Yin, Y. Cao, Y.-H. Li, S.-K. Liao, L. Zhang, J.-G. Ren, W.-Q. Cai, W.-Y. Liu, B. Li, H. Dai, G.-B. Li, Q.-M. Lu, Y.-H. Gong, Y. Xu, S.-L. Li, F.-Z. Li, Y.-Y. Yin, Z.-Q. Jiang, M. Li, J.-J. Jia, G. Ren, D. He, Y.-L. Zhou, X.-X. Zhang, N. Wang, X. Chang, Z.-C. Zhu, N.-L. Liu, Y.-A. Chen, C.-Y. Lu, R. Shu, C.-Z. Peng, J.-Y. Wang, and J.-W. Pan, Science356, 1140 (2017). [20] N. Brunner, D. Cavalcanti, S. Pironio, V. Scarani, and S. Wehner, Reviews of Modern Physics86, 419 (2014). [21] K. Azuma, S. E. Economou, D. Elkouss, P. Hilaire, L. Jiang, H.-K. Lo, and I. Tzitrin, Reviews of Modern Physics95, 045006 (2023). [22] Postselected Bell tests are not loophole-free and so do not strictly exclude local models [33, 34], but since this is not our aim here they are nevertheless a suitable metric for evaluating the protocol. [23] C. Branciard, Physical Review A83, 032123 (2011). [24] J. S. Bell, Physics Physique Fizika1, 195 (1964). [25] J. F. Clauser, M. A. Horne, A. Shimony, and R. A. Hol",
+        "reranker_score": 0.0030159472953528166,
+        "retrieval_score": 0.03252247488101534
+      },
+      {
+        "evidence_id": "ev-03-paper-023-p018-c001",
+        "paper_id": "paper-023",
+        "chunk_id": "paper-023-p018-c001",
+        "page": 18,
+        "section": "ACKNOWLEDGMENTS",
+        "text": "18 munications337, 27 (2015). [50] H. Vahlbruch, M. Mehmet, K. Danzmann, and R. Schnabel, Physical Review Letters117, 110801 (2016). [51] A. Garg and N. D. Mermin, Physical Review D35, 3831 (1987). [52] M. Giustina, A. Mech, S. Ramelow, B. Wittmann, J. Kofler, J. Beyer, A. Lita, B. Calkins, T. Gerrits, S. W. Nam, R. Ursin, and A. Zeilinger, Nature497, 227 (2013). [53] P. H. Eberhard, Physical Review A47, R747 (1993).",
+        "core_text": "18 munications337, 27 (2015). [50] H. Vahlbruch, M. Mehmet, K. Danzmann, and R. Schnabel, Physical Review Letters117, 110801 (2016). [51] A. Garg and N. D. Mermin, Physical Review D35, 3831 (1987). [52] M. Giustina, A. Mech, S. Ramelow, B. Wittmann, J. Kofler, J. Beyer, A. Lita, B. Calkins, T. Gerrits, S. W. Nam, R. Ursin, and A. Zeilinger, Nature497, 227 (2013). [53] P. H. Eberhard, Physical Review A47, R747 (1993).",
+        "reranker_score": 0.0027367828879505396,
+        "retrieval_score": 0.029571646010002173
+      },
+      {
+        "evidence_id": "ev-04-paper-023-p016-c001",
+        "paper_id": "paper-023",
+        "chunk_id": "paper-023-p016-c001",
+        "page": 16,
+        "section": "ACKNOWLEDGMENTS",
+        "text": "16 0 5 10 15 20 25 30 Transmissivity η (dB) 10−8 10−6 10−4 10−2 100 ps α = 1 α = 5 α = 20 0 5 10 15 20 25 30 Transmissivity η (dB) 0.0 0.5 1.0 1.5 2.0 Optimal EPR squeezing ropt α = 1 α = 5 α = 20 Figure 5. Success probabilities (left) and optimal rates (right) for the postselected protocols shown in Fig. 2 of the main text. The rate at which Bob obtains the correct measurement results with which to evaluateSis given trivially by the probability of successp s. For each lossη, the postselected quantityS p =S/p s is optimised over the two-mode squeezing of Bob’s EPR resourcerbetweenr= 0 and 20 dB (r∈[0,2.3]). The optimal strategy for protocols with a high classical signalαand so high classical SNR is the obvious one, i.e.r−→∞. This helps minimise the errors arising from imperfect teleportation so long as classical errors remain low. On the other hand, for low classical signal (such as whenα= 1 or in the higher-loss regime) classical errors dominate and so it becomes advantageous to reduce the level of squeezing such that the SNR of the protocol is increased. ThusS pure−loss p = 2 √ 2. Since the rateRat which Bob obtains conclusive events is equal to the probability of success, i.e.R=",
+        "core_text": "16 0 5 10 15 20 25 30 Transmissivity η (dB) 10−8 10−6 10−4 10−2 100 ps α = 1 α = 5 α = 20 0 5 10 15 20 25 30 Transmissivity η (dB) 0.0 0.5 1.0 1.5 2.0 Optimal EPR squeezing ropt α = 1 α = 5 α = 20 Figure 5. Success probabilities (left) and optimal rates (right) for the postselected protocols shown in Fig. 2 of the main text. The rate at which Bob obtains the correct measurement results with which to evaluateSis given trivially by the probability of successp s. For each lossη, the postselected quantityS p =S/p s is optimised over the two-mode squeezing of Bob’s EPR resourcerbetweenr= 0 and 20 dB (r∈[0,2.3]). The optimal strategy for protocols with a high classical signalαand so high classical SNR is the obvious one, i.e.r−→∞. This helps minimise the errors arising from imperfect teleportation so long as classical errors remain low. On the other hand, for low classical signal (such as whenα= 1 or in the higher-loss regime) classical errors dominate and so it becomes advantageous to reduce the level of squeezing such that the SNR of the protocol is increased. ThusS pure−loss p = 2 √ 2. Since the rateRat which Bob obtains conclusive events is equal to the probability of success, i.e.R=",
+        "reranker_score": 0.0018632530700415373,
+        "retrieval_score": 0.03055037313432836
+      },
+      {
+        "evidence_id": "ev-05-paper-023-p003-c004",
+        "paper_id": "paper-023",
+        "chunk_id": "paper-023-p003-c004",
+        "page": 3,
+        "section": "II. THE CMQC PROTOCOL",
+        "text": "α)Λ⊗N(η) [ˆρ]ˆD†(√ηα) \u0011 ˆD†(−gα⟨α⟩) (9) = ˆD(√τηα−g α⟨α⟩)Λ⊗N[τη] (ˆρ)ˆD†(√τηα−g α⟨α⟩).(10) The total effect of the channel on Alice’s quantum signal is therefore equivalent to an initial attenuation by a factorτη, followed by a random phase-space displacement√τηα−g α⟨α⟩, which encodes the non-Gaussian noise contribution arising from the corrected classical signal. Describing the channel in this way allows us to consider two important limiting cases for the CMQC protocol. In the first, we consider the limiting case of high classical signal-to-noise (SNR), where the likelihood of symbol errors vanishes, or equivalently Bob can perfectly predict the classical displacement of the state from his measurement resultsx i (assuming the channelE N is known). Formally, Bob’s estimated displacement⟨α⟩approaches the correct value with unity probability: βi−→αi =⇒−gα⟨α⟩−→−g αα.(11) Thus Bob can perfectly remove Alice’s displacement from the state. In this case, for the appropriate choice ofg α, the channelE CMQC approaches ECMQC(ˆρ)−→Λ⊗N(τη) [ˆρ] (12) Equivalently, ifE N is not a lossy bosonic channel, for most casesE CMQC will approachE N (see Appendix). In the second limiting case, we consider channelE CMQC approaches ECMQC(ˆρ)−→Λ⊗N(τη) [ˆρ] (12) Equivalently, ifE N is not a lossy bosonic channel, for most casesE CMQC will approachE N (see Appendix). In the second limiting case, we consider the limit of teleportation with an infinitely squeezed EPR state. It is a known result [12, 17] that in the limit of infinite squeezing CV teleportation can perfectly reconstruct the input state; from Eq. (10) we find ECMQC(ˆρ) (13) −→ ˆD(√ηα−g α⟨α⟩)E⊗N[η] (ˆρ)ˆD†(√ηα−g α⟨α⟩)",
+        "core_text": "α)Λ⊗N(η) [ˆρ]ˆD†(√ηα) \u0011 ˆD†(−gα⟨α⟩) (9) = ˆD(√τηα−g α⟨α⟩)Λ⊗N[τη] (ˆρ)ˆD†(√τηα−g α⟨α⟩).(10) The total effect of the channel on Alice’s quantum signal is therefore equivalent to an initial attenuation by a factorτη, followed by a random phase-space displacement√τηα−g α⟨α⟩, which encodes the non-Gaussian noise contribution arising from the corrected classical signal. Describing the channel in this way allows us to consider two important limiting cases for the CMQC protocol. In the first, we consider the limiting case of high classical signal-to-noise (SNR), where the likelihood of symbol errors vanishes, or equivalently Bob can perfectly predict the classical displacement of the state from his measurement resultsx i (assuming the channelE N is known). Formally, Bob’s estimated displacement⟨α⟩approaches the correct value with unity probability: βi−→αi =⇒−gα⟨α⟩−→−g αα.(11) Thus Bob can perfectly remove Alice’s displacement from the state. In this case, for the appropriate choice ofg α, the channelE CMQC approaches ECMQC(ˆρ)−→Λ⊗N(τη) [ˆρ] (12) Equivalently, ifE N is not a lossy bosonic channel, for most casesE CMQC will approachE N (see Appendix). In the second limiting case, we consider",
+        "reranker_score": 0.0014919876120984554,
+        "retrieval_score": 0.026500526500526502
+      }
+    ],
+    "v2_answer_alignment": [],
+    "v2_pipeline": {
+      "abstention_source": "llm_unsupported",
+      "fallback_used": false,
+      "quote_verified": true,
+      "numeric_verified": true,
+      "raw_verdict": "unsupported",
+      "top_reranker_score": 0.0032874820753932,
+      "score_margin_1_5": 0.0017954944632947445,
+      "en_query": "What are the sample sizes and treatment effects reported in the randomized human clinical trials?",
+      "nli_max_entailment": 0.0001,
+      "nli_max_contradiction": 0.0008
+    }
+  }
+]

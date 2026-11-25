@@ -1,0 +1,117 @@
+{
+  "verified_at": "2026-11-25T15:45:45.020549+00:00",
+  "host": {
+    "os": "Windows 11",
+    "python": "3.12.7",
+    "gpu": {
+      "cuda_available": true,
+      "device_name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+      "total_vram_mib": 6143.5,
+      "torch_version": "2.14.0+cu130"
+    }
+  },
+  "corpus_v2_holdout_sha256": {
+    "chunks.jsonl": {
+      "sha256": "ff0060419730f7a7164467478e8a35aab550edc40c86c59060a02e2ab965237e",
+      "verified": true
+    },
+    "manifest_v2.json": {
+      "sha256": "22223080fd5059e434693fbea95f803b391ca825e09edbca987cf51c822981c8",
+      "verified": true
+    }
+  },
+  "conformal_gate": {
+    "oof_aurc": 0.0669,
+    "nli_contra_threshold": 0.95,
+    "thresholds": {
+      "0.02": 0.8992802689537455,
+      "0.05": 0.8727277063209673,
+      "0.10": 0.4195762490533362
+    }
+  },
+  "scientific_nli_onnx_int8_gate": {
+    "available": true,
+    "file_size_mib": 322.67,
+    "sha256": "af6ced76b9176564dd6f6ba074baa7050ee91da4632216ccd862d58cd083a35b",
+    "threads": 4,
+    "padding_invariance": {
+      "unpadded_contra": 0.061635,
+      "padded_384_contra": 0.098943,
+      "abs_diff": 0.037309,
+      "passed": false
+    },
+    "holdout_fp32_vs_int8_parity": {
+      "n_cases": 40,
+      "n_answerable": 20,
+      "n_false_premise": 20,
+      "threshold": 0.95,
+      "decision_parity_count": 20,
+      "decision_parity_rate": 0.5,
+      "mean_abs_contra_diff": 0.387348,
+      "max_abs_contra_diff": 0.9369,
+      "false_premise_caught_onnx": 2,
+      "answerable_passed_onnx": 20,
+      "latency_per_question_p50_ms": 2225.52,
+      "latency_per_question_mean_ms": 2719.84,
+      "latency_per_window_p50_ms": 288.0,
+      "mean_windows_per_question": 9.78
+    },
+    "gate_status": "BLOCKED",
+    "diagnosis": "Legacy TorchScript ONNX export + dynamic INT8 breaks DeBERTa-v2 disentangled relative-position padding invariance; deploy Scientific NLI in FP32 PyTorch."
+  },
+  "rtx3060_fp32_pytorch_nli": {
+    "tested": true,
+    "model_ref": "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli",
+    "device": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "vram_allocated_gib": 1.048,
+    "vram_peak_gib": 1.61,
+    "vram_total_gib": 6.0,
+    "padding_invariance": {
+      "unpadded_contra": 0.948831,
+      "padded_384_contra": 0.948831,
+      "abs_diff": 0.0,
+      "passed": true
+    },
+    "sample_false_premise_contra": 0.9986,
+    "windows_per_question": 20,
+    "latency_per_question_p50_ms": 555.72,
+    "latency_per_window_p50_ms": 27.79,
+    "gate_status": "PASS"
+  },
+  "web_demo_api_checks": {
+    "health_ok": true,
+    "papers_loaded": 30,
+    "presets_loaded": 10,
+    "nli_runtime_status": "onnx_int8_blocked_by_parity_gate",
+    "preset_live_checks": [
+      {
+        "case_id": "paper-030-baselines-ko",
+        "category": "ans",
+        "sufficiency": "sufficient",
+        "nli_contra": 0.0011,
+        "nli_engine": "recorded_fp32_fallback",
+        "wall_ms": 0.1,
+        "conformal_prob": 0.9856
+      },
+      {
+        "case_id": "paper-011-false-premise-ko",
+        "category": "fp",
+        "sufficiency": "insufficient",
+        "nli_contra": 0.9997,
+        "nli_engine": "recorded_fp32_fallback",
+        "wall_ms": 0.09,
+        "conformal_prob": 0.537
+      },
+      {
+        "case_id": "paper-023-unsupported-ko",
+        "category": "unsup",
+        "sufficiency": "insufficient",
+        "nli_contra": 0.0008,
+        "nli_engine": "recorded_fp32_fallback",
+        "wall_ms": 0.09,
+        "conformal_prob": 0.0525
+      }
+    ]
+  },
+  "total_verification_seconds": 192.52
+}

@@ -1,0 +1,15 @@
+exp_id,short_label,decision,pair_ans,ko_ans,pair_facts,en_facts,ko_facts,unsup_pair,fp_en,fp_ko,fp_pair,quote_rate,numeric_rate,sec_per_q
+v1_final_dev,"v1
+Baseline",Baseline,23,23,8,29,9,10,0,9,0,,,5.34
+exp1c_bge_m3_qwen3_4b_2507_zeroshot,"Exp 1C
+Base 4B",Adopted LLM,40,40,25,35,27,10,8,7,7,0.965,0.976,2.06
+exp1c_teacher_qwen3_14b_4bit,"Exp 1C
+14B-AWQ",Teacher Ceiling,39,40,24,35,26,10,6,4,4,0.933,0.978,3.73
+exp2a_pre_sliding_nli,"Exp 2A
+NLI 0.70",Threshold Low,35,36,21,32,25,10,10,10,10,0.958,0.972,1.72
+exp2b_pre_and_2stage_post_nli,"Exp 2B
+Post-NLI",Rejected,31,32,20,32,22,10,10,10,10,0.971,0.956,1.73
+exp3a_qwen3_4b_2507_comp_only_sft,"Exp 3A
+SFT 4B",Rejected,32,33,21,34,22,10,10,10,10,0.926,0.971,1.83
+exp2c_base4b_pre_nli_095,"Exp 2C
+NLI 0.95",DEV Winner,37,37,24,35,26,10,10,10,10,0.987,0.974,2.06
