@@ -535,6 +535,610 @@
     }
   },
   {
+    "id": "paper-017-security-en",
+    "category": "borderline_nli",
+    "language": "en",
+    "paper_id": "paper-017",
+    "paper_title": "Beyond the Editing Canvas: Evidence Divergence in OOXML-to-LLM Ingestion",
+    "question": "Why should loader selection and upgrades be treated as security-relevant policy changes?",
+    "en_query": null,
+    "response": {
+      "answer": "Loader selection and upgrades should be treated as security-relevant policy changes rather than interchangeable implementation details because the decision of which document view becomes model evidence is part of the full ingestion configuration, and changes in entry point, extractor version, output mode, and arguments can all alter exposure, while models sharing one path can retain the same exposed set. The choice of OOXML loader significantly affects exposure, particularly in DOCX documents, where loader choice substantially changes exposure, whereas it has little effect on high-reach XLSX mechanisms, demonstrating asymmetric impact based on document format and structure. Across mainstream open-source RAG and agent projects, default OOXML ingestion paths concentrate on a small set of leaf extractors, making loader choice an indicator of potential exposure and highlighting its role in determining the security surface of the ingestion pipeline. The security of OOXML ingestion is influenced by the specific loader used, as different extractors may expose different parts of the document, including hidden content, formatting rules, and metadata, and some mechanisms are only exposed when carried as ordinary content text that any walk of the document reaches, which is format-dependent. The format determines whether a loader choice is a security choice: mechanisms located in ordinary content text that any walk of the document reaches are widely exposed across tools, while those in attributes, relationships, or alternate-content branches are only exposed by a subset of tools, making loader selection a critical factor in determining exposure.",
+      "evidence_ids": [
+        "ev-01-paper-017-p013-c003",
+        "ev-03-paper-017-p007-c006",
+        "ev-02-paper-017-p003-c004",
+        "ev-04-paper-017-p001-c005",
+        "ev-05-paper-017-p007-c005"
+      ],
+      "sufficiency": "sufficient",
+      "abstention_reason": null
+    },
+    "cited_evidence": [
+      {
+        "evidence_id": "ev-01-paper-017-p013-c003",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p013-c003",
+        "page": 13,
+        "section": "5 Discussion and Limitations",
+        "text": "5 Discussion and Limitations View Construction Is a Security PolicyAn OOXML loader is usually treated as a preprocessing utility, but it decides which document view becomes model evidence. RQ3 shows that this decision belongs to the full ingestion configuration: entry point, extractor version, output mode, and arguments can all change exposure, while models sharing one path can retain the same exposed set. RQ4 shows why this matters beyond one service: otherwise diverse projects repeatedly route OOXML through a small set of extractor families. Loader selection and upgrades should therefore be treated as securityrelevant policy changes rather than interchangeable implementation details. The stable vectors observed under API repetition and across web instances also suggest a practical audit primitive: a fixed evidence-fork suite can regressiontest a pipeline’s evidence-selection behavior and detect drift without backend access. Coverage Is Not Semantic FidelityRQ1 shows that recovering more strings can widen the set of semantic roles flattened into model evidence. Narrow extraction is not a general remedy: omitting document semantics does not restore fidelity to the Office view. Text",
+        "core_text": "5 Discussion and Limitations View Construction Is a Security PolicyAn OOXML loader is usually treated as a preprocessing utility, but it decides which document view becomes model evidence. RQ3 shows that this decision belongs to the full ingestion configuration: entry point, extractor version, output mode, and arguments can all change exposure, while models sharing one path can retain the same exposed set. RQ4 shows why this matters beyond one service: otherwise diverse projects repeatedly route OOXML through a small set of extractor families. Loader selection and upgrades should therefore be treated as securityrelevant policy changes rather than interchangeable implementation details. The stable vectors observed under API repetition and across web instances also suggest a practical audit primitive: a fixed evidence-fork suite can regressiontest a pipeline’s evidence-selection behavior and detect drift without backend access. Coverage Is Not Semantic FidelityRQ1 shows that recovering more strings can widen the set of semantic roles flattened into model evidence. Narrow extraction is not a general remedy: omitting document semantics does not restore fidelity to the Office view. Text",
+        "reranker_score": 0.998046875,
+        "retrieval_score": 0.03278688524590164
+      },
+      {
+        "evidence_id": "ev-03-paper-017-p007-c006",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p007-c006",
+        "page": 7,
+        "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+        "text": "ed as ordinary content text that any walk of the document reaches. That is also what divides the two formats. A spreadsheet keeps almost all of its mechanisms in the cell grid, which retains visible and hidden cells in the same cell stream, so most extractors traverse both: the three native spreadsheet tools read seven mechanisms in common and differ on at most three, and five of the twelve spreadsheet mechanisms are read by every applicable tool. Word instead scatters its mechanisms across attributes, branches, and nested stories, and each library draws its own line on how much of the document tree to emit, so the four native Word extractors share exactly one mechanism, the vanished run, and agree on nothing else. The regularity holds inside a format as well as across formats, since the two spreadsheet mechanisms that live outside the grid fall to 25%, the same band as the Word attribute channels. The consequence is asymmetric: loader choice has little effect on high-reach XLSX mechanisms but substantially changes DOCX exposure. Class and Reach Move TogetherWhere a trap is carried is not an incidental property of a mechanism, it is what the classes of §3 are defined by.Scopemeans",
+        "core_text": "ed as ordinary content text that any walk of the document reaches. That is also what divides the two formats. A spreadsheet keeps almost all of its mechanisms in the cell grid, which retains visible and hidden cells in the same cell stream, so most extractors traverse both: the three native spreadsheet tools read seven mechanisms in common and differ on at most three, and five of the twelve spreadsheet mechanisms are read by every applicable tool. Word instead scatters its mechanisms across attributes, branches, and nested stories, and each library draws its own line on how much of the document tree to emit, so the four native Word extractors share exactly one mechanism, the vanished run, and agree on nothing else. The regularity holds inside a format as well as across formats, since the two spreadsheet mechanisms that live outside the grid fall to 25%, the same band as the Word attribute channels. The consequence is asymmetric: loader choice has little effect on high-reach XLSX mechanisms but substantially changes DOCX exposure. Class and Reach Move TogetherWhere a trap is carried is not an incidental property of a mechanism, it is what the classes of §3 are defined by.Scopemeans",
+        "reranker_score": 0.00881195068359375,
+        "retrieval_score": 0.015151515151515152
+      },
+      {
+        "evidence_id": "ev-02-paper-017-p003-c004",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p003-c004",
+        "page": 3,
+        "section": "2.2 OOXML Consumers",
+        "text": "2.2 OOXML Consumers Office ApplicationsA user opens and reviews an Office document in an office application that renders it, chiefly the Microsoft Office suite [21] (Word, Excel, PowerPoint) or LibreOffice [22]. Such an application recalculates formulas, applies number formats and styles, refreshes data bindings, resolves compatibility branches, and hides filtered or hidden content. We therefore choose the Microsoft Office suite’s default editing canvas as the human-facing oracle in our threat model, reflecting a widely deployed OOXML implementation and the review workflow we study. Extraction ToolsWhen the same document reaches an LLM, its text is produced not by such an application but by a separate extraction tool that runs first. These tools are libraries: formatspecific parsers such as python-docx [23], openpyxl [24], and python-pptx [25]; converters such as docx2txt [26], xlsx2csv [27], pandoc [28], Apache Tika [29], and LibreOffice [22]; and meta-extractors such as markitdown [30], Unstructured [31], and Docling [32] that wrap the others. Each is apartialparser that linearizes the package for speed, portability, or text coverage rather than reproducing an application’s resol 0], Unstructured [31], and Docling [32] that wrap the others. Each is apartialparser that linearizes the package for speed, portability, or text coverage rather than reproducing an application’s resolution. Across mainstream open-source RAG and agent projects (LangChain, LlamaIndex, Haystack, AutoGen, Unstructured, Docling, markitdown, RAGFlow, Dify, Onyx, and txtai, among others), default OOXML ingestion paths concentrate on the same small set of leaf extractors, making loader choice an indicator of potential exposure.",
+        "core_text": "0], Unstructured [31], and Docling [32] that wrap the others. Each is apartialparser that linearizes the package for speed, portability, or text coverage rather than reproducing an application’s resolution. Across mainstream open-source RAG and agent projects (LangChain, LlamaIndex, Haystack, AutoGen, Unstructured, Docling, markitdown, RAGFlow, Dify, Onyx, and txtai, among others), default OOXML ingestion paths concentrate on the same small set of leaf extractors, making loader choice an indicator of potential exposure.",
+        "reranker_score": 0.013275146484375,
+        "retrieval_score": 0.026013513513513515
+      },
+      {
+        "evidence_id": "ev-04-paper-017-p001-c005",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p001-c005",
+        "page": 1,
+        "section": "1 Introduction",
+        "text": "masking, phantom tokens, glyph remapping, reading order, and layout shape the evidence delivered to LLMs [8–10]. OOXML exposes a different, more structural surface. It encodes values together with formulas, cached results, formatting rules, application state, metadata, and compatibility markup [11, 12]. For example, an .xlsx cell can carry a formula, its cached result, and a number format that changes what Excel displays. OOXML defines the roles of these representations, but an OOXML-to-LLM ingestion contract rarely specifies whether model evidence should reflect the recalculated, cached, stored, or displayed value. What a user sees in Microsoft Excel can therefore differ from what an LLM receives after extraction. OOXML document security research has exposed dangerous specification features [13], signature and rendering gaps [14], ZIP-parser differentials [15], and hidden content in package structure and revision data [16]. Recent LLMfacing studies have also tested hidden and off-page Office content against loaders, grading systems, and web-assisted review workflows [17–19]. Together, these studies establish that selected Office carriers can survive ingestion and affect downstrea",
+        "core_text": "masking, phantom tokens, glyph remapping, reading order, and layout shape the evidence delivered to LLMs [8–10]. OOXML exposes a different, more structural surface. It encodes values together with formulas, cached results, formatting rules, application state, metadata, and compatibility markup [11, 12]. For example, an .xlsx cell can carry a formula, its cached result, and a number format that changes what Excel displays. OOXML defines the roles of these representations, but an OOXML-to-LLM ingestion contract rarely specifies whether model evidence should reflect the recalculated, cached, stored, or displayed value. What a user sees in Microsoft Excel can therefore differ from what an LLM receives after extraction. OOXML document security research has exposed dangerous specification features [13], signature and rendering gaps [14], ZIP-parser differentials [15], and hidden content in package structure and revision data [16]. Recent LLMfacing studies have also tested hidden and off-page Office content against loaders, grading systems, and web-assisted review workflows [17–19]. Together, these studies establish that selected Office carriers can survive ingestion and affect downstrea",
+        "reranker_score": 0.00821685791015625,
+        "retrieval_score": 0.016129032258064516
+      },
+      {
+        "evidence_id": "ev-05-paper-017-p007-c005",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p007-c005",
+        "page": 7,
+        "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+        "text": "guments, listed in Table 9 in Appendix B. Across the confirmed set,width(the number of applicable tools that emit the trap) ranges from a single tool to every applicable one. Each mechanism–tool outcome is identical across its ten base documents, indicating construct-stable behavior within our test set. The spread itself is unsurprising: read as a whole, though, the matrix reveals three structural properties that no single row or column shows. The Format Decides Whether The Loader is a Security ChoiceRead as a proportion of the tools that handle each format, reach is sharply bimodal (Figure 3): seven mechanisms fall between 11% and 33%, the other fourteen between 67% and 100%, and none lies in between. What separates the two bands is where the trap is carried: every mechanism in the low band sits outside the main content, in an XML attribute, a relationship target, an alternate-content branch, a worksheet header, or a phonetic annotation, while every mechanism in the high band is carried as ordinary content text that any walk of the document reaches. That is also what divides the two formats. A spreadsheet keeps almost all of its mechanisms in the cell grid, which retains visible a",
+        "core_text": "guments, listed in Table 9 in Appendix B. Across the confirmed set,width(the number of applicable tools that emit the trap) ranges from a single tool to every applicable one. Each mechanism–tool outcome is identical across its ten base documents, indicating construct-stable behavior within our test set. The spread itself is unsurprising: read as a whole, though, the matrix reveals three structural properties that no single row or column shows. The Format Decides Whether The Loader is a Security ChoiceRead as a proportion of the tools that handle each format, reach is sharply bimodal (Figure 3): seven mechanisms fall between 11% and 33%, the other fourteen between 67% and 100%, and none lies in between. What separates the two bands is where the trap is carried: every mechanism in the low band sits outside the main content, in an XML attribute, a relationship target, an alternate-content branch, a worksheet header, or a phonetic annotation, while every mechanism in the high band is carried as ordinary content text that any walk of the document reaches. That is also what divides the two formats. A spreadsheet keeps almost all of its mechanisms in the cell grid, which retains visible a",
+        "reranker_score": 0.00731658935546875,
+        "retrieval_score": 0.02782608695652174
+      }
+    ],
+    "retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-017-p013-c003",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p013-c003",
+        "page": 13,
+        "section": "5 Discussion and Limitations",
+        "text": "5 Discussion and Limitations View Construction Is a Security PolicyAn OOXML loader is usually treated as a preprocessing utility, but it decides which document view becomes model evidence. RQ3 shows that this decision belongs to the full ingestion configuration: entry point, extractor version, output mode, and arguments can all change exposure, while models sharing one path can retain the same exposed set. RQ4 shows why this matters beyond one service: otherwise diverse projects repeatedly route OOXML through a small set of extractor families. Loader selection and upgrades should therefore be treated as securityrelevant policy changes rather than interchangeable implementation details. The stable vectors observed under API repetition and across web instances also suggest a practical audit primitive: a fixed evidence-fork suite can regressiontest a pipeline’s evidence-selection behavior and detect drift without backend access. Coverage Is Not Semantic FidelityRQ1 shows that recovering more strings can widen the set of semantic roles flattened into model evidence. Narrow extraction is not a general remedy: omitting document semantics does not restore fidelity to the Office view. Text",
+        "core_text": "5 Discussion and Limitations View Construction Is a Security PolicyAn OOXML loader is usually treated as a preprocessing utility, but it decides which document view becomes model evidence. RQ3 shows that this decision belongs to the full ingestion configuration: entry point, extractor version, output mode, and arguments can all change exposure, while models sharing one path can retain the same exposed set. RQ4 shows why this matters beyond one service: otherwise diverse projects repeatedly route OOXML through a small set of extractor families. Loader selection and upgrades should therefore be treated as securityrelevant policy changes rather than interchangeable implementation details. The stable vectors observed under API repetition and across web instances also suggest a practical audit primitive: a fixed evidence-fork suite can regressiontest a pipeline’s evidence-selection behavior and detect drift without backend access. Coverage Is Not Semantic FidelityRQ1 shows that recovering more strings can widen the set of semantic roles flattened into model evidence. Narrow extraction is not a general remedy: omitting document semantics does not restore fidelity to the Office view. Text",
+        "reranker_score": 0.998046875,
+        "retrieval_score": 0.03278688524590164
+      },
+      {
+        "evidence_id": "ev-02-paper-017-p003-c004",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p003-c004",
+        "page": 3,
+        "section": "2.2 OOXML Consumers",
+        "text": "2.2 OOXML Consumers Office ApplicationsA user opens and reviews an Office document in an office application that renders it, chiefly the Microsoft Office suite [21] (Word, Excel, PowerPoint) or LibreOffice [22]. Such an application recalculates formulas, applies number formats and styles, refreshes data bindings, resolves compatibility branches, and hides filtered or hidden content. We therefore choose the Microsoft Office suite’s default editing canvas as the human-facing oracle in our threat model, reflecting a widely deployed OOXML implementation and the review workflow we study. Extraction ToolsWhen the same document reaches an LLM, its text is produced not by such an application but by a separate extraction tool that runs first. These tools are libraries: formatspecific parsers such as python-docx [23], openpyxl [24], and python-pptx [25]; converters such as docx2txt [26], xlsx2csv [27], pandoc [28], Apache Tika [29], and LibreOffice [22]; and meta-extractors such as markitdown [30], Unstructured [31], and Docling [32] that wrap the others. Each is apartialparser that linearizes the package for speed, portability, or text coverage rather than reproducing an application’s resol 0], Unstructured [31], and Docling [32] that wrap the others. Each is apartialparser that linearizes the package for speed, portability, or text coverage rather than reproducing an application’s resolution. Across mainstream open-source RAG and agent projects (LangChain, LlamaIndex, Haystack, AutoGen, Unstructured, Docling, markitdown, RAGFlow, Dify, Onyx, and txtai, among others), default OOXML ingestion paths concentrate on the same small set of leaf extractors, making loader choice an indicator of potential exposure.",
+        "core_text": "0], Unstructured [31], and Docling [32] that wrap the others. Each is apartialparser that linearizes the package for speed, portability, or text coverage rather than reproducing an application’s resolution. Across mainstream open-source RAG and agent projects (LangChain, LlamaIndex, Haystack, AutoGen, Unstructured, Docling, markitdown, RAGFlow, Dify, Onyx, and txtai, among others), default OOXML ingestion paths concentrate on the same small set of leaf extractors, making loader choice an indicator of potential exposure.",
+        "reranker_score": 0.013275146484375,
+        "retrieval_score": 0.026013513513513515
+      },
+      {
+        "evidence_id": "ev-03-paper-017-p007-c006",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p007-c006",
+        "page": 7,
+        "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+        "text": "ed as ordinary content text that any walk of the document reaches. That is also what divides the two formats. A spreadsheet keeps almost all of its mechanisms in the cell grid, which retains visible and hidden cells in the same cell stream, so most extractors traverse both: the three native spreadsheet tools read seven mechanisms in common and differ on at most three, and five of the twelve spreadsheet mechanisms are read by every applicable tool. Word instead scatters its mechanisms across attributes, branches, and nested stories, and each library draws its own line on how much of the document tree to emit, so the four native Word extractors share exactly one mechanism, the vanished run, and agree on nothing else. The regularity holds inside a format as well as across formats, since the two spreadsheet mechanisms that live outside the grid fall to 25%, the same band as the Word attribute channels. The consequence is asymmetric: loader choice has little effect on high-reach XLSX mechanisms but substantially changes DOCX exposure. Class and Reach Move TogetherWhere a trap is carried is not an incidental property of a mechanism, it is what the classes of §3 are defined by.Scopemeans",
+        "core_text": "ed as ordinary content text that any walk of the document reaches. That is also what divides the two formats. A spreadsheet keeps almost all of its mechanisms in the cell grid, which retains visible and hidden cells in the same cell stream, so most extractors traverse both: the three native spreadsheet tools read seven mechanisms in common and differ on at most three, and five of the twelve spreadsheet mechanisms are read by every applicable tool. Word instead scatters its mechanisms across attributes, branches, and nested stories, and each library draws its own line on how much of the document tree to emit, so the four native Word extractors share exactly one mechanism, the vanished run, and agree on nothing else. The regularity holds inside a format as well as across formats, since the two spreadsheet mechanisms that live outside the grid fall to 25%, the same band as the Word attribute channels. The consequence is asymmetric: loader choice has little effect on high-reach XLSX mechanisms but substantially changes DOCX exposure. Class and Reach Move TogetherWhere a trap is carried is not an incidental property of a mechanism, it is what the classes of §3 are defined by.Scopemeans",
+        "reranker_score": 0.00881195068359375,
+        "retrieval_score": 0.015151515151515152
+      },
+      {
+        "evidence_id": "ev-04-paper-017-p001-c005",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p001-c005",
+        "page": 1,
+        "section": "1 Introduction",
+        "text": "masking, phantom tokens, glyph remapping, reading order, and layout shape the evidence delivered to LLMs [8–10]. OOXML exposes a different, more structural surface. It encodes values together with formulas, cached results, formatting rules, application state, metadata, and compatibility markup [11, 12]. For example, an .xlsx cell can carry a formula, its cached result, and a number format that changes what Excel displays. OOXML defines the roles of these representations, but an OOXML-to-LLM ingestion contract rarely specifies whether model evidence should reflect the recalculated, cached, stored, or displayed value. What a user sees in Microsoft Excel can therefore differ from what an LLM receives after extraction. OOXML document security research has exposed dangerous specification features [13], signature and rendering gaps [14], ZIP-parser differentials [15], and hidden content in package structure and revision data [16]. Recent LLMfacing studies have also tested hidden and off-page Office content against loaders, grading systems, and web-assisted review workflows [17–19]. Together, these studies establish that selected Office carriers can survive ingestion and affect downstrea",
+        "core_text": "masking, phantom tokens, glyph remapping, reading order, and layout shape the evidence delivered to LLMs [8–10]. OOXML exposes a different, more structural surface. It encodes values together with formulas, cached results, formatting rules, application state, metadata, and compatibility markup [11, 12]. For example, an .xlsx cell can carry a formula, its cached result, and a number format that changes what Excel displays. OOXML defines the roles of these representations, but an OOXML-to-LLM ingestion contract rarely specifies whether model evidence should reflect the recalculated, cached, stored, or displayed value. What a user sees in Microsoft Excel can therefore differ from what an LLM receives after extraction. OOXML document security research has exposed dangerous specification features [13], signature and rendering gaps [14], ZIP-parser differentials [15], and hidden content in package structure and revision data [16]. Recent LLMfacing studies have also tested hidden and off-page Office content against loaders, grading systems, and web-assisted review workflows [17–19]. Together, these studies establish that selected Office carriers can survive ingestion and affect downstrea",
+        "reranker_score": 0.00821685791015625,
+        "retrieval_score": 0.016129032258064516
+      },
+      {
+        "evidence_id": "ev-05-paper-017-p007-c005",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p007-c005",
+        "page": 7,
+        "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+        "text": "guments, listed in Table 9 in Appendix B. Across the confirmed set,width(the number of applicable tools that emit the trap) ranges from a single tool to every applicable one. Each mechanism–tool outcome is identical across its ten base documents, indicating construct-stable behavior within our test set. The spread itself is unsurprising: read as a whole, though, the matrix reveals three structural properties that no single row or column shows. The Format Decides Whether The Loader is a Security ChoiceRead as a proportion of the tools that handle each format, reach is sharply bimodal (Figure 3): seven mechanisms fall between 11% and 33%, the other fourteen between 67% and 100%, and none lies in between. What separates the two bands is where the trap is carried: every mechanism in the low band sits outside the main content, in an XML attribute, a relationship target, an alternate-content branch, a worksheet header, or a phonetic annotation, while every mechanism in the high band is carried as ordinary content text that any walk of the document reaches. That is also what divides the two formats. A spreadsheet keeps almost all of its mechanisms in the cell grid, which retains visible a",
+        "core_text": "guments, listed in Table 9 in Appendix B. Across the confirmed set,width(the number of applicable tools that emit the trap) ranges from a single tool to every applicable one. Each mechanism–tool outcome is identical across its ten base documents, indicating construct-stable behavior within our test set. The spread itself is unsurprising: read as a whole, though, the matrix reveals three structural properties that no single row or column shows. The Format Decides Whether The Loader is a Security ChoiceRead as a proportion of the tools that handle each format, reach is sharply bimodal (Figure 3): seven mechanisms fall between 11% and 33%, the other fourteen between 67% and 100%, and none lies in between. What separates the two bands is where the trap is carried: every mechanism in the low band sits outside the main content, in an XML attribute, a relationship target, an alternate-content branch, a worksheet header, or a phonetic annotation, while every mechanism in the high band is carried as ordinary content text that any walk of the document reaches. That is also what divides the two formats. A spreadsheet keeps almost all of its mechanisms in the cell grid, which retains visible a",
+        "reranker_score": 0.00731658935546875,
+        "retrieval_score": 0.02782608695652174
+      }
+    ],
+    "answer_alignment": [
+      {
+        "answer_text": "Loader selection and upgrades should be treated as security-relevant policy changes rather than interchangeable implementation details because the decision of which document view becomes model evidence is part of the full ingestion configuration, and changes in entry point, extractor version, output mode, and arguments can all alter exposure, while models sharing one path can retain the same exposed set.",
+        "evidence_id": "ev-01-paper-017-p013-c003",
+        "page": 13,
+        "section": "5 Discussion and Limitations",
+        "verbatim_quote": "Loader selection and upgrades should therefore be treated as security-relevant policy changes rather than interchangeable implementation details.",
+        "quote_verified": true,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "The choice of OOXML loader significantly affects exposure, particularly in DOCX documents, where loader choice substantially changes exposure, whereas it has little effect on high-reach XLSX mechanisms, demonstrating asymmetric impact based on document format and structure.",
+        "evidence_id": "ev-03-paper-017-p007-c006",
+        "page": 7,
+        "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+        "verbatim_quote": "The consequence is asymmetric: loader choice has little effect on high-reach XLSX mechanisms but substantially changes DOCX exposure.",
+        "quote_verified": true,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "Across mainstream open-source RAG and agent projects, default OOXML ingestion paths concentrate on a small set of leaf extractors, making loader choice an indicator of potential exposure and highlighting its role in determining the security surface of the ingestion pipeline.",
+        "evidence_id": "ev-02-paper-017-p003-c004",
+        "page": 3,
+        "section": "2.2 OOXML Consumers",
+        "verbatim_quote": "Across mainstream open-source RAG and agent projects (LangChain, LlamaIndex, Haystack, AutoGen, Unstructured, Docling, markitdown, RAGFlow, Dify, Onyx, and txtai, among others), default OOXML ingestion paths concentrate on the same small set of leaf extractors, making loader choice an indicator of potential exposure.",
+        "quote_verified": true,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "The security of OOXML ingestion is influenced by the specific loader used, as different extractors may expose different parts of the document, including hidden content, formatting rules, and metadata, and some mechanisms are only exposed when carried as ordinary content text that any walk of the document reaches, which is format-dependent.",
+        "evidence_id": "ev-04-paper-017-p001-c005",
+        "page": 1,
+        "section": "1 Introduction",
+        "verbatim_quote": "OOXML exposes a different, more structural surface. It encodes values together with formulas, cached results, formatting rules, application state, metadata, and compatibility markup [11, 12]. For example, an .xlsx cell can carry a formula, its cached result, and a number format that changes what Excel displays. OOXML defines the roles of these representations, but an OOXML-to-LLM ingestion contract rarely specifies whether model evidence should reflect the recalculated, cached, stored, or displayed value. What a user sees in Microsoft Excel can therefore differ from what an LLM receives after extraction. OOXML document security research has exposed dangerous specification features [13], signature and rendering gaps [14], ZIP-parser differentials [15], and hidden content in package structure and revision data [16]. Recent LLM-facing studies have also tested hidden and off-page Office content against loaders, grading systems, and web-assisted review workflows [17–19]. Together, these studies establish that selected Office carriers can survive ingestion and affect downstream systems.",
+        "quote_verified": true,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "The format determines whether a loader choice is a security choice: mechanisms located in ordinary content text that any walk of the document reaches are widely exposed across tools, while those in attributes, relationships, or alternate-content branches are only exposed by a subset of tools, making loader selection a critical factor in determining exposure.",
+        "evidence_id": "ev-05-paper-017-p007-c005",
+        "page": 7,
+        "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+        "verbatim_quote": "What separates the two bands is where the trap is carried: every mechanism in the low band sits outside the main content, in an XML attribute, a relationship target, an alternate-content branch, a worksheet header, or a phonetic annotation, while every mechanism in the high band is carried as ordinary content text that any walk of the document reaches. That is also what divides the two formats.",
+        "quote_verified": true,
+        "numeric_verified": true
+      }
+    ],
+    "pipeline": {
+      "abstention_source": null,
+      "fallback_used": false,
+      "raw_verdict": "supported",
+      "quote_verified": true,
+      "quote_verified_ratio": 1.0,
+      "numeric_verified": true,
+      "numeric_verified_ratio": 1.0,
+      "top_reranker_score": 0.998046875,
+      "score_margin_1_5": 0.9907302856445312,
+      "en_query": null,
+      "nli_max_entailment": 0.9236,
+      "nli_max_contradiction": 0.9125
+    }
+  },
+  {
+    "id": "paper-017-security-ko",
+    "category": "borderline_nli",
+    "language": "ko",
+    "paper_id": "paper-017",
+    "paper_title": "Beyond the Editing Canvas: Evidence Divergence in OOXML-to-LLM Ingestion",
+    "question": "로더 선택과 업그레이드를 보안 관련 정책 변경으로 취급해야 하는 이유는 무엇인가요?",
+    "en_query": "Why should loader selection and upgrading be treated as security policy changes?",
+    "response": {
+      "answer": "로더 선택과 업그레이드는 보안 관련 정책 변경으로 간주되어야 하며, 이는 진입점, 추출 버전, 출력 모드, 인수 등이 노출을 결정하기 때문입니다. 모델이 동일한 경로를 공유할 경우 동일한 노출 세트를 유지할 수 있으나, 다양한 프로젝트가 동일한 추출가족을 반복적으로 사용할 경우 보안 위험이 집중될 수 있습니다. 로더 선택과 업그레이드는 보안 위험을 확대시킬 수 있으며, 이는 추출 도구가 문서의 다양한 구성 요소를 포함하여 텍스트를 선형화하기 때문입니다. 보다 넓은 범위의 내용을 추출하는 일반적인 변환 도구는 더 많은 메커니즘을 노출시켜, 보안 위험을 확대할 수 있습니다.",
+      "evidence_ids": [
+        "ev-01-paper-017-p013-c003",
+        "ev-05-paper-017-p008-c003"
+      ],
+      "sufficiency": "sufficient",
+      "abstention_reason": null
+    },
+    "cited_evidence": [
+      {
+        "evidence_id": "ev-01-paper-017-p013-c003",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p013-c003",
+        "page": 13,
+        "section": "5 Discussion and Limitations",
+        "text": "5 Discussion and Limitations View Construction Is a Security PolicyAn OOXML loader is usually treated as a preprocessing utility, but it decides which document view becomes model evidence. RQ3 shows that this decision belongs to the full ingestion configuration: entry point, extractor version, output mode, and arguments can all change exposure, while models sharing one path can retain the same exposed set. RQ4 shows why this matters beyond one service: otherwise diverse projects repeatedly route OOXML through a small set of extractor families. Loader selection and upgrades should therefore be treated as securityrelevant policy changes rather than interchangeable implementation details. The stable vectors observed under API repetition and across web instances also suggest a practical audit primitive: a fixed evidence-fork suite can regressiontest a pipeline’s evidence-selection behavior and detect drift without backend access. Coverage Is Not Semantic FidelityRQ1 shows that recovering more strings can widen the set of semantic roles flattened into model evidence. Narrow extraction is not a general remedy: omitting document semantics does not restore fidelity to the Office view. Text",
+        "core_text": "5 Discussion and Limitations View Construction Is a Security PolicyAn OOXML loader is usually treated as a preprocessing utility, but it decides which document view becomes model evidence. RQ3 shows that this decision belongs to the full ingestion configuration: entry point, extractor version, output mode, and arguments can all change exposure, while models sharing one path can retain the same exposed set. RQ4 shows why this matters beyond one service: otherwise diverse projects repeatedly route OOXML through a small set of extractor families. Loader selection and upgrades should therefore be treated as securityrelevant policy changes rather than interchangeable implementation details. The stable vectors observed under API repetition and across web instances also suggest a practical audit primitive: a fixed evidence-fork suite can regressiontest a pipeline’s evidence-selection behavior and detect drift without backend access. Coverage Is Not Semantic FidelityRQ1 shows that recovering more strings can widen the set of semantic roles flattened into model evidence. Narrow extraction is not a general remedy: omitting document semantics does not restore fidelity to the Office view. Text",
+        "reranker_score": 0.9961913824081421,
+        "retrieval_score": 0.04918032786885246
+      },
+      {
+        "evidence_id": "ev-05-paper-017-p008-c003",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p008-c003",
+        "page": 8,
+        "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+        "text": "10 M18 M15, M17, M19 M16 M5, M14 M12 M13 Trap outside the main content Trap inside the main content Figure 3: Reach as a proportion of the tools that handle each format; each marker is one mechanism. how much of each class sits inside the main content, from representation at 0.93 with all five mechanisms inside, down to scope at 0.19 with none. The two orderings coincide across all six classes, so the classes group mechanisms that behave alike at the extraction layer rather than merely sorting them for presentation. Table 5: Mean extractor reach by class, against the share of each class whose trap is carried inside the main content. Class Mech. Mean reach Inside main content Representation 5 0.93 100% Visibility 3 0.83 100% State 6 0.75 83% Linearization 2 0.50 50% Compatibility 2 0.28 0% Scope 3 0.19 0% Broader Coverage Expands ExposureThe one Word mechanism read by every applicable extractor is M12, the vanished run. The other Word mechanisms are visible to some extractors and invisible to others. python-docx reads only M12 because it does not surface bindings, alternate branches, or accessibility attributes. General-purpose converters designed for broader content coverage expose ble to others. python-docx reads only M12 because it does not surface bindings, alternate branches, or accessibility attributes. General-purpose converters designed for broader content coverage expose more mechanisms. The two broadest panel members, markitdown and Apache Tika, expose 17 and 16 mechanisms. Their flattened outputs surface more OOXML channels without preserving their Officeassigned roles. Text coverage and semantic integrity therefore pull against each other, and a pipeline that upgrades its loader for better coverage can silently widen its attack surface. 8",
+        "core_text": "ble to others. python-docx reads only M12 because it does not surface bindings, alternate branches, or accessibility attributes. General-purpose converters designed for broader content coverage expose more mechanisms. The two broadest panel members, markitdown and Apache Tika, expose 17 and 16 mechanisms. Their flattened outputs surface more OOXML channels without preserving their Officeassigned roles. Text coverage and semantic integrity therefore pull against each other, and a pipeline that upgrades its loader for better coverage can silently widen its attack surface. 8",
+        "reranker_score": 0.0027591227553784847,
+        "retrieval_score": 0.03970501147383226
+      }
+    ],
+    "retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-017-p013-c003",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p013-c003",
+        "page": 13,
+        "section": "5 Discussion and Limitations",
+        "text": "5 Discussion and Limitations View Construction Is a Security PolicyAn OOXML loader is usually treated as a preprocessing utility, but it decides which document view becomes model evidence. RQ3 shows that this decision belongs to the full ingestion configuration: entry point, extractor version, output mode, and arguments can all change exposure, while models sharing one path can retain the same exposed set. RQ4 shows why this matters beyond one service: otherwise diverse projects repeatedly route OOXML through a small set of extractor families. Loader selection and upgrades should therefore be treated as securityrelevant policy changes rather than interchangeable implementation details. The stable vectors observed under API repetition and across web instances also suggest a practical audit primitive: a fixed evidence-fork suite can regressiontest a pipeline’s evidence-selection behavior and detect drift without backend access. Coverage Is Not Semantic FidelityRQ1 shows that recovering more strings can widen the set of semantic roles flattened into model evidence. Narrow extraction is not a general remedy: omitting document semantics does not restore fidelity to the Office view. Text",
+        "core_text": "5 Discussion and Limitations View Construction Is a Security PolicyAn OOXML loader is usually treated as a preprocessing utility, but it decides which document view becomes model evidence. RQ3 shows that this decision belongs to the full ingestion configuration: entry point, extractor version, output mode, and arguments can all change exposure, while models sharing one path can retain the same exposed set. RQ4 shows why this matters beyond one service: otherwise diverse projects repeatedly route OOXML through a small set of extractor families. Loader selection and upgrades should therefore be treated as securityrelevant policy changes rather than interchangeable implementation details. The stable vectors observed under API repetition and across web instances also suggest a practical audit primitive: a fixed evidence-fork suite can regressiontest a pipeline’s evidence-selection behavior and detect drift without backend access. Coverage Is Not Semantic FidelityRQ1 shows that recovering more strings can widen the set of semantic roles flattened into model evidence. Narrow extraction is not a general remedy: omitting document semantics does not restore fidelity to the Office view. Text",
+        "reranker_score": 0.9961913824081421,
+        "retrieval_score": 0.04918032786885246
+      },
+      {
+        "evidence_id": "ev-02-paper-017-p001-c005",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p001-c005",
+        "page": 1,
+        "section": "1 Introduction",
+        "text": "masking, phantom tokens, glyph remapping, reading order, and layout shape the evidence delivered to LLMs [8–10]. OOXML exposes a different, more structural surface. It encodes values together with formulas, cached results, formatting rules, application state, metadata, and compatibility markup [11, 12]. For example, an .xlsx cell can carry a formula, its cached result, and a number format that changes what Excel displays. OOXML defines the roles of these representations, but an OOXML-to-LLM ingestion contract rarely specifies whether model evidence should reflect the recalculated, cached, stored, or displayed value. What a user sees in Microsoft Excel can therefore differ from what an LLM receives after extraction. OOXML document security research has exposed dangerous specification features [13], signature and rendering gaps [14], ZIP-parser differentials [15], and hidden content in package structure and revision data [16]. Recent LLMfacing studies have also tested hidden and off-page Office content against loaders, grading systems, and web-assisted review workflows [17–19]. Together, these studies establish that selected Office carriers can survive ingestion and affect downstrea",
+        "core_text": "masking, phantom tokens, glyph remapping, reading order, and layout shape the evidence delivered to LLMs [8–10]. OOXML exposes a different, more structural surface. It encodes values together with formulas, cached results, formatting rules, application state, metadata, and compatibility markup [11, 12]. For example, an .xlsx cell can carry a formula, its cached result, and a number format that changes what Excel displays. OOXML defines the roles of these representations, but an OOXML-to-LLM ingestion contract rarely specifies whether model evidence should reflect the recalculated, cached, stored, or displayed value. What a user sees in Microsoft Excel can therefore differ from what an LLM receives after extraction. OOXML document security research has exposed dangerous specification features [13], signature and rendering gaps [14], ZIP-parser differentials [15], and hidden content in package structure and revision data [16]. Recent LLMfacing studies have also tested hidden and off-page Office content against loaders, grading systems, and web-assisted review workflows [17–19]. Together, these studies establish that selected Office carriers can survive ingestion and affect downstrea",
+        "reranker_score": 0.020671747624874115,
+        "retrieval_score": 0.0315136476426799
+      },
+      {
+        "evidence_id": "ev-03-paper-017-p007-c005",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p007-c005",
+        "page": 7,
+        "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+        "text": "guments, listed in Table 9 in Appendix B. Across the confirmed set,width(the number of applicable tools that emit the trap) ranges from a single tool to every applicable one. Each mechanism–tool outcome is identical across its ten base documents, indicating construct-stable behavior within our test set. The spread itself is unsurprising: read as a whole, though, the matrix reveals three structural properties that no single row or column shows. The Format Decides Whether The Loader is a Security ChoiceRead as a proportion of the tools that handle each format, reach is sharply bimodal (Figure 3): seven mechanisms fall between 11% and 33%, the other fourteen between 67% and 100%, and none lies in between. What separates the two bands is where the trap is carried: every mechanism in the low band sits outside the main content, in an XML attribute, a relationship target, an alternate-content branch, a worksheet header, or a phonetic annotation, while every mechanism in the high band is carried as ordinary content text that any walk of the document reaches. That is also what divides the two formats. A spreadsheet keeps almost all of its mechanisms in the cell grid, which retains visible a",
+        "core_text": "guments, listed in Table 9 in Appendix B. Across the confirmed set,width(the number of applicable tools that emit the trap) ranges from a single tool to every applicable one. Each mechanism–tool outcome is identical across its ten base documents, indicating construct-stable behavior within our test set. The spread itself is unsurprising: read as a whole, though, the matrix reveals three structural properties that no single row or column shows. The Format Decides Whether The Loader is a Security ChoiceRead as a proportion of the tools that handle each format, reach is sharply bimodal (Figure 3): seven mechanisms fall between 11% and 33%, the other fourteen between 67% and 100%, and none lies in between. What separates the two bands is where the trap is carried: every mechanism in the low band sits outside the main content, in an XML attribute, a relationship target, an alternate-content branch, a worksheet header, or a phonetic annotation, while every mechanism in the high band is carried as ordinary content text that any walk of the document reaches. That is also what divides the two formats. A spreadsheet keeps almost all of its mechanisms in the cell grid, which retains visible a",
+        "reranker_score": 0.010822296142578125,
+        "retrieval_score": 0.04273903417739034
+      },
+      {
+        "evidence_id": "ev-04-paper-017-p003-c004",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p003-c004",
+        "page": 3,
+        "section": "2.2 OOXML Consumers",
+        "text": "2.2 OOXML Consumers Office ApplicationsA user opens and reviews an Office document in an office application that renders it, chiefly the Microsoft Office suite [21] (Word, Excel, PowerPoint) or LibreOffice [22]. Such an application recalculates formulas, applies number formats and styles, refreshes data bindings, resolves compatibility branches, and hides filtered or hidden content. We therefore choose the Microsoft Office suite’s default editing canvas as the human-facing oracle in our threat model, reflecting a widely deployed OOXML implementation and the review workflow we study. Extraction ToolsWhen the same document reaches an LLM, its text is produced not by such an application but by a separate extraction tool that runs first. These tools are libraries: formatspecific parsers such as python-docx [23], openpyxl [24], and python-pptx [25]; converters such as docx2txt [26], xlsx2csv [27], pandoc [28], Apache Tika [29], and LibreOffice [22]; and meta-extractors such as markitdown [30], Unstructured [31], and Docling [32] that wrap the others. Each is apartialparser that linearizes the package for speed, portability, or text coverage rather than reproducing an application’s resol 0], Unstructured [31], and Docling [32] that wrap the others. Each is apartialparser that linearizes the package for speed, portability, or text coverage rather than reproducing an application’s resolution. Across mainstream open-source RAG and agent projects (LangChain, LlamaIndex, Haystack, AutoGen, Unstructured, Docling, markitdown, RAGFlow, Dify, Onyx, and txtai, among others), default OOXML ingestion paths concentrate on the same small set of leaf extractors, making loader choice an indicator of potential exposure.",
+        "core_text": "0], Unstructured [31], and Docling [32] that wrap the others. Each is apartialparser that linearizes the package for speed, portability, or text coverage rather than reproducing an application’s resolution. Across mainstream open-source RAG and agent projects (LangChain, LlamaIndex, Haystack, AutoGen, Unstructured, Docling, markitdown, RAGFlow, Dify, Onyx, and txtai, among others), default OOXML ingestion paths concentrate on the same small set of leaf extractors, making loader choice an indicator of potential exposure.",
+        "reranker_score": 0.0107574462890625,
+        "retrieval_score": 0.05402811606480991
+      },
+      {
+        "evidence_id": "ev-05-paper-017-p008-c003",
+        "paper_id": "paper-017",
+        "chunk_id": "paper-017-p008-c003",
+        "page": 8,
+        "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+        "text": "10 M18 M15, M17, M19 M16 M5, M14 M12 M13 Trap outside the main content Trap inside the main content Figure 3: Reach as a proportion of the tools that handle each format; each marker is one mechanism. how much of each class sits inside the main content, from representation at 0.93 with all five mechanisms inside, down to scope at 0.19 with none. The two orderings coincide across all six classes, so the classes group mechanisms that behave alike at the extraction layer rather than merely sorting them for presentation. Table 5: Mean extractor reach by class, against the share of each class whose trap is carried inside the main content. Class Mech. Mean reach Inside main content Representation 5 0.93 100% Visibility 3 0.83 100% State 6 0.75 83% Linearization 2 0.50 50% Compatibility 2 0.28 0% Scope 3 0.19 0% Broader Coverage Expands ExposureThe one Word mechanism read by every applicable extractor is M12, the vanished run. The other Word mechanisms are visible to some extractors and invisible to others. python-docx reads only M12 because it does not surface bindings, alternate branches, or accessibility attributes. General-purpose converters designed for broader content coverage expose ble to others. python-docx reads only M12 because it does not surface bindings, alternate branches, or accessibility attributes. General-purpose converters designed for broader content coverage expose more mechanisms. The two broadest panel members, markitdown and Apache Tika, expose 17 and 16 mechanisms. Their flattened outputs surface more OOXML channels without preserving their Officeassigned roles. Text coverage and semantic integrity therefore pull against each other, and a pipeline that upgrades its loader for better coverage can silently widen its attack surface. 8",
+        "core_text": "ble to others. python-docx reads only M12 because it does not surface bindings, alternate branches, or accessibility attributes. General-purpose converters designed for broader content coverage expose more mechanisms. The two broadest panel members, markitdown and Apache Tika, expose 17 and 16 mechanisms. Their flattened outputs surface more OOXML channels without preserving their Officeassigned roles. Text coverage and semantic integrity therefore pull against each other, and a pipeline that upgrades its loader for better coverage can silently widen its attack surface. 8",
+        "reranker_score": 0.0027591227553784847,
+        "retrieval_score": 0.03970501147383226
+      }
+    ],
+    "answer_alignment": [
+      {
+        "answer_text": "로더 선택과 업그레이드는 보안 관련 정책 변경으로 간주되어야 하며, 이는 진입점, 추출 버전, 출력 모드, 인수 등이 노출을 결정하기 때문입니다. 모델이 동일한 경로를 공유할 경우 동일한 노출 세트를 유지할 수 있으나, 다양한 프로젝트가 동일한 추출가족을 반복적으로 사용할 경우 보안 위험이 집중될 수 있습니다.",
+        "evidence_id": "ev-01-paper-017-p013-c003",
+        "page": 13,
+        "section": "5 Discussion and Limitations",
+        "verbatim_quote": "Loader selection and upgrades should therefore be treated as security-relevant policy changes rather than interchangeable implementation details.",
+        "quote_verified": true,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "로더 선택과 업그레이드는 보안 위험을 확대시킬 수 있으며, 이는 추출 도구가 문서의 다양한 구성 요소를 포함하여 텍스트를 선형화하기 때문입니다. 보다 넓은 범위의 내용을 추출하는 일반적인 변환 도구는 더 많은 메커니즘을 노출시켜, 보안 위험을 확대할 수 있습니다.",
+        "evidence_id": "ev-05-paper-017-p008-c003",
+        "page": 8,
+        "section": "5.2. Some mainstream APIs such as Anthropic’s Claude and",
+        "verbatim_quote": "General-purpose converters designed for broader content coverage expose more mechanisms. The two broadest panel members, markitdown and Apache Tika, expose 17 and 16 mechanisms. Their flattened outputs surface more OOXML channels without preserving their Office-assigned roles.",
+        "quote_verified": true,
+        "numeric_verified": true
+      }
+    ],
+    "pipeline": {
+      "abstention_source": null,
+      "fallback_used": false,
+      "raw_verdict": "supported",
+      "quote_verified": true,
+      "quote_verified_ratio": 1.0,
+      "numeric_verified": true,
+      "numeric_verified_ratio": 1.0,
+      "top_reranker_score": 0.9961913824081421,
+      "score_margin_1_5": 0.9934322596527636,
+      "en_query": "Why should loader selection and upgrading be treated as security policy changes?",
+      "nli_max_entailment": 0.0029,
+      "nli_max_contradiction": 0.9014
+    }
+  },
+  {
+    "id": "paper-012-copeland-en",
+    "category": "borderline_conf",
+    "language": "en",
+    "paper_id": "paper-012",
+    "paper_title": "Metric Distortion of Social Welfare Functions",
+    "question": "What upper bound is proved for Recursive Copeland and what smaller bound remains an open question?",
+    "en_query": null,
+    "response": {
+      "answer": "An upper bound of 7 is proved for Weighted Recursive Copeland. A smaller bound of 5 remains an open question for Weighted Recursive Copeland. The distortion of Weighted Recursive Copeland lies between 5 and 7.",
+      "evidence_ids": [
+        "ev-01-paper-012-p004-c005",
+        "ev-05-paper-012-p007-c004"
+      ],
+      "sufficiency": "sufficient",
+      "abstention_reason": null
+    },
+    "cited_evidence": [
+      {
+        "evidence_id": "ev-01-paper-012-p004-c005",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p004-c005",
+        "page": 4,
+        "section": "3 Known Weights",
+        "text": "hose cost is2βtimes optimal. This naturally raises the question whether producing an entire ranking requires distortion higher than3which is the optimal single-winner bound.2 It does not: exploiting the matching certificates underlyingFractionalVeto, we show that RecursiveFractionalVetoachieves the optimal distortion of3. Moreover, by operating directly on normalized masses, the rule runs in polynomial time, whereas the black-box extension may require exponential timebecauseitsexplicitclonepopulationcanbeexponential in the bit length of the weights. Finally, we study the analogous question forCopeland. While its single-winner distortion is5,Weighted Recursive Copelandrequires a substantially different analysis, for which we obtain a distortion bound of 7. However, whether aboundof5isactuallyachievable,remainsanopenquestion.",
+        "core_text": "hose cost is2βtimes optimal. This naturally raises the question whether producing an entire ranking requires distortion higher than3which is the optimal single-winner bound.2 It does not: exploiting the matching certificates underlyingFractionalVeto, we show that RecursiveFractionalVetoachieves the optimal distortion of3. Moreover, by operating directly on normalized masses, the rule runs in polynomial time, whereas the black-box extension may require exponential timebecauseitsexplicitclonepopulationcanbeexponential in the bit length of the weights. Finally, we study the analogous question forCopeland. While its single-winner distortion is5,Weighted Recursive Copelandrequires a substantially different analysis, for which we obtain a distortion bound of 7. However, whether aboundof5isactuallyachievable,remainsanopenquestion.",
+        "reranker_score": 0.7841796875,
+        "retrieval_score": 0.03252247488101534
+      },
+      {
+        "evidence_id": "ev-05-paper-012-p007-c004",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p007-c004",
+        "page": 7,
+        "section": "3.3 Weighted RecursiveCopeland",
+        "text": "immediate whenWj = 0. Since Lemma 4 is independent of the rule used to select the candidates, summing over all positions yields SC(σ)≤6 SC(σ ∗) + mX j=1 X v∈V wvjd(v,topj(v)) ≤7 SC(σ∗). Since the election, metric, and weight profile fixed above were arbitrary, this completes the proof. Whenw v = (1,0,...,0)for every voterv∈V, only the first position contributes to the objective and Weighted RecursiveCopelandreduces to ordinaryCopeland. Thesingle-winnerlowerboundof5(Anshelevichetal.2018) therefore continues to apply. Thus, we currently only know thatthedistortionofWeightedRecursiveCopelandliesbetween5and7. 7",
+        "core_text": "immediate whenWj = 0. Since Lemma 4 is independent of the rule used to select the candidates, summing over all positions yields SC(σ)≤6 SC(σ ∗) + mX j=1 X v∈V wvjd(v,topj(v)) ≤7 SC(σ∗). Since the election, metric, and weight profile fixed above were arbitrary, this completes the proof. Whenw v = (1,0,...,0)for every voterv∈V, only the first position contributes to the objective and Weighted RecursiveCopelandreduces to ordinaryCopeland. Thesingle-winnerlowerboundof5(Anshelevichetal.2018) therefore continues to apply. Thus, we currently only know thatthedistortionofWeightedRecursiveCopelandliesbetween5and7. 7",
+        "reranker_score": 0.417236328125,
+        "retrieval_score": 0.01639344262295082
+      }
+    ],
+    "retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-012-p004-c005",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p004-c005",
+        "page": 4,
+        "section": "3 Known Weights",
+        "text": "hose cost is2βtimes optimal. This naturally raises the question whether producing an entire ranking requires distortion higher than3which is the optimal single-winner bound.2 It does not: exploiting the matching certificates underlyingFractionalVeto, we show that RecursiveFractionalVetoachieves the optimal distortion of3. Moreover, by operating directly on normalized masses, the rule runs in polynomial time, whereas the black-box extension may require exponential timebecauseitsexplicitclonepopulationcanbeexponential in the bit length of the weights. Finally, we study the analogous question forCopeland. While its single-winner distortion is5,Weighted Recursive Copelandrequires a substantially different analysis, for which we obtain a distortion bound of 7. However, whether aboundof5isactuallyachievable,remainsanopenquestion.",
+        "core_text": "hose cost is2βtimes optimal. This naturally raises the question whether producing an entire ranking requires distortion higher than3which is the optimal single-winner bound.2 It does not: exploiting the matching certificates underlyingFractionalVeto, we show that RecursiveFractionalVetoachieves the optimal distortion of3. Moreover, by operating directly on normalized masses, the rule runs in polynomial time, whereas the black-box extension may require exponential timebecauseitsexplicitclonepopulationcanbeexponential in the bit length of the weights. Finally, we study the analogous question forCopeland. While its single-winner distortion is5,Weighted Recursive Copelandrequires a substantially different analysis, for which we obtain a distortion bound of 7. However, whether aboundof5isactuallyachievable,remainsanopenquestion.",
+        "reranker_score": 0.7841796875,
+        "retrieval_score": 0.03252247488101534
+      },
+      {
+        "evidence_id": "ev-02-paper-012-p002-c004",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p002-c004",
+        "page": 2,
+        "section": "1 Introduction",
+        "text": "singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundof5canbeachieved. Weight Regime Recursive rule Distortion Known Weightedf≤3β KnownFractionalVeto3(optimal) Known WeightedCopeland5≤Dist.≤7 Identicalf≤1 + (β−1) range(w) Normalized (unit-sum)PluralityVetoΘ(m): \u0002 m 2,8m+ 3 \u0003 Normalized (unit-top)PluralityVetoΘ(m): \u0002 m 4,4m+ 1 \u0003 Table 1: The summary of our results. Here,βdenotes the distortion of the underlying social choice functionf, andrange(w) = (w 1−wm)/w1 is the normalized range of the common weight vectorw. 2) Identical Weights.Second, we study theidentical weightssetting,inwhichthepositionalweightsareunknown but all voters share the same weight vector. We show that recursively applying any single-winner rule with distortion βachieves distortion at most1 + (β−1) range(w), where range(w) = (w 1−wm)/w1 denotes the normalized range of the common weight vectorw. Thus, the distortion interpolates continuously between1, when all positions are valued equally, andβ, when only the first position matters. This strictly generalizes previous re",
+        "core_text": "singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundof5canbeachieved. Weight Regime Recursive rule Distortion Known Weightedf≤3β KnownFractionalVeto3(optimal) Known WeightedCopeland5≤Dist.≤7 Identicalf≤1 + (β−1) range(w) Normalized (unit-sum)PluralityVetoΘ(m): \u0002 m 2,8m+ 3 \u0003 Normalized (unit-top)PluralityVetoΘ(m): \u0002 m 4,4m+ 1 \u0003 Table 1: The summary of our results. Here,βdenotes the distortion of the underlying social choice functionf, andrange(w) = (w 1−wm)/w1 is the normalized range of the common weight vectorw. 2) Identical Weights.Second, we study theidentical weightssetting,inwhichthepositionalweightsareunknown but all voters share the same weight vector. We show that recursively applying any single-winner rule with distortion βachieves distortion at most1 + (β−1) range(w), where range(w) = (w 1−wm)/w1 denotes the normalized range of the common weight vectorw. Thus, the distortion interpolates continuously between1, when all positions are valued equally, andβ, when only the first position matters. This strictly generalizes previous re",
+        "reranker_score": 0.72705078125,
+        "retrieval_score": 0.015384615384615385
+      },
+      {
+        "evidence_id": "ev-03-paper-012-p010-c003",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p010-c003",
+        "page": 10,
+        "section": "6 Conclusion",
+        "text": "∈V d \u0000 c∗ 1,M−1 j (v) \u0001 = 2mSC(c∗ 1), wherethelastequalityfollowsbecauseM −1 j isapermutation ofVforeveryj.Finally,sincew v1 = 1foreveryvoterv,we have SC(σ∗)≥SC(c ∗ 1). Hence,D≤2mSC(σ ∗), and consequently SC(σ)≤(4m+ 1) SC(σ ∗), completing the proof. Together with Theorem 15, these bounds determine the optimal distortion up to constant factors: it isΘ(m)under either normalization. 6 Conclusion We initiated the study of metric distortion for social welfare functions, extending the metric distortion framework from selecting a single winner to constructing complete rankings under position-weighted objectives. Our results show that theamountofinformationavailableaboutthepositional weightsfundamentallydeterminestheachievabledistortion: knowingtheweightsallowsoptimalconstantdistortion,identicalhiddenweightsstilladmitstrongguarantees,whileheterogeneous hidden weights inevitably lead to linear distortion, even under natural normalizations. These results leave several interesting directions for future work. In particular, can the distortion of Recursive Copelandbe improved from the current upper bound of7 to the conjectured bound of5? More generally, it would be interesting to understand which single-winner distortion guarantees extend to recursive ranking rules, and to study metric distortion for social welfare functions under richer preference models, such as limited cardinal information or randomized social welfare functions. AcknowledgmentsThisworkwassupportedinpartbythe Ministry of National Education of the Republic of Türkiye. OpenAI’s GPT-5.5 and GPT-5.6 Sol we",
+        "core_text": "6 Conclusion We initiated the study of metric distortion for social welfare functions, extending the metric distortion framework from selecting a single winner to constructing complete rankings under position-weighted objectives. Our results show that theamountofinformationavailableaboutthepositional weightsfundamentallydeterminestheachievabledistortion: knowingtheweightsallowsoptimalconstantdistortion,identicalhiddenweightsstilladmitstrongguarantees,whileheterogeneous hidden weights inevitably lead to linear distortion, even under natural normalizations. These results leave several interesting directions for future work. In particular, can the distortion of Recursive Copelandbe improved from the current upper bound of7 to the conjectured bound of5? More generally, it would be interesting to understand which single-winner distortion guarantees extend to recursive ranking rules, and to study metric distortion for social welfare functions under richer preference models, such as limited cardinal information or randomized social welfare functions. AcknowledgmentsThisworkwassupportedinpartbythe Ministry of National Education of the Republic of Türkiye. OpenAI’s GPT-5.5 and GPT-5.6 Sol we",
+        "reranker_score": 0.69873046875,
+        "retrieval_score": 0.030330882352941176
+      },
+      {
+        "evidence_id": "ev-04-paper-012-p002-c003",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p002-c003",
+        "page": 2,
+        "section": "1 Introduction",
+        "text": "ursively, filling the positions one by one by repeatedly applying a single-winner rule to the remaining candidates. However, the distortion guarantee of the underlying single-winner rule does not automatically carry over to its recursive extension. In particular, the best generic guarantee that we obtain for recursively applying an arbitrary distortion-βrule is a distortion of3β, while we exhibit instancesin which a local distortion ofβat every recursive step results in an overall distortion of2β. Surprisingly,ourmainresultshowsthatthisapparentloss isnotinherent.WeprovethatrecursivelyapplyingFractionalVeto,ageneralizationoftheoptimaldeterministicsinglewinner rulePluralityVeto(Kizilkaya and Kempe 2023), yields a social welfare function with the optimal distortion of3for every monotone weight profile. Thus, constructing an entire ranking incurs no additional distortion over the classical single-winner setting. Our proof exploits structural properties specific toFractionalVeto, beyond its singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundo",
+        "core_text": "ursively, filling the positions one by one by repeatedly applying a single-winner rule to the remaining candidates. However, the distortion guarantee of the underlying single-winner rule does not automatically carry over to its recursive extension. In particular, the best generic guarantee that we obtain for recursively applying an arbitrary distortion-βrule is a distortion of3β, while we exhibit instancesin which a local distortion ofβat every recursive step results in an overall distortion of2β. Surprisingly,ourmainresultshowsthatthisapparentloss isnotinherent.WeprovethatrecursivelyapplyingFractionalVeto,ageneralizationoftheoptimaldeterministicsinglewinner rulePluralityVeto(Kizilkaya and Kempe 2023), yields a social welfare function with the optimal distortion of3for every monotone weight profile. Thus, constructing an entire ranking incurs no additional distortion over the classical single-winner setting. Our proof exploits structural properties specific toFractionalVeto, beyond its singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundo",
+        "reranker_score": 0.46630859375,
+        "retrieval_score": 0.028577260665441927
+      },
+      {
+        "evidence_id": "ev-05-paper-012-p007-c004",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p007-c004",
+        "page": 7,
+        "section": "3.3 Weighted RecursiveCopeland",
+        "text": "immediate whenWj = 0. Since Lemma 4 is independent of the rule used to select the candidates, summing over all positions yields SC(σ)≤6 SC(σ ∗) + mX j=1 X v∈V wvjd(v,topj(v)) ≤7 SC(σ∗). Since the election, metric, and weight profile fixed above were arbitrary, this completes the proof. Whenw v = (1,0,...,0)for every voterv∈V, only the first position contributes to the objective and Weighted RecursiveCopelandreduces to ordinaryCopeland. Thesingle-winnerlowerboundof5(Anshelevichetal.2018) therefore continues to apply. Thus, we currently only know thatthedistortionofWeightedRecursiveCopelandliesbetween5and7. 7",
+        "core_text": "immediate whenWj = 0. Since Lemma 4 is independent of the rule used to select the candidates, summing over all positions yields SC(σ)≤6 SC(σ ∗) + mX j=1 X v∈V wvjd(v,topj(v)) ≤7 SC(σ∗). Since the election, metric, and weight profile fixed above were arbitrary, this completes the proof. Whenw v = (1,0,...,0)for every voterv∈V, only the first position contributes to the objective and Weighted RecursiveCopelandreduces to ordinaryCopeland. Thesingle-winnerlowerboundof5(Anshelevichetal.2018) therefore continues to apply. Thus, we currently only know thatthedistortionofWeightedRecursiveCopelandliesbetween5and7. 7",
+        "reranker_score": 0.417236328125,
+        "retrieval_score": 0.01639344262295082
+      }
+    ],
+    "answer_alignment": [
+      {
+        "answer_text": "An upper bound of 7 is proved for Weighted Recursive Copeland.",
+        "evidence_id": "ev-01-paper-012-p004-c005",
+        "page": 4,
+        "section": "3 Known Weights",
+        "verbatim_quote": "Weighted Recursive Copeland requires a substantially different analysis, for which we obtain a distortion bound of 7.",
+        "quote_verified": true,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "A smaller bound of 5 remains an open question for Weighted Recursive Copeland.",
+        "evidence_id": "ev-01-paper-012-p004-c005",
+        "page": 4,
+        "section": "3 Known Weights",
+        "verbatim_quote": "Whether a bound of 5 is actually achievable, remains an open question.",
+        "quote_verified": false,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "The distortion of Weighted Recursive Copeland lies between 5 and 7.",
+        "evidence_id": "ev-05-paper-012-p007-c004",
+        "page": 7,
+        "section": "3.3 Weighted RecursiveCopeland",
+        "verbatim_quote": "Thus, we currently only know that the distortion of Weighted Recursive Copeland lies between 5 and 7.",
+        "quote_verified": false,
+        "numeric_verified": true
+      }
+    ],
+    "pipeline": {
+      "abstention_source": null,
+      "fallback_used": false,
+      "raw_verdict": "supported",
+      "quote_verified": false,
+      "quote_verified_ratio": 0.333,
+      "numeric_verified": true,
+      "numeric_verified_ratio": 1.0,
+      "top_reranker_score": 0.7841796875,
+      "score_margin_1_5": 0.366943359375,
+      "en_query": null,
+      "nli_max_entailment": 0.0029,
+      "nli_max_contradiction": 0.0005
+    }
+  },
+  {
+    "id": "paper-012-copeland-ko",
+    "category": "borderline_conf",
+    "language": "ko",
+    "paper_id": "paper-012",
+    "paper_title": "Metric Distortion of Social Welfare Functions",
+    "question": "재귀적 Copeland에 입증된 상한은 얼마이며 어떤 더 작은 상한이 미해결인가요?",
+    "en_query": "What is the proven upper bound for recursive Copeland, and what is the unresolved smaller upper bound?",
+    "response": {
+      "answer": "재귀적 Copeland에 대한 입증된 상한은 7이다. 재귀적 Copeland의 완전한 순위 생성에 대한 외부 정보가 없을 경우, 단일 승자 설정에서의 5의 하한은 여전히 적용되며, 이는 완전한 순위 생성에서의 최적 상한이 5가 될 수 있는지 여부를 여전히 개방 문제로 남김.",
+      "evidence_ids": [
+        "ev-02-paper-012-p004-c005",
+        "ev-05-paper-012-p007-c004"
+      ],
+      "sufficiency": "sufficient",
+      "abstention_reason": null
+    },
+    "cited_evidence": [
+      {
+        "evidence_id": "ev-02-paper-012-p004-c005",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p004-c005",
+        "page": 4,
+        "section": "3 Known Weights",
+        "text": "hose cost is2βtimes optimal. This naturally raises the question whether producing an entire ranking requires distortion higher than3which is the optimal single-winner bound.2 It does not: exploiting the matching certificates underlyingFractionalVeto, we show that RecursiveFractionalVetoachieves the optimal distortion of3. Moreover, by operating directly on normalized masses, the rule runs in polynomial time, whereas the black-box extension may require exponential timebecauseitsexplicitclonepopulationcanbeexponential in the bit length of the weights. Finally, we study the analogous question forCopeland. While its single-winner distortion is5,Weighted Recursive Copelandrequires a substantially different analysis, for which we obtain a distortion bound of 7. However, whether aboundof5isactuallyachievable,remainsanopenquestion.",
+        "core_text": "hose cost is2βtimes optimal. This naturally raises the question whether producing an entire ranking requires distortion higher than3which is the optimal single-winner bound.2 It does not: exploiting the matching certificates underlyingFractionalVeto, we show that RecursiveFractionalVetoachieves the optimal distortion of3. Moreover, by operating directly on normalized masses, the rule runs in polynomial time, whereas the black-box extension may require exponential timebecauseitsexplicitclonepopulationcanbeexponential in the bit length of the weights. Finally, we study the analogous question forCopeland. While its single-winner distortion is5,Weighted Recursive Copelandrequires a substantially different analysis, for which we obtain a distortion bound of 7. However, whether aboundof5isactuallyachievable,remainsanopenquestion.",
+        "reranker_score": 0.28628844022750854,
+        "retrieval_score": 0.046494801754268796
+      },
+      {
+        "evidence_id": "ev-05-paper-012-p007-c004",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p007-c004",
+        "page": 7,
+        "section": "3.3 Weighted RecursiveCopeland",
+        "text": "immediate whenWj = 0. Since Lemma 4 is independent of the rule used to select the candidates, summing over all positions yields SC(σ)≤6 SC(σ ∗) + mX j=1 X v∈V wvjd(v,topj(v)) ≤7 SC(σ∗). Since the election, metric, and weight profile fixed above were arbitrary, this completes the proof. Whenw v = (1,0,...,0)for every voterv∈V, only the first position contributes to the objective and Weighted RecursiveCopelandreduces to ordinaryCopeland. Thesingle-winnerlowerboundof5(Anshelevichetal.2018) therefore continues to apply. Thus, we currently only know thatthedistortionofWeightedRecursiveCopelandliesbetween5and7. 7",
+        "core_text": "immediate whenWj = 0. Since Lemma 4 is independent of the rule used to select the candidates, summing over all positions yields SC(σ)≤6 SC(σ ∗) + mX j=1 X v∈V wvjd(v,topj(v)) ≤7 SC(σ∗). Since the election, metric, and weight profile fixed above were arbitrary, this completes the proof. Whenw v = (1,0,...,0)for every voterv∈V, only the first position contributes to the objective and Weighted RecursiveCopelandreduces to ordinaryCopeland. Thesingle-winnerlowerboundof5(Anshelevichetal.2018) therefore continues to apply. Thus, we currently only know thatthedistortionofWeightedRecursiveCopelandliesbetween5and7. 7",
+        "reranker_score": 0.17064207792282104,
+        "retrieval_score": 0.03200204813108039
+      }
+    ],
+    "retrieved_evidence": [
+      {
+        "evidence_id": "ev-01-paper-012-p010-c003",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p010-c003",
+        "page": 10,
+        "section": "6 Conclusion",
+        "text": "∈V d \u0000 c∗ 1,M−1 j (v) \u0001 = 2mSC(c∗ 1), wherethelastequalityfollowsbecauseM −1 j isapermutation ofVforeveryj.Finally,sincew v1 = 1foreveryvoterv,we have SC(σ∗)≥SC(c ∗ 1). Hence,D≤2mSC(σ ∗), and consequently SC(σ)≤(4m+ 1) SC(σ ∗), completing the proof. Together with Theorem 15, these bounds determine the optimal distortion up to constant factors: it isΘ(m)under either normalization. 6 Conclusion We initiated the study of metric distortion for social welfare functions, extending the metric distortion framework from selecting a single winner to constructing complete rankings under position-weighted objectives. Our results show that theamountofinformationavailableaboutthepositional weightsfundamentallydeterminestheachievabledistortion: knowingtheweightsallowsoptimalconstantdistortion,identicalhiddenweightsstilladmitstrongguarantees,whileheterogeneous hidden weights inevitably lead to linear distortion, even under natural normalizations. These results leave several interesting directions for future work. In particular, can the distortion of Recursive Copelandbe improved from the current upper bound of7 to the conjectured bound of5? More generally, it would be interesting to understand which single-winner distortion guarantees extend to recursive ranking rules, and to study metric distortion for social welfare functions under richer preference models, such as limited cardinal information or randomized social welfare functions. AcknowledgmentsThisworkwassupportedinpartbythe Ministry of National Education of the Republic of Türkiye. OpenAI’s GPT-5.5 and GPT-5.6 Sol we",
+        "core_text": "6 Conclusion We initiated the study of metric distortion for social welfare functions, extending the metric distortion framework from selecting a single winner to constructing complete rankings under position-weighted objectives. Our results show that theamountofinformationavailableaboutthepositional weightsfundamentallydeterminestheachievabledistortion: knowingtheweightsallowsoptimalconstantdistortion,identicalhiddenweightsstilladmitstrongguarantees,whileheterogeneous hidden weights inevitably lead to linear distortion, even under natural normalizations. These results leave several interesting directions for future work. In particular, can the distortion of Recursive Copelandbe improved from the current upper bound of7 to the conjectured bound of5? More generally, it would be interesting to understand which single-winner distortion guarantees extend to recursive ranking rules, and to study metric distortion for social welfare functions under richer preference models, such as limited cardinal information or randomized social welfare functions. AcknowledgmentsThisworkwassupportedinpartbythe Ministry of National Education of the Republic of Türkiye. OpenAI’s GPT-5.5 and GPT-5.6 Sol we",
+        "reranker_score": 0.33262404799461365,
+        "retrieval_score": 0.04321251902587519
+      },
+      {
+        "evidence_id": "ev-02-paper-012-p004-c005",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p004-c005",
+        "page": 4,
+        "section": "3 Known Weights",
+        "text": "hose cost is2βtimes optimal. This naturally raises the question whether producing an entire ranking requires distortion higher than3which is the optimal single-winner bound.2 It does not: exploiting the matching certificates underlyingFractionalVeto, we show that RecursiveFractionalVetoachieves the optimal distortion of3. Moreover, by operating directly on normalized masses, the rule runs in polynomial time, whereas the black-box extension may require exponential timebecauseitsexplicitclonepopulationcanbeexponential in the bit length of the weights. Finally, we study the analogous question forCopeland. While its single-winner distortion is5,Weighted Recursive Copelandrequires a substantially different analysis, for which we obtain a distortion bound of 7. However, whether aboundof5isactuallyachievable,remainsanopenquestion.",
+        "core_text": "hose cost is2βtimes optimal. This naturally raises the question whether producing an entire ranking requires distortion higher than3which is the optimal single-winner bound.2 It does not: exploiting the matching certificates underlyingFractionalVeto, we show that RecursiveFractionalVetoachieves the optimal distortion of3. Moreover, by operating directly on normalized masses, the rule runs in polynomial time, whereas the black-box extension may require exponential timebecauseitsexplicitclonepopulationcanbeexponential in the bit length of the weights. Finally, we study the analogous question forCopeland. While its single-winner distortion is5,Weighted Recursive Copelandrequires a substantially different analysis, for which we obtain a distortion bound of 7. However, whether aboundof5isactuallyachievable,remainsanopenquestion.",
+        "reranker_score": 0.28628844022750854,
+        "retrieval_score": 0.046494801754268796
+      },
+      {
+        "evidence_id": "ev-03-paper-012-p002-c004",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p002-c004",
+        "page": 2,
+        "section": "1 Introduction",
+        "text": "singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundof5canbeachieved. Weight Regime Recursive rule Distortion Known Weightedf≤3β KnownFractionalVeto3(optimal) Known WeightedCopeland5≤Dist.≤7 Identicalf≤1 + (β−1) range(w) Normalized (unit-sum)PluralityVetoΘ(m): \u0002 m 2,8m+ 3 \u0003 Normalized (unit-top)PluralityVetoΘ(m): \u0002 m 4,4m+ 1 \u0003 Table 1: The summary of our results. Here,βdenotes the distortion of the underlying social choice functionf, andrange(w) = (w 1−wm)/w1 is the normalized range of the common weight vectorw. 2) Identical Weights.Second, we study theidentical weightssetting,inwhichthepositionalweightsareunknown but all voters share the same weight vector. We show that recursively applying any single-winner rule with distortion βachieves distortion at most1 + (β−1) range(w), where range(w) = (w 1−wm)/w1 denotes the normalized range of the common weight vectorw. Thus, the distortion interpolates continuously between1, when all positions are valued equally, andβ, when only the first position matters. This strictly generalizes previous re",
+        "core_text": "singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundof5canbeachieved. Weight Regime Recursive rule Distortion Known Weightedf≤3β KnownFractionalVeto3(optimal) Known WeightedCopeland5≤Dist.≤7 Identicalf≤1 + (β−1) range(w) Normalized (unit-sum)PluralityVetoΘ(m): \u0002 m 2,8m+ 3 \u0003 Normalized (unit-top)PluralityVetoΘ(m): \u0002 m 4,4m+ 1 \u0003 Table 1: The summary of our results. Here,βdenotes the distortion of the underlying social choice functionf, andrange(w) = (w 1−wm)/w1 is the normalized range of the common weight vectorw. 2) Identical Weights.Second, we study theidentical weightssetting,inwhichthepositionalweightsareunknown but all voters share the same weight vector. We show that recursively applying any single-winner rule with distortion βachieves distortion at most1 + (β−1) range(w), where range(w) = (w 1−wm)/w1 denotes the normalized range of the common weight vectorw. Thus, the distortion interpolates continuously between1, when all positions are valued equally, andβ, when only the first position matters. This strictly generalizes previous re",
+        "reranker_score": 0.27781981229782104,
+        "retrieval_score": 0.05872200014138176
+      },
+      {
+        "evidence_id": "ev-04-paper-012-p002-c003",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p002-c003",
+        "page": 2,
+        "section": "1 Introduction",
+        "text": "ursively, filling the positions one by one by repeatedly applying a single-winner rule to the remaining candidates. However, the distortion guarantee of the underlying single-winner rule does not automatically carry over to its recursive extension. In particular, the best generic guarantee that we obtain for recursively applying an arbitrary distortion-βrule is a distortion of3β, while we exhibit instancesin which a local distortion ofβat every recursive step results in an overall distortion of2β. Surprisingly,ourmainresultshowsthatthisapparentloss isnotinherent.WeprovethatrecursivelyapplyingFractionalVeto,ageneralizationoftheoptimaldeterministicsinglewinner rulePluralityVeto(Kizilkaya and Kempe 2023), yields a social welfare function with the optimal distortion of3for every monotone weight profile. Thus, constructing an entire ranking incurs no additional distortion over the classical single-winner setting. Our proof exploits structural properties specific toFractionalVeto, beyond its singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundo",
+        "core_text": "ursively, filling the positions one by one by repeatedly applying a single-winner rule to the remaining candidates. However, the distortion guarantee of the underlying single-winner rule does not automatically carry over to its recursive extension. In particular, the best generic guarantee that we obtain for recursively applying an arbitrary distortion-βrule is a distortion of3β, while we exhibit instancesin which a local distortion ofβat every recursive step results in an overall distortion of2β. Surprisingly,ourmainresultshowsthatthisapparentloss isnotinherent.WeprovethatrecursivelyapplyingFractionalVeto,ageneralizationoftheoptimaldeterministicsinglewinner rulePluralityVeto(Kizilkaya and Kempe 2023), yields a social welfare function with the optimal distortion of3for every monotone weight profile. Thus, constructing an entire ranking incurs no additional distortion over the classical single-winner setting. Our proof exploits structural properties specific toFractionalVeto, beyond its singlewinnerdistortionguarantee.WealsostudyWeightedRecursiveCopeland. AlthoughCopelandachieves distortion5 in the single-winner setting, here we obtain a bound of7, leavingopenwhethertheoptimalboundo",
+        "reranker_score": 0.2600158751010895,
+        "retrieval_score": 0.05756885730409739
+      },
+      {
+        "evidence_id": "ev-05-paper-012-p007-c004",
+        "paper_id": "paper-012",
+        "chunk_id": "paper-012-p007-c004",
+        "page": 7,
+        "section": "3.3 Weighted RecursiveCopeland",
+        "text": "immediate whenWj = 0. Since Lemma 4 is independent of the rule used to select the candidates, summing over all positions yields SC(σ)≤6 SC(σ ∗) + mX j=1 X v∈V wvjd(v,topj(v)) ≤7 SC(σ∗). Since the election, metric, and weight profile fixed above were arbitrary, this completes the proof. Whenw v = (1,0,...,0)for every voterv∈V, only the first position contributes to the objective and Weighted RecursiveCopelandreduces to ordinaryCopeland. Thesingle-winnerlowerboundof5(Anshelevichetal.2018) therefore continues to apply. Thus, we currently only know thatthedistortionofWeightedRecursiveCopelandliesbetween5and7. 7",
+        "core_text": "immediate whenWj = 0. Since Lemma 4 is independent of the rule used to select the candidates, summing over all positions yields SC(σ)≤6 SC(σ ∗) + mX j=1 X v∈V wvjd(v,topj(v)) ≤7 SC(σ∗). Since the election, metric, and weight profile fixed above were arbitrary, this completes the proof. Whenw v = (1,0,...,0)for every voterv∈V, only the first position contributes to the objective and Weighted RecursiveCopelandreduces to ordinaryCopeland. Thesingle-winnerlowerboundof5(Anshelevichetal.2018) therefore continues to apply. Thus, we currently only know thatthedistortionofWeightedRecursiveCopelandliesbetween5and7. 7",
+        "reranker_score": 0.17064207792282104,
+        "retrieval_score": 0.03200204813108039
+      }
+    ],
+    "answer_alignment": [
+      {
+        "answer_text": "재귀적 Copeland에 대한 입증된 상한은 7이다.",
+        "evidence_id": "ev-02-paper-012-p004-c005",
+        "page": 4,
+        "section": "3 Known Weights",
+        "verbatim_quote": "Weighted Recursive Copeland requires a substantially different analysis, for which we obtain a distortion bound of 7.",
+        "quote_verified": true,
+        "numeric_verified": true
+      },
+      {
+        "answer_text": "재귀적 Copeland의 완전한 순위 생성에 대한 외부 정보가 없을 경우, 단일 승자 설정에서의 5의 하한은 여전히 적용되며, 이는 완전한 순위 생성에서의 최적 상한이 5가 될 수 있는지 여부를 여전히 개방 문제로 남김.",
+        "evidence_id": "ev-05-paper-012-p007-c004",
+        "page": 7,
+        "section": "3.3 Weighted RecursiveCopeland",
+        "verbatim_quote": "The single-winner lower bound of 5 (Anshelevich et al. 2018) therefore continues to apply. Thus, we currently only know that the distortion of Weighted Recursive Copeland lies between 5 and 7.",
+        "quote_verified": false,
+        "numeric_verified": true
+      }
+    ],
+    "pipeline": {
+      "abstention_source": null,
+      "fallback_used": false,
+      "raw_verdict": "supported",
+      "quote_verified": false,
+      "quote_verified_ratio": 0.5,
+      "numeric_verified": true,
+      "numeric_verified_ratio": 1.0,
+      "top_reranker_score": 0.33262404799461365,
+      "score_margin_1_5": 0.1619819700717926,
+      "en_query": "What is the proven upper bound for recursive Copeland, and what is the unresolved smaller upper bound?",
+      "nli_max_entailment": 0.0003,
+      "nli_max_contradiction": 0.0006
+    }
+  },
+  {
     "id": "paper-011-false-premise-en",
     "category": "fp",
     "language": "en",

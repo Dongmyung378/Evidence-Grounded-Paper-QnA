@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/Dongmyung378/Evidence-Grounded-Paper-QnA/actions/workflows/ci.yml/badge.svg)](https://github.com/Dongmyung378/Evidence-Grounded-Paper-QnA/actions/workflows/ci.yml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-1E665E.svg)](pyproject.toml)
-[![Tests](https://img.shields.io/badge/pytest-8%2F8%20passing-1B8754.svg)](tests/test_paper_qna_v2.py)
+[![Tests](https://img.shields.io/badge/pytest-9%2F9%20passing-1B8754.svg)](tests/test_paper_qna_v2.py)
 
 <p align="center">
   <img src="docs/figures/en/paper-qna-thumbnail.svg" alt="Evidence Grounded Paper Q&A architecture and Holdout summary" width="100%" />
@@ -58,7 +58,7 @@ Every architectural choice was verified through controlled DEV ablations (`10` p
 
 ## Quickstart & Local Interactive Demo
 
-The repository runs directly on Windows, macOS, and Linux with Python 3.10+. Even without an external LLM server, the interactive web demo loads all `30` benchmark papers, `10` verified unseen Holdout presets, live Conformal Gate calibration, runtime NLI parity checks, and live English PDF upload.
+The repository runs directly on Windows, macOS, and Linux with Python 3.10+. Even without an external LLM server, the interactive web demo loads all `30` benchmark papers, `14` verified unseen Holdout presets (including live NLI and Conformal borderline cases), live Conformal Gate calibration, runtime NLI parity checks, and live English PDF upload.
 
 ```powershell
 # 1. Create a virtual environment and install dependencies
@@ -75,7 +75,7 @@ python -m venv .venv
 .\launch-paper-qna.bat status
 .\launch-paper-qna.bat ask --paper-id paper-030 --question "Which three screening heuristics or ranking baselines are compared with the multivariable predictor?"
 
-# 5. Run automated unit, contract, Conformal Gate, FastAPI, and parity gate tests (8/8 pass)
+# 5. Run automated unit, contract, Conformal Gate, FastAPI, and parity gate tests (9/9 pass)
 .\.venv\Scripts\python.exe -m pytest -v
 ```
 

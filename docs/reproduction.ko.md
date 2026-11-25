@@ -16,7 +16,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 
-# 단위, 응답 계약, Conformal Gate, FastAPI, NLI 패리티 게이트 테스트 8종 실행
+# 단위, 응답 계약, Conformal Gate, FastAPI, 경계 게이트, NLI 패리티 테스트 9종 실행
 .\.venv\Scripts\python.exe -m pytest -v
 ```
 
@@ -45,7 +45,7 @@ sh ./launch-paper-qna.sh demo
 ```
 
 별도 LLM 서버를 연결하지 않아도 웹 데모에서 다음 기능을 즉시 검증할 수 있습니다.
-- `corpus30` 논문 `30`편과 미공개 Holdout 검증 프리셋 `10`건(정답가능, 거짓전제, 근거부족 한·영 쌍)
+- `corpus30` 논문 `30`편과 미공개 Holdout 검증 프리셋 `14`건(정답가능, NLI 경계, Conformal 경계, 거짓전제, 근거부족 한·영 쌍)
 - 실시간 Scientific NLI 모순 임계값 슬라이더(`0.50` ~ `0.99`) 및 논문 그룹 Conformal Gate `alpha`(`0.02`, `0.05`, `0.10`) 선택
 - 신규 영문 논문 PDF(`20 MiB` 이하) 업로드, 페이지·섹션 기반 청킹 및 근거 발췌 응답
 - 한국어 / English UI 즉시 전환(`?lang=ko`, `?lang=en` 쿼리 지원)

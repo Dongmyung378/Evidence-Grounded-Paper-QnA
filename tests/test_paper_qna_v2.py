@@ -182,6 +182,36 @@ def test_fastapi_web_demo_routes():
     assert r_bad.status_code == 400
 
 
+def test_borderline_nli_threshold_and_conformal_gate_enforcement():
+    engine = PaperQnAEngine(root=ROOT)
+    client = TestClient(create_app(engine=engine))
+    presets = client.get("/api/presets").json()["presets"]
+
+    # Borderline NLI case: passes at 0.95, blocked when lowered to 0.78
+    bnli = next(p for p in presets if p["id"] == "paper-017-security-ko")
+    r_pass = client.post("/api/ask", json={"paper_id": bnli["paper_id"], "question": bnli["question"], "nli_threshold": 0.95}).json()
+    r_block = client.post("/api/ask", json={"paper_id": bnli["paper_id"], "question": bnli["question"], "nli_threshold": 0.78}).json()
+    assert r_pass["response"]["sufficiency"] == "sufficient"
+    assert r_block["response"]["sufficiency"] == "insufficient"
+    assert r_block["nli"]["triggered"] is True
+
+    # Borderline Conformal case: accepted at alpha=0.05, held/blocked at alpha=0.02 when enforce_conformal=True
+    bconf = next(p for p in presets if p["id"] == "paper-012-copeland-en")
+    c_pass = client.post(
+        "/api/ask",
+        json={"paper_id": bconf["paper_id"], "question": bconf["question"], "conformal_alpha": 0.05, "enforce_conformal": True},
+    ).json()
+    c_hold = client.post(
+        "/api/ask",
+        json={"paper_id": bconf["paper_id"], "question": bconf["question"], "conformal_alpha": 0.02, "enforce_conformal": True},
+    ).json()
+    assert c_pass["conformal"]["accepted"] is True
+    assert c_pass["response"]["sufficiency"] == "sufficient"
+    assert c_hold["conformal"]["accepted"] is False
+    assert c_hold["conformal"]["blocked"] is True
+    assert c_hold["response"]["sufficiency"] == "insufficient"
+
+
 def test_local_scientific_nli_onnx_parity_gate_if_present():
     onnx_dir = ROOT / "models" / "scientific_nli_int8"
     if not (onnx_dir / "model_quantized.onnx").is_file():

@@ -13,6 +13,8 @@
       --amber-soft: #FBF3E6;
       --danger: #A62B3A;
       --danger-soft: #FBECEE;
+      --indigo: #3B4FA3;
+      --indigo-soft: #EEF1FB;
       --paper: #F8F4EB;
       --card: #FFFFFF;
       --ink: #1F2E32;
@@ -79,13 +81,16 @@
       padding: 9px 11px; cursor: pointer; transition: border-color .15s, background .15s;
     }
     .preset-btn:hover, .preset-btn.active { border-color: var(--teal); background: var(--teal-soft); }
-    .preset-top { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; font-size: 11px; font-weight: 700; }
+    .preset-top { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; font-size: 11px; font-weight: 700; flex-wrap: wrap; }
     .badge {
       display: inline-block; padding: 2px 7px; border-radius: 999px; font-size: 10.8px; font-weight: 700;
+      white-space: nowrap; flex-shrink: 0;
     }
     .b-ans { background: var(--teal-soft); color: var(--teal-dark); }
     .b-fp { background: var(--danger-soft); color: var(--danger); }
     .b-unsup { background: var(--amber-soft); color: var(--amber); }
+    .b-bnli { background: #F3ECFA; color: #6B3399; }
+    .b-bconf { background: var(--indigo-soft); color: var(--indigo); }
     .b-lang { background: #EDF2F4; color: #3B4D54; }
     .preset-q { font-size: 12.6px; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     label { display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin: 12px 0 5px; }
@@ -95,12 +100,18 @@
     }
     textarea { min-height: 82px; resize: vertical; }
     .controls-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+    .enforce-row {
+      display: flex; align-items: center; gap: 8px; margin-top: 10px; padding: 8px 10px;
+      border-radius: 8px; background: #F6F9F8; border: 1px solid var(--rule); font-size: 12px; color: var(--ink);
+    }
+    .enforce-row input { width: auto; margin: 0; cursor: pointer; accent-color: var(--teal); }
+    .enforce-row label { margin: 0; cursor: pointer; font-weight: 600; color: var(--ink); font-size: 12px; }
     .upload-box {
       border: 1.4px dashed #B9C8C3; border-radius: 9px; padding: 10px 12px; background: #FAFDFC;
       margin-bottom: 10px;
     }
     .btn-primary {
-      width: 100%; margin-top: 14px; border: 0; border-radius: 9px; padding: 11px 16px;
+      width: 100%; margin-top: 12px; border: 0; border-radius: 9px; padding: 11px 16px;
       background: var(--teal); color: #fff; font-size: 14px; font-weight: 700; cursor: pointer;
       transition: background .15s;
     }
@@ -127,7 +138,7 @@
     .metric-box {
       border: 1px solid var(--rule); border-radius: 9px; padding: 10px 12px; background: #FCFBF8;
     }
-    .metric-label { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.03em; }
+    .metric-label { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.03em; display: flex; align-items: center; justify-content: space-between; gap: 4px; }
     .metric-val { font-size: 19px; font-weight: 780; margin-top: 2px; color: var(--ink); }
     .metric-note { font-size: 11.2px; color: var(--muted); margin-top: 2px; }
     .gauge-wrap { margin-bottom: 16px; padding: 12px 14px; border: 1px solid var(--rule); border-radius: 9px; background: #FAFBF9; }
@@ -206,11 +217,16 @@
           <div>
             <label for="alpha-sel" data-i18n="alpha_label">Conformal Gate α</label>
             <select id="alpha-sel">
-              <option value="0.02" data-i18n-opt="alpha_02">α = 0.02 (엄격 · 누출 2.5%)</option>
-              <option value="0.05" selected data-i18n-opt="alpha_05">α = 0.05 (권장 · 누출 5.0%)</option>
-              <option value="0.10" data-i18n-opt="alpha_10">α = 0.10 (고커버리지 · 98.8%)</option>
+              <option value="0.02" data-i18n-opt="alpha_02">α = 0.02 (엄격 · 임계 0.899)</option>
+              <option value="0.05" selected data-i18n-opt="alpha_05">α = 0.05 (권장 · 임계 0.873)</option>
+              <option value="0.10" data-i18n-opt="alpha_10">α = 0.10 (고커버리지 · 임계 0.420)</option>
             </select>
           </div>
+        </div>
+
+        <div class="enforce-row">
+          <input type="checkbox" id="enforce-conformal" />
+          <label for="enforce-conformal" data-i18n="enforce_conf_label">Conformal Gate 기준 미달 시 답변 자동 보류(차단) 활성화</label>
         </div>
 
         <button class="btn-primary" id="run-btn" type="button" data-i18n="run_btn">근거 검색 · NLI 검증 · 답변 생성 실행</button>
@@ -239,27 +255,37 @@ const I18N = {
     question_placeholder: '논문 내용에 대한 영어 또는 한국어 질문을 입력하세요...',
     nli_thr_label: 'Scientific NLI 임계값',
     alpha_label: 'Conformal Gate α',
-    alpha_02: 'α = 0.02 (엄격 · 누출 2.5%)',
-    alpha_05: 'α = 0.05 (권장 · 누출 5.0%)',
-    alpha_10: 'α = 0.10 (고커버리지 · 98.8%)',
+    alpha_02: 'α = 0.02 (엄격 · 임계 0.899)',
+    alpha_05: 'α = 0.05 (권장 · 임계 0.873)',
+    alpha_10: 'α = 0.10 (고커버리지 · 임계 0.420)',
+    enforce_conf_label: 'Conformal Gate 기준 미달 시 답변 자동 보류(차단) 활성화',
     run_btn: '근거 검색 · NLI 검증 · 답변 생성 실행',
     running: 'Scientific NLI 게이트 및 근거 검증 실행 중...',
     empty: '왼쪽에서 미공개 Holdout 프리셋을 클릭하거나 PDF를 올려 질문을 실행하세요.',
-    cat: { ans: '정답가능', fp: '거짓전제', unsup: '근거부족' },
+    cat: {
+      ans: '정답가능',
+      borderline_nli: 'NLI 경계',
+      borderline_conf: 'Conformal 경계',
+      fp: '거짓전제',
+      unsup: '근거부족'
+    },
     v_suff: '검증 완료 · 근거 기반 답변',
     v_fp: '거절됨 · Scientific NLI 거짓전제 차단',
+    v_conf: '보류됨 · Conformal Gate 신뢰도 기준 미달',
     v_insuff: '거절됨 · 논문 근거 부족',
     suff_badge: { sufficient: '검증 통과', insufficient: '안전 거절' },
     holdout_meta_lbl: '미공개 Holdout 검증 케이스',
     holdout_verified: 'Guided JSON + 원문 인용 대조 완료',
     m_nli: 'NLI 모순 확률',
     m_conf: 'Conformal 정답 확률',
+    conf_pass: '기준 통과',
+    conf_hold: '기준 미달',
     m_qn: '인용 / 수치 검증',
     m_qn_note: '결정론적 검증기 통과율',
     m_time: '총 처리 시간',
     gauge_title: eng => `Sliding Window Scientific NLI (mDeBERTa-v3 ${eng}) 모순 확률`,
     gauge_gate: thr => `차단 기준 >= ${thr}%`,
-    reason_lbl: '거절 사유:',
+    reason_lbl: '거절 / 보류 사유:',
     claims_title: '문장별 원문 인용 대조 (원문 인용 및 수치 검증)',
     quote_ok: '인용 일치',
     quote_chk: '인용 확인',
@@ -293,21 +319,31 @@ const I18N = {
     question_placeholder: 'Enter an English or Korean question about the selected paper...',
     nli_thr_label: 'Scientific NLI Threshold',
     alpha_label: 'Conformal Gate α',
-    alpha_02: 'α = 0.02 (Strict · Leak 2.5%)',
-    alpha_05: 'α = 0.05 (Recommended · Leak 5.0%)',
-    alpha_10: 'α = 0.10 (High Coverage · 98.8%)',
+    alpha_02: 'α = 0.02 (Strict · thr 0.899)',
+    alpha_05: 'α = 0.05 (Recommended · thr 0.873)',
+    alpha_10: 'α = 0.10 (High Coverage · thr 0.420)',
+    enforce_conf_label: 'Hold (block) answer automatically when Conformal Gate fails',
     run_btn: 'Run Retrieval · Scientific NLI · Grounded Answer',
     running: 'Running Scientific NLI gate and evidence verification...',
     empty: 'Select a curated Holdout preset or upload a PDF on the left to inspect NLI gating and source citations.',
-    cat: { ans: 'Answerable', fp: 'False Premise', unsup: 'Unsupported' },
+    cat: {
+      ans: 'Answerable',
+      borderline_nli: 'NLI Borderline',
+      borderline_conf: 'Conformal Borderline',
+      fp: 'False Premise',
+      unsup: 'Unsupported'
+    },
     v_suff: 'Verified · Evidence Grounded Answer',
     v_fp: 'Refused · Blocked by Scientific NLI False Premise Gate',
+    v_conf: 'Held · Below Conformal Gate Confidence Threshold',
     v_insuff: 'Refused · Insufficient Paper Evidence',
     suff_badge: { sufficient: 'SUFFICIENT', insufficient: 'ABSTAINED' },
     holdout_meta_lbl: 'Unseen Holdout Verification Case',
     holdout_verified: 'Guided JSON + Verbatim Quote Checked',
     m_nli: 'NLI Contradiction',
     m_conf: 'Conformal P(Ans)',
+    conf_pass: 'ACCEPTED',
+    conf_hold: 'HOLD',
     m_qn: 'Quote / Numeric',
     m_qn_note: 'Deterministic verifier pass',
     m_time: 'Total Wall Time',
@@ -346,6 +382,14 @@ let lastResult = null;
 
 function esc(s) {
   return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function catClass(cat) {
+  if (cat === 'ans') return 'b-ans';
+  if (cat === 'borderline_nli') return 'b-bnli';
+  if (cat === 'borderline_conf') return 'b-bconf';
+  if (cat === 'fp') return 'b-fp';
+  return 'b-unsup';
 }
 
 function highlightQuote(text, quotes) {
@@ -399,18 +443,15 @@ function renderPresets() {
   const t = I18N[uiLang];
   const grid = document.getElementById('preset-grid');
   document.getElementById('preset-count').textContent = t.presets_count(presetsCache.length);
-  grid.innerHTML = presetsCache.map(p => {
-    const cls = p.category === 'ans' ? 'b-ans' : (p.category === 'fp' ? 'b-fp' : 'b-unsup');
-    return `
+  grid.innerHTML = presetsCache.map(p => `
       <button type="button" class="preset-btn ${activePresetId === p.id ? 'active' : ''}" data-pid="${esc(p.id)}">
         <div class="preset-top">
-          <span class="badge ${cls}">${esc(t.cat[p.category] || p.category)}</span>
+          <span class="badge ${catClass(p.category)}">${esc(t.cat[p.category] || p.category)}</span>
           <span class="badge b-lang">${esc(p.language.toUpperCase())}</span>
           <span style="color:var(--muted)">${esc(p.paper_id)}</span>
         </div>
         <div class="preset-q">${esc(p.question)}</div>
-      </button>`;
-  }).join('');
+      </button>`).join('');
   grid.querySelectorAll('.preset-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const p = presetsCache.find(x => x.id === btn.dataset.pid);
@@ -432,14 +473,19 @@ function renderResult(data) {
   const nli = data.nli || {};
   const conf = data.conformal || {};
   const isSuff = resp.sufficiency === 'sufficient';
+  const isConfBlocked = pipe.abstention_source === 'conformal_gate_blocked' || conf.blocked;
   const isFP = nli.triggered || pipe.abstention_source === 'scientific_nli_contradiction' || pipe.abstention_source === 'llm_contradicted';
   const vClass = isSuff ? 'sufficient' : (isFP ? 'contradicted' : 'insufficient');
-  const vTitle = isSuff ? t.v_suff : (isFP ? t.v_fp : t.v_insuff);
+  const vTitle = isSuff ? t.v_suff : (isConfBlocked ? t.v_conf : (isFP ? t.v_fp : t.v_insuff));
   const vBadge = t.suff_badge[resp.sufficiency] || resp.sufficiency.toUpperCase();
 
   const contraPct = Math.round((nli.max_contra || 0) * 1000) / 10;
   const thrPct = Math.round((nli.threshold || 0.95) * 100);
   const gaugeColor = (nli.max_contra || 0) >= (nli.threshold || 0.95) ? 'var(--danger)' : ((nli.max_contra || 0) >= 0.4 ? 'var(--amber)' : 'var(--teal)');
+
+  const confBadge = conf.accepted !== undefined
+    ? `<span class="badge ${conf.accepted ? 'b-ans' : 'b-unsup'}">${esc(conf.accepted ? t.conf_pass : t.conf_hold)}</span>`
+    : '';
 
   const quotesByEv = {};
   (data.answer_alignment || []).forEach(al => {
@@ -449,10 +495,9 @@ function renderResult(data) {
   let metaHtml = '';
   if (data.holdout_meta) {
     const hm = data.holdout_meta;
-    const cls = hm.category === 'ans' ? 'b-ans' : (hm.category === 'fp' ? 'b-fp' : 'b-unsup');
     metaHtml = `<div class="holdout-meta">
       <strong>${esc(t.holdout_meta_lbl)}:</strong>
-      <span class="badge ${cls}">${esc(t.cat[hm.category] || hm.category)}</span>
+      <span class="badge ${catClass(hm.category)}">${esc(t.cat[hm.category] || hm.category)}</span>
       <span class="badge b-lang">${esc(t.holdout_verified)}</span>
       <span style="color:var(--muted);margin-left:auto">${esc(hm.case_id)}</span>
     </div>`;
@@ -463,7 +508,7 @@ function renderResult(data) {
     <div class="claim-list">
       ${data.answer_alignment.map((al, idx) => `
         <div class="claim-item">
-          <div style="display:flex;gap:6px;align-items:center;margin-bottom:4px;font-size:11.3px">
+          <div style="display:flex;gap:6px;align-items:center;margin-bottom:4px;font-size:11.3px;flex-wrap:wrap">
             <span class="badge b-ans">#${idx+1} · p.${al.page} (${esc(al.section)})</span>
             <span class="badge ${al.quote_verified ? 'b-ans' : 'b-unsup'}">${esc(al.quote_verified ? t.quote_ok : t.quote_chk)}</span>
             <span class="badge ${al.numeric_verified ? 'b-ans' : 'b-fp'}">${esc(al.numeric_verified ? t.num_ok : t.num_bad)}</span>
@@ -508,8 +553,8 @@ function renderResult(data) {
         <div class="metric-note">${esc(nli.engine || 'fp32')} · ${nli.latency_ms ?? 0} ms (${nli.window_count ?? 0} win)</div>
       </div>
       <div class="metric-box">
-        <div class="metric-label">${esc(t.m_conf)}</div>
-        <div class="metric-val">${conf.probability !== undefined ? conf.probability.toFixed(3) : 'N/A'}</div>
+        <div class="metric-label"><span>${esc(t.m_conf)}</span>${confBadge}</div>
+        <div class="metric-val" style="color:${conf.accepted === false ? 'var(--amber)' : 'var(--ink)'}">${conf.probability !== undefined ? conf.probability.toFixed(3) : 'N/A'}</div>
         <div class="metric-note">α=${conf.alpha ?? 0.05} · thr=${conf.threshold !== undefined ? conf.threshold.toFixed(3) : 'N/A'} (AURC 0.0669)</div>
       </div>
       <div class="metric-box">
@@ -561,6 +606,7 @@ async function runAsk() {
         question,
         nli_threshold: parseFloat(document.getElementById('nli-thr').value),
         conformal_alpha: parseFloat(document.getElementById('alpha-sel').value),
+        enforce_conformal: document.getElementById('enforce-conformal').checked,
       }),
     });
     const data = await res.json();
@@ -599,6 +645,9 @@ async function bootstrap() {
 document.getElementById('btn-ko').addEventListener('click', () => { uiLang = 'ko'; applyLang(); });
 document.getElementById('btn-en').addEventListener('click', () => { uiLang = 'en'; applyLang(); });
 document.getElementById('nli-thr').addEventListener('input', e => { document.getElementById('nli-thr-val').textContent = Number(e.target.value).toFixed(2); });
+document.getElementById('nli-thr').addEventListener('change', () => { if (lastResult) runAsk(); });
+document.getElementById('alpha-sel').addEventListener('change', () => { if (lastResult) runAsk(); });
+document.getElementById('enforce-conformal').addEventListener('change', () => { if (lastResult) runAsk(); });
 document.getElementById('run-btn').addEventListener('click', runAsk);
 document.getElementById('pdf-file').addEventListener('change', async e => {
   const f = e.target.files[0];

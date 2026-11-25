@@ -27,6 +27,13 @@ def detect_language(text: str) -> str:
     return "ko" if HANGUL_RE.search(str(text or "")) else "en"
 
 
+_STOPWORDS = {
+    "what", "which", "where", "when", "why", "how", "does", "did", "is", "are", "was", "were",
+    "the", "and", "for", "with", "that", "this", "from", "into", "compared", "paper", "model",
+    "exact", "used", "using", "their", "about", "there", "these", "those", "have", "has",
+}
+
+
 def _extractive_fallback(
     question: str,
     evidence: list[dict[str, Any]],
@@ -34,30 +41,37 @@ def _extractive_fallback(
     nli_res: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Deterministic grounded sentence extraction when no local LLM server is attached."""
-    q_toks = set(tokenize(question))
-    best_sents: list[tuple[float, str, dict[str, Any]]] = []
+    q_toks = {t for t in tokenize(question) if len(t) >= 2 and t not in _STOPWORDS}
+    if not q_toks:
+        q_toks = set(tokenize(question))
+    best_sents: list[tuple[float, float, str, dict[str, Any]]] = []
+    seen_norm: set[str] = set()
     for ev in evidence[:3]:
         for sent in re.split(r"(?<=[.!?])\s+", ev.get("text", "")):
             s = sent.strip()
             if len(s) < 35 or len(s) > 420:
                 continue
+            s_key = re.sub(r"\s+", " ", s.casefold())[:120]
+            if s_key in seen_norm:
+                continue
+            seen_norm.add(s_key)
             s_toks = set(tokenize(s))
             overlap = len(q_toks & s_toks) / max(len(q_toks), 1)
-            score = overlap + 0.25 * float(ev.get("reranker_score", 0.0))
-            best_sents.append((score, s, ev))
-    best_sents.sort(key=lambda item: -item[0])
+            score = overlap + 0.20 * float(ev.get("reranker_score", 0.0))
+            best_sents.append((score, overlap, s, ev))
+    best_sents.sort(key=lambda item: (-item[0], -item[1]))
 
-    if not best_sents or (best_sents[0][0] < 0.12 and language == "en"):
+    if not best_sents or (language == "en" and best_sents[0][1] < 0.25):
         reason = (
             "로컬 LLM 서버(Qwen3-4B)가 연결되지 않았고, 검색된 근거에서 질문과 직접 일치하는 문장을 찾지 못했습니다."
             if language == "ko"
-            else "No local LLM server (Qwen3-4B) is connected and retrieved passages lacked direct lexical match."
+            else "No local LLM server (Qwen3-4B) is connected and retrieved passages lacked sufficient direct lexical match for this question."
         )
         return verify_and_assemble_v2("", evidence, language, pre_abstain_reason=reason)
 
     top_items = best_sents[:2]
     claims = []
-    for _, sent, ev in top_items:
+    for _, _, sent, ev in top_items:
         claim_text = (
             f"[근거 원문 발췌 · p.{ev['page']}] {sent}"
             if language == "ko"
@@ -220,6 +234,7 @@ class PaperQnAEngine:
         nli_threshold: float = 0.95,
         conformal_alpha: float = 0.05,
         prefer_live_llm: bool = True,
+        enforce_conformal: bool = False,
     ) -> dict[str, Any]:
         t0 = time.perf_counter()
         if paper_id not in self.papers:
@@ -321,7 +336,7 @@ class PaperQnAEngine:
         else:
             out = _extractive_fallback(q_clean, evidence, lang, nli_info)
 
-        # Stage 4: Paper Grouped 5 Fold OOF Conformal Gate Telemetry
+        # Stage 4: Paper Grouped 5 Fold OOF Conformal Gate Telemetry (and optional hard gating)
         conformal_info = None
         if self.gate is not None:
             pipe = out["pipeline"]
@@ -337,6 +352,28 @@ class PaperQnAEngine:
                 },
                 alpha=conformal_alpha,
             )
+            conformal_info["enforced"] = bool(enforce_conformal)
+            conformal_info["blocked"] = False
+            if (
+                enforce_conformal
+                and out["response"]["sufficiency"] == "sufficient"
+                and not conformal_info["accepted"]
+            ):
+                c_reason = (
+                    f"Conformal Gate 신뢰도 기준 미달로 답변을 보류했습니다 "
+                    f"(P(ans)={conformal_info['probability']:.3f} < 임계값 {conformal_info['threshold']:.3f}, α={conformal_info['alpha']:.2f})."
+                    if lang == "ko"
+                    else f"Answer held by Conformal Gate "
+                    f"(P(ans)={conformal_info['probability']:.3f} < threshold {conformal_info['threshold']:.3f} at alpha={conformal_info['alpha']:.2f})."
+                )
+                prev_q = float(pipe.get("quote_verified_ratio", 0.0))
+                prev_n = float(pipe.get("numeric_verified_ratio", 0.0))
+                out = verify_and_assemble_v2("", evidence, lang, pre_abstain_reason=c_reason)
+                out["pipeline"]["abstention_source"] = "conformal_gate_blocked"
+                out["pipeline"]["generation_mode"] = "conformal_gate_blocked"
+                out["pipeline"]["quote_verified_ratio"] = prev_q
+                out["pipeline"]["numeric_verified_ratio"] = prev_n
+                conformal_info["blocked"] = True
 
         wall_ms = round((time.perf_counter() - t0) * 1000.0, 2)
         out["paper"] = {"paper_id": paper_id, "title": paper["title"], "page_count": paper["page_count"]}

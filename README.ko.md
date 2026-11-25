@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/Dongmyung378/Evidence-Grounded-Paper-QnA/actions/workflows/ci.yml/badge.svg)](https://github.com/Dongmyung378/Evidence-Grounded-Paper-QnA/actions/workflows/ci.yml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-1E665E.svg)](pyproject.toml)
-[![Tests](https://img.shields.io/badge/pytest-8%2F8%20passing-1B8754.svg)](tests/test_paper_qna_v2.py)
+[![Tests](https://img.shields.io/badge/pytest-9%2F9%20passing-1B8754.svg)](tests/test_paper_qna_v2.py)
 
 <p align="center">
   <img src="docs/figures/ko/paper-qna-thumbnail.svg" alt="논문 질의응답과 근거 추적 아키텍처 및 미공개 Holdout 요약" width="100%" />
@@ -58,7 +58,7 @@ BGE-M3 하이브리드 검색과 Parent 1,800자 문맥 확장, 외부 무누설
 
 ## 빠른 실행 및 로컬 인터랙티브 데모
 
-Python 3.10 이상 환경에서 즉시 실행됩니다. 별도 로컬 LLM 서버를 띄우지 않아도 `corpus30` 논문 30편, 미공개 Holdout 검증 프리셋 10건, Conformal Gate 실시간 계산, NLI 패리티 게이트 진단, 새 영문 PDF 업로드를 웹 UI에서 바로 확인할 수 있습니다.
+Python 3.10 이상 환경에서 즉시 실행됩니다. 별도 로컬 LLM 서버를 띄우지 않아도 `corpus30` 논문 30편, 미공개 Holdout 검증 프리셋 14건(실시간 NLI 및 Conformal 경계 사례 포함), Conformal Gate 실시간 계산, NLI 패리티 게이트 진단, 새 영문 PDF 업로드를 웹 UI에서 바로 확인할 수 있습니다.
 
 ```powershell
 # 1. 가상환경 생성 및 의존성 설치
@@ -75,7 +75,7 @@ python -m venv .venv
 .\launch-paper-qna.bat status
 .\launch-paper-qna.bat ask --paper-id paper-030 --question "다변량 예측기와 비교한 세 스크리닝 휴리스틱 또는 순위 기준선은 무엇인가요?"
 
-# 5. 단위, 응답 계약, Conformal Gate, FastAPI, NLI 패리티 게이트 테스트 실행 (8/8 통과)
+# 5. 단위, 응답 계약, Conformal Gate, FastAPI, NLI 패리티 게이트 테스트 실행 (9/9 통과)
 .\.venv\Scripts\python.exe -m pytest -v
 ```
 

@@ -26,6 +26,7 @@ try:
         nli_threshold: float = Field(default=0.95, ge=0.0, le=1.0)
         conformal_alpha: float = Field(default=0.05, ge=0.01, le=0.5)
         prefer_live_llm: bool = True
+        enforce_conformal: bool = False
 
     class NLICheckRequest(BaseModel):
         question: str = Field(..., min_length=1, max_length=2000)
@@ -169,6 +170,7 @@ def create_stdlib_server(
                         nli_threshold=float(body.get("nli_threshold", 0.95)),
                         conformal_alpha=float(body.get("conformal_alpha", 0.05)),
                         prefer_live_llm=bool(body.get("prefer_live_llm", True)),
+                        enforce_conformal=bool(body.get("enforce_conformal", False)),
                     )
                     self._send_json(HTTPStatus.OK, out)
                 except KeyError as exc:
@@ -255,6 +257,7 @@ def create_app(engine: PaperQnAEngine | None = None, **engine_kwargs: Any) -> An
                 nli_threshold=body.nli_threshold,
                 conformal_alpha=body.conformal_alpha,
                 prefer_live_llm=body.prefer_live_llm,
+                enforce_conformal=body.enforce_conformal,
             )
         except KeyError as exc:
             raise HTTPException(status_code=404, detail=str(exc)) from None

@@ -16,7 +16,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 
-# Run all 8 unit, contract, Conformal Gate, FastAPI, and parity gate tests
+# Run all 9 unit, contract, Conformal Gate, FastAPI, borderline gate, and parity tests
 .\.venv\Scripts\python.exe -m pytest -v
 ```
 
@@ -45,7 +45,7 @@ sh ./launch-paper-qna.sh demo
 ```
 
 Without a live LLM server, the demo immediately supports:
-- All `30` benchmark papers from `corpus30` and `10` verified unseen Holdout presets (English & Korean across Answerable, False Premise, and Unsupported categories)
+- All `30` benchmark papers from `corpus30` and `14` verified unseen Holdout presets (English & Korean across Answerable, NLI Borderline, Conformal Borderline, False Premise, and Unsupported categories)
 - Live interactive Scientific NLI threshold slider (`0.50` to `0.99`) and Paper Grouped Conformal Gate `alpha` selector (`0.02`, `0.05`, `0.10`)
 - Live English PDF upload (`<= 20 MiB`) with section/page aware chunking and grounded extractive fallback
 - Instant Korean / English UI toggle (`?lang=en` or `?lang=ko`)
