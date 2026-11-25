@@ -1,4 +1,4 @@
-"""Evidence-Grounded Paper Q&A v2 — Bilingual scientific paper Q&A with Scientific NLI & Conformal Gating."""
+"""Evidence Grounded Paper Q&A: Bilingual scientific paper Q&A with Scientific NLI and Conformal Gating."""
 
 from __future__ import annotations
 

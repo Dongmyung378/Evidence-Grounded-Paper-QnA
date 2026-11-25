@@ -1,4 +1,4 @@
-"""Command-line interface for Evidence-Grounded Paper Q&A v2."""
+"""Command line interface for Evidence Grounded Paper Q&A."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ def main(argv: list[str] | None = None) -> int:
 
     parser = argparse.ArgumentParser(
         prog="paper-qna",
-        description="Evidence-Grounded Paper Q&A v2 — Local bilingual scientific paper Q&A, ONNX INT8 NLI gate, and interactive demo.",
+        description="Evidence Grounded Paper Q&A: local bilingual scientific paper Q&A, Scientific NLI gate, and interactive demo.",
     )
     sub = parser.add_subparsers(dest="command", required=True)
 
@@ -72,7 +72,7 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps(res, ensure_ascii=False, indent=2))
         else:
             resp = res["response"]
-            print(f"[{resp['sufficiency'].upper()}] {res['paper']['paper_id']} — {res['paper']['title']}")
+            print(f"[{resp['sufficiency'].upper()}] {res['paper']['paper_id']} | {res['paper']['title']}")
             print(f"Answer   : {resp['answer']}")
             if resp.get("abstention_reason"):
                 print(f"Reason   : {resp['abstention_reason']}")

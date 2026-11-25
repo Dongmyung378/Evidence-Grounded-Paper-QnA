@@ -1,99 +1,106 @@
-# Evidence-Grounded Paper Q&A v2
+# Evidence Grounded Paper Q&A
 
-[한국어](README.ko.md) · [Architecture](docs/architecture.md) · [Design Decisions & Progression](docs/methodology-and-decisions.md) · [Results](docs/results.md) · [Reproduction & Demo](docs/reproduction.md) · [Summary JSON](reports/final-summary.json)
+> **Language**: **English** | [한국어 (Korean)](README.ko.md)
 
-Upload a text-based English research paper and ask a question in **English or Korean**. The system retrieves page- and section-traceable context with **`BGE-M3` + Dual-Score `bge-reranker-v2-m3` + Parent Window (`1,800` chars)**, blocks false-premise questions using a **fine-tuned FP32 `mDeBERTa-v3` Scientific NLI gate (`thr = 0.95`)**, generates structured claims with **`Qwen/Qwen3-4B-Instruct-2507` (Guided JSON)**, and enforces deterministic **verbatim-quote, numeric-fidelity, and Paper-Grouped Conformal Gate (`OOF AURC = 0.0669`)** verification.
+[![CI](https://github.com/Dongmyung378/Evidence-Grounded-Paper-QnA/actions/workflows/ci.yml/badge.svg)](https://github.com/Dongmyung378/Evidence-Grounded-Paper-QnA/actions/workflows/ci.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-1E665E.svg)](pyproject.toml)
+[![Tests](https://img.shields.io/badge/pytest-8%2F8%20passing-1B8754.svg)](tests/test_paper_qna_v2.py)
 
-All modeling choices, rejected ablations (`Post-NLI`, `Teacher-14B LoRA SFT`, and legacy TorchScript `ONNX INT8`), and threshold calibration were decided strictly on **DEV (`10` papers, `120` outputs)** before running a single locked evaluation on the **unseen `corpus30` Holdout (`20` papers, `240` outputs)**.
+<p align="center">
+  <img src="docs/figures/en/paper-qna-thumbnail.svg" alt="Evidence Grounded Paper Q&A architecture and Holdout summary" width="100%" />
+</p>
 
-![Evidence-Grounded Paper Q&A v2 Overview](docs/figures/paper-qna-thumbnail.en.svg)
+**Evidence Grounded Paper Q&A** is a local bilingual (English and Korean) scientific paper question answering and verification system. Given a single English research paper PDF, the system answers English or Korean questions with sentence level source citations, verbatim quote verification, numeric fidelity checks, a fine tuned FP32 Scientific NLI false premise gate, and a Paper Grouped 5 Fold Out of Fold (OOF) Conformal Risk Coverage Gate.
 
----
-
-## Verified Unseen Holdout Results (`corpus30`, 240 Outputs)
-
-| Metric (Unseen Holdout · 20 Papers) | v1 Final (Extractive + NLLB) | **v2 Final (`Exp 4`)** | Delta & Significance |
-| :--- | ---: | ---: | :--- |
-| Valid response contract (`240` outputs) | `240/240` (100%) | **`240/240` (100%)** | 100% preserved |
-| Paired answerable retained (`80` groups) | `49/80` (61.3%) | **`68/80` (85.0%)** | **`+19` pairs** (`+11.25%p` all, `p = 0.0153`) |
-| Paired all required fact aliases (`80` groups) | `11/80` (13.8%) | **`33/80` (41.3%)** | **`3.0×`** (`+23.13%p`, 95% CI `[+12.5%, +35.0%]`, `p < 0.0001`) |
-| English / Korean all fact aliases (`80` each) | `43 / 15` | **`54 / 41`** | **Korean `2.73×`** (`15 → 41`) |
-| Acceptable source page cited (`160` outputs) | `61.3%` | **`76.9%`** | **`+15.62%p`** (`p = 0.0019`) |
-| Paired unsupported refused (`20` groups) | `18/20` (90.0%) | **`20/20` (100.0%)** | **`100%`** refusal |
-| **False-premise refused (`EN / KO / Paired`)** | `2 / 17 / 2` (10.0%) | **`20 / 19 / 19` (95.0%)** | **`+50.0%p` all** (`p < 0.0001`), **EN `2/20 → 20/20`** |
-| Semantic Judge (`EN / KO / Paired` completeness) | Not measured | **`0.849 / 0.711 / 0.690`** | **Mean faithfulness `0.888`** (`Qwen3-14B-AWQ`) |
-| Deterministic Quote / Numeric verified | Extractive | **`0.88 / 0.95`** | 95% numeric fidelity |
-| Mean wall latency (`sec/q`) | `6.76 s/q` | **`1.77 s/q`** | **`3.8×` faster** (L4 vLLM) |
-
-![Unseen Holdout v1 vs v2 Comparison](docs/figures/paper-qna-holdout-comparison.png)
+Every architectural choice was verified through controlled DEV ablations (`10` papers, `120` outputs), including explicit evidence based rejections of BF16 NLI training, post generation NLI filtering, 14B teacher LoRA SFT, and a degraded TorchScript ONNX INT8 export caught by a runtime padding invariance gate. The locked unseen Holdout (`20` papers, `240` outputs) was evaluated once after freezing the pipeline.
 
 ---
 
-## Experimental Progression & Evidence-Driven Rejections
+## Key Verified Results (Unseen `corpus30` Holdout, 240 Outputs)
 
-Every module in v2 survived DEV ablation; three hypothesized additions were **explicitly rejected** on measured evidence (full breakdown in [`docs/methodology-and-decisions.md`](docs/methodology-and-decisions.md)):
+| Metric (`corpus30` Unseen Holdout, 20 Papers) | English (`120`) | Korean (`120`) | Paired Strict (`120` pairs) | All Outputs (`240`) |
+| --- | ---: | ---: | ---: | ---: |
+| Structured Contract Valid | `120/120` (`100.0%`) | `120/120` (`100.0%`) | `120/120` (`100.0%`) | **`240/240` (`100.0%`)** |
+| Answerable Retained (`80` pairs) | `74/80` (`92.5%`) | `68/80` (`85.0%`) | **`68/80` (`85.0%`)** | **`142/160` (`88.8%`)** |
+| All Required Fact Aliases (`80` pairs) | `54/80` (`67.5%`) | `41/80` (`51.3%`) | **`33/80` (`41.3%`)** | **`95/160` (`59.4%`)** |
+| Acceptable Source Page Hit (`80` pairs) | `66/80` (`82.5%`) | `57/80` (`71.3%`) | **`56/80` (`70.0%`)** | **`123/160` (`76.9%`)** |
+| Unsupported Safely Refused (`20` pairs) | **`20/20` (`100.0%`)** | **`20/20` (`100.0%`)** | **`20/20` (`100.0%`)** | **`40/40` (`100.0%`)** |
+| False Premise Refused (`20` pairs) | **`20/20` (`100.0%`)** | **`19/20` (`95.0%`)** | **`19/20` (`95.0%`)** | **`39/40` (`97.5%`)** |
+| Verbatim Quote / Numeric Fidelity | `0.878 / 0.946` | `0.884 / 0.957` | **`0.881 / 0.951`** | **`0.881 / 0.951`** |
+| Semantic Judge Completeness (`Qwen3-14B-AWQ`) | **`0.849`** | **`0.711`** | **`0.690`** | Mean Faithfulness **`0.888`** |
+| Mean Wall Latency (`vLLM`, NVIDIA L4) | `1.81 s/q` | `1.74 s/q` | **`1.77 s/q`** | `545.3s` total |
 
-| Stage | Core Question | Measured Evidence | Decision |
-| :--- | :--- | :--- | :--- |
-| **1. Retrieval + Parent (`Exp 1B`)** | Fix cross-lingual recall and chunk boundary truncation? | `BGE-M3` + `bge-reranker-v2-m3` Dual-Score + Parent(1800) lifted DEV source page hit to **`82.5%`** (`+26.2%p`, `p < 0.0001`). | **Adopt** |
-| **2. Guided JSON + 4B vs 14B (`Exp 1C`)** | Can `Qwen3-4B-Instruct-2507` beat extractive+NLLB and how close is it to `14B-AWQ`? | Guided JSON eliminated parse errors (`120/120` valid); **`4B-2507`** (`40/40`, `25/40`, `fp 8/7/7`, `quote 0.96`, `2.06 s/q`) outperformed older-gen **`14B-AWQ`** (`39/40`, `24/40`, `fp 6/4/4`, `quote 0.93`, `3.73 s/q`). | **Adopt Base `4B-2507` + Guided JSON** |
-| **3. Scientific NLI FP32 Fix (`Exp 2A`)** | Why did BF16 `mDeBERTa-v3` collapse `Exp 2B` to `0/40`? | Disentangled attention suffered BF16/FP16 NaN collapse. Strict **FP32** fine-tuning on `7,729` zero-overlap arXiv/SciFact pairs (`Val Loss 0.1676`) achieved **`0.001` vs `0.999`** separation (`20/20` DEV false premises). | **Adopt FP32 Scientific NLI** |
-| **4. Post-Hoc NLI (`Exp 2B`)** | Does focused Post-NLI (`entail >= 0.25`) help beyond Pre-NLI? | Zero false-premise gain (`10/10/10`) while dropping Korean retention **`36 → 32/40`** (`ko_facts 25 → 22`). | **Reject Post-NLI** |
-| **5. 5-Chunk LoRA SFT (`Exp 3A`)** | Does distilling `547` 4-filter-verified `14B-AWQ` examples improve `4B-2507`? | Weaker quantized teacher (`quote 0.93`) + 49.4% refusal balance regressed `pair_ans` (`35 → 32`), `ko_facts` (`25 → 22`), and `quote` (`0.96 → 0.93`). | **Reject SFT & skip DPO** |
-| **6. Threshold & Conformal (`Exp 2C`)** | Recover `Exp 2A(0.70)` over-refusals without losing `10/10` FP defense? | Raising threshold to **`0.95`** (flat `0.90–0.99` plateau) reached **`37/40` `pair_ans`, `24/40` `pair_facts`, `10/10/10` FP, `0.99/0.97` quote/num**; 5-fold paper-grouped Conformal **OOF AURC = `0.0669`**. | **Adopt Final v2 Stack** |
-| **7. Local RTX 3060 / ONNX Gate** | Does exported TorchScript `ONNX INT8` (`322.7 MiB`) match FP32 locally? | Local parity gate **BLOCKED** `ONNX INT8` (`pad_diff = 0.0373`, `2/20` FP at `0.95`, `288 ms/win`). Local **RTX 3060 6 GB FP32 PyTorch** passed with **`abs_diff = 0.000000`**, **`1.05 GiB` VRAM**, **`27.8 ms/window` (`10.4×` faster)**. | **Block TorchScript INT8; deploy FP32 PyTorch** |
+### Core System Highlights
 
-![DEV Ablation Progression](docs/figures/paper-qna-dev-ablation.png)
-
-![Scientific NLI Separation and Conformal Gate](docs/figures/paper-qna-nli-conformal.png)
+- **Bilingual Hybrid Retrieval & Parent Context**: `BM25` + `BAAI/bge-m3` fused with `RRF(k=60)`, cross lingual Korean to English query translation, Dual Score `BAAI/bge-reranker-v2-m3` (`0.65 EN + 0.35 KO`), and `1,800` character Parent Window expansion (`max 2` chunks per page).
+- **Zero Overlap FP32 Scientific NLI False Premise Gate**: `MoritzLaurer/mDeBERTa-v3-base-mnli-xnli` fine tuned strictly in **FP32** on `7,729` EN/KO premise pairs synthesized from `150` external arXiv papers (`0%` overlap with `corpus30`) plus SciFact (`Val Loss 0.1676`). On DEV, answerable contradiction median is **`0.001`** vs false premise minimum **`0.999`** (`20/20 >= 0.95`).
+- **Disciplined DEV Ablation & Rejections**: Both 2 Stage Post NLI (`Exp 2B`, lost `4` Korean answers with `0` false premise gain) and 5 Chunk LoRA SFT (`Exp 3A`, degraded Korean fact recall `25 -> 22` and quote match `0.96 -> 0.93`) were explicitly rejected on DEV. Final winner (`Exp 2C`): zero shot `Qwen/Qwen3-4B-Instruct-2507` with Guided JSON + FP32 Pre NLI (`0.95`).
+- **Paper Grouped 5 Fold OOF Conformal Gate**: Calibrated in [`reports/calibrated_gate.json`](reports/calibrated_gate.json) with **OOF AURC `0.0669`** (`alpha=0.05`: `88.7%` answerable coverage at `5.0%` negative leak rate; `alpha=0.02`: `86.3%` coverage at `2.5%` leak).
+- **Local RTX 3060 & ONNX Parity Gate Audit**: Automated padding invariance verification ([`scripts/verify_local_runtime.py`](scripts/verify_local_runtime.py)) detected `mDeBERTa-v3` TorchScript dynamic INT8 padding drift (`abs_diff = 0.0373 > 0.02`, catching only `2/20` Holdout false premises) and blocked it automatically, while verifying local Windows **RTX 3060 6 GB FP32 PyTorch** at **`1.048 GiB` VRAM** (`1.610 GiB` peak), **`abs_diff = 0.000000`**, and **`27.79 ms/window`** (`10.4x` faster than CPU ONNX).
 
 ---
 
-## Interactive Local Demo & Hardware Verification
+## Visual Summary
 
-![Live Evidence-Grounded Paper Q&A v2 Web Demo UI](docs/figures/demo_ui_live.png)
+### Unseen Holdout Performance & Semantic Verification
+![Unseen Holdout Bilingual Performance and Semantic Verification](docs/figures/en/holdout-performance.png)
 
-Run the local FastAPI interactive demo to test all `30` benchmark papers, click `10` unseen Holdout presets (with live `v1 vs v2` comparison, Scientific NLI contradiction gauge, Conformal Gate telemetry, and verbatim quote highlights), or upload any text-based English PDF:
+### DEV 120 Output Controlled Ablation & Rejection Evidence
+![DEV Controlled Ablation Progression and EN vs KO Fact Recall](docs/figures/en/dev-ablation-progression.png)
+
+### Scientific NLI Threshold Plateau & Conformal Risk Coverage Gate
+![Scientific NLI Separation and Paper Grouped Conformal Gate](docs/figures/en/nli-conformal-calibration.png)
+
+### Local Interactive FastAPI Web Demo (English UI)
+![Local FastAPI Interactive Web Demo in English UI](docs/figures/en/demo_ui_live.png)
+
+---
+
+## Quickstart & Local Interactive Demo
+
+The repository runs directly on Windows, macOS, and Linux with Python 3.10+. Even without an external LLM server, the interactive web demo loads all `30` benchmark papers, `10` verified unseen Holdout presets, live Conformal Gate calibration, runtime NLI parity checks, and live English PDF upload.
 
 ```powershell
-# 1. Setup local environment
+# 1. Create a virtual environment and install dependencies
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 
-# 2. Launch the interactive Web UI (http://127.0.0.1:8000)
+# 2. Launch the interactive FastAPI web demo (http://127.0.0.1:8000)
 .\launch-paper-qna.bat demo
-# Optional: connect local Qwen3-4B-Instruct-2507 (llama-server / Ollama / vLLM):
+
+# 3. Optional: attach a local OpenAI compatible Qwen3-4B-Instruct-2507 server (llama-server / Ollama)
 .\launch-paper-qna.bat demo --llm-url http://127.0.0.1:8080
 
-# 3. Run unit, contract, Conformal Gate, FastAPI API & ONNX parity-gate tests (8/8 PASS)
-.\.venv\Scripts\python.exe -m pytest -v
+# 4. Run CLI query or inspect runtime status
+.\launch-paper-qna.bat status
+.\launch-paper-qna.bat ask --paper-id paper-030 --question "Which three screening heuristics or ranking baselines are compared with the multivariable predictor?"
 
-# 4. Re-run local RTX 3060 FP32 NLI + ONNX deployment gate + SHA-256 verification
-.\.venv\Scripts\python.exe scripts\verify_local_runtime.py
+# 5. Run automated unit, contract, Conformal Gate, FastAPI, and parity gate tests (8/8 pass)
+.\.venv\Scripts\python.exe -m pytest -v
 ```
 
-Linux / macOS users can run `sh ./launch-paper-qna.sh demo`. Full Colab L4 reproduction instructions are in [`docs/reproduction.md`](docs/reproduction.md) and [`notebooks/paper_qna_v2_workbench.ipynb`](notebooks/paper_qna_v2_workbench.ipynb).
+On Linux and macOS, replace `.\launch-paper-qna.bat` with `sh ./launch-paper-qna.sh`.
 
 ---
 
-## Repository Layout
+## Documentation & Artifacts
 
-```text
-paper_qna/           Core v2 package (pdf_parser, retrieval, nli_gate, llm_client, verifier, pipeline, web_demo, cli)
-notebooks/           Battle-tested Colab Enterprise L4 one-shot experiment notebook (v5.2)
-scripts/             Canonical report/figure generator & local RTX 3060 / ONNX parity verifier
-reports/             Master JSON (final-summary.json), CSV ablations, McNemar tests, Conformal Gate, local audit
-data/                Frozen corpus30 benchmark inputs, v1 reports, curated Holdout presets, frozen corpus-v2-holdout (30 papers)
-docs/                Bilingual technical docs (architecture, methodology-and-decisions, results, reproduction) & figures
-tests/               8-test pytest suite (automated via .github/workflows/ci.yml)
-ask_paper.py         Top-level CLI & Web Demo launcher (launch-paper-qna.bat / launch-paper-qna.sh)
-```
+| Document / Artifact | Description |
+| --- | --- |
+| [`docs/architecture.md`](docs/architecture.md) | End to end retrieval, Scientific NLI gate, Guided JSON verifier, and Conformal Gate architecture |
+| [`docs/methodology-and-decisions.md`](docs/methodology-and-decisions.md) | Staged DEV ablations, rejected hypotheses (BF16 NLI, Post NLI, LoRA SFT, ONNX INT8), and troubleshooting |
+| [`docs/results.md`](docs/results.md) | Complete DEV, unseen Holdout (`240` outputs), Semantic Judge (`160` outputs), and local RTX 3060 verification tables |
+| [`docs/reproduction.md`](docs/reproduction.md) | Local reproduction, optional RTX 3060 `llama.cpp` server setup, and Colab L4 one shot workbench guide |
+| [`notebooks/paper_qna_v2_workbench.ipynb`](notebooks/paper_qna_v2_workbench.ipynb) | End to end Colab Enterprise NVIDIA L4 experimental workbench notebook |
+| [`reports/final-summary.json`](reports/final-summary.json) | Canonical machine readable summary combining DEV, Holdout, Semantic Judge, Conformal Gate, and local hardware audit |
+| [`reports/calibrated_gate.json`](reports/calibrated_gate.json) | Zero pickle Paper Grouped 5 Fold OOF Conformal Gate parameters (`OOF AURC = 0.0669`) |
+| [`reports/local_verification.json`](reports/local_verification.json) | Local Windows RTX 3060 FP32 PyTorch vs CPU ONNX INT8 parity gate and SHA-256 verification log |
+| [`data/corpus_v2_holdout/freeze_v2.json`](data/corpus_v2_holdout/freeze_v2.json) | SHA-256 frozen manifest for `30` new zero overlap arXiv papers (`677` chunks) reserved for future validation |
 
 ---
 
 ## Scope & Limitations
 
-1. **Text-based English PDFs only**: Scanned OCR, visual figure/chart interpretation, complex equation reasoning, and multi-paper cross-document synthesis are outside the current scope.
-2. **Automatic Fact Aliases vs. Human Review**: Fact-alias pass rate (`41.3%` paired) is a strict lexical diagnostic; Holdout Semantic Judge (`Qwen3-14B-AWQ`) scores semantic completeness at **`0.849` EN / `0.711` KO (`0.888` faithfulness)**, and the full `160`-row human audit sheet (`reports/exp4_v2_final_holdout_human_audit.csv`) is published for independent review.
-3. **False-Premise Trade-Off**: While Pre-NLI (`0.95`) lifted Holdout false-premise refusal from `10% → 95%` (`EN 20/20`), `12/80` answerable Holdout pairs were abstained (`68/80` retained, still `+19` pairs over v1's `49/80`).
-4. **ONNX INT8 vs. FP32 Deployment**: Legacy TorchScript ONNX dynamic INT8 broke DeBERTa-v2 padding invariance (`abs_diff = 0.0373`) and is blocked automatically; local deployment uses FP32 PyTorch NLI (`1.05 GiB` VRAM on RTX 3060).
+- **Text based English PDFs only**: Scanned OCR PDFs, visual chart/table layout reasoning, symbolic equation derivation, and multi paper synthesis are outside the current scope.
+- **Strict lexical alias recall vs semantic completeness**: Paired all fact alias match (`41.3%`) requires exact string aliases in both languages; `Qwen3-14B-AWQ` Semantic Judge scores (`EN 0.849`, `KO 0.711`, `Faithfulness 0.888`) and human audit CSVs (`reports/exp4_v2_final_holdout_human_audit.csv`) are provided side by side.
+- **DeBERTa-v2 quantization sensitivity**: `mDeBERTa-v3` exhibits numerical instability under both `BF16` training and legacy TorchScript dynamic `INT8` export; strict FP32 PyTorch (`1.048 GiB` VRAM on RTX 3060) is enforced as the verified runtime path.

@@ -1,53 +1,46 @@
-# 아키텍처 · Evidence-Grounded Paper Q&A v2
+# 시스템 아키텍처
 
-[English](architecture.md) · [README](../README.ko.md) · [방법론 및 설계 의사결정](methodology-and-decisions.ko.md) · [결과](results.ko.md) · [재현 및 데모](reproduction.ko.md)
+> **언어**: [English](architecture.md) | **한국어 (Korean)**
 
-## 시스템 개요
+<p align="center">
+  <img src="figures/ko/paper-qna-thumbnail.svg" alt="논문 질의응답과 근거 추적 시스템 아키텍처" width="100%" />
+</p>
 
-Evidence-Grounded Paper Q&A v2는 일반 소비자용 **6 GB VRAM GPU / CPU 환경**에서 실행되도록 설계된 이중언어(영어·한국어) 과학 논문 질의응답 시스템입니다. 모든 답변에 대해 **출처 추적**, **거짓전제(False Premise) 차단**, **원문 인용·수치의 결정론적 검증**을 강제합니다.
+## 1. 근거 검증 파이프라인 전체 흐름
+
+영문 논문 PDF에 대한 모든 한국어·영어 질문은 [`paper_qna/`](../paper_qna/) 패키지에 구현된 5단계 파이프라인을 거쳐 검증됩니다.
 
 ```mermaid
 flowchart LR
-    PDF["영문 논문 PDF (<= 20 MiB)"] --> Parse["페이지·절 청킹 + 결정론적 텍스트 보정"]
-    Parse --> Chunks["중첩 청크 (1,200자, 200자 중첩)"]
-    Q["한국어 또는 영어 질문"] --> Tr["한국어 -> 영문 검색 질의 변환"]
-    Tr --> Ret["BM25 + BGE-M3 밀집 검색 + RRF (k=60)"]
-    Chunks --> Ret
-    Ret --> Rerank["Dual-Score 교차 인코더 재정렬 (bge-reranker-v2-m3: 0.65 EN + 0.35 KO)"]
-    Rerank --> Parent["Parent 문맥 확장 (최대 1,800자, 페이지당 <=2개, Top-5)"]
-    Parent --> NLI["슬라이딩 윈도우 Scientific NLI 사전 게이트 (FP32 -> ONNX INT8, thr=0.95)"]
-    NLI -- "contra >= 0.95 & contra > entail" --> Refuse["표준 거절 응답 (거짓전제 선제 차단)"]
-    NLI -- "통과" --> LLM["Qwen3-4B-Instruct-2507 (Guided JSON response_format)"]
-    LLM --> Verify["결정론적 검증기 (응답 계약 + 원문 인용구 + 수치 무결성)"]
-    Verify --> Gate["논문 그룹 5-Fold OOF Conformal Gate (AURC 0.0669)"]
-    Gate --> Out["근거 기반 EN/KO 답변 + 문장별 인용 + 원문 하이라이트"]
+    A["영문 논문 PDF"] --> B["PDF 파서 및 텍스트 보정\n1,200자 중첩 청크\nNFKC 및 단어 붙음 교정"]
+    B --> C["이중언어 하이브리드 검색\nBM25 + BGE-M3 + RRF(60)\n이중 점수 리랭킹\nParent 1,800자 Top 5"]
+    C --> D["Scientific NLI 사전 게이트\nFP32 mDeBERTa-v3\n200단어 슬라이딩 윈도우\n모순 >= 0.95 차단"]
+    D -->|통과| E["Guided JSON 생성기\nQwen3-4B-Instruct-2507\nresponse_format json_object"]
+    D -->|모순 감지| X["표준 안전 거절\n구체적 모순 근거 포함"]
+    E --> F["결정론적 검증기\n원문 인용구 부분 일치\n정규화 수치 부분집합\n응답 계약 스키마 검사"]
+    F --> G["Conformal 보정 및 UI\n논문 그룹 5폴드 OOF\nAURC 0.0669 + 원문 하이라이트"]
 ```
 
----
+## 2. 모듈별 책임과 구현
 
-## 핵심 모듈 명세
+| 모듈 | 파일 | 역할 |
+| --- | --- | --- |
+| PDF 파서 및 텍스트 보정 | [`paper_qna/pdf_parser.py`](../paper_qna/pdf_parser.py) | 업로드된 텍스트형 PDF 또는 `corpus30`에서 페이지·섹션 정보를 보존한 `1,200`자 중첩 청크(`200`자 중첩)를 생성하고, NFKC 정규화·소프트 하이픈 제거·단어 붙음 오류를 결정론적으로 교정합니다. |
+| 이중언어 하이브리드 검색기 | [`paper_qna/retrieval.py`](../paper_qna/retrieval.py) | 무의존 `SimpleBM25`와 선택적 `BAAI/bge-m3` 밀집 검색을 `RRF(k=60)`로 결합합니다. 한국어 질문은 영문 학술 검색어로 병렬 번역해 `BAAI/bge-reranker-v2-m3` 이중 점수 리랭킹(`0.65 EN + 0.35 KO`)을 수행한 뒤, 상위 `5`개 청크(페이지당 최대 `2`개)를 동일 페이지 내 `1,800`자 Parent Window로 확장합니다. |
+| Scientific NLI 및 Conformal Gate | [`paper_qna/nli_gate.py`](../paper_qna/nli_gate.py) | 질문의 명시적 전제절(`Since ...`, `...입증했으므로`)을 추출하고, 검색 근거를 `200`단어(`stride 120`) 창으로 분할해 엄격한 FP32 PyTorch `mDeBERTa-v3`로 모순 확률을 산출합니다. 패딩 불변성 검증 게이트가 손상된 ONNX INT8 그래프를 자동 차단하며, 무피클 JSON 기반 `ConformalGate`가 논문 그룹 5폴드 OOF 위험 커버리지 확률을 계산합니다. |
+| Guided JSON 검증기 | [`paper_qna/verifier.py`](../paper_qna/verifier.py) | 이중언어 전제 확인 프롬프트를 구성하고 `<think>` 블록 및 코드 펜스를 제거해 JSON을 파싱합니다. 각 주장의 `verbatim_quote` 일치(정확한 부분 문자열 또는 영숫자 토큰 `72%` 이상 겹침)와 정규화 수치 부분집합 일치를 검사한 뒤 응답 계약 불변식을 검증합니다. |
+| 로컬 LLM 클라이언트 | [`paper_qna/llm_client.py`](../paper_qna/llm_client.py) | 표준 라이브러리 기반 HTTP 클라이언트로 로컬 OpenAI 호환 서버(`llama-server`, Ollama, vLLM)의 `Qwen/Qwen3-4B-Instruct-2507`과 통신하며, `response_format` 자동 폴백과 한국어 영문 검색 번역 기능을 제공합니다. |
+| 통합 엔진 및 웹 데모 | [`paper_qna/pipeline.py`](../paper_qna/pipeline.py), [`paper_qna/web_demo.py`](../paper_qna/web_demo.py) | 스레드 안전한 `PaperQnAEngine` 위에서 FastAPI(미설치 시 stdlib HTTP 자동 폴백) REST API(`/health`, `/api/status`, `/api/papers`, `/api/presets`, `/api/upload`, `/api/ask`, `/api/nli-check`), 이중언어 웹 UI([`paper_qna/static/index.html`](../paper_qna/static/index.html)), CLI([`paper_qna/cli.py`](../paper_qna/cli.py))를 제공합니다. |
 
-### 1. PDF 수집 및 결정론적 텍스트 보정 (`paper_qna/pdf_parser.py`, `paper_qna/verifier.py`)
-- **청킹**: 텍스트형 영문 PDF에서 페이지·절 경계를 유지하며 `1,200`자 크기(`200`자 중첩)의 추적 가능한 청크를 생성합니다.
-- **텍스트 보정**: NFKC 정규화, 소프트 하이픈(`\u00ad`)·제로폭 공백 제거, PDF 추출 시 자주 발생하는 단어 붙음 오류(`thisalgorithm -> this algorithm`)를 결정론적으로 교정합니다.
+## 3. 응답 계약 불변식 (Response Contract)
 
-### 2. 이중언어 하이브리드 검색 및 Parent 문맥 확장 (`paper_qna/retrieval.py`)
-- **이중 관점 검색**: 원질문과 한국어 질문의 영문 검색 번역문을 함께 사용해 **BM25**와 **`BAAI/bge-m3`** 밀집 검색을 결합하고 **RRF(`k=60`)**로 상위 25개 후보를 추출합니다.
-- **Dual-Score 교차 인코더 재정렬**: **`BAAI/bge-reranker-v2-m3`**(`max_length=1024`)로 영문 번역 점수(`0.65`)와 한국어 원질문 점수(`0.35`)를 가중 결합해 교차언어 순위 붕괴를 방지합니다.
-- **Parent Window (`1,800`자)**: 페이지당 최대 2개로 다양화해 Top-5를 선택한 뒤, 동일 페이지의 인접 청크를 최대 `1,800`자까지 병합해 목록·수치·조건절 절단을 해소합니다.
+`PaperQnAEngine.ask()`가 반환하는 모든 응답은 `validate_answer_payload()`에서 다음 4가지 불변식을 강제합니다.
 
-### 3. 슬라이딩 윈도우 Scientific NLI 사전 게이트 (`paper_qna/nli_gate.py`)
-- **백본 및 학습**: `MoritzLaurer/mDeBERTa-v3-base-mnli-xnli`를 `corpus30`과 0% 겹치는 외부 arXiv 논문 150편 + SciFact 기반 `7,729`개 균형 EN/KO 데이터셋으로 **FP32 전체 미세조정**(`bf16=False, fp16=False`, `Val Loss = 0.1676`)했습니다.
-- **슬라이딩 윈도우 · 전제절 추출**: `1,800`자 Parent 본문을 `200`단어 창(`stride=120`)으로 나누고, 질문 속 내포 전제절(`"Since the paper establishes that ..."`, `"논문이 ... 입증했으므로"`)을 별도 가설로 추출해 검사합니다.
-- **차단 규칙 (`nli_contra_threshold = 0.95`, `post_nli = None`)**: `max_contra >= 0.95`이면서 `max_contra > max_entail`인 경우 LLM 호출 전에 즉시 거짓전제로 차단합니다.
-- **엣지 배포**: 동적 양자화 **ONNX INT8 (`322.7 MiB`)**로 내보내 PyTorch 없이 `onnxruntime` CPU만으로 실시간 실행됩니다.
+1. `sufficiency`는 반드시 `"sufficient"` 또는 `"insufficient"` 중 하나입니다.
+2. `"insufficient"`인 경우 `evidence_ids`와 `cited_evidence`는 반드시 빈 배열(`[]`)이어야 하며, 질문 언어에 맞는 비어 있지 않은 `abstention_reason`을 포함해야 합니다.
+3. `"sufficient"`인 경우 `evidence_ids`는 `1`개에서 `5`개 사이의 고유 ID를 가지며 `cited_evidence`와 정확히 일치해야 하고, `abstention_reason`은 `null`이어야 하며, 한국어 답변에는 반드시 한글이 포함되어야 합니다.
+4. `answer_alignment`의 각 주장은 `evidence_id`, `page`, `section`, `verbatim_quote`, `quote_verified`, `numeric_verified`를 기록해 UI에서 원문 하이라이트와 직접 연결됩니다.
 
-### 4. Guided JSON 생성 및 결정론적 검증기 (`paper_qna/llm_client.py`, `paper_qna/verifier.py`)
-- **생성기**: 순정 **`Qwen/Qwen3-4B-Instruct-2507`**에 Guided JSON(`response_format: {"type": "json_object"}`, `max_tokens=1024`, `temperature=0.0`)을 강제해 `{premise_check, premise_reason, claims}` 구조를 출력합니다.
-- **결정론적 검증 4단계**: ① 유효 `evidence_id` 대조 → ② 원문 인용구(`verbatim_quote`) 부분일치 / 토큰 중첩 `>= 0.72` 검증 → ③ 부호·콤마·지수 표기를 정규화한 수치 무결성 검증 → ④ 응답 계약 검증(충분 시 1~5개 인용 및 한국어 한글 포함, 불충분 시 인용 0개 및 사유 명시).
+## 4. 런타임 안전 게이트 (패딩 불변성 자동 검사)
 
-### 5. 논문 그룹 5-Fold OOF Conformal Gate (`reports/calibrated_gate.json`)
-- DEV 10편(`120`출력)에서 `paper_id` 단위 **`GroupKFold(5)`**로 누수 없이 OOF 확률을 추정한 뒤, `alpha ∈ {0.02, 0.05, 0.10}`별 분할 Conformal 임계값을 산출합니다(**OOF AURC = `0.0669`**). 순수 JSON 파라미터로 저장해 `pickle` 의존성을 제거했습니다.
-
-### 6. 로컬 인터랙티브 웹 데모 및 API (`paper_qna/web_demo.py`, `paper_qna/static/index.html`)
-- FastAPI + Uvicorn 기반 웹 UI와 REST API(`/`, `/health`, `/api/status`, `/api/papers`, `/api/presets`, `/api/upload`, `/api/ask`, `/api/nli-check`, `/docs`)를 제공하며, FastAPI 미설치 환경에서도 표준 라이브러리 `ThreadingHTTPServer`로 자동 폴백합니다.
+엔진 초기화 시 로컬 ONNX INT8 바이너리가 감지되면 `ScientificNLIOnnx.check_padding_invariance()`가 과학 모순 탐지 프로브 문장을 비패딩 입력과 `max_length=384` 제로 패딩 입력으로 각각 추론해 모순 확률 차이를 측정합니다. `abs_diff > 0.02`이면 상대 위치 어텐션 손상으로 판정해 해당 ONNX 경로를 자동 차단(`onnx_int8_blocked_by_parity_gate`)하고 검증된 FP32 경로로 보호합니다.

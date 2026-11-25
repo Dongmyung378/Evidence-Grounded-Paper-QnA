@@ -1,58 +1,86 @@
-# Reproduction & Local Demo Guide · Evidence-Grounded Paper Q&A v2
+# Reproduction & Deployment Guide
 
-[한국어](reproduction.ko.md) · [README](../README.md) · [Architecture](architecture.md) · [Methodology & Decisions](methodology-and-decisions.md) · [Results](results.md)
+> **Language**: **English** | [한국어 (Korean)](reproduction.ko.md)
 
-## 1. Launch the Interactive Local Web Demo
+## 1. Local Environment Setup & Automated Test Suite
+
+Requirements: Python `3.10+` on Windows, macOS, or Linux.
 
 ```powershell
-# 1. Create virtual environment & install runtime dependencies
+# Clone repository
+git clone https://github.com/Dongmyung378/Evidence-Grounded-Paper-QnA.git
+cd Evidence-Grounded-Paper-QnA
+
+# Create virtual environment and install dependencies
 python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 
-# 2. Launch the interactive Web UI (http://127.0.0.1:8000)
+# Run all 8 unit, contract, Conformal Gate, FastAPI, and parity gate tests
+.\.venv\Scripts\python.exe -m pytest -v
+```
+
+On Linux and macOS:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m pytest -v
+```
+
+## 2. Launching the Interactive Local Web Demo
+
+```powershell
+# Windows (opens http://127.0.0.1:8000)
 .\launch-paper-qna.bat demo
-# Linux / macOS:
+
+# Custom port (useful if 8000 is occupied)
+.\launch-paper-qna.bat demo --port 18080 --no-browser
+```
+
+```bash
+# Linux / macOS
 sh ./launch-paper-qna.sh demo
 ```
 
-What works out of the box:
-- **30 Benchmark Papers + 10 Curated Unseen Holdout Presets** (EN/KO answerable, false-premise, and unsupported traps with `v1 vs v2` comparison strip, inline verbatim quote highlights, Scientific NLI contradiction gauge, and Conformal Gate probability).
-- **Live PDF Upload**: Upload any text-based English PDF (up to 20 MiB) to chunk, index, and query immediately.
-- **Optional Live Local `Qwen3-4B-Instruct-2507` LLM Server (RTX 3060 6 GB)**:
-  ```powershell
-  # Serve Qwen3-4B-Instruct-2507 Q4_K_M (~2.7 GiB VRAM) with llama.cpp or Ollama, then connect:
-  llama-server.exe -m qwen3-4b-instruct-2507-q4_k_m.gguf -ngl 99 -fa -ctk q8_0 -ctv q8_0 -c 6144 --port 8080
-  .\launch-paper-qna.bat demo --llm-url http://127.0.0.1:8080
-  ```
+Without a live LLM server, the demo immediately supports:
+- All `30` benchmark papers from `corpus30` and `10` verified unseen Holdout presets (English & Korean across Answerable, False Premise, and Unsupported categories)
+- Live interactive Scientific NLI threshold slider (`0.50` to `0.99`) and Paper Grouped Conformal Gate `alpha` selector (`0.02`, `0.05`, `0.10`)
+- Live English PDF upload (`<= 20 MiB`) with section/page aware chunking and grounded extractive fallback
+- Instant Korean / English UI toggle (`?lang=en` or `?lang=ko`)
 
-## 2. CLI Usage
+## 3. Optional: Attaching a Local RTX 3060 6 GB Qwen3-4B Server
+
+To enable live generative bilingual synthesis on a consumer 6 GB GPU (tested on RTX 3060 Laptop GPU):
+
+1. Start `Qwen3-4B-Instruct-2507` (`Q4_K_M`, ~2.7 GiB VRAM) using `llama-server` or Ollama:
+   ```powershell
+   llama-server -hf Qwen/Qwen3-4B-Instruct-2507-GGUF:Q4_K_M --host 127.0.0.1 --port 8080 -ngl 99 -c 4096
+   ```
+2. Launch the demo connected to the local server:
+   ```powershell
+   .\launch-paper-qna.bat demo --llm-url http://127.0.0.1:8080
+   ```
+3. Optional neural retrieval (`BAAI/bge-m3` + `bge-reranker-v2-m3`) can be enabled by adding `--neural-retrieval`.
+
+## 4. Verifying Local Hardware Parity & Frozen Corpus Integrity
+
+Run the local verification audit script to check `corpus_v2_holdout` SHA-256 hashes (`2/2` files), measure FP32 PyTorch `mDeBERTa-v3` latency/VRAM/padding invariance on your local GPU or CPU, and run the ONNX INT8 deployment gate if an exported binary is present under `models/scientific_nli_int8/`:
 
 ```powershell
-# Check loaded papers, Conformal Gate, NLI parity gate, and LLM server connection
-.\launch-paper-qna.bat status
-
-# Query a benchmark paper directly in English or Korean
-.\launch-paper-qna.bat ask --paper-id paper-030 --question "다변량 예측기와 비교한 세 스크리닝 휴리스틱 또는 순위 기준선은 무엇인가요?"
-
-# Query a newly uploaded local PDF
-.\launch-paper-qna.bat ask --pdf path\to\paper.pdf --question "What dataset and metrics are evaluated?" --llm-url http://127.0.0.1:8080
+.\.venv\Scripts\python.exe scripts/verify_local_runtime.py --include-pytorch
 ```
 
-## 3. Software Verification & Local Hardware Audit
+Verified reference output on Windows 11 + NVIDIA GeForce RTX 3060 Laptop GPU (`6,144 MiB`) is recorded in [`reports/local_verification.json`](../reports/local_verification.json).
 
-```powershell
-# Run the complete unit, verifier, Conformal Gate, FastAPI API, and NLI parity-gate test suite
-.\.venv\Scripts\python.exe -m pytest -v
+## 5. Full Experimental Reproduction (Colab Enterprise NVIDIA L4)
 
-# Re-run local RTX 3060 FP32 NLI + ONNX INT8 deployment gate + SHA-256 verification
-.\.venv\Scripts\python.exe scripts\verify_local_runtime.py
-```
+To reproduce the complete experimental lifecycle from scratch (external `150` arXiv paper crawling with `0%` overlap against `corpus30`, retrieval A/B, FP32 Scientific NLI training, DEV ablations `Exp 1C` through `Exp 3A`, Paper Grouped 5 Fold OOF Conformal Gate calibration, locked Holdout `240` output regression, and `Qwen3-14B-AWQ` Semantic Judge evaluation):
 
-## 4. Full Colab L4 Experiment Reproduction
-
-Open [`notebooks/paper_qna_v2_workbench.ipynb`](../notebooks/paper_qna_v2_workbench.ipynb) in Google Colab / Colab Enterprise (NVIDIA L4 24 GB) to reproduce:
-1. Retrieval A/B (`Exp 1B`: `BGE-M3` vs `Qwen3-0.6B`)
-2. Base 4B (`Exp 1C`) & Teacher 14B (`Exp 1C-T`) DEV 120-output benchmarks + Semantic Judge
-3. Zero-overlap external arXiv (`150` papers) FP32 `mDeBERTa-v3` Scientific NLI training + `Exp 2A / 2B / 2C`
-4. Reverse 5-chunk LoRA SFT ablation (`Exp 3A`)
-5. Paper-grouped 5-fold OOF Conformal Gate (`calibrated_gate.json`) + unseen Holdout `240`-output regression (`Exp 4`) + `corpus-v2-holdout` (`30` papers) freeze
+1. Open [`notebooks/paper_qna_v2_workbench.ipynb`](../notebooks/paper_qna_v2_workbench.ipynb) in Google Colab Enterprise with an **NVIDIA L4 (24 GB)** runtime.
+2. Execute the cells sequentially; all intermediate checkpoints, experiment logs, and JSON/CSV reports persist cleanly to `/content/PaperQnA_v2/`.
+3. Regenerate canonical summary JSON/CSV tables and localized EN/KO figures locally from checkpoints:
+   ```powershell
+   .\.venv\Scripts\python.exe scripts/build_reports_and_figures.py
+   ```

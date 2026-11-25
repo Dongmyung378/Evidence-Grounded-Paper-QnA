@@ -1,4 +1,4 @@
-"""Interactive web demo and REST API for Evidence-Grounded Paper Q&A v2 (FastAPI + stdlib fallback)."""
+"""Interactive web demo and REST API for Evidence Grounded Paper Q&A (FastAPI + stdlib fallback)."""
 
 from __future__ import annotations
 
@@ -46,9 +46,6 @@ def _slim_presets(engine: PaperQnAEngine) -> list[dict[str, Any]]:
             "paper_id": p["paper_id"],
             "paper_title": p["paper_title"],
             "question": p["question"],
-            "v1_answered": p["v1_answered"],
-            "v1_all_facts": p["v1_all_facts"],
-            "v1_refused": p["v1_refused"],
         }
         for p in engine.presets
     ]
@@ -205,9 +202,9 @@ def create_app(engine: PaperQnAEngine | None = None, **engine_kwargs: Any) -> An
         raise ImportError("fastapi is not installed.")
     active_engine = engine if engine is not None else PaperQnAEngine(**engine_kwargs)
     app = FastAPI(
-        title="Evidence-Grounded Paper Q&A v2",
+        title="Evidence Grounded Paper Q&A",
         version="2.0.0",
-        description="Bilingual EN/KO Scientific Paper Q&A with BGE-M3 Retrieval, Fine-Tuned mDeBERTa-v3 Scientific NLI (ONNX INT8), Conformal Gating, and Guided JSON Verification.",
+        description="Bilingual EN/KO Scientific Paper Q&A with BGE-M3 Retrieval, Fine Tuned mDeBERTa-v3 Scientific NLI, Conformal Gating, and Guided JSON Verification.",
     )
     app.state.engine = active_engine
 
@@ -289,7 +286,7 @@ def serve_demo(
         import uvicorn
 
         app = create_app(llm_url=llm_url, llm_model=llm_model, use_neural_retrieval=use_neural_retrieval)
-        print(f"[demo] Evidence-Grounded Paper Q&A v2 (FastAPI) listening at {url}", flush=True)
+        print(f"[demo] Evidence Grounded Paper Q&A (FastAPI) listening at {url}", flush=True)
         if open_browser:
             threading.Timer(0.9, lambda: webbrowser.open(url)).start()
         uvicorn.run(app, host=host, port=port, log_level="warning")
@@ -301,7 +298,7 @@ def serve_demo(
             llm_model=llm_model,
             use_neural_retrieval=use_neural_retrieval,
         )
-        print(f"[demo] Evidence-Grounded Paper Q&A v2 (stdlib HTTP) listening at {url}", flush=True)
+        print(f"[demo] Evidence Grounded Paper Q&A (stdlib HTTP) listening at {url}", flush=True)
         if open_browser:
             threading.Timer(0.6, lambda: webbrowser.open(url)).start()
         try:

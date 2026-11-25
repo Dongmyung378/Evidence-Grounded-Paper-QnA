@@ -7,10 +7,7 @@
     "paper_title": "Predicting Quantifiability from Primary Screens to Prioritize Dose-Response Profiling",
     "question": "Which three screening heuristics or ranking baselines are compared with the multivariable predictor?",
     "en_query": null,
-    "v1_answered": true,
-    "v1_all_facts": true,
-    "v1_refused": false,
-    "v2_response": {
+    "response": {
       "answer": "Mean three-point activity is the principal screening heuristic, and maximum three-point activity and random ranking are additional baselines compared with the multivariable predictor. Logistic regression with class balancing, trained on standardized values of the full screening stage feature set, provides a linear comparator used in comparative analyses. Isolated random forests trained on the 16 three-point features alone or on Morgan fingerprints alone are also used as baselines for comparison.",
       "evidence_ids": [
         "ev-01-paper-030-p004-c002"
@@ -18,7 +15,7 @@
       "sufficiency": "sufficient",
       "abstention_reason": null
     },
-    "v2_cited_evidence": [
+    "cited_evidence": [
       {
         "evidence_id": "ev-01-paper-030-p004-c002",
         "paper_id": "paper-030",
@@ -31,7 +28,7 @@
         "retrieval_score": 0.03278688524590164
       }
     ],
-    "v2_retrieved_evidence": [
+    "retrieved_evidence": [
       {
         "evidence_id": "ev-01-paper-030-p004-c002",
         "paper_id": "paper-030",
@@ -88,7 +85,7 @@
         "retrieval_score": 0.028125
       }
     ],
-    "v2_answer_alignment": [
+    "answer_alignment": [
       {
         "answer_text": "Mean three-point activity is the principal screening heuristic, and maximum three-point activity and random ranking are additional baselines compared with the multivariable predictor.",
         "evidence_id": "ev-01-paper-030-p004-c002",
@@ -117,7 +114,7 @@
         "numeric_verified": true
       }
     ],
-    "v2_pipeline": {
+    "pipeline": {
       "abstention_source": null,
       "fallback_used": false,
       "raw_verdict": "supported",
@@ -140,10 +137,7 @@
     "paper_title": "Predicting Quantifiability from Primary Screens to Prioritize Dose-Response Profiling",
     "question": "다변량 예측기와 비교한 세 스크리닝 휴리스틱 또는 순위 기준선은 무엇인가요?",
     "en_query": "What are the three screening heuristics or ranking cutoffs that outperform multivariate predictors?",
-    "v1_answered": false,
-    "v1_all_facts": false,
-    "v1_refused": true,
-    "v2_response": {
+    "response": {
       "answer": "평균 세 점 활성은 주요 스크리닝 휴리스틱으로, 최대 세 점 활성과 무작위 순위가 추가적인 기준선으로 사용되었다. 세 점 반응에서 도출한 16개의 특성은 11점 프로파일링 전에 사용 가능하며, 평균 세 점 활성은 주요 스크리닝 기준선으로 사용되었다. 세 점 반응에서 도출된 16개의 특성은 신호의 진폭, 형태 및 변이를 요약하며, 평균, 중앙값, 최대, 최소, 범위, 표준편차, 최저 및 최고 농도에서의 활성, 기울기 대신, 반복 표준편차 평균 및 최대, 측정 횟수 및 고유 농도 수, 최대 활성 30% 또는 50%를 초과하는 이진 플래그, 그리고 보고된 스크리닝 최대값을 포함한다.",
       "evidence_ids": [
         "ev-01-paper-030-p004-c002",
@@ -153,7 +147,7 @@
       "sufficiency": "sufficient",
       "abstention_reason": null
     },
-    "v2_cited_evidence": [
+    "cited_evidence": [
       {
         "evidence_id": "ev-01-paper-030-p004-c002",
         "paper_id": "paper-030",
@@ -188,7 +182,7 @@
         "retrieval_score": 0.05416666666666667
       }
     ],
-    "v2_retrieved_evidence": [
+    "retrieved_evidence": [
       {
         "evidence_id": "ev-01-paper-030-p004-c002",
         "paper_id": "paper-030",
@@ -245,7 +239,7 @@
         "retrieval_score": 0.041945154843007884
       }
     ],
-    "v2_answer_alignment": [
+    "answer_alignment": [
       {
         "answer_text": "평균 세 점 활성은 주요 스크리닝 휴리스틱으로, 최대 세 점 활성과 무작위 순위가 추가적인 기준선으로 사용되었다.",
         "evidence_id": "ev-01-paper-030-p004-c002",
@@ -274,7 +268,7 @@
         "numeric_verified": true
       }
     ],
-    "v2_pipeline": {
+    "pipeline": {
       "abstention_source": null,
       "fallback_used": false,
       "raw_verdict": "supported",
@@ -297,10 +291,7 @@
     "paper_title": "Hydrodynamic theories of chemotaxis-driven invasion in proliferating cell populations",
     "question": "What boundary condition is imposed at the origin and what far-field reservoir assumption is made?",
     "en_query": null,
-    "v1_answered": true,
-    "v1_all_facts": false,
-    "v1_refused": false,
-    "v2_response": {
+    "response": {
       "answer": "At the origin ξ = 0, a no-flux boundary condition is imposed for all species: ∂ξA = ∂ξB = ρ(U + ε̃U) = 0, ξ = 0, t > 0. In the far-field, it is assumed that all species converge to a constant: lim ξ→∞ A = lim ξ→∞ B = 1, lim ξ→∞ ρ = 0. The far-field reservoir assumption implies that cells have an infinite reservoir of chemoattractant and that the total cell density remains finite.",
       "evidence_ids": [
         "ev-01-paper-028-p013-c001"
@@ -308,7 +299,7 @@
       "sufficiency": "sufficient",
       "abstention_reason": null
     },
-    "v2_cited_evidence": [
+    "cited_evidence": [
       {
         "evidence_id": "ev-01-paper-028-p013-c001",
         "paper_id": "paper-028",
@@ -321,7 +312,7 @@
         "retrieval_score": 0.03278688524590164
       }
     ],
-    "v2_retrieved_evidence": [
+    "retrieved_evidence": [
       {
         "evidence_id": "ev-01-paper-028-p013-c001",
         "paper_id": "paper-028",
@@ -378,7 +369,7 @@
         "retrieval_score": 0.014492753623188406
       }
     ],
-    "v2_answer_alignment": [
+    "answer_alignment": [
       {
         "answer_text": "At the origin ξ = 0, a no-flux boundary condition is imposed for all species: ∂ξA = ∂ξB = ρ(U + ε̃U) = 0, ξ = 0, t > 0.",
         "evidence_id": "ev-01-paper-028-p013-c001",
@@ -407,7 +398,7 @@
         "numeric_verified": true
       }
     ],
-    "v2_pipeline": {
+    "pipeline": {
       "abstention_source": null,
       "fallback_used": false,
       "raw_verdict": "supported",
@@ -430,10 +421,7 @@
     "paper_title": "Hydrodynamic theories of chemotaxis-driven invasion in proliferating cell populations",
     "question": "원점에 부과한 경계 조건과 원거리 저장소 가정은 무엇인가요?",
     "en_query": "What are the boundary conditions imposed at the origin and the distant reservoir assumption?",
-    "v1_answered": true,
-    "v1_all_facts": false,
-    "v1_refused": false,
-    "v2_response": {
+    "response": {
       "answer": "원점(ξ=0)에서의 경계 조건은 모든 종에 대해 무유속 조건을 가정하며, ∂ξA=∂ξB=ρ(U+ε̃U)=0, ξ=0, t>0이다. 원거리(ξ→∞)에서는 모든 종이 상수값으로 수렴하며, limξ→∞ A = limξ→∞ B = 1, limξ→∞ ρ = 0이다.",
       "evidence_ids": [
         "ev-01-paper-028-p013-c001"
@@ -441,7 +429,7 @@
       "sufficiency": "sufficient",
       "abstention_reason": null
     },
-    "v2_cited_evidence": [
+    "cited_evidence": [
       {
         "evidence_id": "ev-01-paper-028-p013-c001",
         "paper_id": "paper-028",
@@ -454,7 +442,7 @@
         "retrieval_score": 0.04918032786885246
       }
     ],
-    "v2_retrieved_evidence": [
+    "retrieved_evidence": [
       {
         "evidence_id": "ev-01-paper-028-p013-c001",
         "paper_id": "paper-028",
@@ -511,7 +499,7 @@
         "retrieval_score": 0.026171741361614778
       }
     ],
-    "v2_answer_alignment": [
+    "answer_alignment": [
       {
         "answer_text": "원점(ξ=0)에서의 경계 조건은 모든 종에 대해 무유속 조건을 가정하며, ∂ξA=∂ξB=ρ(U+ε̃U)=0, ξ=0, t>0이다.",
         "evidence_id": "ev-01-paper-028-p013-c001",
@@ -531,7 +519,7 @@
         "numeric_verified": true
       }
     ],
-    "v2_pipeline": {
+    "pipeline": {
       "abstention_source": null,
       "fallback_used": false,
       "raw_verdict": "supported",
@@ -554,17 +542,14 @@
     "paper_title": "Conformal Uncertainty Quantification Guarantees for Neural Operators",
     "question": "Since the paper establishes that the coverage guarantee permits no spatial failures anywhere, what evidence supports that conclusion?",
     "en_query": null,
-    "v1_answered": true,
-    "v1_all_facts": false,
-    "v1_refused": false,
-    "v2_response": {
+    "response": {
       "answer": "The answer cannot be verified from the provided paper evidence.",
       "evidence_ids": [],
       "sufficiency": "insufficient",
       "abstention_reason": "The question premise contradicts the retrieved paper evidence (NLI contradiction=1.00)."
     },
-    "v2_cited_evidence": [],
-    "v2_retrieved_evidence": [
+    "cited_evidence": [],
+    "retrieved_evidence": [
       {
         "evidence_id": "ev-01-paper-011-p008-c002",
         "paper_id": "paper-011",
@@ -621,8 +606,8 @@
         "retrieval_score": 0.027650648360030512
       }
     ],
-    "v2_answer_alignment": [],
-    "v2_pipeline": {
+    "answer_alignment": [],
+    "pipeline": {
       "abstention_source": "scientific_nli_contradiction",
       "fallback_used": false,
       "quote_verified": true,
@@ -643,17 +628,14 @@
     "paper_title": "Conformal Uncertainty Quantification Guarantees for Neural Operators",
     "question": "논문이 포함 확률 보장이 어느 지점에서도 공간적 실패를 허용하지 않는다고 입증했으므로 그 결론을 뒷받침하는 근거는 무엇인가요?",
     "en_query": "What are the grounds that support the conclusion that the paper proves spatial failures are not allowed at any point in the probability guarantee?",
-    "v1_answered": false,
-    "v1_all_facts": false,
-    "v1_refused": true,
-    "v2_response": {
+    "response": {
       "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
       "evidence_ids": [],
       "sufficiency": "insufficient",
       "abstention_reason": "질문의 전제가 논문 원문 근거와 모순됩니다 (Scientific NLI 모순 확률=1.00)."
     },
-    "v2_cited_evidence": [],
-    "v2_retrieved_evidence": [
+    "cited_evidence": [],
+    "retrieved_evidence": [
       {
         "evidence_id": "ev-01-paper-011-p008-c002",
         "paper_id": "paper-011",
@@ -710,8 +692,8 @@
         "retrieval_score": 0.02581612258494337
       }
     ],
-    "v2_answer_alignment": [],
-    "v2_pipeline": {
+    "answer_alignment": [],
+    "pipeline": {
       "abstention_source": "scientific_nli_contradiction",
       "fallback_used": false,
       "quote_verified": true,
@@ -732,17 +714,14 @@
     "paper_title": "Metric Distortion of Social Welfare Functions",
     "question": "Since the paper establishes that Recursive Copeland is proved to have distortion five, what evidence supports that conclusion?",
     "en_query": null,
-    "v1_answered": true,
-    "v1_all_facts": false,
-    "v1_refused": false,
-    "v2_response": {
+    "response": {
       "answer": "The answer cannot be verified from the provided paper evidence.",
       "evidence_ids": [],
       "sufficiency": "insufficient",
       "abstention_reason": "The question premise contradicts the retrieved paper evidence (NLI contradiction=1.00)."
     },
-    "v2_cited_evidence": [],
-    "v2_retrieved_evidence": [
+    "cited_evidence": [],
+    "retrieved_evidence": [
       {
         "evidence_id": "ev-01-paper-012-p002-c004",
         "paper_id": "paper-012",
@@ -799,8 +778,8 @@
         "retrieval_score": 0.014285714285714285
       }
     ],
-    "v2_answer_alignment": [],
-    "v2_pipeline": {
+    "answer_alignment": [],
+    "pipeline": {
       "abstention_source": "scientific_nli_contradiction",
       "fallback_used": false,
       "quote_verified": true,
@@ -821,17 +800,14 @@
     "paper_title": "Metric Distortion of Social Welfare Functions",
     "question": "논문이 재귀적 Copeland의 왜곡이 5임을 증명했다고 입증했으므로 그 결론을 뒷받침하는 근거는 무엇인가요?",
     "en_query": "What are the grounds supporting the conclusion that the recursive Copeland distortion is 5?",
-    "v1_answered": false,
-    "v1_all_facts": false,
-    "v1_refused": true,
-    "v2_response": {
+    "response": {
       "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
       "evidence_ids": [],
       "sufficiency": "insufficient",
       "abstention_reason": "질문의 전제가 논문 원문 근거와 모순됩니다 (Scientific NLI 모순 확률=1.00)."
     },
-    "v2_cited_evidence": [],
-    "v2_retrieved_evidence": [
+    "cited_evidence": [],
+    "retrieved_evidence": [
       {
         "evidence_id": "ev-01-paper-012-p002-c003",
         "paper_id": "paper-012",
@@ -888,8 +864,8 @@
         "retrieval_score": 0.047712258380229994
       }
     ],
-    "v2_answer_alignment": [],
-    "v2_pipeline": {
+    "answer_alignment": [],
+    "pipeline": {
       "abstention_source": "scientific_nli_contradiction",
       "fallback_used": false,
       "quote_verified": true,
@@ -910,17 +886,14 @@
     "paper_title": "Generalised simultaneous transmission of arbitrary quantum states and classical information",
     "question": "What randomized human clinical-trial sample size and treatment effect are reported?",
     "en_query": null,
-    "v1_answered": false,
-    "v1_all_facts": false,
-    "v1_refused": true,
-    "v2_response": {
+    "response": {
       "answer": "The answer cannot be verified from the provided paper evidence.",
       "evidence_ids": [],
       "sufficiency": "insufficient",
       "abstention_reason": "The provided evidence does not contain any information about randomized human clinical-trial sample sizes or treatment effects. All evidence references are related to physics, quantum optics, and experimental protocols, not medical or clinical trials."
     },
-    "v2_cited_evidence": [],
-    "v2_retrieved_evidence": [
+    "cited_evidence": [],
+    "retrieved_evidence": [
       {
         "evidence_id": "ev-01-paper-023-p017-c003",
         "paper_id": "paper-023",
@@ -977,8 +950,8 @@
         "retrieval_score": 0.015151515151515152
       }
     ],
-    "v2_answer_alignment": [],
-    "v2_pipeline": {
+    "answer_alignment": [],
+    "pipeline": {
       "abstention_source": "llm_unsupported",
       "fallback_used": false,
       "quote_verified": true,
@@ -999,17 +972,14 @@
     "paper_title": "Generalised simultaneous transmission of arbitrary quantum states and classical information",
     "question": "보고된 무작위 인간 임상시험의 표본 크기와 치료 효과는 무엇인가요?",
     "en_query": "What are the sample sizes and treatment effects reported in the randomized human clinical trials?",
-    "v1_answered": false,
-    "v1_all_facts": false,
-    "v1_refused": true,
-    "v2_response": {
+    "response": {
       "answer": "제공된 논문 근거에서 답을 확인할 수 없습니다.",
       "evidence_ids": [],
       "sufficiency": "insufficient",
       "abstention_reason": "보고된 무작위 인간 임상시험에 대한 정보가 제공되지 않았습니다. 모든 증거는 양자 통신 또는 양자 텔레포테이션과 관련된 이론적 분석을 다루며, 인간 임상시험의 표본 크기나 치료 효과에 대한 언급이 없습니다."
     },
-    "v2_cited_evidence": [],
-    "v2_retrieved_evidence": [
+    "cited_evidence": [],
+    "retrieved_evidence": [
       {
         "evidence_id": "ev-01-paper-023-p011-c003",
         "paper_id": "paper-023",
@@ -1066,8 +1036,8 @@
         "retrieval_score": 0.026500526500526502
       }
     ],
-    "v2_answer_alignment": [],
-    "v2_pipeline": {
+    "answer_alignment": [],
+    "pipeline": {
       "abstention_source": "llm_unsupported",
       "fallback_used": false,
       "quote_verified": true,

@@ -1,4 +1,4 @@
-"""Top-level CLI & interactive Web Demo entrypoint for Evidence-Grounded Paper Q&A v2."""
+"""Top level CLI and interactive Web Demo entrypoint for Evidence Grounded Paper Q&A."""
 
 from __future__ import annotations
 

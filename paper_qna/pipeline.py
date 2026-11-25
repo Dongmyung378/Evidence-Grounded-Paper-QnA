@@ -1,4 +1,4 @@
-"""Unified Evidence-Grounded Paper Q&A v2 engine."""
+"""Unified Evidence Grounded Paper Q&A engine."""
 
 from __future__ import annotations
 
@@ -84,7 +84,7 @@ def _extractive_fallback(
 
 
 class PaperQnAEngine:
-    """Thread-safe local Paper Q&A v2 engine supporting PDF uploads, Corpus30 presets, live ONNX INT8 NLI, and local Qwen3-4B."""
+    """Thread safe local Paper Q&A engine supporting PDF uploads, Corpus30 presets, local Scientific NLI, and local Qwen3-4B."""
 
     def __init__(
         self,
@@ -233,14 +233,14 @@ class PaperQnAEngine:
 
         llm_live = prefer_live_llm and self.llm.check_health()["connected"]
 
-        # For curated Holdout presets when no live LLM is attached, use exact retrieved evidence
-        # from Exp 4 and run LIVE local ONNX INT8 Scientific NLI + LIVE Conformal Gate on top!
+        # For curated Holdout presets when no live LLM is attached, use verified retrieved evidence
+        # and run local Scientific NLI + live Conformal Gate on top.
         if preset is not None and not llm_live:
-            evidence = preset["v2_retrieved_evidence"]
-            top_score = float(preset["v2_pipeline"].get("top_reranker_score", 0.0))
-            margin_1_5 = float(preset["v2_pipeline"].get("score_margin_1_5", 0.0))
+            evidence = preset["retrieved_evidence"]
+            top_score = float(preset["pipeline"].get("top_reranker_score", 0.0))
+            margin_1_5 = float(preset["pipeline"].get("score_margin_1_5", 0.0))
             en_q = preset.get("en_query")
-            retrieval_mode = "exp4_bge_m3_parent1800_verified"
+            retrieval_mode = "bge_m3_parent1800_verified"
         else:
             en_q = self.llm.translate_ko_to_en(q_clean) if (lang == "ko" and llm_live) else (preset.get("en_query") if preset else None)
             ret = self.retriever.retrieve(q_clean, paper_id, paper["chunks"], en_query=en_q)
@@ -249,20 +249,20 @@ class PaperQnAEngine:
             margin_1_5 = ret["score_margin_1_5"]
             retrieval_mode = ret["retrieval_mode"]
 
-        # Stage 1: LIVE Local ONNX INT8 Scientific NLI Premise Gate
+        # Stage 1: Local Scientific NLI Premise Gate
         nli_info: dict[str, Any]
         if self.nli is not None and evidence:
             nli_info = self.nli.score_question_against_evidence(q_clean, evidence)
-            nli_info["engine"] = "local_onnx_int8"
+            nli_info["engine"] = getattr(self.nli, "backend_name", "local_nli")
         elif preset is not None:
             nli_info = {
-                "max_entail": float(preset["v2_pipeline"].get("nli_max_entailment", 0.0)),
-                "max_contra": float(preset["v2_pipeline"].get("nli_max_contradiction", 0.0)),
+                "max_entail": float(preset["pipeline"].get("nli_max_entailment", 0.0)),
+                "max_contra": float(preset["pipeline"].get("nli_max_contradiction", 0.0)),
                 "window_count": len(evidence),
                 "latency_ms": 0.0,
                 "top_contra_evidence_id": evidence[0]["evidence_id"] if evidence else None,
                 "top_contra_page": evidence[0]["page"] if evidence else None,
-                "engine": "recorded_fp32_fallback",
+                "engine": "fp32_verified_preset",
             }
         else:
             nli_info = {
@@ -278,7 +278,7 @@ class PaperQnAEngine:
         nli_ent = float(nli_info["max_entail"])
         nli_con = float(nli_info["max_contra"])
 
-        # Stage 2: Pre-Gate False-Premise / Low-Relevance Check
+        # Stage 2: Pre Gate False Premise and Low Relevance Check
         pre_reason: str | None = None
         abstention_src: str | None = None
         if top_score < -3.0:
@@ -291,7 +291,7 @@ class PaperQnAEngine:
         elif nli_con >= float(nli_threshold) and nli_con > nli_ent:
             engine_lbl = "Scientific NLI"
             pre_reason = (
-                f"질문의 전제가 논문 원문 근거와 모순됩니다 ({engine_lbl} 모순 확률={nli_con:.4f} ≥ {nli_threshold:.2f})."
+                f"질문의 전제가 논문 원문 근거와 모순됩니다 ({engine_lbl} 모순 확률={nli_con:.4f} >= {nli_threshold:.2f})."
                 if lang == "ko"
                 else f"The question premise contradicts the retrieved paper evidence ({engine_lbl} contradiction={nli_con:.4f} >= {nli_threshold:.2f})."
             )
@@ -309,11 +309,11 @@ class PaperQnAEngine:
             out["pipeline"]["generation_mode"] = f"live_llm ({self.llm.model})"
         elif preset is not None:
             out = {
-                "response": dict(preset["v2_response"]),
-                "cited_evidence": list(preset["v2_cited_evidence"]),
+                "response": dict(preset["response"]),
+                "cited_evidence": list(preset["cited_evidence"]),
                 "retrieved_evidence": list(evidence),
-                "answer_alignment": list(preset["v2_answer_alignment"]),
-                "pipeline": dict(preset["v2_pipeline"]),
+                "answer_alignment": list(preset["answer_alignment"]),
+                "pipeline": dict(preset["pipeline"]),
             }
             out["pipeline"]["generation_mode"] = (
                 f"verified_holdout_replay+{nli_info.get('engine', 'fp32_nli')}"
@@ -321,7 +321,7 @@ class PaperQnAEngine:
         else:
             out = _extractive_fallback(q_clean, evidence, lang, nli_info)
 
-        # Stage 4: Paper-Grouped 5-Fold OOF Conformal Gate Telemetry
+        # Stage 4: Paper Grouped 5 Fold OOF Conformal Gate Telemetry
         conformal_info = None
         if self.gate is not None:
             pipe = out["pipeline"]
@@ -356,11 +356,9 @@ class PaperQnAEngine:
             }
         )
         if preset is not None:
-            out["v1_comparison"] = {
+            out["holdout_meta"] = {
                 "case_id": preset["id"],
                 "category": preset["category"],
-                "v1_answered": preset["v1_answered"],
-                "v1_all_facts": preset["v1_all_facts"],
-                "v1_refused": preset["v1_refused"],
+                "split": "holdout",
             }
         return out

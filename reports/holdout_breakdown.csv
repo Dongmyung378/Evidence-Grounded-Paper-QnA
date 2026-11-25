@@ -1,0 +1,5 @@
+slice,n_outputs,contract_valid,answerable_retained,n_answerable,all_fact_aliases,acceptable_source_page_hit,unsupported_refused,n_unsupported,false_premise_refused,n_false_premise,quote_verified_rate,numeric_verified_rate,semantic_completeness,mean_faithfulness,mean_wall_seconds
+en,120,120,74,80,54,66,20,20,20,20,0.878,0.946,0.849,,1.805
+ko,120,120,68,80,41,57,20,20,19,20,0.884,0.957,0.711,,1.74
+paired,240,240,68,80,33,56,20,20,19,20,0.881,0.951,0.69,0.888,1.773
+all_outputs,240,240,142,160,95,123,40,40,39,40,0.881,0.951,,,1.773

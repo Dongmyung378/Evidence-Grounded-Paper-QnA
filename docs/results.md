@@ -1,81 +1,72 @@
-# Results & Verification · Evidence-Grounded Paper Q&A v2
+# Evaluation Results & Local Hardware Verification
 
-[한국어](results.ko.md) · [README](../README.md) · [Architecture](architecture.md) · [Methodology & Decisions](methodology-and-decisions.md) · [Reproduction & Demo](reproduction.md)
+> **Language**: **English** | [한국어 (Korean)](results.ko.md)
 
-## 1. Locked Unseen Holdout Comparison (`corpus30`, 20 Papers · 240 Outputs)
-
-All modeling choices, ablations, thresholds (`nli_contra_threshold = 0.95`, `post_nli = None`), and the 5-fold paper-grouped Conformal Gate were fixed on DEV (`10` papers, `120` outputs) before a single locked pass on Holdout (`20` papers, `80` answerable + `20` unsupported + `20` false-premise bilingual meaning groups = `240` outputs).
-
-| Metric (Unseen Holdout) | v1 Final (Baseline) | **v2 Final (`Exp 4`)** | Delta & Significance |
-| :--- | ---: | ---: | :--- |
-| Valid response contract (`240` outputs) | `240/240` (100.0%) | **`240/240` (100.0%)** | Preserved |
-| Paired answerable retained (`80` groups) | `49/80` (61.3%) | **`68/80` (85.0%)** | **`+19` pairs** (`+11.25%p` all, `p = 0.0153`) |
-| Korean answerable retained (`80` outputs) | `50/80` (62.5%) | **`68/80` (85.0%)** | **`+18` outputs** (`+22.5%p`) |
-| Paired all required fact aliases (`80` groups) | `11/80` (13.8%) | **`33/80` (41.3%)** | **`3.0×` jump** (`+23.13%p` all, `p = 3.76e-05`) |
-| English / Korean all fact aliases (`80` each) | `43 / 15` | **`54 / 41`** | **Korean `2.73×`** (`15 → 41`) |
-| Acceptable source page hit (`160` outputs) | `61.3%` | **`76.9%`** | **`+15.62%p`** (`p = 0.0019`) |
-| Paired unsupported refused (`20` groups) | `18/20` (90.0%) | **`20/20` (100.0%)** | **`+2` pairs** (100% refusal) |
-| **False-premise refused (`EN / KO / Paired`)** | `2 / 17 / 2` (10.0%) | **`20 / 19 / 19` (95.0%)** | **`+50.0%p` all** (`p = 1.10e-05`), **EN `2/20 → 20/20`** |
-| Quote / numeric deterministic verification | Extractive | **`0.88 / 0.95`** | 95% numeric fidelity |
-| Semantic Judge completeness (`EN / KO / Paired`) | Not measured | **`0.849 / 0.711 / 0.690`** | **Mean faithfulness `0.888`** (`Qwen3-14B-AWQ`) |
-| Mean wall latency (`sec/q`) | `6.76 s/q` | **`1.77 s/q`** | **`3.8×` faster** (vLLM L4) |
-
-![Unseen Holdout v1 vs v2 Comparison](figures/paper-qna-holdout-comparison.png)
-
-### Exact Two-Sided McNemar & 2,000-Iteration Paper-Cluster Bootstrap 95% CI
-
-Source CSV: [`reports/holdout_statistical_tests.csv`](../reports/holdout_statistical_tests.csv)
-
-| Metric (`n` outputs) | v1 Rate | v2 Rate | Delta | 95% Cluster CI | v2-Only Gain (`n01`) | v1-Only Loss (`n10`) | Exact McNemar `p` |
-| :--- | ---: | ---: | ---: | :---: | ---: | ---: | ---: |
-| `answerable_retained` (`160`) | `0.7750` | **`0.8875`** | `+0.1125` | `[+0.0000, +0.2438]` | `34` | `16` | `0.01535` |
-| `all_fact_aliases` (`160`) | `0.3625` | **`0.5938`** | **`+0.2313`** | `[+0.1250, +0.3500]` | `58` | `21` | **`3.76e-05`** |
-| `acceptable_source_page_hit` (`160`) | `0.6125` | **`0.7688`** | **`+0.1562`** | `[+0.0375, +0.2875]` | `43` | `18` | **`0.00187`** |
-| `unsupported_refused` (`40`) | `0.9500` | **`1.0000`** | `+0.0500` | `[+0.0000, +0.1250]` | `2` | `0` | `0.50000` |
-| `false_premise_refused` (`40`) | `0.4750` | **`0.9750`** | **`+0.5000`** | `[+0.3994, +0.6250]` | `21` | `1` | **`1.10e-05`** |
+All results below correspond to the frozen winning configuration (`Exp 2C`: BM25 + `BAAI/bge-m3` + Dual Score `bge-reranker-v2-m3` + Parent `1,800` chars + FP32 `mDeBERTa-v3` Scientific NLI at `0.95` + zero shot `Qwen/Qwen3-4B-Instruct-2507` Guided JSON + Paper Grouped 5 Fold OOF Conformal Gate).
 
 ---
 
-## 2. DEV Ablation Progression (`10` Papers · `120` Outputs)
+## 1. Locked Unseen `corpus30` Holdout (`20` Papers, `240` Outputs)
 
-Source CSV: [`reports/ablation_dev_summary.csv`](../reports/ablation_dev_summary.csv)
+![Unseen Holdout Bilingual Performance and Semantic Verification](figures/en/holdout-performance.png)
 
-| Experiment (DEV 120 outputs) | `pair_ans` | `ko_ans` | `pair_facts` | `en / ko` | `unsup` | `fp (en/ko/pair)` | `quote/num` | `sec/q` | Decision |
-| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | :---: |
-| `v1_final_dev` (Baseline) | `23/40` | `23/40` | `8/40` | `29 / 9` | `10/10` | `0 / 9 / 0` | extractive | `5.34` | Baseline |
-| `Exp 1C`: Base `Qwen3-4B-2507` + Guided JSON | **`40/40`** | **`40/40`** | **`25/40`** | **`35 / 27`** | `10/10` | `8 / 7 / 7` | `0.96/0.98` | `2.06` | Adopted LLM |
-| `Exp 1C-T`: Teacher `Qwen3-14B-AWQ` | `39/40` | `40/40` | `24/40` | `35 / 26` | `10/10` | `6 / 4 / 4` | `0.93/0.98` | `3.73` | Ceiling Check |
-| `Exp 2A`: Base 4B + FP32 Pre-NLI (`0.70`) | `35/40` | `36/40` | `21/40` | `32 / 25` | `10/10` | `10 / 10 / 10` | `0.96/0.97` | `1.72` | Threshold Low |
-| `Exp 2B`: Pre-NLI + Focused Post-NLI (`0.25`) | `31/40` | `32/40` | `20/40` | `32 / 22` | `10/10` | `10 / 10 / 10` | `0.97/0.96` | `1.73` | **Rejected** |
-| `Exp 3A`: 5-Chunk LoRA SFT + Pre-NLI (`0.70`) | `32/40` | `33/40` | `21/40` | `34 / 22` | `10/10` | `10 / 10 / 10` | `0.93/0.97` | `1.83` | **Rejected** |
-| **`Exp 2C`: Base 4B + FP32 Pre-NLI (`0.95`)** | **`37/40`** | **`37/40`** | **`24/40`** | **`35 / 26`** | **`10/10`** | **`10 / 10 / 10`** | **`0.99/0.97`** | **`2.06`** | **DEV Winner** |
+Exact slice breakdown from [`reports/holdout_breakdown.csv`](../reports/holdout_breakdown.csv) and [`reports/final-summary.json`](../reports/final-summary.json):
 
-![DEV Ablation Progression](figures/paper-qna-dev-ablation.png)
+| Metric (Unseen Holdout, 20 Papers) | English (`120`) | Korean (`120`) | Paired Strict (`120` pairs) | All Outputs (`240`) |
+| --- | ---: | ---: | ---: | ---: |
+| Contract Valid | `120/120` (`100.0%`) | `120/120` (`100.0%`) | `120/120` (`100.0%`) | **`240/240` (`100.0%`)** |
+| Answerable Retained (`80` pairs) | `74/80` (`92.5%`) | `68/80` (`85.0%`) | **`68/80` (`85.0%`)** | **`142/160` (`88.8%`)** |
+| All Fact Aliases Matched (`80` pairs) | `54/80` (`67.5%`) | `41/80` (`51.3%`) | **`33/80` (`41.3%`)** | **`95/160` (`59.4%`)** |
+| Acceptable Source Page Hit (`80` pairs) | `66/80` (`82.5%`) | `57/80` (`71.3%`) | **`56/80` (`70.0%`)** | **`123/160` (`76.9%`)** |
+| Unsupported Refused (`20` pairs) | **`20/20` (`100.0%`)** | **`20/20` (`100.0%`)** | **`20/20` (`100.0%`)** | **`40/40` (`100.0%`)** |
+| False Premise Refused (`20` pairs) | **`20/20` (`100.0%`)** | **`19/20` (`95.0%`)** | **`19/20` (`95.0%`)** | **`39/40` (`97.5%`)** |
+| Verbatim Quote Verified Rate | `0.878` | `0.884` | **`0.881`** | **`0.881`** |
+| Canonical Numeric Fidelity Rate | `0.946` | `0.957` | **`0.951`** | **`0.951`** |
+| Mean Wall Latency (`vLLM`, NVIDIA L4) | `1.81 s/q` | `1.74 s/q` | **`1.77 s/q`** | `545.3s` total |
 
----
+### Semantic Judge Rubric Evaluation (`Qwen3-14B-AWQ`)
 
-## 3. Scientific NLI Separation & Paper-Grouped Conformal Gate
+To complement strict lexical alias matching, `Qwen3-14B-AWQ` scored semantic completeness and faithfulness against the gold rubric and retrieved evidence passages:
 
-- **FP32 Scientific NLI (`mDeBERTa-v3`) DEV separation**: Answerable contradiction median = **`0.001`** vs. False-Premise minimum = **`0.999`** (`20/20 >= 0.999`). Raising the gate threshold from `0.70` into the flat `0.90–0.99` plateau (`0.95`) recovered `+2` answerable pairs (`35 → 37/40`) and `+3` paired fact-alias groups (`21 → 24/40`) with zero loss in false-premise defense (`10/10/10`).
-- **Paper-Grouped 5-Fold OOF Conformal Gate (`reports/calibrated_gate.json`)**:
-  - **OOF AURC = `0.0669`**
-  - `alpha = 0.02` (`thr = 0.8993`): `86.3%` answerable coverage, `2.5%` negative leak
-  - `alpha = 0.05` (`thr = 0.8727`, recommended): **`88.7%` answerable coverage**, **`5.0%` negative leak**
-  - `alpha = 0.10` (`thr = 0.4196`): `98.8%` answerable coverage, `10.0%` negative leak
-
-![Scientific NLI & Conformal Risk-Coverage](figures/paper-qna-nli-conformal.png)
+| Split & Run | EN Completeness | KO Completeness | Paired Completeness | Mean Faithfulness | Audit Sheet |
+| --- | ---: | ---: | ---: | ---: | --- |
+| DEV `Exp 1C` (`80` answerable outputs) | `0.882` | `0.842` | `0.775` | `0.867` | [`exp1c_qwen3_4b_2507_human_audit.csv`](../reports/exp1c_qwen3_4b_2507_human_audit.csv) |
+| **Holdout Final (`160` answerable outputs)** | **`0.849`** | **`0.711`** | **`0.690`** | **`0.888`** | [`exp4_v2_final_holdout_human_audit.csv`](../reports/exp4_v2_final_holdout_human_audit.csv) |
 
 ---
 
-## 4. Local Hardware Verification (`Windows 11 · RTX 3060 Laptop GPU 6 GB`)
+## 2. Paper Grouped 5 Fold OOF Conformal Gate Calibration
 
-Source JSON: [`reports/local_verification.json`](../reports/local_verification.json)
+Calibrated exclusively on DEV (`10` papers, `120` outputs, `GroupKFold(5)` by `paper_id`) in [`reports/calibrated_gate.json`](../reports/calibrated_gate.json):
 
-| Local Runtime Check | Configuration | Measured Result | Gate |
-| :--- | :--- | :--- | :---: |
-| **ONNX INT8 Deployment Gate** | `model_quantized.onnx` (`322.67 MiB`, CPU 4T, TorchScript `opset 17`) | Padding drift `abs_diff = 0.0373` (`0.0616 → 0.0989`); caught only `2/20` Holdout false premises at `0.95` (`288.0 ms/window`) | **BLOCKED** |
-| **RTX 3060 FP32 PyTorch NLI** | `mDeBERTa-v3-base` FP32 on NVIDIA RTX 3060 Laptop (`6,144 MiB`) | **`1.048 GiB` VRAM** (`1.610 GiB` peak), padding invariance **`abs_diff = 0.000000`**, **`27.79 ms/window`** (`10.4×` faster than CPU ONNX), sample false-premise `0.9986` | **PASS** |
-| **FastAPI Web Demo & API** | `uvicorn` on `127.0.0.1:18080`, `30` papers + `10` Holdout presets | `8/8` `pytest` passing, live browser check with `0` console/HTTP errors, live preset switching & Conformal telemetry verified | **PASS** |
-| **Frozen `corpus-v2-holdout`** | `30` unseen arXiv validation papers (`677` chunks) | `chunks.jsonl` & `manifest_v2.json` SHA-256 checksums `2/2` verified | **PASS** |
+- **OOF AURC**: **`0.0669`**
+- **Scientific NLI Pre Gate Threshold**: **`0.95`**
 
-> **Key Deployment Finding**: Just as `mDeBERTa-v3` disentangled attention collapsed under `BF16` training, legacy TorchScript `torch.onnx.export` + dynamic `INT8` quantization broke sequence-padding invariance on `DebertaV2SelfAttention`. Our local parity gate caught and blocked the degraded ONNX artifact automatically, confirming that **FP32 PyTorch on RTX 3060 (`1.05 GiB` VRAM, `27.8 ms/window`, `0.000000` padding drift)** is both cleaner and `10.4×` faster while leaving `~4.4 GiB` VRAM for `Qwen3-4B-Instruct-2507 Q4_K_M` (`~2.7 GiB`).
+| Risk Tolerance `alpha` | OOF Probability Threshold | Answerable Coverage | Negative Leak Rate | Operating Mode |
+| ---: | ---: | ---: | ---: | --- |
+| `0.02` | `0.8993` | `86.3%` | `2.5%` | Strict Scientific Audit |
+| **`0.05`** | **`0.8727`** | **`88.7%`** | **`5.0%`** | **Recommended Default** |
+| `0.10` | `0.4196` | `98.8%` | `10.0%` | High Coverage Exploration |
+
+---
+
+## 3. Local Windows RTX 3060 & ONNX Parity Gate Audit
+
+Executed locally on **Windows 11 + NVIDIA GeForce RTX 3060 Laptop GPU (`6,144 MiB`)** via [`scripts/verify_local_runtime.py`](../scripts/verify_local_runtime.py) and logged in [`reports/local_verification.json`](../reports/local_verification.json):
+
+| Verification Target | Metric / Outcome | Status |
+| --- | --- | :---: |
+| `corpus_v2_holdout` SHA-256 Integrity | `chunks.jsonl` & `manifest_v2.json` (`30` papers, `677` chunks) `2/2` exact match | **PASS** |
+| Local RTX 3060 FP32 PyTorch NLI (`mDeBERTa-v3`) | `1.048 GiB` VRAM (`1.610 GiB` peak / `6.0 GiB`), `27.79 ms/window` (`555.7 ms` / 20 wins), padding invariance **`abs_diff = 0.000000`** (`0.948831` vs `0.948831`), sample FP `0.9986` | **PASS** |
+| Legacy TorchScript ONNX INT8 (`322.67 MiB`, CPU 4T) | Padding drift **`abs_diff = 0.037309 > 0.02`** (`0.061635` vs `0.098943`), caught only `2/20` Holdout FPs at `0.95`, `288.0 ms/window` (`2,225.5 ms/q`) | **AUTO BLOCKED** |
+| Automated Test Suite (`pytest -v`) | `8/8` passing (PDF repair, verifier, NLI windows, BM25/RRF/Parent, Conformal Gate, SHA-256 freeze, FastAPI routes, parity gate) | **PASS** |
+
+---
+
+## 4. Live Local Interactive Demo Verification (English UI)
+
+![Local FastAPI Interactive Web Demo in English UI](figures/en/demo_ui_live.png)
+
+Verified in a live desktop browser against `http://127.0.0.1:18080/?lang=en`:
+- Zero console errors and zero failed network requests (`5/5` HTTP 200).
+- Preset `paper-030-baselines-en` renders `Verified · Evidence Grounded Answer`, NLI contradiction `0.0044`, Conformal `P(Ans) = 0.993` (`alpha=0.05`, `thr=0.873`), `100% / 100%` quote and numeric check, `3` aligned claims, and `<mark>` highlighted Parent `1,800` char source passages.

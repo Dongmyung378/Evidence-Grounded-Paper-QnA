@@ -1,0 +1,16 @@
+comparison,metric,n_outputs,base_rate,cand_rate,delta,ci95_low,ci95_high,gain_n01,loss_n10,exact_mcnemar_p
+Exp1C_Base4B_vs_Exp2C_PreNLI095,answerable_retained,80,1.0,0.95,-0.05,-0.1125,0.0,0,4,0.125
+Exp1C_Base4B_vs_Exp2C_PreNLI095,all_fact_aliases,80,0.775,0.7625,-0.0125,-0.0375,0.0,0,1,1.0
+Exp1C_Base4B_vs_Exp2C_PreNLI095,acceptable_source_page_hit,80,0.825,0.7875,-0.0375,-0.0875,0.0,0,3,0.25
+Exp1C_Base4B_vs_Exp2C_PreNLI095,unsupported_refused,20,1.0,1.0,0.0,0.0,0.0,0,0,1.0
+Exp1C_Base4B_vs_Exp2C_PreNLI095,false_premise_refused,20,0.75,1.0,0.25,0.0,0.5,5,0,0.0625
+Exp2A_PreNLI_vs_Exp2B_PostNLI,answerable_retained,80,0.9,0.85,-0.05,-0.0875,-0.0125,0,4,0.125
+Exp2A_PreNLI_vs_Exp2B_PostNLI,all_fact_aliases,80,0.7125,0.675,-0.0375,-0.075,0.0,0,3,0.25
+Exp2A_PreNLI_vs_Exp2B_PostNLI,acceptable_source_page_hit,80,0.7375,0.6375,-0.1,-0.1625,-0.0375,0,8,0.0078125
+Exp2A_PreNLI_vs_Exp2B_PostNLI,unsupported_refused,20,1.0,1.0,0.0,0.0,0.0,0,0,1.0
+Exp2A_PreNLI_vs_Exp2B_PostNLI,false_premise_refused,20,1.0,1.0,0.0,0.0,0.0,0,0,1.0
+Exp2A_Base4B_vs_Exp3A_LoRASFT,answerable_retained,80,0.9,0.85,-0.05,-0.1125,0.0,0,4,0.125
+Exp2A_Base4B_vs_Exp3A_LoRASFT,all_fact_aliases,80,0.7125,0.7,-0.0125,-0.075,0.0375,3,4,1.0
+Exp2A_Base4B_vs_Exp3A_LoRASFT,acceptable_source_page_hit,80,0.7375,0.6875,-0.05,-0.125,0.0128,3,7,0.34375
+Exp2A_Base4B_vs_Exp3A_LoRASFT,unsupported_refused,20,1.0,1.0,0.0,0.0,0.0,0,0,1.0
+Exp2A_Base4B_vs_Exp3A_LoRASFT,false_premise_refused,20,1.0,1.0,0.0,0.0,0.0,0,0,1.0
