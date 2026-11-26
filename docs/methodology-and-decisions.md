@@ -2,7 +2,7 @@
 
 > **Language**: **English** | [한국어 (Korean)](methodology-and-decisions.ko.md)
 
-Every component of **Evidence Grounded Paper Q&A** was selected or rejected strictly on the `corpus30` **DEV split (`10` papers, `120` outputs: `40` answerable, `10` unsupported, `10` false premise bilingual pairs)**. The `corpus30` **Holdout split (`20` papers, `240` outputs)** remained locked until the final winning configuration (`Exp 2C`) was frozen.
+Every component of **Evidence-Grounded Paper Q&A** was selected or rejected strictly on the `corpus30` **DEV split (`10` papers, `120` outputs: `40` answerable, `10` unsupported, `10` false-premise bilingual pairs)**. The `corpus30` **Holdout split (`20` papers, `240` outputs)** remained locked until the final winning configuration (`Exp 2C`) was frozen.
 
 ---
 
@@ -69,8 +69,8 @@ Exact McNemar and `2,000` iteration paper cluster bootstrap tests ([`reports/dev
 - **Resolution**: Rejected the LoRA SFT adapter, skipped downstream DPO, and kept zero shot `Qwen3-4B-Instruct-2507` with Guided JSON.
 
 ### Rejection 4: Legacy TorchScript ONNX INT8 Deployment Blocked by Runtime Parity Gate
-- **Failure**: Local Windows audit ([`scripts/verify_local_runtime.py`](../scripts/verify_local_runtime.py)) tested the exported `model_quantized.onnx` (`322.67 MiB`, CPU 4 threads) and found that legacy TorchScript `torch.onnx.export` + dynamic `QInt8` quantization broke `mDeBERTa-v3` relative position attention padding invariance (`unpadded 0.061635` vs `padded_384 0.098943`, `abs_diff = 0.037309 > 0.02`). Consequently, the quantized graph caught only `2/20` Holdout false premises at `0.95` while taking `288.0 ms/window`.
-- **Resolution**: Added an automatic startup parity gate (`ScientificNLIOnnx.check_padding_invariance()`) in [`paper_qna/nli_gate.py`](../paper_qna/nli_gate.py) that blocks degraded ONNX binaries (`onnx_int8_blocked_by_parity_gate`). Verified local **RTX 3060 6 GB FP32 PyTorch** achieves exact padding invariance (`abs_diff = 0.000000`), **`1.048 GiB` VRAM** (`1.610 GiB` peak), and **`27.79 ms/window`** (`10.4x` faster than CPU ONNX).
+- **Failure**: Local Windows audit ([`scripts/verify_local_runtime.py`](../scripts/verify_local_runtime.py)) tested the exported `model_quantized.onnx` (`322.67 MiB`, CPU 4 threads) and found that legacy TorchScript `torch.onnx.export` + dynamic `QInt8` quantization broke `mDeBERTa-v3` relative-position attention padding invariance (`unpadded 0.061635` vs `padded_384 0.098943`, `abs_diff = 0.037309 > 0.02`). Consequently, the quantized graph caught only `2/20` Holdout false premises at `0.95` while taking `275.78 ms/window` (`2,165.64 ms/q`).
+- **Resolution**: Added an automatic startup parity gate (`ScientificNLIOnnx.check_padding_invariance()`) in [`paper_qna/nli_gate.py`](../paper_qna/nli_gate.py) that blocks degraded ONNX binaries (`onnx_int8_blocked_by_parity_gate`). Verified local **RTX 3060 6 GB FP32 PyTorch** achieves exact padding invariance (`abs_diff = 0.000000`), **`1.048 GiB` VRAM** (`1.610 GiB` peak), and **`26.47 ms/window`** (`10.4x` faster than CPU ONNX).
 
 ---
 

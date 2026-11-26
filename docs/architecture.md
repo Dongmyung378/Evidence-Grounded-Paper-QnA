@@ -3,10 +3,10 @@
 > **Language**: **English** | [한국어 (Korean)](architecture.ko.md)
 
 <p align="center">
-  <img src="figures/en/paper-qna-thumbnail.svg" alt="Evidence Grounded Paper Q&A system architecture" width="100%" />
+  <img src="figures/en/paper-qna-thumbnail.svg" alt="Evidence-Grounded Paper Q&A system architecture" width="100%" />
 </p>
 
-## 1. End to End Verification Pipeline
+## 1. End-to-End Verification Pipeline
 
 Every user query against a target English PDF flows through five deterministic and neural stages implemented in [`paper_qna/`](../paper_qna/):
 

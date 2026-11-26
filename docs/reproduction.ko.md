@@ -56,7 +56,8 @@ sh ./launch-paper-qna.sh demo
 
 1. `llama-server` 또는 Ollama로 `Qwen3-4B-Instruct-2507`(`Q4_K_M`, 약 `2.7 GiB` VRAM) 서버를 실행합니다.
    ```powershell
-   llama-server -hf unsloth/Qwen3-4B-Instruct-2507-GGUF:Q4_K_M --host 127.0.0.1 --port 8080 -ngl 99 -np 1 -c 8192
+   llama-server -hf unsloth/Qwen3-4B-Instruct-2507-GGUF:Q4_K_M `
+     --host 127.0.0.1 --port 8080 -ngl 99 -np 1 -c 8192
    ```
 2. 데모를 로컬 서버 주소와 연결해 실행합니다.
    ```powershell

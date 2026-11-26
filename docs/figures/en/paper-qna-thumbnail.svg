@@ -1,12 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
-<title id="title">Evidence Grounded Paper Q&amp;A: BGE-M3 · Scientific NLI · Qwen3-4B</title>
-<desc id="desc">Bilingual EN and KO scientific paper Q&amp;A achieving 100% contract validity, 97.5% false premise refusal (EN 20/20, KO 19/20), 100% unsupported refusal, 0.888 semantic faithfulness, and 1.77s per query on 240 unseen corpus30 Holdout outputs.</desc>
+<title id="title">Evidence-Grounded Paper Q&amp;A: BGE-M3 · Scientific NLI · Qwen3-4B</title>
+<desc id="desc">Bilingual EN and KO scientific paper Q&amp;A achieving 100% contract validity, 97.5% false-premise refusal (EN 20/20, KO 19/20), 100% unsupported refusal, 0.888 semantic faithfulness, and 1.77s per query on 240 unseen corpus30 Holdout outputs.</desc>
 <style>text{font-family:'Segoe UI','Noto Sans','Helvetica Neue',Arial,sans-serif;font-variant-numeric:tabular-nums}</style>
 <rect width="1200" height="760" fill="#FAF7F0"/>
-<rect x="0" y="0" width="1200" height="8" fill="#E8B923"/>
-<text x="48" y="76" fill="#002147" font-size="40" font-weight="760">Evidence Grounded Paper Q&amp;A</text>
-<text x="48" y="118" fill="#4D5F73" font-size="20">BGE-M3 Hybrid Retrieval · FP32 mDeBERTa-v3 Scientific NLI · Qwen3-4B Guided JSON · Conformal Gate</text>
-<line x1="48" y1="144" x2="1152" y2="144" stroke="#E2DCCB" stroke-width="1.5"/>
+<text x="48" y="72" fill="#002147" font-size="40" font-weight="760">Evidence-Grounded Paper Q&amp;A</text>
+<text x="48" y="114" fill="#4D5F73" font-size="20">BGE-M3 Hybrid Retrieval · FP32 mDeBERTa-v3 Scientific NLI · Qwen3-4B Guided JSON · Conformal Gate</text>
+<line x1="48" y1="142" x2="1152" y2="142" stroke="#E2DCCB" stroke-width="1.5"/>
 
 <rect x="48" y="168" width="442" height="418" rx="14" fill="#FFFFFF" stroke="#E2DCCB" stroke-width="1.3"/>
 <text x="74" y="208" fill="#002147" font-size="22" font-weight="750">Grounded Verification Stack</text>
@@ -14,14 +13,14 @@
 
 <rect x="74" y="254" width="390" height="68" rx="10" fill="#F4F7FB" stroke="#A6BDD8" stroke-width="1.3"/>
 <text x="92" y="280" fill="#002147" font-size="12.2" font-weight="750">01 HYBRID RETRIEVAL &amp; PARENT (1,800 CHARS)</text>
-<text x="92" y="306" fill="#132234" font-size="16" font-weight="700">BM25 + BGE-M3 + Dual Score Rerank</text>
+<text x="92" y="306" fill="#132234" font-size="16" font-weight="700">BM25 + BGE-M3 + Dual-Score Rerank</text>
 
 <path d="M269 322V344" stroke="#002147" stroke-width="2.6"/>
 <path d="M262 337L269 345L276 337" fill="none" stroke="#002147" stroke-width="2.6" stroke-linecap="round"/>
 
 <rect x="74" y="348" width="390" height="72" rx="10" fill="#FCF5DC" stroke="#E8B923" stroke-width="1.8"/>
-<text x="92" y="374" fill="#8C6400" font-size="12.2" font-weight="750">02 SCIENTIFIC NLI PRE GATE (THRESHOLD 0.95)</text>
-<text x="92" y="399" fill="#132234" font-size="15.8" font-weight="700">FP32 mDeBERTa-v3 · Built In Parity Gate</text>
+<text x="92" y="374" fill="#8C6400" font-size="12.2" font-weight="750">02 SCIENTIFIC NLI PRE-GATE (THRESHOLD 0.95)</text>
+<text x="92" y="399" fill="#132234" font-size="15.8" font-weight="700">FP32 mDeBERTa-v3 · Built-In Parity Gate</text>
 
 <path d="M269 420V442" stroke="#C28E0E" stroke-width="2.6"/>
 <path d="M262 435L269 443L276 435" fill="none" stroke="#C28E0E" stroke-width="2.6" stroke-linecap="round"/>
@@ -31,7 +30,7 @@
 <text x="92" y="497" fill="#132234" font-size="15.8" font-weight="700">Qwen3-4B-Instruct-2507 + Conformal Gate</text>
 
 <rect x="74" y="530" width="390" height="38" rx="8" fill="#FCF5DC" stroke="#E8B923" stroke-width="1"/>
-<text x="269" y="554" text-anchor="middle" fill="#6E4E00" font-size="13.5" font-weight="750">Paper Grouped 5 Fold OOF AURC 0.0669 · 240/240 Valid</text>
+<text x="269" y="554" text-anchor="middle" fill="#6E4E00" font-size="13.5" font-weight="750">Paper-Grouped 5-Fold OOF AURC 0.0669 · 240/240 Valid</text>
 
 <path d="M490 377H542V230H590" fill="none" stroke="#5C6E80" stroke-width="2.8" stroke-linejoin="round"/>
 <path d="M490 377H590" fill="none" stroke="#E8B923" stroke-width="3.0"/>
@@ -45,11 +44,11 @@
 <rect x="598" y="168" width="9" height="124" rx="4" fill="#5C6E80"/>
 <text x="628" y="204" fill="#4D5F73" font-size="13.2" font-weight="750">ANSWER RETENTION &amp; GROUNDING · HOLDOUT (240 OUTPUTS)</text>
 <text x="628" y="241" fill="#002147" font-size="25" font-weight="780">88.8% Retained · 76.9% Page Hit</text>
-<text x="628" y="272" fill="#4D5F73" font-size="14.2">EN Fact Recall 54/80 (67.5%) · KO 41/80 (51.3%) · Numeric Verified 95%</text>
+<text x="628" y="272" fill="#4D5F73" font-size="14.2">EN Fact Recall 54/80 (67.5%) · KO 41/80 (51.3%) · Numeric Verified 95.1%</text>
 
 <rect x="598" y="314" width="554" height="124" rx="14" fill="#FFFFFF" stroke="#E8B923" stroke-width="1.8"/>
 <rect x="598" y="314" width="9" height="124" rx="4" fill="#E8B923"/>
-<text x="628" y="350" fill="#8C6400" font-size="13.2" font-weight="750">HALLUCINATION &amp; FALSE PREMISE DEFENSE (SCIENTIFIC NLI)</text>
+<text x="628" y="350" fill="#8C6400" font-size="13.2" font-weight="750">HALLUCINATION &amp; FALSE-PREMISE DEFENSE (SCIENTIFIC NLI)</text>
 <text x="628" y="387" fill="#002147" font-size="25" font-weight="780">97.5% False Premise · 100% Unsupported</text>
 <text x="628" y="418" fill="#4D5F73" font-size="14.2">EN 20/20 (100%) · KO 19/20 (95%) · DEV NLI Split 0.001 vs 0.999</text>
 
@@ -59,11 +58,11 @@
 <text x="1078" y="494" text-anchor="middle" fill="#6E4E00" font-size="12.5" font-weight="750">FINAL MODEL</text>
 <text x="628" y="496" fill="#002147" font-size="13.2" font-weight="750">SEMANTIC JUDGE · LATENCY · ABLATION DISCIPLINE</text>
 <text x="628" y="533" fill="#002147" font-size="23.5" font-weight="780">Faithfulness 0.888 · 1.77s / Query</text>
-<text x="628" y="564" fill="#4D5F73" font-size="14">EN Completeness 0.849 / KO 0.711 · Post NLI &amp; LoRA SFT rejected on DEV</text>
+<text x="628" y="564" fill="#4D5F73" font-size="14">EN Completeness 0.849 / KO 0.711 · Post-NLI &amp; LoRA SFT rejected on DEV</text>
 
 <rect x="48" y="610" width="1104" height="106" rx="16" fill="#002147"/>
-<text x="80" y="654" fill="#FFFFFF" font-size="26" font-weight="760">Unseen Holdout (240 Outputs) &amp; Local RTX 3060 Parity Verification</text>
-<text x="80" y="690" fill="#D7E2F0" font-size="18.2">FastAPI Interactive Demo · FP32 1.048 GiB (0.000000 Pad Diff) · ONNX INT8 Auto Blocked</text>
+<text x="80" y="654" fill="#FFFFFF" font-size="25.5" font-weight="760">Unseen Holdout (240) &amp; Local RTX 3060 Verified</text>
+<text x="80" y="690" fill="#D7E2F0" font-size="18.2">FastAPI Interactive Demo · FP32 1.048 GiB (0.000000 Pad Diff) · ONNX INT8 Auto-Blocked</text>
 <text x="1120" y="660" text-anchor="end" fill="#F4CC47" font-size="38" font-weight="780">97.5% / 0.888</text>
 <text x="1120" y="690" text-anchor="end" fill="#F6E5A8" font-size="16.5">FP Refusal · Faithfulness</text>
 </svg>

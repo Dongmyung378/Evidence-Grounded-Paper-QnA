@@ -1,18 +1,14 @@
-# 논문 질의응답과 근거 추적 (Evidence Grounded Paper Q&A)
+# 논문 질의응답과 근거 추적 (Evidence-Grounded Paper Q&A)
 
-> **언어**: [English](README.md) | **한국어 (Korean)**
-
-[![CI](https://github.com/Dongmyung378/Evidence-Grounded-Paper-QnA/actions/workflows/ci.yml/badge.svg)](https://github.com/Dongmyung378/Evidence-Grounded-Paper-QnA/actions/workflows/ci.yml)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-1E665E.svg)](pyproject.toml)
-[![Tests](https://img.shields.io/badge/pytest-9%2F9%20passing-1B8754.svg)](tests/test_paper_qna_v2.py)
+[English](README.md) | [시스템 아키텍처](docs/architecture.ko.md) | [방법론·소거 결정](docs/methodology-and-decisions.ko.md) | [평가 결과](docs/results.ko.md) | [재현·실행 가이드](docs/reproduction.ko.md)
 
 <p align="center">
   <img src="docs/figures/ko/paper-qna-thumbnail.svg" alt="논문 질의응답과 근거 추적 아키텍처 및 미공개 Holdout 요약" width="100%" />
 </p>
 
-**논문 질의응답과 근거 추적(Evidence Grounded Paper Q&A)**은 영문 연구 논문 PDF 한 편에 대해 **한국어 또는 영어**로 질문하고, 답변의 모든 문장을 원문 구절·페이지·섹션과 대조해 검증하는 로컬 이중언어 질의응답 시스템입니다.
+<strong>논문 질의응답과 근거 추적(Evidence-Grounded Paper Q&A)</strong>은 영문 연구 논문 PDF 한 편에 대해 **한국어 또는 영어**로 질문하고, 답변의 모든 문장을 원문 구절·페이지·섹션과 대조해 검증하는 로컬 이중언어 질의응답 시스템입니다.
 
-BGE-M3 하이브리드 검색과 Parent 1,800자 문맥 확장, 외부 무누설 arXiv 150편 기반 **FP32 Scientific NLI 거짓전제 차단 게이트(임계값 `0.95`)**, **Guided JSON + 결정론적 인용·수치 검증기**, **논문 그룹 5폴드 OOF Conformal Gate(`AURC 0.0669`)**를 통합했습니다. 모든 설계 결정은 개발 세트(**DEV 10편, 120문항**)의 통제 소거 실험에서 채택·기각했고, 평가 세트(**미공개 Holdout 20편, 240문항**)는 최종 구성을 동결한 뒤 단 1회만 평가했습니다.
+BGE-M3 하이브리드 검색과 Parent 1,800자 문맥 확장, 외부 무누설 arXiv 150편 기반 **FP32 Scientific NLI 거짓전제 차단 게이트(임계값 `0.95`)**, **Guided JSON + 결정론적 인용·수치 검증기**, <strong>논문 그룹 5폴드 OOF Conformal Gate(<code>AURC 0.0669</code>)</strong>를 통합했습니다. 모든 설계 결정은 개발 세트(**DEV 10편, 120문항**)의 통제 소거 실험에서 채택·기각했고, 평가 세트(**미공개 Holdout 20편, 240문항**)는 최종 구성을 동결한 뒤 단 1회만 평가했습니다.
 
 ---
 
@@ -36,7 +32,7 @@ BGE-M3 하이브리드 검색과 Parent 1,800자 문맥 확장, 외부 무누설
 - **무누설 FP32 Scientific NLI 거짓전제 게이트**: `corpus30`과 0% 겹치는 외부 arXiv 150편과 SciFact에서 합성한 한·영 `7,729`개 쌍으로 `MoritzLaurer/mDeBERTa-v3-base-mnli-xnli`를 엄격한 **FP32**로 미세조정(`Val Loss 0.1676`)했습니다. DEV에서 정답가능 모순 중앙값 **`0.001`** 대 거짓전제 최소값 **`0.999`**(`20/20 >= 0.95`)로 깔끔히 분리되었습니다.
 - **실증 기반 소거 기각 규율**: DEV 통제 실험에서 사후 2단계 Post NLI(`Exp 2B`: 한국어 답변 `4`건 손실, 거짓전제 추가 이득 `0`건)와 5청크 LoRA SFT(`Exp 3A`: 한국어 핵심사실 `25 -> 22`, 인용 일치율 `0.96 -> 0.93` 하락)를 모두 기각하고, 최종 우승 구성(`Exp 2C`: 제로샷 `Qwen3-4B-Instruct-2507` Guided JSON + FP32 Pre NLI `0.95`)을 채택했습니다.
 - **논문 그룹 5폴드 OOF Conformal Gate**: [`reports/calibrated_gate.json`](reports/calibrated_gate.json)에 보정 파라미터를 저장했으며 **OOF AURC `0.0669`**(`alpha=0.05`에서 정답가능 커버리지 `88.7%`, 부정 문항 누출률 `5.0%`; `alpha=0.02`에서 커버리지 `86.3%`, 누출률 `2.5%`)를 달성했습니다.
-- **로컬 RTX 3060 및 ONNX 패리티 게이트 실측**: 로컬 배포 검증기([`scripts/verify_local_runtime.py`](scripts/verify_local_runtime.py))가 레거시 TorchScript ONNX INT8의 DeBERTa-v2 패딩 드리프트(`abs_diff = 0.0373 > 0.02`, Holdout 거짓전제 `2/20` 탐지)를 자동 차단했고, 로컬 Windows **RTX 3060 6 GB FP32 PyTorch** 경로는 **`1.048 GiB` VRAM**(피크 `1.610 GiB`), **`abs_diff = 0.000000`**, **`27.79 ms/창`**(CPU ONNX 대비 `10.4배` 고속)으로 통과했습니다.
+- **로컬 RTX 3060 및 ONNX 패리티 게이트 실측**: 로컬 배포 검증기([`scripts/verify_local_runtime.py`](scripts/verify_local_runtime.py))가 레거시 TorchScript ONNX INT8의 DeBERTa-v2 패딩 드리프트(`abs_diff = 0.0373 > 0.02`, Holdout 거짓전제 `2/20` 탐지, `275.78 ms/창`)를 자동 차단했고, 로컬 Windows **RTX 3060 6 GB FP32 PyTorch** 경로는 **`1.048 GiB` VRAM**(피크 `1.610 GiB`), **`abs_diff = 0.000000`**, **`26.47 ms/창`**(CPU ONNX 대비 `10.4배` 고속)으로 통과했습니다.
 
 ---
 
@@ -68,14 +64,15 @@ python -m venv .venv
 # 2. 로컬 인터랙티브 FastAPI 웹 데모 실행 (http://127.0.0.1:8000)
 .\launch-paper-qna.bat demo
 
-# 3. 선택: 로컬 OpenAI 호환 Qwen3-4B-Instruct-2507 서버(llama-server / Ollama) 연결
+# 3. 선택: 로컬 OpenAI 호환 Qwen3-4B 서버(llama-server / Ollama) 연결
 .\launch-paper-qna.bat demo --llm-url http://127.0.0.1:8080
 
 # 4. CLI 상태 확인 및 단일 질문 실행
 .\launch-paper-qna.bat status
-.\launch-paper-qna.bat ask --paper-id paper-030 --question "다변량 예측기와 비교한 세 스크리닝 휴리스틱 또는 순위 기준선은 무엇인가요?"
+.\launch-paper-qna.bat ask --paper-id paper-030 `
+  --question "다변량 예측기와 비교한 세 스크리닝 기준선은 무엇인가요?"
 
-# 5. 단위, 응답 계약, Conformal Gate, FastAPI, NLI 패리티 게이트 테스트 실행 (9/9 통과)
+# 5. 단위, 응답 계약, Conformal, FastAPI, NLI 패리티 테스트 (9/9 통과)
 .\.venv\Scripts\python.exe -m pytest -v
 ```
 

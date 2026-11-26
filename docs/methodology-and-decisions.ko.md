@@ -2,7 +2,7 @@
 
 > **언어**: [English](methodology-and-decisions.md) | **한국어 (Korean)**
 
-**논문 질의응답과 근거 추적(Evidence Grounded Paper Q&A)**의 모든 모델 채택, 임계값 선택, 기각 판단은 오직 `corpus30` **개발 세트(DEV 10편, 120문항: 정답가능 40쌍, 근거부족 10쌍, 거짓전제 10쌍)**에서만 수행했습니다. **미공개 평가 세트(Holdout 20편, 240문항)**는 최종 우승 구성(`Exp 2C`)을 완전히 동결한 뒤 단 1회만 평가했습니다.
+<strong>논문 질의응답과 근거 추적(Evidence-Grounded Paper Q&A)</strong>의 모든 모델 채택, 임계값 선택, 기각 판단은 오직 `corpus30` <strong>개발 세트(DEV 10편, 120문항: 정답가능 40쌍, 근거부족 10쌍, 거짓전제 10쌍)</strong>에서만 수행했습니다. <strong>미공개 평가 세트(Holdout 20편, 240문항)</strong>는 최종 우승 구성(`Exp 2C`)을 완전히 동결한 뒤 단 1회만 평가했습니다.
 
 ---
 
@@ -58,7 +58,7 @@ Exact McNemar 및 `2,000`회 논문 군집 부트스트랩([`reports/dev_ablatio
 
 ### 기각 1: `mDeBERTa-v3` BF16 / FP16 혼합 정밀도 학습
 - **문제**: `MoritzLaurer/mDeBERTa-v3-base-mnli-xnli`를 `bf16=True`로 학습했을 때 DeBERTa-v2 상대 위치 어텐션 내부에서 NaN 기울기 붕괴가 발생해 `Exp 2B` 응답이 `0/40`으로 무너졌습니다.
-- **해결**: 엄격한 **FP32 (`bf16=False, fp16=False`)** 학습과 유한 확률 가드로 교체해 `Val Loss = 0.1676`을 달성했고, DEV에서 **정답가능 모순 중앙값 `0.001` 대 거짓전제 최소값 `0.999`**(`20/20 >= 0.95`)의 깔끔한 분리를 얻었습니다.
+- **해결**: 엄격한 <strong>FP32 (<code>bf16=False, fp16=False</code>)</strong> 학습과 유한 확률 가드로 교체해 `Val Loss = 0.1676`을 달성했고, DEV에서 **정답가능 모순 중앙값 `0.001` 대 거짓전제 최소값 `0.999`**(`20/20 >= 0.95`)의 깔끔한 분리를 얻었습니다.
 
 ### 기각 2: 생성 후 2단계 Post NLI 함의 필터 (`Exp 2B`)
 - **문제**: 이미 Guided JSON 인용 검증을 통과한 주장을 사후 NLI 함의 확률(`>= 0.25`)로 재차 필터링하자, 거짓전제 추가 방어는 **0건**이면서 정답 페이지 인용률이 **`-10.0%p` (`p = 0.0078`)** 유의하게 하락하고 한국어 답변 `4`건(`36 -> 32`)만 잃었습니다.
@@ -69,8 +69,8 @@ Exact McNemar 및 `2,000`회 논문 군집 부트스트랩([`reports/dev_ablatio
 - **해결**: LoRA 어댑터를 기각하고 후속 DPO를 생략했으며, 제로샷 `Qwen3-4B-Instruct-2507` Guided JSON을 최종 생성기로 확정했습니다.
 
 ### 기각 4: 레거시 TorchScript ONNX INT8 배포 게이트 자동 차단
-- **문제**: Colab에서 내보낸 `model_quantized.onnx`(`322.67 MiB`, CPU 4스레드)를 로컬 Windows 검증기([`scripts/verify_local_runtime.py`](../scripts/verify_local_runtime.py))로 감사한 결과, 레거시 TorchScript `torch.onnx.export`와 동적 `QInt8` 양자화가 `mDeBERTa-v3` 상대 위치 어텐션의 패딩 불변성을 무너뜨렸습니다(`unpadded 0.061635` 대 `padded_384 0.098943`, `abs_diff = 0.037309 > 0.02`). 이로 인해 Holdout 거짓전제 탐지가 `2/20`에 그쳤고 지연도 `288.0 ms/창`으로 느렸습니다.
-- **해결**: [`paper_qna/nli_gate.py`](../paper_qna/nli_gate.py)에 기동 시 자동 패딩 불변성 검사(`check_padding_invariance()`)를 내장해 손상된 ONNX 바이너리를 자동 차단(`onnx_int8_blocked_by_parity_gate`)하도록 구현했습니다. 반면 로컬 **RTX 3060 6 GB FP32 PyTorch** 경로는 **`abs_diff = 0.000000`**, **`1.048 GiB` VRAM**(피크 `1.610 GiB`), **`27.79 ms/창`**(CPU ONNX 대비 `10.4배` 고속)으로 통과했습니다.
+- **문제**: Colab에서 내보낸 `model_quantized.onnx`(`322.67 MiB`, CPU 4스레드)를 로컬 Windows 검증기([`scripts/verify_local_runtime.py`](../scripts/verify_local_runtime.py))로 감사한 결과, 레거시 TorchScript `torch.onnx.export`와 동적 `QInt8` 양자화가 `mDeBERTa-v3` 상대 위치 어텐션의 패딩 불변성을 무너뜨렸습니다(`unpadded 0.061635` 대 `padded_384 0.098943`, `abs_diff = 0.037309 > 0.02`). 이로 인해 Holdout 거짓전제 탐지가 `2/20`에 그쳤고 지연도 `275.78 ms/창`(`2,165.64 ms/문항`)으로 느렸습니다.
+- **해결**: [`paper_qna/nli_gate.py`](../paper_qna/nli_gate.py)에 기동 시 자동 패딩 불변성 검사(`check_padding_invariance()`)를 내장해 손상된 ONNX 바이너리를 자동 차단(`onnx_int8_blocked_by_parity_gate`)하도록 구현했습니다. 반면 로컬 **RTX 3060 6 GB FP32 PyTorch** 경로는 **`abs_diff = 0.000000`**, **`1.048 GiB` VRAM**(피크 `1.610 GiB`), **`26.47 ms/창`**(CPU ONNX 대비 `10.4배` 고속)으로 통과했습니다.
 
 ---
 
@@ -78,5 +78,5 @@ Exact McNemar 및 `2,000`회 논문 군집 부트스트랩([`reports/dev_ablatio
 
 ![Scientific NLI 분포 분리 및 논문 그룹 Conformal Gate](figures/ko/nli-conformal-calibration.png)
 
-1. **평탄 최적 NLI 임계 구간 (`0.90` ~ `0.99`)**: DEV 모순 임계값 스윕([`reports/nli_threshold_sweep_dev.csv`](../reports/nli_threshold_sweep_dev.csv))에서 `0.70` ~ `0.99` 전 구간 거짓전제 **`10/10` (`100%`)**을 유지하면서, `0.90` ~ `0.99` 평탄 구간에서 한·영 정답 유지가 `35/40` -> **`37/40`**, 핵심사실이 `23/40` -> **`24/40`**으로 회복되었습니다. 안정적인 중앙값 **`0.95`**를 최종 채택했습니다.
+1. **평탄 최적 NLI 임계 구간 (`0.90` ~ `0.99`)**: DEV 모순 임계값 스윕([`reports/nli_threshold_sweep_dev.csv`](../reports/nli_threshold_sweep_dev.csv))에서 `0.70` ~ `0.99` 전 구간 거짓전제 <strong><code>10/10</code> (<code>100%</code>)</strong>을 유지하면서, `0.90` ~ `0.99` 평탄 구간에서 한·영 정답 유지가 `35/40` -> **`37/40`**, 핵심사실이 `23/40` -> <strong><code>24/40</code></strong>으로 회복되었습니다. 안정적인 중앙값 <strong><code>0.95</code></strong>를 최종 채택했습니다.
 2. **논문 그룹 5폴드 OOF Conformal Gate**: `7`개 무누설 특징(`top_reranker_score`, `score_margin_1_5`, `is_ko`, `nli_max_entailment`, `nli_max_contradiction`, `quote_verified_ratio`, `numeric_verified_ratio`)을 `paper_id` 기준 `GroupKFold(5)` OOF로 보정해 **AURC `0.0669`**(`alpha=0.05`에서 커버리지 `88.7%`, 부정 누출 `5.0%`)를 달성했습니다.

@@ -57,8 +57,8 @@ Executed locally on **Windows 11 + NVIDIA GeForce RTX 3060 Laptop GPU (`6,144 Mi
 | Verification Target | Metric / Outcome | Status |
 | --- | --- | :---: |
 | `corpus_v2_holdout` SHA-256 Integrity | `chunks.jsonl` & `manifest_v2.json` (`30` papers, `677` chunks) `2/2` exact match | **PASS** |
-| Local RTX 3060 FP32 PyTorch NLI (`mDeBERTa-v3`) | `1.048 GiB` VRAM (`1.610 GiB` peak / `6.0 GiB`), `27.79 ms/window` (`555.7 ms` / 20 wins), padding invariance **`abs_diff = 0.000000`** (`0.948831` vs `0.948831`), sample FP `0.9986` | **PASS** |
-| Legacy TorchScript ONNX INT8 (`322.67 MiB`, CPU 4T) | Padding drift **`abs_diff = 0.037309 > 0.02`** (`0.061635` vs `0.098943`), caught only `2/20` Holdout FPs at `0.95`, `288.0 ms/window` (`2,225.5 ms/q`) | **AUTO BLOCKED** |
+| Local RTX 3060 FP32 PyTorch NLI (`mDeBERTa-v3`) | `1.048 GiB` VRAM (`1.610 GiB` peak / `6.0 GiB`), `26.47 ms/window` (`529.39 ms` / 20 wins), padding invariance **`abs_diff = 0.000000`** (`0.948831` vs `0.948831`), sample FP `0.9986` | **PASS** |
+| Legacy TorchScript ONNX INT8 (`322.67 MiB`, CPU 4T) | Padding drift **`abs_diff = 0.037309 > 0.02`** (`0.061635` vs `0.098943`), caught only `2/20` Holdout FPs at `0.95`, `275.78 ms/window` (`2,165.64 ms/q`) | **AUTO-BLOCKED** |
 | Automated Test Suite (`pytest -v`) | `9/9` passing (PDF repair, verifier, NLI windows, BM25/RRF/Parent, Conformal Gate, SHA-256 freeze, FastAPI routes, live borderline gates, parity gate) | **PASS** |
 
 ---
