@@ -219,11 +219,24 @@ class HybridRetriever:
         scored.sort(key=lambda x: (-x["reranker_score"], x["chunk"]["chunk_id"]))
         selected: list[dict[str, Any]] = []
         page_counts: Counter[int] = Counter()
+        broad_re = re.compile(
+            r"(?:main topic|overview|summary|abstract|contribution|what is this paper|주제|요약|개요|핵심\s*내용|무엇에\s*관한)",
+            flags=re.I,
+        )
+        if paper_chunks and (broad_re.search(query) or (en_query and broad_re.search(en_query))):
+            p1_first = next((c for c in paper_chunks if int(c.get("page", 0)) == 1), paper_chunks[0])
+            selected.append({"chunk": p1_first, "reranker_score": max((scored[0]["reranker_score"] if scored else 1.0), 0.99), "retrieval_score": 1.0})
+            page_counts[int(p1_first["page"])] += 1
+        seen_cids = {it["chunk"]["chunk_id"] for it in selected}
         for item in scored:
+            cid = item["chunk"]["chunk_id"]
+            if cid in seen_cids:
+                continue
             pg = int(item["chunk"]["page"])
             if page_counts[pg] >= max_per_page:
                 continue
             selected.append(item)
+            seen_cids.add(cid)
             page_counts[pg] += 1
             if len(selected) >= top_k:
                 break

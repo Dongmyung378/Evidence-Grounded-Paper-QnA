@@ -96,6 +96,15 @@ def test_quote_numeric_and_contract_verifier():
 def test_extract_json_handles_think_and_fences():
     raw = '<think>reasoning</think>\n```json\n{"premise_check": "supported", "claims": []}\n```'
     assert extract_json_obj(raw)["premise_check"] == "supported"
+    trunc = (
+        '{"premise_check": "supported", "premise_reason": "", "claims": ['
+        '{"text": "LoRA reduces trainable parameters by 10,000x.", "evidence_id": "ev-01", "verbatim_quote": "reduce the number of trainable parameters by 10,000 times"}, '
+        '{"text": "Truncated second claim", "evidence_id": "ev-02", "verbatim_quote":'
+    )
+    recovered = extract_json_obj(trunc)
+    assert recovered["premise_check"] == "supported"
+    assert len(recovered["claims"]) == 1
+    assert recovered["claims"][0]["evidence_id"] == "ev-01"
 
 
 def test_premise_claim_extraction_and_windows():

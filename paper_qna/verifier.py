@@ -108,8 +108,8 @@ Rules:
    - If the evidence does not supply the requested information -> set "premise_check": "unsupported", "claims": [], and explain briefly in "premise_reason" ({target_lang}).
    - Otherwise -> set "premise_check": "supported" and write complete, faithful claims in "claims".
 3. Write each claim "text" in natural, accurate academic {target_lang}. Preserve ALL exact numbers, ranges (e.g., 50-225 MHz), units, percentages, dataset/model names, conditions, and qualifiers verbatim.
-4. Cover ALL requested items/aspects in the question (lists, comparisons, reasons, caveats, quantitative metrics).
-5. Every claim MUST include a valid "evidence_id" from the supplied list and a short "verbatim_quote" copied directly from that evidence text.
+4. Cover ALL requested items/aspects in the question concisely (at most 3-4 claims for overview questions).
+5. Every claim MUST include a valid "evidence_id" from the supplied list and a SHORT "verbatim_quote" (10 to 25 words) copied directly from that evidence text.
 6. Output ONLY a single valid JSON object with keys: "premise_check", "premise_reason", "claims". No Markdown code fences."""
 
     user_msg = f"""Question ({target_lang}):
@@ -123,6 +123,43 @@ Return ONLY JSON matching:
     return [{"role": "system", "content": system_msg}, {"role": "user", "content": user_msg}]
 
 
+def _recover_truncated_claims_json(cleaned: str) -> dict[str, Any] | None:
+    """Recover complete claims when a local LLM hits max_tokens mid-JSON inside claims[]."""
+    m_pc = re.search(r'"premise_check"\s*:\s*"([^"]+)"', cleaned)
+    if not m_pc:
+        return None
+    verdict = m_pc.group(1)
+    m_pr = re.search(r'"premise_reason"\s*:\s*"((?:[^"\\]|\\.)*)"', cleaned)
+    reason = json.loads(f'"{m_pr.group(1)}"') if m_pr else ""
+    claims_pos = cleaned.find('"claims"')
+    if claims_pos == -1:
+        return {"premise_check": verdict, "premise_reason": reason, "claims": []}
+    arr_start = cleaned.find("[", claims_pos)
+    if arr_start == -1:
+        return None
+    recovered: list[dict[str, Any]] = []
+    decoder = json.JSONDecoder()
+    idx = arr_start + 1
+    n = len(cleaned)
+    while idx < n:
+        while idx < n and cleaned[idx] in " \t\r\n,":
+            idx += 1
+        if idx >= n or cleaned[idx] == "]":
+            break
+        if cleaned[idx] != "{":
+            break
+        try:
+            item, end_idx = decoder.raw_decode(cleaned, idx)
+        except json.JSONDecodeError:
+            break
+        if isinstance(item, dict) and item.get("text") and item.get("evidence_id"):
+            recovered.append(item)
+        idx = end_idx
+    if verdict in {"unsupported", "contradicted"} or recovered:
+        return {"premise_check": verdict, "premise_reason": reason, "claims": recovered}
+    return None
+
+
 def extract_json_obj(raw: str) -> dict[str, Any]:
     cleaned = re.sub(r"<think>.*?</think>", "", str(raw or ""), flags=re.S).strip()
     m = re.match(r"^```(?:json)?\s*(\{.*\})\s*```$", cleaned, flags=re.I | re.S)
@@ -132,10 +169,18 @@ def extract_json_obj(raw: str) -> dict[str, Any]:
         start, end = cleaned.find("{"), cleaned.rfind("}")
         if start != -1 and end > start:
             cleaned = cleaned[start : end + 1]
+        elif start != -1:
+            cleaned = cleaned[start:]
     try:
         obj = json.loads(cleaned)
     except json.JSONDecodeError:
-        obj = json.loads(cleaned, strict=False)
+        try:
+            obj = json.loads(cleaned, strict=False)
+        except json.JSONDecodeError:
+            rec = _recover_truncated_claims_json(cleaned)
+            if rec is None:
+                raise
+            obj = rec
     if not isinstance(obj, dict):
         raise ValueError("Extracted JSON must be an object.")
     return obj

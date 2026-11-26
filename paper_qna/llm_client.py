@@ -74,13 +74,15 @@ class OpenAICompatibleLLMClient:
                 return re.sub(r"<think>.*?</think>", "", txt, flags=re.S).strip()
             except urllib.error.HTTPError as he:
                 body = he.read().decode("utf-8", errors="ignore")
-                if he.code == 400 and use_json and "response_format" in body.lower():
+                low = body.lower()
+                if he.code == 400 and use_json and "response_format" in low:
                     use_json = False
                     continue
-                if he.code == 400 and ("context" in body.lower() or "max_tokens" in body.lower()):
+                if he.code in (400, 500) and ("context" in low or "exceed" in low or "max_tokens" in low):
+                    max_tokens = max(384, int(max_tokens * 0.7))
                     for m in cur_msgs:
-                        if m.get("role") == "user" and len(m.get("content", "")) > 4000:
-                            m["content"] = m["content"][: int(len(m["content"]) * 0.78)]
+                        if m.get("role") == "user" and len(m.get("content", "")) > 2400:
+                            m["content"] = m["content"][: int(len(m["content"]) * 0.65)]
                     continue
                 if attempt == 2:
                     raise RuntimeError(f"LLM HTTP {he.code}: {body[:200]}") from he

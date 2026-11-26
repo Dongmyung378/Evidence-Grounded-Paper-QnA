@@ -337,9 +337,24 @@ class PaperQnAEngine:
             out["pipeline"]["abstention_source"] = abstention_src
             out["pipeline"]["generation_mode"] = "pre_gate_blocked"
         elif llm_live:
-            msgs = build_v2_grounded_messages(q_clean, evidence, lang)
-            raw = self.llm.chat(msgs, max_tokens=1024, temperature=0.0, json_mode=True)
-            out = verify_and_assemble_v2(raw, evidence, lang)
+            raw = ""
+            llm_evidence = evidence
+            for ev_limit, char_limit, tok_limit in ((5, 1800, 768), (3, 1200, 640), (2, 900, 512)):
+                trimmed = [
+                    {**e, "text": e["text"][:char_limit]}
+                    for e in evidence[:ev_limit]
+                ]
+                msgs = build_v2_grounded_messages(q_clean, trimmed, lang)
+                try:
+                    raw = self.llm.chat(msgs, max_tokens=tok_limit, temperature=0.0, json_mode=True)
+                    llm_evidence = trimmed
+                    break
+                except RuntimeError as exc:
+                    if "context" in str(exc).lower() or "exceed" in str(exc).lower():
+                        continue
+                    raise
+            out = verify_and_assemble_v2(raw, llm_evidence, lang)
+            out["retrieved_evidence"] = evidence
             out["pipeline"]["generation_mode"] = f"live_llm ({self.llm.model})"
         elif preset is not None:
             out = {

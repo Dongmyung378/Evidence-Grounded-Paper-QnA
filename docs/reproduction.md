@@ -56,7 +56,7 @@ To enable live generative bilingual synthesis on a consumer 6 GB GPU (tested on 
 
 1. Start `Qwen3-4B-Instruct-2507` (`Q4_K_M`, ~2.7 GiB VRAM) using `llama-server` or Ollama:
    ```powershell
-   llama-server -hf Qwen/Qwen3-4B-Instruct-2507-GGUF:Q4_K_M --host 127.0.0.1 --port 8080 -ngl 99 -c 4096
+   llama-server -hf unsloth/Qwen3-4B-Instruct-2507-GGUF:Q4_K_M --host 127.0.0.1 --port 8080 -ngl 99 -np 1 -c 8192
    ```
 2. Launch the demo connected to the local server:
    ```powershell
