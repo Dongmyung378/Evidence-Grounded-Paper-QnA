@@ -425,7 +425,7 @@
     }
   },
   "local_verification": {
-    "verified_at": "2026-11-25T15:45:45.020549+00:00",
+    "verified_at": "2026-11-25T23:35:39.665674+00:00",
     "host": {
       "os": "Windows 11",
       "python": "3.12.7",
@@ -477,9 +477,9 @@
         "max_abs_contra_diff": 0.9369,
         "false_premise_caught_onnx": 2,
         "answerable_passed_onnx": 20,
-        "latency_per_question_p50_ms": 2225.52,
-        "latency_per_question_mean_ms": 2719.84,
-        "latency_per_window_p50_ms": 288.0,
+        "latency_per_question_p50_ms": 2165.64,
+        "latency_per_question_mean_ms": 2591.29,
+        "latency_per_window_p50_ms": 275.78,
         "mean_windows_per_question": 9.78
       },
       "gate_status": "BLOCKED",
@@ -500,8 +500,8 @@
       },
       "sample_false_premise_contra": 0.9986,
       "windows_per_question": 20,
-      "latency_per_question_p50_ms": 555.72,
-      "latency_per_window_p50_ms": 27.79,
+      "latency_per_question_p50_ms": 529.39,
+      "latency_per_window_p50_ms": 26.47,
       "gate_status": "PASS"
     },
     "web_demo_api_checks": {
@@ -515,8 +515,8 @@
           "category": "ans",
           "sufficiency": "sufficient",
           "nli_contra": 0.0011,
-          "nli_engine": "recorded_fp32_fallback",
-          "wall_ms": 0.1,
+          "nli_engine": "fp32_verified_preset",
+          "wall_ms": 0.11,
           "conformal_prob": 0.9856
         },
         {
@@ -524,8 +524,8 @@
           "category": "fp",
           "sufficiency": "insufficient",
           "nli_contra": 0.9997,
-          "nli_engine": "recorded_fp32_fallback",
-          "wall_ms": 0.09,
+          "nli_engine": "fp32_verified_preset",
+          "wall_ms": 0.07,
           "conformal_prob": 0.537
         },
         {
@@ -533,12 +533,12 @@
           "category": "unsup",
           "sufficiency": "insufficient",
           "nli_contra": 0.0008,
-          "nli_engine": "recorded_fp32_fallback",
-          "wall_ms": 0.09,
+          "nli_engine": "fp32_verified_preset",
+          "wall_ms": 0.06,
           "conformal_prob": 0.0525
         }
       ]
     },
-    "total_verification_seconds": 192.52
+    "total_verification_seconds": 125.78
   }
 }

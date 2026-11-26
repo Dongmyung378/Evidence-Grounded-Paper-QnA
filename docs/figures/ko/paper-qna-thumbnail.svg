@@ -2,67 +2,68 @@
 <title id="title">논문 질의응답과 근거 추적: BGE-M3 · Scientific NLI · Qwen3-4B</title>
 <desc id="desc">미공개 corpus30 Holdout 240문항에서 응답 계약 100%, 거짓전제 거절 97.5%(영어 20/20, 한국어 19/20), 근거부족 거절 100%, 충실도 0.888, 문항당 1.77초를 달성한 이중언어 논문 질의응답 시스템 요약입니다.</desc>
 <style>text{font-family:'Noto Sans KR','Malgun Gothic','Apple SD Gothic Neo','Segoe UI',sans-serif;font-variant-numeric:tabular-nums}</style>
-<rect width="1200" height="760" fill="#F8F4EB"/>
-<text x="48" y="74" fill="#1F2E32" font-size="42" font-weight="760">논문 질의응답과 근거 추적</text>
-<text x="48" y="118" fill="#536569" font-size="20.5">BGE-M3 하이브리드 검색 · FP32 mDeBERTa-v3 Scientific NLI · Qwen3-4B Guided JSON · Conformal Gate</text>
-<line x1="48" y1="144" x2="1152" y2="144" stroke="#D7DED9" stroke-width="1.4"/>
+<rect width="1200" height="760" fill="#FAF7F0"/>
+<rect x="0" y="0" width="1200" height="8" fill="#E8B923"/>
+<text x="48" y="76" fill="#002147" font-size="42" font-weight="760">논문 질의응답과 근거 추적</text>
+<text x="48" y="118" fill="#4D5F73" font-size="20.5">BGE-M3 하이브리드 검색 · FP32 mDeBERTa-v3 Scientific NLI · Qwen3-4B Guided JSON · Conformal Gate</text>
+<line x1="48" y1="144" x2="1152" y2="144" stroke="#E2DCCB" stroke-width="1.5"/>
 
-<rect x="48" y="168" width="442" height="418" rx="14" fill="#FFFFFF" stroke="#D7DED9" stroke-width="1.3"/>
-<text x="74" y="208" fill="#1F2E32" font-size="22.5" font-weight="750">근거 검증 파이프라인</text>
-<text x="74" y="234" fill="#5B696C" font-size="14.5">영문 논문 PDF → 한·영 질문 응답 및 문장별 원문 인용</text>
+<rect x="48" y="168" width="442" height="418" rx="14" fill="#FFFFFF" stroke="#E2DCCB" stroke-width="1.3"/>
+<text x="74" y="208" fill="#002147" font-size="22.5" font-weight="750">근거 검증 파이프라인</text>
+<text x="74" y="234" fill="#586778" font-size="14.5">영문 논문 PDF → 한·영 질문 응답 및 문장별 원문 인용</text>
 
-<rect x="74" y="254" width="390" height="68" rx="10" fill="#F5FAF8" stroke="#9AC8BE" stroke-width="1.3"/>
-<text x="92" y="280" fill="#1E665E" font-size="12.5" font-weight="750">01 하이브리드 검색 및 Parent 1,800자 확장</text>
-<text x="92" y="306" fill="#1F2E32" font-size="16" font-weight="700">BM25 + BGE-M3 + 이중 점수 리랭킹</text>
+<rect x="74" y="254" width="390" height="68" rx="10" fill="#F4F7FB" stroke="#A6BDD8" stroke-width="1.3"/>
+<text x="92" y="280" fill="#002147" font-size="12.5" font-weight="750">01 하이브리드 검색 및 Parent 1,800자 확장</text>
+<text x="92" y="306" fill="#132234" font-size="16" font-weight="700">BM25 + BGE-M3 + 이중 점수 리랭킹</text>
 
-<path d="M269 322V344" stroke="#1E665E" stroke-width="2.6"/>
-<path d="M262 337L269 345L276 337" fill="none" stroke="#1E665E" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M269 322V344" stroke="#002147" stroke-width="2.6"/>
+<path d="M262 337L269 345L276 337" fill="none" stroke="#002147" stroke-width="2.6" stroke-linecap="round"/>
 
-<rect x="74" y="348" width="390" height="72" rx="10" fill="#FBF3E6" stroke="#D8B384" stroke-width="1.5"/>
-<text x="92" y="374" fill="#8C5B23" font-size="12.5" font-weight="750">02 Scientific NLI 사전 차단 게이트 (모순 임계 0.95)</text>
-<text x="92" y="399" fill="#1F2E32" font-size="15.8" font-weight="700">mDeBERTa-v3 FP32 파인튜닝 · 패리티 게이트 내장</text>
+<rect x="74" y="348" width="390" height="72" rx="10" fill="#FCF5DC" stroke="#E8B923" stroke-width="1.8"/>
+<text x="92" y="374" fill="#8C6400" font-size="12.5" font-weight="750">02 Scientific NLI 사전 차단 게이트 (모순 임계 0.95)</text>
+<text x="92" y="399" fill="#132234" font-size="15.8" font-weight="700">mDeBERTa-v3 FP32 파인튜닝 · 패리티 게이트 내장</text>
 
-<path d="M269 420V442" stroke="#A87338" stroke-width="2.6"/>
-<path d="M262 435L269 443L276 435" fill="none" stroke="#A87338" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M269 420V442" stroke="#C28E0E" stroke-width="2.6"/>
+<path d="M262 435L269 443L276 435" fill="none" stroke="#C28E0E" stroke-width="2.6" stroke-linecap="round"/>
 
-<rect x="74" y="446" width="390" height="70" rx="10" fill="#F5FAF8" stroke="#1E665E" stroke-width="1.6"/>
-<text x="92" y="472" fill="#1E665E" font-size="12.5" font-weight="750">03 Guided JSON 및 결정론적 인용·수치 검증</text>
-<text x="92" y="497" fill="#1F2E32" font-size="15.8" font-weight="700">Qwen3-4B-Instruct-2507 + Conformal Gate</text>
+<rect x="74" y="446" width="390" height="70" rx="10" fill="#F4F7FB" stroke="#002147" stroke-width="1.6"/>
+<text x="92" y="472" fill="#002147" font-size="12.5" font-weight="750">03 Guided JSON 및 결정론적 인용·수치 검증</text>
+<text x="92" y="497" fill="#132234" font-size="15.8" font-weight="700">Qwen3-4B-Instruct-2507 + Conformal Gate</text>
 
-<rect x="74" y="530" width="390" height="38" rx="8" fill="#E6F2EF"/>
-<text x="269" y="554" text-anchor="middle" fill="#154943" font-size="13.8" font-weight="750">논문 그룹 5폴드 OOF AURC 0.0669 · 응답 계약 240/240</text>
+<rect x="74" y="530" width="390" height="38" rx="8" fill="#FCF5DC" stroke="#E8B923" stroke-width="1"/>
+<text x="269" y="554" text-anchor="middle" fill="#6E4E00" font-size="13.8" font-weight="750">논문 그룹 5폴드 OOF AURC 0.0669 · 응답 계약 240/240</text>
 
-<path d="M490 377H542V230H590" fill="none" stroke="#6E8783" stroke-width="2.8" stroke-linejoin="round"/>
-<path d="M490 377H590" fill="none" stroke="#A87338" stroke-width="2.8"/>
-<path d="M490 377H542V522H590" fill="none" stroke="#1E665E" stroke-width="3.4" stroke-linejoin="round"/>
-<circle cx="542" cy="377" r="5" fill="#1F2E32"/>
-<path d="M581 223L591 230L581 237" fill="none" stroke="#6E8783" stroke-width="2.8" stroke-linecap="round"/>
-<path d="M581 370L591 377L581 384" fill="none" stroke="#A87338" stroke-width="2.8" stroke-linecap="round"/>
-<path d="M581 515L591 522L581 529" fill="none" stroke="#1E665E" stroke-width="3.4" stroke-linecap="round"/>
+<path d="M490 377H542V230H590" fill="none" stroke="#5C6E80" stroke-width="2.8" stroke-linejoin="round"/>
+<path d="M490 377H590" fill="none" stroke="#E8B923" stroke-width="3.0"/>
+<path d="M490 377H542V522H590" fill="none" stroke="#002147" stroke-width="3.4" stroke-linejoin="round"/>
+<circle cx="542" cy="377" r="5" fill="#002147"/>
+<path d="M581 223L591 230L581 237" fill="none" stroke="#5C6E80" stroke-width="2.8" stroke-linecap="round"/>
+<path d="M581 370L591 377L581 384" fill="none" stroke="#E8B923" stroke-width="3.0" stroke-linecap="round"/>
+<path d="M581 515L591 522L581 529" fill="none" stroke="#002147" stroke-width="3.4" stroke-linecap="round"/>
 
-<rect x="598" y="168" width="554" height="124" rx="14" fill="#FFFFFF" stroke="#D7DED9" stroke-width="1.3"/>
-<rect x="598" y="168" width="9" height="124" rx="4" fill="#6E8783"/>
-<text x="628" y="204" fill="#536569" font-size="13.5" font-weight="750">미공개 HOLDOUT 정답 유지 및 근거 정확도 (240문항)</text>
-<text x="628" y="241" fill="#1F2E32" font-size="25" font-weight="780">정답 유지 88.8% · 페이지 인용 76.9%</text>
-<text x="628" y="272" fill="#536569" font-size="14.5">영어 핵심사실 54/80 (67.5%) · 한국어 41/80 (51.3%) · 수치 검증 95%</text>
+<rect x="598" y="168" width="554" height="124" rx="14" fill="#FFFFFF" stroke="#E2DCCB" stroke-width="1.3"/>
+<rect x="598" y="168" width="9" height="124" rx="4" fill="#5C6E80"/>
+<text x="628" y="204" fill="#4D5F73" font-size="13.5" font-weight="750">미공개 HOLDOUT 정답 유지 및 근거 정확도 (240문항)</text>
+<text x="628" y="241" fill="#002147" font-size="25" font-weight="780">정답 유지 88.8% · 페이지 인용 76.9%</text>
+<text x="628" y="272" fill="#4D5F73" font-size="14.5">영어 핵심사실 54/80 (67.5%) · 한국어 41/80 (51.3%) · 수치 검증 95%</text>
 
-<rect x="598" y="314" width="554" height="124" rx="14" fill="#FFFFFF" stroke="#D7DED9" stroke-width="1.3"/>
-<rect x="598" y="314" width="9" height="124" rx="4" fill="#A87338"/>
-<text x="628" y="350" fill="#8C5B23" font-size="13.5" font-weight="750">환각 및 거짓전제 방어 성능 (SCIENTIFIC NLI)</text>
-<text x="628" y="387" fill="#1F2E32" font-size="25" font-weight="780">거짓전제 거절 97.5% · 근거부족 100%</text>
-<text x="628" y="418" fill="#536569" font-size="14.5">영어 거짓전제 20/20 (100%) · 한국어 19/20 (95%) · DEV 분리도 0.001 대 0.999</text>
+<rect x="598" y="314" width="554" height="124" rx="14" fill="#FFFFFF" stroke="#E8B923" stroke-width="1.8"/>
+<rect x="598" y="314" width="9" height="124" rx="4" fill="#E8B923"/>
+<text x="628" y="350" fill="#8C6400" font-size="13.5" font-weight="750">환각 및 거짓전제 방어 성능 (SCIENTIFIC NLI)</text>
+<text x="628" y="387" fill="#002147" font-size="25" font-weight="780">거짓전제 거절 97.5% · 근거부족 100%</text>
+<text x="628" y="418" fill="#4D5F73" font-size="14.5">영어 거짓전제 20/20 (100%) · 한국어 19/20 (95%) · DEV 분리도 0.001 대 0.999</text>
 
-<rect x="598" y="460" width="554" height="126" rx="14" fill="#FFFFFF" stroke="#1E665E" stroke-width="2.2"/>
-<rect x="598" y="460" width="10" height="126" rx="4" fill="#1E665E"/>
-<rect x="1028" y="476" width="104" height="26" rx="13" fill="#E6F2EF"/>
-<text x="1080" y="494" text-anchor="middle" fill="#154943" font-size="12.5" font-weight="750">최종 채택 모델</text>
-<text x="628" y="496" fill="#1E665E" font-size="13.5" font-weight="750">의미 평가 · 응답 속도 · 소거 검증 규율</text>
-<text x="628" y="533" fill="#1F2E32" font-size="24" font-weight="780">충실도 0.888 · 문항당 1.77초 추론</text>
-<text x="628" y="564" fill="#536569" font-size="14.2">EN 완전성 0.849 / KO 0.711 · Post NLI와 LoRA SFT 과적합 소거 후 최종 채택</text>
+<rect x="598" y="460" width="554" height="126" rx="14" fill="#FFFFFF" stroke="#002147" stroke-width="2.2"/>
+<rect x="598" y="460" width="10" height="126" rx="4" fill="#002147"/>
+<rect x="1028" y="476" width="104" height="26" rx="13" fill="#FCF5DC" stroke="#E8B923" stroke-width="1"/>
+<text x="1080" y="494" text-anchor="middle" fill="#6E4E00" font-size="12.5" font-weight="750">최종 채택 모델</text>
+<text x="628" y="496" fill="#002147" font-size="13.5" font-weight="750">의미 평가 · 응답 속도 · 소거 검증 규율</text>
+<text x="628" y="533" fill="#002147" font-size="24" font-weight="780">충실도 0.888 · 문항당 1.77초 추론</text>
+<text x="628" y="564" fill="#4D5F73" font-size="14.2">EN 완전성 0.849 / KO 0.711 · Post NLI와 LoRA SFT 과적합 소거 후 최종 채택</text>
 
-<rect x="48" y="610" width="1104" height="106" rx="16" fill="#1F2E32"/>
+<rect x="48" y="610" width="1104" height="106" rx="16" fill="#002147"/>
 <text x="80" y="654" fill="#FFFFFF" font-size="26.5" font-weight="760">미공개 Holdout 240문항 실측 및 RTX 3060 로컬 검증 완료</text>
-<text x="80" y="690" fill="#CFE2DD" font-size="18.5">FastAPI 인터랙티브 데모 · FP32 1.048 GiB 패딩 오차 0.000000 · ONNX INT8 배포 게이트 자동 차단</text>
-<text x="1120" y="660" text-anchor="end" fill="#9CE5B8" font-size="38" font-weight="780">97.5% / 0.888</text>
-<text x="1120" y="690" text-anchor="end" fill="#CFE2DD" font-size="16.5">거짓전제 방어 · 의미 충실도</text>
+<text x="80" y="690" fill="#D7E2F0" font-size="18.5">FastAPI 인터랙티브 데모 · FP32 1.048 GiB 패딩 오차 0.000000 · ONNX INT8 배포 게이트 자동 차단</text>
+<text x="1120" y="660" text-anchor="end" fill="#F4CC47" font-size="38" font-weight="780">97.5% / 0.888</text>
+<text x="1120" y="690" text-anchor="end" fill="#F6E5A8" font-size="16.5">거짓전제 방어 · 의미 충실도</text>
 </svg>
