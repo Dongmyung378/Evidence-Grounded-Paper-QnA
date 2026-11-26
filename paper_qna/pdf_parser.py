@@ -19,6 +19,24 @@ SECTION_HEADING_RE = re.compile(
     r"References|Appendix)\b",
     flags=re.I,
 )
+NUMBERED_SECTION_RE = re.compile(
+    r"^(\d+(?:\.\d+)*\.?\s+[A-Z][A-Za-z0-9 ,:/-]{3,60})$"
+)
+
+
+def _detect_section(page_text: str, current_section: str) -> str:
+    for line in str(page_text or "").splitlines():
+        s = line.strip()
+        if not s or len(s) > 75:
+            continue
+        m = SECTION_HEADING_RE.match(s)
+        if m:
+            return m.group(1).title()
+        m2 = NUMBERED_SECTION_RE.match(s)
+        if m2 and not s.endswith("."):
+            candidate = m2.group(1).strip()
+            return candidate.title() if candidate.isupper() else candidate
+    return current_section
 
 
 def chunk_page_text(
@@ -48,12 +66,18 @@ def chunk_page_text(
     return chunks
 
 
-def _detect_section(page_text: str, current_section: str) -> str:
-    for line in str(page_text or "").splitlines()[:8]:
-        m = SECTION_HEADING_RE.match(line.strip())
-        if m:
-            return m.group(1).title()
-    return current_section
+def _extract_title(first_page_text: str, fallback: str) -> str:
+    lines = [ln.strip() for ln in str(first_page_text or "").splitlines() if len(ln.strip()) >= 4]
+    if not lines:
+        return fallback
+    title = lines[0]
+    if len(lines) >= 2:
+        nxt = lines[1]
+        if title.endswith("-"):
+            title = title[:-1] + nxt
+        elif title.isupper() and nxt.isupper() and len(title) + len(nxt) < 120:
+            title = f"{title} {nxt}"
+    return repair_pdf_chunk_text(title)[:140]
 
 
 def parse_pdf_bytes(
@@ -83,9 +107,7 @@ def parse_pdf_bytes(
     for page_idx, page in enumerate(reader.pages, start=1):
         raw_text = page.extract_text() or ""
         if page_idx == 1 and raw_text.strip():
-            first_lines = [ln.strip() for ln in raw_text.splitlines() if len(ln.strip()) >= 12]
-            if first_lines:
-                title_guess = repair_pdf_chunk_text(first_lines[0])[:140]
+            title_guess = _extract_title(raw_text, title_guess)
         current_section = _detect_section(raw_text, current_section)
         page_chunks = chunk_page_text(raw_text, chunk_size=chunk_size, overlap=overlap)
         for ci, ctext in enumerate(page_chunks, start=1):

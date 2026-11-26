@@ -211,6 +211,18 @@ def test_borderline_nli_threshold_and_conformal_gate_enforcement():
     assert c_hold["conformal"]["blocked"] is True
     assert c_hold["response"]["sufficiency"] == "insufficient"
 
+    # Unrelated Korean and English questions in extractive fallback must abstain safely (never echo page 1)
+    r_ko_irrel = client.post("/api/ask", json={"paper_id": "paper-030", "question": "박동명의 생일은?"}).json()
+    assert r_ko_irrel["response"]["sufficiency"] == "insufficient"
+    assert r_ko_irrel["cited_evidence"] == []
+
+    r_en_irrel = client.post(
+        "/api/ask",
+        json={"paper_id": "paper-030", "question": "What is the clinical trial survival rate in oncology patients treated with chemotherapy?"},
+    ).json()
+    assert r_en_irrel["response"]["sufficiency"] == "insufficient"
+    assert r_en_irrel["cited_evidence"] == []
+
 
 def test_local_scientific_nli_onnx_parity_gate_if_present():
     onnx_dir = ROOT / "models" / "scientific_nli_int8"

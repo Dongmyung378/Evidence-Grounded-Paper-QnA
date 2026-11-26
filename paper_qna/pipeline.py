@@ -34,21 +34,39 @@ _STOPWORDS = {
 }
 
 
+def _trim_quote(text: str, max_len: int = 180) -> str:
+    t = str(text or "").strip()
+    if len(t) <= max_len:
+        return t
+    cut = t.rfind(" ", 0, max_len)
+    return t[: cut if cut > 80 else max_len].rstrip(" ,;:-")
+
+
 def _extractive_fallback(
     question: str,
     evidence: list[dict[str, Any]],
     language: str,
     nli_res: dict[str, Any] | None = None,
+    top_score: float = 0.0,
 ) -> dict[str, Any]:
     """Deterministic grounded sentence extraction when no local LLM server is attached."""
     q_toks = {t for t in tokenize(question) if len(t) >= 2 and t not in _STOPWORDS}
     if not q_toks:
         q_toks = set(tokenize(question))
+
+    if top_score <= 0.0:
+        reason = (
+            "검색된 논문 원문에서 질문과 일치하는 근거를 찾지 못했습니다. (기본 발췌 모드에서는 영문 PDF에 대한 한국어 교차언어 검색이 지원되지 않으므로, 영어로 질문하거나 --llm-url 및 --neural-retrieval 옵션을 연결해 주세요.)"
+            if language == "ko"
+            else "No matching passages were found in the paper for this question (BM25 score = 0.0)."
+        )
+        return verify_and_assemble_v2("", evidence, language, pre_abstain_reason=reason)
+
     best_sents: list[tuple[float, float, str, dict[str, Any]]] = []
     seen_norm: set[str] = set()
     for ev in evidence[:3]:
         for sent in re.split(r"(?<=[.!?])\s+", ev.get("text", "")):
-            s = sent.strip()
+            s = sent.strip().lstrip("•-* ").strip()
             if len(s) < 35 or len(s) > 420:
                 continue
             s_key = re.sub(r"\s+", " ", s.casefold())[:120]
@@ -57,19 +75,20 @@ def _extractive_fallback(
             seen_norm.add(s_key)
             s_toks = set(tokenize(s))
             overlap = len(q_toks & s_toks) / max(len(q_toks), 1)
-            score = overlap + 0.20 * float(ev.get("reranker_score", 0.0))
+            starts_clean = 0.08 if s[0].isupper() else 0.0
+            score = overlap + 0.20 * float(ev.get("reranker_score", 0.0)) + starts_clean
             best_sents.append((score, overlap, s, ev))
     best_sents.sort(key=lambda item: (-item[0], -item[1]))
 
-    if not best_sents or (language == "en" and best_sents[0][1] < 0.25):
+    if not best_sents or best_sents[0][1] < 0.25:
         reason = (
-            "로컬 LLM 서버(Qwen3-4B)가 연결되지 않았고, 검색된 근거에서 질문과 직접 일치하는 문장을 찾지 못했습니다."
+            "로컬 LLM 서버(Qwen3-4B)가 연결되지 않은 기본 발췌 모드에서 질문과 직접 일치하는 논문 근거 문장을 찾지 못했습니다."
             if language == "ko"
-            else "No local LLM server (Qwen3-4B) is connected and retrieved passages lacked sufficient direct lexical match for this question."
+            else "Retrieved passages lacked sufficient direct lexical match to ground an answer for this question."
         )
         return verify_and_assemble_v2("", evidence, language, pre_abstain_reason=reason)
 
-    top_items = best_sents[:2]
+    top_items = [item for item in best_sents if item[1] >= 0.20][:2] or best_sents[:1]
     claims = []
     for _, _, sent, ev in top_items:
         claim_text = (
@@ -81,7 +100,7 @@ def _extractive_fallback(
             {
                 "text": claim_text,
                 "evidence_id": ev["evidence_id"],
-                "verbatim_quote": sent[:180],
+                "verbatim_quote": _trim_quote(sent, 180),
             }
         )
     raw_json = json.dumps(
@@ -334,7 +353,7 @@ class PaperQnAEngine:
                 f"verified_holdout_replay+{nli_info.get('engine', 'fp32_nli')}"
             )
         else:
-            out = _extractive_fallback(q_clean, evidence, lang, nli_info)
+            out = _extractive_fallback(q_clean, evidence, lang, nli_info, top_score=top_score)
 
         # Stage 4: Paper Grouped 5 Fold OOF Conformal Gate Telemetry (and optional hard gating)
         conformal_info = None
